@@ -1,6 +1,6 @@
 # Smart-Kanban-Board
 
-# Team Member
+## Team Members
 - Jerremy Lewis
 - Ben Wood
 - Caleb Wannamaker
