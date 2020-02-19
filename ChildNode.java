@@ -34,9 +34,6 @@ public class ChildNode
 		
 	}
 	
-	public Node updateNode(int id, Node aNode)
-	{
-		//NOT IMPLEMENTED
-	}
+	
 
 }
