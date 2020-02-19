@@ -25,8 +25,10 @@ public class ChildNode
         while (itr.hasNext()) 
         {
             Node nodeCheck = itr.next();
+            int nodeId = nodeCheck.getId();
+            
     
-            if (nodeCheck = id)
+            if (nodeId == id)
             {
             	nodes.remove(nodeCheck)
             }
