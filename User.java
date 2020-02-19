@@ -28,22 +28,22 @@ public class User
 	
 	public void setUsername(String aUsername)
 	{
-		this.aUsername = username
+		this.username = aUsername
 	}
 	
 	public void setPassword(String aPassword)
 	{
-		this.aPassword = password
+		this.password = aPassword
 	}
 	
 	public void setId(int aId)
 	{
-		this.aId = id
+		this.id = aId;
 	}
 	
 	public void setSessionId(String aSessionId)
 	{
-		this.aSessionId = sessionId
+		this.sessionId = aSessionId
 	}
 
 	
