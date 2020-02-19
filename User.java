@@ -8,32 +8,27 @@ public class User
 	
 	public String getUsername()
 	{
-		return "NOT IMPLEMENTED";
-	}
-	
-	public String getPassword()
-	{
-		return "NOT IMPLEMENTED";
+		return this.username;
 	}
 	
 	public int getId()
 	{
-		//NOT IMPLEMENTED
+		return this.id;
 	}
 	
 	public String getSessionId()
 	{
-		return "NOT IMPLEMENTED";
+		return this.sessionId;
 	}
 	
 	public void setUsername(String aUsername)
 	{
-		this.username = aUsername
+		this.username = aUsername;
 	}
 	
 	public void setPassword(String aPassword)
 	{
-		this.password = aPassword
+		this.password = aPassword;
 	}
 	
 	public void setId(int aId)
@@ -43,13 +38,19 @@ public class User
 	
 	public void setSessionId(String aSessionId)
 	{
-		this.sessionId = aSessionId
+		this.sessionId = aSessionId;
 	}
 
 	
 	public boolean authenticate(String aUsername, String aPassword)
 	{
-		//NOT IMPLEMENTED
+		this.username = aUsername;
+		this.password = aPassword;
+		return true;
+	}
+
+	public boolean authenticate(){
+		return true;
 	}
 	
 	
