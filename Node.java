@@ -1,26 +1,28 @@
+import java.util.HashMap;
 
 public class Node 
 {
 	private int id;
-	private int parent_id;
-	private int grandparent_id;
+	private int parentId;
+	private int grandparentId;
 	private String title;
 	private String note;
 	private String type;
+
 	
 	public int getId()
 	{
-		//NOT IMPLEMENTED
+		return this.id;
 	}
 	
 	public int getParentId()
 	{
-		//NOT IMPLEMENTED
+		return this.parentId;
 	}
 	
 	public int getGrandparentId()
 	{
-		//NOT IMPLEMENTED
+		return this.grandparentId;
 	}
 	
 	public void setId(int aId)
@@ -28,38 +30,38 @@ public class Node
 		this.aId = id;
 	}
 	
-	public void getParentId(int aParentId)
+	public void setParentId(int aParentId)
 	{
-		this.aParentId = parent_id;
+		this.parentId = aParentId;
 	}
 	
-	public void getGrandparentId(int aGrandparentId)
+	public void setGrandparentId(int aGrandparentId)
 	{
-		this.aGrandparentId = grandparent_id;
+		this.grandparentId = aGrandparentId;
 	}
 	
 	public String getTitle()
 	{
-		//NOT IMPLEMENTED
+		return this.title;
 	}
 	
 	public void setTitle(String aTitle)
 	{
-		this.aTitle = title;
+		this.title = aTitle;
 	}
 	
-	public String getParentType(String aParentType)
+	public String getParentType(String aType)
+	{
+		//NOT IMPLEMENTED
+		
+		return aType;
+	}
+	
+	public String getChildType(String aType)
 	{
 		//NOT IMPLEMENTED
 
-		return aParentType;
-	}
-	
-	public String getChildType(String aChildType)
-	{
-		//NOT IMPLEMENTED
-
-		return aChildType;
+		return aType;
 	}
 	
 	public String toString()
