@@ -5,10 +5,11 @@
 import java.util.ArrayList;
 import java.util.List;
 
-protected ArrayList<Node> nodes = new ArrayList<Node>();
 
 public class ChildNode 
 {
+	protected ArrayList<Node> nodes = new ArrayList<Node>();
+
 	//adds a node
 	public Node addNode(Node aNode)
 	{
@@ -27,10 +28,8 @@ public class ChildNode
             Node nodeCheck = itr.next();
             int nodeId = nodeCheck.getId();
             
-    
-            if (nodeId == id)
-            {
-            	nodes.remove(nodeCheck)
+            if (nodeId == id){
+            	nodes.remove(nodeCheck);
             }
         }
 		
