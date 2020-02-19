@@ -21,7 +21,11 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+<<<<<<< HEAD
+/.metadata/
+=======
 
 /.metadata/
 /.github/
 /.git/
+>>>>>>> 4003ad5782b29176f8f2adb5eeeba40df8c3f40b
