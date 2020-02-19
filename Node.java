@@ -9,6 +9,35 @@ public class Node
 	private String note;
 	private String type;
 
+
+	public Node(int id, String title, String node){
+		this.id = id;
+		this.title = title;
+		this.node = node;
+		this.type = this.getClass();
+	}
+
+	public Node(){
+		this.type = this.getCalss();
+	}
+
+	private String getTypeByLevel(String type, int level){
+		HashMap<String, Integer> types = new HashMap<String, Integer>();
+		types.put("Kanban", 1);
+		types.put("Board", 2);
+		types.put("Column", 3);
+		types.put("Event", 4);
+
+		int lvl = types.get(type);
+		lvl += level;
+
+		String ret = "";
+		types.forEach((key, value) -> {
+			if(value == lvl){
+				this.ret = key;
+			}
+		});
+	}
 	
 	public int getId()
 	{
@@ -27,7 +56,7 @@ public class Node
 	
 	public void setId(int aId)
 	{
-		this.aId = id;
+		this.id = aId;
 	}
 	
 	public void setParentId(int aParentId)
@@ -49,24 +78,36 @@ public class Node
 	{
 		this.title = aTitle;
 	}
+
+	public String getParentType(){
+		return this.getParentType(this.type);
+	}
 	
 	public String getParentType(String aType)
 	{
-		//NOT IMPLEMENTED
-		
-		return aType;
+		return this.getParentType(aType, -1);
+	}
+
+	public String getParentType(String aType, int aLevel){
+		return this.getTypeByLevel(aType, Math.abs(aLevel) * -1);
 	}
 	
+	public String getChildType(){
+		return this.getChildType(this.type);
+	}
+
 	public String getChildType(String aType)
 	{
-		//NOT IMPLEMENTED
+		return this.getChildType(aType);
+	}
 
-		return aType;
+	public String getChildType(String aType, int aLevel){
+		return this.getTypeByLevel(aType, Math.abs(aLevel));
 	}
 	
 	public String toString()
 	{
-		return "NOT IMPLEMETED";
+		return "Node (id: " + this.id + ", title: " + this.title + ", note: " + this.note + ")";
 		
 	}
 	
