@@ -1,4 +1,1 @@
-
-public class Kanban implements ChildNode{
-
-}
+public class Kanban implements ChildNode {}

@@ -1,116 +1,100 @@
 import java.util.HashMap;
 
-public class Node 
-{
-	private int id;
-	private int parentId;
-	private int grandparentId;
-	private String title;
-	private String note;
-	private String type;
+public class Node {
+  private int id;
+  private int parentId;
+  private int grandparentId;
+  private String title;
+  private String note;
+  private String type;
 
+  public Node(int id, String title, String node) {
+    this.id = id;
+    this.title = title;
+    this.node = node;
+    this.type = this.getClass();
+  }
 
-	public Node(int id, String title, String node){
-		this.id = id;
-		this.title = title;
-		this.node = node;
-		this.type = this.getClass();
-	}
+  public Node() {
+    this.type = this.getCalss();
+  }
 
-	public Node(){
-		this.type = this.getCalss();
-	}
+  private String getTypeByLevel(String type, int level) {
+    HashMap<String, Integer> types = new HashMap<String, Integer>();
+    types.put("Kanban", 1);
+    types.put("Board", 2);
+    types.put("Column", 3);
+    types.put("Event", 4);
 
-	private String getTypeByLevel(String type, int level){
-		HashMap<String, Integer> types = new HashMap<String, Integer>();
-		types.put("Kanban", 1);
-		types.put("Board", 2);
-		types.put("Column", 3);
-		types.put("Event", 4);
+    int lvl = types.get(type);
+    lvl += level;
 
-		int lvl = types.get(type);
-		lvl += level;
+    String ret = "";
+    types.forEach(
+        (key, value) -> {
+          if (value == lvl) {
+            this.ret = key;
+          }
+        });
+  }
 
-		String ret = "";
-		types.forEach((key, value) -> {
-			if(value == lvl){
-				this.ret = key;
-			}
-		});
-	}
-	
-	public int getId()
-	{
-		return this.id;
-	}
-	
-	public int getParentId()
-	{
-		return this.parentId;
-	}
-	
-	public int getGrandparentId()
-	{
-		return this.grandparentId;
-	}
-	
-	public void setId(int aId)
-	{
-		this.id = aId;
-	}
-	
-	public void setParentId(int aParentId)
-	{
-		this.parentId = aParentId;
-	}
-	
-	public void setGrandparentId(int aGrandparentId)
-	{
-		this.grandparentId = aGrandparentId;
-	}
-	
-	public String getTitle()
-	{
-		return this.title;
-	}
-	
-	public void setTitle(String aTitle)
-	{
-		this.title = aTitle;
-	}
+  public int getId() {
+    return this.id;
+  }
 
-	public String getParentType(){
-		return this.getParentType(this.type);
-	}
-	
-	public String getParentType(String aType)
-	{
-		return this.getParentType(aType, -1);
-	}
+  public int getParentId() {
+    return this.parentId;
+  }
 
-	public String getParentType(String aType, int aLevel){
-		return this.getTypeByLevel(aType, Math.abs(aLevel) * -1);
-	}
-	
-	public String getChildType(){
-		return this.getChildType(this.type);
-	}
+  public int getGrandparentId() {
+    return this.grandparentId;
+  }
 
-	public String getChildType(String aType)
-	{
-		return this.getChildType(aType);
-	}
+  public void setId(int aId) {
+    this.id = aId;
+  }
 
-	public String getChildType(String aType, int aLevel){
-		return this.getTypeByLevel(aType, Math.abs(aLevel));
-	}
-	
-	public String toString()
-	{
-		return "Node (id: " + this.id + ", title: " + this.title + ", note: " + this.note + ")";
-		
-	}
-	
-	
+  public void setParentId(int aParentId) {
+    this.parentId = aParentId;
+  }
 
+  public void setGrandparentId(int aGrandparentId) {
+    this.grandparentId = aGrandparentId;
+  }
+
+  public String getTitle() {
+    return this.title;
+  }
+
+  public void setTitle(String aTitle) {
+    this.title = aTitle;
+  }
+
+  public String getParentType() {
+    return this.getParentType(this.type);
+  }
+
+  public String getParentType(String aType) {
+    return this.getParentType(aType, -1);
+  }
+
+  public String getParentType(String aType, int aLevel) {
+    return this.getTypeByLevel(aType, Math.abs(aLevel) * -1);
+  }
+
+  public String getChildType() {
+    return this.getChildType(this.type);
+  }
+
+  public String getChildType(String aType) {
+    return this.getChildType(aType);
+  }
+
+  public String getChildType(String aType, int aLevel) {
+    return this.getTypeByLevel(aType, Math.abs(aLevel));
+  }
+
+  public String toString() {
+    return "Node (id: " + this.id + ", title: " + this.title + ", note: " + this.note + ")";
+  }
 }

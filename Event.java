@@ -1,5 +1,1 @@
-
-public class Event extends Node
-{
-
-}
+public class Event extends Node {}
