@@ -1,1 +1,14 @@
 language: java
+
+branches:
+  only:
+  - master
+  - dev
+
+before_install:
+  - cd java
+
+script:
+  find -name "*.java" > sources.txt
+  javac @sources.txt
+  java Kanban
