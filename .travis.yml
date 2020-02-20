@@ -5,6 +5,7 @@ branches:
   - master
   - dev
   - Skeleton
+  - travis-script-test
 
 script:
   javac *.java
