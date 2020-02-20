@@ -26,13 +26,9 @@ public class Kanban {
     }
   }
 
-  public static void showMain(){
+  public static void showMain() {}
 
-  }
-
-  public static void showSettings(){
-    
-  }
+  public static void showSettings() {}
 
   public static void showPage(int page) {
     if (page == 0) {

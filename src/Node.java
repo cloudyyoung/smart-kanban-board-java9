@@ -30,7 +30,7 @@ public class Node {
     lvl += level;
 
     String ret = "";
-    
+
     // NEED IMPLEMENTATION
 
     return ret;
