@@ -6,9 +6,7 @@ branches:
   - dev
   - Skeleton
 
-deploy:
-  provider: script
-  script:
-    find -name "*.java" > sources.txt
-    javac @sources.txt
-    java Kanban
+script:
+  find -name "*.java" > sources.txt
+  javac @sources.txt
+  java Kanban
