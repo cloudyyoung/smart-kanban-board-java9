@@ -10,4 +10,4 @@ branches:
 script:
   cd src/
   javac *.java
-  java Kanban
+  java Main
