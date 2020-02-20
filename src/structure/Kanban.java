@@ -1,6 +1,3 @@
 package structure;
 
-
-public class Kanban {
-
-}
+public class Kanban {}
