@@ -1,6 +1,5 @@
 package structure;
 
-
 import java.util.Scanner;
 
 public class Kanban {
