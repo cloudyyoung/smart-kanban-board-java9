@@ -8,7 +8,9 @@ branches:
 before_install:
   - cd java
 
-script:
-  find -name "*.java" > sources.txt
-  javac @sources.txt
-  java Kanban
+deploy:
+  provider: script
+  script:
+    find -name "*.java" > sources.txt
+    javac @sources.txt
+    java Kanban
