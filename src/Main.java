@@ -3,10 +3,7 @@ import structure.*;
 public class Main {
 
   public static void main(String[] args) {
-    terminal();
+    Terminal.terminal();
   }
 
-  private static void terminal() { // text-based version entrance
-    Kanban.showPage(0);
-  }
 }
