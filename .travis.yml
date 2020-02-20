@@ -5,8 +5,8 @@ branches:
   - master
   - dev
   - Skeleton
+  - travis-script-test
 
 script:
-  find -name "*.java" > sources.txt
-  javac @sources.txt
+  javac *.java
   java Kanban
