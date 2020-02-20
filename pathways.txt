@@ -1,0 +1,11 @@
+login
+    I: login
+        I: user
+        I: pass
+        O: home screen
+    I: create account
+        I: user
+        I: pass
+        O: home screen
+main
+    I: 
