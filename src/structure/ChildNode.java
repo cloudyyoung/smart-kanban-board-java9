@@ -1,6 +1,5 @@
 package structure;
 
-
 // this class allows the user to add, remove and edit nodes in the board, collumn
 // or event classes. Ie in the board class a node would be the board itself
 // in the event class the node would be the event etc.

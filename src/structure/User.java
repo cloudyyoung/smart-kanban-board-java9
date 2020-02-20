@@ -1,6 +1,5 @@
 package structure;
 
-
 public class User {
   private String username;
   private int id;
