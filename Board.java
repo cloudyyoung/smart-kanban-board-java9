@@ -1,4 +1,1 @@
-
-public class Board {
-
-}
+public class Board extends Node {}

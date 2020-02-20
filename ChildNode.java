@@ -1,22 +1,30 @@
+// this class allows the user to add, remove and edit nodes in the board, collumn
+// or event classes. Ie in the board class a node would be the board itself
+// in the event class the node would be the event etc.
+
 import java.util.ArrayList;
 
-protected ArrayList<Node> nodes = new ArrayList<Node>();
+public class ChildNode {
+  protected ArrayList<Node> nodes = new ArrayList<Node>();
 
-public class ChildNode 
-{
-	public Node addNode(Node aNode)
-	{
-		this.nodes.add(aNode);
-	}
-	
-	public Node removeNode(Node)
-	{
-		//NOT IMPLEMENTED
-	}
-	
-	public Node updateNode(int id, Node aNode)
-	{
-		//NOT IMPLEMENTED
-	}
+  // adds a node
+  public Node addNode(Node aNode) {
+    this.nodes.add(aNode);
+  }
 
+  // removes a node
+  public Node removeNode(int id) {
+    Iterator<Node> itr = nodes.iterator();
+
+    // while there are nodes in the list, check if node is
+    // equal to the parameter, and if so removes that node
+    while (itr.hasNext()) {
+      Node nodeCheck = itr.next();
+      int nodeId = nodeCheck.getId();
+
+      if (nodeId == id) {
+        nodes.remove(nodeCheck);
+      }
+    }
+  }
 }

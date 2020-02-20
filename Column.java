@@ -1,4 +1,1 @@
-
-public class Column {
-
-}
+public class Column extends Node {}
