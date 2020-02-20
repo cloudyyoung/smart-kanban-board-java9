@@ -8,5 +8,6 @@ branches:
   - travis-script-test
 
 script:
-  javac src/*.java
+  cd src/
+  javac *.java
   java Kanban

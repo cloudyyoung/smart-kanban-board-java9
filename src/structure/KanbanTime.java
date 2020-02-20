@@ -1,3 +1,6 @@
+package structure;
+
+
 // Import packages
 import java.time.LocalDateTime;
 import java.time.DayOfWeek;
