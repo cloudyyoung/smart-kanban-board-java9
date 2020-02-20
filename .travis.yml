@@ -6,9 +6,6 @@ branches:
   - dev
   - Skeleton
 
-before_install:
-  - cd java
-
 deploy:
   provider: script
   script:

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import java.util.Scanner;
 
 public class Kanban {
@@ -40,6 +39,3 @@ public class Kanban {
     }
 
 }
-=======
-public class Kanban implements ChildNode {}
->>>>>>> 41d71aa574f829644d96b5a52b3af0950e358f13
