@@ -1,3 +1,5 @@
+package structure;
+
 import java.util.HashMap;
 
 public class Node {
@@ -8,15 +10,15 @@ public class Node {
   private String note;
   private String type;
 
-  public Node(int id, String title, String node) {
+  public Node(int id, String title, String note) {
     this.id = id;
     this.title = title;
-    this.node = node;
-    this.type = this.getClass();
+    this.note = note;
+    this.type = this.getClass().getName();
   }
 
   public Node() {
-    this.type = this.getCalss();
+    this.type = this.getClass().getName();
   }
 
   private String getTypeByLevel(String type, int level) {
@@ -30,12 +32,10 @@ public class Node {
     lvl += level;
 
     String ret = "";
-    types.forEach(
-        (key, value) -> {
-          if (value == lvl) {
-            this.ret = key;
-          }
-        });
+
+    // NEED IMPLEMENTATION
+
+    return ret;
   }
 
   public int getId() {

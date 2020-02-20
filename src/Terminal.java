@@ -1,15 +1,16 @@
+import structure.*;
 import java.util.Scanner;
 
-public class Kanban {
+public class Terminal {
 
-  public static void main(String[] args) {
+  public static void terminal() { // text-based version entrance
     int page = 0;
     showPage(page);
   }
 
   public static void showLogin() {
 
-    boolean authenticated = False;
+    boolean authenticated = false;
     Scanner keyboard = new Scanner(System.in);
 
     // If authenticated, pass, otherwise authenticate
@@ -20,12 +21,17 @@ public class Kanban {
       System.out.println("Password: ");
       String password = keyboard.nextLine();
 
-      authenticated = authenticate(username, password);
+      User user = new User();
+      authenticated = user.authenticate(username, password);
       authenticated = true;
     }
   }
 
-  public static void showPpage(int page) {
+  public static void showMain() {}
+
+  public static void showSettings() {}
+
+  public static void showPage(int page) {
     if (page == 0) {
       showLogin();
     } else if (page == 1) {
