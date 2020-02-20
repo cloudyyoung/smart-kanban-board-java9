@@ -4,6 +4,7 @@ branches:
   only:
   - master
   - dev
+  - Skeleton
 
 before_install:
   - cd java
