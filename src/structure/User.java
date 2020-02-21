@@ -7,14 +7,14 @@ package structure;
  */
 
 public class User {
-	/*
-	 * username: stores the users username as a string
-	 * id: gives the user an id so their information can be saved for the authentication
-	 * process
-	 * sessid: users current session id so the user can return to the page they
-	 * were previously on if they left
-	 * password: stores the users password as a string  
-	 */
+  /*
+   * username: stores the users username as a string
+   * id: gives the user an id so their information can be saved for the authentication
+   * process
+   * sessid: users current session id so the user can return to the page they
+   * were previously on if they left
+   * password: stores the users password as a string
+   */
   private String username;
   private int id;
   private String sessid; // Session Id
@@ -24,7 +24,7 @@ public class User {
    * resets the 4 variables listed above so a new user can login
    * or so an account doesn't just stay open or logged in
    */
- 
+
   public User() {
     this.setId(0);
     this.setUsername("");
@@ -34,10 +34,10 @@ public class User {
 
   /*
    * gets username
-   * @return username as a string 
+   * @return username as a string
    * this is the user's username
    */
-  
+
   public String getUsername() {
     return this.username;
   }
@@ -47,7 +47,7 @@ public class User {
    * @return id as an int
    * this is the user's id
    */
-  
+
   public int getId() {
     return this.id;
   }
@@ -57,11 +57,11 @@ public class User {
    * @return Sessonid as a string
    * this is the account's session id
    */
-  
+
   public String getSessionId() {
     return this.sessid;
   }
-  
+
   /*
    * sets the username
    * @param aUsername as a string
@@ -71,7 +71,7 @@ public class User {
   public void setUsername(String aUsername) {
     this.username = aUsername;
   }
-  
+
   /*
    * sets the password
    * @param aPassword as a string
@@ -81,7 +81,7 @@ public class User {
   public void setPassword(String aPassword) {
     this.password = aPassword;
   }
-  
+
   /*
    * sets the id
    * @param aId as a int
@@ -91,7 +91,7 @@ public class User {
   public void setId(int aId) {
     this.id = aId;
   }
-  
+
   /*
    * sets the sessionId
    * @param aSessionId as a string
@@ -113,6 +113,4 @@ public class User {
     this.password = aPassword;
     return true;
   }
-
-
 }
