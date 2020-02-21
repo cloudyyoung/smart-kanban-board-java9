@@ -154,7 +154,7 @@ public class HttpRequest {
     return new Gson().fromJson(new Gson().toJson(this.responseBody), aClass);
   }
 
-  public String getResponseMessage(){
+  public String getResponseMessage() {
     return this.responseMessage;
   }
 
@@ -164,7 +164,6 @@ public class HttpRequest {
     }
     return new HashMap<Object, Object>(this.responseCookie);
   }
-
 
   private void setResponseByString(String res) {
     Gson gson = new Gson();
@@ -234,12 +233,11 @@ public class HttpRequest {
       this.setResponseByString(response.toString());
       this.setResponseStatusCode(connection.getResponseCode());
       this.setResponseMessage(connection.getResponseMessage());
-      try{
+      try {
         this.setResponseCookieByString(connection.getHeaderField("Set-Cookie"));
-      }catch(Exception e){
+      } catch (Exception e) {
         this.setResponseCookieByString("");
       }
-      
 
       connection.disconnect();
 
