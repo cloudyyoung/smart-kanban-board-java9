@@ -14,12 +14,13 @@ public class Node {
   private ArrayList<Node> nodes = new ArrayList<Node>();
   private HashMap<Integer, Integer> index = new HashMap<Integer, Integer>();
 
-  private final HashMap<String, Integer> TYPES = (HashMap<String, Integer>)Map.of(
-    "Kanban", 1,
-    "Board", 2,
-    "Column", 3,
-    "Event", 4
-  );
+  private final HashMap<String, Integer> TYPES =
+      (HashMap<String, Integer>)
+          Map.of(
+              "Kanban", 1,
+              "Board", 2,
+              "Column", 3,
+              "Event", 4);
 
   public Node(int id, String title, String note) {
     this.id = id;
@@ -118,11 +119,11 @@ public class Node {
     this.remapIndex(id);
   }
 
-  private void remapIndex(int startFrom){
+  private void remapIndex(int startFrom) {
     int current = startFrom;
-    for(Node each : this.nodes.subList(startFrom, this.nodes.size())){
+    for (Node each : this.nodes.subList(startFrom, this.nodes.size())) {
       this.index.replace(each.getId(), current);
-      current ++;
+      current++;
     }
   }
 }
