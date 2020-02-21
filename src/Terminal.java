@@ -49,20 +49,26 @@ public class Terminal {
         System.out.println("time : prints the current time");
         System.out.println("exit : terminates the program");
       } else if (command == "time") {
-        System.out.println("Time: " + KanbanTime.currentHour24(formattedDate) + ":"
-            + KanbanTime.currentMinute(formattedDate) + " on " + KanbanTime.currentDayName(myDateObj) + " the "
-            + KanbanTime.currentDay(formattedDate) + " of " + KanbanTime.currentYear(formattedDate));
+        System.out.println(
+            "Time: "
+                + KanbanTime.currentHour24(formattedDate)
+                + ":"
+                + KanbanTime.currentMinute(formattedDate)
+                + " on "
+                + KanbanTime.currentDayName(myDateObj)
+                + " the "
+                + KanbanTime.currentDay(formattedDate)
+                + " of "
+                + KanbanTime.currentYear(formattedDate));
       } else if (command == "exit") {
         onMain = false;
       } else {
         System.out.println("Unknown command. Type 'help' for a command list.");
       }
-
     }
   }
 
-  public static void showSettings() {
-  }
+  public static void showSettings() {}
 
   public static void showPage(int page) {
     if (page == 0) {
