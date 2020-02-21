@@ -80,8 +80,9 @@ public class HttpRequest {
     return (this.requestBody != null
         && !this.getRequestMethod().equals("GET")
         && !this.getRequestMethod().equals("DELETE")
-        && !this.getRequestMethod().equals("HEAD")); 
-    // GET, DELETE, HEAD methods should not have request body, so return false regardless of actual this.requestBody
+        && !this.getRequestMethod().equals("HEAD"));
+    // GET, DELETE, HEAD methods should not have request body, so return false regardless of actual
+    // this.requestBody
   }
 
   public HashMap<Object, Object> getRequestBody() {
