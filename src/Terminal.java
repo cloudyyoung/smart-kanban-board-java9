@@ -14,7 +14,7 @@ public class Terminal {
     System.exit(0);
   }
 
-  public static void showLogin() {
+  public static boolean showLogin() {
 
     Scanner keyboard = new Scanner(System.in);
     boolean authenticated = false;
@@ -32,6 +32,8 @@ public class Terminal {
       authenticated = true;
       showLogin = false;
     }
+
+    keyboard.close();
 
     return showLogin;
   }

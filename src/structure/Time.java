@@ -9,20 +9,16 @@ import java.time.format.DateTimeFormatter;
 // Provides methods for returning current times and dates
 public class Time {
 
-  // Main method
-  // initializes myDateObj and formats it to a string
-  public static void main(String[] args) {
-    LocalDateTime myDateObj = LocalDateTime.now();
-    DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-    String formattedDate = myDateObj.format(myFormatObj);
-  }
-
   // Method: currentHour24()
   // Description: takes a date string and returns the current hour int in 24hr
   // form
   // Parameters: String formattedDate in "dd-MM-yyyy HH:mm:ss" form
   // Returns: int result
-  public static int currentHour24(String formattedDate) {
+  public static int currentHour24() {
+    LocalDateTime myDateObj = LocalDateTime.now();
+    DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+    String formattedDate = myDateObj.format(myFormatObj);
+
     String toParse = formattedDate.substring(11, 13);
     int result = Integer.parseInt(toParse);
 
@@ -49,7 +45,11 @@ public class Time {
   // Description: takes a date string and returns the current minute int
   // Parameters: String formattedDate in "dd-MM-yyyy HH:mm:ss" form
   // Returns: int result
-  public static int currentMinute(String formattedDate) {
+  public static int currentMinute() {
+    LocalDateTime myDateObj = LocalDateTime.now();
+    DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+    String formattedDate = myDateObj.format(myFormatObj);
+
     String toParse = formattedDate.substring(14, 16);
     int result = Integer.parseInt(toParse);
 
@@ -60,7 +60,11 @@ public class Time {
   // Description: takes a date string and returns the current second int
   // Parameters: String formattedDate in "dd-MM-yyyy HH:mm:ss" form
   // Returns: int result
-  public static int currentSecond(String formattedDate) {
+  public static int currentSecond() {
+    LocalDateTime myDateObj = LocalDateTime.now();
+    DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+    String formattedDate = myDateObj.format(myFormatObj);
+
     String toParse = formattedDate.substring(17, 19);
     int result = Integer.parseInt(toParse);
 
@@ -71,7 +75,10 @@ public class Time {
   // Description: takes a date string and returns the current month int
   // Parameters: String formattedDate in "dd-MM-yyyy HH:mm:ss" form
   // Returns: int result
-  public static int currentMonth(String formattedDate) {
+  public static int currentMonth() {
+    LocalDateTime myDateObj = LocalDateTime.now();
+    DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+    String formattedDate = myDateObj.format(myFormatObj);
     String toParse = formattedDate.substring(3, 5);
     int result = Integer.parseInt(toParse);
 
@@ -82,7 +89,11 @@ public class Time {
   // Description: takes a date string and returns the current day int
   // Parameters: String formattedDate in "dd-MM-yyyy HH:mm:ss" form
   // Returns: int result
-  public static int currentDay(String formattedDate) {
+  public static int currentDay() {
+    LocalDateTime myDateObj = LocalDateTime.now();
+    DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+    String formattedDate = myDateObj.format(myFormatObj);
+
     String toParse = formattedDate.substring(0, 2);
     int result = Integer.parseInt(toParse);
 
@@ -93,7 +104,11 @@ public class Time {
   // Description: takes a date string and returns the current year int
   // Parameters: String formattedDate in "dd-MM-yyyy HH:mm:ss" form
   // Returns: int result
-  public static int currentYear(String formattedDate) {
+  public static int currentYear() {
+    LocalDateTime myDateObj = LocalDateTime.now();
+    DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+    String formattedDate = myDateObj.format(myFormatObj);
+
     String toParse = formattedDate.substring(6, 10);
     int result = Integer.parseInt(toParse);
 
@@ -104,7 +119,8 @@ public class Time {
   // Description: takes a date string and returns the current hour in 24hr form
   // Parameters: String formattedDate in "dd-MM-yyyy HH:mm:ss" form
   // Returns: int result
-  public static String currentDayName(LocalDateTime myDateObj) {
+  public static String currentDayName() {
+    LocalDateTime myDateObj = LocalDateTime.now();
     DayOfWeek dayOfWeek = DayOfWeek.from(myDateObj);
     String currDayName = dayOfWeek.name();
 
