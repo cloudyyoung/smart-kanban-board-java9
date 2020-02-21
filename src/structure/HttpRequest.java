@@ -47,13 +47,13 @@ public class HttpRequest {
 
   public void setRequestMethod(String method) {
     if (method.equals("GET")
-        || method.equals("POST")
-        || method.equals("PUT")
-        || method.equals("DELETE")
-        || method.equals("HEAD")
-        || method.equals("PATCH")
-        || method.equals("OPTIONS")) {
-      this.requestMethod = method;
+        || method.equalsIgnoreCase("POST")
+        || method.equalsIgnoreCase("PUT")
+        || method.equalsIgnoreCase("DELETE")
+        || method.equalsIgnoreCase("HEAD")
+        || method.equalsIgnoreCase("PATCH")
+        || method.equalsIgnoreCase("OPTIONS")) {
+      this.requestMethod = method.toUpperCase();
     } else {
       this.requestMethod = "GET";
     }
@@ -125,6 +125,19 @@ public class HttpRequest {
     return new HashMap<String, Object>(this.response);
   }
 
+  public Object getResponseToObject(Class aClass){
+    return new Gson().fromJson(new Gson().toJson(this.response), aClass);
+  }
+
+  public String getResponseMessage(){
+    return this.responseMessage;
+  }
+
+  public HashMap<String, Object> getResponseCookie(){
+    return new HashMap<String, Object>(this.responseCookie);
+  }
+
+
   private void setResponseByString(String res) {
     Gson gson = new Gson();
     this.response = gson.fromJson(res, HashMap.class);
@@ -191,6 +204,12 @@ public class HttpRequest {
       this.setResponseByString(response.toString());
       this.setResponseStatusCode(connection.getResponseCode());
       this.setResponseMessage(connection.getResponseMessage());
+      try{
+        this.setResponseCookieByString(connection.getHeaderField("Set-Cookie"));
+      }catch(Exception e){
+        this.setResponseCookieByString("");
+      }
+      
 
       connection.disconnect();
 
@@ -220,6 +239,9 @@ public class HttpRequest {
     req.setRequestParam(param);
     req.send();
     System.out.println(req.getResponseStatusCode());
-    System.out.println(req.getResponse().get("username"));
+    System.out.println(req.getResponse());
+    User user = (User)req.getResponseToObject(User.class);
+    System.out.println(user.getClass());
+    System.out.println(req.getResponseCookie());
   }
 }
