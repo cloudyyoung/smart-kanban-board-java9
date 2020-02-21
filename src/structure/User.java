@@ -1,8 +1,17 @@
+package structure;
+
 public class User {
   private String username;
   private int id;
-  private String sessionId;
+  private String sessid; // Session Id
   private String password;
+
+  public User() {
+    this.setId(0);
+    this.setUsername("");
+    this.setSessionId("");
+    this.setPassword("");
+  }
 
   public String getUsername() {
     return this.username;
@@ -13,7 +22,7 @@ public class User {
   }
 
   public String getSessionId() {
-    return this.sessionId;
+    return this.sessid;
   }
 
   public void setUsername(String aUsername) {
@@ -29,7 +38,7 @@ public class User {
   }
 
   public void setSessionId(String aSessionId) {
-    this.sessionId = aSessionId;
+    this.sessid = aSessionId;
   }
 
   public boolean authenticate(String aUsername, String aPassword) {

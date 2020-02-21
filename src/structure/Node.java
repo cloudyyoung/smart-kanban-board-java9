@@ -1,4 +1,8 @@
+package structure;
+
+import java.util.Map;
 import java.util.HashMap;
+import java.util.ArrayList;
 
 public class Node {
   private int id;
@@ -7,35 +11,37 @@ public class Node {
   private String title;
   private String note;
   private String type;
+  private ArrayList<Node> nodes = new ArrayList<Node>();
+  private HashMap<Integer, Integer> index = new HashMap<Integer, Integer>();
 
-  public Node(int id, String title, String node) {
+  private final HashMap<String, Integer> TYPES =
+      (HashMap<String, Integer>)
+          Map.of(
+              "Kanban", 1,
+              "Board", 2,
+              "Column", 3,
+              "Event", 4);
+
+  public Node(int id, String title, String note) {
     this.id = id;
     this.title = title;
-    this.node = node;
-    this.type = this.getClass();
+    this.note = note;
+    this.type = this.getClass().getName();
   }
 
   public Node() {
-    this.type = this.getCalss();
+    this.type = this.getClass().getName();
   }
 
   private String getTypeByLevel(String type, int level) {
-    HashMap<String, Integer> types = new HashMap<String, Integer>();
-    types.put("Kanban", 1);
-    types.put("Board", 2);
-    types.put("Column", 3);
-    types.put("Event", 4);
-
-    int lvl = types.get(type);
+    int lvl = TYPES.get(type);
     lvl += level;
 
     String ret = "";
-    types.forEach(
-        (key, value) -> {
-          if (value == lvl) {
-            this.ret = key;
-          }
-        });
+
+    // NEED IMPLEMENTATION
+
+    return ret;
   }
 
   public int getId() {
@@ -96,5 +102,28 @@ public class Node {
 
   public String toString() {
     return "Node (id: " + this.id + ", title: " + this.title + ", note: " + this.note + ")";
+  }
+
+  // adds a node
+  public Node addNode(Node aNode) {
+    this.nodes.add(aNode);
+    this.index.put(aNode.getId(), this.nodes.size() - 1);
+    return aNode;
+  }
+
+  // removes a node
+  public void removeNode(int id) {
+    int index = this.index.get(id);
+    this.index.remove(id);
+    this.nodes.remove(index);
+    this.remapIndex(id);
+  }
+
+  private void remapIndex(int startFrom) {
+    int current = startFrom;
+    for (Node each : this.nodes.subList(startFrom, this.nodes.size())) {
+      this.index.replace(each.getId(), current);
+      current++;
+    }
   }
 }
