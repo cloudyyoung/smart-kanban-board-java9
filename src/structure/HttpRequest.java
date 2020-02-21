@@ -19,12 +19,14 @@ import com.google.gson.*;
  */
 public class HttpRequest {
 
+
   private String baseUrl = "https://kanban.proj.meonc.studio/api";
   private String requestUrl;
   private HashMap<Object, Object> requestBody;
   private String requestMethod;
   private HashMap<Object, Object> requestCookie;
 
+  private boolean succeed;
   private int responseStatusCode;
   private String responseMessage;
   private HashMap<Object, Object> responseBody;
@@ -170,6 +172,10 @@ public class HttpRequest {
     return new HashMap<Object, Object>(this.responseCookie);
   }
 
+  public boolean isSucceed(){
+    return this.succeed;
+  }
+
   private void setResponseByString(String res) {
     Gson gson = new Gson();
     this.responseBody = gson.fromJson(res, HashMap.class);
@@ -193,6 +199,10 @@ public class HttpRequest {
       }
     }
     this.responseCookie = map;
+  }
+
+  private void setSucceed(boolean is){
+    this.succeed = is;
   }
 
   public boolean send() {
@@ -247,9 +257,11 @@ public class HttpRequest {
       connection.disconnect();
 
     } catch (Exception e) {
+      this.setSucceed(false);
       return false;
     }
 
+    this.setSucceed(true);
     return true;
   }
 
