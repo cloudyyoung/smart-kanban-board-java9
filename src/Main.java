@@ -1,4 +1,3 @@
-import structure.*;
 
 public class Main {
 
