@@ -1,5 +1,4 @@
-
-// Import Classes 
+// Import Classes
 import structure.*;
 import java.util.Scanner;
 
@@ -23,7 +22,6 @@ public class Terminal {
     } else if (page == 2) {
       showSettings();
     }
-
   }
 
   // Log in process
@@ -80,8 +78,17 @@ public class Terminal {
 
         // 'time' command prints the current time
       } else if (command.equals("time")) {
-        System.out.println("Time: " + Time.currentHour12(Time.currentHour24()) + ":" + Time.currentMinute() + " on "
-            + Time.currentDayName() + " the " + Time.currentDay() + " of " + Time.currentYear());
+        System.out.println(
+            "Time: "
+                + Time.currentHour12(Time.currentHour24())
+                + ":"
+                + Time.currentMinute()
+                + " on "
+                + Time.currentDayName()
+                + " the "
+                + Time.currentDay()
+                + " of "
+                + Time.currentYear());
 
         // 'exit' command exits to program
       } else if (command.equals("exit")) {
@@ -93,7 +100,6 @@ public class Terminal {
         System.out.println("Unknown command. Type 'help' for a command list.");
       }
     }
-
   }
 
   // settings page
@@ -213,7 +219,6 @@ public class Terminal {
       }
     }
     keyboard.close();
-
   }
 
   public static void accountSettings() {
@@ -255,7 +260,5 @@ public class Terminal {
       }
     }
     keyboard.close();
-
   }
-
 }
