@@ -1,0 +1,46 @@
+loginpage
+    I: login
+        I: user
+        I: pass
+        O: home screen
+    I: create account
+        I: user
+        I: pass
+        O: home screen
+mainpage
+    I: view todays boards
+        O: todays boards
+    I: view project board by name
+        O: project board
+            I: name
+            I: move project along board
+            I: description
+            I: category
+            I: time estimated
+            I: due date
+            I: task
+                I: move task along
+                I: add task
+                    I: name
+                    I: description
+                    I: category
+                    I: time estimated
+                    I: due date
+                    I: delete
+                I: edit task
+                    I: edit all
+
+            I:
+    I: list projects by name
+        O: list of all projects
+    I: enter settings
+        O: settings page
+    I: logout
+        O: loginpage
+
+settingspage
+    I: edit time allocations
+        I: time allowance for Mon-Sun 
+    I: edit password
+    I: edit display name
+
