@@ -19,7 +19,6 @@ import com.google.gson.*;
  */
 public class HttpRequest {
 
-
   private String baseUrl = "https://kanban.proj.meonc.studio/api";
   private String requestUrl;
   private HashMap<Object, Object> requestBody;
@@ -172,7 +171,7 @@ public class HttpRequest {
     return new HashMap<Object, Object>(this.responseCookie);
   }
 
-  public boolean isSucceed(){
+  public boolean isSucceed() {
     return this.succeed;
   }
 
@@ -201,7 +200,7 @@ public class HttpRequest {
     this.responseCookie = map;
   }
 
-  private void setSucceed(boolean is){
+  private void setSucceed(boolean is) {
     this.succeed = is;
   }
 
