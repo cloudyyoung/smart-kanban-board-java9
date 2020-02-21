@@ -5,9 +5,9 @@ import java.time.LocalDateTime;
 import java.time.DayOfWeek;
 import java.time.format.DateTimeFormatter;
 
-// KanbanTime
+// Time
 // Provides methods for returning current times and dates
-public class KanbanTime {
+public class Time {
 
   // Main method
   // initializes myDateObj and formats it to a string
