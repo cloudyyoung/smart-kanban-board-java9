@@ -4,5 +4,14 @@
         "**/.gitignore": true,
         "**/**.class": true,
         "**/.vscode": true,
-    }
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "src/lib/gson-2.8.6.jar",
+        "src/lib/junit5-1.26.134.jar"
+    ]
 }
