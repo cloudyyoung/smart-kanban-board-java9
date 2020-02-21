@@ -6,7 +6,7 @@ public class User {
   private String sessid; // Session Id
   private String password;
 
-  public User(){
+  public User() {
     this.setId(0);
     this.setUsername("");
     this.setSessionId("");

@@ -125,18 +125,17 @@ public class HttpRequest {
     return new HashMap<String, Object>(this.response);
   }
 
-  public Object getResponseToObject(Class aClass){
+  public Object getResponseToObject(Class aClass) {
     return new Gson().fromJson(new Gson().toJson(this.response), aClass);
   }
 
-  public String getResponseMessage(){
+  public String getResponseMessage() {
     return this.responseMessage;
   }
 
-  public HashMap<String, Object> getResponseCookie(){
+  public HashMap<String, Object> getResponseCookie() {
     return new HashMap<String, Object>(this.responseCookie);
   }
-
 
   private void setResponseByString(String res) {
     Gson gson = new Gson();
@@ -204,12 +203,11 @@ public class HttpRequest {
       this.setResponseByString(response.toString());
       this.setResponseStatusCode(connection.getResponseCode());
       this.setResponseMessage(connection.getResponseMessage());
-      try{
+      try {
         this.setResponseCookieByString(connection.getHeaderField("Set-Cookie"));
-      }catch(Exception e){
+      } catch (Exception e) {
         this.setResponseCookieByString("");
       }
-      
 
       connection.disconnect();
 
@@ -240,7 +238,7 @@ public class HttpRequest {
     req.send();
     System.out.println(req.getResponseStatusCode());
     System.out.println(req.getResponse());
-    User user = (User)req.getResponseToObject(User.class);
+    User user = (User) req.getResponseToObject(User.class);
     System.out.println(user.getClass());
     System.out.println(req.getResponseCookie());
   }
