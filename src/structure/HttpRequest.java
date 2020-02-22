@@ -266,7 +266,7 @@ public class HttpRequest {
 
       if (value instanceof JSONArray) {
         value = this.jsonArrayToList((JSONArray) value);
-      } else if (value instanceof JSONObject){
+      } else if (value instanceof JSONObject) {
         value = this.jsonObjectToMap((JSONObject) value);
       }
 
@@ -370,9 +370,8 @@ public class HttpRequest {
     HashMap<?, ?> responseCookie = req.getResponseCookie();
 
     HashMap<String, String> cookie = new HashMap<String, String>();
-    cookie.put("PHPSESSID", (String)responseCookie.get("PHPSESSID"));
+    cookie.put("PHPSESSID", (String) responseCookie.get("PHPSESSID"));
     System.out.println(cookie);
-
 
     HttpRequest req2 = new HttpRequest();
     req2.setRequestUrl("/kanban");
