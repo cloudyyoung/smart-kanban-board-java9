@@ -5,7 +5,8 @@ import java.util.Scanner;
 
 public class Terminal {
 
-  ArrayList<Integer> availableHours = new ArrayList<Integer>(7);
+  private static ArrayList<Integer> availableHours = new ArrayList<Integer>(7);
+  private static boolean authenticated = false;
 
   // Enter text-based program
   public static void terminal() {
@@ -33,7 +34,6 @@ public class Terminal {
 
     // Initialize variables
     Scanner keyboard = new Scanner(System.in);
-    boolean authenticated = false;
     boolean showLogin = true;
 
     // If authenticated, pass, otherwise authenticate
@@ -49,12 +49,18 @@ public class Terminal {
 
       authenticated = User.authentication(username, password);
 
+    }
+
+    System.out.println("");
+    
+    if(authenticated){
       System.out.println("");
-      System.out.println("Welcome " + username + "!");
+      System.out.println("Welcome " + User.current.getUsername() + "!");
       System.out.println("");
 
       showLogin = false;
-    } else {
+    }else {
+      System.out.println("Your username or password is incorrect.");
       showLogin();
     }
 

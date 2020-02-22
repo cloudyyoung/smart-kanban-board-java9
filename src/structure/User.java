@@ -1,5 +1,6 @@
 package structure;
 
+import java.util.HashMap;
 
 /*
  *  this function stores the users username
@@ -17,7 +18,7 @@ public class User {
    * password: stores the users password as a string
    * current: the current signed in user
    */
-  private static User current;
+  public static User current;
   private String username;
   private int id;
   private String sessionId;
