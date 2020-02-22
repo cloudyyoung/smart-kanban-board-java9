@@ -518,10 +518,8 @@ public class HttpRequest {
       this.setResponseBodyByString(response.toString());
       this.setResponseStatusCode(connection.getResponseCode());
       this.setResponseMessage(connection.getResponseMessage());
-      try {
+      if(connection.getHeaderField("Set-Cookie") != null){ // if there're new cookies
         this.setResponseCookieByString(connection.getHeaderField("Set-Cookie"));
-      } catch (Exception e) {
-        this.setResponseCookieByString(null);
       }
 
       if (connection.getResponseCode() >= 400 && connection.getResponseCode() <= 599) {
@@ -568,6 +566,7 @@ public class HttpRequest {
     boolean ret2 = req2.send();
 
     System.out.println(ret2);
+    System.out.println("succeed?" + req2.isSucceed());
     System.out.println(req2.getResponseStatusCode());
     System.out.println("RES::" + req2.getResponseBody());
   }
