@@ -71,9 +71,6 @@ public class HttpRequest {
   }
 
   public void setRequestBody(Object paramMap) {
-    if (paramMap == null) {
-      return;
-    }
     this.requestBody = this.objectToJsonObject(paramMap);
   };
 
@@ -193,9 +190,9 @@ public class HttpRequest {
   }
 
   private Object objectToJsonObject(Object obj) {
-    if (obj instanceof HashMap<?, ?>) {
-      return this.mapToJsonObject((HashMap<?, ?>) obj);
-    } else if (obj instanceof List<?>) {
+    if (obj instanceof Map) {
+      return this.mapToJsonObject((Map<?, ?>) obj);
+    } else if (obj instanceof List) {
       return this.listToJsonArray((List<?>) obj);
     } else {
       return null;
@@ -268,7 +265,7 @@ public class HttpRequest {
     boolean isArray;
     Iterator<?> keysItr;
     if (json instanceof JSONObject) {
-      keysItr = ((JSONObject) json).entrySet().iterator();
+      keysItr = ((JSONObject) json).keySet().iterator();
       isArray = false;
     } else if (json instanceof JSONArray) {
       keysItr = (((JSONArray) json).iterator());
@@ -299,10 +296,12 @@ public class HttpRequest {
   private Object mapToJsonObject(Map<?, ?> map) {
     JSONObject obj = new JSONObject();
     Iterator<?> keysItr;
-    keysItr = map.entrySet().iterator();
+    keysItr = map.keySet().iterator();
     while (keysItr.hasNext()) {
       Object key = keysItr.next();
       Object value = map.get(key);
+
+      System.out.println("key: " + key + ", value: " + value);
 
       if (value instanceof Map<?, ?>) {
         value = mapToJsonObject((Map<?, ?>) value);
@@ -332,6 +331,7 @@ public class HttpRequest {
       connection.setConnectTimeout(6000);
       connection.connect();
 
+      System.out.println(this.getRequestBodyString());
       // Put request Json object
       if (this.hasRequestBody()) { // only write request body if has request param
         OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
@@ -387,7 +387,11 @@ public class HttpRequest {
     HashMap<String, String> param = new HashMap<String, String>();
     param.put("username", "cloudy");
     param.put("password", "cloudy");
+    System.out.println(param);
+
     HttpRequest req = new HttpRequest();
+    // Object obj = req.mapToJsonObject(param);
+    // System.out.println(obj);
     req.setRequestUrl("/users/authentication");
     req.setRequestMethod("PUT");
     req.setRequestBody(param);
