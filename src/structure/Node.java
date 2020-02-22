@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.ArrayList;
 
-public class Node {
+public abstract class Node {
   private int id;
   private int parentId;
   private int grandparentId;
