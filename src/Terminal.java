@@ -48,18 +48,17 @@ public class Terminal {
       String password = keyboard.nextLine();
 
       authenticated = User.authentication(username, password);
-
     }
 
     System.out.println("");
-    
-    if(authenticated){
+
+    if (authenticated) {
       System.out.println("");
       System.out.println("Welcome " + User.current.getUsername() + "!");
       System.out.println("");
 
       showLogin = false;
-    }else {
+    } else {
       System.out.println("Your username or password is incorrect.");
       showLogin();
     }
