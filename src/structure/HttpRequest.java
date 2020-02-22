@@ -310,7 +310,6 @@ public class HttpRequest {
       connection.setConnectTimeout(6000);
       connection.connect();
 
-      System.out.println(this.getRequestBodyString());
       // Put request Json object
       if (this.hasRequestBody()) { // only write request body if has request param
         OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
@@ -382,6 +381,6 @@ public class HttpRequest {
 
     System.out.println(ret2);
     System.out.println(req2.getResponseStatusCode());
-    System.out.println(req2.getResponseBody());
+    System.out.println("RES::" + req2.getResponseBody());
   }
 }
