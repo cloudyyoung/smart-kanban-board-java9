@@ -6,16 +6,15 @@ import java.time.DayOfWeek;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Provides methods for returning current times and dates based off on devices
- * local time
+ * Provides methods for returning current times and dates based off on devices local time
  *
  * @author Jerremy Lewis
  */
 public class Time {
 
   /**
-   * Method: currentHour24() Description: takes a date string and returns the
-   * current hour int in 24hr form
+   * Method: currentHour24() Description: takes a date string and returns the current hour int in
+   * 24hr form
    *
    * @return int result
    */
@@ -40,8 +39,8 @@ public class Time {
   }
 
   /**
-   * Method: currentHour12() Description: converts from 24hr time to 12hr time if
-   * time is greater than 12
+   * Method: currentHour12() Description: converts from 24hr time to 12hr time if time is greater
+   * than 12
    *
    * @param int currentHour24 @Return int result
    */
@@ -64,7 +63,7 @@ public class Time {
   /*
    * Method: currentMinute() Description: takes a date string and returns the
    * current minute int
-   * 
+   *
    * @Return int result
    */
 
@@ -91,7 +90,7 @@ public class Time {
   /*
    * Method: currentSecond() Description: takes a date string and returns the
    * current second int
-   * 
+   *
    * @Return int result
    */
 
@@ -118,7 +117,7 @@ public class Time {
   /*
    * Method: currentMonth() Description: takes a date string and returns the
    * current month int
-   * 
+   *
    * @Return int result
    */
 
@@ -145,7 +144,7 @@ public class Time {
   /*
    * Method: currentDay() Description: takes a date string and returns the current
    * day int
-   * 
+   *
    * @Return int result
    */
 
@@ -171,7 +170,7 @@ public class Time {
   /*
    * Method: currentYear() Description: takes a date string and returns the
    * current year int
-   * 
+   *
    * @Return int result
    */
 
@@ -198,7 +197,7 @@ public class Time {
   /*
    * Method: currentHour24() Description: takes a date string and returns the
    * current hour in 24hr form
-   * 
+   *
    * @Return int result
    */
 
@@ -218,7 +217,7 @@ public class Time {
   /*
    * Method: monthName() Description: takes a month integer and returns the name
    * of the month
-   * 
+   *
    * @return int monthName
    */
 
