@@ -1,7 +1,5 @@
 package structure;
 
-import java.util.HashMap;
-
 
 /*
  *  this function stores the users username
