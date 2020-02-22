@@ -151,6 +151,7 @@ public class HttpRequest {
     return this.jsonObjectToObject(this.responseBody);
   }
 
+
   public String getResponseMessage() {
     return this.responseMessage;
   }
@@ -203,7 +204,7 @@ public class HttpRequest {
 
   private Object jsonObjectToObject(Object obj){
     if(obj instanceof JSONObject){
-      return this.jsonObjectToObject((JSONObject)obj);
+      return this.jsonObjectToMap((JSONObject)obj);
     }else if(obj instanceof JSONArray){
       return this.listToJsonArray((JSONArray)obj);
     }else{
@@ -375,27 +376,6 @@ public class HttpRequest {
 
   public static void main(String[] args) {
 
-    HashMap<Object, Object> map = new HashMap<Object, Object>();
-    JSONObject json = (JSONObject)map;
-    System.out.println(json);
-    
-    // try{
-    //   JSONParser parser = new JSONParser();
-    //   JSONObject obj = (JSONObject)parser.parse("{\"board\": [100, 200]}");
-    //   // System.out.println(obj);
-
-    //   Object obj2 = obj.get("board");
-    //   System.out.println(obj2);
-    //   System.out.println(obj2 instanceof JSONObject);
-    //   System.out.println(obj2 instanceof JSONArray);
-
-    //   HashMap<Object, Object> obj3 = (HashMap<Object, Object>)obj;
-    //   System.out.println(obj3);
-    //   System.out.println(obj3.get("board"));
-    // }catch(Exception e){
-    //   System.out.println("error: " + e.toString());
-    // }
-
     // HttpRequest req = new HttpRequest();
     // req.setRequestUrl("/users");
     // System.out.println(req.getRequestUrl());
@@ -404,16 +384,16 @@ public class HttpRequest {
     // System.out.println(res);
     // System.out.println(req.getResponseStatusCode());
     // System.out.println(req.getResponse().get("error"));
-  //   HashMap<Object, Object> param = new HashMap<Object, Object>();
-  //   param.put("username", "cloudy");
-  //   param.put("password", "cloudy");
-  //   HttpRequest req = new HttpRequest();
-  //   req.setRequestUrl("/users/authentication");
-  //   req.setRequestMethod("PUT");
-  //   req.setRequestBody(param);
-  //   req.send();
-  //   System.out.println(req.getResponseStatusCode());
-  //   System.out.println(req.getResponseBody());
+    HashMap<String, String> param = new HashMap<String, String>();
+    param.put("username", "cloudy");
+    param.put("password", "cloudy");
+    HttpRequest req = new HttpRequest();
+    req.setRequestUrl("/users/authentication");
+    req.setRequestMethod("PUT");
+    req.setRequestBody(param);
+    req.send();
+    System.out.println(req.getResponseStatusCode());
+    System.out.println(req.getResponseBody());
 
   //   User user = (User) req.getResponseByObject(User.class);
   //   System.out.println(user.getClass());
