@@ -15,43 +15,58 @@ import org.json.simple.parser.*;
 
 /**
  * Send http request in different http request method with custom param and get return json data.
+ * Custoizamables: request url, request method, request cookie, request body
  *
  * @author Cloudy Young
  * @see https://www.baeldung.com/httpurlconnection-post
  * @see http://alex-public-doc.s3.amazonaws.com/json_simple-1.1/index.html
  * @see https://www.tutorialspoint.com/json_simple/json_simple_quick_guide.htm
- * @version 1.0
+ * @version 1.2
  * @since 2020-02-20
  */
+
 public class HttpRequest {
 
   private String baseUrl = "https://kanban.proj.meonc.studio/api";
   private String requestUrl;
   private String requestMethod;
-  private Object requestCookie; // JSONObject
-  private Object requestBody; // JSONObject/JSONArray
+  private Object requestCookie; // should be JSONObject
+  private Object requestBody; // should be JSONObject/JSONArray
 
   private boolean succeed;
   private int responseStatusCode;
   private String responseMessage;
-  private Object responseCookie; // JSONObject
-  private Object responseBody; // JSONObject/JSONArray
+  private Object responseCookie; // should be JSONObject
+  private Object responseBody; // should be JSONObject/JSONArray
 
+  /**
+   * Create a new HttpRequest instance by providing url, param and method
+   */
   public HttpRequest(String url, Object param, String method) {
     this.setRequestUrl(url);
     this.setRequestBody(param);
     this.setRequestMethod(method);
   }
 
+  /**
+   * Create a new HttpRequest instance by providing url, method
+   */
   public HttpRequest(String url, String method) {
     this.setRequestUrl(url);
     this.setRequestMethod(method);
   }
 
+  /**
+   * Create a new HttpRequest instance by providing nothing
+   */
   public HttpRequest() {
     this.setRequestMethod("GET");
   }
 
+  /**
+   * Set request method of the instance
+   * @param method request method in whether upper or lower case, default value is GET, accpetable values: GET, POST, PUT, DELETE, HEAD, PATCH and OPTIONS, other values: set to default.
+   */
   public void setRequestMethod(String method) {
     if (method.equals("GET")
         || method.equalsIgnoreCase("POST")
@@ -66,59 +81,103 @@ public class HttpRequest {
     }
   }
 
+  /**
+   * Get the request method of the instance
+   * @return the request method
+   */
   public String getRequestMethod() {
     return this.requestMethod;
   }
 
-  public void setRequestBody(Object paramMap) {
-    this.requestBody = this.objectToJsonObject(paramMap);
+  /**
+   * Set the request body of the instance
+   * @param param the request body, should either be Map or List
+   */
+  public void setRequestBody(Object param) {
+    this.requestBody = this.objectToJsonObject(param);
   };
 
+  /**
+   * Whether the instance has request body
+   * @return true if has and false if not has
+   */
   public boolean hasRequestBody() {
     return (this.requestBody != null
         && !this.getRequestMethod().equals("GET")
         && !this.getRequestMethod().equals("DELETE")
         && !this.getRequestMethod().equals("HEAD"));
-    // GET, DELETE, HEAD methods should not have request body, so return false regardless of actual
-    // this.requestBody
+    // GET, DELETE, HEAD methods should not have request body, so return false regardless
   }
 
-  public HashMap<?, ?> getRequestBody() {
-    return (HashMap<?, ?>) this.jsonObjectToObject(this.requestBody);
+  /**
+   * Get the request body of the instance
+   * @return request body in Map
+   */
+  public Map<?, ?> getRequestBody() {
+    return (Map<?, ?>) this.jsonObjectToObject(this.requestBody);
   }
 
+  /**
+   * Get the request body of the instance, in string
+   * @return request body in String
+   */
   public String getRequestBodyString() {
     return this.jsonToString(this.requestBody);
   }
 
+  /**
+   * Set the request url of the instance
+   * @param url the request url
+   */
   public void setRequestUrl(String url) {
     this.requestUrl = this.baseUrl + url;
   }
 
+  /**
+   * Get the request url of the instance
+   * @return the request url
+   */
   public String getRequestUrl() {
     return this.requestUrl;
   }
 
+  /**
+   * Set the base url of the instance
+   * The full url would be baseUrl + url
+   * @param baseUrl the base url
+   */
   public void setBaseUrl(String baseUrl) {
     this.baseUrl = baseUrl + "/";
   }
 
+  /**
+   * Get the base url of the instance
+   * @return the base url
+   */
   public String getBaseUrl() {
     return this.baseUrl;
   }
 
-  public Object getResult() {
-    return this.responseBody;
-  }
-
+  /**
+   * Get response body in String of the instance
+   * @return response body
+   */
   public String getResponseString() {
     return this.jsonToString(this.responseBody);
   }
 
+  /**
+   * Get the response status code of the instance
+   * @return status code
+   */
   public int getResponseStatusCode() {
     return this.responseStatusCode;
   }
 
+  /**
+   * Set the request cookie of the instance
+   * @param cookie the cookie in Map, must be Map otherwise is invalid and set to null
+   */
   public void setRequestCookie(Object cookie) {
     if (cookie instanceof Map) { // requestCookie: should always be Map
       this.requestCookie = this.objectToJsonObject(cookie);
@@ -127,10 +186,18 @@ public class HttpRequest {
     }
   }
 
-  public HashMap<?, ?> getRequestCookie() {
-    return (HashMap<?, ?>) this.jsonObjectToMap((JSONObject) this.requestCookie);
+  /**
+   * Get the request cookie of the instance
+   * @return the request cookir in Map
+   */
+  public Map<?, ?> getRequestCookie() {
+    return (Map<?, ?>) this.jsonObjectToMap((JSONObject) this.requestCookie);
   }
 
+  /**
+   * Get the request cookie of the instance in String
+   * @return cookie string, will be in format of: key=value; key=value; key=value; 
+   */
   public String getRequestCookieByString() {
     String ret = "";
     if (this.requestCookie != null && this.requestCookie instanceof JSONObject) {
@@ -138,40 +205,72 @@ public class HttpRequest {
       for (Object each : obj.keySet()) {
         String key = (String) each;
         String value = (String) obj.get(key);
-        ret += key.trim() + "=" + value.trim() + ";";
+        ret += key.trim() + "=" + value.trim() + "; ";
       }
     }
     return ret;
   }
 
-  public Object getResponseBody() {
-    return this.jsonObjectToObject(this.responseBody);
+  /**
+   * Get the response body of the instance
+   * @return the response body in Map
+   */
+  public Map<?, ?> getResponseBody() {
+    return (Map<?, ?>)this.jsonObjectToObject(this.responseBody);
   }
 
+  /**
+   * Get the response message of the instance
+   * @return the response message
+   */
   public String getResponseMessage() {
     return this.responseMessage;
   }
 
-  public HashMap<?, ?> getResponseCookie() {
-    return (HashMap<?, ?>) this.jsonObjectToObject(this.responseCookie);
+  /**
+   * Get the response cookie of the instance
+   * @return reponse cookie in Map
+   */
+  public Map<?, ?> getResponseCookie() {
+    return (Map<?, ?>) this.jsonObjectToObject(this.responseCookie);
   }
 
+  /**
+   * Is this instance's request succeed
+   * @return true if succeed and false if not. By defining if succeed, the status code should not be 400~599 and should be no exception occured
+   */
   public boolean isSucceed() {
     return this.succeed;
   }
 
-  private void setResponseByString(String res) {
+  /**
+   * Set the response body by string of the instance
+   * @param res the response body in String
+   */
+  private void setResponseBodyByString(String res) {
     this.responseBody = this.stringToJson(res);
   }
 
+  /**
+   * Set the response status code of the instance
+   * @param statusCode the status code to set in int
+   */
   private void setResponseStatusCode(int statusCode) {
     this.responseStatusCode = statusCode;
   }
 
+  /**
+   * Set the response message of the instance
+   * @param message the message to set in String
+   */
   private void setResponseMessage(String message) {
     this.responseMessage = message;
   }
 
+  /**
+   * Set the response cookie by string of the instance
+   * @param cookie the cookie to set in String, it will be converted into JSONObject and store
+   */
   private void setResponseCookieByString(String cookie) {
     String[] list = cookie.split(";");
     JSONObject map = new JSONObject();
@@ -184,10 +283,19 @@ public class HttpRequest {
     this.responseCookie = map;
   }
 
+  /**
+   * Set succeed status of the instance
+   * @param is the succeed status to set
+   */
   private void setSucceed(boolean is) {
     this.succeed = is;
   }
 
+  /**
+   * Convert Map ot List object to JsonObject, null will be returned if type not match
+   * @param obj the object to be converted
+   * @return the converted object
+   */
   private Object objectToJsonObject(Object obj) {
     if (obj instanceof Map) {
       return this.mapToJsonObject((Map<?, ?>) obj);
@@ -198,6 +306,11 @@ public class HttpRequest {
     }
   }
 
+  /**
+   * Convert JsonObject to Map or List, null will be returned if type not match
+   * @param obj the object to be converted
+   * @return the converted object
+   */
   private Object jsonObjectToObject(Object obj) {
     if (obj instanceof JSONObject) {
       return this.jsonObjectToMap((JSONObject) obj);
@@ -208,6 +321,11 @@ public class HttpRequest {
     }
   }
 
+  /**
+   * Convert JsonObject or JSONArray to String, null will be returned if type not match
+   * @param obj the object to be converted
+   * @return the converted String
+   */
   private String jsonToString(Object obj) {
     if (obj instanceof JSONObject) {
       return ((JSONObject) obj).toJSONString();
@@ -218,6 +336,11 @@ public class HttpRequest {
     }
   }
 
+  /**
+   * Convert String to JsonObject or JSONArray, null will be returned if type not match
+   * @param str the String to be converted
+   * @return the converted object
+   */
   private Object stringToJson(String str) {
     try {
       JSONParser parser = new JSONParser();
@@ -228,6 +351,11 @@ public class HttpRequest {
     }
   }
 
+  /**
+   * Convert JSONArray to List
+   * @param json the JSONArray to be converted
+   * @return the converted List
+   */
   private List<?> jsonArrayToList(JSONArray json) {
     List<Object> list = new ArrayList<Object>();
     for (int i = 0; i < ((JSONArray) json).size(); i++) {
@@ -242,6 +370,11 @@ public class HttpRequest {
     return list;
   }
 
+  /**
+   * Convert List to JSONArray
+   * @param list the List to be converted
+   * @return the converted JSONArray
+   */
   private Object listToJsonArray(List<?> list) {
     JSONArray array = new JSONArray();
     for (int i = 0; i < list.size(); i++) {
@@ -256,6 +389,11 @@ public class HttpRequest {
     return array;
   }
 
+  /**
+   * Convert JSONObject to Map
+   * @param json the JSONObject to be converted
+   * @return the converte Map
+   */
   private Map<?, ?> jsonObjectToMap(JSONObject json) {
     Map<Object, Object> map = new HashMap<Object, Object>();
     Iterator<?> keysItr = ((JSONObject) json).keySet().iterator();
@@ -275,6 +413,11 @@ public class HttpRequest {
     return map;
   }
 
+  /**
+   * Convert Map to JSONObject
+   * @param map the Map to be converted
+   * @return the converted JSONObject
+   */
   private Object mapToJsonObject(Map<?, ?> map) {
     JSONObject obj = new JSONObject();
     Iterator<?> keysItr = map.keySet().iterator();
@@ -292,12 +435,16 @@ public class HttpRequest {
     return obj;
   }
 
+  /**
+   * Send the request of the instance
+   * @return true if the request sent successfully and false if not, notice that false indicates runtime error and exception occured
+   */
   public boolean send() {
 
     try {
       // Construct url request object
-      URL req = new URL(this.getRequestUrl());
-      HttpURLConnection connection = (HttpURLConnection) req.openConnection();
+      URL url = new URL(this.getRequestUrl());
+      HttpURLConnection connection = (HttpURLConnection) url.openConnection();
       connection.setRequestMethod(this.getRequestMethod());
       connection.setRequestProperty("Cookie", this.getRequestCookieByString());
       connection.setRequestProperty("Content-Language", "en-US");
@@ -331,13 +478,19 @@ public class HttpRequest {
       }
 
       // Store result
-      this.setResponseByString(response.toString());
+      this.setResponseBodyByString(response.toString());
       this.setResponseStatusCode(connection.getResponseCode());
       this.setResponseMessage(connection.getResponseMessage());
       try {
         this.setResponseCookieByString(connection.getHeaderField("Set-Cookie"));
       } catch (Exception e) {
         this.setResponseCookieByString(null);
+      }
+
+      if(connection.getResponseCode() >= 400 && connection.getResponseCode() <= 599){
+        this.setSucceed(false);
+      }else{
+        this.setSucceed(true);
       }
 
       connection.disconnect();
@@ -347,7 +500,6 @@ public class HttpRequest {
       return false;
     }
 
-    this.setSucceed(true);
     return true;
   }
 
@@ -366,7 +518,7 @@ public class HttpRequest {
     System.out.println(req.getResponseStatusCode());
     System.out.println(req.getResponseBody());
 
-    HashMap<?, ?> responseCookie = req.getResponseCookie();
+    HashMap<?, ?> responseCookie = (HashMap<?, ?>)req.getResponseCookie();
 
     HashMap<String, String> cookie = new HashMap<String, String>();
     cookie.put("PHPSESSID", (String) responseCookie.get("PHPSESSID"));
