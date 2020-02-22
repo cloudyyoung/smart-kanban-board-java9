@@ -1,6 +1,5 @@
 package structure;
 
-import java.util.Map;
 import java.util.HashMap;
 
 public class User {
@@ -64,26 +63,26 @@ public class User {
     return true;
   }
 
-  public boolean isAuthenticated(){
+  public boolean isAuthenticated() {
     return this.authenticated;
   }
 
-  public static User authentication(String username, String password){
+  public static User authentication(String username, String password) {
     User user = new User();
     user.setUsername(username);
     user.setPassword(password);
     boolean succeed = user.authenticate();
-    if(succeed){
+    if (succeed) {
       User.current = user;
     }
     return user;
   }
 
-  public static boolean hasCurrent(){
+  public static boolean hasCurrent() {
     return User.current != null && User.current.isAuthenticated();
   }
 
-  public static User getCurrent(){
+  public static User getCurrent() {
     return User.current;
   }
 }
