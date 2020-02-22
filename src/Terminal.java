@@ -22,7 +22,7 @@ public class Terminal {
       String password = keyboard.nextLine();
 
       User user = new User();
-      authenticated = user.authenticate(username, password);
+      // authenticated = user.authenticate(username, password);
       authenticated = true;
     }
   }

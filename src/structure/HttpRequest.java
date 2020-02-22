@@ -1,19 +1,26 @@
 package structure;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ArrayList;
 import java.net.URL;
 import java.net.HttpURLConnection;
 import java.io.OutputStreamWriter;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import com.google.gson.*;
+import org.json.simple.*;
+import org.json.simple.parser.*;
 
 /**
  * Send http request in different http request method with custom param and get return json data.
  *
  * @author Cloudy Young
  * @see https://www.baeldung.com/httpurlconnection-post
+ * @see http://alex-public-doc.s3.amazonaws.com/json_simple-1.1/index.html
+ * @see https://www.tutorialspoint.com/json_simple/json_simple_quick_guide.htm
  * @version 1.0
  * @since 2020-02-20
  */
@@ -21,17 +28,17 @@ public class HttpRequest {
 
   private String baseUrl = "https://kanban.proj.meonc.studio/api";
   private String requestUrl;
-  private HashMap<Object, Object> requestBody;
   private String requestMethod;
-  private HashMap<Object, Object> requestCookie;
+  private Object requestCookie; // JSONObject
+  private Object requestBody;   // JSONObject/JSONArray
 
   private boolean succeed;
   private int responseStatusCode;
   private String responseMessage;
-  private HashMap<Object, Object> responseBody;
-  private HashMap<Object, Object> responseCookie;
+  private Object responseCookie; // JSONObject
+  private Object responseBody;   // JSONObject/JSONArray
 
-  public HttpRequest(String url, HashMap<Object, Object> param, String method) {
+  public HttpRequest(String url, Object param, String method) {
     this.setRequestUrl(url);
     this.setRequestBody(param);
     this.setRequestMethod(method);
@@ -64,18 +71,12 @@ public class HttpRequest {
     return this.requestMethod;
   }
 
-  public void setRequestBody(HashMap<Object, Object> paramMap) {
+  public void setRequestBody(Object paramMap) {
     if (paramMap == null) {
       return;
     }
-    this.requestBody = new HashMap<Object, Object>(paramMap);
+    this.requestBody = this.objectToJsonObject(paramMap);
   };
-
-  public void setRequestBodyByObject(Object obj) {
-    Gson gson = new Gson();
-    String json = gson.toJson(obj);
-    this.requestBody = gson.fromJson(json, HashMap.class);
-  }
 
   public boolean hasRequestBody() {
     return (this.requestBody != null
@@ -86,15 +87,12 @@ public class HttpRequest {
     // this.requestBody
   }
 
-  public HashMap<Object, Object> getRequestBody() {
-    if (this.requestBody == null) {
-      return null;
-    }
-    return new HashMap<Object, Object>(this.requestBody);
+  public HashMap<?, ?> getRequestBody() {
+    return (HashMap<?, ?>)this.jsonObjectToMap(this.requestBody);
   }
 
   public String getRequestBodyString() {
-    return new String(new Gson().toJson(this.requestBody));
+    return this.jsonToString(this.requestBody);
   }
 
   public void setRequestUrl(String url) {
@@ -113,7 +111,7 @@ public class HttpRequest {
     return this.baseUrl;
   }
 
-  public HashMap<Object, Object> getResult() {
+  public Object getResult() {
     return this.responseBody;
   }
 
@@ -125,50 +123,41 @@ public class HttpRequest {
     return this.responseStatusCode;
   }
 
-  public void setRequestCookie(HashMap<Object, Object> cookie) {
-    if (cookie == null) {
-      return;
+  public void setRequestCookie(Object cookie) {
+    if(cookie instanceof Map){ // requestCookie: should always be Map
+      this.requestCookie = this.objectToJsonObject(cookie);
+    }else{
+      this.requestCookie = null;
     }
-    this.requestCookie = new HashMap<Object, Object>(cookie);
   }
 
-  public HashMap<Object, Object> getRequestCookie() {
-    if (this.requestCookie == null) {
-      return null;
-    }
-    return new HashMap<Object, Object>(this.requestCookie);
+  public HashMap<?, ?> getRequestCookie() {
+    return (HashMap<?, ?>)this.jsonObjectToMap(this.requestCookie);
   }
 
   public String getRequestCookieByString() {
     String ret = "";
-    if (this.requestCookie != null) {
-      for (Map.Entry<Object, Object> each : this.requestCookie.entrySet()) {
-        ret += each.getKey() + "=" + each.getValue() + ";";
+    if (this.requestCookie != null && this.requestCookie instanceof JSONObject) {
+      JSONObject obj = (JSONObject)this.requestCookie;
+      for (Object each : obj.keySet()) {
+        String key = (String)each;
+        String value = (String)obj.get(key);
+        ret += key + "=" + value + ";";
       }
     }
     return ret;
   }
 
-  public HashMap<Object, Object> getResponseBody() {
-    if (this.responseBody == null) {
-      return null;
-    }
-    return new HashMap<Object, Object>(this.responseBody);
-  }
-
-  public Object getResponseByObject(Class aClass) {
-    return new Gson().fromJson(new Gson().toJson(this.responseBody), aClass);
+  public Object getResponseBody() {
+    return this.jsonObjectToObject(this.responseBody);
   }
 
   public String getResponseMessage() {
     return this.responseMessage;
   }
 
-  public HashMap<Object, Object> getResponseCookie() {
-    if (this.responseCookie == null) {
-      return null;
-    }
-    return new HashMap<Object, Object>(this.responseCookie);
+  public HashMap<?, ?> getResponseCookie() {
+    return (HashMap<?, ?>)this.jsonObjectToObject(this.responseCookie);
   }
 
   public boolean isSucceed() {
@@ -176,8 +165,7 @@ public class HttpRequest {
   }
 
   private void setResponseByString(String res) {
-    Gson gson = new Gson();
-    this.responseBody = gson.fromJson(res, HashMap.class);
+    this.responseBody = this.stringToJson(res);
   }
 
   private void setResponseStatusCode(int statusCode) {
@@ -190,10 +178,10 @@ public class HttpRequest {
 
   private void setResponseCookieByString(String cookie) {
     String[] list = cookie.split(";");
-    HashMap<Object, Object> map = new HashMap<Object, Object>();
+    JSONObject map = new JSONObject();
     for (String each : list) {
       String[] pair = each.split("=");
-      if (pair.length >= 2) {
+      if (pair.length >= 2 && !pair[0].equals("path") && !pair[0].equals("expire")) {
         map.put(pair[0], pair[1]);
       }
     }
@@ -204,10 +192,132 @@ public class HttpRequest {
     this.succeed = is;
   }
 
+  private Object objectToJsonObject(Object obj){
+    if(obj instanceof HashMap<?, ?>){
+      return this.mapToJsonObject((HashMap<?, ?>)obj);
+    }else if(obj instanceof List<?>){
+      return this.listToJsonArray((List<?>)obj);
+    }else{
+      return null;
+    }
+  }
+
+  private Object jsonObjectToObject(Object obj){
+    if(obj instanceof JSONObject){
+      return this.jsonObjectToObject((JSONObject)obj);
+    }else if(obj instanceof JSONArray){
+      return this.listToJsonArray((JSONArray)obj);
+    }else{
+      return null;
+    }
+  }
+
+  private String jsonToString(Object obj){
+    if(obj instanceof JSONObject){
+      return ((JSONObject)obj).toJSONString();
+    }else if(obj instanceof JSONArray){
+      return ((JSONArray)obj).toJSONString();
+    }else{
+      return null;
+    }
+  }
+
+  private Object stringToJson(String str){
+    try{
+      JSONParser parser = new JSONParser();
+      Object obj = parser.parse(str);
+      return obj;
+    }catch(Exception e){
+      return null;
+    }
+  }
+
+  private List<?> jsonArrayToList(Object json){
+    if(!(json instanceof JSONArray)){
+      return null;
+    }
+    List<Object> list = new ArrayList<Object>();
+    for(int i = 0; i < ((JSONArray)json).size(); i++) {
+      Object value = ((JSONArray)json).get(i);
+      if(value instanceof JSONArray) {
+        value = jsonObjectToMap((JSONArray) value);
+      }else if(value instanceof JSONObject) {
+        value = jsonArrayToList((JSONObject) value);
+      }
+      list.add(value);
+    }
+    return list;
+  }
+
+  private Object listToJsonArray(List<?> list){
+    JSONArray array = new JSONArray();
+    for(int i = 0; i < list.size(); i++) {
+      Object value = list.get(i);
+      if(value instanceof Map) {
+        value = mapToJsonObject((Map<?, ?>) value);
+      }else if(value instanceof List) {
+        value = listToJsonArray((List<?>)value);
+      }
+      array.add(value);
+    }
+    return array;
+  }
+
+  private Map<?, ?> jsonObjectToMap(Object json){
+    Map<Object, Object> map = new HashMap<Object, Object>();
+    boolean isArray;
+    Iterator<?> keysItr;
+    if(json instanceof JSONObject){
+      keysItr = ((JSONObject)json).entrySet().iterator();
+      isArray = false;
+    }else if(json instanceof JSONArray){
+      keysItr = (((JSONArray)json).iterator());
+      isArray = true;
+    }else{
+      return null;
+    }
+    while(keysItr.hasNext()) {
+      Object key = keysItr.next();
+      Object value;
+
+      if(isArray){
+        value = ((JSONArray)json).get((int)key);
+      }else{
+        value = ((JSONObject)json).get(key);
+      }
+
+      if(value instanceof JSONArray) {
+        value = jsonArrayToList((JSONArray) value);
+      }else if(value instanceof JSONObject) {
+        value = jsonObjectToMap((JSONObject)value);
+      }
+      map.put(key, value);
+    }
+    return map;
+  }
+
+  private Object mapToJsonObject(Map<?, ?> map){
+    JSONObject obj = new JSONObject();
+    Iterator<?> keysItr;
+    keysItr = map.entrySet().iterator();
+    while(keysItr.hasNext()) {
+      Object key = keysItr.next();
+      Object value = map.get(key);
+
+      if(value instanceof Map<?, ?>){
+        value = mapToJsonObject((Map<?, ?>)value);
+      }else if(value instanceof List<?>){
+        value = listToJsonArray((List<?>)value);
+      }
+      obj.put(key, value);
+    }
+    return obj;
+  }
+
   public boolean send() {
 
     try {
-      // Contruct url request object
+      // Construct url request object
       URL req = new URL(this.getRequestUrl());
       HttpURLConnection connection = (HttpURLConnection) req.openConnection();
       connection.setRequestMethod(this.getRequestMethod());
@@ -265,6 +375,28 @@ public class HttpRequest {
   }
 
   public static void main(String[] args) {
+
+    HashMap<Object, Object> map = new HashMap<Object, Object>();
+    JSONObject json = (JSONObject)map;
+    System.out.println(json);
+    
+    // try{
+    //   JSONParser parser = new JSONParser();
+    //   JSONObject obj = (JSONObject)parser.parse("{\"board\": [100, 200]}");
+    //   // System.out.println(obj);
+
+    //   Object obj2 = obj.get("board");
+    //   System.out.println(obj2);
+    //   System.out.println(obj2 instanceof JSONObject);
+    //   System.out.println(obj2 instanceof JSONArray);
+
+    //   HashMap<Object, Object> obj3 = (HashMap<Object, Object>)obj;
+    //   System.out.println(obj3);
+    //   System.out.println(obj3.get("board"));
+    // }catch(Exception e){
+    //   System.out.println("error: " + e.toString());
+    // }
+
     // HttpRequest req = new HttpRequest();
     // req.setRequestUrl("/users");
     // System.out.println(req.getRequestUrl());
@@ -273,39 +405,39 @@ public class HttpRequest {
     // System.out.println(res);
     // System.out.println(req.getResponseStatusCode());
     // System.out.println(req.getResponse().get("error"));
-    HashMap<Object, Object> param = new HashMap<Object, Object>();
-    param.put("username", "cloudy");
-    param.put("password", "cloudy");
-    HttpRequest req = new HttpRequest();
-    req.setRequestUrl("/users/authentication");
-    req.setRequestMethod("PUT");
-    req.setRequestBody(param);
-    req.send();
-    System.out.println(req.getResponseStatusCode());
-    System.out.println(req.getResponseBody());
+  //   HashMap<Object, Object> param = new HashMap<Object, Object>();
+  //   param.put("username", "cloudy");
+  //   param.put("password", "cloudy");
+  //   HttpRequest req = new HttpRequest();
+  //   req.setRequestUrl("/users/authentication");
+  //   req.setRequestMethod("PUT");
+  //   req.setRequestBody(param);
+  //   req.send();
+  //   System.out.println(req.getResponseStatusCode());
+  //   System.out.println(req.getResponseBody());
 
-    User user = (User) req.getResponseByObject(User.class);
-    System.out.println(user.getClass());
-    System.out.println(req.getResponseCookie());
+  //   User user = (User) req.getResponseByObject(User.class);
+  //   System.out.println(user.getClass());
+  //   System.out.println(req.getResponseCookie());
 
-    HashMap<Object, Object> cookie = new HashMap<Object, Object>();
-    cookie.put("PHPSESSID", user.getSessionId());
-    System.out.println(cookie);
+  //   HashMap<Object, Object> cookie = new HashMap<Object, Object>();
+  //   cookie.put("PHPSESSID", user.getSessionId());
+  //   System.out.println(cookie);
 
-    HashMap<Object, Object> param2 = new HashMap<Object, Object>();
-    param2.put("title", "java new");
+  //   HashMap<Object, Object> param2 = new HashMap<Object, Object>();
+  //   param2.put("title", "java new");
 
-    HttpRequest req2 = new HttpRequest();
-    req2.setRequestUrl("/boards");
-    req2.setRequestMethod("POST");
-    req2.setRequestBody(param2);
-    req2.setRequestCookie(cookie);
-    boolean ret2 = req2.send();
+  //   HttpRequest req2 = new HttpRequest();
+  //   req2.setRequestUrl("/boards");
+  //   req2.setRequestMethod("POST");
+  //   req2.setRequestBody(param2);
+  //   req2.setRequestCookie(cookie);
+  //   boolean ret2 = req2.send();
 
-    System.out.println(ret2);
-    System.out.println(req2.getResponseBody());
-    System.out.println(req2.getResponseStatusCode());
-    System.out.println(req2.getRequestMethod());
-    System.out.println(req2.getRequestUrl());
+  //   System.out.println(ret2);
+  //   System.out.println(req2.getResponseBody());
+  //   System.out.println(req2.getResponseStatusCode());
+  //   System.out.println(req2.getRequestMethod());
+  //   System.out.println(req2.getRequestUrl());
   }
 }
