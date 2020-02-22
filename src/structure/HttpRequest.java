@@ -24,7 +24,6 @@ import org.json.simple.parser.*;
  * @version 1.2
  * @since 2020-02-20
  */
-
 public class HttpRequest {
 
   private String baseUrl = "https://kanban.proj.meonc.studio/api";
@@ -39,33 +38,29 @@ public class HttpRequest {
   private Object responseCookie; // should be JSONObject
   private Object responseBody; // should be JSONObject/JSONArray
 
-  /**
-   * Create a new HttpRequest instance by providing url, param and method
-   */
+  /** Create a new HttpRequest instance by providing url, param and method */
   public HttpRequest(String url, Object param, String method) {
     this.setRequestUrl(url);
     this.setRequestBody(param);
     this.setRequestMethod(method);
   }
 
-  /**
-   * Create a new HttpRequest instance by providing url, method
-   */
+  /** Create a new HttpRequest instance by providing url, method */
   public HttpRequest(String url, String method) {
     this.setRequestUrl(url);
     this.setRequestMethod(method);
   }
 
-  /**
-   * Create a new HttpRequest instance by providing nothing
-   */
+  /** Create a new HttpRequest instance by providing nothing */
   public HttpRequest() {
     this.setRequestMethod("GET");
   }
 
   /**
    * Set request method of the instance
-   * @param method request method in whether upper or lower case, default value is GET, accpetable values: GET, POST, PUT, DELETE, HEAD, PATCH and OPTIONS, other values: set to default.
+   *
+   * @param method request method in whether upper or lower case, default value is GET, accpetable
+   *     values: GET, POST, PUT, DELETE, HEAD, PATCH and OPTIONS, other values: set to default.
    */
   public void setRequestMethod(String method) {
     if (method.equals("GET")
@@ -83,6 +78,7 @@ public class HttpRequest {
 
   /**
    * Get the request method of the instance
+   *
    * @return the request method
    */
   public String getRequestMethod() {
@@ -91,6 +87,7 @@ public class HttpRequest {
 
   /**
    * Set the request body of the instance
+   *
    * @param param the request body, should either be Map or List
    */
   public void setRequestBody(Object param) {
@@ -99,6 +96,7 @@ public class HttpRequest {
 
   /**
    * Whether the instance has request body
+   *
    * @return true if has and false if not has
    */
   public boolean hasRequestBody() {
@@ -111,6 +109,7 @@ public class HttpRequest {
 
   /**
    * Get the request body of the instance
+   *
    * @return request body in Map
    */
   public Map<?, ?> getRequestBody() {
@@ -119,6 +118,7 @@ public class HttpRequest {
 
   /**
    * Get the request body of the instance, in string
+   *
    * @return request body in String
    */
   public String getRequestBodyString() {
@@ -127,6 +127,7 @@ public class HttpRequest {
 
   /**
    * Set the request url of the instance
+   *
    * @param url the request url
    */
   public void setRequestUrl(String url) {
@@ -135,6 +136,7 @@ public class HttpRequest {
 
   /**
    * Get the request url of the instance
+   *
    * @return the request url
    */
   public String getRequestUrl() {
@@ -142,8 +144,8 @@ public class HttpRequest {
   }
 
   /**
-   * Set the base url of the instance
-   * The full url would be baseUrl + url
+   * Set the base url of the instance The full url would be baseUrl + url
+   *
    * @param baseUrl the base url
    */
   public void setBaseUrl(String baseUrl) {
@@ -152,6 +154,7 @@ public class HttpRequest {
 
   /**
    * Get the base url of the instance
+   *
    * @return the base url
    */
   public String getBaseUrl() {
@@ -160,6 +163,7 @@ public class HttpRequest {
 
   /**
    * Get response body in String of the instance
+   *
    * @return response body
    */
   public String getResponseString() {
@@ -168,6 +172,7 @@ public class HttpRequest {
 
   /**
    * Get the response status code of the instance
+   *
    * @return status code
    */
   public int getResponseStatusCode() {
@@ -176,6 +181,7 @@ public class HttpRequest {
 
   /**
    * Set the request cookie of the instance
+   *
    * @param cookie the cookie in Map, must be Map otherwise is invalid and set to null
    */
   public void setRequestCookie(Object cookie) {
@@ -188,6 +194,7 @@ public class HttpRequest {
 
   /**
    * Get the request cookie of the instance
+   *
    * @return the request cookir in Map
    */
   public Map<?, ?> getRequestCookie() {
@@ -196,7 +203,8 @@ public class HttpRequest {
 
   /**
    * Get the request cookie of the instance in String
-   * @return cookie string, will be in format of: key=value; key=value; key=value; 
+   *
+   * @return cookie string, will be in format of: key=value; key=value; key=value;
    */
   public String getRequestCookieByString() {
     String ret = "";
@@ -213,14 +221,16 @@ public class HttpRequest {
 
   /**
    * Get the response body of the instance
+   *
    * @return the response body in Map
    */
   public Map<?, ?> getResponseBody() {
-    return (Map<?, ?>)this.jsonObjectToObject(this.responseBody);
+    return (Map<?, ?>) this.jsonObjectToObject(this.responseBody);
   }
 
   /**
    * Get the response message of the instance
+   *
    * @return the response message
    */
   public String getResponseMessage() {
@@ -229,6 +239,7 @@ public class HttpRequest {
 
   /**
    * Get the response cookie of the instance
+   *
    * @return reponse cookie in Map
    */
   public Map<?, ?> getResponseCookie() {
@@ -237,7 +248,9 @@ public class HttpRequest {
 
   /**
    * Is this instance's request succeed
-   * @return true if succeed and false if not. By defining if succeed, the status code should not be 400~599 and should be no exception occured
+   *
+   * @return true if succeed and false if not. By defining if succeed, the status code should not be
+   *     400~599 and should be no exception occured
    */
   public boolean isSucceed() {
     return this.succeed;
@@ -245,6 +258,7 @@ public class HttpRequest {
 
   /**
    * Set the response body by string of the instance
+   *
    * @param res the response body in String
    */
   private void setResponseBodyByString(String res) {
@@ -253,6 +267,7 @@ public class HttpRequest {
 
   /**
    * Set the response status code of the instance
+   *
    * @param statusCode the status code to set in int
    */
   private void setResponseStatusCode(int statusCode) {
@@ -261,6 +276,7 @@ public class HttpRequest {
 
   /**
    * Set the response message of the instance
+   *
    * @param message the message to set in String
    */
   private void setResponseMessage(String message) {
@@ -269,6 +285,7 @@ public class HttpRequest {
 
   /**
    * Set the response cookie by string of the instance
+   *
    * @param cookie the cookie to set in String, it will be converted into JSONObject and store
    */
   private void setResponseCookieByString(String cookie) {
@@ -285,6 +302,7 @@ public class HttpRequest {
 
   /**
    * Set succeed status of the instance
+   *
    * @param is the succeed status to set
    */
   private void setSucceed(boolean is) {
@@ -293,6 +311,7 @@ public class HttpRequest {
 
   /**
    * Convert Map ot List object to JsonObject, null will be returned if type not match
+   *
    * @param obj the object to be converted
    * @return the converted object
    */
@@ -308,6 +327,7 @@ public class HttpRequest {
 
   /**
    * Convert JsonObject to Map or List, null will be returned if type not match
+   *
    * @param obj the object to be converted
    * @return the converted object
    */
@@ -323,6 +343,7 @@ public class HttpRequest {
 
   /**
    * Convert JsonObject or JSONArray to String, null will be returned if type not match
+   *
    * @param obj the object to be converted
    * @return the converted String
    */
@@ -338,6 +359,7 @@ public class HttpRequest {
 
   /**
    * Convert String to JsonObject or JSONArray, null will be returned if type not match
+   *
    * @param str the String to be converted
    * @return the converted object
    */
@@ -353,6 +375,7 @@ public class HttpRequest {
 
   /**
    * Convert JSONArray to List
+   *
    * @param json the JSONArray to be converted
    * @return the converted List
    */
@@ -372,6 +395,7 @@ public class HttpRequest {
 
   /**
    * Convert List to JSONArray
+   *
    * @param list the List to be converted
    * @return the converted JSONArray
    */
@@ -391,6 +415,7 @@ public class HttpRequest {
 
   /**
    * Convert JSONObject to Map
+   *
    * @param json the JSONObject to be converted
    * @return the converte Map
    */
@@ -415,6 +440,7 @@ public class HttpRequest {
 
   /**
    * Convert Map to JSONObject
+   *
    * @param map the Map to be converted
    * @return the converted JSONObject
    */
@@ -437,7 +463,9 @@ public class HttpRequest {
 
   /**
    * Send the request of the instance
-   * @return true if the request sent successfully and false if not, notice that false indicates runtime error and exception occured
+   *
+   * @return true if the request sent successfully and false if not, notice that false indicates
+   *     runtime error and exception occured
    */
   public boolean send() {
 
@@ -487,9 +515,9 @@ public class HttpRequest {
         this.setResponseCookieByString(null);
       }
 
-      if(connection.getResponseCode() >= 400 && connection.getResponseCode() <= 599){
+      if (connection.getResponseCode() >= 400 && connection.getResponseCode() <= 599) {
         this.setSucceed(false);
-      }else{
+      } else {
         this.setSucceed(true);
       }
 
@@ -518,7 +546,7 @@ public class HttpRequest {
     System.out.println(req.getResponseStatusCode());
     System.out.println(req.getResponseBody());
 
-    HashMap<?, ?> responseCookie = (HashMap<?, ?>)req.getResponseCookie();
+    HashMap<?, ?> responseCookie = (HashMap<?, ?>) req.getResponseCookie();
 
     HashMap<String, String> cookie = new HashMap<String, String>();
     cookie.put("PHPSESSID", (String) responseCookie.get("PHPSESSID"));
