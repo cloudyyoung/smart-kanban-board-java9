@@ -46,7 +46,8 @@ public class Terminal {
       System.out.println("");
       System.out.println("Password: ");
       String password = keyboard.nextLine();
-      authenticated = true;
+
+      authenticated = User.authentication(username, password);
 
       System.out.println("");
       System.out.println("Welcome " + username + "!");

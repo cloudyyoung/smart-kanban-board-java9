@@ -14,14 +14,15 @@ public class User {
    * username: stores the users username as a string
    * id: gives the user an id so their information can be saved for the authentication
    * process
-   * sessid: users current session id so the user can return to the page they
+   * sessionId: users current session id so the user can return to the page they
    * were previously on if they left
    * password: stores the users password as a string
+   * current: the current signed in user
    */
   private static User current;
   private String username;
   private int id;
-  private String sessid; // Session Id
+  private String sessionId;
   private String password;
   private boolean authenticated;
 
@@ -64,7 +65,7 @@ public class User {
    */
 
   public String getSessionId() {
-    return this.sessid;
+    return this.sessionId;
   }
 
   /*
@@ -87,6 +88,22 @@ public class User {
     this.password = aPassword;
   }
 
+  /**
+   * get the password
+   * @return password as string
+   */
+  private String getPassword(){
+    return this.password;
+  }
+
+  /**
+   * current user is authenticated or not
+   * @return true is authenticated and false if not
+   */
+  public boolean isAuthenticated(){
+    return this.authenticated;
+  }
+
   /*
    * sets the id
    * @param aId as a int
@@ -104,7 +121,23 @@ public class User {
    */
 
   public void setSessionId(String aSessionId) {
-    this.sessid = aSessionId;
+    this.sessionId = aSessionId;
+  }
+
+  /**
+   * To string
+   * @return a detailed string of the instance
+   */
+  public String toString(){
+    return "User (username: " + this.getUsername() + ", password: " + this.getPassword() + ", id: " + this.getId() + ", sessionId: " + this.getSessionId() + ")";
+  }
+
+  /*
+   * authenticates the account that is trying to be logged into
+   * @return boolean if user name and password are correct
+   */
+  public boolean authenticate(){
+    return this.authenticate(this.getUsername(), this.getPassword());
   }
 
   /*
@@ -114,8 +147,47 @@ public class User {
    * @param aPassword is the user's entered password
    */
   public boolean authenticate(String aUsername, String aPassword) {
-    this.username = aUsername;
-    this.password = aPassword;
-    return true;
+    this.setUsername(aUsername);
+    this.setPassword(aPassword);
+
+    HashMap<String, String> param = new HashMap<String, String>();
+    param.put("username", this.getUsername());
+    param.put("password", this.getPassword());
+
+    HttpRequest req = new HttpRequest();
+    req.setRequestUrl("/users/authentication");
+    req.setRequestMethod("PUT");
+    req.setRequestBody(param);
+    req.send();
+
+    // System.out.println(req.getResponseStatusCode());
+    // System.out.println(req.getResponseBody());
+
+    if(req.isSucceed()){
+      HashMap<?, ?> res = (HashMap<?, ?>)req.getResponseBody();
+      HashMap<?, ?> cookie = (HashMap<?, ?>)req.getResponseCookie();
+      this.setId(Integer.parseInt((String)res.get("id")));
+      System.out.println(res);
+      this.setSessionId((String)cookie.get("PHPSESSID"));
+      this.authenticated = true;
+
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  public static boolean authentication(String username, String password){
+    User user = new User();
+    boolean res = user.authenticate(username, password);
+    if(res){
+      User.current = user;
+    }
+    return res;
+  }
+
+  public static void main(String[] args){
+    User.authentication("cloudy", "cloudy");
+    System.out.println(User.current);
   }
 }
