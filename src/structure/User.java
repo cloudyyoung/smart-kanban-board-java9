@@ -89,17 +89,19 @@ public class User {
 
   /**
    * get the password
+   *
    * @return password as string
    */
-  private String getPassword(){
+  private String getPassword() {
     return this.password;
   }
 
   /**
    * current user is authenticated or not
+   *
    * @return true is authenticated and false if not
    */
-  public boolean isAuthenticated(){
+  public boolean isAuthenticated() {
     return this.authenticated;
   }
 
@@ -125,17 +127,26 @@ public class User {
 
   /**
    * To string
+   *
    * @return a detailed string of the instance
    */
-  public String toString(){
-    return "User (username: " + this.getUsername() + ", password: " + this.getPassword() + ", id: " + this.getId() + ", sessionId: " + this.getSessionId() + ")";
+  public String toString() {
+    return "User (username: "
+        + this.getUsername()
+        + ", password: "
+        + this.getPassword()
+        + ", id: "
+        + this.getId()
+        + ", sessionId: "
+        + this.getSessionId()
+        + ")";
   }
 
   /*
    * authenticates the account that is trying to be logged into
    * @return boolean if user name and password are correct
    */
-  public boolean authenticate(){
+  public boolean authenticate() {
     return this.authenticate(this.getUsername(), this.getPassword());
   }
 
@@ -162,30 +173,30 @@ public class User {
     // System.out.println(req.getResponseStatusCode());
     // System.out.println(req.getResponseBody());
 
-    if(req.isSucceed()){
-      HashMap<?, ?> res = (HashMap<?, ?>)req.getResponseBody();
-      HashMap<?, ?> cookie = (HashMap<?, ?>)req.getResponseCookie();
-      this.setId(Integer.parseInt((String)res.get("id")));
+    if (req.isSucceed()) {
+      HashMap<?, ?> res = (HashMap<?, ?>) req.getResponseBody();
+      HashMap<?, ?> cookie = (HashMap<?, ?>) req.getResponseCookie();
+      this.setId(Integer.parseInt((String) res.get("id")));
       System.out.println(res);
-      this.setSessionId((String)cookie.get("PHPSESSID"));
+      this.setSessionId((String) cookie.get("PHPSESSID"));
       this.authenticated = true;
 
       return true;
-    }else{
+    } else {
       return false;
     }
   }
 
-  public static boolean authentication(String username, String password){
+  public static boolean authentication(String username, String password) {
     User user = new User();
     boolean res = user.authenticate(username, password);
-    if(res){
+    if (res) {
       User.current = user;
     }
     return res;
   }
 
-  public static void main(String[] args){
+  public static void main(String[] args) {
     User.authentication("cloudy", "cloudy");
     System.out.println(User.current);
   }
