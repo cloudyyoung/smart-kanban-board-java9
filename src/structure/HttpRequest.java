@@ -518,7 +518,7 @@ public class HttpRequest {
       this.setResponseBodyByString(response.toString());
       this.setResponseStatusCode(connection.getResponseCode());
       this.setResponseMessage(connection.getResponseMessage());
-      if(connection.getHeaderField("Set-Cookie") != null){ // if there're new cookies
+      if (connection.getHeaderField("Set-Cookie") != null) { // if there're new cookies
         this.setResponseCookieByString(connection.getHeaderField("Set-Cookie"));
       }
 
