@@ -84,7 +84,7 @@ public class HttpRequest {
   }
 
   public HashMap<?, ?> getRequestBody() {
-    return (HashMap<?, ?>) this.jsonObjectToMap(this.requestBody);
+    return (HashMap<?, ?>) this.jsonObjectToObject(this.requestBody);
   }
 
   public String getRequestBodyString() {
@@ -128,7 +128,7 @@ public class HttpRequest {
   }
 
   public HashMap<?, ?> getRequestCookie() {
-    return (HashMap<?, ?>) this.jsonObjectToMap(this.requestCookie);
+    return (HashMap<?, ?>) this.jsonObjectToMap((JSONObject) this.requestCookie);
   }
 
   public String getRequestCookieByString() {
@@ -138,7 +138,7 @@ public class HttpRequest {
       for (Object each : obj.keySet()) {
         String key = (String) each;
         String value = (String) obj.get(key);
-        ret += key + "=" + value + ";";
+        ret += key.trim() + "=" + value.trim() + ";";
       }
     }
     return ret;
@@ -228,17 +228,14 @@ public class HttpRequest {
     }
   }
 
-  private List<?> jsonArrayToList(Object json) {
-    if (!(json instanceof JSONArray)) {
-      return null;
-    }
+  private List<?> jsonArrayToList(JSONArray json) {
     List<Object> list = new ArrayList<Object>();
     for (int i = 0; i < ((JSONArray) json).size(); i++) {
       Object value = ((JSONArray) json).get(i);
       if (value instanceof JSONArray) {
-        value = jsonObjectToMap((JSONArray) value);
+        value = jsonArrayToList((JSONArray) value);
       } else if (value instanceof JSONObject) {
-        value = jsonArrayToList((JSONObject) value);
+        value = jsonObjectToMap((JSONObject) value);
       }
       list.add(value);
     }
@@ -259,34 +256,20 @@ public class HttpRequest {
     return array;
   }
 
-  private Map<?, ?> jsonObjectToMap(Object json) {
+  private Map<?, ?> jsonObjectToMap(JSONObject json) {
     Map<Object, Object> map = new HashMap<Object, Object>();
-    boolean isArray;
-    Iterator<?> keysItr;
-    if (json instanceof JSONObject) {
-      keysItr = ((JSONObject) json).keySet().iterator();
-      isArray = false;
-    } else if (json instanceof JSONArray) {
-      keysItr = (((JSONArray) json).iterator());
-      isArray = true;
-    } else {
-      return null;
-    }
+    Iterator<?> keysItr = ((JSONObject) json).keySet().iterator();
+
     while (keysItr.hasNext()) {
       Object key = keysItr.next();
-      Object value;
-
-      if (isArray) {
-        value = ((JSONArray) json).get((int) key);
-      } else {
-        value = ((JSONObject) json).get(key);
-      }
+      Object value = json.get(key);
 
       if (value instanceof JSONArray) {
-        value = jsonArrayToList((JSONArray) value);
-      } else if (value instanceof JSONObject) {
-        value = jsonObjectToMap((JSONObject) value);
+        value = this.jsonArrayToList((JSONArray) value);
+      } else if (value instanceof JSONObject){
+        value = this.jsonObjectToMap((JSONObject) value);
       }
+
       map.put(key, value);
     }
     return map;
@@ -294,13 +277,10 @@ public class HttpRequest {
 
   private Object mapToJsonObject(Map<?, ?> map) {
     JSONObject obj = new JSONObject();
-    Iterator<?> keysItr;
-    keysItr = map.keySet().iterator();
+    Iterator<?> keysItr = map.keySet().iterator();
     while (keysItr.hasNext()) {
       Object key = keysItr.next();
       Object value = map.get(key);
-
-      System.out.println("key: " + key + ", value: " + value);
 
       if (value instanceof Map<?, ?>) {
         value = mapToJsonObject((Map<?, ?>) value);
@@ -338,9 +318,8 @@ public class HttpRequest {
         writer.flush();
       }
 
-      // Get response
+      // Get response, for any status code
       BufferedReader br;
-      // Get response for any status code
       if (200 <= connection.getResponseCode() && connection.getResponseCode() <= 299) {
         br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
       } else {
@@ -359,7 +338,7 @@ public class HttpRequest {
       try {
         this.setResponseCookieByString(connection.getHeaderField("Set-Cookie"));
       } catch (Exception e) {
-        this.setResponseCookieByString("");
+        this.setResponseCookieByString(null);
       }
 
       connection.disconnect();
@@ -375,22 +354,12 @@ public class HttpRequest {
 
   public static void main(String[] args) {
 
-    // HttpRequest req = new HttpRequest();
-    // req.setRequestUrl("/users");
-    // System.out.println(req.getRequestUrl());
-    // req.setRequestMethod("GET");
-    // boolean res = req.send();
-    // System.out.println(res);
-    // System.out.println(req.getResponseStatusCode());
-    // System.out.println(req.getResponse().get("error"));
     HashMap<String, String> param = new HashMap<String, String>();
     param.put("username", "cloudy");
     param.put("password", "cloudy");
     System.out.println(param);
 
     HttpRequest req = new HttpRequest();
-    // Object obj = req.mapToJsonObject(param);
-    // System.out.println(obj);
     req.setRequestUrl("/users/authentication");
     req.setRequestMethod("PUT");
     req.setRequestBody(param);
@@ -398,28 +367,21 @@ public class HttpRequest {
     System.out.println(req.getResponseStatusCode());
     System.out.println(req.getResponseBody());
 
-    //   User user = (User) req.getResponseByObject(User.class);
-    //   System.out.println(user.getClass());
-    //   System.out.println(req.getResponseCookie());
+    HashMap<?, ?> responseCookie = req.getResponseCookie();
 
-    //   HashMap<Object, Object> cookie = new HashMap<Object, Object>();
-    //   cookie.put("PHPSESSID", user.getSessionId());
-    //   System.out.println(cookie);
+    HashMap<String, String> cookie = new HashMap<String, String>();
+    cookie.put("PHPSESSID", (String)responseCookie.get("PHPSESSID"));
+    System.out.println(cookie);
 
-    //   HashMap<Object, Object> param2 = new HashMap<Object, Object>();
-    //   param2.put("title", "java new");
 
-    //   HttpRequest req2 = new HttpRequest();
-    //   req2.setRequestUrl("/boards");
-    //   req2.setRequestMethod("POST");
-    //   req2.setRequestBody(param2);
-    //   req2.setRequestCookie(cookie);
-    //   boolean ret2 = req2.send();
+    HttpRequest req2 = new HttpRequest();
+    req2.setRequestUrl("/kanban");
+    req2.setRequestMethod("GET");
+    req2.setRequestCookie(cookie);
+    boolean ret2 = req2.send();
 
-    //   System.out.println(ret2);
-    //   System.out.println(req2.getResponseBody());
-    //   System.out.println(req2.getResponseStatusCode());
-    //   System.out.println(req2.getRequestMethod());
-    //   System.out.println(req2.getRequestUrl());
+    System.out.println(ret2);
+    System.out.println(req2.getResponseStatusCode());
+    System.out.println(req2.getResponseBody());
   }
 }
