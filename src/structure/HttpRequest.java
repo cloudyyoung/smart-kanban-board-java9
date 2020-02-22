@@ -10,7 +10,6 @@ import java.net.HttpURLConnection;
 import java.io.OutputStreamWriter;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
-import com.google.gson.*;
 import org.json.simple.*;
 import org.json.simple.parser.*;
 
@@ -116,7 +115,7 @@ public class HttpRequest {
   }
 
   public String getResponseString() {
-    return new String(new Gson().toJson(this.requestBody));
+    return this.jsonToString(this.responseBody);
   }
 
   public int getResponseStatusCode() {
