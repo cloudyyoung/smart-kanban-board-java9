@@ -148,7 +148,6 @@ public class HttpRequest {
     return this.jsonObjectToObject(this.responseBody);
   }
 
-
   public String getResponseMessage() {
     return this.responseMessage;
   }
@@ -199,12 +198,12 @@ public class HttpRequest {
     }
   }
 
-  private Object jsonObjectToObject(Object obj){
-    if(obj instanceof JSONObject){
-      return this.jsonObjectToMap((JSONObject)obj);
-    }else if(obj instanceof JSONArray){
-      return this.listToJsonArray((JSONArray)obj);
-    }else{
+  private Object jsonObjectToObject(Object obj) {
+    if (obj instanceof JSONObject) {
+      return this.jsonObjectToMap((JSONObject) obj);
+    } else if (obj instanceof JSONArray) {
+      return this.listToJsonArray((JSONArray) obj);
+    } else {
       return null;
     }
   }
@@ -399,28 +398,28 @@ public class HttpRequest {
     System.out.println(req.getResponseStatusCode());
     System.out.println(req.getResponseBody());
 
-  //   User user = (User) req.getResponseByObject(User.class);
-  //   System.out.println(user.getClass());
-  //   System.out.println(req.getResponseCookie());
+    //   User user = (User) req.getResponseByObject(User.class);
+    //   System.out.println(user.getClass());
+    //   System.out.println(req.getResponseCookie());
 
-  //   HashMap<Object, Object> cookie = new HashMap<Object, Object>();
-  //   cookie.put("PHPSESSID", user.getSessionId());
-  //   System.out.println(cookie);
+    //   HashMap<Object, Object> cookie = new HashMap<Object, Object>();
+    //   cookie.put("PHPSESSID", user.getSessionId());
+    //   System.out.println(cookie);
 
-  //   HashMap<Object, Object> param2 = new HashMap<Object, Object>();
-  //   param2.put("title", "java new");
+    //   HashMap<Object, Object> param2 = new HashMap<Object, Object>();
+    //   param2.put("title", "java new");
 
-  //   HttpRequest req2 = new HttpRequest();
-  //   req2.setRequestUrl("/boards");
-  //   req2.setRequestMethod("POST");
-  //   req2.setRequestBody(param2);
-  //   req2.setRequestCookie(cookie);
-  //   boolean ret2 = req2.send();
+    //   HttpRequest req2 = new HttpRequest();
+    //   req2.setRequestUrl("/boards");
+    //   req2.setRequestMethod("POST");
+    //   req2.setRequestBody(param2);
+    //   req2.setRequestCookie(cookie);
+    //   boolean ret2 = req2.send();
 
-  //   System.out.println(ret2);
-  //   System.out.println(req2.getResponseBody());
-  //   System.out.println(req2.getResponseStatusCode());
-  //   System.out.println(req2.getRequestMethod());
-  //   System.out.println(req2.getRequestUrl());
+    //   System.out.println(ret2);
+    //   System.out.println(req2.getResponseBody());
+    //   System.out.println(req2.getResponseStatusCode());
+    //   System.out.println(req2.getRequestMethod());
+    //   System.out.println(req2.getRequestUrl());
   }
 }
