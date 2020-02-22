@@ -1,12 +1,11 @@
 // Import Classes
 import structure.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Terminal {
 
-  ArrayList<Integer> availableHours = new ArrayList<>(Arrays.aslist(0, 0, 0, 0, 0, 0, 0));
+  ArrayList<Integer> availableHours = new ArrayList<Integer>(7);
 
   // Enter text-based program
   public static void terminal() {
