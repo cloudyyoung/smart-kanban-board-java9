@@ -16,6 +16,9 @@ import org.json.simple.parser.*;
 /**
  * Send http request in different http request method with custom param and get return json data.
  * Custoizamables: request url, request method, request cookie, request body
+ * Public methods: Getters and setters of request attributes, Getters of response attributes, and Send method
+ * All Object input and output should be either Map or List, and the all Object private attribute should be either JSONObject or JSONArray
+ * Pipeline: Give Map/List -> Convert to JSONObject/JSONArray and store -> Send and receive String -> Convert String to JSONObject/JSONArray -> Convert from JSONObject/JSONArray -> Get Map/List
  *
  * @author Cloudy Young
  * @see https://www.baeldung.com/httpurlconnection-post
@@ -26,12 +29,18 @@ import org.json.simple.parser.*;
  */
 public class HttpRequest {
 
+  /**
+   * All  attributes for request
+   */
   private String baseUrl = "https://kanban.proj.meonc.studio/api";
   private String requestUrl;
   private String requestMethod;
   private Object requestCookie; // should be JSONObject
   private Object requestBody; // should be JSONObject/JSONArray
 
+  /**
+   * All attributes for response
+   */
   private boolean succeed;
   private int responseStatusCode;
   private String responseMessage;
