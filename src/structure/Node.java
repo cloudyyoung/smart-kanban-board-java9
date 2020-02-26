@@ -6,17 +6,14 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public abstract class Node {
-	
-	/**
-	 * int id: the users id -> associated to the user name and password
-	 * int parentId:?????
-	 * int grandparentId:????
-	 * String title: this will be the titles of each column on the board
-	 * String note:????
-	 * String type: type will be used to determine where the user is in the application
-	 * 
-	 */
+
+  /**
+   * int id: the users id -> associated to the user name and password int parentId:????? int
+   * grandparentId:???? String title: this will be the titles of each column on the board String
+   * note:???? String type: type will be used to determine where the user is in the application
+   */
   private int id;
+
   private int parentId;
   private int grandparentId;
   private String title;
@@ -27,7 +24,7 @@ public abstract class Node {
 
   /**
    * creates a "dictionary" so the cards can be sorted into rows
-   * 
+   *
    * @return the location of the user on the "left" side of the table as a string
    * @return the number associated to the location, or the "right" side as an int
    */
@@ -38,30 +35,28 @@ public abstract class Node {
               "Board", 2,
               "Column", 3,
               "Event", 4);
-  
+
   /**
    * @param id
    * @param title
    * @param note
    */
-
   public Node(int id, String title, String note) {
     this.id = id;
     this.title = title;
     this.note = note;
     this.type = this.getClass().getName();
   }
-  
+
   /*
-   * 
-   * 
+   *
+   *
    */
   public Node() {
     this.type = this.getClass().getName();
   }
 
   /**
-   * 
    * @param type
    * @param level
    * @return
@@ -85,80 +80,52 @@ public abstract class Node {
     return ret;
   }
 
-  /**
-   * 
-   * @return
-   */
+  /** @return */
   public int getId() {
     return this.id;
   }
 
-  /**
-   * 
-   * @return
-   */
+  /** @return */
   public int getParentId() {
     return this.parentId;
   }
 
-  /**
-   * 
-   * @return
-   */
+  /** @return */
   public int getGrandparentId() {
     return this.grandparentId;
   }
 
-  /**
-   * 
-   * @param aId
-   */
+  /** @param aId */
   public void setId(int aId) {
     this.id = aId;
   }
 
-  /**
-   * 
-   * @param aParentId
-   */
+  /** @param aParentId */
   public void setParentId(int aParentId) {
     this.parentId = aParentId;
   }
 
-  /**
-   * 
-   * @param aGrandparentId
-   */
+  /** @param aGrandparentId */
   public void setGrandparentId(int aGrandparentId) {
     this.grandparentId = aGrandparentId;
   }
 
-  /**
-   * 
-   * @return
-   */
+  /** @return */
   public String getTitle() {
     return this.title;
   }
 
-  /**
-   * 
-   * @param aTitle
-   */
+  /** @param aTitle */
   public void setTitle(String aTitle) {
     this.title = aTitle;
   }
 
-  /**
-   * 
-   * @return
-   */
+  /** @return */
   public String getParentType() {
     return this.getParentType(this.type);
   }
 
   /**
-   * 
    * @param aType
    * @return
    */
@@ -167,7 +134,6 @@ public abstract class Node {
   }
 
   /**
-   * 
    * @param aType
    * @param aLevel
    * @return
@@ -176,16 +142,12 @@ public abstract class Node {
     return this.getTypeByLevel(aType, Math.abs(aLevel) * -1);
   }
 
-  /**
-   * 
-   * @return
-   */
+  /** @return */
   public String getChildType() {
     return this.getChildType(this.type);
   }
 
   /**
-   * 
    * @param aType
    * @return
    */
@@ -194,7 +156,6 @@ public abstract class Node {
   }
 
   /**
-   * 
    * @param aType
    * @param aLevel
    * @return
@@ -205,7 +166,7 @@ public abstract class Node {
 
   /**
    * converts id, title and note to a string for output
-   * 
+   *
    * @return the id, title and note as a combined string
    */
   public String toString() {
@@ -214,7 +175,7 @@ public abstract class Node {
 
   /**
    * Adds a node
-   * 
+   *
    * @param aNode
    * @return
    */
@@ -224,9 +185,9 @@ public abstract class Node {
     return aNode;
   }
 
-
   /**
    * removes a node
+   *
    * @param id
    */
   public void removeNode(int id) {
@@ -236,10 +197,7 @@ public abstract class Node {
     this.remapIndex(id);
   }
 
-  /**
-   * 
-   * @param startFrom
-   */
+  /** @param startFrom */
   private void remapIndex(int startFrom) {
     int current = startFrom;
     for (Node each : this.nodes.subList(startFrom, this.nodes.size())) {
