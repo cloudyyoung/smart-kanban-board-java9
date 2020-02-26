@@ -3,6 +3,7 @@ package structure;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public abstract class Node {
   private int id;
@@ -38,8 +39,16 @@ public abstract class Node {
     lvl += level;
 
     String ret = "";
+    Iterator<?> keysItr = this.TYPES.keySet().iterator();
 
-    // NEED IMPLEMENTATION
+    while (keysItr.hasNext()) {
+      String key = (String)keysItr.next();
+      int value = (int)this.TYPES.get(key);
+
+      if(value == lvl){
+        ret = key;
+      }
+    }
 
     return ret;
   }

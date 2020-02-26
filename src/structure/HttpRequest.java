@@ -18,14 +18,16 @@ import org.json.simple.parser.*;
  * Custoizamables: request url, request method, request cookie, request body Public methods: Getters
  * and setters of request attributes, Getters of response attributes, and Send method All Object
  * input and output should be either Map or List, and the all Object private attribute should be
- * either JSONObject or JSONArray Pipeline: Give Map/List -> Convert to JSONObject/JSONArray and
- * store -> Send and receive String -> Convert String to JSONObject/JSONArray -> Convert from
- * JSONObject/JSONArray -> Get Map/List
+ * either JSONObject or JSONArray 
+ * The Pipeline: Give Map/List -> Convert to JSONObject/JSONArray and store
+ * -> Send and receive String -> Convert String to JSONObject/JSONArray
+ * -> Convert from JSONObject/JSONArray -> Get Map/List
  *
  * @author Cloudy Young
  * @see https://www.baeldung.com/httpurlconnection-post
  * @see http://alex-public-doc.s3.amazonaws.com/json_simple-1.1/index.html
  * @see https://www.tutorialspoint.com/json_simple/json_simple_quick_guide.htm
+ * @see https://github.com/CloudyYoung/Kanban-Server/wiki
  * @version 1.2
  * @since 2020-02-20
  */
