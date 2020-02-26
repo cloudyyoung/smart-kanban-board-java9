@@ -42,10 +42,10 @@ public abstract class Node {
     Iterator<?> keysItr = this.TYPES.keySet().iterator();
 
     while (keysItr.hasNext()) {
-      String key = (String)keysItr.next();
-      int value = (int)this.TYPES.get(key);
+      String key = (String) keysItr.next();
+      int value = (int) this.TYPES.get(key);
 
-      if(value == lvl){
+      if (value == lvl) {
         ret = key;
       }
     }
