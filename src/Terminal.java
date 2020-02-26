@@ -1,4 +1,3 @@
-
 // Import Classes
 import structure.*;
 import java.util.ArrayList;
@@ -66,7 +65,6 @@ public class Terminal {
         authenticated = true;
         // authenticated = User.authentication(username, password);
       }
-
     }
 
     System.out.println("");
@@ -130,8 +128,17 @@ public class Terminal {
         // 'time' command prints the current time
       } else if (command.equals("calendar")) {
         System.out.println("");
-        System.out.println("Time: " + Time.currentHour12(Time.currentHour24()) + ":" + Time.currentMinute() + " on "
-            + Time.currentDayName() + " the " + Time.currentDay() + " of " + Time.currentYear());
+        System.out.println(
+            "Time: "
+                + Time.currentHour12(Time.currentHour24())
+                + ":"
+                + Time.currentMinute()
+                + " on "
+                + Time.currentDayName()
+                + " the "
+                + Time.currentDay()
+                + " of "
+                + Time.currentYear());
         System.out.println("");
 
         // 'exit' command exits to program
@@ -291,7 +298,8 @@ public class Terminal {
         System.out.println("  'back' : return to previous page");
 
       } else if (command.equals("edit")) {
-        System.out.println("Please enter the time you have available for work on each day (in hours): ");
+        System.out.println(
+            "Please enter the time you have available for work on each day (in hours): ");
         System.out.println("  Monday : ");
         String enteredInt0 = keyboard.nextLine();
         availableHours.set(0, 2);
@@ -320,8 +328,14 @@ public class Terminal {
         String enteredInt6 = keyboard.nextLine();
         availableHours.set(0, 2);
 
-        System.out
-            .println(enteredInt0 + enteredInt1 + enteredInt2 + enteredInt3 + enteredInt4 + enteredInt5 + enteredInt6);
+        System.out.println(
+            enteredInt0
+                + enteredInt1
+                + enteredInt2
+                + enteredInt3
+                + enteredInt4
+                + enteredInt5
+                + enteredInt6);
 
       } else if (command.equals("back")) {
         showSettings();
@@ -334,9 +348,7 @@ public class Terminal {
     keyboard.close();
   }
 
-  public static void serveBoard() {
-
-  }
+  public static void serveBoard() {}
 
   public static void accountSettings() {
     Scanner keyboard = new Scanner(System.in);
