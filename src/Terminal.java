@@ -1,3 +1,4 @@
+
 // Import Classes
 import structure.*;
 import java.util.ArrayList;
@@ -15,16 +16,20 @@ public class Terminal {
 
     showPage(1);
 
+    showPage(2);
+
     // Decide if user is authenticated
     // if, show main page
   }
 
   public static void showPage(int page) {
     if (page == 0) {
-      showLogin();
+      showLoading();
     } else if (page == 1) {
-      showMain();
+      showLogin();
     } else if (page == 2) {
+      showMain();
+    } else if (page == 3) {
       showSettings();
     }
   }
@@ -43,18 +48,34 @@ public class Terminal {
       System.out.println("Username: ");
       String username = keyboard.nextLine();
 
-      System.out.println("");
-      System.out.println("Password: ");
-      String password = keyboard.nextLine();
+      if (username.equals("create")) {
+        System.out.println("");
+        System.out.println("This has yet to be implemented.");
+        System.out.println("");
 
-      authenticated = User.authentication(username, password);
+      } else if (username.equals("forgot")) {
+        System.out.println("");
+        System.out.println("This has yet to be implemented.");
+        System.out.println("");
+      } else {
+        System.out.println("");
+        System.out.println("Password: ");
+        String password = keyboard.nextLine();
+
+        // Remove for auth
+        authenticated = true;
+        // authenticated = User.authentication(username, password);
+      }
+
     }
 
     System.out.println("");
 
     if (authenticated) {
       System.out.println("");
-      System.out.println("Welcome " + User.current.getUsername() + "!");
+      // REMOVE FOR AUTh
+      System.out.println("Welcome you !");
+      // System.out.println("Welcome " + User.current.getUsername() + "!");
       System.out.println("");
 
       showLogin = false;
@@ -64,6 +85,16 @@ public class Terminal {
     }
 
     return showLogin;
+  }
+
+  public static void showLoading() {
+    System.out.println("Welcome to Smart Kanban.");
+    System.out.println("");
+    System.out.print("  Loading.");
+    System.out.print(".");
+    System.out.print(".");
+    System.out.println("");
+    System.out.println("");
   }
 
   // Main program
@@ -85,7 +116,10 @@ public class Terminal {
       if (command.equals("help")) {
         System.out.println("");
         System.out.println("List of Commands:");
-        System.out.println("  'time' : prints the current time");
+        System.out.println("  'today' : prints the current time");
+        System.out.println("  'list boards' : prints the current time");
+        System.out.println("  'new board' : prints the current time");
+        System.out.println("  'calendar' : prints the current time");
         System.out.println("  'settings' : navigates to settings page");
         System.out.println("  'exit' : terminates the program");
         System.out.println("");
@@ -94,19 +128,10 @@ public class Terminal {
         showSettings();
 
         // 'time' command prints the current time
-      } else if (command.equals("time")) {
+      } else if (command.equals("calendar")) {
         System.out.println("");
-        System.out.println(
-            "Time: "
-                + Time.currentHour12(Time.currentHour24())
-                + ":"
-                + Time.currentMinute()
-                + " on "
-                + Time.currentDayName()
-                + " the "
-                + Time.currentDay()
-                + " of "
-                + Time.currentYear());
+        System.out.println("Time: " + Time.currentHour12(Time.currentHour24()) + ":" + Time.currentMinute() + " on "
+            + Time.currentDayName() + " the " + Time.currentDay() + " of " + Time.currentYear());
         System.out.println("");
 
         // 'exit' command exits to program
@@ -115,6 +140,26 @@ public class Terminal {
         System.out.println("exiting...");
         System.out.println("");
         onMain = false;
+
+      } else if (command.equals("today")) {
+        // serveBoard(today);
+
+        System.out.println("");
+        System.out.println("To Do:");
+
+        System.out.println("");
+        System.out.println("Doing:");
+        System.out.println("To Do:");
+
+      } else if (command.equals("list")) {
+
+        // Get all board titles and list
+        System.out.println("");
+        System.out.println("These are your current boards: ");
+        System.out.println("  Today");
+        System.out.println("  Comp Sci");
+        System.out.println("  Economics");
+        System.out.println("");
 
         // unknown command
       } else {
@@ -211,7 +256,7 @@ public class Terminal {
       if (command.equals("help")) {
         System.out.println("");
         System.out.println("List of Commands:");
-        System.out.println("  'clear boards' : prints the current time");
+        System.out.println("  'clear boards' : clears all boards");
         System.out.println("  'back' : return to previous page");
         System.out.println("");
 
@@ -231,46 +276,66 @@ public class Terminal {
 
   public static void timeSettings() {
     Scanner keyboard = new Scanner(System.in);
-    boolean onKanbanSettings = true;
+    boolean onTimeSettings = true;
 
-    System.out.println("You are now in kanban settings.");
+    System.out.println("You are now in time settings.");
 
-    while (onKanbanSettings == true) {
+    while (onTimeSettings == true) {
 
       System.out.println("Enter a cmd: ");
       String command = keyboard.nextLine();
 
       if (command.equals("help")) {
         System.out.println("List of Commands:");
-        System.out.println("  'clear boards' : deletes all current boards");
+        System.out.println("  'edit' : change your time available for work");
         System.out.println("  'back' : return to previous page");
 
-      } else if (command.equals("set times")) {
-        System.out.println(
-            "Please enter the time you have available for work on each day (in hours): ");
+      } else if (command.equals("edit")) {
+        System.out.println("Please enter the time you have available for work on each day (in hours): ");
         System.out.println("  Monday : ");
+        String enteredInt0 = keyboard.nextLine();
+        availableHours.set(0, 2);
 
         System.out.println("  Tuesday : ");
+        String enteredInt1 = keyboard.nextLine();
+        availableHours.set(0, 2);
 
         System.out.println("  Wednesday : ");
+        String enteredInt2 = keyboard.nextLine();
+        availableHours.set(0, 2);
 
         System.out.println("  Thursday : ");
+        String enteredInt3 = keyboard.nextLine();
+        availableHours.set(0, 2);
 
         System.out.println("  Friday : ");
+        String enteredInt4 = keyboard.nextLine();
+        availableHours.set(0, 2);
 
         System.out.println("  Saturday : ");
+        String enteredInt5 = keyboard.nextLine();
+        availableHours.set(0, 2);
 
         System.out.println("  Sunday : ");
+        String enteredInt6 = keyboard.nextLine();
+        availableHours.set(0, 2);
+
+        System.out
+            .println(enteredInt0 + enteredInt1 + enteredInt2 + enteredInt3 + enteredInt4 + enteredInt5 + enteredInt6);
 
       } else if (command.equals("back")) {
         showSettings();
-        onKanbanSettings = false;
+        onTimeSettings = false;
 
       } else {
         System.out.println("Unknown command. Type 'help' for a command list.");
       }
     }
     keyboard.close();
+  }
+
+  public static void serveBoard() {
+
   }
 
   public static void accountSettings() {
