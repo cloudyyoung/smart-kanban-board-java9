@@ -2,7 +2,7 @@
 
 [![CodeFactor](https://www.codefactor.io/repository/github/cloudyyoung/smart-kanban-board/badge?s=8774062d8382e00db0e730beda189124ce4d9eb3)](https://www.codefactor.io/repository/github/cloudyyoung/smart-kanban-board)
 ![Java-Format](https://github.com/CloudyYoung/Smart-Kanban-Board/workflows/Java-Format/badge.svg)
-[![Build Status](https://travis-ci.com/CloudyYoung/Smart-Kanban-Board.svg?token=xvFzJVyxhP7YsvANEEBw&branch=dev)](https://travis-ci.com/CloudyYoung/Smart-Kanban-Board)
+[![Build Status](https://travis-ci.com/CloudyYoung/Smart-Kanban-Board.svg?token=xvFzJVyxhP7YsvANEEBw&branch=master)](https://travis-ci.com/CloudyYoung/Smart-Kanban-Board)
 
 
 ## Team Members
@@ -14,7 +14,7 @@
 ## Description
 A kanban board is a popular organizational tool that helps the user to visualize workflow. This is done by taking a project, 
 dividing it into smaller events, and then staging the events so that they can be moved through a pipeline of categories
-as they are completed. There is a standard of four categories to divide work into backlog, to do, doing, and done. These
+as they are completed. There is a standard of four categories to divide work into `backlog`, `to do`, `doing`, and `done`. These
 boards are typically done on a large surface like a whiteboard or a wall. 
 
 This typically does not work well for users that work in different locations (such as students) because they are not portable
@@ -27,7 +27,8 @@ availability for work, then decides the most important events for the day given 
 priority relative to other events. The most important events are then added to a daily kanban board for the user to complete.
 
 ## How to Find Demo One
-- Smart-Kanban-Board\tree\skeleton\src/iteration1\Main.java
+It can be found under "Release" panel or here:
+[https://github.com/CloudyYoung/Smart-Kanban-Board/tree/v1.0](https://github.com/CloudyYoung/Smart-Kanban-Board/tree/v1.0)
 
 ## How to Compile Demo One
 - Smart-Kanban-Board\src javac *.java
@@ -39,32 +40,34 @@ priority relative to other events. The most important events are then added to a
 
 ## Terminal Commands
 Log-in Page
-- 'help' : list commands
-- username : enter your username for authentication
-- 'create' : create a new account
-- 'forgot' : recover an account
-- 'exit' : terminate the program
+- `help` : list commands
+- `username` : enter your username for authentication
+- `create` : create a new account
+- `forgot` : recover an account
+- `exit` : terminate the program
 
 Main Page
-- 'help' : list commands
-- 'today' : prints your daily board
-- 'list' : prints a list of your open boards
-- 'new' : create a new board
-- 'calendar' : calendar
-- 'settings' : navigates to settings page
-- 'exit' : terminate the program
+- `help` : list commands
+- `today` : prints your daily board
+- `list` : prints a list of your open boards
+- `new` : create a new board
+- `calendar` : calendar
+- `settings` : navigates to settings page
+- `exit` : terminate the program
 
 Settings Page
-- 'help' : list commands
-- 'kanban settings' : change board preferences
-- 'time settings' : change availability preferences
-- 'account settings' : change account preferences
-- 'back' return to main page
-- 'exit' : terminate the program
+- `help` : list commands
+- `kanban settings` : change board preferences
+- `time settings` : change availability preferences
+- `account settings` : change account preferences
+- `back` return to main page
+- `exit` : terminate the program
 
 ## References
 JSON simple
-- https://github.com/fangyidong/json-simple
+- [https://github.com/fangyidong/json-simple](https://github.com/fangyidong/json-simple)
 
 JUnit 5
-- https://github.com/junit-team/junit5
+- [https://github.com/junit-team/junit5](https://github.com/junit-team/junit5)
+
+Other code snippet references are in the files, the links are in the javadoc `@see`.
