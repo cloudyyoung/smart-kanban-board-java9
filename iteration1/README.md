@@ -12,13 +12,13 @@
 - Yunfan Yang
 
 ## Description
-A kanban board is a popular organizational tool that helps the user to vizualise workflow. This is done by taking a project, 
+A kanban board is a popular organizational tool that helps the user to visualize workflow. This is done by taking a project, 
 dividing it into smaller events, and then staging the events so that they can be moved through a pipeline of categories
-as they are completed. There is a standard of four categories to divide work into: backlog, to do, doing, and done. These
+as they are completed. There is a standard of four categories to divide work into backlog, to do, doing, and done. These
 boards are typically done on a large surface like a whiteboard or a wall. 
 
-These typcially do not work well for users that work in different locations (such as students) because they are not portable
-and take a lot of space. Another drawback is that when the user has lots of projects on the go, the main board can become
+This typically does not work well for users that work in different locations (such as students) because they are not portable
+and take a lot of space. Another drawback is that when the user has lots of projects on the go, the board can become
 overwhelming with events. 
 
 Our SmartKanban application takes the fundamental principals of a physical kanban board and makes it digital. To solve the 
