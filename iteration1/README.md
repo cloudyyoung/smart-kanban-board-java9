@@ -37,13 +37,32 @@ priority relative to other events. The most important events are then added to a
 ## How to Run Demo One
 - Smart-Kanban-Board\src java Main
 
-## How to Run Demo One
-- Smart-Kanban-Board\src java Main
+## Terminal Commands
+Log-in Page
+- 'help' : list commands
+- <username> : enter your username for authentication
+- 'create' : create a new account
+- 'forgot' : recover an account
+- 'exit' : terminate the program
 
-## How to Run Demo One
-- Smart-Kanban-Board\src java Main
+Main Page
+- 'help' : list commands
+- 'today' : prints your daily board
+- 'list' : prints a list of your open boards
+- 'new' : create a new board
+- 'calendar' : calendar
+- 'settings' : navigates to settings page
+- 'exit' : terminate the program
 
-## How to Run Demo One
+Settings Page
+- 'help' : list commands
+- 'kanban settings' : change board preferences
+- 'time settings' : change availability preferences
+- 'account settings' : change account preferences
+- 'back' return to main page
+- 'exit' : terminate the program
+
+## References
 JSON simple
 - https://github.com/fangyidong/json-simple
 JUnit 5
