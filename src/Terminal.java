@@ -389,6 +389,7 @@ public class Terminal {
         System.out.println("");
 
       } else if (command.equals("change username")) {
+        System.out.println("");
         System.out.println("Enter a new username: ");
         String newUsername = keyboard.nextLine();
         System.out.println("");
@@ -396,6 +397,7 @@ public class Terminal {
         System.out.println("");
 
       } else if (command.equals("change password")) {
+        System.out.println("");
         System.out.println("Enter a new password: ");
         String newPassword = keyboard.nextLine();
         System.out.println("");
