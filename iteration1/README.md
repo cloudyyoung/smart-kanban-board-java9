@@ -40,7 +40,7 @@ priority relative to other events. The most important events are then added to a
 ## Terminal Commands
 Log-in Page
 - 'help' : list commands
-- <username> : enter your username for authentication
+- username : enter your username for authentication
 - 'create' : create a new account
 - 'forgot' : recover an account
 - 'exit' : terminate the program
@@ -65,5 +65,6 @@ Settings Page
 ## References
 JSON simple
 - https://github.com/fangyidong/json-simple
+
 JUnit 5
 - https://github.com/junit-team/junit5
