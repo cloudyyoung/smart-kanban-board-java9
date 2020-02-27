@@ -1,0 +1,13 @@
+language: java
+
+branches:
+  only:
+  - master
+  - dev
+  - Skeleton
+  - travis-script-test
+
+script:
+  cd src/
+  javac *.java
+  java Main
