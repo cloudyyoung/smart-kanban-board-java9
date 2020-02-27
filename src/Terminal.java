@@ -86,8 +86,8 @@ public class Terminal {
     if (authenticated) {
       System.out.println("");
       // REMOVE FOR AUTH
-      System.out.println("Welcome!")
-      //System.out.println("Welcome " + User.current.getUsername() + "!");
+      System.out.println("Welcome!");
+      // System.out.println("Welcome " + User.current.getUsername() + "!");
       System.out.println("");
 
       showLogin = false;
