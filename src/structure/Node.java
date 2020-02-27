@@ -66,7 +66,7 @@ public abstract class Node {
 
   /**
    * assigns type using the hashmap above
-   * look at lines 34 - 40
+   * @see lines 34 - 40
    * @param type as a string
    * @param level as an int
    * @return ret as a string which again can vary depending on the hashmap above
