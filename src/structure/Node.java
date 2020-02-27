@@ -26,10 +26,12 @@ public abstract class Node {
   private HashMap<Integer, Integer> index = new HashMap<Integer, Integer>();
 
   /**
-   * creates a "dictionary" so the cards can be sorted into rows
+   * creates a "dictionary" so it will be easier to determine the parent class of each main class
+   * ie if the user wants to add something to column we can use this hash map to identify
+   * that the parent of column is board, and board's parent is kanban
    * 
-   * @return the location of the user on the "left" side of the table as a string
-   * @return the number associated to the location, or the "right" side as an int
+   * this will also be used to assign type on lines 74-90
+   * (getTypebyLevel method)
    */
   private final HashMap<String, Integer> TYPES =
       (HashMap<String, Integer>)
@@ -40,9 +42,12 @@ public abstract class Node {
               "Event", 4);
   
   /**
-   * @param id
-   * @param title
-   * @param note
+   * constructor for node
+   * 
+   * @param id as an int
+   * @param title as a string
+   * @param note as a string
+   * 
    */
 
   public Node(int id, String title, String note) {
@@ -53,18 +58,18 @@ public abstract class Node {
   }
   
   /*
-   * 
-   * 
+   * default constructor for node 
    */
   public Node() {
     this.type = this.getClass().getName();
   }
 
   /**
-   * 
-   * @param type
-   * @param level
-   * @return
+   * assigns type using the hashmap above
+   * look at lines 34 - 40
+   * @param type as a string
+   * @param level as an int
+   * @return ret as a string which again can vary depending on the hashmap above
    */
   private String getTypeByLevel(String type, int level) {
     int lvl = TYPES.get(type);
@@ -86,91 +91,106 @@ public abstract class Node {
   }
 
   /**
+   * gets the users id
    * 
-   * @return
+   * @return the user's id as an int
    */
   public int getId() {
     return this.id;
   }
 
   /**
+   * gets the parentid
    * 
-   * @return
+   * @return the parentId as an int
    */
   public int getParentId() {
     return this.parentId;
   }
 
   /**
+   * gets the grandparentsId
    * 
-   * @return
+   * @return the grandparentsId as an int
    */
   public int getGrandparentId() {
     return this.grandparentId;
   }
 
   /**
-   * 
-   * @param aId
+   * sets the id
+   * @param aId as an int
    */
   public void setId(int aId) {
     this.id = aId;
   }
 
   /**
-   * 
-   * @param aParentId
+   * sets the parent id
+   * @param aParentId as an int
    */
   public void setParentId(int aParentId) {
     this.parentId = aParentId;
   }
 
   /**
+   * sets the grand parent id
    * 
-   * @param aGrandparentId
+   * @param aGrandparentId as an int
    */
   public void setGrandparentId(int aGrandparentId) {
     this.grandparentId = aGrandparentId;
   }
 
   /**
+   * gets the title
    * 
-   * @return
+   * @return the title as a string
+   * this is the title of the of the columns on the board
    */
   public String getTitle() {
     return this.title;
   }
 
   /**
+   * sets the title
    * 
-   * @param aTitle
+   * @param aTitle as a string
    */
   public void setTitle(String aTitle) {
     this.title = aTitle;
   }
 
   /**
+   * gets the parent type
+   * @return the objects current type 
    * 
-   * @return
    */
   public String getParentType() {
     return this.getParentType(this.type);
   }
 
   /**
+   *  gets the parent type with the type name
+   *  
+   * @param aType as a string
+   * this is the parent's type
    * 
-   * @param aType
-   * @return
+   * @return the parent's type calculated using hash map above
+   * more in-depth reading of the parent type as it also returns
+   * the type with its name
    */
   public String getParentType(String aType) {
     return this.getParentType(aType, -1);
   }
 
   /**
+   * gets the parent type with the type name and the level
    * 
-   * @param aType
-   * @param aLevel
-   * @return
+   * @param aType - the parent's type as a string
+   * @param aLevel - the parent's level as an int
+   * 
+   * @return the parent's type with name and level
    */
   public String getParentType(String aType, int aLevel) {
     return this.getTypeByLevel(aType, Math.abs(aLevel) * -1);
@@ -227,7 +247,8 @@ public abstract class Node {
 
   /**
    * removes a node
-   * @param id
+   * @param id as an int
+   * this is the node's id
    */
   public void removeNode(int id) {
     int index = this.index.get(id);
@@ -235,6 +256,7 @@ public abstract class Node {
     this.nodes.remove(index);
     this.remapIndex(id);
   }
+
 
   /**
    * 
