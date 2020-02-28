@@ -75,8 +75,8 @@ public class Terminal {
         String password = keyboard.nextLine();
 
         // REMOVE FOR AUTH
-        authenticated = true;
-        // authenticated = User.authentication(username, password);
+        // authenticated = true;
+        authenticated = User.authentication(username, password);
       }
     }
 
