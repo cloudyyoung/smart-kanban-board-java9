@@ -51,7 +51,7 @@ public abstract class Node {
     this.type = this.getClass().getName();
   }
 
-  /*
+  /**
    * default constructor for node
    */
   public Node() {

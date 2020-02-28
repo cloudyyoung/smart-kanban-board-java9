@@ -2,14 +2,14 @@ package structure;
 
 import java.util.HashMap;
 
-/*
+/**
  *  this function stores the users username
  *  and password for use in the terminal class
  *  and for the authentication process later on in this class
  */
 
 public class User {
-  /*
+  /**
    * username: stores the users username as a string
    * id: gives the user an id so their information can be saved for the authentication
    * process
@@ -25,7 +25,7 @@ public class User {
   private String password;
   private boolean authenticated;
 
-  /*
+  /**
    * resets the 4 variables listed above so a new user can login
    * or so an account doesn't just stay open or logged in
    */
@@ -37,7 +37,7 @@ public class User {
     this.setPassword("");
   }
 
-  /*
+  /**
    * gets username
    * @return username as a string
    * this is the user's username
@@ -47,7 +47,7 @@ public class User {
     return this.username;
   }
 
-  /*
+  /**
    * gets Id
    * @return id as an int
    * this is the user's id
@@ -57,7 +57,7 @@ public class User {
     return this.id;
   }
 
-  /*
+  /**
    * gets SessonId
    * @return Sessonid as a string
    * this is the account's session id
@@ -67,7 +67,7 @@ public class User {
     return this.sessionId;
   }
 
-  /*
+  /**
    * sets the username
    * @param aUsername as a string
    * will be the user's user name
@@ -77,7 +77,7 @@ public class User {
     this.username = aUsername;
   }
 
-  /*
+  /**
    * sets the password
    * @param aPassword as a string
    * will be the user's password
@@ -105,7 +105,7 @@ public class User {
     return this.authenticated;
   }
 
-  /*
+  /**
    * sets the id
    * @param aId as a int
    * this is the accounts Id number
@@ -115,7 +115,7 @@ public class User {
     this.id = aId;
   }
 
-  /*
+  /**
    * sets the sessionId
    * @param aSessionId as a string
    * this is the user's current session id
@@ -142,7 +142,7 @@ public class User {
         + ")";
   }
 
-  /*
+  /**
    * authenticates the account that is trying to be logged into
    * @return boolean if user name and password are correct
    */
@@ -150,7 +150,7 @@ public class User {
     return this.authenticate(this.getUsername(), this.getPassword());
   }
 
-  /*
+  /**
    * authenticates the account that is trying to be logged into
    * @return boolean if user name and password are correct
    * @param aUsername is the user's entered user name
