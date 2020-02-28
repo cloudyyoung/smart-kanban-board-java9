@@ -1,3 +1,4 @@
+
 // Import Classes
 import structure.*;
 import java.util.ArrayList;
@@ -85,8 +86,8 @@ public class Terminal {
     if (authenticated) {
       System.out.println("");
       // REMOVE FOR AUTH
-      System.out.println("Welcome!");
-      // System.out.println("Welcome " + User.current.getUsername() + "!");
+      // System.out.println("Welcome!");
+      System.out.println("Welcome " + User.current.getUsername() + "!");
       System.out.println("");
 
       showLogin = false;
@@ -141,17 +142,8 @@ public class Terminal {
         // 'time' command prints the current time
       } else if (command.equals("calendar")) {
         System.out.println("");
-        System.out.println(
-            "Time: "
-                + Time.currentHour12(Time.currentHour24())
-                + ":"
-                + Time.currentMinute()
-                + " on "
-                + Time.currentDayName()
-                + " the "
-                + Time.currentDay()
-                + " of "
-                + Time.currentYear());
+        System.out.println("Time: " + Time.currentHour12(Time.currentHour24()) + ":" + Time.currentMinute() + " on "
+            + Time.currentDayName() + " the " + Time.currentDay() + " of " + Time.currentYear());
         System.out.println("");
 
         // 'exit' command exits to program
@@ -324,8 +316,7 @@ public class Terminal {
         System.out.println("");
 
       } else if (command.equals("edit")) {
-        System.out.println(
-            "Please enter the time you have available for work on each day (in hours): ");
+        System.out.println("Please enter the time you have available for work on each day (in hours): ");
         System.out.println("  Monday : ");
         System.out.print("  ");
         String enteredInt0 = keyboard.nextLine();
