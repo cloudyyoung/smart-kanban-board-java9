@@ -6,10 +6,11 @@
 
 
 ## Team Members
-- [Jerremy Lewis](https://github.com/lewisjerremy)
-- [Ben Wood](https://github.com/Braindamaged69)
-- [Caleb Wannamaker](https://github.com/calebwannamaker)
-- [Yunfan Yang](https://github.com/CloudyYoung)
+- [Jerremy Lewis (@lewisjerremy)](https://github.com/lewisjerremy)
+- [Ben Wood (@Braindamaged69)](https://github.com/Braindamaged69)
+- [Caleb Wannamaker (@calebwannamaker)](https://github.com/calebwannamaker)
+- [Yunfan Yang (@CloudyYoung)](https://github.com/CloudyYoung)
+
 
 ## Description
 A kanban board is a popular organizational tool that helps the user to visualize workflow. This is done by taking a project, 
@@ -26,17 +27,12 @@ problem of overwhelming the user with events, we are in the process of developin
 availability for work, then decides the most important events for the day given the workload of events backlogged and their 
 priority relative to other events. The most important events are then added to a daily kanban board for the user to complete.
 
-## How to Find Demo One
+## Where to Find Demo One
 It can be found under "Release" panel or here:
 [https://github.com/CloudyYoung/Smart-Kanban-Board/tree/v1.0](https://github.com/CloudyYoung/Smart-Kanban-Board/tree/v1.0)
 
-## How to Compile Demo One
-- Smart-Kanban-Board\src javac *.java
-- Smart-Kanban-Board\src\structure javac *.java
-- Smart-Kanban-Board\lib java -jar *.jar 
-
-## How to Run Demo One
-- Smart-Kanban-Board\src java Main
+## How to Compile and Run
+The Github Wiki link is here: [https://github.com/CloudyYoung/Smart-Kanban-Board/wiki/Compile-and-Run-the-Application](https://github.com/CloudyYoung/Smart-Kanban-Board/wiki/Compile-and-Run-the-Application)
 
 ## Terminal Commands
 Log-in Page
