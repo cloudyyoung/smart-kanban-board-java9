@@ -6,10 +6,10 @@
 
 
 ## Team Members
-- Jerremy Lewis
-- Ben Wood
-- Caleb Wannamaker
-- Yunfan Yang
+- [Jerremy Lewis](https://github.com/lewisjerremy)
+- [Ben Wood](https://github.com/Braindamaged69)
+- [Caleb Wannamaker](https://github.com/calebwannamaker)
+- [Yunfan Yang](https://github.com/CloudyYoung)
 
 ## Description
 A kanban board is a popular organizational tool that helps the user to visualize workflow. This is done by taking a project, 
@@ -70,4 +70,4 @@ JSON simple
 JUnit 5
 - [https://github.com/junit-team/junit5](https://github.com/junit-team/junit5)
 
-Other code snippet references are in the files, the links are in the javadoc `@see`.
+Other code snippet references are in the files javadoc `@see`.
