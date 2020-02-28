@@ -75,8 +75,8 @@ public class Terminal {
         String password = keyboard.nextLine();
 
         // REMOVE FOR AUTH
-        authenticated = true;
-        // authenticated = User.authentication(username, password);
+        // authenticated = true;
+        authenticated = User.authentication(username, password);
       }
     }
 
@@ -85,8 +85,8 @@ public class Terminal {
     if (authenticated) {
       System.out.println("");
       // REMOVE FOR AUTH
-      System.out.println("Welcome!");
-      // System.out.println("Welcome " + User.current.getUsername() + "!");
+      // System.out.println("Welcome!");
+      System.out.println("Welcome " + User.current.getUsername() + "!");
       System.out.println("");
 
       showLogin = false;

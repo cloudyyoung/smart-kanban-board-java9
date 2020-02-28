@@ -15,7 +15,7 @@
 ## Description
 A kanban board is a popular organizational tool that helps the user to visualize workflow. This is done by taking a project, 
 dividing it into smaller events, and then staging the events so that they can be moved through a pipeline of categories
-as they are completed. There is a standard of four categories to divide work into `backlog`, `to do`, `doing`, and `done`. These
+as they are completed. There is a standard of four categories to divide work into backlog, to do, doing, and done. These
 boards are typically done on a large surface like a whiteboard or a wall. 
 
 This typically does not work well for users that work in different locations (such as students) because they are not portable

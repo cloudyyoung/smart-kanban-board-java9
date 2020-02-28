@@ -167,7 +167,7 @@ public class User {
       HashMap<?, ?> res = (HashMap<?, ?>) req.getResponseBody();
       HashMap<?, ?> cookie = (HashMap<?, ?>) req.getResponseCookie();
       this.setId(Integer.parseInt((String) res.get("id")));
-      System.out.println(res);
+      // System.out.println(res);
       this.setSessionId((String) cookie.get("PHPSESSID"));
       this.authenticated = true;
 
