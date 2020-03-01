@@ -2,6 +2,8 @@
     "files.exclude": {
         "**/.*": true,
         "**/bin": true,
+        "**/**.class": true,
+        "**/**.log": true,
     },
     "java.project.referencedLibraries": [
         "src/lib/*.jar",
