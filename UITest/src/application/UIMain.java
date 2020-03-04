@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.image.Image;
 
-public class Main extends Application {
+public class UIMain extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
