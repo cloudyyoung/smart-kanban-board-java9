@@ -18,7 +18,6 @@ public abstract class Node {
   private int grandparentId;
   private String title;
   private String note;
-  private String type;
   private ArrayList<Node> nodes = new ArrayList<Node>();
   private HashMap<Integer, Integer> index = new HashMap<Integer, Integer>();
 
@@ -29,13 +28,14 @@ public abstract class Node {
    *
    * <p>this will also be used to assign type on lines 74-90 (getTypebyLevel method)
    */
-  private final HashMap<String, Integer> TYPES =
-      (HashMap<String, Integer>)
-          Map.of(
-              "Kanban", 1,
-              "Board", 2,
-              "Column", 3,
-              "Event", 4);
+  private final HashMap<String, Integer> TYPES =  new HashMap<String, Integer>(){
+    private static final long serialVersionUID = 3312582702053699017L;
+    {
+    put("Kanban", 0);
+    put("Board", 1);
+    put("Column", 2);
+    put("Event", 3);
+  }};
 
   /**
    * constructor for node
@@ -48,12 +48,16 @@ public abstract class Node {
     this.id = id;
     this.title = title;
     this.note = note;
-    this.type = this.getClass().getName();
+  }
+
+  public Node(HashMap<String, ?> obj){
+    this.id = ((Long)obj.get("id")).intValue();
+    this.title = (String)obj.get("title");
+    this.note = (String)obj.get("note");
   }
 
   /** default constructor for node */
   public Node() {
-    this.type = this.getClass().getName();
   }
 
   /**
@@ -161,7 +165,7 @@ public abstract class Node {
    * @return the objects current type
    */
   public String getParentType() {
-    return this.getParentType(this.type);
+    return this.getParentType(this.getType());
   }
 
   /**
@@ -188,7 +192,7 @@ public abstract class Node {
 
   /** @return */
   public String getChildType() {
-    return this.getChildType(this.type);
+    return this.getChildType(this.getType());
   }
 
   /**
@@ -214,7 +218,7 @@ public abstract class Node {
    * @return the id, title and note as a combined string
    */
   public String toString() {
-    return "Node (id: " + this.id + ", title: " + this.title + ", note: " + this.note + ")";
+    return this.getType() + " (id: " + this.id + ", title: \"" + this.title + "\", note: \"" + this.note + "\")";
   }
 
   /**
@@ -249,4 +253,26 @@ public abstract class Node {
       current++;
     }
   }
+
+  public String getType(){
+    String str = this.getClass().getName();
+    return str.substring(str.lastIndexOf(".") + 1);
+  }
+
+  public void fetch(){
+    
+  }
+
+
+  
+  public static String typeToClass(String type){
+    type = type.toLowerCase();
+    type = type.substring(0, 1).toUpperCase() + type.substring(1);
+    if(type.endsWith("s")){
+        type = type.substring(0, type.length() - 1);
+    }
+    return "structure." + type;
+}
+
+
 }
