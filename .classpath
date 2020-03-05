@@ -14,7 +14,6 @@
 	<classpathentry kind="lib" path="src/lib/javafx.fxml.jar"/>
 	<classpathentry kind="lib" path="src/lib/javafx.graphics.jar"/>
 	<classpathentry kind="lib" path="src/lib/javafx.media.jar"/>
-	<classpathentry kind="lib" path="src/lib/javafx.properties"/>
 	<classpathentry kind="lib" path="src/lib/javafx.swing.jar"/>
 	<classpathentry kind="lib" path="src/lib/javafx.web.jar"/>
 	<classpathentry kind="lib" path="src/lib/json-simple-1.1.jar"/>

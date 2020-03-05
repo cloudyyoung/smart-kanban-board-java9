@@ -89,7 +89,8 @@ local.properties
 /.metadata/
 /.github/
 /.git/
-/bin/
+/.bin/
+/.*/
 
 .project
 .classpath
