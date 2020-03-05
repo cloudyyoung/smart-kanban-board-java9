@@ -92,6 +92,3 @@ local.properties
 /.bin/
 /.*/
 
-.project
-.classpath
-.travis.yml
