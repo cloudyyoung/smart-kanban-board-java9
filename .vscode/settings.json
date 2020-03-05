@@ -1,15 +1,11 @@
 {
     "files.exclude": {
-        "**/.github": true,
-        "**/.gitignore": true,
+        "**/.*": true,
+        "**/bin": true,
         "**/**.class": true,
-        "**/.vscode": true,
-        "**/.classpath": true,
-        "**/.project": true,
-        "**/.settings": true,
-        "**/.factorypath": true
+        "**/**.log": true,
     },
     "java.project.referencedLibraries": [
-        "src/lib/*.jar"
+        "src/lib/*.jar",
     ]
 }
