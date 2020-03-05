@@ -1,6 +1,5 @@
 package structure;
 
-import java.util.Map;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -28,14 +27,17 @@ public abstract class Node {
    *
    * <p>this will also be used to assign type on lines 74-90 (getTypebyLevel method)
    */
-  private final HashMap<String, Integer> TYPES =  new HashMap<String, Integer>(){
-    private static final long serialVersionUID = 3312582702053699017L;
-    {
-    put("Kanban", 0);
-    put("Board", 1);
-    put("Column", 2);
-    put("Event", 3);
-  }};
+  private final HashMap<String, Integer> TYPES =
+      new HashMap<String, Integer>() {
+        private static final long serialVersionUID = 3312582702053699017L;
+
+        {
+          put("Kanban", 0);
+          put("Board", 1);
+          put("Column", 2);
+          put("Event", 3);
+        }
+      };
 
   /**
    * constructor for node
@@ -50,15 +52,14 @@ public abstract class Node {
     this.note = note;
   }
 
-  public Node(HashMap<String, ?> obj){
-    this.id = ((Long)obj.get("id")).intValue();
-    this.title = (String)obj.get("title");
-    this.note = (String)obj.get("note");
+  public Node(HashMap<String, ?> obj) {
+    this.id = ((Long) obj.get("id")).intValue();
+    this.title = (String) obj.get("title");
+    this.note = (String) obj.get("note");
   }
 
   /** default constructor for node */
-  public Node() {
-  }
+  public Node() {}
 
   /**
    * assigns type using the hashmap above
@@ -218,7 +219,14 @@ public abstract class Node {
    * @return the id, title and note as a combined string
    */
   public String toString() {
-    return this.getType() + " (id: " + this.id + ", title: \"" + this.title + "\", note: \"" + this.note + "\")";
+    return this.getType()
+        + " (id: "
+        + this.id
+        + ", title: \""
+        + this.title
+        + "\", note: \""
+        + this.note
+        + "\")";
   }
 
   /**
@@ -254,25 +262,19 @@ public abstract class Node {
     }
   }
 
-  public String getType(){
+  public String getType() {
     String str = this.getClass().getName();
     return str.substring(str.lastIndexOf(".") + 1);
   }
 
-  public void fetch(){
-    
-  }
+  public void fetch() {}
 
-
-  
-  public static String typeToClass(String type){
+  public static String typeToClass(String type) {
     type = type.toLowerCase();
     type = type.substring(0, 1).toUpperCase() + type.substring(1);
-    if(type.endsWith("s")){
-        type = type.substring(0, type.length() - 1);
+    if (type.endsWith("s")) {
+      type = type.substring(0, type.length() - 1);
     }
     return "structure." + type;
-}
-
-
+  }
 }
