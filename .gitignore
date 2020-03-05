@@ -90,3 +90,7 @@ local.properties
 /.github/
 /.git/
 /bin/
+
+.project
+.classpath
+.travis.yml
