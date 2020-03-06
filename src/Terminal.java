@@ -81,7 +81,7 @@ public class Terminal {
         */
         // REMOVE FOR AUTH
         // authenticated = true;
-        authenticated = User.authentication(username, password);
+        // authenticated = User.authentication(username, password);
       }
     }
 
@@ -153,7 +153,7 @@ public class Terminal {
         System.out.println("");
         System.out.println(
             "Time: "
-                + Time.currentHour12(Time.currentHour24())
+                // + Time.currentHour12(Time.currentHour24())
                 + ":"
                 + Time.currentMinute()
                 + " on "
