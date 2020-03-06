@@ -1,3 +1,9 @@
 package structure;
 
-public class Event extends Node {}
+import java.util.HashMap;
+
+public class Event extends Node {
+    public Event(HashMap<String, ?> obj){
+        super(obj);
+    }
+}

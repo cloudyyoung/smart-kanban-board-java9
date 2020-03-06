@@ -3,6 +3,10 @@ package structure;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.lang.reflect.Constructor;
+
+
+@SuppressWarnings("unchecked")
 
 public abstract class Node {
 
@@ -53,18 +57,46 @@ public abstract class Node {
   }
 
   public Node(HashMap<String, ?> obj) {
-    this.id = ((Long) obj.get("id")).intValue();
-    this.title = (String) obj.get("title");
-    this.note = (String) obj.get("note");
+    if(!this.getType().equals("Kanban")){
+      this.id = ((Long) obj.get("id")).intValue();
+      this.title = (String) obj.get("title");
+      this.note = (String) obj.get("note");
+    }
+    if(obj != null){
+      this.extractChildrenNodes(obj);
+    }
+    System.out.println(this);
   }
 
-  /** default constructor for node */
-  public Node() {}
+
+  private void extractChildrenNodes(HashMap<String, ?> obj) {
+    String childType = Node.typeLower(Node.typePlural(this.getChildType()));
+    Object value = obj.get(childType);
+    if(value == null || value instanceof ArrayList == false){
+      return;
+    }
+    ArrayList<HashMap<String, ?>> list = (ArrayList<HashMap<String, ?>>) value;
+    for (HashMap<String, ?> each2 : list) {
+      try {
+        String type = Node.typeClass(childType);
+        Class<?> cls = Class.forName(type);
+        Constructor<?> constructor = cls.getConstructor(HashMap.class);
+        Object objNew = constructor.newInstance(each2);
+        if(objNew instanceof Node){
+          this.nodes.add((Node) objNew);
+        }
+      } catch (Exception e) {
+        // e.printStackTrace();
+        // fail silently
+      }
+    }
+  }
+
 
   /**
    * assigns type using the hashmap above
    *
-   * @see lines 34 - 40
+   * @see lines 34 - 44
    * @param type as a string
    * @param level as an int
    * @return ret as a string which again can vary depending on the hashmap above
@@ -201,7 +233,7 @@ public abstract class Node {
    * @return
    */
   public String getChildType(String aType) {
-    return this.getChildType(aType);
+    return this.getChildType(aType, 1);
   }
 
   /**
@@ -267,14 +299,28 @@ public abstract class Node {
     return str.substring(str.lastIndexOf(".") + 1);
   }
 
-  public void fetch() {}
-
-  public static String typeToClass(String type) {
-    type = type.toLowerCase();
-    type = type.substring(0, 1).toUpperCase() + type.substring(1);
-    if (type.endsWith("s")) {
-      type = type.substring(0, type.length() - 1);
-    }
-    return "structure." + type;
+  public static String typeClass(String type) {
+    return "structure." + Node.typeProper(Node.typeSingular(type));
   }
+
+  public static String typePlural(String type){
+    return type.endsWith("s") || type.length() <= 0 ? type : type + "s";
+  }
+
+  public static String typeSingular(String type){
+    return type.endsWith("s") && type.length() > 0 ? type.substring(0, type.length() - 1) : type;
+  }
+
+  public static String typeProper(String type){
+    return type.substring(0, 1).toUpperCase() + type.toLowerCase().substring(1);
+  }
+
+  public static String typeLower(String type){
+    return type.toLowerCase();
+  }
+
+  public static String typeUpper(String type){
+    return type.toUpperCase();
+  }
+  
 }

@@ -17,8 +17,6 @@ public class Board extends Node {
     this.color = color;
   }
 
-  public Board() {}
-
   public void setColor(String color) {
     this.color = color;
   }
