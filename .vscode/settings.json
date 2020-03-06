@@ -1,6 +1,7 @@
 {
     "files.exclude": {
         "**/.*": true,
+        "**/bin": true,
         "**/**.class": true,
         "**/**.log": true,
     },
