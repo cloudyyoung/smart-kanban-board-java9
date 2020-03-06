@@ -177,7 +177,7 @@ public class User {
     }
   }
 
-  public void fetchKanban(){
+  public void fetchKanban() {
     HashMap<String, String> cookie = new HashMap<String, String>();
     cookie.put("PHPSESSID", this.getSessionId());
 
@@ -187,10 +187,10 @@ public class User {
     req2.setRequestCookie(cookie);
     boolean ret2 = req2.send();
 
-    if(ret2){
+    if (ret2) {
       Kanban.current = new Kanban((HashMap<String, ?>) req2.getResponseBody());
-    }else{
-      
+    } else {
+
     }
   }
 
