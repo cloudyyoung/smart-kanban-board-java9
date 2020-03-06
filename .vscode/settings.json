@@ -6,6 +6,6 @@
         "**/**.log": true,
     },
     "java.project.referencedLibraries": [
-        "src/lib/*.jar",
+        "src/lib/**/*.jar",
     ]
 }
