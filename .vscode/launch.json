@@ -8,6 +8,13 @@
             "type": "java",
             "name": "CodeLens (Launch) - Main",
             "request": "launch",
+            "mainClass": "Main",
+            "projectName": "Smart-Kanban-Board"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Main",
+            "request": "launch",
             "mainClass": "application.Main",
             "projectName": "Smart-Kanban-Board",
             "vmArgs": "--module-path \"src/lib/javafx-sdk-11.0.2/lib\" --add-modules=javafx.controls,javafx.fxml"

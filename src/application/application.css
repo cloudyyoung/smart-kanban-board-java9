@@ -7,12 +7,12 @@
 
 #bold {
 	-fx-font-family: 'Noto Sans JP';
-	-fx-font-weight: bold;
+	-fx-font-weight: bolder;
 }
 
 #medium {
 	-fx-font-family: 'Noto Sans JP';
-	-fx-font-weight: medium;
+	-fx-font-weight: bold;
 }
 
 #light {
