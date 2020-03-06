@@ -33,7 +33,7 @@ public class Time {
 
     int result = Integer.parseInt(toParse);
     String resStr = "" + result;
-    return  resStr;
+    return resStr;
   }
 
   /**
@@ -52,7 +52,7 @@ public class Time {
       result = currentHour24;
     }
     String resStr = "" + result;
-    return  resStr;
+    return resStr;
   }
 
   /**
@@ -73,8 +73,8 @@ public class Time {
     String toParse = formattedDate.substring(14, 16);
     String minute = toParse;
     int result = Integer.parseInt(toParse);
-    if(result - 10 < 0) {
-    	minute = "0" + minute;
+    if (result - 10 < 0) {
+      minute = "0" + minute;
     }
     return minute;
   }
@@ -98,7 +98,7 @@ public class Time {
 
     int result = Integer.parseInt(toParse);
     String resStr = "" + result;
-    return  resStr;
+    return resStr;
   }
 
   /**
@@ -120,7 +120,7 @@ public class Time {
 
     int result = Integer.parseInt(toParse);
     String resStr = "" + result;
-    return  resStr;
+    return resStr;
   }
 
   /**
@@ -142,7 +142,7 @@ public class Time {
 
     int result = Integer.parseInt(toParse);
     String resStr = "" + result;
-    return  resStr;
+    return resStr;
   }
 
   /**
@@ -164,7 +164,7 @@ public class Time {
 
     int result = Integer.parseInt(toParse);
     String resStr = "" + result;
-    return  resStr;
+    return resStr;
   }
 
   /**
