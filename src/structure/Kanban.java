@@ -2,12 +2,11 @@ package structure;
 
 import java.util.HashMap;
 
-public class Kanban extends Node{
+public class Kanban extends Node {
 
-  public Kanban(HashMap<String, ?> obj){
+  public Kanban(HashMap<String, ?> obj) {
     super(obj);
   }
-
 
   public static void main(String[] args) {
     HashMap<String, String> param = new HashMap<String, String>();

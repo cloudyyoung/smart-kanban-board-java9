@@ -5,9 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.lang.reflect.Constructor;
 
-
 @SuppressWarnings("unchecked")
-
 public abstract class Node {
 
   /**
@@ -57,22 +55,21 @@ public abstract class Node {
   }
 
   public Node(HashMap<String, ?> obj) {
-    if(!this.getType().equals("Kanban")){
+    if (!this.getType().equals("Kanban")) {
       this.id = ((Long) obj.get("id")).intValue();
       this.title = (String) obj.get("title");
       this.note = (String) obj.get("note");
     }
-    if(obj != null){
+    if (obj != null) {
       this.extractChildrenNodes(obj);
     }
     System.out.println(this);
   }
 
-
   private void extractChildrenNodes(HashMap<String, ?> obj) {
     String childType = Node.typeLower(Node.typePlural(this.getChildType()));
     Object value = obj.get(childType);
-    if(value == null || value instanceof ArrayList == false){
+    if (value == null || value instanceof ArrayList == false) {
       return;
     }
     ArrayList<HashMap<String, ?>> list = (ArrayList<HashMap<String, ?>>) value;
@@ -82,7 +79,7 @@ public abstract class Node {
         Class<?> cls = Class.forName(type);
         Constructor<?> constructor = cls.getConstructor(HashMap.class);
         Object objNew = constructor.newInstance(each2);
-        if(objNew instanceof Node){
+        if (objNew instanceof Node) {
           this.nodes.add((Node) objNew);
         }
       } catch (Exception e) {
@@ -91,7 +88,6 @@ public abstract class Node {
       }
     }
   }
-
 
   /**
    * assigns type using the hashmap above
@@ -303,24 +299,23 @@ public abstract class Node {
     return "structure." + Node.typeProper(Node.typeSingular(type));
   }
 
-  public static String typePlural(String type){
+  public static String typePlural(String type) {
     return type.endsWith("s") || type.length() <= 0 ? type : type + "s";
   }
 
-  public static String typeSingular(String type){
+  public static String typeSingular(String type) {
     return type.endsWith("s") && type.length() > 0 ? type.substring(0, type.length() - 1) : type;
   }
 
-  public static String typeProper(String type){
+  public static String typeProper(String type) {
     return type.substring(0, 1).toUpperCase() + type.toLowerCase().substring(1);
   }
 
-  public static String typeLower(String type){
+  public static String typeLower(String type) {
     return type.toLowerCase();
   }
 
-  public static String typeUpper(String type){
+  public static String typeUpper(String type) {
     return type.toUpperCase();
   }
-  
 }

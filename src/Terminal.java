@@ -3,9 +3,7 @@ import structure.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 @SuppressWarnings("all")
-
 public class Terminal {
 
   private static ArrayList<Integer> availableHours = new ArrayList<Integer>(7);
