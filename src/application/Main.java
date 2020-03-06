@@ -1,7 +1,7 @@
 package application;
 
+// Imports
 import java.io.FileInputStream;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -11,29 +11,45 @@ import javafx.scene.image.Image;
 
 public class Main extends Application {
 
+  // Main Method
   public static void main(String[] args) {
     launch(args);
   }
 
+  // Start Method
   @Override
   public void start(Stage primaryStage) {
 
     try {
+
+      // Launch BorderPane Root
       BorderPane root = new BorderPane();
-      FXMLLoader loader = new FXMLLoader();
 
       // TO SWITCH PANES CHANGE ROOT PATH
-      root = (BorderPane) loader.load(new FileInputStream("src/application/homePage.fxml"));
+      // PANES:
+      // loadingPage.fxml
+      // loginPage.fxml
+      // newaccPage.fxml
+      // homePage.fxml
+      // settingsPage.fxml
 
+      FXMLLoader loader = new FXMLLoader();
+      root = (BorderPane) loader.load(new FileInputStream("src/application/newaccPage.fxml"));
+
+      // Set Window Size
       Scene scene = new Scene(root, 960, 660);
-      scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+      primaryStage.setResizable(false);
+
+      // Set CSS Stylesheet
+      scene.getStylesheets().add(getClass().getResource("default.css").toExternalForm());
       primaryStage.setScene(scene);
 
-      // HOUSE KEEPING
+      // Set Favicon and Title
       primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("windowIcon.png")));
       primaryStage.setTitle("	 Smart Kanban");
+
+      // Show Scene
       primaryStage.show();
-      primaryStage.setResizable(false);
 
     } catch (Exception e) {
       e.printStackTrace();

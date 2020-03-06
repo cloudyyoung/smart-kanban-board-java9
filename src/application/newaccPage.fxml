@@ -20,12 +20,12 @@
                   <Region prefWidth="200.0" />
                   <VBox>
                      <children>
-                        <Label alignment="CENTER" text="Welcome.">
+                        <Label id="nexab" alignment="CENTER" text="Welcome.">
                            <font>
                               <Font name="NexaBold" size="30.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" text="Please enter your email.">
+                        <Label id="nexab" alignment="CENTER" layoutX="10.0" layoutY="10.0" text="Please enter your email.">
                            <font>
                               <Font name="NexaBold" size="30.0" />
                            </font>
@@ -64,7 +64,7 @@
                   <Region layoutX="839.0" layoutY="10.0" prefWidth="412.0" />
                   <VBox alignment="CENTER_RIGHT">
                      <children>
-                        <Label alignment="CENTER_RIGHT" text="Next &gt;" textAlignment="RIGHT">
+                        <Label id="newacc-btn" alignment="CENTER_RIGHT" text="Next &gt;" textAlignment="RIGHT">
                            <font>
                               <Font name="NexaBold" size="30.0" />
                            </font>
@@ -84,13 +84,13 @@
       <HBox alignment="CENTER" prefWidth="200.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
          <children>
             <Region prefHeight="50.0" prefWidth="733.0" />
-            <Circle fill="#3ddcebbf" radius="7.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fill="#3352a1bf" layoutX="20.0" layoutY="20.0" radius="7.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+            <Circle id="circle" fill="#3ddcebbf" radius="7.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle id="circle" fill="#3352a1bf" layoutX="20.0" layoutY="20.0" radius="7.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
                <HBox.margin>
                   <Insets left="50.0" right="50.0" />
                </HBox.margin>
             </Circle>
-            <Circle fill="#9b33b0bf" layoutX="40.0" layoutY="20.0" radius="7.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+            <Circle id="circle" fill="#9b33b0bf" layoutX="40.0" layoutY="20.0" radius="7.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
          </children>
       </HBox>
    </bottom>

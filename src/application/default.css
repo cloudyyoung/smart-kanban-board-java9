@@ -1,0 +1,120 @@
+/* Light Mode CSS for SmartKanban */
+
+/* Import Custom Fonts */
+@font-face {
+  src: url("NexaBold.otf");
+}
+
+@font-face {
+  src: url("NexaLight.otf");
+}
+
+@font-face {
+  src: url("NotoSansJP-Regular.otf");
+}
+
+@font-face {
+  src: url("NotoSansJP-Medium.otf");
+}
+
+@font-face {
+  src: url("NotoSansJP-Bold.otf");
+}
+
+#nexab {
+  -fx-font-family: "Nexa Bold";
+  -fx-font-color: #2F2E2E;
+}
+
+#nexal {
+  -fx-font-family: 'Nexa Light';
+  -fx-font-color: #2F2E2E;
+}
+
+#bold {
+  -fx-font-family: 'Noto Sans JP Bold';
+  -fx-font-color: #2F2E2E;
+}
+
+#medium {
+  -fx-font-family: 'Noto Sans JP Medium';
+  -fx-font-color: #2F2E2E;
+}
+
+#light {
+  -fx-font-family: 'Noto Sans JP Regular';
+  -fx-font-color: #2F2E2E;
+}
+
+
+/* Set Global Style */
+
+.text-field {
+  -fx-border-width: 0 0 0 0; 
+  -fx-background-color: transparent;
+}
+
+#search-text-field {
+  -fx-font-family: 'Noto Sans JP Regular';
+  -fx-font-size: 14px;
+  -fx-border-width: 0 0 0 0; 
+  -fx-background-color: transparent;
+}
+
+#text-field-u {
+  -fx-border-color: #2F2E2E;
+  -fx-border-width: 0 0 1 0; 
+  -fx-background-color: transparent;
+  -fx-font-family: 'Noto Sans JP Bold';
+  -fx-font-size: 12px;
+}
+
+#text-field-ub {
+  -fx-border-color: #2F2E2E;
+  -fx-border-width: 0 0 1 0; 
+  -fx-background-color: transparent;
+  -fx-font-family: 'Noto Sans JP Regular';
+  -fx-font-size: 12px;
+}
+
+#circle:hover {
+  -fx-opacity: 1;
+}
+
+
+/* Set loginPage Style */
+
+#loginPg-btn-1:hover {
+  -fx-font-family: 'Nexa Bold';
+  -fx-font-size: 14;
+}
+
+#loginPg-btn-1 {
+  -fx-font-family: 'Nexa Light';
+  -fx-font-color: #2F2E2E;
+  -fx-font-size: 14;
+}
+
+#loginPg-btn-2:hover {
+  -fx-font-family: 'Nexa Bold';
+  -fx-font-size: 20;
+}
+
+#loginPg-btn-2 {
+  -fx-font-family: 'Nexa Light';
+  -fx-font-color: #2F2E2E;
+  -fx-font-size: 20;
+}
+
+
+/* Set newaccPage Style */
+
+#newacc-btn {
+  -fx-font-family: 'Nexa Bold';
+  -fx-font-color: #2F2E2E;
+  -fx-font-size: 30;
+}
+
+#newacc-btn:hover {
+  -fx-opacity: 0.8;
+}
