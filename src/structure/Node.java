@@ -63,7 +63,6 @@ public abstract class Node {
     if (obj != null) {
       this.extractChildrenNodes(obj);
     }
-    System.out.println(this);
   }
 
   private void extractChildrenNodes(HashMap<String, ?> obj) {
@@ -248,13 +247,15 @@ public abstract class Node {
    */
   public String toString() {
     return this.getType()
-        + " (id: "
+        + " {id: "
         + this.id
         + ", title: \""
         + this.title
         + "\", note: \""
         + this.note
-        + "\")";
+        + ", nodes: "
+        + this.nodes.toString()
+        + "\"}";
   }
 
   /**

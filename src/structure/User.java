@@ -177,6 +177,23 @@ public class User {
     }
   }
 
+  public void fetchKanban(){
+    HashMap<String, String> cookie = new HashMap<String, String>();
+    cookie.put("PHPSESSID", this.getSessionId());
+
+    HttpRequest req2 = new HttpRequest();
+    req2.setRequestUrl("/kanban");
+    req2.setRequestMethod("GET");
+    req2.setRequestCookie(cookie);
+    boolean ret2 = req2.send();
+
+    if(ret2){
+      Kanban.current = new Kanban((HashMap<String, ?>) req2.getResponseBody());
+    }else{
+      
+    }
+  }
+
   public static boolean authentication(String username, String password) {
     User user = new User();
     boolean res = user.authenticate(username, password);
