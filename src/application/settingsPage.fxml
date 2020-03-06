@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.shape.*?>
@@ -11,7 +12,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <left>
-      <VBox prefHeight="660.0" prefWidth="226.0" style="-fx-background-color: #eeeeee;" BorderPane.alignment="CENTER">
+      <VBox id="bg-i" prefHeight="660.0" prefWidth="226.0" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
@@ -36,7 +37,7 @@
                               <Font name="NexaBold" size="14.0" />
                            </font>
                            <VBox.margin>
-                              <Insets top="6.0" />
+                              <Insets />
                            </VBox.margin>
                         </Label>
                      </children>
@@ -50,10 +51,13 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefWidth="200.0">
                      <children>
-                        <SVGPath content="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#2f2e2e" scaleX="0.6" scaleY="0.6">
+                        <SVGPath id="search-icon" content="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#2f2e2e" scaleX="0.6" scaleY="0.6">
                            <HBox.margin>
                               <Insets left="30.0" />
                            </HBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </SVGPath>
                         <TextField id="search-text-field" prefWidth="174.0" text="Search">
                            <font>
@@ -65,30 +69,42 @@
                         </TextField>
                      </children>
                      <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
                         <Insets bottom="15.0" />
-                     </VBox.margin></HBox>
+                     </padding></HBox>
                   <HBox alignment="CENTER_LEFT" prefWidth="200.0">
                      <children>
-                        <SVGPath content="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z" fill="#2f2e2e" scaleX="0.6" scaleY="0.6">
+                        <SVGPath id="icon" content="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z" fill="#2f2e2e" scaleX="0.6" scaleY="0.6">
                            <HBox.margin>
                               <Insets left="31.0" />
                            </HBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </SVGPath>
-                        <Label id="bold" text="Today" textFill="#2f2e2e">
+                        <Label id="bold-list" text="Today" textFill="#2f2e2e">
                            <font>
                               <Font name="NexaLight" size="14.0" />
                            </font>
                            <HBox.margin>
                               <Insets left="10.0" />
                            </HBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Label>
                      </children>
                      <VBox.margin>
-                        <Insets bottom="10.0" />
+                        <Insets />
                      </VBox.margin>
                      <padding>
-                        <Insets bottom="10.0" />
+                        <Insets bottom="20.0" />
                      </padding>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
                   </HBox>
                   <VBox alignment="CENTER" prefWidth="100.0">
                      <children>
@@ -98,8 +114,11 @@
                                  <HBox.margin>
                                     <Insets left="35.0" />
                                  </HBox.margin>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Circle>
-                              <Label id="light" text="Board" textFill="#2f2e2e">
+                              <Label id="light-list" text="Board" textFill="#2f2e2e">
                                  <font>
                                     <Font name="NexaLight" size="14.0" />
                                  </font>
@@ -109,6 +128,9 @@
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Label>
                            </children>
                            <VBox.margin>
@@ -120,6 +142,9 @@
                            <padding>
                               <Insets bottom="10.0" />
                            </padding>
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefWidth="200.0">
                            <children>
@@ -127,8 +152,11 @@
                                  <HBox.margin>
                                     <Insets left="35.0" />
                                  </HBox.margin>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Circle>
-                              <Label id="light" text="Board" textFill="#2f2e2e">
+                              <Label id="light-list" text="Board" textFill="#2f2e2e">
                                  <font>
                                     <Font name="NexaLight" size="14.0" />
                                  </font>
@@ -138,6 +166,9 @@
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Label>
                            </children>
                            <opaqueInsets>
@@ -146,6 +177,9 @@
                            <padding>
                               <Insets bottom="10.0" />
                            </padding>
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="38.0" prefWidth="200.0">
                            <children>
@@ -153,8 +187,11 @@
                                  <HBox.margin>
                                     <Insets left="35.0" />
                                  </HBox.margin>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Circle>
-                              <Label id="light" text="Board" textFill="#2f2e2e">
+                              <Label id="light-list" text="Board" textFill="#2f2e2e">
                                  <font>
                                     <Font name="NexaLight" size="14.0" />
                                  </font>
@@ -164,6 +201,9 @@
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Label>
                            </children>
                            <opaqueInsets>
@@ -172,6 +212,9 @@
                            <padding>
                               <Insets bottom="10.0" />
                            </padding>
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
                         </HBox>
                         <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="66.0" prefWidth="200.0">
                            <children>
@@ -179,8 +222,11 @@
                                  <HBox.margin>
                                     <Insets left="35.0" />
                                  </HBox.margin>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Circle>
-                              <Label id="light" text="Board" textFill="#2f2e2e">
+                              <Label id="light-list" text="Board" textFill="#2f2e2e">
                                  <font>
                                     <Font name="NexaLight" size="14.0" />
                                  </font>
@@ -190,6 +236,9 @@
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Label>
                            </children>
                            <opaqueInsets>
@@ -198,6 +247,9 @@
                            <padding>
                               <Insets bottom="10.0" />
                            </padding>
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
                         </HBox>
                      </children>
                      <VBox.margin>
@@ -209,23 +261,32 @@
                   </VBox>
                   <HBox layoutX="10.0" layoutY="38.0" prefWidth="200.0">
                      <children>
-                        <SVGPath content="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z" fill="#2f2e2e" scaleX="0.6" scaleY="0.6">
+                        <SVGPath id="icon" content="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z" fill="#2f2e2e" scaleX="0.6" scaleY="0.6">
                            <HBox.margin>
                               <Insets left="29.0" />
                            </HBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </SVGPath>
-                        <Label id="bold" text="Settings" textFill="#2f2e2e">
+                        <Label id="light-list" text="Settings" textFill="#2f2e2e">
                            <font>
                               <Font name="NexaBold" size="14.0" />
                            </font>
                            <HBox.margin>
                               <Insets left="8.0" />
                            </HBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Label>
                      </children>
                      <padding>
                         <Insets top="10.0" />
                      </padding>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefWidth="200.0">
                      <VBox.margin>
@@ -236,10 +297,10 @@
             </VBox>
             <VBox alignment="BOTTOM_CENTER" prefHeight="322.0" prefWidth="226.0">
                <children>
-                  <HBox alignment="CENTER">
+                  <HBox id="sk-logo" alignment="CENTER">
                      <children>
-                        <SVGPath content="M11.48,10.47L9.69 14.61 0 0 9.38 10.82 11.48 10.47z" fill="#2f2e2e" scaleX="0.7" scaleY="0.7" />
-                        <Label text="SmartKanban" textFill="#2f2e2e">
+                        <SVGPath id="icon" content="M11.48,10.47L9.69 14.61 0 0 9.38 10.82 11.48 10.47z" fill="#2f2e2e" scaleX="0.7" scaleY="0.7" />
+                        <Label id="nexab" text="SmartKanban" textFill="#2f2e2e">
                            <font>
                               <Font name="NexaBold" size="14.0" />
                            </font>
@@ -248,6 +309,9 @@
                      <VBox.margin>
                         <Insets bottom="7.0" />
                      </VBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </HBox>
                </children>
             </VBox>
@@ -255,7 +319,7 @@
       </VBox>
    </left>
    <center>
-      <VBox prefHeight="660.0" prefWidth="739.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+      <VBox id="bg" prefHeight="660.0" prefWidth="739.0" BorderPane.alignment="CENTER">
          <children>
             <Region prefHeight="30.0" prefWidth="739.0" />
             <VBox prefWidth="100.0">
@@ -297,7 +361,7 @@
                                     </VBox>
                                     <VBox alignment="CENTER_RIGHT" prefWidth="30.0">
                                        <children>
-                                          <TextField id="text-field-u" alignment="CENTER" prefHeight="20.0" prefWidth="30.0" text="0" VBox.vgrow="SOMETIMES">
+                                          <TextField id="text-field-u" alignment="CENTER" prefHeight="20.0" prefWidth="30.0" promptText="0" VBox.vgrow="SOMETIMES">
                                              <font>
                                                 <Font name="NexaLight" size="12.0" />
                                              </font>
@@ -323,7 +387,7 @@
                                     </VBox>
                                     <VBox alignment="CENTER_RIGHT" prefWidth="30.0">
                                        <children>
-                                          <TextField id="text-field-u" alignment="CENTER" prefHeight="20.0" prefWidth="30.0" text="0" VBox.vgrow="SOMETIMES">
+                                          <TextField id="text-field-u" alignment="CENTER" prefHeight="20.0" prefWidth="30.0" promptText="0" VBox.vgrow="SOMETIMES">
                                              <font>
                                                 <Font name="NexaLight" size="12.0" />
                                              </font>
@@ -348,7 +412,7 @@
                                     </VBox>
                                     <VBox alignment="CENTER_RIGHT" prefWidth="30.0">
                                        <children>
-                                          <TextField id="text-field-u" alignment="CENTER" prefHeight="20.0" prefWidth="30.0" text="0" VBox.vgrow="SOMETIMES">
+                                          <TextField id="text-field-u" alignment="CENTER" prefHeight="20.0" prefWidth="30.0" promptText="0" VBox.vgrow="SOMETIMES">
                                              <font>
                                                 <Font name="NexaLight" size="12.0" />
                                              </font>
@@ -373,7 +437,7 @@
                                     </VBox>
                                     <VBox alignment="CENTER_RIGHT" prefWidth="30.0">
                                        <children>
-                                          <TextField id="text-field-u" alignment="CENTER" prefHeight="20.0" prefWidth="30.0" text="0" VBox.vgrow="SOMETIMES">
+                                          <TextField id="text-field-u" alignment="CENTER" prefHeight="20.0" prefWidth="30.0" promptText="0" VBox.vgrow="SOMETIMES">
                                              <font>
                                                 <Font name="NexaLight" size="12.0" />
                                              </font>
@@ -398,7 +462,7 @@
                                     </VBox>
                                     <VBox alignment="CENTER_RIGHT" prefWidth="30.0">
                                        <children>
-                                          <TextField id="text-field-u" alignment="CENTER" prefHeight="20.0" prefWidth="30.0" text="0" VBox.vgrow="SOMETIMES">
+                                          <TextField id="text-field-u" alignment="CENTER" prefHeight="20.0" prefWidth="30.0" promptText="0" VBox.vgrow="SOMETIMES">
                                              <font>
                                                 <Font name="NexaLight" size="12.0" />
                                              </font>
@@ -423,7 +487,7 @@
                                     </VBox>
                                     <VBox alignment="CENTER_RIGHT" prefWidth="30.0">
                                        <children>
-                                          <TextField id="text-field-u" alignment="CENTER" prefHeight="20.0" prefWidth="30.0" text="0" VBox.vgrow="SOMETIMES">
+                                          <TextField id="text-field-u" alignment="CENTER" prefHeight="20.0" prefWidth="30.0" promptText="0" VBox.vgrow="SOMETIMES">
                                              <font>
                                                 <Font name="NexaLight" size="12.0" />
                                              </font>
@@ -448,7 +512,7 @@
                                     </VBox>
                                     <VBox alignment="CENTER_RIGHT" prefWidth="30.0">
                                        <children>
-                                          <TextField id="text-field-u" alignment="CENTER" prefHeight="20.0" prefWidth="30.0" text="0" VBox.vgrow="SOMETIMES">
+                                          <TextField id="text-field-u" alignment="CENTER" prefHeight="20.0" prefWidth="30.0" promptText="0" VBox.vgrow="SOMETIMES">
                                              <font>
                                                 <Font name="NexaLight" size="12.0" />
                                              </font>
@@ -492,6 +556,9 @@
                                              <VBox.margin>
                                                 <Insets />
                                              </VBox.margin>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
                                           </CheckBox>
                                        </children>
                                     </VBox>
@@ -525,7 +592,7 @@
                                     </VBox>
                                     <VBox alignment="CENTER_RIGHT" prefWidth="156.0">
                                        <children>
-                                          <TextField id="text-field-ub" alignment="CENTER" prefHeight="20.0" prefWidth="156.0" text="type &quot;delete boards&quot;" VBox.vgrow="SOMETIMES">
+                                          <TextField id="text-field-ub" alignment="CENTER" prefHeight="20.0" prefWidth="156.0" promptText="type &quot;delete boards&quot;" VBox.vgrow="SOMETIMES">
                                              <font>
                                                 <Font name="NexaLight" size="12.0" />
                                              </font>
@@ -561,7 +628,10 @@
                                     </VBox>
                                     <VBox alignment="CENTER_RIGHT" prefWidth="30.0">
                                        <children>
-                                          <ColorPicker scaleX="0.9" scaleY="0.9" />
+                                          <ColorPicker scaleX="0.9" scaleY="0.9">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor></ColorPicker>
                                        </children>
                                     </VBox>
                                  </children>
@@ -579,7 +649,7 @@
                                     </VBox>
                                     <VBox alignment="CENTER_RIGHT" prefWidth="156.0">
                                        <children>
-                                          <TextField id="text-field-ub" alignment="CENTER" prefHeight="20.0" prefWidth="156.0" text="enter a new username" VBox.vgrow="SOMETIMES">
+                                          <TextField id="text-field-ub" alignment="CENTER" prefHeight="20.0" prefWidth="156.0" promptText="enter a new username" VBox.vgrow="SOMETIMES">
                                              <font>
                                                 <Font name="NexaLight" size="12.0" />
                                              </font>
@@ -604,7 +674,7 @@
                                     </VBox>
                                     <VBox alignment="CENTER_RIGHT" prefWidth="156.0">
                                        <children>
-                                          <TextField id="text-field-ub" alignment="CENTER" prefHeight="20.0" prefWidth="156.0" text="enter a new email" VBox.vgrow="SOMETIMES">
+                                          <TextField id="text-field-ub" alignment="CENTER" prefHeight="20.0" prefWidth="156.0" promptText="enter a new email" VBox.vgrow="SOMETIMES">
                                              <font>
                                                 <Font name="NexaLight" size="12.0" />
                                              </font>
@@ -629,7 +699,7 @@
                                     </VBox>
                                     <VBox alignment="CENTER_RIGHT" prefWidth="156.0">
                                        <children>
-                                          <TextField id="text-field-ub" alignment="CENTER" prefHeight="20.0" prefWidth="156.0" text="enter a new password" VBox.vgrow="SOMETIMES">
+                                          <TextField id="text-field-ub" alignment="CENTER" prefHeight="20.0" prefWidth="156.0" promptText="enter a new password" VBox.vgrow="SOMETIMES">
                                              <font>
                                                 <Font name="NexaLight" size="12.0" />
                                              </font>
@@ -652,23 +722,26 @@
             </VBox>
             <HBox alignment="CENTER_RIGHT" prefWidth="200.0">
                <children>
-                  <StackPane>
+                  <StackPane id="card-sp-b">
                      <children>
-                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#2f2e2e" height="29.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
+                        <Rectangle id="sc-btn" arcHeight="10.0" arcWidth="10.0" fill="#2f2e2e" height="29.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
                         <Text id="bold" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Save Changes" StackPane.alignment="CENTER_LEFT">
                            <font>
-                              <Font name="NexaBold" size="11.0" />
+                              <Font size="10.0" />
                            </font>
                            <StackPane.margin>
                               <Insets left="15.0" />
                            </StackPane.margin>
                         </Text>
-                        <SVGPath content="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="WHITE" StackPane.alignment="CENTER_RIGHT">
+                        <SVGPath id="chev-icon" content="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="WHITE" StackPane.alignment="CENTER_RIGHT">
                            <StackPane.margin>
                               <Insets right="15.0" />
                            </StackPane.margin>
                         </SVGPath>
                      </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </StackPane>
                   <Region prefWidth="55.0" />
                </children>

@@ -1,0 +1,250 @@
+/* Light Mode CSS for SmartKanban */
+
+/* Import Custom Fonts */
+@font-face {
+  src: url("NexaBold.otf");
+}
+
+@font-face {
+  src: url("NexaLight.otf");
+}
+
+@font-face {
+  src: url("NotoSansJP-Regular.otf");
+}
+
+@font-face {
+  src: url("NotoSansJP-Medium.otf");
+}
+
+@font-face {
+  src: url("NotoSansJP-Bold.otf");
+}
+
+@font-face {
+  src: url("NotoSansJP-Black.otf");
+}
+
+#nexab {
+  -fx-font-family: "Nexa Bold";
+  -fx-text-fill: #ffffff;
+}
+
+#nexal {
+  -fx-font-family: 'Nexa Light';
+  -fx-text-fill: #ffffff;
+}
+
+#bold {
+  -fx-font-family: 'Noto Sans JP Bold';
+  -fx-text-fill: #ffffff;
+}
+
+#medium {
+  -fx-font-family: 'Noto Sans JP Medium';
+  -fx-text-fill: #ffffff;
+}
+
+#light {
+  -fx-font-family: 'Noto Sans JP Regular';
+  -fx-text-fill: #ffffff;
+}
+
+#black {
+  -fx-font-family: 'Noto Sans JP Black';
+  -fx-text-fill: #ffffff;
+}
+
+
+/* Set Global Style */
+
+#light-list {
+  -fx-font-family: 'Noto Sans JP Regular';
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 14;
+}
+
+#light-list:hover {
+  -fx-font-family: 'Noto Sans JP Bold';
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 14;
+}
+
+#bold-list {
+  -fx-font-family: 'Noto Sans JP Bold';
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 14;
+}
+
+#bold-list:hover {
+  -fx-font-family: 'Noto Sans JP Regular';
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 14;
+}
+
+#search-icon {
+  -fx-fill: #ffffff;
+}
+
+#search-icon:hover {
+  -fx-scale-x: 0.72;
+  -fx-scale-y: 0.72;
+}
+
+#sk-logo:hover {
+  -fx-scale-x: 1.2;
+  -fx-scale-y: 1.2;
+}
+
+
+#icon {
+  -fx-fill: #ffffff;
+}
+
+#chev-icon {
+  -fx-fill: #ffffff;
+}
+
+#chev-icon:hover {
+  -fx-scale-x: 1.2;
+  -fx-scale-y: 1.2;
+}
+
+#add-icon-2 {
+  -fx-fill: #ffffff;
+}
+
+#add-icon-2:hover {
+  -fx-scale-x: 0.72;
+  -fx-scale-y: 0.72;
+}
+
+#bg {
+  -fx-background-color: #0A0A0A;
+}
+
+#bg-i {
+  -fx-background-color: #0A0A0A;
+  -fx-opacity: 0.99;
+}
+
+#ln {
+  -fx-stroke: #ffffff;
+}
+
+.text-field {
+  -fx-border-width: 0 0 0 0; 
+  -fx-background-color: transparent;
+}
+
+#search-text-field {
+  -fx-font-family: 'Noto Sans JP Regular';
+  -fx-font-size: 14px;
+  -fx-text-fill: #ffffff;
+  -fx-opacity: .6;
+  -fx-border-width: 0 0 0 0; 
+  -fx-background-color: transparent;
+}
+
+#text-field-u {
+  -fx-border-color: #ffffff;
+  -fx-text-fill: #ffffff;
+  -fx-border-width: 0 0 1 0; 
+  -fx-background-color: transparent;
+  -fx-font-family: 'Noto Sans JP Bold';
+  -fx-font-size: 12px;
+  -fx-opacity: .6;
+}
+
+#text-field-ub {
+  -fx-border-color: #ffffff;
+  -fx-border-width: 0 0 1 0; 
+  -fx-background-color: transparent;
+  -fx-font-family: 'Noto Sans JP Regular';
+  -fx-font-size: 12px;
+  -fx-text-fill: #ffffff;
+  -fx-opacity: .6;
+}
+
+#circle:hover {
+  -fx-opacity: 1;
+}
+
+
+/* Set loginPage Style */
+
+#loginPg-btn-1:hover {
+  -fx-font-family: 'Nexa Bold';
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 14;
+}
+
+#loginPg-btn-1 {
+  -fx-font-family: 'Nexa Light';
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 14;
+}
+
+#loginPg-btn-2:hover {
+  -fx-font-family: 'Nexa Bold';
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 20;
+}
+
+#sk-big-title {
+  -fx-font-family: "Nexa Bold";
+  -fx-text-fill: #ffffff;
+}
+
+#loginPg-btn-2 {
+  -fx-font-family: 'Nexa Light';
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 20;
+}
+
+
+/* Set newaccPage Style */
+
+#newacc-btn {
+  -fx-font-family: 'Nexa Bold';
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 30;
+}
+
+#newacc-btn:hover {
+  -fx-scale-x: 1.1;
+  -fx-scale-y: 1.1;
+}
+
+/* Set homePage Style */
+
+#card-bold {
+  -fx-font-family: 'Nexa Bold';
+  -fx-text-fill: #ffffff;
+  -fx-line-spacing: 0;
+}
+
+#card-light {
+  -fx-font-family: 'Nexa Regular';
+  -fx-text-fill: #ffffff;
+  -fx-line-spacing: 0;
+}
+
+#card-sp:hover {
+  -fx-font-size: 10;
+  -fx-opacity: 0.90;
+}
+
+/* Set Settings Style */
+
+#sc-btn {
+  -fx-fill: #0A0A0A;
+  -fx-stroke: #ffffff;
+  -fx-stroke-width: 1;
+}
+
+#card-sp-b:hover {
+  -fx-scale-x: 1.05;
+  -fx-scale-y: 1.05;
+  -fx-font-size: 10px;
+}

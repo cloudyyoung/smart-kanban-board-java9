@@ -21,33 +21,119 @@
   src: url("NotoSansJP-Bold.otf");
 }
 
+@font-face {
+  src: url("NotoSansJP-Black.otf");
+}
+
 #nexab {
   -fx-font-family: "Nexa Bold";
-  -fx-font-color: #2F2E2E;
+  -fx-text-fill: #2F2E2E;
+}
+
+#sk-big-title {
+  -fx-font-family: "Nexa Bold";
 }
 
 #nexal {
   -fx-font-family: 'Nexa Light';
-  -fx-font-color: #2F2E2E;
+  -fx-text-fill: #2F2E2E;
 }
 
 #bold {
   -fx-font-family: 'Noto Sans JP Bold';
-  -fx-font-color: #2F2E2E;
+  -fx-text-fill: #2F2E2E;
 }
 
 #medium {
   -fx-font-family: 'Noto Sans JP Medium';
-  -fx-font-color: #2F2E2E;
+  -fx-text-fill: #2F2E2E;
 }
 
 #light {
   -fx-font-family: 'Noto Sans JP Regular';
-  -fx-font-color: #2F2E2E;
+  -fx-text-fill: #2F2E2E;
+}
+
+#black {
+  -fx-font-family: 'Noto Sans JP Black';
+  -fx-text-fill: #2F2E2E;
 }
 
 
 /* Set Global Style */
+
+#light-list {
+  -fx-font-family: 'Noto Sans JP Regular';
+  -fx-text-fill: #2F2E2E;
+  -fx-font-size: 14;
+}
+
+#light-list:hover {
+  -fx-font-family: 'Noto Sans JP Bold';
+  -fx-text-fill: #2F2E2E;
+  -fx-font-size: 14;
+}
+
+#bold-list {
+  -fx-font-family: 'Noto Sans JP Bold';
+  -fx-text-fill: #2F2E2E;
+  -fx-font-size: 14;
+}
+
+#bold-list:hover {
+  -fx-font-family: 'Noto Sans JP Regular';
+  -fx-text-fill: #2F2E2E;
+  -fx-font-size: 14;
+}
+
+#search-icon {
+  -fx-fill: #2F2E2E;
+}
+
+#search-icon:hover {
+  -fx-scale-x: 0.72;
+  -fx-scale-y: 0.72;
+}
+
+#sk-logo:hover {
+  -fx-scale-x: 1.2;
+  -fx-scale-y: 1.2;
+}
+
+
+#icon {
+  -fx-fill: #2F2E2E;
+}
+
+#chev-icon {
+  -fx-fill: #ffffff;
+}
+
+#chev-icon:hover {
+  -fx-scale-x: 1.2;
+  -fx-scale-y: 1.2;
+}
+
+#add-icon-2 {
+  -fx-fill: #2F2E2E;
+}
+
+#add-icon-2:hover {
+  -fx-scale-x: 0.72;
+  -fx-scale-y: 0.72;
+}
+
+#bg {
+  -fx-background-color: #ffffff;
+}
+
+#bg-i {
+  -fx-background-color: #eeeeee;
+}
+
+#ln {
+  -fx-stroke: #2F2E2E;
+}
 
 .text-field {
   -fx-border-width: 0 0 0 0; 
@@ -59,6 +145,7 @@
   -fx-font-size: 14px;
   -fx-border-width: 0 0 0 0; 
   -fx-background-color: transparent;
+  -fx-text-fill: #2F2E2E;
 }
 
 #text-field-u {
@@ -67,6 +154,7 @@
   -fx-background-color: transparent;
   -fx-font-family: 'Noto Sans JP Bold';
   -fx-font-size: 12px;
+  -fx-text-fill: #2F2E2E;
 }
 
 #text-field-ub {
@@ -75,6 +163,7 @@
   -fx-background-color: transparent;
   -fx-font-family: 'Noto Sans JP Regular';
   -fx-font-size: 12px;
+  -fx-text-fill: #2F2E2E;
 }
 
 #circle:hover {
@@ -91,7 +180,7 @@
 
 #loginPg-btn-1 {
   -fx-font-family: 'Nexa Light';
-  -fx-font-color: #2F2E2E;
+  -fx-text-fill: #2F2E2E;
   -fx-font-size: 14;
 }
 
@@ -102,7 +191,7 @@
 
 #loginPg-btn-2 {
   -fx-font-family: 'Nexa Light';
-  -fx-font-color: #2F2E2E;
+  -fx-text-fill: #2F2E2E;
   -fx-font-size: 20;
 }
 
@@ -111,10 +200,42 @@
 
 #newacc-btn {
   -fx-font-family: 'Nexa Bold';
-  -fx-font-color: #2F2E2E;
+  -fx-text-fill: #2F2E2E;
   -fx-font-size: 30;
 }
 
 #newacc-btn:hover {
-  -fx-opacity: 0.8;
+  -fx-scale-x: 1.1;
+  -fx-scale-y: 1.1;
+}
+
+/* Set homePage Style */
+
+#card-bold {
+  -fx-font-family: 'Nexa Bold';
+  -fx-text-fill: #2F2E2E;
+  -fx-line-spacing: 0;
+}
+
+#card-light {
+  -fx-font-family: 'Nexa Regular';
+  -fx-text-fill: #2F2E2E;
+  -fx-line-spacing: 0;
+}
+
+#card-sp:hover {
+  -fx-font-size: 10;
+  -fx-opacity: 0.90;
+}
+
+#card-sp-b:hover {
+  -fx-scale-x: 1.05;
+  -fx-scale-y: 1.05;
+  -fx-font-size: 10px;
+}
+
+/* Set Settings Style */
+
+#sc-btn {
+  -fx-fill: #2F2E2E;
 }

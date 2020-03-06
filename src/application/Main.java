@@ -34,19 +34,20 @@ public class Main extends Application {
       // settingsPage.fxml
 
       FXMLLoader loader = new FXMLLoader();
-      root = (BorderPane) loader.load(new FileInputStream("src/application/newaccPage.fxml"));
+      root = (BorderPane) loader.load(new FileInputStream("src/application/loginPage.fxml"));
 
       // Set Window Size
       Scene scene = new Scene(root, 960, 660);
       primaryStage.setResizable(false);
 
       // Set CSS Stylesheet
-      scene.getStylesheets().add(getClass().getResource("default.css").toExternalForm());
+      // TO SWITCH TO DARK MODE, CHANGE PATH TO 'dark.css'
+      scene.getStylesheets().add(getClass().getResource("dark.css").toExternalForm());
       primaryStage.setScene(scene);
 
       // Set Favicon and Title
       primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("windowIcon.png")));
-      primaryStage.setTitle("	 Smart Kanban");
+      primaryStage.setTitle("	 Home - Smart Kanban");
 
       // Show Scene
       primaryStage.show();
