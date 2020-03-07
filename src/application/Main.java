@@ -42,6 +42,7 @@ public class Main extends Application {
 
       // Set CSS Stylesheet
       // TO SWITCH TO DARK MODE, CHANGE PATH TO 'dark.css'
+      scene.getStylesheets().add(getClass().getResource("default.css").toExternalForm());
       scene.getStylesheets().add(getClass().getResource("dark.css").toExternalForm());
       primaryStage.setScene(scene);
 

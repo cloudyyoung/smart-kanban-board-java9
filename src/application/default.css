@@ -2,28 +2,35 @@
 
 /* Import Custom Fonts */
 @font-face {
+  font-family: "Nexa Bold";
   src: url("NexaBold.otf");
 }
 
 @font-face {
+  font-family: "Nexa Light";
   src: url("NexaLight.otf");
 }
 
 @font-face {
+  font-family: "NotoSans JP Regular";
   src: url("NotoSansJP-Regular.otf");
 }
 
 @font-face {
+  font-family: "NotoSans JP Medium";
   src: url("NotoSansJP-Medium.otf");
 }
 
 @font-face {
+  font-family: "NotoSans JP Bold";
   src: url("NotoSansJP-Bold.otf");
 }
 
 @font-face {
+  font-family: "NotoSans JP Black";
   src: url("NotoSansJP-Black.otf");
 }
+
 
 #nexab {
   -fx-font-family: "Nexa Bold";

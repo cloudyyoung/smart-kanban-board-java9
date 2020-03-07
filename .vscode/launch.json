@@ -10,7 +10,7 @@
             "request": "launch",
             "mainClass": "Main",
             "projectName": "Smart-Kanban-Board",
-            "vmArgs": "--module-path \"src/lib/javafx-sdk-11.0.2/lib\" --add-modules=javafx.controls,javafx.fxml"
+            "vmArgs": "--module-path \"src/lib/javafx-sdk-11.0.2/lib\" --add-modules=ALL-MODULE-PATH"
         },
         {
             "type": "java",
@@ -18,7 +18,7 @@
             "request": "launch",
             "mainClass": "application.Main",
             "projectName": "Smart-Kanban-Board",
-            "vmArgs": "--module-path \"src/lib/javafx-sdk-11.0.2/lib\" --add-modules=javafx.controls,javafx.fxml"
+            "vmArgs": "--module-path \"src/lib/javafx-sdk-11.0.2/lib\" --add-modules=ALL-MODULE-PATH"
         }
     ]
 }
