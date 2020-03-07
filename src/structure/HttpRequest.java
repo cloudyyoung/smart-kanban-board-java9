@@ -445,7 +445,7 @@ public class HttpRequest {
         value = this.jsonObjectToMap((JSONObject) value);
       }
 
-      if(value instanceof Long){
+      if (value instanceof Long) {
         value = Integer.parseInt("" + value);
       }
       map.put(key, value);
