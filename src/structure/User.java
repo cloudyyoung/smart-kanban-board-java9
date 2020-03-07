@@ -160,13 +160,13 @@ public class User {
     req.setRequestBody(param);
     req.send();
 
-    // System.out.println(req.getResponseStatusCode());
-    // System.out.println(req.getResponseBody());
+    System.out.println(req.getResponseStatusCode());
+    System.out.println(req.getResponseBody());
 
     if (req.isSucceed()) {
       HashMap<?, ?> res = (HashMap<?, ?>) req.getResponseBody();
       HashMap<?, ?> cookie = (HashMap<?, ?>) req.getResponseCookie();
-      this.setId(Integer.parseInt((String) res.get("id")));
+      this.setId((int) res.get("id"));
       // System.out.println(res);
       this.setSessionId((String) cookie.get("PHPSESSID"));
       this.authenticated = true;

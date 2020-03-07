@@ -53,7 +53,7 @@ public abstract class Node {
 
   public Node(HashMap<String, ?> obj) {
     if (!this.getType().equals("Kanban")) {
-      this.id = ((Long) obj.get("id")).intValue();
+      this.id = (int) obj.get("id");
       this.title = (String) obj.get("title");
       this.note = (String) obj.get("note");
     }
