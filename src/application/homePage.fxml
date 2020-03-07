@@ -51,15 +51,29 @@
                <children>
                   <HBox id="list-i" alignment="CENTER_LEFT" prefWidth="200.0">
                      <children>
-                        <SVGPath id="search-icon" content="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#2f2e2e" scaleX="0.6" scaleY="0.6">
-                           <HBox.margin>
-                              <Insets left="30.0" />
-                           </HBox.margin>
+                        <Region prefWidth="27.0" />
+                        <VBox alignment="CENTER">
+                           <children>
+                              <Region prefHeight="5.0" />
+                              <Pane id="pane-grow" scaleX="0.65" scaleY="0.65">
+                                 <children>
+                                    <SVGPath id="icon" content="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#2f2e2e">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </SVGPath>
+                                 </children>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Pane>
+                              <Region layoutX="10.0" layoutY="32.0" prefHeight="5.0" />
+                           </children>
                            <cursor>
-                              <Cursor fx:constant="HAND" />
+                              <Cursor fx:constant="DEFAULT" />
                            </cursor>
-                        </SVGPath>
-                        <TextField id="search-text-field" prefWidth="174.0" text="Search">
+                        </VBox>
+                        <TextField id="search-text-field" prefWidth="174.0" promptText="Search">
                            <font>
                               <Font name="NexaLight" size="14.0" />
                            </font>
@@ -70,7 +84,8 @@
                      </children>
                      <VBox.margin>
                         <Insets bottom="15.0" />
-                     </VBox.margin></HBox>
+                     </VBox.margin>
+                  </HBox>
                   <HBox id="list-i" alignment="CENTER_LEFT" prefWidth="200.0">
                      <children>
                         <SVGPath id="icon" content="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z" fill="#2f2e2e" scaleX="0.6" scaleY="0.6">
