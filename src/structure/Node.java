@@ -14,6 +14,7 @@ public abstract class Node {
    * note:???? String type: type will be used to determine where the user is in the application
    */
   private int id;
+
   private Node parent;
   private String title;
   private String note;
@@ -30,6 +31,7 @@ public abstract class Node {
   private final HashMap<String, Integer> TYPES =
       new HashMap<String, Integer>() {
         private static final long serialVersionUID = 3312582702053699017L;
+
         {
           put("Kanban", 0);
           put("Board", 1);
