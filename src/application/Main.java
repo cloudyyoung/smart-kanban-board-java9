@@ -41,7 +41,7 @@ public class Main extends Application {
       primaryStage.setResizable(false);
 
       // Set CSS Stylesheet
-      // TO SWITCH TO DARK MODE, CHANGE PATH TO 'dark.css'
+      // TO SWITCH TO DARK MODE, COMMENT/UNCOMMENT LINE OF DARK.CSS
       scene.getStylesheets().add(getClass().getResource("default.css").toExternalForm());
       scene.getStylesheets().add(getClass().getResource("dark.css").toExternalForm());
       primaryStage.setScene(scene);
