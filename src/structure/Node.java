@@ -14,9 +14,7 @@ public abstract class Node {
    * note:???? String type: type will be used to determine where the user is in the application
    */
   private int id;
-
-  private int parentId;
-  private int grandparentId;
+  private Node parent;
   private String title;
   private String note;
   private ArrayList<Node> nodes = new ArrayList<Node>();
@@ -32,7 +30,6 @@ public abstract class Node {
   private final HashMap<String, Integer> TYPES =
       new HashMap<String, Integer>() {
         private static final long serialVersionUID = 3312582702053699017L;
-
         {
           put("Kanban", 0);
           put("Board", 1);
@@ -79,7 +76,9 @@ public abstract class Node {
         Constructor<?> constructor = cls.getConstructor(HashMap.class);
         Object objNew = constructor.newInstance(each2);
         if (objNew instanceof Node) {
-          this.nodes.add((Node) objNew);
+          Node nodeNew = (Node) objNew;
+          nodeNew.setParent(this);
+          this.nodes.add(nodeNew);
         }
       } catch (Exception e) {
         // e.printStackTrace();
@@ -129,17 +128,8 @@ public abstract class Node {
    *
    * @return the parentId as an int
    */
-  public int getParentId() {
-    return this.parentId;
-  }
-
-  /**
-   * gets the grandparentsId
-   *
-   * @return the grandparentsId as an int
-   */
-  public int getGrandparentId() {
-    return this.grandparentId;
+  public Node getParent() {
+    return this.parent;
   }
 
   /**
@@ -156,17 +146,8 @@ public abstract class Node {
    *
    * @param aParentId as an int
    */
-  public void setParentId(int aParentId) {
-    this.parentId = aParentId;
-  }
-
-  /**
-   * sets the grand parent id
-   *
-   * @param aGrandparentId as an int
-   */
-  public void setGrandparentId(int aGrandparentId) {
-    this.grandparentId = aGrandparentId;
+  public void setParent(Node aParent) {
+    this.parent = aParent;
   }
 
   /**
