@@ -160,14 +160,13 @@ public class User {
     req.setRequestBody(param);
     req.send();
 
-    System.out.println(req.getResponseStatusCode());
-    System.out.println(req.getResponseBody());
+    // System.out.println(req.getResponseStatusCode());
+    // System.out.println(req.getResponseBody());
 
     if (req.isSucceed()) {
-      HashMap<?, ?> res = (HashMap<?, ?>) req.getResponseBody();
+      HttpBody res = req.getResponseBody();
       HashMap<?, ?> cookie = (HashMap<?, ?>) req.getResponseCookie();
-      this.setId((int) res.get("id"));
-      // System.out.println(res);
+      this.setId(res.getInt("id"));
       this.setSessionId((String) cookie.get("PHPSESSID"));
       this.authenticated = true;
 
@@ -188,7 +187,7 @@ public class User {
     boolean ret2 = req2.send();
 
     if (ret2) {
-      Kanban.current = new Kanban((HashMap<String, ?>) req2.getResponseBody());
+      Kanban.current = new Kanban(req2.getResponseBody());
     } else {
 
     }
@@ -204,7 +203,11 @@ public class User {
   }
 
   public static void main(String[] args) {
-    User.authentication("cloudy", "cloudy");
-    System.out.println(User.current);
+    User user = new User();
+    user.authenticate("cloudy", "cloudy");
+    System.out.println(user);
+
+    user.fetchKanban();
+    System.out.println(Kanban.current);
   }
 }

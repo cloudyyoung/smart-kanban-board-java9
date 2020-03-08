@@ -2,6 +2,7 @@ package structure;
 
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.lang.reflect.Constructor;
 
@@ -53,29 +54,29 @@ public abstract class Node {
     this.note = note;
   }
 
-  public Node(HashMap<String, ?> obj) {
+  public Node(HttpBody obj) {
     if (!this.getType().equals("Kanban")) {
-      this.id = (int) obj.get("id");
-      this.title = (String) obj.get("title");
-      this.note = (String) obj.get("note");
+      this.id = obj.getInt("id");
+      this.title = obj.getString("title");
+      this.note = obj.getString("note");
     }
     if (obj != null) {
       this.extractChildrenNodes(obj);
     }
   }
 
-  private void extractChildrenNodes(HashMap<String, ?> obj) {
+  private void extractChildrenNodes(HttpBody obj) {
     String childType = Node.typeLower(Node.typePlural(this.getChildType()));
-    Object value = obj.get(childType);
-    if (value == null || value instanceof ArrayList == false) {
+    HttpBody value = obj.getList(childType);
+    if (value == null) {
       return;
     }
-    ArrayList<HashMap<String, ?>> list = (ArrayList<HashMap<String, ?>>) value;
-    for (HashMap<String, ?> each2 : list) {
+    Collection<Object> list = value.values();
+    for (Object each2 : list) {
       try {
         String type = Node.typeClass(childType);
         Class<?> cls = Class.forName(type);
-        Constructor<?> constructor = cls.getConstructor(HashMap.class);
+        Constructor<?> constructor = cls.getConstructor(HttpBody.class);
         Object objNew = constructor.newInstance(each2);
         if (objNew instanceof Node) {
           Node nodeNew = (Node) objNew;
@@ -84,6 +85,7 @@ public abstract class Node {
         }
       } catch (Exception e) {
         // e.printStackTrace();
+        // e.getCause();
         // fail silently
       }
     }
@@ -236,7 +238,7 @@ public abstract class Node {
         + this.title
         + "\", note: \""
         + this.note
-        + ", nodes: "
+        + "\", nodes: "
         + this.nodes.toString()
         + "\"}";
   }
