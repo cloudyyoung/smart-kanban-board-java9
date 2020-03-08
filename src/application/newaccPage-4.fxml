@@ -105,7 +105,7 @@
                   <Region layoutX="839.0" layoutY="10.0" prefWidth="412.0" />
                   <VBox alignment="CENTER_RIGHT">
                      <children>
-                        <Label id="newacc-btn" fx:id="nextBtn" alignment="CENTER_RIGHT" onMouseClicked="#handlenextBtn" text="Next &gt;" textAlignment="RIGHT">
+                        <Label id="newacc-btn" fx:id="nextBtn" alignment="CENTER_RIGHT" onMouseClicked="#handleNextBtn" text="Next &gt;" textAlignment="RIGHT">
                            <font>
                               <Font name="NexaBold" size="30.0" />
                            </font>
