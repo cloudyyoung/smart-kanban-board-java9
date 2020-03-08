@@ -53,7 +53,6 @@ public abstract class Node {
     this.setNote(note);
   }
 
-
   public Node(HttpBody obj) {
     if (!this.getType().equals("Kanban")) {
       this.setId(obj.getInt("id"));
@@ -171,12 +170,12 @@ public abstract class Node {
   public void setTitle(String aTitle) {
     this.title = aTitle;
   }
-  
+
   private void setNote(String note) {
     this.note = note;
   }
 
-  private String getNote(){
+  private String getNote() {
     return this.note;
   }
 
