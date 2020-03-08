@@ -3,6 +3,7 @@ import structure.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+@SuppressWarnings("all")
 public class Terminal {
   // ***** need to implement all output to UI whenever the UI is ready
   private static ArrayList<Integer> availableHours = new ArrayList<Integer>(7);
@@ -81,7 +82,9 @@ public class Terminal {
         */
         // REMOVE FOR AUTH
         // authenticated = true;
-        // authenticated = User.authentication(username, password);
+        // User user = new User();
+        // HttpRequest req = user.authenticate(username, password);
+        // authenticated = req.isSucceed();
       }
     }
 

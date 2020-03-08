@@ -13,6 +13,8 @@ import java.io.BufferedReader;
 import org.json.simple.*;
 import org.json.simple.parser.*;
 
+@SuppressWarnings("unchecked")
+
 /**
  * Send http request in different http request method with custom param and get return json data.
  * Custoizamables: request url, request method, request cookie, request body Public methods: Getters
@@ -122,8 +124,14 @@ public class HttpRequest {
    *
    * @return request body in Map
    */
-  public Map<?, ?> getRequestBody() {
-    return (Map<?, ?>) this.jsonObjectToObject(this.requestBody);
+  public HttpBody getRequestBody() {
+    if (this.requestBody instanceof JSONObject) {
+      return new HttpBody((JSONObject) this.requestBody);
+    } else if (this.requestBody instanceof JSONArray) {
+      return new HttpBody((JSONArray) this.requestBody);
+    } else {
+      return null;
+    }
   }
 
   /**
@@ -234,8 +242,17 @@ public class HttpRequest {
    *
    * @return the response body in Map
    */
-  public Map<?, ?> getResponseBody() {
-    return (Map<?, ?>) this.jsonObjectToObject(this.responseBody);
+  // public Map<?, ?> getResponseBody() {
+  //   return (Map<?, ?>) this.jsonObjectToObject(this.responseBody);
+  // }
+  public HttpBody getResponseBody() {
+    if (this.responseBody instanceof JSONObject) {
+      return new HttpBody((JSONObject) this.responseBody);
+    } else if (this.responseBody instanceof JSONArray) {
+      return new HttpBody((JSONArray) this.responseBody);
+    } else {
+      return null;
+    }
   }
 
   /**
@@ -443,6 +460,9 @@ public class HttpRequest {
         value = this.jsonObjectToMap((JSONObject) value);
       }
 
+      if (value instanceof Long) {
+        value = Integer.parseInt("" + value);
+      }
       map.put(key, value);
     }
     return map;
@@ -537,38 +557,5 @@ public class HttpRequest {
     }
 
     return true;
-  }
-
-  public static void main(String[] args) {
-
-    HashMap<String, String> param = new HashMap<String, String>();
-    param.put("username", "cloudy");
-    param.put("password", "cloudy");
-    System.out.println(param);
-
-    HttpRequest req = new HttpRequest();
-    req.setRequestUrl("/users/authentication");
-    req.setRequestMethod("PUT");
-    req.setRequestBody(param);
-    req.send();
-    System.out.println(req.getResponseStatusCode());
-    System.out.println(req.getResponseBody());
-
-    HashMap<?, ?> responseCookie = (HashMap<?, ?>) req.getResponseCookie();
-
-    HashMap<String, String> cookie = new HashMap<String, String>();
-    cookie.put("PHPSESSID", (String) responseCookie.get("PHPSESSID"));
-    System.out.println(cookie);
-
-    HttpRequest req2 = new HttpRequest();
-    req2.setRequestUrl("/kanban");
-    req2.setRequestMethod("GET");
-    req2.setRequestCookie(cookie);
-    boolean ret2 = req2.send();
-
-    System.out.println(ret2);
-    System.out.println("succeed?" + req2.isSucceed());
-    System.out.println(req2.getResponseStatusCode());
-    System.out.println("RES::" + req2.getResponseBody());
   }
 }

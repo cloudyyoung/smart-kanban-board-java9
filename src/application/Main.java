@@ -51,13 +51,7 @@ public class Main extends Application {
       // hierarchy>borderpane>stackpane>borderpane>stackpane>furthest vbox>visible
 
       FXMLLoader loader = new FXMLLoader();
-<<<<<<< HEAD
-      root = (BorderPane) loader.load(new FileInputStream("src\\application\\settingsPage.fxml"));
-=======
-      root =
-          (BorderPane)
-              loader.load(new FileInputStream("src\\application\\homePage(popuptest).fxml"));
->>>>>>> 644f546e0d5dc2932cf23a87ec7d75e598cc3e2c
+      root = (BorderPane) loader.load(new FileInputStream("src\\application\\loginPage.fxml"));
 
       // Set Window Size
       Scene scene = new Scene(root, 960, 660);
