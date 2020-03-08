@@ -266,6 +266,11 @@ public abstract class Node {
     this.remapIndex(id);
   }
 
+  public Node getNode(int id){
+    int index = this.index.get(id);
+    return this.nodes.get(index);
+  }
+
   /** @param startFrom */
   private void remapIndex(int startFrom) {
     int current = startFrom;
