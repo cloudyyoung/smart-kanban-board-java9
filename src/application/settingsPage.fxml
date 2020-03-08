@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-
-<BorderPane prefHeight="660.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="settingsPane" prefHeight="660.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.settingsPageController">
    <center>
       <StackPane BorderPane.alignment="CENTER">
          <children>
@@ -64,7 +63,7 @@
                                                 <Region layoutX="10.0" layoutY="33.0" prefHeight="5.0" />
                                                 <Pane id="pane-grow" scaleX="0.65" scaleY="0.65">
                                                    <children>
-                                                      <SVGPath id="icon" content="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#2f2e2e">
+                                                      <SVGPath id="icon" fx:id="searchClick" content="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#2f2e2e" onMouseClicked="#showSearchPop">
                                                          <HBox.margin>
                                                             <Insets left="30.0" />
                                                          </HBox.margin>
@@ -80,7 +79,7 @@
                                                 <Region prefHeight="5.0" />
                                              </children>
                                           </VBox>
-                                          <TextField id="search-text-field" prefWidth="174.0" text="Search">
+                                          <TextField id="search-text-field" fx:id="searchTextField" prefWidth="174.0" text="Search">
                                              <font>
                                                 <Font name="NexaLight" size="14.0" />
                                              </font>
@@ -106,7 +105,7 @@
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>
                                           </SVGPath>
-                                          <Label id="bold-list" text="Today" textFill="#2f2e2e">
+                                          <Label id="bold-list" fx:id="sideViewToday" onMouseClicked="#showHomePage1" text="Today" textFill="#2f2e2e">
                                              <font>
                                                 <Font name="NexaLight" size="14.0" />
                                              </font>
@@ -140,7 +139,7 @@
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
                                                 </Circle>
-                                                <Label id="light-list" text="Board" textFill="#2f2e2e">
+                                                <Label id="light-list" fx:id="sideViewBoard" text="Board" textFill="#2f2e2e">
                                                    <font>
                                                       <Font name="NexaLight" size="14.0" />
                                                    </font>
@@ -178,7 +177,7 @@
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
                                                 </Circle>
-                                                <Label id="light-list" text="Board" textFill="#2f2e2e">
+                                                <Label id="light-list" fx:id="sideViewBoard" text="Board" textFill="#2f2e2e">
                                                    <font>
                                                       <Font name="NexaLight" size="14.0" />
                                                    </font>
@@ -213,7 +212,7 @@
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
                                                 </Circle>
-                                                <Label id="light-list" text="Board" textFill="#2f2e2e">
+                                                <Label id="light-list" fx:id="sideViewBoard" text="Board" textFill="#2f2e2e">
                                                    <font>
                                                       <Font name="NexaLight" size="14.0" />
                                                    </font>
@@ -248,7 +247,7 @@
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
                                                 </Circle>
-                                                <Label id="light-list" text="Board" textFill="#2f2e2e">
+                                                <Label id="light-list" fx:id="sideViewBoard" text="Board" textFill="#2f2e2e">
                                                    <font>
                                                       <Font name="NexaLight" size="14.0" />
                                                    </font>
@@ -291,7 +290,7 @@
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>
                                           </SVGPath>
-                                          <Label id="light-list" text="Settings" textFill="#2f2e2e">
+                                          <Label id="light-list" fx:id="sideViewSettings" onMouseClicked="#showHomePage" text="Settings" textFill="#2f2e2e">
                                              <font>
                                                 <Font name="NexaBold" size="14.0" />
                                              </font>
@@ -547,7 +546,7 @@
                                                 </VBox>
                                                 <VBox alignment="CENTER_RIGHT" prefWidth="30.0">
                                                    <children>
-                                                      <TextField id="text-field-u" alignment="CENTER" prefHeight="20.0" prefWidth="30.0" promptText="0" VBox.vgrow="SOMETIMES">
+                                                      <TextField id="text-field-u" fx:id="availableM" alignment="CENTER" prefHeight="20.0" prefWidth="30.0" promptText="0" VBox.vgrow="SOMETIMES">
                                                          <font>
                                                             <Font name="NexaLight" size="12.0" />
                                                          </font>
@@ -573,7 +572,7 @@
                                                 </VBox>
                                                 <VBox alignment="CENTER_RIGHT" prefWidth="30.0">
                                                    <children>
-                                                      <TextField id="text-field-u" alignment="CENTER" prefHeight="20.0" prefWidth="30.0" promptText="0" VBox.vgrow="SOMETIMES">
+                                                      <TextField id="text-field-u" fx:id="availableT" alignment="CENTER" prefHeight="20.0" prefWidth="30.0" promptText="0" VBox.vgrow="SOMETIMES">
                                                          <font>
                                                             <Font name="NexaLight" size="12.0" />
                                                          </font>
@@ -598,7 +597,7 @@
                                                 </VBox>
                                                 <VBox alignment="CENTER_RIGHT" prefWidth="30.0">
                                                    <children>
-                                                      <TextField id="text-field-u" alignment="CENTER" prefHeight="20.0" prefWidth="30.0" promptText="0" VBox.vgrow="SOMETIMES">
+                                                      <TextField id="text-field-u" fx:id="availableW" alignment="CENTER" prefHeight="20.0" prefWidth="30.0" promptText="0" VBox.vgrow="SOMETIMES">
                                                          <font>
                                                             <Font name="NexaLight" size="12.0" />
                                                          </font>
@@ -623,7 +622,7 @@
                                                 </VBox>
                                                 <VBox alignment="CENTER_RIGHT" prefWidth="30.0">
                                                    <children>
-                                                      <TextField id="text-field-u" alignment="CENTER" prefHeight="20.0" prefWidth="30.0" promptText="0" VBox.vgrow="SOMETIMES">
+                                                      <TextField id="text-field-u" fx:id="availableR" alignment="CENTER" prefHeight="20.0" prefWidth="30.0" promptText="0" VBox.vgrow="SOMETIMES">
                                                          <font>
                                                             <Font name="NexaLight" size="12.0" />
                                                          </font>
@@ -648,7 +647,7 @@
                                                 </VBox>
                                                 <VBox alignment="CENTER_RIGHT" prefWidth="30.0">
                                                    <children>
-                                                      <TextField id="text-field-u" alignment="CENTER" prefHeight="20.0" prefWidth="30.0" promptText="0" VBox.vgrow="SOMETIMES">
+                                                      <TextField id="text-field-u" fx:id="availableF" alignment="CENTER" prefHeight="20.0" prefWidth="30.0" promptText="0" VBox.vgrow="SOMETIMES">
                                                          <font>
                                                             <Font name="NexaLight" size="12.0" />
                                                          </font>
@@ -673,7 +672,7 @@
                                                 </VBox>
                                                 <VBox alignment="CENTER_RIGHT" prefWidth="30.0">
                                                    <children>
-                                                      <TextField id="text-field-u" alignment="CENTER" prefHeight="20.0" prefWidth="30.0" promptText="0" VBox.vgrow="SOMETIMES">
+                                                      <TextField id="text-field-u" fx:id="availableS" alignment="CENTER" prefHeight="20.0" prefWidth="30.0" promptText="0" VBox.vgrow="SOMETIMES">
                                                          <font>
                                                             <Font name="NexaLight" size="12.0" />
                                                          </font>
@@ -698,7 +697,7 @@
                                                 </VBox>
                                                 <VBox alignment="CENTER_RIGHT" prefWidth="30.0">
                                                    <children>
-                                                      <TextField id="text-field-u" alignment="CENTER" prefHeight="20.0" prefWidth="30.0" promptText="0" VBox.vgrow="SOMETIMES">
+                                                      <TextField id="text-field-u" fx:id="availableU" alignment="CENTER" prefHeight="20.0" prefWidth="30.0" promptText="0" VBox.vgrow="SOMETIMES">
                                                          <font>
                                                             <Font name="NexaLight" size="12.0" />
                                                          </font>
@@ -738,7 +737,7 @@
                                                 </VBox>
                                                 <VBox alignment="CENTER_LEFT" layoutX="25.0" layoutY="10.0" prefHeight="20.0" prefWidth="20.0">
                                                    <children>
-                                                      <CheckBox alignment="CENTER_RIGHT" ellipsisString="0" graphicTextGap="0.0" mnemonicParsing="false" textAlignment="JUSTIFY">
+                                                      <CheckBox fx:id="darkModePicker" alignment="CENTER_RIGHT" ellipsisString="0" graphicTextGap="0.0" mnemonicParsing="false" textAlignment="JUSTIFY">
                                                          <VBox.margin>
                                                             <Insets />
                                                          </VBox.margin>
@@ -778,7 +777,7 @@
                                                 </VBox>
                                                 <VBox alignment="CENTER_RIGHT" prefWidth="156.0">
                                                    <children>
-                                                      <TextField id="text-field-ub" alignment="CENTER" prefHeight="20.0" prefWidth="156.0" promptText="type &quot;delete boards&quot;" VBox.vgrow="SOMETIMES">
+                                                      <TextField id="text-field-ub" fx:id="deleteAllBoards" alignment="CENTER" prefHeight="20.0" prefWidth="156.0" promptText="type &quot;delete boards&quot;" VBox.vgrow="SOMETIMES">
                                                          <font>
                                                             <Font name="NexaLight" size="12.0" />
                                                          </font>
@@ -814,7 +813,7 @@
                                                 </VBox>
                                                 <VBox alignment="CENTER_RIGHT" prefWidth="30.0">
                                                    <children>
-                                                      <ColorPicker scaleX="0.9" scaleY="0.9">
+                                                      <ColorPicker fx:id="iconColorPicker" scaleX="0.9" scaleY="0.9">
                                                          <cursor>
                                                             <Cursor fx:constant="HAND" />
                                                          </cursor>
@@ -836,7 +835,7 @@
                                                 </VBox>
                                                 <VBox alignment="CENTER_RIGHT" prefWidth="156.0">
                                                    <children>
-                                                      <TextField id="text-field-ub" alignment="CENTER" prefHeight="20.0" prefWidth="156.0" promptText="enter a new username" VBox.vgrow="SOMETIMES">
+                                                      <TextField id="text-field-ub" fx:id="changeUsernameIn" alignment="CENTER" onAction="#changeUsername" prefHeight="20.0" prefWidth="156.0" promptText="enter a new username" VBox.vgrow="SOMETIMES">
                                                          <font>
                                                             <Font name="NexaLight" size="12.0" />
                                                          </font>
@@ -861,7 +860,7 @@
                                                 </VBox>
                                                 <VBox alignment="CENTER_RIGHT" prefWidth="156.0">
                                                    <children>
-                                                      <TextField id="text-field-ub" alignment="CENTER" prefHeight="20.0" prefWidth="156.0" promptText="enter a new email" VBox.vgrow="SOMETIMES">
+                                                      <TextField id="text-field-ub" fx:id="changeEmailIn" alignment="CENTER" onAction="#changeEmail" prefHeight="20.0" prefWidth="156.0" promptText="enter a new email" VBox.vgrow="SOMETIMES">
                                                          <font>
                                                             <Font name="NexaLight" size="12.0" />
                                                          </font>
@@ -886,7 +885,7 @@
                                                 </VBox>
                                                 <VBox alignment="CENTER_RIGHT" prefWidth="156.0">
                                                    <children>
-                                                      <TextField id="text-field-ub" alignment="CENTER" prefHeight="20.0" prefWidth="156.0" promptText="enter a new password" VBox.vgrow="SOMETIMES">
+                                                      <TextField id="text-field-ub" fx:id="changePasswordIn" alignment="CENTER" onAction="#changePassword" prefHeight="20.0" prefWidth="156.0" promptText="enter a new password" VBox.vgrow="SOMETIMES">
                                                          <font>
                                                             <Font name="NexaLight" size="12.0" />
                                                          </font>
@@ -911,7 +910,7 @@
                            <children>
                               <StackPane id="card-sp-b">
                                  <children>
-                                    <Rectangle id="sc-btn" arcHeight="10.0" arcWidth="10.0" fill="#2f2e2e" height="29.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
+                                    <Rectangle id="sc-btn" fx:id="saveChangeBtn" arcHeight="10.0" arcWidth="10.0" fill="#2f2e2e" height="29.0" onMouseClicked="#saveSettingsChanges" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
                                     <Text id="bold" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Save Changes" StackPane.alignment="CENTER_LEFT">
                                        <font>
                                           <Font size="10.0" />
