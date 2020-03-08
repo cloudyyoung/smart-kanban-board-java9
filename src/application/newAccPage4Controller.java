@@ -9,19 +9,15 @@ import structure.*;
 
 public class newAccPage4Controller {
 
-    @FXML
-    private TextField motherBornField;
+  @FXML private TextField motherBornField;
 
-    @FXML
-    private TextField graduateField;
+  @FXML private TextField graduateField;
 
-    @FXML
-    private Label nextBtn;
+  @FXML private Label nextBtn;
 
-    @FXML
-    void handleNextBtn(MouseEvent event) {
-        String momBorn = motherBornField.getText();
-        String graduate = graduateField.getText();
-    }
-
+  @FXML
+  void handleNextBtn(MouseEvent event) {
+    String momBorn = motherBornField.getText();
+    String graduate = graduateField.getText();
+  }
 }

@@ -8,17 +8,14 @@ import structure.*;
 
 public class newAccPage1Controller {
 
-    @FXML
-    private TextField emailTextField;
+  @FXML private TextField emailTextField;
 
-    @FXML
-    private Label nextBtn;
+  @FXML private Label nextBtn;
 
-    @FXML
-    void handleNextClick(MouseEvent event) {
-        String email = emailTextField.getText();
-       // User user = new User();
-        //HttpRequest req = user.s
-    }
-
+  @FXML
+  void handleNextClick(MouseEvent event) {
+    String email = emailTextField.getText();
+    // User user = new User();
+    // HttpRequest req = user.s
+  }
 }
