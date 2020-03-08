@@ -80,7 +80,7 @@ public abstract class Node {
         if (objNew instanceof Node) {
           Node nodeNew = (Node) objNew;
           nodeNew.setParent(this);
-          this.nodes.add(nodeNew);
+          this.addNode(nodeNew);
         }
       } catch (Exception e) {
         // e.printStackTrace();
