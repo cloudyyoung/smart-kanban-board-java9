@@ -169,6 +169,7 @@ public class User {
       this.setId(res.getInt("id"));
       this.setSessionId((String) cookie.get("PHPSESSID"));
       this.authenticated = true;
+      User.current = this;
     }
     return req;
 
