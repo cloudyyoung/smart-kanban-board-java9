@@ -28,9 +28,32 @@ class HttpBody extends HashMap<Object, Object> {
     this.isList = isList;
   }
 
+  private Object parse(Object obj){
+    if(obj instanceof HttpBody){
+      return obj;
+    }else if(obj instanceof Map){
+      System.out.println("Map");
+      HttpBody body = new HttpBody();
+      for(Map.Entry<?, ?> each : ((Map<?, ?>)obj).entrySet()){
+        body.put(each.getKey(), this.parse(each.getValue()));
+      }
+      return body;
+    }else if(obj instanceof List){
+      System.out.println("List");
+      HttpBody body = new HttpBody(true);
+      for(Object each : (List<?>) obj){
+        body.put(this.parse(each));
+      }
+      return body;
+    }else{
+      return obj;
+    }
+  }
+
+
   private void list(Iterable<?> list){
     for(Object each : list){
-      this.put(this.size(), each);
+      this.put(this.size(), this.parse(each));
     }
   }
 
@@ -43,18 +66,18 @@ class HttpBody extends HashMap<Object, Object> {
   }
 
   @Override
-  public Object put(Object key, Object value) {
+  public HttpBody put(Object key, Object value) {
     if(this.isList){
-      super.put(this.size(), value);
+      super.put(this.size(), this.parse(value));
     }else{
-      super.put(key, value);
+      super.put(key, this.parse(value));
     }
     return this;
   }
 
-  public Object put(Object value){
+  public HttpBody put(Object value){
     if(this.isList){
-      this.put(this.size(), value);
+      this.put(this.size(), this.parse(value));
     }
     return this;
   }
@@ -66,7 +89,7 @@ class HttpBody extends HashMap<Object, Object> {
   }
 
   @Override
-  public Object remove(Object key){
+  public HttpBody remove(Object key){
     if(this.isList){
       Integer index = this.parseInt(key);
       if(index != null) super.remove(index); this.listReindex();
@@ -148,23 +171,30 @@ class HttpBody extends HashMap<Object, Object> {
   
 
   public static void main(String[] args) {
-    HashMap<String, String> param = new HashMap<String, String>();
-    param.put("username", "111");
-    param.put("password", "222");
-    HttpBody body = new HttpBody(param);
-    body.put("body", body);
-    System.out.println(body);
-    System.out.println(body.getInt("password2"));
-    System.out.println(body.hasKey("password"));
+    // HashMap<String, String> param = new HashMap<String, String>();
+    // param.put("username", "111");
+    // param.put("password", "222");
+    // HttpBody body = new HttpBody(param);
+    // body.put("body", body);
+    // System.out.println(body);
+    // System.out.println(body.getInt("password2"));
+    // System.out.println(body.hasKey("password"));
 
-    ArrayList<Object> list = new ArrayList<Object>();
-    list.add("111");
-    list.add("aaa");
-    list.add(787);
-    list.add("333");
-    list.add(body);
-    HttpBody bod2 = new HttpBody(list);
-    System.out.println(bod2);
+    // ArrayList<Object> list = new ArrayList<Object>();
+    // list.add("111");
+    // list.add("aaa");
+    // list.add(787);
+    // list.add("333");
+    // list.add(body);
+    // HttpBody bod2 = new HttpBody(list);
+    // System.out.println(bod2);
+
+    HttpBody bod3 = new HttpBody();
+    HttpBody bod4 = new HttpBody(true);
+    bod4.put(111).put(999);
+    bod3.put("obj", bod4);
+    System.out.println(bod3);
+    System.out.println(bod3.get("obj") instanceof HttpBody);
 
   }
 
