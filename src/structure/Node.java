@@ -53,6 +53,13 @@ public abstract class Node {
     this.setNote(note);
   }
 
+  public Node(){}
+
+  public Node(String title, String note){
+    this.setTitle(title);
+    this.setNote(note);
+  }
+
   public Node(HttpBody obj) {
     if (!this.getType().equals("Kanban")) {
       this.setId(obj.getInt("id"));
@@ -256,10 +263,22 @@ public abstract class Node {
    * @param aNode
    * @return
    */
-  public Node addNode(Node aNode) {
+  public Node addNodeLocal(Node aNode) {
     this.nodes.add(aNode);
     this.index.put(aNode.getId(), this.nodes.size() - 1);
     return aNode;
+  }
+
+  public HttpRequest addNode(Node aNode){
+    HttpRequest req = new HttpRequest();
+    req.setRequestUrl("/" + Node.typeLower(Node.typeSingular(aNode.getType())));
+    req.setRequestBody(aNode);
+    req.send();
+    System.out.println(req.getResponseBody());
+    if(req.isSucceed()){
+      this.addNodeLocal(aNode);
+    }
+    return req;
   }
 
   /**
@@ -341,4 +360,16 @@ public abstract class Node {
   public static String typeUpper(String type) {
     return type.toUpperCase();
   }
+
+  public static void main(String[] args){
+    User user = new User();
+    user.authenticate("cloudy", "cloudy");
+    System.out.println(user);
+    
+    Kanban kanban = new Kanban();
+    Board aNode = new Board("new Node cloudyyyyyy", "", "");
+    kanban.addNode(aNode);
+  }
+
+
 }

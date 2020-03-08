@@ -10,8 +10,8 @@ public class Board extends Node {
     this.color = obj.getString("color");
   }
 
-  public Board(int id, String title, String note, String color) {
-    super(id, title, note);
+  public Board(String title, String note, String color) {
+    super(title, note);
     this.color = color;
   }
 

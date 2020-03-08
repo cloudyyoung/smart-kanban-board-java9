@@ -7,4 +7,7 @@ public class Kanban extends Node {
   public Kanban(HttpBody obj) {
     super(obj);
   }
+
+  public Kanban(){}
+
 }
