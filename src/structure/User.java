@@ -135,7 +135,7 @@ public class User {
    *
    * @return boolean if user name and password are correct
    */
-  public boolean authenticate() {
+  public HttpRequest authenticate() {
     return this.authenticate(this.getUsername(), this.getPassword());
   }
 
@@ -146,7 +146,7 @@ public class User {
    * @param aUsername is the user's entered user name
    * @param aPassword is the user's entered password
    */
-  public boolean authenticate(String aUsername, String aPassword) {
+  public HttpRequest authenticate(String aUsername, String aPassword) {
     this.setUsername(aUsername);
     this.setPassword(aPassword);
 
@@ -164,30 +164,39 @@ public class User {
     // System.out.println(req.getResponseBody());
 
     if (req.isSucceed()) {
-      HashMap<?, ?> res = (HashMap<?, ?>) req.getResponseBody();
+      HttpBody res = req.getResponseBody();
       HashMap<?, ?> cookie = (HashMap<?, ?>) req.getResponseCookie();
-      this.setId(Integer.parseInt((String) res.get("id")));
-      // System.out.println(res);
+      this.setId(res.getInt("id"));
       this.setSessionId((String) cookie.get("PHPSESSID"));
       this.authenticated = true;
-
-      return true;
-    } else {
-      return false;
+      User.current = this;
     }
+    return req;
   }
 
-  public static boolean authentication(String username, String password) {
-    User user = new User();
-    boolean res = user.authenticate(username, password);
-    if (res) {
-      User.current = user;
+  public void fetchKanban() {
+    HashMap<String, String> cookie = new HashMap<String, String>();
+    cookie.put("PHPSESSID", this.getSessionId());
+
+    HttpRequest req2 = new HttpRequest();
+    req2.setRequestUrl("/kanban");
+    req2.setRequestMethod("GET");
+    req2.setRequestCookie(cookie);
+    boolean ret2 = req2.send();
+
+    if (ret2) {
+      Kanban.current = new Kanban(req2.getResponseBody());
+    } else {
+
     }
-    return res;
   }
 
   public static void main(String[] args) {
-    User.authentication("cloudy", "cloudy");
-    System.out.println(User.current);
+    User user = new User();
+    user.authenticate("cloudy", "cloudy");
+    System.out.println(user);
+
+    user.fetchKanban();
+    System.out.println(Kanban.current);
   }
 }

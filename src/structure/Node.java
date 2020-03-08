@@ -1,9 +1,10 @@
 package structure;
 
-import java.util.Map;
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
+import java.lang.reflect.Constructor;
 
 public abstract class Node {
 
@@ -14,11 +15,9 @@ public abstract class Node {
    */
   private int id;
 
-  private int parentId;
-  private int grandparentId;
+  private Node parent;
   private String title;
   private String note;
-  private String type;
   private ArrayList<Node> nodes = new ArrayList<Node>();
   private HashMap<Integer, Integer> index = new HashMap<Integer, Integer>();
 
@@ -30,12 +29,16 @@ public abstract class Node {
    * <p>this will also be used to assign type on lines 74-90 (getTypebyLevel method)
    */
   private final HashMap<String, Integer> TYPES =
-      (HashMap<String, Integer>)
-          Map.of(
-              "Kanban", 1,
-              "Board", 2,
-              "Column", 3,
-              "Event", 4);
+      new HashMap<String, Integer>() {
+        private static final long serialVersionUID = 3312582702053699017L;
+
+        {
+          put("Kanban", 0);
+          put("Board", 1);
+          put("Column", 2);
+          put("Event", 3);
+        }
+      };
 
   /**
    * constructor for node
@@ -48,18 +51,49 @@ public abstract class Node {
     this.id = id;
     this.title = title;
     this.note = note;
-    this.type = this.getClass().getName();
   }
 
-  /** default constructor for node */
-  public Node() {
-    this.type = this.getClass().getName();
+  public Node(HttpBody obj) {
+    if (!this.getType().equals("Kanban")) {
+      this.id = obj.getInt("id");
+      this.title = obj.getString("title");
+      this.note = obj.getString("note");
+    }
+    if (obj != null) {
+      this.extractChildrenNodes(obj);
+    }
+  }
+
+  private void extractChildrenNodes(HttpBody obj) {
+    String childType = Node.typeLower(Node.typePlural(this.getChildType()));
+    HttpBody value = obj.getList(childType);
+    if (value == null) {
+      return;
+    }
+    Collection<Object> list = value.values();
+    for (Object each2 : list) {
+      try {
+        String type = Node.typeClass(childType);
+        Class<?> cls = Class.forName(type);
+        Constructor<?> constructor = cls.getConstructor(HttpBody.class);
+        Object objNew = constructor.newInstance(each2);
+        if (objNew instanceof Node) {
+          Node nodeNew = (Node) objNew;
+          nodeNew.setParent(this);
+          this.nodes.add(nodeNew);
+        }
+      } catch (Exception e) {
+        // e.printStackTrace();
+        // e.getCause();
+        // fail silently
+      }
+    }
   }
 
   /**
    * assigns type using the hashmap above
    *
-   * @see lines 34 - 40
+   * @see lines 34 - 44
    * @param type as a string
    * @param level as an int
    * @return ret as a string which again can vary depending on the hashmap above
@@ -97,17 +131,8 @@ public abstract class Node {
    *
    * @return the parentId as an int
    */
-  public int getParentId() {
-    return this.parentId;
-  }
-
-  /**
-   * gets the grandparentsId
-   *
-   * @return the grandparentsId as an int
-   */
-  public int getGrandparentId() {
-    return this.grandparentId;
+  public Node getParent() {
+    return this.parent;
   }
 
   /**
@@ -124,17 +149,8 @@ public abstract class Node {
    *
    * @param aParentId as an int
    */
-  public void setParentId(int aParentId) {
-    this.parentId = aParentId;
-  }
-
-  /**
-   * sets the grand parent id
-   *
-   * @param aGrandparentId as an int
-   */
-  public void setGrandparentId(int aGrandparentId) {
-    this.grandparentId = aGrandparentId;
+  public void setParent(Node aParent) {
+    this.parent = aParent;
   }
 
   /**
@@ -161,7 +177,7 @@ public abstract class Node {
    * @return the objects current type
    */
   public String getParentType() {
-    return this.getParentType(this.type);
+    return this.getParentType(this.getType());
   }
 
   /**
@@ -188,7 +204,7 @@ public abstract class Node {
 
   /** @return */
   public String getChildType() {
-    return this.getChildType(this.type);
+    return this.getChildType(this.getType());
   }
 
   /**
@@ -196,7 +212,7 @@ public abstract class Node {
    * @return
    */
   public String getChildType(String aType) {
-    return this.getChildType(aType);
+    return this.getChildType(aType, 1);
   }
 
   /**
@@ -214,7 +230,16 @@ public abstract class Node {
    * @return the id, title and note as a combined string
    */
   public String toString() {
-    return "Node (id: " + this.id + ", title: " + this.title + ", note: " + this.note + ")";
+    return this.getType()
+        + " {id: "
+        + this.id
+        + ", title: \""
+        + this.title
+        + "\", note: \""
+        + this.note
+        + "\", nodes: "
+        + this.nodes.toString()
+        + "\"}";
   }
 
   /**
@@ -248,5 +273,34 @@ public abstract class Node {
       this.index.replace(each.getId(), current);
       current++;
     }
+  }
+
+  public String getType() {
+    String str = this.getClass().getName();
+    return str.substring(str.lastIndexOf(".") + 1);
+  }
+
+  public static String typeClass(String type) {
+    return "structure." + Node.typeProper(Node.typeSingular(type));
+  }
+
+  public static String typePlural(String type) {
+    return type.endsWith("s") || type.length() <= 0 ? type : type + "s";
+  }
+
+  public static String typeSingular(String type) {
+    return type.endsWith("s") && type.length() > 0 ? type.substring(0, type.length() - 1) : type;
+  }
+
+  public static String typeProper(String type) {
+    return type.substring(0, 1).toUpperCase() + type.toLowerCase().substring(1);
+  }
+
+  public static String typeLower(String type) {
+    return type.toLowerCase();
+  }
+
+  public static String typeUpper(String type) {
+    return type.toUpperCase();
   }
 }
