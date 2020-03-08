@@ -172,7 +172,6 @@ public class User {
       User.current = this;
     }
     return req;
-
   }
 
   public void fetchKanban() {
