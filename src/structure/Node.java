@@ -261,38 +261,37 @@ public abstract class Node {
    * @return if node is successfully removed
    */
   public boolean removeNode(int id) {
-    try{
+    try {
       int index = this.index.get(id);
       this.index.remove(id);
       this.nodes.remove(index);
       this.remapIndex(id);
       return true;
-    }catch(Throwable e){
+    } catch (Throwable e) {
       return false;
     }
   }
 
-  public Node getNode(int id){
-    try{
+  public Node getNode(int id) {
+    try {
       int index = this.index.get(id);
       return this.nodes.get(index);
-    }catch(Throwable e){
+    } catch (Throwable e) {
       return null;
     }
   }
 
   /**
-   * 
    * @param node
    * @return updated Node, return null if fail to update
    */
-  public Node setNode(Node node){
-    try{
+  public Node setNode(Node node) {
+    try {
       int id = node.getId();
       int index = this.index.get(id);
       this.nodes.set(index, node);
       return node;
-    }catch(Throwable e){
+    } catch (Throwable e) {
       return null;
     }
   }
