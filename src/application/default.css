@@ -243,3 +243,50 @@
   -fx-scale-y: 1.05;
   -fx-font-size: 10px;
 }
+
+/* Set PopUp Style*/
+
+#shade {
+  -fx-fill: #ffffff;
+}
+
+#popup-medium {
+  -fx-font-family: 'Noto Sans JP Bold';
+  -fx-text-fill: #ffffff;
+}
+
+#popup-bold {
+  -fx-font-family: 'Noto Sans JP Bold';
+  -fx-text-fill: #ffffff;
+}
+
+#pop-up-text-field {
+  -fx-border-color: #ffffff;
+  -fx-border-width: 0 0 1 0; 
+  -fx-background-color: transparent;
+  -fx-font-family: 'Noto Sans JP Regular';
+  -fx-font-size: 12px;
+  -fx-text-fill: #ffffff;
+  -fx-prompt-text-fill: #ffffff;
+}
+
+#popup-icon {
+  -fx-fill: #ffffff;
+}
+
+#popup-btn {
+  -fx-font-family: "Noto Sans JP Regular";
+  -fx-font-size: 27px;
+  -fx-fill: #ffffff;
+} 
+
+#popup-btn:hover {
+  -fx-font-family: "Noto Sans JP Bold";
+  -fx-font-size: 27px;
+  -fx-fill: #ffffff;
+} 
+
+#popup-close:hover {
+  -fx-scale-x: 1.1;
+  -fx-scale-y: 1.1;
+}

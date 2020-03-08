@@ -29,12 +29,19 @@ public class Main extends Application {
       // PANES:
       // loadingPage.fxml
       // loginPage.fxml
-      // newaccPage.fxml
+      // forgotPage-1.fxml
+      // forgotPage-2.fxml
+      // newaccPage-1.fxml
+      // newaccPage-2.fxml
+      // newaccPage-3.fxml
+      // newaccPage-4.fxml
       // homePage.fxml
+      // homePage-newboard.fxml
+      // homePage-newtask.fxml
       // settingsPage.fxml
 
       FXMLLoader loader = new FXMLLoader();
-      root = (BorderPane) loader.load(new FileInputStream("src/application/settingsPage.fxml"));
+      root = (BorderPane) loader.load(new FileInputStream("src\\application\\homePage(popuptest).fxml"));
 
       // Set Window Size
       Scene scene = new Scene(root, 960, 660);

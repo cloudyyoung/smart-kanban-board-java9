@@ -12,13 +12,8 @@
 
 
 /* Set Global Style */
-#bg {
+#bg, #bg-i {
   -fx-background-color: #0A0A0A;
-}
-
-#bg-i {
-  -fx-background-color: #0A0A0A;
-  -fx-opacity: 0.99;
 }
 
 #text-field-u, #text-field-ub {
@@ -60,4 +55,11 @@
 #sc-btn {
   -fx-fill: #0A0A0A;
   -fx-stroke: #ffffff;
+  -fx-stroke-width: 1;
+}
+
+
+/* Set Popup Style*/
+#shade {
+  -fx-fill: #000000;
 }

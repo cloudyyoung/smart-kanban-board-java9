@@ -14,253 +14,6 @@
    <center>
       <StackPane BorderPane.alignment="CENTER">
          <children>
-            <StackPane prefHeight="150.0" prefWidth="200.0">
-               <children>
-                  <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#ab50bd" height="360.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="360.0" />
-                  <VBox alignment="CENTER" prefHeight="260.0" prefWidth="100.0">
-                     <children>
-                        <Region prefHeight="10.0" prefWidth="200.0" />
-                        <HBox alignment="CENTER" prefWidth="965.0">
-                           <children>
-                              <Region prefWidth="290.0">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </Region>
-                              <Pane id="popup-close" layoutX="5.0" layoutY="5.0" nodeOrientation="RIGHT_TO_LEFT">
-                                 <children>
-                                    <SVGPath id="popup-close-icon" content="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="WHITE" layoutY="3.0" scaleX="0.8" scaleY="0.8">
-                                       <HBox.margin>
-                                          <Insets top="3.0" />
-                                       </HBox.margin>
-                                    </SVGPath>
-                                 </children>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Pane>
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER">
-                           <children>
-                              <Label id="popup-medium" text="New Board" textFill="WHITE">
-                                 <font>
-                                    <Font name="NexaBold" size="27.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefWidth="360.0">
-                           <children>
-                              <VBox alignment="CENTER" prefHeight="223.0" prefWidth="360.0">
-                                 <children>
-                                    <HBox alignment="CENTER" prefWidth="380.0">
-                                       <children>
-                                          <Label id="popup-bold" prefWidth="125.0" text="Title" textFill="WHITE">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <TextField id="pop-up-text-field" alignment="CENTER" prefWidth="170.0" promptText="set title">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </TextField>
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="98.0" prefWidth="380.0">
-                                       <children>
-                                          <Label id="popup-bold" prefWidth="125.0" text="Description" textFill="WHITE">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <TextField id="pop-up-text-field" alignment="CENTER" prefWidth="170.0" promptText="set description">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </TextField>
-                                       </children>
-                                       <VBox.margin>
-                                          <Insets top="8.0" />
-                                       </VBox.margin>
-                                    </HBox>
-                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="112.0" prefWidth="380.0">
-                                       <children>
-                                          <Label id="popup-bold" prefWidth="125.0" text="Priority" textFill="WHITE">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <TextField id="pop-up-text-field" alignment="CENTER" prefWidth="170.0" promptText="set priority">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </TextField>
-                                       </children>
-                                       <VBox.margin>
-                                          <Insets top="8.0" />
-                                       </VBox.margin>
-                                    </HBox>
-                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="127.0" prefWidth="380.0">
-                                       <children>
-                                          <Label id="popup-bold" prefWidth="255.0" text="Color" textFill="WHITE">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <ColorPicker prefWidth="30.0" />
-                                       </children>
-                                       <VBox.margin>
-                                          <Insets top="8.0" />
-                                       </VBox.margin>
-                                    </HBox>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </HBox>
-                        <Label id="popup-btn" alignment="CENTER" text="Create &gt;" textFill="WHITE">
-                           <font>
-                              <Font name="NexaBold" size="27.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Label>
-                        <Region prefHeight="27.0" prefWidth="965.0" />
-                     </children>
-                     <StackPane.margin>
-                        <Insets top="10.0" />
-                     </StackPane.margin>
-                  </VBox>
-               </children>
-            </StackPane>
-            <StackPane layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0">
-               <children>
-                  <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#5277b7" height="360.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="360.0" />
-                  <VBox alignment="CENTER" prefHeight="260.0" prefWidth="100.0">
-                     <children>
-                        <Region prefHeight="10.0" prefWidth="200.0" />
-                        <HBox alignment="CENTER" prefWidth="965.0">
-                           <children>
-                              <Region prefWidth="290.0">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </Region>
-                              <Pane id="popup-close" layoutX="5.0" layoutY="5.0" nodeOrientation="RIGHT_TO_LEFT">
-                                 <children>
-                                    <SVGPath id="popup-close-icon" content="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="WHITE" layoutY="3.0" scaleX="0.8" scaleY="0.8">
-                                       <HBox.margin>
-                                          <Insets top="3.0" />
-                                       </HBox.margin>
-                                    </SVGPath>
-                                 </children>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Pane>
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER">
-                           <children>
-                              <Label id="popup-medium" text="New Task" textFill="WHITE">
-                                 <font>
-                                    <Font name="NexaBold" size="27.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefWidth="360.0">
-                           <children>
-                              <VBox alignment="CENTER" prefHeight="223.0" prefWidth="360.0">
-                                 <children>
-                                    <HBox alignment="CENTER" prefWidth="380.0">
-                                       <children>
-                                          <Label id="popup-bold" prefWidth="125.0" text="Title" textFill="WHITE">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <TextField id="pop-up-text-field" alignment="CENTER" prefWidth="170.0" promptText="set title">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </TextField>
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="98.0" prefWidth="380.0">
-                                       <children>
-                                          <Label id="popup-bold" prefWidth="125.0" text="Board" textFill="WHITE">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <TextField id="pop-up-text-field" alignment="CENTER" prefWidth="170.0" promptText="set board">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </TextField>
-                                       </children>
-                                       <VBox.margin>
-                                          <Insets top="8.0" />
-                                       </VBox.margin>
-                                    </HBox>
-                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="112.0" prefWidth="380.0">
-                                       <children>
-                                          <Label id="popup-bold" prefWidth="125.0" text="Time Required" textFill="WHITE">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <TextField id="pop-up-text-field" alignment="CENTER" prefWidth="170.0" promptText="set time">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </TextField>
-                                       </children>
-                                       <VBox.margin>
-                                          <Insets top="8.0" />
-                                       </VBox.margin>
-                                    </HBox>
-                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="145.0" prefWidth="380.0">
-                                       <children>
-                                          <Label id="popup-bold" prefWidth="125.0" text="Category" textFill="WHITE">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <TextField id="pop-up-text-field" alignment="CENTER" prefWidth="170.0" promptText="set category">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </TextField>
-                                       </children>
-                                       <VBox.margin>
-                                          <Insets top="8.0" />
-                                       </VBox.margin>
-                                    </HBox>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </HBox>
-                        <Label id="popup-btn" alignment="CENTER" text="Create &gt;" textFill="WHITE">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <font>
-                              <Font name="NexaBold" size="27.0" />
-                           </font>
-                        </Label>
-                        <Region prefHeight="27.0" prefWidth="965.0" />
-                     </children>
-                     <StackPane.margin>
-                        <Insets top="10.0" />
-                     </StackPane.margin>
-                  </VBox>
-               </children>
-            </StackPane>
-            <Rectangle id="shade" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="660.0" stroke="BLACK" strokeType="INSIDE" width="965.0" />
             <BorderPane>
                <left>
                   <VBox id="bg-i" prefHeight="660.0" prefWidth="226.0" BorderPane.alignment="CENTER">
@@ -1166,6 +919,253 @@
                   </VBox>
                </center>
             </BorderPane>
+            <Rectangle id="shade" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="660.0" opacity="0.65" stroke="BLACK" strokeType="INSIDE" width="965.0" />
+            <StackPane layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0">
+               <children>
+                  <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#5277b7" height="360.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="360.0" />
+                  <VBox alignment="CENTER" prefHeight="260.0" prefWidth="100.0">
+                     <children>
+                        <Region prefHeight="10.0" prefWidth="200.0" />
+                        <HBox alignment="CENTER" prefWidth="965.0">
+                           <children>
+                              <Region prefWidth="290.0">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Region>
+                              <Pane id="popup-close" layoutX="5.0" layoutY="5.0" nodeOrientation="RIGHT_TO_LEFT">
+                                 <children>
+                                    <SVGPath id="popup-close-icon" content="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="WHITE" layoutY="3.0" scaleX="0.8" scaleY="0.8">
+                                       <HBox.margin>
+                                          <Insets top="3.0" />
+                                       </HBox.margin>
+                                    </SVGPath>
+                                 </children>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Pane>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER">
+                           <children>
+                              <Label id="popup-medium" text="New Task" textFill="WHITE">
+                                 <font>
+                                    <Font name="NexaBold" size="27.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefWidth="360.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="223.0" prefWidth="360.0">
+                                 <children>
+                                    <HBox alignment="CENTER" prefWidth="380.0">
+                                       <children>
+                                          <Label id="popup-bold" prefWidth="125.0" text="Title" textFill="WHITE">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField id="pop-up-text-field" alignment="CENTER" prefWidth="170.0" promptText="set title">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="98.0" prefWidth="380.0">
+                                       <children>
+                                          <Label id="popup-bold" prefWidth="125.0" text="Board" textFill="WHITE">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField id="pop-up-text-field" alignment="CENTER" prefWidth="170.0" promptText="set board">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="8.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="112.0" prefWidth="380.0">
+                                       <children>
+                                          <Label id="popup-bold" prefWidth="125.0" text="Time Required" textFill="WHITE">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField id="pop-up-text-field" alignment="CENTER" prefWidth="170.0" promptText="set time">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="8.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="145.0" prefWidth="380.0">
+                                       <children>
+                                          <Label id="popup-bold" prefWidth="125.0" text="Category" textFill="WHITE">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField id="pop-up-text-field" alignment="CENTER" prefWidth="170.0" promptText="set category">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="8.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <Label id="popup-btn" alignment="CENTER" text="Create &gt;" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font name="NexaBold" size="27.0" />
+                           </font>
+                        </Label>
+                        <Region prefHeight="27.0" prefWidth="965.0" />
+                     </children>
+                     <StackPane.margin>
+                        <Insets top="10.0" />
+                     </StackPane.margin>
+                  </VBox>
+               </children>
+            </StackPane>
+            <StackPane prefHeight="150.0" prefWidth="200.0">
+               <children>
+                  <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#ab50bd" height="360.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="360.0" />
+                  <VBox alignment="CENTER" prefHeight="260.0" prefWidth="100.0">
+                     <children>
+                        <Region prefHeight="10.0" prefWidth="200.0" />
+                        <HBox alignment="CENTER" prefWidth="965.0">
+                           <children>
+                              <Region prefWidth="290.0">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Region>
+                              <Pane id="popup-close" layoutX="5.0" layoutY="5.0" nodeOrientation="RIGHT_TO_LEFT">
+                                 <children>
+                                    <SVGPath id="popup-close-icon" content="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="WHITE" layoutY="3.0" scaleX="0.8" scaleY="0.8">
+                                       <HBox.margin>
+                                          <Insets top="3.0" />
+                                       </HBox.margin>
+                                    </SVGPath>
+                                 </children>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Pane>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER">
+                           <children>
+                              <Label id="popup-medium" text="New Board" textFill="WHITE">
+                                 <font>
+                                    <Font name="NexaBold" size="27.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefWidth="360.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="223.0" prefWidth="360.0">
+                                 <children>
+                                    <HBox alignment="CENTER" prefWidth="380.0">
+                                       <children>
+                                          <Label id="popup-bold" prefWidth="125.0" text="Title" textFill="WHITE">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField id="pop-up-text-field" alignment="CENTER" prefWidth="170.0" promptText="set title">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="98.0" prefWidth="380.0">
+                                       <children>
+                                          <Label id="popup-bold" prefWidth="125.0" text="Description" textFill="WHITE">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField id="pop-up-text-field" alignment="CENTER" prefWidth="170.0" promptText="set description">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="8.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="112.0" prefWidth="380.0">
+                                       <children>
+                                          <Label id="popup-bold" prefWidth="125.0" text="Priority" textFill="WHITE">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField id="pop-up-text-field" alignment="CENTER" prefWidth="170.0" promptText="set priority">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </TextField>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="8.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="127.0" prefWidth="380.0">
+                                       <children>
+                                          <Label id="popup-bold" prefWidth="255.0" text="Color" textFill="WHITE">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <ColorPicker prefWidth="30.0" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="8.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <Label id="popup-btn" alignment="CENTER" text="Create &gt;" textFill="WHITE">
+                           <font>
+                              <Font name="NexaBold" size="27.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Label>
+                        <Region prefHeight="27.0" prefWidth="965.0" />
+                     </children>
+                     <StackPane.margin>
+                        <Insets top="10.0" />
+                     </StackPane.margin>
+                  </VBox>
+               </children>
+            </StackPane>
          </children>
       </StackPane>
    </center>
