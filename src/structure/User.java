@@ -135,7 +135,7 @@ public class User {
    *
    * @return boolean if user name and password are correct
    */
-  public boolean authenticate() {
+  public HttpRequest authenticate() {
     return this.authenticate(this.getUsername(), this.getPassword());
   }
 
@@ -146,7 +146,7 @@ public class User {
    * @param aUsername is the user's entered user name
    * @param aPassword is the user's entered password
    */
-  public boolean authenticate(String aUsername, String aPassword) {
+  public HttpRequest authenticate(String aUsername, String aPassword) {
     this.setUsername(aUsername);
     this.setPassword(aPassword);
 
@@ -169,11 +169,9 @@ public class User {
       this.setId(res.getInt("id"));
       this.setSessionId((String) cookie.get("PHPSESSID"));
       this.authenticated = true;
-
-      return true;
-    } else {
-      return false;
     }
+    return req;
+
   }
 
   public void fetchKanban() {
@@ -191,15 +189,6 @@ public class User {
     } else {
 
     }
-  }
-
-  public static boolean authentication(String username, String password) {
-    User user = new User();
-    boolean res = user.authenticate(username, password);
-    if (res) {
-      User.current = user;
-    }
-    return res;
   }
 
   public static void main(String[] args) {

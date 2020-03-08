@@ -77,7 +77,9 @@ public class Terminal {
 
         // REMOVE FOR AUTH
         // authenticated = true;
-        authenticated = User.authentication(username, password);
+        User user = new User();
+        HttpRequest req = user.authenticate(username, password);
+        authenticated = req.isSucceed();
       }
     }
 
