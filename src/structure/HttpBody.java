@@ -15,7 +15,7 @@ class HttpBody extends HashMap<Object, Object> {
   public HttpBody() {}
 
   public HttpBody(Map<?, ?> toCopy) {
-    super(toCopy);
+    this.map(toCopy);
   }
 
   public HttpBody(List<?> toCopy) {
@@ -31,14 +31,12 @@ class HttpBody extends HashMap<Object, Object> {
     if(obj instanceof HttpBody){
       return obj;
     }else if(obj instanceof Map){
-      System.out.println("Map");
       HttpBody body = new HttpBody();
       for(Map.Entry<?, ?> each : ((Map<?, ?>)obj).entrySet()){
         body.put(each.getKey(), this.parse(each.getValue()));
       }
       return body;
     }else if(obj instanceof List){
-      System.out.println("List");
       HttpBody body = new HttpBody(true);
       for(Object each : (List<?>) obj){
         body.put(this.parse(each));
@@ -49,6 +47,11 @@ class HttpBody extends HashMap<Object, Object> {
     }
   }
 
+  private void map(Map<?, ?> map){
+    for(Map.Entry<?, ?> each : map.entrySet()){
+      this.put(each.getKey(), this.parse(each.getValue()));
+    }
+  }
 
   private void list(Iterable<?> list){
     for(Object each : list){
@@ -134,6 +137,19 @@ class HttpBody extends HashMap<Object, Object> {
 
   public String getString(Object key) {
     return this.parseString(this.get(key));
+  }
+
+  public HttpBody getMap(Object key){
+    return (HttpBody) this.get(key);
+  }
+
+  public HttpBody getList(Object key){
+    if(this.getMap(key) == null || !this.getMap(key).isList()) return null;
+    return this.getMap(key);
+  }
+
+  public boolean isList(){
+    return this.isList;
   }
 
   private Integer parseInt(Object obj) {
