@@ -1,6 +1,5 @@
 package structure;
 
-import java.util.HashMap;
 
 public class Kanban extends Node {
 
@@ -9,5 +8,4 @@ public class Kanban extends Node {
   public Kanban(HttpBody obj) {
     super(obj);
   }
-
 }

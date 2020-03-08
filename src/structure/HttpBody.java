@@ -29,13 +29,13 @@ class HttpBody extends HashMap<Object, Object> {
   private Object parse(Object obj) {
     if (obj instanceof HttpBody) {
       return obj;
-    }else if(obj instanceof Map){
+    } else if (obj instanceof Map) {
       HttpBody body = new HttpBody();
       for (Map.Entry<?, ?> each : ((Map<?, ?>) obj).entrySet()) {
         body.put(each.getKey(), this.parse(each.getValue()));
       }
       return body;
-    }else if(obj instanceof List){
+    } else if (obj instanceof List) {
       HttpBody body = new HttpBody(true);
       for (Object each : (List<?>) obj) {
         body.put(this.parse(each));
@@ -46,14 +46,14 @@ class HttpBody extends HashMap<Object, Object> {
     }
   }
 
-  private void map(Map<?, ?> map){
-    for(Map.Entry<?, ?> each : map.entrySet()){
+  private void map(Map<?, ?> map) {
+    for (Map.Entry<?, ?> each : map.entrySet()) {
       this.put(each.getKey(), this.parse(each.getValue()));
     }
   }
 
-  private void list(Iterable<?> list){
-    for(Object each : list){
+  private void list(Iterable<?> list) {
+    for (Object each : list) {
       this.put(this.size(), this.parse(each));
     }
   }
@@ -138,16 +138,16 @@ class HttpBody extends HashMap<Object, Object> {
     return this.parseString(this.get(key));
   }
 
-  public HttpBody getMap(Object key){
+  public HttpBody getMap(Object key) {
     return (HttpBody) this.get(key);
   }
 
-  public HttpBody getList(Object key){
-    if(this.getMap(key) == null || !this.getMap(key).isList()) return null;
+  public HttpBody getList(Object key) {
+    if (this.getMap(key) == null || !this.getMap(key).isList()) return null;
     return this.getMap(key);
   }
 
-  public boolean isList(){
+  public boolean isList() {
     return this.isList;
   }
 

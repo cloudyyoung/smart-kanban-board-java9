@@ -125,11 +125,11 @@ public class HttpRequest {
    * @return request body in Map
    */
   public HttpBody getRequestBody() {
-    if(this.requestBody instanceof JSONObject){
+    if (this.requestBody instanceof JSONObject) {
       return new HttpBody((JSONObject) this.requestBody);
-    }else if(this.requestBody instanceof JSONArray){
+    } else if (this.requestBody instanceof JSONArray) {
       return new HttpBody((JSONArray) this.requestBody);
-    }else{
+    } else {
       return null;
     }
   }
@@ -246,11 +246,11 @@ public class HttpRequest {
   //   return (Map<?, ?>) this.jsonObjectToObject(this.responseBody);
   // }
   public HttpBody getResponseBody() {
-    if(this.responseBody instanceof JSONObject){
+    if (this.responseBody instanceof JSONObject) {
       return new HttpBody((JSONObject) this.responseBody);
-    }else if(this.responseBody instanceof JSONArray){
+    } else if (this.responseBody instanceof JSONArray) {
       return new HttpBody((JSONArray) this.responseBody);
-    }else{
+    } else {
       return null;
     }
   }
@@ -558,5 +558,4 @@ public class HttpRequest {
 
     return true;
   }
-
 }
