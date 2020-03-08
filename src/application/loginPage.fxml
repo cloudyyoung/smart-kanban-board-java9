@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="660.0" maxWidth="960.0" minHeight="660.0" minWidth="960.0" prefHeight="660.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="660.0" maxWidth="960.0" minHeight="660.0" minWidth="960.0" prefHeight="660.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.loginPageController">
    <center>
       <VBox id="bg" prefHeight="600.0" prefWidth="960.0" BorderPane.alignment="CENTER">
          <children>
@@ -54,7 +57,7 @@
                               <Insets right="1.0" />
                            </HBox.margin>
                         </SVGPath>
-                        <TextField prefWidth="253.0" promptText="Username">
+                        <TextField fx:id="userNameField" prefWidth="253.0" promptText="Username">
                            <font>
                               <Font name="NexaLight" size="14.0" />
                            </font>
@@ -72,7 +75,7 @@
                               <Insets right="1.0" />
                            </HBox.margin>
                         </SVGPath>
-                        <TextField prefHeight="25.0" prefWidth="253.0" promptText="Password">
+                        <TextField fx:id="passwordField" prefHeight="25.0" prefWidth="253.0" promptText="Password">
                            <font>
                               <Font name="NexaLight" size="14.0" />
                            </font>
@@ -103,7 +106,7 @@
                   <Region layoutX="839.0" layoutY="10.0" prefHeight="200.0" prefWidth="335.0" />
                   <VBox alignment="CENTER_RIGHT">
                      <children>
-                        <Label id="loginPg-btn-2" text="Sign In" textAlignment="RIGHT">
+                        <Label id="loginPg-btn-2" fx:id="signInBtn" onMouseClicked="#handleSignIn" text="Sign In" textAlignment="RIGHT">
                            <font>
                               <Font name="NexaBold" size="20.0" />
                            </font>
@@ -114,7 +117,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Label>
-                        <Label id="loginPg-btn-2" alignment="CENTER_RIGHT" text="Create Account" textAlignment="RIGHT">
+                        <Label id="loginPg-btn-2" fx:id="createAccBtn" alignment="CENTER_RIGHT" onMouseClicked="#handleCreatAcc" text="Create Account" textAlignment="RIGHT">
                            <font>
                               <Font name="NexaBold" size="20.0" />
                            </font>
