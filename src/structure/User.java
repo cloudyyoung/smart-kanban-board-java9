@@ -171,7 +171,6 @@ public class User {
       this.authenticated = true;
     }
     return req;
-
   }
 
   public void fetchKanban() {
