@@ -6,7 +6,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.lang.reflect.Constructor;
 
-@SuppressWarnings("unchecked")
 public abstract class Node {
 
   /**

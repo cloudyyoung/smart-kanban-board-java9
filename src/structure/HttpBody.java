@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
-@SuppressWarnings("unchecked")
 class HttpBody extends HashMap<Object, Object> {
 
   private static final long serialVersionUID = 795022394347180417L;
