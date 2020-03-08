@@ -12,30 +12,29 @@ class HttpBody extends HashMap<Object, Object> {
   private static final long serialVersionUID = 795022394347180417L;
   private boolean isList = false;
 
-  public HttpBody() {
-  }
-  
+  public HttpBody() {}
+
   public HttpBody(Map<?, ?> toCopy) {
     super(toCopy);
   }
 
-  public HttpBody(List<?> toCopy){
+  public HttpBody(List<?> toCopy) {
     this.list(toCopy);
     this.isList = true;
   }
 
-  public HttpBody(boolean isList){
+  public HttpBody(boolean isList) {
     this.isList = isList;
   }
 
-  private void list(Iterable<?> list){
-    for(Object each : list){
+  private void list(Iterable<?> list) {
+    for (Object each : list) {
       this.put(this.size(), each);
     }
   }
 
-  private void listReindex(){
-    if(this.isList){
+  private void listReindex() {
+    if (this.isList) {
       Collection<Object> collect = this.values();
       this.clear();
       this.list(collect);
@@ -44,21 +43,20 @@ class HttpBody extends HashMap<Object, Object> {
 
   @Override
   public Object put(Object key, Object value) {
-    if(this.isList){
+    if (this.isList) {
       super.put(this.size(), value);
-    }else{
+    } else {
       super.put(key, value);
     }
     return this;
   }
 
-  public Object put(Object value){
-    if(this.isList){
+  public Object put(Object value) {
+    if (this.isList) {
       this.put(this.size(), value);
     }
     return this;
   }
-  
 
   @Override
   public Object get(Object key) {
@@ -66,44 +64,43 @@ class HttpBody extends HashMap<Object, Object> {
   }
 
   @Override
-  public Object remove(Object key){
-    if(this.isList){
+  public Object remove(Object key) {
+    if (this.isList) {
       Integer index = this.parseInt(key);
-      if(index != null) super.remove(index); this.listReindex();
-    }else{
+      if (index != null) super.remove(index);
+      this.listReindex();
+    } else {
       super.remove(key);
     }
     return this;
   }
 
   @Override
-  public boolean remove(Object key, Object value){
-    if(this.isList){
+  public boolean remove(Object key, Object value) {
+    if (this.isList) {
       Object index = this.parseInt(key);
-      if(index != null){
+      if (index != null) {
         super.remove(index, value);
         this.listReindex();
         return true;
-      }else{
+      } else {
         return false;
       }
-    }else{
+    } else {
       return super.remove(key, value);
     }
   }
 
-
   // Syntactic sugar
-  public boolean hasValue(Object value){
+  public boolean hasValue(Object value) {
     return super.containsValue(value);
   }
 
   // Syntactic sugar
-  public boolean hasKey(Object key){
+  public boolean hasKey(Object key) {
     return super.containsKey(key);
   }
 
-  
   public Integer getInt(Object key) {
     return this.parseInt(this.get(key));
   }
@@ -136,16 +133,13 @@ class HttpBody extends HashMap<Object, Object> {
     }
   }
 
-  public String toString(){
-    if(this.isList){
+  public String toString() {
+    if (this.isList) {
       return this.values().toString();
-    }else{
+    } else {
       return super.toString();
     }
   }
-
-
-  
 
   public static void main(String[] args) {
     HashMap<String, String> param = new HashMap<String, String>();
@@ -165,8 +159,5 @@ class HttpBody extends HashMap<Object, Object> {
     list.add(body);
     HttpBody bod2 = new HttpBody(list);
     System.out.println(bod2);
-
   }
-
-
 }
