@@ -1,7 +1,6 @@
 package structure;
 
 import java.util.Map;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -27,31 +26,30 @@ class HttpBody extends HashMap<Object, Object> {
     this.isList = isList;
   }
 
-  private Object parse(Object obj){
-    if(obj instanceof HttpBody){
+  private Object parse(Object obj) {
+    if (obj instanceof HttpBody) {
       return obj;
-    }else if(obj instanceof Map){
+    } else if (obj instanceof Map) {
       System.out.println("Map");
       HttpBody body = new HttpBody();
-      for(Map.Entry<?, ?> each : ((Map<?, ?>)obj).entrySet()){
+      for (Map.Entry<?, ?> each : ((Map<?, ?>) obj).entrySet()) {
         body.put(each.getKey(), this.parse(each.getValue()));
       }
       return body;
-    }else if(obj instanceof List){
+    } else if (obj instanceof List) {
       System.out.println("List");
       HttpBody body = new HttpBody(true);
-      for(Object each : (List<?>) obj){
+      for (Object each : (List<?>) obj) {
         body.put(this.parse(each));
       }
       return body;
-    }else{
+    } else {
       return obj;
     }
   }
 
-
-  private void list(Iterable<?> list){
-    for(Object each : list){
+  private void list(Iterable<?> list) {
+    for (Object each : list) {
       this.put(this.size(), this.parse(each));
     }
   }
@@ -66,16 +64,16 @@ class HttpBody extends HashMap<Object, Object> {
 
   @Override
   public HttpBody put(Object key, Object value) {
-    if(this.isList){
+    if (this.isList) {
       super.put(this.size(), this.parse(value));
-    }else{
+    } else {
       super.put(key, this.parse(value));
     }
     return this;
   }
 
-  public HttpBody put(Object value){
-    if(this.isList){
+  public HttpBody put(Object value) {
+    if (this.isList) {
       this.put(this.size(), this.parse(value));
     }
     return this;
@@ -87,8 +85,8 @@ class HttpBody extends HashMap<Object, Object> {
   }
 
   @Override
-  public HttpBody remove(Object key){
-    if(this.isList){
+  public HttpBody remove(Object key) {
+    if (this.isList) {
       Integer index = this.parseInt(key);
       if (index != null) super.remove(index);
       this.listReindex();
@@ -189,6 +187,5 @@ class HttpBody extends HashMap<Object, Object> {
     bod3.put("obj", bod4);
     System.out.println(bod3);
     System.out.println(bod3.get("obj") instanceof HttpBody);
-
   }
 }
