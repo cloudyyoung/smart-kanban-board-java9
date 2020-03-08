@@ -8,17 +8,14 @@ import structure.*;
 
 public class newAccPage3Controller {
 
-    @FXML
-    private TextField passwordField;
+  @FXML private TextField passwordField;
 
-    @FXML
-    private Label nextBtn;
+  @FXML private Label nextBtn;
 
-    @FXML
-    void handleNxtBtn(MouseEvent event) {
-        String password = passwordField.getText();
-        User user = new User();
-        user.setPassword(password);
-    }
-
+  @FXML
+  void handleNxtBtn(MouseEvent event) {
+    String password = passwordField.getText();
+    User user = new User();
+    user.setPassword(password);
+  }
 }
