@@ -3,6 +3,7 @@
 /* Set Font Style */
 #nexab, #nexal, #bold, #medium, #light, #light-list, #light-list:hover, #bold-list, #bold-list:hover, #search-text-field, .text-field {
   -fx-text-fill: #ffffff;
+  -fx-prompt-text-fill: #ffffff;
 }
 
 /* Set Icon Style */
@@ -62,4 +63,8 @@
 /* Set Popup Style*/
 #shade {
   -fx-fill: #000000;
+}
+
+#search-bg {
+  -fx-fill: #2F2E2E;
 }

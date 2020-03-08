@@ -65,6 +65,18 @@
   -fx-font-size: 14;
 }
 
+#light-list-i {
+  -fx-font-family: 'Noto Sans JP Regular';
+  -fx-text-fill: #2F2E2E;
+  -fx-font-size: 14;
+}
+
+#light-list-i:hover {
+  -fx-font-family: 'Noto Sans JP Bold';
+  -fx-text-fill: #2F2E2E;
+  -fx-font-size: 14;
+}
+
 #bold-list {
   -fx-font-family: 'Noto Sans JP Bold';
   -fx-text-fill: #2F2E2E;
@@ -138,6 +150,7 @@
 .text-field {
   -fx-border-width: 0 0 0 0; 
   -fx-background-color: transparent;
+  -fx-prompt-text-fill: #2F2E2E;
 }
 
 #search-text-field {
@@ -146,6 +159,7 @@
   -fx-border-width: 0 0 0 0; 
   -fx-background-color: transparent;
   -fx-text-fill: #2F2E2E;
+  -fx-inner-text-fill: #2F2E2E;
 }
 
 #text-field-u {
@@ -155,6 +169,7 @@
   -fx-font-family: 'Noto Sans JP Bold';
   -fx-font-size: 12px;
   -fx-text-fill: #2F2E2E;
+  -fx-inner-text-fill: #2F2E2E;
 }
 
 #text-field-ub {
@@ -164,6 +179,7 @@
   -fx-font-family: 'Noto Sans JP Regular';
   -fx-font-size: 12px;
   -fx-text-fill: #2F2E2E;
+  -fx-inner-text-fill: #2F2E2E;
 }
 
 

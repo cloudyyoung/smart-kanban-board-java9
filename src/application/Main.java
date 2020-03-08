@@ -36,12 +36,22 @@ public class Main extends Application {
       // newaccPage-3.fxml
       // newaccPage-4.fxml
       // homePage.fxml
-      // homePage-newboard.fxml
-      // homePage-newtask.fxml
       // settingsPage.fxml
 
+      // POPUPS:
+      // -show new task popup from homePage
+      // hierarchy>borderpane>stackpane>furthest rectangle>properties>node>visible
+      // hierarchy>borderpane>stackpane>furthest stackpane>properties>node>visible
+
+      // -show new event popup from homePage
+      // hierarchy>borderpane>stackpane>furthest rectangle>properties>node>visible
+      // hierarchy>borderpane>stackpane>2nd furthest stackpane>properties>node>visible
+
+      // -show search popup from homePage or settingsPage
+      // hierarchy>borderpane>stackpane>borderpane>stackpane>furthest vbox>visible
+
       FXMLLoader loader = new FXMLLoader();
-      root = (BorderPane) loader.load(new FileInputStream("src\\application\\homePage(popuptest).fxml"));
+      root = (BorderPane) loader.load(new FileInputStream("src\\application\\settingsPage.fxml"));
 
       // Set Window Size
       Scene scene = new Scene(root, 960, 660);
