@@ -48,16 +48,17 @@ public abstract class Node {
    * @param note as a string
    */
   public Node(int id, String title, String note) {
-    this.id = id;
-    this.title = title;
-    this.note = note;
+    this.setId(id);
+    this.setTitle(title);
+    this.setNote(note);
   }
+
 
   public Node(HttpBody obj) {
     if (!this.getType().equals("Kanban")) {
-      this.id = obj.getInt("id");
-      this.title = obj.getString("title");
-      this.note = obj.getString("note");
+      this.setId(obj.getInt("id"));
+      this.setTitle(obj.getString("title"));
+      this.setNote(obj.getString("note"));
     }
     if (obj != null) {
       this.extractChildrenNodes(obj);
@@ -140,7 +141,7 @@ public abstract class Node {
    *
    * @param aId as an int
    */
-  public void setId(int aId) {
+  private void setId(int aId) {
     this.id = aId;
   }
 
@@ -149,7 +150,7 @@ public abstract class Node {
    *
    * @param aParentId as an int
    */
-  public void setParent(Node aParent) {
+  private void setParent(Node aParent) {
     this.parent = aParent;
   }
 
@@ -169,6 +170,14 @@ public abstract class Node {
    */
   public void setTitle(String aTitle) {
     this.title = aTitle;
+  }
+  
+  private void setNote(String note) {
+    this.note = note;
+  }
+
+  private String getNote(){
+    return this.note;
   }
 
   /**
@@ -232,11 +241,11 @@ public abstract class Node {
   public String toString() {
     return this.getType()
         + " {id: "
-        + this.id
+        + this.getId()
         + ", title: \""
-        + this.title
+        + this.getTitle()
         + "\", note: \""
-        + this.note
+        + this.getNote()
         + "\", nodes: "
         + this.nodes.toString()
         + "\"}";
