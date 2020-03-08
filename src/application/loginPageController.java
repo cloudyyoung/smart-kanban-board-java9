@@ -16,9 +16,6 @@ public class loginPageController {
     private Label signInBtn;
 
     @FXML
-    private Label creatAccBtn;
-
-    @FXML
     void handleCreatAcc(MouseEvent e) {
 
     }
