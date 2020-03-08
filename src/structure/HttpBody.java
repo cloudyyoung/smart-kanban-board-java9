@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 
 @SuppressWarnings("unchecked")
-
 class HttpBody {
 
   private Object object;
@@ -16,7 +15,7 @@ class HttpBody {
     }
   }
 
-  public Object put(Object value){
+  public Object put(Object value) {
     try {
       if (this.object instanceof List) {
         ((List<Object>) this.object).add(value);
@@ -27,7 +26,7 @@ class HttpBody {
     }
   }
 
-  public Object put(Object key, Object value){
+  public Object put(Object key, Object value) {
     try {
       if (this.object instanceof Map) {
         ((Map<Object, Object>) this.object).put(key, value);
@@ -76,24 +75,24 @@ class HttpBody {
     return Boolean.parseBoolean(obj.toString() + "");
   }
 
-  private String parseString(Object obj){
-    try{
+  private String parseString(Object obj) {
+    try {
       return obj.toString();
-    }catch(Throwable e){
+    } catch (Throwable e) {
       return null;
     }
   }
 
-  public String toString(){
+  public String toString() {
     return this.object.toString();
   }
 
-  public Class<?> getBodyClass(){
-    if(this.object == null) return null;
+  public Class<?> getBodyClass() {
+    if (this.object == null) return null;
     return this.object.getClass();
   }
 
-  public static void main(String[] args){
+  public static void main(String[] args) {
     HashMap<String, String> param = new HashMap<String, String>();
     param.put("username", "111");
     param.put("password", "222");
@@ -102,5 +101,4 @@ class HttpBody {
     System.out.println(body.getInt("password2"));
     System.out.println(body.getBodyClass());
   }
-
 }
