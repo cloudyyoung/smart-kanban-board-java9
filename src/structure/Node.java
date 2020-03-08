@@ -53,9 +53,9 @@ public abstract class Node {
     this.setNote(note);
   }
 
-  public Node(){}
+  public Node() {}
 
-  public Node(String title, String note){
+  public Node(String title, String note) {
     this.setTitle(title);
     this.setNote(note);
   }
@@ -269,13 +269,13 @@ public abstract class Node {
     return aNode;
   }
 
-  public HttpRequest addNode(Node aNode){
+  public HttpRequest addNode(Node aNode) {
     HttpRequest req = new HttpRequest();
     req.setRequestUrl("/" + Node.typeLower(Node.typeSingular(aNode.getType())));
     req.setRequestBody(aNode);
     req.send();
     System.out.println(req.getResponseBody());
-    if(req.isSucceed()){
+    if (req.isSucceed()) {
       this.addNodeLocal(aNode);
     }
     return req;
@@ -361,15 +361,13 @@ public abstract class Node {
     return type.toUpperCase();
   }
 
-  public static void main(String[] args){
+  public static void main(String[] args) {
     User user = new User();
     user.authenticate("cloudy", "cloudy");
     System.out.println(user);
-    
+
     Kanban kanban = new Kanban();
     Board aNode = new Board("new Node cloudyyyyyy", "", "");
     kanban.addNode(aNode);
   }
-
-
 }

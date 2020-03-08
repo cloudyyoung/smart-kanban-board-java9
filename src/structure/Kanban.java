@@ -8,6 +8,5 @@ public class Kanban extends Node {
     super(obj);
   }
 
-  public Kanban(){}
-
+  public Kanban() {}
 }
