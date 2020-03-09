@@ -1,19 +1,14 @@
 package structure;
 
 import java.util.Map;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ArrayList;
+
+import com.google.gson.*;
+
 import java.net.URL;
 import java.net.HttpURLConnection;
 import java.io.OutputStreamWriter;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
-import org.json.simple.*;
-import org.json.simple.parser.*;
-
-@SuppressWarnings("unchecked")
 
 /**
  * Send http request in different http request method with custom param and get return json data.
@@ -39,16 +34,16 @@ public class HttpRequest {
 
   private String requestUrl;
   private String requestMethod;
-  private Object requestCookie; // should be JSONObject
-  private Object requestBody; // should be JSONObject/JSONArray
+  private String requestCookie; // should be JSONObject
+  private String requestBody; // should be JSONObject/JSONArray
 
   /** All attributes for response */
   private boolean succeed;
 
   private int responseStatusCode;
   private String responseMessage;
-  private Object responseCookie; // should be JSONObject
-  private Object responseBody; // should be JSONObject/JSONArray
+  private String responseCookie; // should be JSONObject
+  private String responseBody; // should be JSONObject/JSONArray
 
   /** Create a new HttpRequest instance by providing url, param and method */
   public HttpRequest(String url, Object param, String method) {
@@ -66,6 +61,31 @@ public class HttpRequest {
   /** Create a new HttpRequest instance by providing nothing */
   public HttpRequest() {
     this.setRequestMethod("GET");
+  }
+
+  private HttpBody getCookie(String cookie) {
+    HttpBody ret = new HttpBody();
+    String[] list = cookie.split("; ");
+    for (String each : list) {
+      String[] pair = each.split("=");
+      if (pair.length >= 2) {
+        String key = pair[0];
+        String value = pair[1];
+        ret.put(key.trim(), value.trim());
+      }
+    }
+    return ret;
+  }
+
+  private String setCookie(Map<?, ?> cookie) {
+    String ret = "";
+    HttpBody body = new HttpBody(cookie);
+    for (Object each : body.keySet()) {
+      String key = (String) each;
+      String value = body.getString(key);
+      ret += key.trim() + "=" + value.trim() + "; ";
+    }
+    return ret;
   }
 
   /**
@@ -103,7 +123,8 @@ public class HttpRequest {
    * @param param the request body, should either be Map or List
    */
   public void setRequestBody(Object param) {
-    this.requestBody = this.objectToJsonObject(param);
+    this.requestBody =
+        new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(param);
   };
 
   /**
@@ -125,13 +146,7 @@ public class HttpRequest {
    * @return request body in Map
    */
   public HttpBody getRequestBody() {
-    if (this.requestBody instanceof JSONObject) {
-      return new HttpBody((JSONObject) this.requestBody);
-    } else if (this.requestBody instanceof JSONArray) {
-      return new HttpBody((JSONArray) this.requestBody);
-    } else {
-      return null;
-    }
+    return new Gson().fromJson(this.requestBody, HttpBody.class);
   }
 
   /**
@@ -140,7 +155,7 @@ public class HttpRequest {
    * @return request body in String
    */
   public String getRequestBodyString() {
-    return this.jsonToString(this.requestBody);
+    return this.requestBody;
   }
 
   /**
@@ -184,8 +199,8 @@ public class HttpRequest {
    *
    * @return response body
    */
-  public String getResponseString() {
-    return this.jsonToString(this.responseBody);
+  public String getResponseBodyString() {
+    return this.responseBody;
   }
 
   /**
@@ -203,16 +218,16 @@ public class HttpRequest {
    * @param cookie the cookie in Map, must be Map otherwise is invalid and set to null
    */
   public void setRequestCookie(Map<?, ?> cookie) {
-    this.requestCookie = this.mapToJsonObject(cookie);
+    this.requestCookie = this.setCookie(cookie);
   }
 
   /**
    * Get the request cookie of the instance
    *
-   * @return the request cookir in Map
+   * @return the request cookie in Map
    */
   public HttpBody getRequestCookie() {
-    return new HttpBody((JSONObject) this.requestCookie);
+    return this.getCookie(this.requestCookie);
   }
 
   /**
@@ -221,16 +236,7 @@ public class HttpRequest {
    * @return cookie string, will be in format of: key=value; key=value; key=value;
    */
   public String getRequestCookieByString() {
-    String ret = "";
-    if (this.requestCookie != null && this.requestCookie instanceof JSONObject) {
-      JSONObject obj = (JSONObject) this.requestCookie;
-      for (Object each : obj.keySet()) {
-        String key = (String) each;
-        String value = (String) obj.get(key);
-        ret += key.trim() + "=" + value.trim() + "; ";
-      }
-    }
-    return ret;
+    return this.requestCookie;
   }
 
   /**
@@ -239,13 +245,7 @@ public class HttpRequest {
    * @return the response body in Map
    */
   public HttpBody getResponseBody() {
-    if (this.responseBody instanceof JSONObject) {
-      return new HttpBody((JSONObject) this.responseBody);
-    } else if (this.responseBody instanceof JSONArray) {
-      return new HttpBody((JSONArray) this.responseBody);
-    } else {
-      return null;
-    }
+    return new HttpBody(new Gson().fromJson(this.responseBody, Map.class));
   }
 
   /**
@@ -263,7 +263,7 @@ public class HttpRequest {
    * @return reponse cookie in Map
    */
   public HttpBody getResponseCookie() {
-    return new HttpBody((JSONObject) this.responseCookie);
+    return this.getCookie(this.responseCookie);
   }
 
   /**
@@ -282,7 +282,7 @@ public class HttpRequest {
    * @param res the response body in String
    */
   private void setResponseBodyByString(String res) {
-    this.responseBody = this.stringToJson(res);
+    this.responseBody = res;
   }
 
   /**
@@ -309,15 +309,7 @@ public class HttpRequest {
    * @param cookie the cookie to set in String, it will be converted into JSONObject and store
    */
   private void setResponseCookieByString(String cookie) {
-    String[] list = cookie.split(";");
-    JSONObject map = new JSONObject();
-    for (String each : list) {
-      String[] pair = each.split("=");
-      if (pair.length >= 2 && !pair[0].equals("path") && !pair[0].equals("expire")) {
-        map.put(pair[0], pair[1]);
-      }
-    }
-    this.responseCookie = map;
+    this.responseCookie = cookie;
   }
 
   /**
@@ -327,145 +319,6 @@ public class HttpRequest {
    */
   private void setSucceed(boolean is) {
     this.succeed = is;
-  }
-
-  /**
-   * Convert Map ot List object to JsonObject, null will be returned if type not match
-   *
-   * @param obj the object to be converted
-   * @return the converted object
-   */
-  private Object objectToJsonObject(Object obj) {
-    if (obj instanceof Map) {
-      return this.mapToJsonObject((Map<?, ?>) obj);
-    } else if (obj instanceof List) {
-      return this.listToJsonArray((List<?>) obj);
-    } else {
-      return null;
-    }
-  }
-
-  /**
-   * Convert JsonObject or JSONArray to String, null will be returned if type not match
-   *
-   * @param obj the object to be converted
-   * @return the converted String
-   */
-  private String jsonToString(Object obj) {
-    if (obj instanceof JSONObject) {
-      return ((JSONObject) obj).toJSONString();
-    } else if (obj instanceof JSONArray) {
-      return ((JSONArray) obj).toJSONString();
-    } else {
-      return null;
-    }
-  }
-
-  /**
-   * Convert String to JsonObject or JSONArray, null will be returned if type not match
-   *
-   * @param str the String to be converted
-   * @return the converted object
-   */
-  private Object stringToJson(String str) {
-    try {
-      JSONParser parser = new JSONParser();
-      Object obj = parser.parse(str);
-      return obj;
-    } catch (Exception e) {
-      return null;
-    }
-  }
-
-  /**
-   * Convert JSONArray to List
-   *
-   * @param json the JSONArray to be converted
-   * @return the converted List
-   */
-  private List<?> jsonArrayToList(JSONArray json) {
-    List<Object> list = new ArrayList<Object>();
-    for (int i = 0; i < ((JSONArray) json).size(); i++) {
-      Object value = ((JSONArray) json).get(i);
-      if (value instanceof JSONArray) {
-        value = jsonArrayToList((JSONArray) value);
-      } else if (value instanceof JSONObject) {
-        value = jsonObjectToMap((JSONObject) value);
-      }
-      list.add(value);
-    }
-    return list;
-  }
-
-  /**
-   * Convert List to JSONArray
-   *
-   * @param list the List to be converted
-   * @return the converted JSONArray
-   */
-  private Object listToJsonArray(List<?> list) {
-    JSONArray array = new JSONArray();
-    for (int i = 0; i < list.size(); i++) {
-      Object value = list.get(i);
-      if (value instanceof Map) {
-        value = mapToJsonObject((Map<?, ?>) value);
-      } else if (value instanceof List) {
-        value = listToJsonArray((List<?>) value);
-      }
-      array.add(value);
-    }
-    return array;
-  }
-
-  /**
-   * Convert JSONObject to Map
-   *
-   * @param json the JSONObject to be converted
-   * @return the converte Map
-   */
-  private Map<?, ?> jsonObjectToMap(JSONObject json) {
-    Map<Object, Object> map = new HashMap<Object, Object>();
-    Iterator<?> keysItr = ((JSONObject) json).keySet().iterator();
-
-    while (keysItr.hasNext()) {
-      Object key = keysItr.next();
-      Object value = json.get(key);
-
-      if (value instanceof JSONArray) {
-        value = this.jsonArrayToList((JSONArray) value);
-      } else if (value instanceof JSONObject) {
-        value = this.jsonObjectToMap((JSONObject) value);
-      }
-
-      if (value instanceof Long) {
-        value = Integer.parseInt("" + value);
-      }
-      map.put(key, value);
-    }
-    return map;
-  }
-
-  /**
-   * Convert Map to JSONObject
-   *
-   * @param map the Map to be converted
-   * @return the converted JSONObject
-   */
-  private Object mapToJsonObject(Map<?, ?> map) {
-    JSONObject obj = new JSONObject();
-    Iterator<?> keysItr = map.keySet().iterator();
-    while (keysItr.hasNext()) {
-      Object key = keysItr.next();
-      Object value = map.get(key);
-
-      if (value instanceof Map<?, ?>) {
-        value = mapToJsonObject((Map<?, ?>) value);
-      } else if (value instanceof List<?>) {
-        value = listToJsonArray((List<?>) value);
-      }
-      obj.put(key, value);
-    }
-    return obj;
   }
 
   /**

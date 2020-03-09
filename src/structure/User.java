@@ -1,7 +1,5 @@
 package structure;
 
-import java.util.HashMap;
-
 /**
  * this function stores the users username and password for use in the terminal class and for the
  * authentication process later on in this class
@@ -26,7 +24,6 @@ public class User {
    * open or logged in
    */
   public User() {
-    this.setId(0);
     this.setUsername("");
     this.setSessionId("");
     this.setPassword("");
@@ -100,7 +97,7 @@ public class User {
    *
    * @param aId as a int this is the accounts Id number
    */
-  public void setId(int aId) {
+  public void setId(Integer aId) {
     this.id = aId;
   }
 
@@ -150,7 +147,7 @@ public class User {
     this.setUsername(aUsername);
     this.setPassword(aPassword);
 
-    HashMap<String, String> param = new HashMap<String, String>();
+    HttpBody param = new HttpBody();
     param.put("username", this.getUsername());
     param.put("password", this.getPassword());
 
@@ -165,9 +162,9 @@ public class User {
 
     if (req.isSucceed()) {
       HttpBody res = req.getResponseBody();
-      HashMap<?, ?> cookie = (HashMap<?, ?>) req.getResponseCookie();
+      HttpBody cookie = req.getResponseCookie();
       this.setId(res.getInt("id"));
-      this.setSessionId((String) cookie.get("PHPSESSID"));
+      this.setSessionId(cookie.getString("PHPSESSID"));
       this.authenticated = true;
       User.current = this;
     }
@@ -175,7 +172,7 @@ public class User {
   }
 
   public void fetchKanban() {
-    HashMap<String, String> cookie = new HashMap<String, String>();
+    HttpBody cookie = new HttpBody();
     cookie.put("PHPSESSID", this.getSessionId());
 
     HttpRequest req2 = new HttpRequest();
