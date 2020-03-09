@@ -1,7 +1,5 @@
 package structure;
 
-import com.google.gson.*;
-
 /**
  * this function stores the users username and password for use in the terminal class and for the
  * authentication process later on in this class

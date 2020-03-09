@@ -100,7 +100,7 @@ public class HttpRequest {
         || method.equalsIgnoreCase("PUT")
         || method.equalsIgnoreCase("DELETE")
         || method.equalsIgnoreCase("HEAD")
-        || method.equalsIgnoreCase("PATCH")
+        // || method.equalsIgnoreCase("PATCH") // Doesnt support
         || method.equalsIgnoreCase("OPTIONS")) {
       this.requestMethod = method.toUpperCase();
     } else {
@@ -383,6 +383,7 @@ public class HttpRequest {
 
     } catch (Exception e) {
       this.setSucceed(false);
+      // e.printStackTrace();
       return false;
     }
 

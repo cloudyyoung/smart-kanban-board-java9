@@ -19,9 +19,10 @@ public abstract class Node {
   private int id;
 
   @Expose private String title;
-
   @Expose private String note;
+  @Expose private int parentId;  
 
+  private boolean existing = false;
   private Node parent;
   private HashMap<Integer, Node> nodes = new HashMap<Integer, Node>();
 
@@ -53,22 +54,23 @@ public abstract class Node {
    */
   public Node(int id, String title, String note) {
     this.setId(id);
-    this.setTitle(title);
-    this.setNote(note);
+    this.setTitleLocal(title);
+    this.setNoteLocal(note);
   }
 
   public Node() {}
 
   public Node(String title, String note) {
-    this.setTitle(title);
-    this.setNote(note);
+    this.setTitleLocal(title);
+    this.setNoteLocal(note);
   }
 
   public Node(HttpBody obj) {
     if (!this.getType().equals("Kanban")) {
       this.setId(obj.getInt("id"));
-      this.setTitle(obj.getString("title"));
-      this.setNote(obj.getString("note"));
+      this.setTitleLocal(obj.getString("title"));
+      this.setNoteLocal(obj.getString("note"));
+      this.existing = true;
     }
     if (obj != null) {
       this.extractChildrenNodes(obj);
@@ -90,7 +92,7 @@ public abstract class Node {
         Object objNew = constructor.newInstance(each2);
         if (objNew instanceof Node) {
           Node nodeNew = (Node) objNew;
-          nodeNew.setParent(this);
+          nodeNew.setParentLocal(this);
           this.nodes.put(nodeNew.getId(), nodeNew);
         }
       } catch (Exception e) {
@@ -99,6 +101,10 @@ public abstract class Node {
         // fail silently
       }
     }
+  }
+
+  public boolean isExisting(){
+    return this.existing;
   }
 
   /**
@@ -160,8 +166,21 @@ public abstract class Node {
    *
    * @param aParentId as an int
    */
-  private void setParent(Node aParent) {
+  private void setParentLocal(Node aParent) {
     this.parent = aParent;
+    this.parentId = aParent.getId();
+  }
+
+  public HttpRequest setParent(Node parent){
+    if(this instanceof Event){
+      String parentType = Node.typeLower(Node.typePlural(this.getParentType()));
+      HttpRequest req = this.set(parentType + "_id", parent.getId() + "");
+      if(req.isSucceed()){
+        this.setParentLocal(parent);
+      }
+      return req;
+    }
+    return null;    
   }
 
   /**
@@ -178,16 +197,48 @@ public abstract class Node {
    *
    * @param aTitle as a string
    */
-  public void setTitle(String aTitle) {
-    this.title = aTitle;
+  public void setTitleLocal(String title) {
+    this.title = title;
   }
 
-  private void setNote(String note) {
+  public HttpRequest setTitle(String title) {
+    HttpRequest req = this.set("title", title);
+    if(req.isSucceed()){
+      this.setTitleLocal(title);
+    }
+    return req;
+  }
+
+  public void setNoteLocal(String note) {
     this.note = note;
   }
 
-  private String getNote() {
+  public HttpRequest setNote(String note){
+    HttpRequest req = this.set("note", note);
+    if(req.isSucceed()){
+      this.setNoteLocal(note);
+    }
+    return req;
+  }
+  
+
+  public String getNote() {
     return this.note;
+  }
+
+  protected HttpRequest set(String key, String value){
+    HttpBody body = new HttpBody();
+    body.put(key, value);
+
+    HttpRequest req = new HttpRequest();
+    req.setRequestUrl("/" + Node.typeLower(Node.typePlural(this.getType())) + "/" + this.getId());
+    req.setRequestMethod("PUT");
+    req.setRequestBody(body);
+    req.setRequestCookie(Node.getRequestCookie());
+    req.send();
+    System.out.println(req.getRequestBodyString());
+    System.out.println(req.getResponseBodyString());
+    return req;
   }
 
   /**
@@ -257,7 +308,7 @@ public abstract class Node {
         + "\", note: \""
         + this.getNote()
         + "\", nodes: "
-        + this.nodes.toString()
+        + this.getNodes().toString()
         + "\")";
   }
 
@@ -267,28 +318,34 @@ public abstract class Node {
     return cookie;
   }
 
+  public HttpRequest add(){
+    HttpRequest req = new HttpRequest();
+    req.setRequestUrl("/" + Node.typeLower(Node.typePlural(this.getType())));
+    req.setRequestMethod("POST");
+    req.setRequestBody(this);
+    req.setRequestCookie(Node.getRequestCookie());
+    req.send();
+    return req;
+  }
+
+  public HttpRequest remove(){
+    HttpRequest req = new HttpRequest();
+    req.setRequestUrl("/" + Node.typeLower(Node.typePlural(this.getType())) + "/" + this.getId());
+    req.setRequestMethod("DELETE");
+    req.setRequestCookie(Node.getRequestCookie());
+    req.send();
+    return req;
+  }
+
   /**
    * Adds a node
    *
    * @param aNode
    * @return
    */
-  public Node addNodeLocal(Node aNode) {
+  public Node addNode(Node aNode) {
     this.nodes.put(aNode.getId(), aNode);
     return aNode;
-  }
-
-  public HttpRequest addNode(Node aNode) {
-    HttpRequest req = new HttpRequest();
-    req.setRequestUrl("/" + Node.typeLower(Node.typeSingular(aNode.getType())));
-    req.setRequestMethod("POST");
-    req.setRequestBody(aNode);
-    req.setRequestCookie(Node.getRequestCookie());
-    req.send();
-    if (req.isSucceed()) {
-      this.addNodeLocal(aNode);
-    }
-    return req;
   }
 
   /**
@@ -297,7 +354,7 @@ public abstract class Node {
    * @param id as an int this is the node's id
    * @return if node is successfully removed
    */
-  public boolean removeNodeLocal(int id) {
+  public boolean removeNode(int id) {
     return this.nodes.remove(id) != null;
   }
 
@@ -307,15 +364,6 @@ public abstract class Node {
 
   public Collection<Node> getNodes() {
     return this.nodes.values();
-  }
-
-  /**
-   * @param node
-   * @return updated Node, return null if fail to update
-   */
-  public Node setNode(Node node) {
-    this.nodes.put(node.getId(), node);
-    return this.nodes.get(node.getId());
   }
 
   public String getType() {
@@ -352,6 +400,11 @@ public abstract class Node {
     System.out.println(user);
     user.fetchKanban();
     System.out.println(Kanban.current);
+
+    Node node = Kanban.current.getNode(50);
+    System.out.println(node);
+    node.setTitle("new title");
+    System.out.println(node);
 
     // Kanban kanban = new Kanban();
     // Board aNode = new Board("new Node2 cloudyyyyyy", "", "#00b0f0");
