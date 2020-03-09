@@ -1,9 +1,11 @@
 package structure;
 
+import com.google.gson.annotations.*;
+
 public class Board extends Node {
 
   /** Color of the board, in HEX */
-  private String color;
+  @Expose private String color;
 
   public Board(HttpBody obj) {
     super(obj);

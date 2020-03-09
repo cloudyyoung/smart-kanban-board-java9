@@ -1,6 +1,9 @@
 package structure;
 
 import java.util.Map;
+
+import com.google.gson.*;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -129,6 +132,10 @@ class HttpBody extends HashMap<Object, Object> {
     return this.parseInt(this.get(key));
   }
 
+  public Double getDouble(Object key) {
+    return this.parseDouble(this.get(key));
+  }
+
   public Boolean getBoolean(Object key) {
     return this.parseBoolean(this.get(key));
   }
@@ -152,7 +159,19 @@ class HttpBody extends HashMap<Object, Object> {
 
   private Integer parseInt(Object obj) {
     try {
-      return Integer.parseInt(obj.toString() + "");
+      String str = obj.toString() + "";
+      if (str.indexOf(".") > -1) {
+        str = str.substring(0, str.indexOf("."));
+      }
+      return Integer.parseInt(str);
+    } catch (Throwable e) {
+      return null;
+    }
+  }
+
+  private Double parseDouble(Object obj) {
+    try {
+      return Double.parseDouble(obj.toString() + "");
     } catch (Throwable e) {
       return null;
     }
@@ -179,9 +198,20 @@ class HttpBody extends HashMap<Object, Object> {
   }
 
   public static void main(String[] args) {
-    // HashMap<String, String> param = new HashMap<String, String>();
-    // param.put("username", "111");
-    // param.put("password", "222");
+    // Map<?, ?> gson = new
+    // GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().fromJson("{'authenticated':
+    // true, 'existing': true, 'id': 1, 'username': 'cloudy', 'sessid':
+    // '97lp374dbvmgthms6uk3mdi9ru'}", Map.class);
+    // System.out.println(gson);
+
+    // HttpBody body = new HttpBody(gson);
+    // System.out.println(body);
+    // System.out.println(body.getInt("id"));
+    HashMap<String, String> param = new HashMap<String, String>();
+    param.put("username", "111");
+    param.put("password", "222");
+    String gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(param);
+    System.out.println(gson);
     // HttpBody body = new HttpBody(param);
     // body.put("body", body);
     // System.out.println(body);
@@ -197,11 +227,11 @@ class HttpBody extends HashMap<Object, Object> {
     // HttpBody bod2 = new HttpBody(list);
     // System.out.println(bod2);
 
-    HttpBody bod3 = new HttpBody();
-    HttpBody bod4 = new HttpBody(true);
-    bod4.put(111).put(999);
-    bod3.put("obj", bod4);
-    System.out.println(bod3);
-    System.out.println(bod3.get("obj") instanceof HttpBody);
+    // HttpBody bod3 = new HttpBody();
+    // HttpBody bod4 = new HttpBody(true);
+    // bod4.put(111).put(999);
+    // bod3.put("obj", bod4);
+    // System.out.println(bod3);
+    // System.out.println(bod3.get("obj") instanceof HttpBody);
   }
 }

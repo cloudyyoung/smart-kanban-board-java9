@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+
+import com.google.gson.annotations.*;
+
 import java.lang.reflect.Constructor;
 
 public abstract class Node {
@@ -13,11 +16,14 @@ public abstract class Node {
    * grandparentId:???? String title: this will be the titles of each column on the board String
    * note:???? String type: type will be used to determine where the user is in the application
    */
+  @Expose(serialize = false, deserialize = true)
   private int id;
 
+  @Expose private String title;
+
+  @Expose private String note;
+
   private Node parent;
-  private String title;
-  private String note;
   private ArrayList<Node> nodes = new ArrayList<Node>();
   private HashMap<Integer, Integer> index = new HashMap<Integer, Integer>();
 
@@ -257,6 +263,12 @@ public abstract class Node {
         + "\"}";
   }
 
+  private static HttpBody getRequestCookie() {
+    HttpBody cookie = new HttpBody();
+    cookie.put("PHPSESSID", User.current.getSessionId());
+    return cookie;
+  }
+
   /**
    * Adds a node
    *
@@ -272,9 +284,10 @@ public abstract class Node {
   public HttpRequest addNode(Node aNode) {
     HttpRequest req = new HttpRequest();
     req.setRequestUrl("/" + Node.typeLower(Node.typeSingular(aNode.getType())));
+    req.setRequestMethod("POST");
     req.setRequestBody(aNode);
+    req.setRequestCookie(Node.getRequestCookie());
     req.send();
-    System.out.println(req.getResponseBody());
     if (req.isSucceed()) {
       this.addNodeLocal(aNode);
     }
@@ -333,8 +346,7 @@ public abstract class Node {
   }
 
   public String getType() {
-    String str = this.getClass().getName();
-    return str.substring(str.lastIndexOf(".") + 1);
+    return this.getClass().getSimpleName();
   }
 
   public static String typeClass(String type) {
@@ -367,7 +379,7 @@ public abstract class Node {
     System.out.println(user);
 
     Kanban kanban = new Kanban();
-    Board aNode = new Board("new Node cloudyyyyyy", "", "");
+    Board aNode = new Board("new Node2 cloudyyyyyy", "", "#00b0f0");
     kanban.addNode(aNode);
   }
 }
