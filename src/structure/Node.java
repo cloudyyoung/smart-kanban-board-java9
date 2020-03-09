@@ -20,7 +20,7 @@ public abstract class Node {
 
   @Expose private String title;
   @Expose private String note;
-  @Expose private int parentId;  
+  @Expose private int parentId;
 
   private boolean existing = false;
   private Node parent;
