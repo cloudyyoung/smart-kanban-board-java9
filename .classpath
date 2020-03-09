@@ -13,5 +13,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="src/lib/json-simple-1.1.jar"/>
 	<classpathentry kind="lib" path="src/lib/junit5-1.26.134.jar"/>
+	<classpathentry kind="lib" path="src/lib/gson-2.8.6.jar"/>
 	<classpathentry kind="output" path=".bin/"/>
 </classpath>
