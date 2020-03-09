@@ -20,7 +20,7 @@ public abstract class Node {
 
   @Expose private String title;
   @Expose private String note;
-  @Expose private int parentId;  
+  @Expose private int parentId;
 
   private boolean existing = false;
   private Node parent;
@@ -103,7 +103,7 @@ public abstract class Node {
     }
   }
 
-  public boolean isExisting(){
+  public boolean isExisting() {
     return this.existing;
   }
 
@@ -171,16 +171,16 @@ public abstract class Node {
     this.parentId = aParent.getId();
   }
 
-  public HttpRequest setParent(Node parent){
-    if(this instanceof Event){
+  public HttpRequest setParent(Node parent) {
+    if (this instanceof Event) {
       String parentType = Node.typeLower(Node.typePlural(this.getParentType()));
       HttpRequest req = this.set(parentType + "_id", parent.getId() + "");
-      if(req.isSucceed()){
+      if (req.isSucceed()) {
         this.setParentLocal(parent);
       }
       return req;
     }
-    return null;    
+    return null;
   }
 
   /**
@@ -203,7 +203,7 @@ public abstract class Node {
 
   public HttpRequest setTitle(String title) {
     HttpRequest req = this.set("title", title);
-    if(req.isSucceed()){
+    if (req.isSucceed()) {
       this.setTitleLocal(title);
     }
     return req;
@@ -213,20 +213,19 @@ public abstract class Node {
     this.note = note;
   }
 
-  public HttpRequest setNote(String note){
+  public HttpRequest setNote(String note) {
     HttpRequest req = this.set("note", note);
-    if(req.isSucceed()){
+    if (req.isSucceed()) {
       this.setNoteLocal(note);
     }
     return req;
   }
-  
 
   public String getNote() {
     return this.note;
   }
 
-  protected HttpRequest set(String key, String value){
+  protected HttpRequest set(String key, String value) {
     HttpBody body = new HttpBody();
     body.put(key, value);
 
@@ -318,7 +317,7 @@ public abstract class Node {
     return cookie;
   }
 
-  public HttpRequest add(){
+  public HttpRequest add() {
     HttpRequest req = new HttpRequest();
     req.setRequestUrl("/" + Node.typeLower(Node.typePlural(this.getType())));
     req.setRequestMethod("POST");
@@ -328,7 +327,7 @@ public abstract class Node {
     return req;
   }
 
-  public HttpRequest remove(){
+  public HttpRequest remove() {
     HttpRequest req = new HttpRequest();
     req.setRequestUrl("/" + Node.typeLower(Node.typePlural(this.getType())) + "/" + this.getId());
     req.setRequestMethod("DELETE");
