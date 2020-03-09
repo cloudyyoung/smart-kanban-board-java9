@@ -23,7 +23,7 @@ public class Board extends Node {
 
   public HttpRequest setColor(String color) {
     HttpRequest req = this.set("color", color);
-    if(req.isSucceed()){
+    if (req.isSucceed()) {
       this.setColorLocal(color);
     }
     return req;
@@ -47,5 +47,4 @@ public class Board extends Node {
         + this.getNodes().toString()
         + "\")";
   }
-
 }
