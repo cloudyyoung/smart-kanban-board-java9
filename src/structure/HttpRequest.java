@@ -202,12 +202,8 @@ public class HttpRequest {
    *
    * @param cookie the cookie in Map, must be Map otherwise is invalid and set to null
    */
-  public void setRequestCookie(Object cookie) {
-    if (cookie instanceof Map) { // requestCookie: should always be Map
-      this.requestCookie = this.objectToJsonObject(cookie);
-    } else {
-      this.requestCookie = null;
-    }
+  public void setRequestCookie(Map<?, ?> cookie) {
+    this.requestCookie = this.mapToJsonObject(cookie);
   }
 
   /**
@@ -215,8 +211,8 @@ public class HttpRequest {
    *
    * @return the request cookir in Map
    */
-  public Map<?, ?> getRequestCookie() {
-    return (Map<?, ?>) this.jsonObjectToMap((JSONObject) this.requestCookie);
+  public HttpBody getRequestCookie() {
+    return new HttpBody((JSONObject) this.requestCookie);
   }
 
   /**
@@ -242,9 +238,6 @@ public class HttpRequest {
    *
    * @return the response body in Map
    */
-  // public Map<?, ?> getResponseBody() {
-  //   return (Map<?, ?>) this.jsonObjectToObject(this.responseBody);
-  // }
   public HttpBody getResponseBody() {
     if (this.responseBody instanceof JSONObject) {
       return new HttpBody((JSONObject) this.responseBody);
@@ -269,8 +262,8 @@ public class HttpRequest {
    *
    * @return reponse cookie in Map
    */
-  public Map<?, ?> getResponseCookie() {
-    return (Map<?, ?>) this.jsonObjectToObject(this.responseCookie);
+  public HttpBody getResponseCookie() {
+    return new HttpBody((JSONObject) this.responseCookie);
   }
 
   /**
@@ -347,22 +340,6 @@ public class HttpRequest {
       return this.mapToJsonObject((Map<?, ?>) obj);
     } else if (obj instanceof List) {
       return this.listToJsonArray((List<?>) obj);
-    } else {
-      return null;
-    }
-  }
-
-  /**
-   * Convert JsonObject to Map or List, null will be returned if type not match
-   *
-   * @param obj the object to be converted
-   * @return the converted object
-   */
-  private Object jsonObjectToObject(Object obj) {
-    if (obj instanceof JSONObject) {
-      return this.jsonObjectToMap((JSONObject) obj);
-    } else if (obj instanceof JSONArray) {
-      return this.listToJsonArray((JSONArray) obj);
     } else {
       return null;
     }
