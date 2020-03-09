@@ -1,7 +1,6 @@
 package structure;
 
 import java.util.HashMap;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -24,15 +23,14 @@ public abstract class Node {
   @Expose private String note;
 
   private Node parent;
-  private ArrayList<Node> nodes = new ArrayList<Node>();
-  private HashMap<Integer, Integer> index = new HashMap<Integer, Integer>();
+  private HashMap<Integer, Node> nodes = new HashMap<Integer, Node>();
 
   /**
    * creates a "dictionary" so it will be easier to determine the parent class of each main class ie
    * if the user wants to add something to column we can use this hash map to identify that the
    * parent of column is board, and board's parent is kanban
    *
-   * <p>this will also be used to assign type on lines 74-90 (getTypebyLevel method)
+   * <p>this will also be used to assign type on `getTypebyLevel` method
    */
   private final HashMap<String, Integer> TYPES =
       new HashMap<String, Integer>() {
@@ -93,7 +91,7 @@ public abstract class Node {
         if (objNew instanceof Node) {
           Node nodeNew = (Node) objNew;
           nodeNew.setParent(this);
-          this.nodes.add(nodeNew);
+          this.nodes.put(nodeNew.getId(), nodeNew);
         }
       } catch (Exception e) {
         // e.printStackTrace();
@@ -106,7 +104,7 @@ public abstract class Node {
   /**
    * assigns type using the hashmap above
    *
-   * @see lines 34 - 44
+   * @see Attribute: Node.TYPES
    * @param type as a string
    * @param level as an int
    * @return ret as a string which again can vary depending on the hashmap above
@@ -252,7 +250,7 @@ public abstract class Node {
    */
   public String toString() {
     return this.getType()
-        + " {id: "
+        + " (id: "
         + this.getId()
         + ", title: \""
         + this.getTitle()
@@ -260,7 +258,7 @@ public abstract class Node {
         + this.getNote()
         + "\", nodes: "
         + this.nodes.toString()
-        + "\"}";
+        + "\")";
   }
 
   private static HttpBody getRequestCookie() {
@@ -276,8 +274,7 @@ public abstract class Node {
    * @return
    */
   public Node addNodeLocal(Node aNode) {
-    this.nodes.add(aNode);
-    this.index.put(aNode.getId(), this.nodes.size() - 1);
+    this.nodes.put(aNode.getId(), aNode);
     return aNode;
   }
 
@@ -300,25 +297,17 @@ public abstract class Node {
    * @param id as an int this is the node's id
    * @return if node is successfully removed
    */
-  public boolean removeNode(int id) {
-    try {
-      int index = this.index.get(id);
-      this.index.remove(id);
-      this.nodes.remove(index);
-      this.remapIndex(id);
-      return true;
-    } catch (Throwable e) {
-      return false;
-    }
+  public boolean removeNodeLocal(int id) {
+    return this.nodes.remove(id) != null;
   }
+  
 
   public Node getNode(int id) {
-    try {
-      int index = this.index.get(id);
-      return this.nodes.get(index);
-    } catch (Throwable e) {
-      return null;
-    }
+    return this.nodes.get(id);
+  }
+
+  public Collection<Node> getNodes(){
+    return this.nodes.values();
   }
 
   /**
@@ -326,23 +315,8 @@ public abstract class Node {
    * @return updated Node, return null if fail to update
    */
   public Node setNode(Node node) {
-    try {
-      int id = node.getId();
-      int index = this.index.get(id);
-      this.nodes.set(index, node);
-      return node;
-    } catch (Throwable e) {
-      return null;
-    }
-  }
-
-  /** @param startFrom */
-  private void remapIndex(int startFrom) {
-    int current = startFrom;
-    for (Node each : this.nodes.subList(startFrom, this.nodes.size())) {
-      this.index.replace(each.getId(), current);
-      current++;
-    }
+    this.nodes.put(node.getId(), node);
+    return this.nodes.get(node.getId());
   }
 
   public String getType() {
@@ -377,9 +351,11 @@ public abstract class Node {
     User user = new User();
     user.authenticate("cloudy", "cloudy");
     System.out.println(user);
+    user.fetchKanban();
+    System.out.println(Kanban.current);
 
-    Kanban kanban = new Kanban();
-    Board aNode = new Board("new Node2 cloudyyyyyy", "", "#00b0f0");
-    kanban.addNode(aNode);
+    // Kanban kanban = new Kanban();
+    // Board aNode = new Board("new Node2 cloudyyyyyy", "", "#00b0f0");
+    // kanban.addNode(aNode);
   }
 }
