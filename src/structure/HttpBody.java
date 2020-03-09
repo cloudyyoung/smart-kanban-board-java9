@@ -172,7 +172,7 @@ class HttpBody extends HashMap<Object, Object> {
   private Double parseDouble(Object obj) {
     try {
       return Double.parseDouble(obj.toString() + "");
-    }catch(Throwable e){
+    } catch (Throwable e) {
       return null;
     }
   }
@@ -198,7 +198,10 @@ class HttpBody extends HashMap<Object, Object> {
   }
 
   public static void main(String[] args) {
-    // Map<?, ?> gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().fromJson("{'authenticated': true, 'existing': true, 'id': 1, 'username': 'cloudy', 'sessid': '97lp374dbvmgthms6uk3mdi9ru'}", Map.class);
+    // Map<?, ?> gson = new
+    // GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().fromJson("{'authenticated':
+    // true, 'existing': true, 'id': 1, 'username': 'cloudy', 'sessid':
+    // '97lp374dbvmgthms6uk3mdi9ru'}", Map.class);
     // System.out.println(gson);
 
     // HttpBody body = new HttpBody(gson);
