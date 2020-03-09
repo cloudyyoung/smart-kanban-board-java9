@@ -300,13 +300,12 @@ public abstract class Node {
   public boolean removeNodeLocal(int id) {
     return this.nodes.remove(id) != null;
   }
-  
 
   public Node getNode(int id) {
     return this.nodes.get(id);
   }
 
-  public Collection<Node> getNodes(){
+  public Collection<Node> getNodes() {
     return this.nodes.values();
   }
 
