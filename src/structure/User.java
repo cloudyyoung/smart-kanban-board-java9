@@ -171,7 +171,7 @@ public class User {
     return req;
   }
 
-  public void fetchKanban() {
+  public HttpRequest fetchKanban() {
     HttpBody cookie = new HttpBody();
     cookie.put("PHPSESSID", this.getSessionId());
 
@@ -179,13 +179,13 @@ public class User {
     req2.setRequestUrl("/kanban");
     req2.setRequestMethod("GET");
     req2.setRequestCookie(cookie);
-    boolean ret2 = req2.send();
+    req2.send();
 
-    if (ret2) {
+    if (req2.isSucceed()) {
       Kanban.current = new Kanban(req2.getResponseBody());
-    } else {
-
     }
+
+    return req2;
   }
 
   public static void main(String[] args) {
