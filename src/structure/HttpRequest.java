@@ -27,7 +27,7 @@ import java.io.BufferedReader;
  * @version 1.2
  * @since 2020-02-20
  */
-public final class HttpRequest implements Request {
+public final class HttpRequest extends Request {
 
   /** All attributes for request */
   private String baseUrl = "https://kanban.proj.meonc.studio/api";
@@ -38,10 +38,6 @@ public final class HttpRequest implements Request {
   private String requestBody;
 
   /** All attributes for response */
-  private boolean succeeded;
-
-  private boolean excepted;
-
   private int responseStatusCode;
   private String responseMessage;
   private String responseCookie;
@@ -201,7 +197,6 @@ public final class HttpRequest implements Request {
    *
    * @return response body
    */
-  @Override
   public String getResponseBodyString() {
     return this.responseBody;
   }
@@ -247,7 +242,6 @@ public final class HttpRequest implements Request {
    *
    * @return the response body in Map
    */
-  @Override
   public HttpBody getResponseBody() {
     return new HttpBody(new Gson().fromJson(this.responseBody, Map.class));
   }
@@ -270,13 +264,21 @@ public final class HttpRequest implements Request {
     return this.getCookie(this.responseCookie);
   }
 
+  public String getResponseCookieString() {
+    return this.responseCookie;
+  }
+
   /**
    * Set the response body by string of the instance
    *
    * @param res the response body in String
    */
-  private void setResponseBodyString(String res) {
+  protected void setResponseBodyString(String res) {
     this.responseBody = res;
+  }
+
+  protected void setResponseBody(HttpBody body) {
+    this.responseBody = new Gson().toJson(body);
   }
 
   /**
@@ -306,33 +308,29 @@ public final class HttpRequest implements Request {
     this.responseCookie = cookie;
   }
 
-  /**
-   * Set succeeded status of the instance
-   *
-   * @param is the succeeded status to set
-   */
-  private void setSucceeded(boolean is) {
-    this.succeeded = is;
-  }
-
-  /**
-   * Is this instance's request succeeded
-   *
-   * @return true if succeeded and false if not. By defining if succeeded, the status code should
-   *     not be 400~599 and should be no exception occured
-   */
-  @Override
-  public boolean isSucceeded() {
-    return this.succeeded;
-  }
-
-  private void setExcepted(boolean is) {
-    this.excepted = is;
-  }
-
-  @Override
-  public boolean isExcepted() {
-    return this.excepted;
+  public String toString(){
+    return "HttpRequest ("
+    + "isSucceeded: "
+    + this.isSucceeded()
+    + ", isExcepted: "
+    + this.isExcepted()
+    + ", requestUrl: "
+    + this.requestUrl
+    + ", requestMethod: "
+    + this.getRequestMethod()
+    + ", requestCookie: "
+    + this.getRequestCookieString()
+    + ", requestBody: "
+    + this.getRequestBodyString()
+    + ", responseStatusCode: "
+    + this.getResponseStatusCode()
+    + ", responseMessage: "
+    + this.getResponseMessage()
+    + ", responseCookie: "
+    + this.getResponseCookieString()
+    + ", responseBody: "
+    + this.getResponseBodyString()
+    + ")";
   }
 
   /**

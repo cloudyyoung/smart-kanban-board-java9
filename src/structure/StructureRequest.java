@@ -2,10 +2,8 @@ package structure;
 
 import com.google.gson.*;
 
-public final class StructureRequest implements Request {
+public final class StructureRequest extends Request {
 
-  private boolean excepted;
-  private boolean succeeded;
   private Object instance;
   private String responseBody;
 
@@ -17,25 +15,22 @@ public final class StructureRequest implements Request {
 
   public StructureRequest(boolean succeeded, boolean excepted) {
     this.setSucceeded(succeeded);
-    this.setException(excepted);
+    this.setExcepted(excepted);
+  }
+
+  public StructureRequest(boolean succeeded, boolean excepted, Object instance){
+    this.setSucceeded(succeeded);
+    this.setExcepted(excepted);
+    this.instance = instance;
   }
 
   @Override
-  public boolean isExcepted() {
-    return this.excepted;
-  }
-
-  @Override
-  public boolean isSucceeded() {
-    return this.succeeded;
-  }
-
-  public void setSucceeded(boolean is) {
-    this.succeeded = is;
-  }
-
-  public void setException(boolean is) {
-    this.excepted = is;
+  public void setExcepted(boolean is) {
+    super.setExcepted(is);
+    if(is){
+      HttpBody body = StructureRequest.getErrorTemplate();
+      this.responseBody = body.toString();
+    }
   }
 
   public Object getInstance() {
@@ -66,7 +61,14 @@ public final class StructureRequest implements Request {
     }
   }
 
-  @Override
+  public HttpBody setErrorMessage(String message){
+    HttpBody body = new Gson().fromJson(this.responseBody, HttpBody.class);
+    HttpBody error = body.getHttpBody("error");
+    error.put("message", message);
+    this.responseBody = body.toString();
+    return body;
+  }
+
   public HttpBody getResponseBody() {
     return new Gson().fromJson(this.responseBody, HttpBody.class);
   }

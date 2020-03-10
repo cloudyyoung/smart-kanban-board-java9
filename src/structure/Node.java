@@ -168,19 +168,29 @@ public abstract class Node {
    *
    * @param aParentId as an int
    */
-  private void setParentLocal(Node aParent) {
+  private StructureRequest setParentLocal(Node aParent) {
     this.parent = aParent;
     this.parentId = aParent.getId();
+
+    StructureRequest req = new StructureRequest(true, false, this);
+    return req;
   }
 
-  public HttpRequest setParent(Node parent) {
-    if (this instanceof Event) {
+  public Result setParent(Node parent) {
+      Result res = new Result();
+      if (this instanceof Event) {
       String parentType = Node.typeLower(Node.typePlural(this.getParentType()));
       HttpRequest req = this.set(parentType + "_id", parent.getId() + "");
+      res.add(req);
+
       if (req.isSucceeded()) {
-        this.setParentLocal(parent);
+        StructureRequest req2 = this.setParentLocal(parent);
+        res.add(req2);
       }
-      return req;
+    }else{
+      StructureRequest req2 = new StructureRequest(false, true, this);
+      req2.setErrorMessage("Instance can only be type of Event");
+      res.add(req2);
     }
     return null;
   }
@@ -199,28 +209,42 @@ public abstract class Node {
    *
    * @param aTitle as a string
    */
-  public void setTitleLocal(String title) {
+  public StructureRequest setTitleLocal(String title) {
     this.title = title;
+
+    StructureRequest req = new StructureRequest(true, false, this);
+    return req;
   }
 
-  public HttpRequest setTitle(String title) {
+  public Result setTitle(String title) {
+    Result res = new Result();
     HttpRequest req = this.set("title", title);
+    res.add(req);
+
     if (req.isSucceeded()) {
-      this.setTitleLocal(title);
+      StructureRequest req2 = this.setTitleLocal(title);
+      res.add(req2);
     }
-    return req;
+    return res;
   }
 
-  public void setNoteLocal(String note) {
+  public StructureRequest setNoteLocal(String note) {
     this.note = note;
+
+    StructureRequest req = new StructureRequest(true, false, this);
+    return req;
   }
 
-  public HttpRequest setNote(String note) {
+  public Result setNote(String note) {
+    Result res = new Result();
     HttpRequest req = this.set("note", note);
+    res.add(req);
+
     if (req.isSucceeded()) {
-      this.setNoteLocal(note);
+      StructureRequest req2 = this.setNoteLocal(note);
+      res.add(req2);
     }
-    return req;
+    return res;
   }
 
   public String getNote() {
@@ -319,23 +343,31 @@ public abstract class Node {
     return cookie;
   }
 
-  public HttpRequest add() {
+  public Result add() {
+    Result res = new Result();
+
     HttpRequest req = new HttpRequest();
     req.setRequestUrl("/" + Node.typeLower(Node.typePlural(this.getType())));
     req.setRequestMethod("POST");
     req.setRequestBody(this);
     req.setRequestCookie(Node.getRequestCookie());
     req.send();
-    return req;
+
+    res.add(req);
+    return res;
   }
 
-  public HttpRequest remove() {
+  public Result remove() {
+    Result res = new Result();
+
     HttpRequest req = new HttpRequest();
     req.setRequestUrl("/" + Node.typeLower(Node.typePlural(this.getType())) + "/" + this.getId());
     req.setRequestMethod("DELETE");
     req.setRequestCookie(Node.getRequestCookie());
     req.send();
-    return req;
+    
+    res.add(req);
+    return res;
   }
 
   /**

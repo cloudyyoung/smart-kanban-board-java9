@@ -1,11 +1,27 @@
 package structure;
 
-public interface Request {
-  public boolean isExcepted();
+public abstract class Request {
+  
+  private boolean succeeded;
+  private boolean excepted;
+  
+  public boolean isExcepted() {
+    return this.excepted;
+  }
 
-  public boolean isSucceeded();
+  public boolean isSucceeded() {
+    return this.succeeded;
+  }
 
-  public HttpBody getResponseBody();
+  public void setSucceeded(boolean is) {
+    this.succeeded = is;
+  }
 
-  public String getResponseBodyString();
+  public void setExcepted(boolean is) {
+    this.excepted = is;
+  }
+
+  public abstract HttpBody getResponseBody();
+  protected abstract void setResponseBody(HttpBody body);
+
 }

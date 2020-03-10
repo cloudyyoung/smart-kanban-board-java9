@@ -132,7 +132,7 @@ public class User {
    *
    * @return boolean if user name and password are correct
    */
-  public HttpRequest authenticate() {
+  public Result authenticate() {
     return this.authenticate(this.getUsername(), this.getPassword());
   }
 
@@ -143,7 +143,7 @@ public class User {
    * @param aUsername is the user's entered user name
    * @param aPassword is the user's entered password
    */
-  public HttpRequest authenticate(String aUsername, String aPassword) {
+  public Result authenticate(String aUsername, String aPassword) {
     this.setUsername(aUsername);
     this.setPassword(aPassword);
 
@@ -168,10 +168,13 @@ public class User {
       this.authenticated = true;
       User.current = this;
     }
-    return req;
+
+    Result res = new Result();
+    res.add(req);
+    return res;
   }
 
-  public HttpRequest fetchKanban() {
+  public Result fetchKanban() {
     HttpBody cookie = new HttpBody();
     cookie.put("PHPSESSID", this.getSessionId());
 
@@ -185,7 +188,10 @@ public class User {
       Kanban.current = new Kanban(req2.getResponseBody());
     }
 
-    return req2;
+    Result res = new Result();
+    res.add(req2);
+    return res;
+
   }
 
   public static void main(String[] args) {
