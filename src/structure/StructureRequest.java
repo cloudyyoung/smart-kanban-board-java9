@@ -34,8 +34,8 @@ public final class StructureRequest implements Request {
     this.succeeded = is;
   }
 
-  public void setException(boolean is){
-      this.excepted = is;
+  public void setException(boolean is) {
+    this.excepted = is;
   }
 
   public Object getInstance() {
