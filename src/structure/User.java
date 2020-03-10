@@ -166,7 +166,7 @@ public class User {
     return res;
   }
 
-  private HttpRequest _authenticate(String username, String password){
+  private HttpRequest _authenticate(String username, String password) {
     HttpBody param = new HttpBody();
     param.put("username", this.getUsername());
     param.put("password", this.getPassword());
@@ -180,7 +180,7 @@ public class User {
     return req;
   }
 
-  public Result signup(String username, String password, String sec_ques, String sec_ans){
+  public Result signup(String username, String password, String sec_ques, String sec_ans) {
     Result res = new Result();
 
     this.setUsername(username);
@@ -200,14 +200,13 @@ public class User {
 
     res.add(req);
 
-    if(req.isSucceeded()){
+    if (req.isSucceeded()) {
       HttpRequest req2 = this._authenticate(username, password);
       res.add(req2);
     }
 
     return res;
   }
-
 
   public static void main(String[] args) {
     User user = new User();
