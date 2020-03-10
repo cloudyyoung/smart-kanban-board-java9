@@ -25,7 +25,7 @@
                                  <children>
                                     <Circle fill="#2f2e2e" radius="23.5" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0">
                                        <HBox.margin>
-                                          <Insets />
+                                          <Insets bottom="1.0" />
                                        </HBox.margin>
                                     </Circle>
                                     <Region prefHeight="100.0" prefWidth="20.0" />
@@ -39,7 +39,7 @@
                                                 <Font name="NexaLight" size="14.0" />
                                              </font>
                                           </Label>
-                                          <Label id="bold" alignment="CENTER" text="Jerremy Lewis" textFill="#2f2e2e">
+                                          <Label id="bold" fx:id="usernameLabel" alignment="CENTER" text="Jerremy Lewis" textFill="#2f2e2e">
                                              <font>
                                                 <Font name="NexaBold" size="14.0" />
                                              </font>
@@ -53,6 +53,9 @@
                                        </HBox.margin>
                                     </VBox>
                                  </children>
+                                 <VBox.margin>
+                                    <Insets top="18.0" />
+                                 </VBox.margin>
                               </HBox>
                               <VBox alignment="TOP_CENTER">
                                  <children>
@@ -80,7 +83,7 @@
                                                 <Cursor fx:constant="DEFAULT" />
                                              </cursor>
                                           </VBox>
-                                          <TextField id="search-text-field" prefWidth="174.0" promptText="Search">
+                                          <TextField id="search-text-field" fx:id="searchTextField" onKeyTyped="#checkInput" prefWidth="174.0" promptText="Search">
                                              <font>
                                                 <Font name="NexaLight" size="14.0" />
                                              </font>
@@ -90,7 +93,7 @@
                                           </TextField>
                                        </children>
                                        <VBox.margin>
-                                          <Insets bottom="15.0" />
+                                          <Insets bottom="15.0" top="17.0" />
                                        </VBox.margin>
                                     </HBox>
                                     <HBox id="list-i" alignment="CENTER_LEFT" prefWidth="200.0">
@@ -347,17 +350,25 @@
                                  <children>
                                     <HBox alignment="CENTER">
                                        <children>
-                                          <Pane id="sk-logo" onMouseClicked="#showLoginPage">
+                                          <Pane onMouseClicked="#showLoginPage">
                                              <children>
-                                                <SVGPath id="icon" content="M11.48,10.47L9.69 14.61 0 0 9.38 10.82 11.48 10.47z" fill="#2f2e2e" layoutY="5.191499710083008" scaleX="0.7" scaleY="0.7" HBox.hgrow="ALWAYS" />
-                                                <Label id="nexab" layoutX="10.277999877929688" text="SmartKanban" textFill="#2f2e2e" HBox.hgrow="ALWAYS">
-                                                   <font>
-                                                      <Font name="NexaBold" size="14.0" />
-                                                   </font>
-                                                   <cursor>
-                                                      <Cursor fx:constant="HAND" />
-                                                   </cursor>
-                                                </Label>
+                                                <HBox id="sk-logo" alignment="CENTER">
+                                                   <children>
+                                                      <VBox alignment="CENTER">
+                                                         <children>
+                                                            <SVGPath id="icon" content="M11.48,10.47L9.69 14.61 0 0 9.38 10.82 11.48 10.47z" fill="#2f2e2e" layoutY="5.191499710083008" scaleX="0.7" scaleY="0.7" HBox.hgrow="ALWAYS" />
+                                                         </children>
+                                                      </VBox>
+                                                      <Label id="nexab" text="SmartKanban" textFill="#2f2e2e" HBox.hgrow="ALWAYS">
+                                                         <font>
+                                                            <Font name="NexaBold" size="14.0" />
+                                                         </font>
+                                                         <cursor>
+                                                            <Cursor fx:constant="HAND" />
+                                                         </cursor>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
                                              </children>
                                              <cursor>
                                                 <Cursor fx:constant="HAND" />
@@ -372,9 +383,9 @@
                               </VBox>
                            </children>
                         </VBox>
-                        <VBox pickOnBounds="false" prefHeight="200.0" prefWidth="200.0" visible="false">
+                        <VBox fx:id="searchList" pickOnBounds="false" prefHeight="200.0" prefWidth="200.0" visible="false">
                            <children>
-                              <StackPane prefHeight="120.0" prefWidth="191.0" visible="false">
+                              <StackPane prefHeight="120.0" prefWidth="191.0">
                                  <children>
                                     <Rectangle id="search-bg" fill="WHITE" height="135.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="191.0">
                                        <StackPane.margin>
@@ -533,7 +544,7 @@
                                     </VBox>
                                  </children>
                                  <VBox.margin>
-                                    <Insets top="100.0" />
+                                    <Insets top="116.0" />
                                  </VBox.margin>
                               </StackPane>
                            </children>
@@ -1111,9 +1122,9 @@
                                     <Insets />
                                  </HBox.margin>
                               </Region>
-                              <Pane id="popup-close" layoutX="5.0" layoutY="5.0" nodeOrientation="RIGHT_TO_LEFT">
+                              <Pane id="popup-close" layoutX="5.0" layoutY="5.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#newBoardPopUpExit">
                                  <children>
-                                    <SVGPath id="popup-close-icon" fx:id="newBoardExitButton" content="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="WHITE" layoutY="3.0" onMouseClicked="#newBoardPopUpExit" scaleX="0.8" scaleY="0.8">
+                                    <SVGPath id="popup-close-icon" fx:id="newBoardExitButton" content="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="WHITE" layoutY="3.0" scaleX="0.8" scaleY="0.8">
                                        <HBox.margin>
                                           <Insets top="3.0" />
                                        </HBox.margin>
@@ -1203,7 +1214,7 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <Label id="popup-btn" alignment="CENTER" text="Create &gt;" textFill="WHITE">
+                        <Label id="popup-btn" alignment="CENTER" onMouseClicked="#createBoard" text="Create &gt;" textFill="WHITE">
                            <font>
                               <Font name="NexaBold" size="27.0" />
                            </font>
@@ -1232,9 +1243,9 @@
                                     <Insets />
                                  </HBox.margin>
                               </Region>
-                              <Pane id="popup-close" layoutX="5.0" layoutY="5.0" nodeOrientation="RIGHT_TO_LEFT">
+                              <Pane id="popup-close" layoutX="5.0" layoutY="5.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#newTaskPopUpExit">
                                  <children>
-                                    <SVGPath id="popup-close-icon" fx:id="newTaskButtonExitButton" content="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="WHITE" layoutY="3.0" onMouseClicked="#newTaskPopUpExit" scaleX="0.8" scaleY="0.8">
+                                    <SVGPath id="popup-close-icon" fx:id="newTaskButtonExitButton" content="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" fill="WHITE" layoutY="3.0" scaleX="0.8" scaleY="0.8">
                                        <HBox.margin>
                                           <Insets top="3.0" />
                                        </HBox.margin>
@@ -1328,7 +1339,7 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <Label id="popup-btn" alignment="CENTER" text="Create &gt;" textFill="WHITE">
+                        <Label id="popup-btn" alignment="CENTER" onMouseClicked="#createTask" text="Create &gt;" textFill="WHITE">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>

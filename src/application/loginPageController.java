@@ -10,13 +10,28 @@ import javafx.scene.layout.BorderPane;
 import structure.*;
 
 public class loginPageController {
-  @FXML private BorderPane loginPane;
 
-  @FXML private TextField userNameField;
+  private static String username;
 
-  @FXML private TextField passwordField;
+  public static String getUsername() {
+    return username;
+  }
 
-  @FXML private Label signInBtn;
+  public static void setUsername(String user) {
+    username = user;
+  }
+
+  @FXML
+  private BorderPane loginPane;
+
+  @FXML
+  private TextField userNameField;
+
+  @FXML
+  private TextField passwordField;
+
+  @FXML
+  private Label signInBtn;
 
   @FXML
   void handleForgotAcc(MouseEvent event) throws IOException {
@@ -35,6 +50,8 @@ public class loginPageController {
     String username = userNameField.getText();
     String password = passwordField.getText();
 
+    setUsername(username);
+
     boolean authenticated = true;
     User user = new User();
     HttpRequest req = user.authenticate(username, password);
@@ -46,6 +63,8 @@ public class loginPageController {
     } else {
       userNameField.setStyle("-fx-text-fill: #bb0000;");
       passwordField.setStyle("-fx-text-fill: #bb0000;");
+      userNameField.setText("Incorrect Username");
+      passwordField.setText("Incorrect Password");
     }
   }
 }

@@ -12,11 +12,14 @@ import structure.*;
 
 public class newAccPage1Controller {
 
-  @FXML private BorderPane newAccPane1;
+  @FXML
+  private BorderPane newAccPane1;
 
-  @FXML private TextField emailTextField;
+  @FXML
+  private TextField emailTextField;
 
-  @FXML private Label nextBtn;
+  @FXML
+  private Label nextBtn;
 
   @FXML
   void handleNextClick(MouseEvent event) throws IOException {

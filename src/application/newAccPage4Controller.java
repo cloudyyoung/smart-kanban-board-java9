@@ -12,20 +12,24 @@ import structure.*;
 
 public class newAccPage4Controller {
 
-  @FXML private BorderPane newAccPane4;
+  @FXML
+  private BorderPane newAccPane4;
 
-  @FXML private TextField motherBornField;
+  @FXML
+  private TextField motherBornField;
 
-  @FXML private TextField graduateField;
+  @FXML
+  private TextField graduateField;
 
-  @FXML private Label nextBtn;
+  @FXML
+  private Label nextBtn;
 
   @FXML
   void handleNextBtn(MouseEvent event) throws IOException {
     String momBorn = motherBornField.getText();
     String graduate = graduateField.getText();
 
-    BorderPane pane = FXMLLoader.load(getClass().getResource("homePage.fxml"));
+    BorderPane pane = FXMLLoader.load(getClass().getResource("loginPage.fxml"));
     newAccPane4.getChildren().setAll(pane);
   }
 }

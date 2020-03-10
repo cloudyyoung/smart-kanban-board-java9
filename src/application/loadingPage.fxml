@@ -17,13 +17,13 @@
                <children>
                   <HBox alignment="CENTER">
                      <children>
-                        <Circle id="circle" fx:id="blueCircle" fill="#3cdbeb" opacity="0.75" radius="10.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" HBox.hgrow="ALWAYS" />
-                        <Circle id="circle" fx:id="darkBlueCircle" fill="#3351a3" opacity="0.75" radius="10.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0">
+                        <Circle id="circle" fx:id="blueCircle" fill="#3cdbeb" opacity="0.5" radius="10.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" HBox.hgrow="ALWAYS" />
+                        <Circle id="circle" fx:id="darkBlueCircle" fill="#3351a3" opacity="0.5" radius="10.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0">
                            <HBox.margin>
                               <Insets left="50.0" right="50.0" />
                            </HBox.margin>
                         </Circle>
-                        <Circle id="circle" fx:id="purpleCircle" fill="#9e32b2" opacity="0.75" radius="10.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" />
+                        <Circle id="circle" fx:id="purpleCircle" fill="#9e32b2" opacity="0.5" radius="10.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" />
                      </children>
                   </HBox>
                </children>
