@@ -174,7 +174,6 @@ public class User {
     return res;
   }
 
-
   public static void main(String[] args) {
     User user = new User();
     user.authenticate("cloudy", "cloudy");
