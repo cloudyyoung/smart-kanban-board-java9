@@ -83,6 +83,5 @@ public class loginPageController {
     }
   }
 
-  public void initialize() {
-  }
+  public void initialize() {}
 }
