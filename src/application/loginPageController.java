@@ -5,6 +5,7 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import structure.*;
@@ -46,9 +47,25 @@ public class loginPageController {
   }
 
   @FXML
+  void userTextFillReset(KeyEvent event) {
+    userNameField.setStyle("-fx-text-fill: #2F2E2E;");
+    // Comment/ uncomment for dark mode
+    // userNameField.setStyle("-fx-text-fill: #ffffff;");
+  }
+
+  @FXML
+  void passTextFillReset(KeyEvent event) {
+    passwordField.setStyle("-fx-text-fill: #2F2E2E;");
+    // Comment/ uncomment for dark mode
+    // passwordField.setStyle("-fx-text-fill: #ffffff;");
+  }
+
+  @FXML
   void handleSignIn(MouseEvent event) throws IOException {
     String username = userNameField.getText();
     String password = passwordField.getText();
+
+    // -fx-text-fill: #2F2E2E;
 
     setUsername(username);
 
@@ -61,10 +78,15 @@ public class loginPageController {
       BorderPane pane = FXMLLoader.load(getClass().getResource("homePage.fxml"));
       loginPane.getChildren().setAll(pane);
     } else {
-      userNameField.setStyle("-fx-text-fill: #bb0000;");
-      passwordField.setStyle("-fx-text-fill: #bb0000;");
-      userNameField.setText("Incorrect Username");
-      passwordField.setText("Incorrect Password");
+      userNameField.setStyle("-fx-prompt-text-fill: #bb0000;");
+      passwordField.setStyle("-fx-prompt-text-fill: #bb0000;");
+      userNameField.setText("");
+      passwordField.setText("");
+      userNameField.setPromptText("Incorrect Username");
+      passwordField.setPromptText("Incorrect Password");
     }
+  }
+
+  public void initialize() {
   }
 }

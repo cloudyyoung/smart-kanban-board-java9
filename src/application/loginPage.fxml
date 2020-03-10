@@ -65,7 +65,7 @@
                               <Insets right="1.0" />
                            </HBox.margin>
                         </SVGPath>
-                        <TextField fx:id="userNameField" prefWidth="253.0" promptText="Username">
+                        <TextField fx:id="userNameField" onKeyTyped="#userTextFillReset" prefWidth="253.0" promptText="Username">
                            <font>
                               <Font name="NexaLight" size="14.0" />
                            </font>
@@ -83,7 +83,7 @@
                               <Insets right="1.0" top="2.0" />
                            </HBox.margin>
                         </SVGPath>
-                        <TextField fx:id="passwordField" prefHeight="25.0" prefWidth="253.0" promptText="Password">
+                        <TextField fx:id="passwordField" onKeyTyped="#passTextFillReset" prefHeight="25.0" prefWidth="253.0" promptText="Password">
                            <font>
                               <Font name="NexaLight" size="14.0" />
                            </font>

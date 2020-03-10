@@ -1214,14 +1214,31 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <Label id="popup-btn" alignment="CENTER" onMouseClicked="#createBoard" text="Create &gt;" textFill="WHITE">
-                           <font>
-                              <Font name="NexaBold" size="27.0" />
-                           </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Label>
+                        <HBox alignment="CENTER" prefWidth="200.0">
+                           <children>
+                              <Pane onMouseClicked="#createBoard">
+                                 <children>
+                                    <HBox alignment="CENTER">
+                                       <children>
+                                          <Label id="popup-btn" alignment="CENTER" text="Create " textFill="WHITE">
+                                             <font>
+                                                <Font name="NexaBold" size="27.0" />
+                                             </font>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Label>
+                                          <VBox alignment="CENTER">
+                                             <children>
+                                                <SVGPath content="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="WHITE" layoutX="85.0" layoutY="14.0" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </HBox>
                         <Region prefHeight="27.0" prefWidth="965.0" />
                      </children>
                      <StackPane.margin>
@@ -1339,14 +1356,31 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <Label id="popup-btn" alignment="CENTER" onMouseClicked="#createTask" text="Create &gt;" textFill="WHITE">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <font>
-                              <Font name="NexaBold" size="27.0" />
-                           </font>
-                        </Label>
+                        <HBox alignment="CENTER" prefWidth="200.0">
+                           <children>
+                              <Pane onMouseClicked="#createTask">
+                                 <children>
+                                    <HBox alignment="CENTER">
+                                       <children>
+                                          <Label id="popup-btn" alignment="CENTER" text="Create " textFill="WHITE">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                             <font>
+                                                <Font name="NexaBold" size="27.0" />
+                                             </font>
+                                          </Label>
+                                          <VBox alignment="CENTER">
+                                             <children>
+                                                <SVGPath content="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="WHITE" layoutX="85.0" layoutY="14.0" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </HBox>
                         <Region prefHeight="27.0" prefWidth="965.0" />
                      </children>
                      <StackPane.margin>
