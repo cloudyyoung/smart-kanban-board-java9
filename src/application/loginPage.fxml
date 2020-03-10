@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
@@ -14,7 +22,7 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="660.0" maxWidth="960.0" minHeight="660.0" minWidth="960.0" prefHeight="660.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.loginPageController">
+<BorderPane fx:id="loginPane" maxHeight="660.0" maxWidth="960.0" minHeight="660.0" minWidth="960.0" prefHeight="660.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.loginPageController">
    <center>
       <VBox id="bg" prefHeight="600.0" prefWidth="960.0" BorderPane.alignment="CENTER">
          <children>
@@ -89,7 +97,7 @@
                   <HBox prefWidth="200.0">
                      <children>
                         <Region prefWidth="568.0" />
-                        <Label id="loginPg-btn-1" alignment="CENTER_RIGHT" text="Forgot?" textAlignment="RIGHT">
+                        <Label id="loginPg-btn-1" alignment="CENTER_RIGHT" onMouseClicked="#handleForgotAcc" text="Forgot?" textAlignment="RIGHT">
                            <font>
                               <Font name="NexaLight" size="14.0" />
                            </font>

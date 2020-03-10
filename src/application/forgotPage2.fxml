@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="660.0" maxWidth="960.0" minHeight="660.0" minWidth="960.0" prefHeight="660.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.newAccPage3Controller">
+<BorderPane fx:id="forgotPagePane2" maxHeight="660.0" maxWidth="960.0" minHeight="660.0" minWidth="960.0" prefHeight="660.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.forgotPage2Controller">
    <center>
       <VBox id="bg" alignment="CENTER" prefHeight="600.0" prefWidth="960.0" BorderPane.alignment="CENTER">
          <children>
@@ -22,14 +21,14 @@
                   <Region prefWidth="200.0" />
                   <VBox>
                      <children>
-                        <Label id="nexab" alignment="CENTER" text="Next,">
+                        <Label id="nexab" alignment="CENTER" text="Security Question:">
                            <font>
                               <Font name="NexaBold" size="30.0" />
                            </font>
                         </Label>
-                        <Label id="nexab" alignment="CENTER" layoutX="10.0" layoutY="10.0" text="Please enter a password.">
+                        <Label id="nexab" alignment="CENTER" layoutX="10.0" layoutY="10.0" text="What year was your mother born?">
                            <font>
-                              <Font name="NexaBold" size="30.0" />
+                              <Font size="20.0" />
                            </font>
                         </Label>
                      </children>
@@ -42,7 +41,7 @@
                <children>
                   <HBox alignment="CENTER" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="passwordField" prefHeight="28.0" prefWidth="340.0" promptText="Password">
+                        <TextField prefHeight="28.0" prefWidth="340.0" promptText="Your Answer">
                            <font>
                               <Font name="NexaLight" size="14.0" />
                            </font>
@@ -66,7 +65,7 @@
                   <Region layoutX="839.0" layoutY="10.0" prefWidth="412.0" />
                   <VBox alignment="CENTER_RIGHT">
                      <children>
-                        <Label id="newacc-btn" fx:id="nextBtn" alignment="CENTER_RIGHT" onMouseClicked="#handleNxtBtn" text="Next &gt;" textAlignment="RIGHT">
+                        <Label id="newacc-btn" alignment="CENTER_RIGHT" onMouseClicked="#handleForgot2" text="Next &gt;" textAlignment="RIGHT">
                            <font>
                               <Font name="NexaBold" size="30.0" />
                            </font>

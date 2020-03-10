@@ -1,21 +1,34 @@
 package application;
 
+import java.io.IOException;
+
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.Scene;
 import structure.*;
 
 public class newAccPage3Controller {
 
-  @FXML private TextField passwordField;
-
-  @FXML private Label nextBtn;
+  @FXML
+  private BorderPane newAccPane3;
 
   @FXML
-  void handleNxtBtn(MouseEvent event) {
+  private TextField passwordField;
+
+  @FXML
+  private Label nextBtn;
+
+  @FXML
+  void handleNxtBtn(MouseEvent event) throws IOException {
     String password = passwordField.getText();
     User user = new User();
     user.setPassword(password);
+
+    BorderPane pane = FXMLLoader.load(getClass().getResource("newaccPage4.fxml"));
+    newAccPane3.getChildren().setAll(pane);
   }
 }

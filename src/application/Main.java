@@ -26,29 +26,17 @@ public class Main extends Application {
       BorderPane root = new BorderPane();
 
       // TO SWITCH PANES CHANGE ROOT PATH
-      // PANES:
-      // loadingPage.fxml
-      // loginPage.fxml
-      // forgotPage-1.fxml
-      // forgotPage-2.fxml
-      // newaccPage-1.fxml
-      // newaccPage-2.fxml
-      // newaccPage-3.fxml
-      // newaccPage-4.fxml
-      // homePage.fxml
-      // settingsPage.fxml
 
       // POPUPS:
       // -show new task popup from homePage
-      // hierarchy>borderpane>stackpane>furthest rectangle>properties>node>visible
-      // hierarchy>borderpane>stackpane>furthest stackpane>properties>node>visible
+      // SB: hierarchy>borderpane>stackpane>furthest stackpane>properties>node>visible
 
       // -show new event popup from homePage
-      // hierarchy>borderpane>stackpane>furthest rectangle>properties>node>visible
-      // hierarchy>borderpane>stackpane>2nd furthest stackpane>properties>node>visible
+      // SB: hierarchy>borderpane>stackpane>2nd furthest
+      // stackpane>properties>node>visible
 
       // -show search popup from homePage or settingsPage
-      // hierarchy>borderpane>stackpane>borderpane>stackpane>furthest vbox>visible
+      // SB: hierarchy>borderpane>stackpane>borderpane>stackpane>furthest vbox>visible
 
       FXMLLoader loader = new FXMLLoader();
       root = (BorderPane) loader.load(new FileInputStream("src\\application\\loadingPage.fxml"));
@@ -74,4 +62,5 @@ public class Main extends Application {
       e.printStackTrace();
     }
   }
+
 }

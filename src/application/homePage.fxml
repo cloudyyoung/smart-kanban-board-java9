@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.homePageController">
+<BorderPane fx:id="homePane" prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.homePageController">
    <center>
       <StackPane BorderPane.alignment="CENTER">
          <children>
@@ -317,7 +317,7 @@
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>
                                           </SVGPath>
-                                          <Label id="light-list" text="Settings" textFill="#2f2e2e">
+                                          <Label id="light-list" onMouseClicked="#showSettingsPage" text="Settings" textFill="#2f2e2e">
                                              <font>
                                                 <Font name="NexaLight" size="14.0" />
                                              </font>
@@ -345,17 +345,24 @@
                               </VBox>
                               <VBox alignment="BOTTOM_CENTER" prefHeight="322.0" prefWidth="226.0">
                                  <children>
-                                    <HBox id="sk-logo" alignment="CENTER">
+                                    <HBox alignment="CENTER">
                                        <children>
-                                          <SVGPath id="icon" content="M11.48,10.47L9.69 14.61 0 0 9.38 10.82 11.48 10.47z" fill="#2f2e2e" scaleX="0.7" scaleY="0.7" HBox.hgrow="ALWAYS" />
-                                          <Label id="nexab" text="SmartKanban" textFill="#2f2e2e" HBox.hgrow="ALWAYS">
-                                             <font>
-                                                <Font name="NexaBold" size="14.0" />
-                                             </font>
+                                          <Pane id="sk-logo" onMouseClicked="#showLoginPage">
+                                             <children>
+                                                <SVGPath id="icon" content="M11.48,10.47L9.69 14.61 0 0 9.38 10.82 11.48 10.47z" fill="#2f2e2e" layoutY="5.191499710083008" scaleX="0.7" scaleY="0.7" HBox.hgrow="ALWAYS" />
+                                                <Label id="nexab" layoutX="10.277999877929688" text="SmartKanban" textFill="#2f2e2e" HBox.hgrow="ALWAYS">
+                                                   <font>
+                                                      <Font name="NexaBold" size="14.0" />
+                                                   </font>
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor>
+                                                </Label>
+                                             </children>
                                              <cursor>
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>
-                                          </Label>
+                                          </Pane>
                                        </children>
                                        <VBox.margin>
                                           <Insets bottom="7.0" />
@@ -560,7 +567,7 @@
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>
                                           </SVGPath>
-                                          <Label id="light-list" text="March 4, 2020">
+                                          <Label id="light-list" fx:id="todaysDate" text="March 4, 2020">
                                              <font>
                                                 <Font name="NexaLight" size="14.0" />
                                              </font>

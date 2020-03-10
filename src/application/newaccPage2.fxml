@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
@@ -12,27 +19,29 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="660.0" maxWidth="960.0" minHeight="660.0" minWidth="960.0" prefHeight="660.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.newAccPage4Controller">
+<BorderPane fx:id="newAccPane2" maxHeight="660.0" maxWidth="960.0" minHeight="660.0" minWidth="960.0" prefHeight="660.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.newAccPage2Controller">
    <center>
       <VBox id="bg" alignment="CENTER" prefHeight="600.0" prefWidth="960.0" BorderPane.alignment="CENTER">
          <children>
             <Region prefHeight="50.0" />
             <HBox alignment="CENTER" prefWidth="200.0">
                <children>
+                  <Region prefWidth="200.0" />
                   <VBox>
                      <children>
-                        <Label id="nexab" alignment="CENTER" text="Finally,">
+                        <Label id="nexab" alignment="CENTER" text="Now,">
                            <font>
                               <Font name="NexaBold" size="30.0" />
                            </font>
                         </Label>
-                        <Label id="nexab" alignment="CENTER" layoutX="10.0" layoutY="10.0" text="Answer these questions.">
+                        <Label id="nexab" alignment="CENTER" layoutX="10.0" layoutY="10.0" text="Please enter a username.">
                            <font>
                               <Font name="NexaBold" size="30.0" />
                            </font>
                         </Label>
                      </children>
                   </VBox>
+                  <Region prefWidth="200.0" />
                </children>
             </HBox>
             <Region prefHeight="40.0" prefWidth="960.0" />
@@ -40,43 +49,7 @@
                <children>
                   <HBox alignment="CENTER" prefWidth="200.0">
                      <children>
-                        <Label id="nexab" alignment="CENTER" text="What year was your mother born?">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefWidth="200.0">
-                     <children>
-                        <TextField fx:id="motherBornField" prefHeight="28.0" prefWidth="340.0" promptText="Your Answer">
-                           <font>
-                              <Font name="NexaLight" size="14.0" />
-                           </font>
-                        </TextField>
-                     </children>
-                     <VBox.margin>
-                        <Insets bottom="1.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <Line id="ln" endX="100.0" layoutX="291.0" layoutY="111.0" scaleX="1.7" startX="300.0" stroke="#2f2e2e" />
-                  <Region prefHeight="40.0" prefWidth="960.0" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" layoutX="10.0" layoutY="347.0">
-               <children>
-                  <HBox alignment="CENTER" prefWidth="200.0">
-                     <children>
-                        <Label id="nexab" alignment="CENTER" text="What year did/will you graduate?">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefWidth="200.0">
-                     <children>
-                        <TextField fx:id="graduateField" prefHeight="28.0" prefWidth="340.0" promptText="Your Answer">
+                        <TextField fx:id="usernameField" prefHeight="28.0" prefWidth="340.0" promptText="Username">
                            <font>
                               <Font name="NexaLight" size="14.0" />
                            </font>
@@ -94,18 +67,13 @@
                   </HBox>
                </children>
             </VBox>
-            <HBox prefWidth="200.0">
-               <children>
-                  <Region prefWidth="568.0" />
-               </children>
-            </HBox>
-            <Region layoutX="10.0" layoutY="261.0" prefHeight="40.0" prefWidth="960.0" />
+            <Region layoutX="10.0" layoutY="342.0" prefHeight="40.0" prefWidth="960.0" />
             <HBox alignment="CENTER" prefWidth="200.0">
                <children>
                   <Region layoutX="839.0" layoutY="10.0" prefWidth="412.0" />
                   <VBox alignment="CENTER_RIGHT">
                      <children>
-                        <Label id="newacc-btn" fx:id="nextBtn" alignment="CENTER_RIGHT" onMouseClicked="#handleNextBtn" text="Next &gt;" textAlignment="RIGHT">
+                        <Label id="newacc-btn" fx:id="nxtBtn" alignment="CENTER_RIGHT" onMouseClicked="#handleNxtBtn" text="Next &gt;" textAlignment="RIGHT">
                            <font>
                               <Font name="NexaBold" size="30.0" />
                            </font>
@@ -118,7 +86,7 @@
                         </Label>
                      </children>
                   </VBox>
-                  <Region prefHeight="45.0" prefWidth="159.0" />
+                  <Region prefWidth="200.0" />
                </children>
             </HBox>
          </children>

@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
 <?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="660.0" maxWidth="960.0" minHeight="660.0" minWidth="960.0" prefHeight="660.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane id="newAccPane1" fx:id="newAccPane1" maxHeight="660.0" maxWidth="960.0" minHeight="660.0" minWidth="960.0" prefHeight="660.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.newAccPage1Controller">
    <center>
       <VBox id="bg" alignment="CENTER" prefHeight="600.0" prefWidth="960.0" BorderPane.alignment="CENTER">
          <children>
@@ -21,7 +29,7 @@
                   <Region prefWidth="200.0" />
                   <VBox>
                      <children>
-                        <Label id="nexab" alignment="CENTER" text="Forgot your login?">
+                        <Label id="nexab" alignment="CENTER" text="Welcome.">
                            <font>
                               <Font name="NexaBold" size="30.0" />
                            </font>
@@ -41,7 +49,7 @@
                <children>
                   <HBox alignment="CENTER" prefWidth="200.0">
                      <children>
-                        <TextField prefHeight="28.0" prefWidth="340.0" promptText="Email">
+                        <TextField fx:id="emailTextField" prefHeight="28.0" prefWidth="340.0" promptText="Email Address">
                            <font>
                               <Font name="NexaLight" size="14.0" />
                            </font>
@@ -65,7 +73,7 @@
                   <Region layoutX="839.0" layoutY="10.0" prefWidth="412.0" />
                   <VBox alignment="CENTER_RIGHT">
                      <children>
-                        <Label id="newacc-btn" alignment="CENTER_RIGHT" text="Next &gt;" textAlignment="RIGHT">
+                        <Label id="newacc-btn" alignment="CENTER_RIGHT" onMouseClicked="#handleNextClick" text="Next &gt;" textAlignment="RIGHT">
                            <font>
                               <Font name="NexaBold" size="30.0" />
                            </font>

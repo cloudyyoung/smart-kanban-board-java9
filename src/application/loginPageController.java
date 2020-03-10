@@ -1,22 +1,43 @@
 package application;
 
+import java.io.IOException;
+
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import structure.*;
 
 public class loginPageController {
-  @FXML private TextField userNameField;
-
-  @FXML private TextField passwordField;
-
-  @FXML private Label signInBtn;
+  @FXML
+  private BorderPane loginPane;
 
   @FXML
-  void handleCreatAcc(MouseEvent e) {}
+  private TextField userNameField;
 
   @FXML
-  void handleSignIn(MouseEvent e) {
+  private TextField passwordField;
+
+  @FXML
+  private Label signInBtn;
+
+  @FXML
+  void handleForgotAcc(MouseEvent event) throws IOException {
+    BorderPane pane = FXMLLoader.load(getClass().getResource("forgotPage1.fxml"));
+    loginPane.getChildren().setAll(pane);
+
+  }
+
+  @FXML
+  void handleCreatAcc(MouseEvent event) throws IOException {
+    BorderPane pane = FXMLLoader.load(getClass().getResource("newaccPage1.fxml"));
+    loginPane.getChildren().setAll(pane);
+
+  }
+
+  @FXML
+  void handleSignIn(MouseEvent event) throws IOException {
     String username = userNameField.getText();
     String password = passwordField.getText();
 
@@ -24,6 +45,14 @@ public class loginPageController {
     User user = new User();
     HttpRequest req = user.authenticate(username, password);
     authenticated = req.isSucceed();
-    System.out.println(authenticated);
+
+    if (authenticated == true) {
+      BorderPane pane = FXMLLoader.load(getClass().getResource("homePage.fxml"));
+      loginPane.getChildren().setAll(pane);
+    } else {
+      userNameField.setStyle("-fx-text-fill: #bb0000;");
+      passwordField.setStyle("-fx-text-fill: #bb0000;");
+    }
+
   }
 }
