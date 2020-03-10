@@ -5,15 +5,13 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.SVGPath;
 
 public class settingsPageController {
@@ -46,16 +44,16 @@ public class settingsPageController {
   private TextField availableM;
 
   @FXML
+  private Label usernameLabel;
+
+  @FXML
   private TextField searchTextField;
 
   @FXML
   private SVGPath searchClick;
 
   @FXML
-  private HBox SmartKanbanBtn;
-
-  @FXML
-  private StackPane saveChangeBtn;
+  private Rectangle saveChangeBtn;
 
   @FXML
   private TextField availableF;
@@ -108,20 +106,14 @@ public class settingsPageController {
   }
 
   @FXML
-  void showSettingsPage(MouseEvent event) throws IOException {
-
-  }
-
-  @FXML
-  void showLoginPage(MouseEvent event) throws IOException {
-    // TODO : auth = false when clicked
-    BorderPane pane = FXMLLoader.load(getClass().getResource("loginPage.fxml"));
+  void showHomePage(MouseEvent event) throws IOException {
+    BorderPane pane = FXMLLoader.load(getClass().getResource("homePage.fxml"));
     settingsPane.getChildren().setAll(pane);
   }
 
   @FXML
-  void showHomePage(MouseEvent event) throws IOException {
-    BorderPane pane = FXMLLoader.load(getClass().getResource("homePage.fxml"));
+  void showLogin(MouseEvent event) throws IOException {
+    BorderPane pane = FXMLLoader.load(getClass().getResource("loginPage.fxml"));
     settingsPane.getChildren().setAll(pane);
   }
 

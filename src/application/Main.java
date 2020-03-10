@@ -39,7 +39,7 @@ public class Main extends Application {
       // SB: hierarchy>borderpane>stackpane>borderpane>stackpane>furthest vbox>visible
 
       FXMLLoader loader = new FXMLLoader();
-      root = (BorderPane) loader.load(new FileInputStream("src\\application\\loadingPage.fxml"));
+      root = (BorderPane) loader.load(new FileInputStream("src\\application\\settingsPage.fxml"));
 
       // Set Window Size
       Scene scene = new Scene(root, 960, 660);

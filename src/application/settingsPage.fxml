@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane fx:id="settingsPane" prefHeight="660.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.settingsPageController">
+<BorderPane fx:id="settingsPane" maxHeight="660.0" maxWidth="960.0" minHeight="660.0" minWidth="960.0" prefHeight="660.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.settingsPageController">
    <center>
       <StackPane BorderPane.alignment="CENTER">
          <children>
@@ -38,7 +38,7 @@
                                                 <Font name="NexaLight" size="14.0" />
                                              </font>
                                           </Label>
-                                          <Label id="bold" alignment="CENTER" text="Jerremy Lewis" textFill="#2f2e2e">
+                                          <Label id="bold" fx:id="usernameLabel" alignment="CENTER" text="Jerremy Lewis" textFill="#2f2e2e">
                                              <font>
                                                 <Font name="NexaBold" size="14.0" />
                                              </font>
@@ -105,7 +105,7 @@
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>
                                           </SVGPath>
-                                          <Label id="bold-list" fx:id="sideViewToday" onMouseClicked="#showHomePage1" text="Today" textFill="#2f2e2e">
+                                          <Label id="bold-list" fx:id="sideViewToday" onMouseClicked="#showHomePage" text="Today" textFill="#2f2e2e">
                                              <font>
                                                 <Font name="NexaLight" size="14.0" />
                                              </font>
@@ -318,14 +318,18 @@
                               </VBox>
                               <VBox alignment="BOTTOM_CENTER" prefHeight="322.0" prefWidth="226.0">
                                  <children>
-                                    <HBox id="sk-logo" alignment="CENTER">
+                                    <HBox alignment="CENTER">
                                        <children>
-                                          <SVGPath id="icon" content="M11.48,10.47L9.69 14.61 0 0 9.38 10.82 11.48 10.47z" fill="#2f2e2e" scaleX="0.7" scaleY="0.7" />
-                                          <Label id="nexab" text="SmartKanban" textFill="#2f2e2e">
-                                             <font>
-                                                <Font name="NexaBold" size="14.0" />
-                                             </font>
-                                          </Label>
+                                          <Pane id="sk-logo" onMouseClicked="#showLogin">
+                                             <children>
+                                                <SVGPath id="icon" content="M11.48,10.47L9.69 14.61 0 0 9.38 10.82 11.48 10.47z" fill="#2f2e2e" layoutY="5.191499710083008" scaleX="0.7" scaleY="0.7" />
+                                                <Label id="nexab" layoutX="10.277999877929688" text="SmartKanban" textFill="#2f2e2e">
+                                                   <font>
+                                                      <Font name="NexaBold" size="14.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </Pane>
                                        </children>
                                        <VBox.margin>
                                           <Insets bottom="7.0" />
@@ -908,9 +912,9 @@
                         </VBox>
                         <HBox alignment="CENTER_RIGHT" prefWidth="200.0">
                            <children>
-                              <StackPane id="card-sp-b">
+                              <StackPane id="card-sp-b" onMouseClicked="#saveSettingsChanges">
                                  <children>
-                                    <Rectangle id="sc-btn" fx:id="saveChangeBtn" arcHeight="10.0" arcWidth="10.0" fill="#2f2e2e" height="29.0" onMouseClicked="#saveSettingsChanges" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
+                                    <Rectangle id="sc-btn" fx:id="saveChangeBtn" arcHeight="10.0" arcWidth="10.0" fill="#2f2e2e" height="29.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
                                     <Text id="bold" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Save Changes" StackPane.alignment="CENTER_LEFT">
                                        <font>
                                           <Font size="10.0" />
