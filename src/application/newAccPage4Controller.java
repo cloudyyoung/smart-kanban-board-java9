@@ -12,17 +12,13 @@ import structure.*;
 
 public class newAccPage4Controller {
 
-  @FXML
-  private BorderPane newAccPane4;
+  @FXML private BorderPane newAccPane4;
 
-  @FXML
-  private TextField motherBornField;
+  @FXML private TextField motherBornField;
 
-  @FXML
-  private TextField graduateField;
+  @FXML private TextField graduateField;
 
-  @FXML
-  private Label nextBtn;
+  @FXML private Label nextBtn;
 
   @FXML
   void handleNextBtn(MouseEvent event) throws IOException {

@@ -21,17 +21,13 @@ public class loginPageController {
     username = user;
   }
 
-  @FXML
-  private BorderPane loginPane;
+  @FXML private BorderPane loginPane;
 
-  @FXML
-  private TextField userNameField;
+  @FXML private TextField userNameField;
 
-  @FXML
-  private TextField passwordField;
+  @FXML private TextField passwordField;
 
-  @FXML
-  private Label signInBtn;
+  @FXML private Label signInBtn;
 
   @FXML
   void handleForgotAcc(MouseEvent event) throws IOException {
