@@ -11,8 +11,7 @@ import structure.*;
 
 public class forgotPage1Controller {
 
-  @FXML
-  private BorderPane forgotPagePane1;
+  @FXML private BorderPane forgotPagePane1;
 
   @FXML
   void handleForgot1(MouseEvent event) throws IOException {

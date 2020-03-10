@@ -8,23 +8,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.shape.Circle;
 import javafx.scene.input.MouseEvent;
 import javafx.animation.FadeTransition;
-import javafx.animation.PauseTransition;
 import javafx.animation.SequentialTransition;
 import javafx.scene.layout.BorderPane;
 
 public class loadingPageController {
 
-  @FXML
-  private BorderPane loadingPane;
+  @FXML private BorderPane loadingPane;
 
-  @FXML
-  private Circle blueCircle;
+  @FXML private Circle blueCircle;
 
-  @FXML
-  private Circle darkBlueCircle;
+  @FXML private Circle darkBlueCircle;
 
-  @FXML
-  private Circle purpleCircle;
+  @FXML private Circle purpleCircle;
 
   @FXML
   void loadingComplete(MouseEvent event) throws IOException {
