@@ -27,7 +27,7 @@ import java.io.BufferedReader;
  * @version 1.2
  * @since 2020-02-20
  */
-final public class HttpRequest implements Request{
+public final class HttpRequest implements Request {
 
   /** All attributes for request */
   private String baseUrl = "https://kanban.proj.meonc.studio/api";
@@ -39,6 +39,7 @@ final public class HttpRequest implements Request{
 
   /** All attributes for response */
   private boolean succeed;
+
   private boolean exception;
 
   private int responseStatusCode;
@@ -269,7 +270,6 @@ final public class HttpRequest implements Request{
     return this.getCookie(this.responseCookie);
   }
 
-
   /**
    * Set the response body by string of the instance
    *
@@ -326,13 +326,12 @@ final public class HttpRequest implements Request{
     return this.succeed;
   }
 
-
-  private void setException(boolean is){
+  private void setException(boolean is) {
     this.exception = is;
   }
 
   @Override
-  public boolean isException(){
+  public boolean isException() {
     return this.exception;
   }
 

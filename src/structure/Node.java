@@ -31,12 +31,14 @@ public abstract class Node {
    * if the user wants to add something to column we can use this hash map to identify that the
    * parent of column is board, and board's parent is kanban
    *
-   * This will also be used to assign type on {@see #getTypeByLevel} method
+   * <p>This will also be used to assign type on {@see #getTypeByLevel} method
+   *
    * @see #getTypeByLevel
    */
   private final HashMap<String, Integer> TYPES =
       new HashMap<String, Integer>() {
         private static final long serialVersionUID = 3312582702053699017L;
+
         {
           put("Kanban", 0);
           put("Board", 1);

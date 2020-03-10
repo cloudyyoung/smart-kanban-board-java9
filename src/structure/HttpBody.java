@@ -1,6 +1,5 @@
 package structure;
 
-
 import com.google.gson.*;
 
 import java.util.Collection;
@@ -8,7 +7,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 
-final public class HttpBody extends HashMap<Object, Object>{
+public final class HttpBody extends HashMap<Object, Object> {
 
   private static final long serialVersionUID = 795022394347180417L;
   private boolean isList = false;
@@ -189,9 +188,12 @@ final public class HttpBody extends HashMap<Object, Object>{
   }
 
   public String toString() {
-    if(this.isList){
-      return new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(this.values());
-    }else{
+    if (this.isList) {
+      return new GsonBuilder()
+          .excludeFieldsWithoutExposeAnnotation()
+          .create()
+          .toJson(this.values());
+    } else {
       return new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(this);
     }
   }
