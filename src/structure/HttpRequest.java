@@ -11,9 +11,13 @@ import java.io.InputStreamReader;
 import java.io.BufferedReader;
 
 /**
- * <p>Send http request in different http request method with custom param and get return json data.</p>
- * <p>This class is extending from {@link Request} class.</p>
- * <p>This class should be working along with {@link HttpBody}, since the getters and setters of {@code requestBody}, {@code requestCookie}, {@code responseBody}, {@code responseCookie} are accept/return {@code HttpBody} type object.</p>
+ * Send http request in different http request method with custom param and get return json data.
+ *
+ * <p>This class is extending from {@link Request} class.
+ *
+ * <p>This class should be working along with {@link HttpBody}, since the getters and setters of
+ * {@code requestBody}, {@code requestCookie}, {@code responseBody}, {@code responseCookie} are
+ * accept/return {@code HttpBody} type object.
  *
  * @author Cloudy Young
  * @see https://www.baeldung.com/httpurlconnection-post
@@ -31,7 +35,10 @@ public final class HttpRequest extends Request {
   /** The request URL of the instance for request */
   private String requestUrl;
 
-  /** The request method of the instance for request, should always be one of the following: {@code GET}, {@code POST}, {@code PUT}, {@code DELETE}, {@code HEAD}, {@code OPTIONS} */
+  /**
+   * The request method of the instance for request, should always be one of the following: {@code
+   * GET}, {@code POST}, {@code PUT}, {@code DELETE}, {@code HEAD}, {@code OPTIONS}
+   */
   private String requestMethod;
 
   /** The request cookie of the instance for request */
@@ -40,7 +47,10 @@ public final class HttpRequest extends Request {
   /** The request body of the instance for request, should always be {@code JSON} format */
   private String requestBody;
 
-  /** The response status code of the instance after requested, should always be between {@code 100} and {@code 599} */
+  /**
+   * The response status code of the instance after requested, should always be between {@code 100}
+   * and {@code 599}
+   */
   private int responseStatusCode;
 
   /** The response message of the instance after requested */
@@ -53,7 +63,9 @@ public final class HttpRequest extends Request {
   private String responseBody;
 
   /**
-   * Constructor of {@HttpRequest}, provde url in {@code String}, param in {@code Object} and method in {@code String}
+   * Constructor of {@HttpRequest}, provde url in {@code String}, param in {@code Object} and method
+   * in {@code String}
+   *
    * @param url the request url in {@code String}
    * @param param the request body in {@code Object}, preferably in {@code HttpBody}
    * @param method the request method in {@code String}
@@ -66,6 +78,7 @@ public final class HttpRequest extends Request {
 
   /**
    * Constructor of {@HttpRequest}, provde url in {@code String} and method in {@code String}
+   *
    * @param url the request url in {@code String}
    * @param method the request method in {@code String}
    */
@@ -74,15 +87,14 @@ public final class HttpRequest extends Request {
     this.setRequestMethod(method);
   }
 
-  /**
-   * Default constructor of {@HttpRequest}
-   */
+  /** Default constructor of {@HttpRequest} */
   public HttpRequest() {
     this.setRequestMethod("GET");
   }
 
   /**
    * Returns the given cookie in {@code HttpBody} type.
+   *
    * @param cookie the cookie in {@code String}
    * @return the cookie object in {@code HttpBody}
    */
@@ -102,6 +114,7 @@ public final class HttpRequest extends Request {
 
   /**
    * Returns the given cookie in {@code String} type.
+   *
    * @param cookie the cookie in {@code Map}
    * @return the cookie in {@code String}
    */
@@ -118,9 +131,9 @@ public final class HttpRequest extends Request {
 
   /**
    * Sets request method of the instance.
-   * @param method the request method in {@code String}, default value is GET,
-   *               accpetable values are: GET, POST, PUT, DELETE, HEAD, PATCH and OPTIONS,
-   *               otherwise: set to default.
+   *
+   * @param method the request method in {@code String}, default value is GET, accpetable values
+   *     are: GET, POST, PUT, DELETE, HEAD, PATCH and OPTIONS, otherwise: set to default.
    * @see #getRequestMethod()
    */
   public void setRequestMethod(String method) {
@@ -139,6 +152,7 @@ public final class HttpRequest extends Request {
 
   /**
    * Returns the request method of the instance.
+   *
    * @return the request method
    * @see #setRequestMethod(String)
    */
@@ -148,6 +162,7 @@ public final class HttpRequest extends Request {
 
   /**
    * Sets the request body of the instance.
+   *
    * @param param the request body in {@code Object}, preferably in {@code HttpBody}
    * @see #getRequestBody()
    * @see #getRequestBodyString()
@@ -160,8 +175,8 @@ public final class HttpRequest extends Request {
 
   /**
    * Returns a boolean to represent whether the instance has or should have request body.
-   * @return {@code true} if it has or should have
-   *         {@code false} otherwise
+   *
+   * @return {@code true} if it has or should have {@code false} otherwise
    * @see #setRequestBody(Object)
    * @see #getRequestBody()
    * @see #getRequestBodyString()
@@ -176,6 +191,7 @@ public final class HttpRequest extends Request {
 
   /**
    * Returns the request body of the instance.
+   *
    * @return request body in {@code HttpBody}
    * @see #getRequestBodyString()
    * @see #setRequestBody(Object)
@@ -187,6 +203,7 @@ public final class HttpRequest extends Request {
 
   /**
    * Returns the request body of the instance.
+   *
    * @return the request body in {@code String}
    * @see #getRequestBody()
    * @see #setRequestBody(Object)
@@ -198,6 +215,7 @@ public final class HttpRequest extends Request {
 
   /**
    * Sets the request url of the instance.
+   *
    * @param url the request url in {@code String}
    */
   public void setRequestUrl(String url) {
@@ -206,6 +224,7 @@ public final class HttpRequest extends Request {
 
   /**
    * Returns the request url of the instance.
+   *
    * @return the request url in {@code String}
    */
   public String getRequestUrl() {
@@ -214,6 +233,7 @@ public final class HttpRequest extends Request {
 
   /**
    * Sets the base url of the instance.
+   *
    * @param baseUrl the base url in {@code String}
    */
   public void setBaseUrl(String baseUrl) {
@@ -222,6 +242,7 @@ public final class HttpRequest extends Request {
 
   /**
    * Returns the base url of the instance.
+   *
    * @return the base url in {@code String}
    */
   public String getBaseUrl() {
@@ -230,6 +251,7 @@ public final class HttpRequest extends Request {
 
   /**
    * Returns the response body of the instance.
+   *
    * @return the response body in {@code String}
    */
   public String getResponseBodyString() {
@@ -238,6 +260,7 @@ public final class HttpRequest extends Request {
 
   /**
    * Returns the response status code of the instance.
+   *
    * @return the status code in {@code int}
    */
   public int getResponseStatusCode() {
@@ -246,6 +269,7 @@ public final class HttpRequest extends Request {
 
   /**
    * Sets the request cookie of the instance.
+   *
    * @param cookie the cookie to be set in {@code Map}
    */
   public void setRequestCookie(Map<?, ?> cookie) {
@@ -254,6 +278,7 @@ public final class HttpRequest extends Request {
 
   /**
    * Returns the request cookie of the instance.
+   *
    * @return the request cookie in {@code HttpBody}
    */
   public HttpBody getRequestCookie() {
@@ -262,6 +287,7 @@ public final class HttpRequest extends Request {
 
   /**
    * Returns the request cookie of the instance.
+   *
    * @return the cookie in {@code String}
    */
   public String getRequestCookieString() {
@@ -270,6 +296,7 @@ public final class HttpRequest extends Request {
 
   /**
    * Returns the response body of the instance.
+   *
    * @return the response body in {@code HttpBody}
    */
   public HttpBody getResponseBody() {
@@ -278,6 +305,7 @@ public final class HttpRequest extends Request {
 
   /**
    * Returns the response message of the instance.
+   *
    * @return the response message in {@code String}
    */
   public String getResponseMessage() {
@@ -286,6 +314,7 @@ public final class HttpRequest extends Request {
 
   /**
    * Returns the response cookie of the instance.
+   *
    * @return the reponse cookie in {@code HttpBody}
    */
   public HttpBody getResponseCookie() {
@@ -294,6 +323,7 @@ public final class HttpRequest extends Request {
 
   /**
    * Returns the response cookie string of the instance.
+   *
    * @return the reponse cookie in {@code String}
    */
   public String getResponseCookieString() {
@@ -302,6 +332,7 @@ public final class HttpRequest extends Request {
 
   /**
    * Sets the response body of the instance from {@code String}.
+   *
    * @param res the response body in {@code String}
    */
   protected void setResponseBodyString(String res) {
@@ -310,6 +341,7 @@ public final class HttpRequest extends Request {
 
   /**
    * Sets the response body of the instance.
+   *
    * @param body the response body in {@code Map}, preferably in {@code HttpBody}
    */
   protected void setResponseBody(Map<?, ?> body) {
@@ -318,6 +350,7 @@ public final class HttpRequest extends Request {
 
   /**
    * Sets the response status code of the instance.
+   *
    * @param statusCode the status code to set in {@code int}
    */
   private void setResponseStatusCode(int statusCode) {
@@ -326,6 +359,7 @@ public final class HttpRequest extends Request {
 
   /**
    * Sets the response message of the instance.
+   *
    * @param message the message to set in {@code String}
    */
   private void setResponseMessage(String message) {
@@ -334,15 +368,14 @@ public final class HttpRequest extends Request {
 
   /**
    * Sets the response cookie by string of the instance.
+   *
    * @param cookie the cookie to set in {@code String}
    */
   private void setResponseCookieString(String cookie) {
     this.responseCookie = cookie;
   }
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   public String toString() {
     return "HttpRequest ("
         + "isSucceeded: "
@@ -370,8 +403,9 @@ public final class HttpRequest extends Request {
 
   /**
    * Sends the request.
-   * @return {@code true} if the request sent successfully, specifically if the response status code is between {@code 200} and {@code 300}.
-   *         {@code false} otherwise.
+   *
+   * @return {@code true} if the request sent successfully, specifically if the response status code
+   *     is between {@code 200} and {@code 300}. {@code false} otherwise.
    */
   public boolean send() {
 

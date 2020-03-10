@@ -1,8 +1,10 @@
 package structure;
 
 /**
- * <p>The {@code Kanban} class, extends from {@code Node}.</p>
- * <p>The instance should contains {@code Board} object as children nodes.</p>
+ * The {@code Kanban} class, extends from {@code Node}.
+ *
+ * <p>The instance should contains {@code Board} object as children nodes.
+ *
  * @since Kanban 1.0
  * @version 2.0
  */
@@ -11,9 +13,7 @@ public class Kanban extends Node {
   /** The current Kanban object */
   public static Kanban current;
 
-  /**
-   * Constructor of {@code Kanban}
-   */
+  /** Constructor of {@code Kanban} */
   public Kanban(HttpBody obj) {
     super(obj);
   }
@@ -22,8 +22,10 @@ public class Kanban extends Node {
   public Kanban() {}
 
   /**
-   * <p>Check out the {@code Kanban} data of current {@code User} from the server.</p>
-   * <p>This is an <i>action</i> for the controller.</p>
+   * Check out the {@code Kanban} data of current {@code User} from the server.
+   *
+   * <p>This is an <i>action</i> for the controller.
+   *
    * @return the result object of this action in {@code Result}
    */
   public static Result checkout() {

@@ -9,6 +9,7 @@ public class Board extends Node {
 
   /**
    * Constructor of {@code Board}, provide {@code HttpBody}.
+   *
    * @param object the {@code HttpBody} for initialization
    */
   public Board(HttpBody obj) {
@@ -18,6 +19,7 @@ public class Board extends Node {
 
   /**
    * Constructor of Board, provide title, note and color.
+   *
    * @param title The title in {@code String}
    * @param note The note in {@code String}
    * @param color The color in {@code String}
@@ -29,6 +31,7 @@ public class Board extends Node {
 
   /**
    * Set the color in local storage.
+   *
    * @param color The color in {@code String}
    */
   public void setColorLocal(String color) {
@@ -37,6 +40,7 @@ public class Board extends Node {
 
   /**
    * Set the color.
+   *
    * @param color The color in {@code String}
    */
   public HttpRequest setColor(String color) {
@@ -49,6 +53,7 @@ public class Board extends Node {
 
   /**
    * Get the color.
+   *
    * @return color in {@code String}
    */
   public String getColor() {
@@ -57,6 +62,7 @@ public class Board extends Node {
 
   /**
    * A string that "textually represents" this object.
+   *
    * @return text
    */
   public String toString() {
