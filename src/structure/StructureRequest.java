@@ -15,9 +15,9 @@ public final class StructureRequest implements Request {
     this.instance = instance;
   }
 
-  public StructureRequest(boolean succeeded, boolean excepted){
-      this.setSucceeded(succeeded);
-      this.setException(excepted);
+  public StructureRequest(boolean succeeded, boolean excepted) {
+    this.setSucceeded(succeeded);
+    this.setException(excepted);
   }
 
   @Override
@@ -30,7 +30,7 @@ public final class StructureRequest implements Request {
     return this.succeeded;
   }
 
-  public void setSucceeded(boolean is){
+  public void setSucceeded(boolean is) {
     this.succeeded = is;
   }
 
