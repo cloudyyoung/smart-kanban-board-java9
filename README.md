@@ -60,8 +60,8 @@ Settings Page
 - `exit` : terminate the program
 
 ## References
-JSON simple
-- [https://github.com/fangyidong/json-simple](https://github.com/fangyidong/json-simple)
+Google Gson
+- [https://github.com/google/gson](https://github.com/google/gson)
 
 JUnit 5
 - [https://github.com/junit-team/junit5](https://github.com/junit-team/junit5)
