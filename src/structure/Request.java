@@ -3,7 +3,7 @@ package structure;
 public interface Request {
   public boolean isExcepted();
 
-  public boolean isSucceed();
+  public boolean isSucceeded();
 
   public HttpBody getResponseBody();
 

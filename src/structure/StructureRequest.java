@@ -5,7 +5,7 @@ import com.google.gson.*;
 public final class StructureRequest implements Request {
 
   private boolean excepted;
-  private boolean succeed;
+  private boolean succeeded;
   private Object instance;
   private String responseBody;
 
@@ -15,8 +15,8 @@ public final class StructureRequest implements Request {
     this.instance = instance;
   }
 
-  public StructureRequest(boolean succeed, boolean excepted){
-      this.setSucceed(succeed);
+  public StructureRequest(boolean succeeded, boolean excepted){
+      this.setSucceeded(succeeded);
       this.setException(excepted);
   }
 
@@ -26,12 +26,12 @@ public final class StructureRequest implements Request {
   }
 
   @Override
-  public boolean isSucceed() {
-    return this.succeed;
+  public boolean isSucceeded() {
+    return this.succeeded;
   }
 
-  public void setSucceed(boolean is){
-    this.succeed = is;
+  public void setSucceeded(boolean is){
+    this.succeeded = is;
   }
 
   public void setException(boolean is){
@@ -51,7 +51,7 @@ public final class StructureRequest implements Request {
         new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(param);
   }
 
-  // If succeed return whats added else null
+  // If succeeded return whats added else null
   public HttpBody addResponseBody(Object key, Object value) {
     try {
       HttpBody body = this.getResponseBody();

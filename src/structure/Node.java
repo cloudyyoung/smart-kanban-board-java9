@@ -177,7 +177,7 @@ public abstract class Node {
     if (this instanceof Event) {
       String parentType = Node.typeLower(Node.typePlural(this.getParentType()));
       HttpRequest req = this.set(parentType + "_id", parent.getId() + "");
-      if (req.isSucceed()) {
+      if (req.isSucceeded()) {
         this.setParentLocal(parent);
       }
       return req;
@@ -205,7 +205,7 @@ public abstract class Node {
 
   public HttpRequest setTitle(String title) {
     HttpRequest req = this.set("title", title);
-    if (req.isSucceed()) {
+    if (req.isSucceeded()) {
       this.setTitleLocal(title);
     }
     return req;
@@ -217,7 +217,7 @@ public abstract class Node {
 
   public HttpRequest setNote(String note) {
     HttpRequest req = this.set("note", note);
-    if (req.isSucceed()) {
+    if (req.isSucceeded()) {
       this.setNoteLocal(note);
     }
     return req;

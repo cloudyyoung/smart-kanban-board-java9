@@ -23,7 +23,7 @@ public class Board extends Node {
 
   public HttpRequest setColor(String color) {
     HttpRequest req = this.set("color", color);
-    if (req.isSucceed()) {
+    if (req.isSucceeded()) {
       this.setColorLocal(color);
     }
     return req;

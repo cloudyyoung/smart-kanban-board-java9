@@ -160,7 +160,7 @@ public class User {
     // System.out.println(req.getResponseStatusCode());
     // System.out.println(req.getResponseBody());
 
-    if (req.isSucceed()) {
+    if (req.isSucceeded()) {
       HttpBody res = req.getResponseBody();
       HttpBody cookie = req.getResponseCookie();
       this.setId(res.getInt("id"));
@@ -181,7 +181,7 @@ public class User {
     req2.setRequestCookie(cookie);
     req2.send();
 
-    if (req2.isSucceed()) {
+    if (req2.isSucceeded()) {
       Kanban.current = new Kanban(req2.getResponseBody());
     }
 

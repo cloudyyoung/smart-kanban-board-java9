@@ -79,7 +79,7 @@ public class Terminal {
         // authenticated = true;
         User user = new User();
         HttpRequest req = user.authenticate(username, password);
-        authenticated = req.isSucceed();
+        authenticated = req.isSucceeded();
       }
     }
 

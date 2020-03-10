@@ -38,7 +38,7 @@ public final class HttpRequest implements Request {
   private String requestBody;
 
   /** All attributes for response */
-  private boolean succeed;
+  private boolean succeeded;
 
   private boolean excepted;
 
@@ -307,23 +307,23 @@ public final class HttpRequest implements Request {
   }
 
   /**
-   * Set succeed status of the instance
+   * Set succeeded status of the instance
    *
-   * @param is the succeed status to set
+   * @param is the succeeded status to set
    */
-  private void setSucceed(boolean is) {
-    this.succeed = is;
+  private void setSucceeded(boolean is) {
+    this.succeeded = is;
   }
 
   /**
-   * Is this instance's request succeed
+   * Is this instance's request succeeded
    *
-   * @return true if succeed and false if not. By defining if succeed, the status code should not be
+   * @return true if succeeded and false if not. By defining if succeeded, the status code should not be
    *     400~599 and should be no exception occured
    */
   @Override
-  public boolean isSucceed() {
-    return this.succeed;
+  public boolean isSucceeded() {
+    return this.succeeded;
   }
 
   private void setExcepted(boolean is) {
@@ -388,16 +388,16 @@ public final class HttpRequest implements Request {
       }
 
       if (connection.getResponseCode() >= 400 && connection.getResponseCode() <= 599) {
-        this.setSucceed(false);
+        this.setSucceeded(false);
       } else {
-        this.setSucceed(true);
+        this.setSucceeded(true);
       }
       this.setExcepted(false);
 
       connection.disconnect();
 
     } catch (Exception e) {
-      this.setSucceed(false);
+      this.setSucceeded(false);
       this.setExcepted(true);
       // e.printStackTrace();
       return false;
