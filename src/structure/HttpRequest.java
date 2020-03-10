@@ -318,8 +318,8 @@ public final class HttpRequest implements Request {
   /**
    * Is this instance's request succeeded
    *
-   * @return true if succeeded and false if not. By defining if succeeded, the status code should not be
-   *     400~599 and should be no exception occured
+   * @return true if succeeded and false if not. By defining if succeeded, the status code should
+   *     not be 400~599 and should be no exception occured
    */
   @Override
   public boolean isSucceeded() {
