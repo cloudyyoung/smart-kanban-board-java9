@@ -16,80 +16,56 @@ import javafx.scene.shape.SVGPath;
 
 public class settingsPageController {
 
-  @FXML
-  private TextField availableW;
+  @FXML private TextField availableW;
+
+  @FXML private TextField availableU;
+
+  @FXML private TextField availableT;
+
+  @FXML private ColorPicker iconColorPicker;
+
+  @FXML private TextField availableS;
+
+  @FXML private CheckBox darkModePicker;
+
+  @FXML private Label sideViewSettings;
+
+  @FXML private TextField availableR;
+
+  @FXML private TextField availableM;
+
+  @FXML private Label usernameLabel;
+
+  @FXML private TextField searchTextField;
+
+  @FXML private SVGPath searchClick;
+
+  @FXML private Rectangle saveChangeBtn;
+
+  @FXML private TextField availableF;
+
+  @FXML private TextField changeEmailIn;
+
+  @FXML private TextField deleteAllBoards;
+
+  @FXML private Label sideViewBoard;
+
+  @FXML private TextField changeUsernameIn;
+
+  @FXML private BorderPane settingsPane;
+
+  @FXML private TextField changePasswordIn;
+
+  @FXML private Label sideViewToday;
 
   @FXML
-  private TextField availableU;
+  void changeUsername(ActionEvent event) {}
 
   @FXML
-  private TextField availableT;
+  void changeEmail(ActionEvent event) {}
 
   @FXML
-  private ColorPicker iconColorPicker;
-
-  @FXML
-  private TextField availableS;
-
-  @FXML
-  private CheckBox darkModePicker;
-
-  @FXML
-  private Label sideViewSettings;
-
-  @FXML
-  private TextField availableR;
-
-  @FXML
-  private TextField availableM;
-
-  @FXML
-  private Label usernameLabel;
-
-  @FXML
-  private TextField searchTextField;
-
-  @FXML
-  private SVGPath searchClick;
-
-  @FXML
-  private Rectangle saveChangeBtn;
-
-  @FXML
-  private TextField availableF;
-
-  @FXML
-  private TextField changeEmailIn;
-
-  @FXML
-  private TextField deleteAllBoards;
-
-  @FXML
-  private Label sideViewBoard;
-
-  @FXML
-  private TextField changeUsernameIn;
-
-  @FXML
-  private BorderPane settingsPane;
-
-  @FXML
-  private TextField changePasswordIn;
-
-  @FXML
-  private Label sideViewToday;
-
-  @FXML
-  void changeUsername(ActionEvent event) {
-  }
-
-  @FXML
-  void changeEmail(ActionEvent event) {
-  }
-
-  @FXML
-  void changePassword(ActionEvent event) {
-  }
+  void changePassword(ActionEvent event) {}
 
   @FXML
   void saveSettingsChanges(MouseEvent event) throws IOException {
@@ -98,8 +74,7 @@ public class settingsPageController {
   }
 
   @FXML
-  void showSearchPop(ActionEvent event) {
-  }
+  void showSearchPop(ActionEvent event) {}
 
   @FXML
   void showHomePage(MouseEvent event) throws IOException {
