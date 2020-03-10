@@ -12,7 +12,7 @@ public final class Result {
   public Result() {}
 
   public void add(Request add) {
-    if(add == null){
+    if (add == null) {
       return;
     }
     this.list.add(add);
@@ -38,24 +38,24 @@ public final class Result {
         this.exceptionList.add(each);
         changed = true;
       }
-      if(!each.isSucceeded()){
+      if (!each.isSucceeded()) {
         this.setSucceeded(false);
         changed = true;
       }
-      if(changed){
-          return;
+      if (changed) {
+        return;
       }
     }
     this.setException(false);
     this.setSucceeded(true);
-}
+  }
 
   public boolean isExcepted() {
     return this.excepted;
   }
 
-  public boolean isSucceeded(){
-      return this.succeeded;
+  public boolean isSucceeded() {
+    return this.succeeded;
   }
 
   private void setException(boolean is) {
@@ -66,26 +66,26 @@ public final class Result {
     this.succeeded = is;
   }
 
-  public ArrayList<Request> getExceptions(){
+  public ArrayList<Request> getExceptions() {
     return new ArrayList<Request>(this.exceptionList);
   }
 
-  public Request getException(){
-    if(this.exceptionList.size() > 0){
+  public Request getException() {
+    if (this.exceptionList.size() > 0) {
       return this.exceptionList.get(0);
-    }else{
+    } else {
       return null;
     }
   }
 
-  public String toString(){
-      return "Result ("
-      + "isSucceeded: "
-      + this.isSucceeded()
-      + ", isExcepted: "
-      + this.isExcepted()
-      + ", Request: "
-      + this.list.toString()
-      + ")";
+  public String toString() {
+    return "Result ("
+        + "isSucceeded: "
+        + this.isSucceeded()
+        + ", isExcepted: "
+        + this.isExcepted()
+        + ", Request: "
+        + this.list.toString()
+        + ")";
   }
 }

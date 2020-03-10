@@ -177,8 +177,8 @@ public abstract class Node {
   }
 
   public Result setParent(Node parent) {
-      Result res = new Result();
-      if (this instanceof Event) {
+    Result res = new Result();
+    if (this instanceof Event) {
       String parentType = Node.typeLower(Node.typePlural(this.getParentType()));
       HttpRequest req = this.set(parentType + "_id", parent.getId() + "");
       res.add(req);
@@ -187,7 +187,7 @@ public abstract class Node {
         StructureRequest req2 = this.setParentLocal(parent);
         res.add(req2);
       }
-    }else{
+    } else {
       StructureRequest req2 = new StructureRequest(false, true, this);
       req2.setErrorMessage("Instance can only be type of Event");
       res.add(req2);
@@ -365,7 +365,7 @@ public abstract class Node {
     req.setRequestMethod("DELETE");
     req.setRequestCookie(Node.getRequestCookie());
     req.send();
-    
+
     res.add(req);
     return res;
   }

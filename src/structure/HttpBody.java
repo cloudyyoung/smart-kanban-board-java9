@@ -151,10 +151,10 @@ public final class HttpBody extends HashMap<Object, Object> {
     return this.getMap(key);
   }
 
-  public HttpBody getHttpBody(Object key){
-    if(this.get(key) instanceof HttpBody){
+  public HttpBody getHttpBody(Object key) {
+    if (this.get(key) instanceof HttpBody) {
       return (HttpBody) this.get(key);
-    }else{
+    } else {
       return null;
     }
   }

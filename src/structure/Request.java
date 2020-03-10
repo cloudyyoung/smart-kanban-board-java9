@@ -1,10 +1,10 @@
 package structure;
 
 public abstract class Request {
-  
+
   private boolean succeeded;
   private boolean excepted;
-  
+
   public boolean isExcepted() {
     return this.excepted;
   }
@@ -22,6 +22,6 @@ public abstract class Request {
   }
 
   public abstract HttpBody getResponseBody();
-  protected abstract void setResponseBody(HttpBody body);
 
+  protected abstract void setResponseBody(HttpBody body);
 }

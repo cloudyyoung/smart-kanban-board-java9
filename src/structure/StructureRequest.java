@@ -18,7 +18,7 @@ public final class StructureRequest extends Request {
     this.setExcepted(excepted);
   }
 
-  public StructureRequest(boolean succeeded, boolean excepted, Object instance){
+  public StructureRequest(boolean succeeded, boolean excepted, Object instance) {
     this.setSucceeded(succeeded);
     this.setExcepted(excepted);
     this.instance = instance;
@@ -27,7 +27,7 @@ public final class StructureRequest extends Request {
   @Override
   public void setExcepted(boolean is) {
     super.setExcepted(is);
-    if(is){
+    if (is) {
       HttpBody body = StructureRequest.getErrorTemplate();
       this.responseBody = body.toString();
     }
@@ -61,7 +61,7 @@ public final class StructureRequest extends Request {
     }
   }
 
-  public HttpBody setErrorMessage(String message){
+  public HttpBody setErrorMessage(String message) {
     HttpBody body = new Gson().fromJson(this.responseBody, HttpBody.class);
     HttpBody error = body.getHttpBody("error");
     error.put("message", message);

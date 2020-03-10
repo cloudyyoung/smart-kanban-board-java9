@@ -191,7 +191,6 @@ public class User {
     Result res = new Result();
     res.add(req2);
     return res;
-
   }
 
   public static void main(String[] args) {

@@ -39,6 +39,7 @@ public final class HttpRequest extends Request {
 
   /** All attributes for response */
   private int responseStatusCode;
+
   private String responseMessage;
   private String responseCookie;
   private String responseBody;
@@ -308,29 +309,29 @@ public final class HttpRequest extends Request {
     this.responseCookie = cookie;
   }
 
-  public String toString(){
+  public String toString() {
     return "HttpRequest ("
-    + "isSucceeded: "
-    + this.isSucceeded()
-    + ", isExcepted: "
-    + this.isExcepted()
-    + ", requestUrl: "
-    + this.requestUrl
-    + ", requestMethod: "
-    + this.getRequestMethod()
-    + ", requestCookie: "
-    + this.getRequestCookieString()
-    + ", requestBody: "
-    + this.getRequestBodyString()
-    + ", responseStatusCode: "
-    + this.getResponseStatusCode()
-    + ", responseMessage: "
-    + this.getResponseMessage()
-    + ", responseCookie: "
-    + this.getResponseCookieString()
-    + ", responseBody: "
-    + this.getResponseBodyString()
-    + ")";
+        + "isSucceeded: "
+        + this.isSucceeded()
+        + ", isExcepted: "
+        + this.isExcepted()
+        + ", requestUrl: "
+        + this.requestUrl
+        + ", requestMethod: "
+        + this.getRequestMethod()
+        + ", requestCookie: "
+        + this.getRequestCookieString()
+        + ", requestBody: "
+        + this.getRequestBodyString()
+        + ", responseStatusCode: "
+        + this.getResponseStatusCode()
+        + ", responseMessage: "
+        + this.getResponseMessage()
+        + ", responseCookie: "
+        + this.getResponseCookieString()
+        + ", responseBody: "
+        + this.getResponseBodyString()
+        + ")";
   }
 
   /**
