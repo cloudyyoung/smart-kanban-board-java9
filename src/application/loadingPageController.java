@@ -10,17 +10,13 @@ import javafx.scene.layout.BorderPane;
 
 public class loadingPageController {
 
-  @FXML
-  private BorderPane loadingPane;
+  @FXML private BorderPane loadingPane;
 
-  @FXML
-  private Circle blueCircle;
+  @FXML private Circle blueCircle;
 
-  @FXML
-  private Circle darkBlueCircle;
+  @FXML private Circle darkBlueCircle;
 
-  @FXML
-  private Circle purpleCircle;
+  @FXML private Circle purpleCircle;
 
   @FXML
   void loadingComplete(MouseEvent event) throws IOException {

@@ -11,16 +11,13 @@ import structure.*;
 
 public class forgotPage1Controller {
 
-    @FXML
-    private BorderPane forgotPagePane1;
+  @FXML private BorderPane forgotPagePane1;
 
-    @FXML
-    void handleForgot1(MouseEvent event) throws IOException {
-        System.out.println("again");
+  @FXML
+  void handleForgot1(MouseEvent event) throws IOException {
+    System.out.println("again");
 
-        BorderPane pane = FXMLLoader.load(getClass().getResource("forgotPage2.fxml"));
-        forgotPagePane1.getChildren().setAll(pane);
-
-    }
-
+    BorderPane pane = FXMLLoader.load(getClass().getResource("forgotPage2.fxml"));
+    forgotPagePane1.getChildren().setAll(pane);
+  }
 }

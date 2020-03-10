@@ -10,30 +10,24 @@ import javafx.scene.layout.BorderPane;
 import structure.*;
 
 public class loginPageController {
-  @FXML
-  private BorderPane loginPane;
+  @FXML private BorderPane loginPane;
 
-  @FXML
-  private TextField userNameField;
+  @FXML private TextField userNameField;
 
-  @FXML
-  private TextField passwordField;
+  @FXML private TextField passwordField;
 
-  @FXML
-  private Label signInBtn;
+  @FXML private Label signInBtn;
 
   @FXML
   void handleForgotAcc(MouseEvent event) throws IOException {
     BorderPane pane = FXMLLoader.load(getClass().getResource("forgotPage1.fxml"));
     loginPane.getChildren().setAll(pane);
-
   }
 
   @FXML
   void handleCreatAcc(MouseEvent event) throws IOException {
     BorderPane pane = FXMLLoader.load(getClass().getResource("newaccPage1.fxml"));
     loginPane.getChildren().setAll(pane);
-
   }
 
   @FXML
@@ -53,6 +47,5 @@ public class loginPageController {
       userNameField.setStyle("-fx-text-fill: #bb0000;");
       passwordField.setStyle("-fx-text-fill: #bb0000;");
     }
-
   }
 }

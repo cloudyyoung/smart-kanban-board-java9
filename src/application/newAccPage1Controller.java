@@ -8,19 +8,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.Scene;
 import structure.*;
 
 public class newAccPage1Controller {
 
-  @FXML
-  private BorderPane newAccPane1;
+  @FXML private BorderPane newAccPane1;
 
-  @FXML
-  private TextField emailTextField;
+  @FXML private TextField emailTextField;
 
-  @FXML
-  private Label nextBtn;
+  @FXML private Label nextBtn;
 
   @FXML
   void handleNextClick(MouseEvent event) throws IOException {

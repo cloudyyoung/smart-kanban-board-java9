@@ -8,19 +8,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.Scene;
 import structure.*;
 
 public class newAccPage2Controller {
 
-  @FXML
-  private BorderPane newAccPane2;
+  @FXML private BorderPane newAccPane2;
 
-  @FXML
-  private TextField usernameField;
+  @FXML private TextField usernameField;
 
-  @FXML
-  private Label nxtBtn;
+  @FXML private Label nxtBtn;
 
   @FXML
   void handleNxtBtn(MouseEvent event) throws IOException {
