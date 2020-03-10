@@ -431,7 +431,7 @@ public abstract class Node {
     User user = new User();
     user.authenticate("cloudy", "cloudy");
     System.out.println(user);
-    user.fetchKanban();
+    Kanban.fetch();
     System.out.println(Kanban.current);
 
     Node node = Kanban.current.getNode(50);

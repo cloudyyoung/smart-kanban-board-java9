@@ -174,31 +174,13 @@ public class User {
     return res;
   }
 
-  public Result fetchKanban() {
-    HttpBody cookie = new HttpBody();
-    cookie.put("PHPSESSID", this.getSessionId());
-
-    HttpRequest req2 = new HttpRequest();
-    req2.setRequestUrl("/kanban");
-    req2.setRequestMethod("GET");
-    req2.setRequestCookie(cookie);
-    req2.send();
-
-    if (req2.isSucceeded()) {
-      Kanban.current = new Kanban(req2.getResponseBody());
-    }
-
-    Result res = new Result();
-    res.add(req2);
-    return res;
-  }
 
   public static void main(String[] args) {
     User user = new User();
     user.authenticate("cloudy", "cloudy");
     System.out.println(user);
 
-    user.fetchKanban();
+    Kanban.fetch();
     System.out.println(Kanban.current);
   }
 }
