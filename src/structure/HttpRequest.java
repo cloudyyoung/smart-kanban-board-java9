@@ -27,23 +27,24 @@ import java.io.BufferedReader;
  * @version 1.2
  * @since 2020-02-20
  */
-public class HttpRequest {
+final public class HttpRequest implements Request{
 
   /** All attributes for request */
   private String baseUrl = "https://kanban.proj.meonc.studio/api";
 
   private String requestUrl;
   private String requestMethod;
-  private String requestCookie; // should be JSONObject
-  private String requestBody; // should be JSONObject/JSONArray
+  private String requestCookie;
+  private String requestBody;
 
   /** All attributes for response */
   private boolean succeed;
+  private boolean exception;
 
   private int responseStatusCode;
   private String responseMessage;
-  private String responseCookie; // should be JSONObject
-  private String responseBody; // should be JSONObject/JSONArray
+  private String responseCookie;
+  private String responseBody;
 
   /** Create a new HttpRequest instance by providing url, param and method */
   public HttpRequest(String url, Object param, String method) {
@@ -199,6 +200,7 @@ public class HttpRequest {
    *
    * @return response body
    */
+  @Override
   public String getResponseBodyString() {
     return this.responseBody;
   }
@@ -235,7 +237,7 @@ public class HttpRequest {
    *
    * @return cookie string, will be in format of: key=value; key=value; key=value;
    */
-  public String getRequestCookieByString() {
+  public String getRequestCookieString() {
     return this.requestCookie;
   }
 
@@ -244,6 +246,7 @@ public class HttpRequest {
    *
    * @return the response body in Map
    */
+  @Override
   public HttpBody getResponseBody() {
     return new HttpBody(new Gson().fromJson(this.responseBody, Map.class));
   }
@@ -266,22 +269,13 @@ public class HttpRequest {
     return this.getCookie(this.responseCookie);
   }
 
-  /**
-   * Is this instance's request succeed
-   *
-   * @return true if succeed and false if not. By defining if succeed, the status code should not be
-   *     400~599 and should be no exception occured
-   */
-  public boolean isSucceed() {
-    return this.succeed;
-  }
 
   /**
    * Set the response body by string of the instance
    *
    * @param res the response body in String
    */
-  private void setResponseBodyByString(String res) {
+  private void setResponseBodyString(String res) {
     this.responseBody = res;
   }
 
@@ -306,9 +300,9 @@ public class HttpRequest {
   /**
    * Set the response cookie by string of the instance
    *
-   * @param cookie the cookie to set in String, it will be converted into JSONObject and store
+   * @param cookie the cookie to set in String
    */
-  private void setResponseCookieByString(String cookie) {
+  private void setResponseCookieString(String cookie) {
     this.responseCookie = cookie;
   }
 
@@ -319,6 +313,27 @@ public class HttpRequest {
    */
   private void setSucceed(boolean is) {
     this.succeed = is;
+  }
+
+  /**
+   * Is this instance's request succeed
+   *
+   * @return true if succeed and false if not. By defining if succeed, the status code should not be
+   *     400~599 and should be no exception occured
+   */
+  @Override
+  public boolean isSucceed() {
+    return this.succeed;
+  }
+
+
+  private void setException(boolean is){
+    this.exception = is;
+  }
+
+  @Override
+  public boolean isException(){
+    return this.exception;
   }
 
   /**
@@ -334,7 +349,7 @@ public class HttpRequest {
       URL url = new URL(this.getRequestUrl());
       HttpURLConnection connection = (HttpURLConnection) url.openConnection();
       connection.setRequestMethod(this.getRequestMethod());
-      connection.setRequestProperty("Cookie", this.getRequestCookieByString());
+      connection.setRequestProperty("Cookie", this.getRequestCookieString());
       connection.setRequestProperty("Content-Language", "en-US");
       connection.setRequestProperty("Content-Type", "application/json; utf-8");
       connection.setRequestProperty("Accept", "application/json");
@@ -366,11 +381,11 @@ public class HttpRequest {
       }
 
       // Store result
-      this.setResponseBodyByString(response.toString());
+      this.setResponseBodyString(response.toString());
       this.setResponseStatusCode(connection.getResponseCode());
       this.setResponseMessage(connection.getResponseMessage());
       if (connection.getHeaderField("Set-Cookie") != null) { // if there're new cookies
-        this.setResponseCookieByString(connection.getHeaderField("Set-Cookie"));
+        this.setResponseCookieString(connection.getHeaderField("Set-Cookie"));
       }
 
       if (connection.getResponseCode() >= 400 && connection.getResponseCode() <= 599) {
@@ -378,11 +393,13 @@ public class HttpRequest {
       } else {
         this.setSucceed(true);
       }
+      this.setException(false);
 
       connection.disconnect();
 
     } catch (Exception e) {
       this.setSucceed(false);
+      this.setException(true);
       // e.printStackTrace();
       return false;
     }

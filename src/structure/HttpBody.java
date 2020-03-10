@@ -1,14 +1,14 @@
 package structure;
 
-import java.util.Map;
 
 import com.google.gson.*;
 
 import java.util.Collection;
+import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 
-class HttpBody extends HashMap<Object, Object> {
+final public class HttpBody extends HashMap<Object, Object>{
 
   private static final long serialVersionUID = 795022394347180417L;
   private boolean isList = false;
@@ -71,10 +71,9 @@ class HttpBody extends HashMap<Object, Object> {
   @Override
   public HttpBody put(Object key, Object value) {
     if (this.isList) {
-      super.put(this.size(), this.parse(value));
-    } else {
-      super.put(key, this.parse(value));
+      key = Integer.parseInt(key.toString() + "");
     }
+    super.put(key, this.parse(value));
     return this;
   }
 
@@ -190,10 +189,10 @@ class HttpBody extends HashMap<Object, Object> {
   }
 
   public String toString() {
-    if (this.isList) {
-      return this.values().toString();
-    } else {
-      return super.toString();
+    if(this.isList){
+      return new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(this.values());
+    }else{
+      return new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(this);
     }
   }
 

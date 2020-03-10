@@ -27,16 +27,16 @@ public abstract class Node {
   private HashMap<Integer, Node> nodes = new HashMap<Integer, Node>();
 
   /**
-   * creates a "dictionary" so it will be easier to determine the parent class of each main class ie
+   * Creates a "dictionary" so it will be easier to determine the parent class of each main class ie
    * if the user wants to add something to column we can use this hash map to identify that the
    * parent of column is board, and board's parent is kanban
    *
-   * <p>this will also be used to assign type on `getTypebyLevel` method
+   * This will also be used to assign type on {@see #getTypeByLevel} method
+   * @see #getTypeByLevel
    */
   private final HashMap<String, Integer> TYPES =
       new HashMap<String, Integer>() {
         private static final long serialVersionUID = 3312582702053699017L;
-
         {
           put("Kanban", 0);
           put("Board", 1);
