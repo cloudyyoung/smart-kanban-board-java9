@@ -1,7 +1,7 @@
 package structure;
 
 public interface Request {
-  public boolean isException();
+  public boolean isExcepted();
 
   public boolean isSucceed();
 

@@ -6,7 +6,7 @@ public final class Result {
 
   private ArrayList<Request> list = new ArrayList<Request>();
   private ArrayList<Request> exceptionList = new ArrayList<Request>();
-  private boolean exception = false;
+  private boolean excepted = false;
 
   public Result() {}
 
@@ -28,7 +28,7 @@ public final class Result {
   private void checkException() {
     exceptionList.clear();
     for (Request each : list) {
-      if (each.isException()) {
+      if (each.isExcepted()) {
         this.setException(true);
         this.exceptionList.add(each);
       }
@@ -36,11 +36,11 @@ public final class Result {
     this.setException(false);
   }
 
-  public boolean isException() {
-    return this.exception;
+  public boolean isExcepted() {
+    return this.excepted;
   }
 
   private void setException(boolean is) {
-    this.exception = is;
+    this.excepted = is;
   }
 }

@@ -4,7 +4,7 @@ import com.google.gson.*;
 
 public final class StructureRequest implements Request {
 
-  private boolean exception;
+  private boolean excepted;
   private boolean succeed;
   private Object instance;
   private String responseBody;
@@ -15,14 +15,27 @@ public final class StructureRequest implements Request {
     this.instance = instance;
   }
 
+  public StructureRequest(boolean succeed, boolean excepted){
+      this.setSucceed(succeed);
+      this.setException(excepted);
+  }
+
   @Override
-  public boolean isException() {
-    return false;
+  public boolean isExcepted() {
+    return this.excepted;
   }
 
   @Override
   public boolean isSucceed() {
-    return false;
+    return this.succeed;
+  }
+
+  public void setSucceed(boolean is){
+    this.succeed = is;
+  }
+
+  public void setException(boolean is){
+      this.excepted = is;
   }
 
   public Object getInstance() {

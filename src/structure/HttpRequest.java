@@ -40,7 +40,7 @@ public final class HttpRequest implements Request {
   /** All attributes for response */
   private boolean succeed;
 
-  private boolean exception;
+  private boolean excepted;
 
   private int responseStatusCode;
   private String responseMessage;
@@ -326,13 +326,13 @@ public final class HttpRequest implements Request {
     return this.succeed;
   }
 
-  private void setException(boolean is) {
-    this.exception = is;
+  private void setExcepted(boolean is) {
+    this.excepted = is;
   }
 
   @Override
-  public boolean isException() {
-    return this.exception;
+  public boolean isExcepted() {
+    return this.excepted;
   }
 
   /**
@@ -392,13 +392,13 @@ public final class HttpRequest implements Request {
       } else {
         this.setSucceed(true);
       }
-      this.setException(false);
+      this.setExcepted(false);
 
       connection.disconnect();
 
     } catch (Exception e) {
       this.setSucceed(false);
-      this.setException(true);
+      this.setExcepted(true);
       // e.printStackTrace();
       return false;
     }
