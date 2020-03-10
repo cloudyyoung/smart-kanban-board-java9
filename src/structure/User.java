@@ -147,15 +147,7 @@ public class User {
     this.setUsername(aUsername);
     this.setPassword(aPassword);
 
-    HttpBody param = new HttpBody();
-    param.put("username", this.getUsername());
-    param.put("password", this.getPassword());
-
-    HttpRequest req = new HttpRequest();
-    req.setRequestUrl("/users/authentication");
-    req.setRequestMethod("PUT");
-    req.setRequestBody(param);
-    req.send();
+    HttpRequest req = this._authenticate(username, password);
 
     // System.out.println(req.getResponseStatusCode());
     // System.out.println(req.getResponseBody());
@@ -171,6 +163,48 @@ public class User {
 
     Result res = new Result();
     res.add(req);
+    return res;
+  }
+
+  private HttpRequest _authenticate(String username, String password){
+    HttpBody param = new HttpBody();
+    param.put("username", this.getUsername());
+    param.put("password", this.getPassword());
+
+    HttpRequest req = new HttpRequest();
+    req.setRequestUrl("/users/authentication");
+    req.setRequestMethod("PUT");
+    req.setRequestBody(param);
+    req.send();
+
+    return req;
+  }
+
+  public Result signup(String username, String password, String sec_ques, String sec_ans){
+    Result res = new Result();
+
+    this.setUsername(username);
+    this.setPassword(password);
+
+    HttpBody param = new HttpBody();
+    param.put("username", this.getUsername());
+    param.put("password", this.getPassword());
+    param.put("security_question", sec_ques);
+    param.put("security_answer", sec_ans);
+
+    HttpRequest req = new HttpRequest();
+    req.setRequestUrl("/users/");
+    req.setRequestMethod("POST");
+    req.setRequestBody(param);
+    req.send();
+
+    res.add(req);
+
+    if(req.isSucceeded()){
+      HttpRequest req2 = this._authenticate(username, password);
+      res.add(req2);
+    }
+
     return res;
   }
 
