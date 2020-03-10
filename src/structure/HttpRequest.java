@@ -11,58 +11,82 @@ import java.io.InputStreamReader;
 import java.io.BufferedReader;
 
 /**
- * Send http request in different http request method with custom param and get return json data.
- * Custoizamables: request url, request method, request cookie, request body Public methods: Getters
- * and setters of request attributes, Getters of response attributes, and Send method All Object
- * input and output should be either Map or List, and the all Object private attribute should be
- * either JSONObject or JSONArray The Pipeline: Give Map/List -> Convert to JSONObject/JSONArray and
- * store -> Send and receive String -> Convert String to JSONObject/JSONArray -> Convert from
- * JSONObject/JSONArray -> Get Map/List
+ * <p>Send http request in different http request method with custom param and get return json data.</p>
+ * <p>This class is extending from {@link Request} class.</p>
+ * <p>This class should be working along with {@link HttpBody}, since the getters and setters of {@code requestBody}, {@code requestCookie}, {@code responseBody}, {@code responseCookie} are accept/return {@code HttpBody} type object.</p>
  *
  * @author Cloudy Young
  * @see https://www.baeldung.com/httpurlconnection-post
  * @see http://alex-public-doc.s3.amazonaws.com/json_simple-1.1/index.html
  * @see https://www.tutorialspoint.com/json_simple/json_simple_quick_guide.htm
  * @see https://github.com/CloudyYoung/Kanban-Server/wiki
- * @version 1.2
- * @since 2020-02-20
+ * @since Kanban 1.0
+ * @version 2.1
  */
 public final class HttpRequest extends Request {
 
-  /** All attributes for request */
+  /** The base URL of the instance for request */
   private String baseUrl = "https://kanban.proj.meonc.studio/api";
 
+  /** The request URL of the instance for request */
   private String requestUrl;
+
+  /** The request method of the instance for request, should always be one of the following: {@code GET}, {@code POST}, {@code PUT}, {@code DELETE}, {@code HEAD}, {@code OPTIONS} */
   private String requestMethod;
+
+  /** The request cookie of the instance for request */
   private String requestCookie;
+
+  /** The request body of the instance for request, should always be {@code JSON} format */
   private String requestBody;
 
-  /** All attributes for response */
+  /** The response status code of the instance after requested, should always be between {@code 100} and {@code 599} */
   private int responseStatusCode;
 
+  /** The response message of the instance after requested */
   private String responseMessage;
+
+  /** The response cookie of the instance after requested */
   private String responseCookie;
+
+  /** The response body of the instance after requested, should always be {@code JSON} format */
   private String responseBody;
 
-  /** Create a new HttpRequest instance by providing url, param and method */
+  /**
+   * Constructor of {@HttpRequest}, provde url in {@code String}, param in {@code Object} and method in {@code String}
+   * @param url the request url in {@code String}
+   * @param param the request body in {@code Object}, preferably in {@code HttpBody}
+   * @param method the request method in {@code String}
+   */
   public HttpRequest(String url, Object param, String method) {
     this.setRequestUrl(url);
     this.setRequestBody(param);
     this.setRequestMethod(method);
   }
 
-  /** Create a new HttpRequest instance by providing url, method */
+  /**
+   * Constructor of {@HttpRequest}, provde url in {@code String} and method in {@code String}
+   * @param url the request url in {@code String}
+   * @param method the request method in {@code String}
+   */
   public HttpRequest(String url, String method) {
     this.setRequestUrl(url);
     this.setRequestMethod(method);
   }
 
-  /** Create a new HttpRequest instance by providing nothing */
+  /**
+   * Default constructor of {@HttpRequest}
+   */
   public HttpRequest() {
     this.setRequestMethod("GET");
   }
 
-  private HttpBody getCookie(String cookie) {
+  /**
+   * Returns the given cookie in {@code HttpBody} type.
+   * @param cookie the cookie in {@code String}
+   * @return the cookie object in {@code HttpBody}
+   */
+  private HttpBody cookieStringToObject(String cookie) {
     HttpBody ret = new HttpBody();
     String[] list = cookie.split("; ");
     for (String each : list) {
@@ -76,7 +100,12 @@ public final class HttpRequest extends Request {
     return ret;
   }
 
-  private String setCookie(Map<?, ?> cookie) {
+  /**
+   * Returns the given cookie in {@code String} type.
+   * @param cookie the cookie in {@code Map}
+   * @return the cookie in {@code String}
+   */
+  private String cookieObjectToString(Map<?, ?> cookie) {
     String ret = "";
     HttpBody body = new HttpBody(cookie);
     for (Object each : body.keySet()) {
@@ -88,10 +117,11 @@ public final class HttpRequest extends Request {
   }
 
   /**
-   * Set request method of the instance
-   *
-   * @param method request method in whether upper or lower case, default value is GET, accpetable
-   *     values: GET, POST, PUT, DELETE, HEAD, PATCH and OPTIONS, other values: set to default.
+   * Sets request method of the instance.
+   * @param method the request method in {@code String}, default value is GET,
+   *               accpetable values are: GET, POST, PUT, DELETE, HEAD, PATCH and OPTIONS,
+   *               otherwise: set to default.
+   * @see #getRequestMethod()
    */
   public void setRequestMethod(String method) {
     if (method.equals("GET")
@@ -108,18 +138,20 @@ public final class HttpRequest extends Request {
   }
 
   /**
-   * Get the request method of the instance
-   *
+   * Returns the request method of the instance.
    * @return the request method
+   * @see #setRequestMethod(String)
    */
   public String getRequestMethod() {
     return this.requestMethod;
   }
 
   /**
-   * Set the request body of the instance
-   *
-   * @param param the request body, should either be Map or List
+   * Sets the request body of the instance.
+   * @param param the request body in {@code Object}, preferably in {@code HttpBody}
+   * @see #getRequestBody()
+   * @see #getRequestBodyString()
+   * @see #hasRequestBody()
    */
   public void setRequestBody(Object param) {
     this.requestBody =
@@ -127,9 +159,12 @@ public final class HttpRequest extends Request {
   };
 
   /**
-   * Whether the instance has request body
-   *
-   * @return true if has and false if not has
+   * Returns a boolean to represent whether the instance has or should have request body.
+   * @return {@code true} if it has or should have
+   *         {@code false} otherwise
+   * @see #setRequestBody(Object)
+   * @see #getRequestBody()
+   * @see #getRequestBodyString()
    */
   public boolean hasRequestBody() {
     return (this.requestBody != null
@@ -140,175 +175,174 @@ public final class HttpRequest extends Request {
   }
 
   /**
-   * Get the request body of the instance
-   *
-   * @return request body in Map
+   * Returns the request body of the instance.
+   * @return request body in {@code HttpBody}
+   * @see #getRequestBodyString()
+   * @see #setRequestBody(Object)
+   * @see #hasRequestBody()
    */
   public HttpBody getRequestBody() {
     return new Gson().fromJson(this.requestBody, HttpBody.class);
   }
 
   /**
-   * Get the request body of the instance, in string
-   *
-   * @return request body in String
+   * Returns the request body of the instance.
+   * @return the request body in {@code String}
+   * @see #getRequestBody()
+   * @see #setRequestBody(Object)
+   * @see #hasRequestBody()
    */
   public String getRequestBodyString() {
     return this.requestBody;
   }
 
   /**
-   * Set the request url of the instance
-   *
-   * @param url the request url
+   * Sets the request url of the instance.
+   * @param url the request url in {@code String}
    */
   public void setRequestUrl(String url) {
     this.requestUrl = this.baseUrl + url;
   }
 
   /**
-   * Get the request url of the instance
-   *
-   * @return the request url
+   * Returns the request url of the instance.
+   * @return the request url in {@code String}
    */
   public String getRequestUrl() {
     return this.requestUrl;
   }
 
   /**
-   * Set the base url of the instance The full url would be baseUrl + url
-   *
-   * @param baseUrl the base url
+   * Sets the base url of the instance.
+   * @param baseUrl the base url in {@code String}
    */
   public void setBaseUrl(String baseUrl) {
     this.baseUrl = baseUrl + "/";
   }
 
   /**
-   * Get the base url of the instance
-   *
-   * @return the base url
+   * Returns the base url of the instance.
+   * @return the base url in {@code String}
    */
   public String getBaseUrl() {
     return this.baseUrl;
   }
 
   /**
-   * Get response body in String of the instance
-   *
-   * @return response body
+   * Returns the response body of the instance.
+   * @return the response body in {@code String}
    */
   public String getResponseBodyString() {
     return this.responseBody;
   }
 
   /**
-   * Get the response status code of the instance
-   *
-   * @return status code
+   * Returns the response status code of the instance.
+   * @return the status code in {@code int}
    */
   public int getResponseStatusCode() {
     return this.responseStatusCode;
   }
 
   /**
-   * Set the request cookie of the instance
-   *
-   * @param cookie the cookie in Map, must be Map otherwise is invalid and set to null
+   * Sets the request cookie of the instance.
+   * @param cookie the cookie to be set in {@code Map}
    */
   public void setRequestCookie(Map<?, ?> cookie) {
-    this.requestCookie = this.setCookie(cookie);
+    this.requestCookie = this.cookieObjectToString(cookie);
   }
 
   /**
-   * Get the request cookie of the instance
-   *
-   * @return the request cookie in Map
+   * Returns the request cookie of the instance.
+   * @return the request cookie in {@code HttpBody}
    */
   public HttpBody getRequestCookie() {
-    return this.getCookie(this.requestCookie);
+    return this.cookieStringToObject(this.requestCookie);
   }
 
   /**
-   * Get the request cookie of the instance in String
-   *
-   * @return cookie string, will be in format of: key=value; key=value; key=value;
+   * Returns the request cookie of the instance.
+   * @return the cookie in {@code String}
    */
   public String getRequestCookieString() {
     return this.requestCookie;
   }
 
   /**
-   * Get the response body of the instance
-   *
-   * @return the response body in Map
+   * Returns the response body of the instance.
+   * @return the response body in {@code HttpBody}
    */
   public HttpBody getResponseBody() {
     return new HttpBody(new Gson().fromJson(this.responseBody, Map.class));
   }
 
   /**
-   * Get the response message of the instance
-   *
-   * @return the response message
+   * Returns the response message of the instance.
+   * @return the response message in {@code String}
    */
   public String getResponseMessage() {
     return this.responseMessage;
   }
 
   /**
-   * Get the response cookie of the instance
-   *
-   * @return reponse cookie in Map
+   * Returns the response cookie of the instance.
+   * @return the reponse cookie in {@code HttpBody}
    */
   public HttpBody getResponseCookie() {
-    return this.getCookie(this.responseCookie);
+    return this.cookieStringToObject(this.responseCookie);
   }
 
+  /**
+   * Returns the response cookie string of the instance.
+   * @return the reponse cookie in {@code String}
+   */
   public String getResponseCookieString() {
     return this.responseCookie;
   }
 
   /**
-   * Set the response body by string of the instance
-   *
-   * @param res the response body in String
+   * Sets the response body of the instance from {@code String}.
+   * @param res the response body in {@code String}
    */
   protected void setResponseBodyString(String res) {
     this.responseBody = res;
   }
 
-  protected void setResponseBody(HttpBody body) {
+  /**
+   * Sets the response body of the instance.
+   * @param body the response body in {@code Map}, preferably in {@code HttpBody}
+   */
+  protected void setResponseBody(Map<?, ?> body) {
     this.responseBody = new Gson().toJson(body);
   }
 
   /**
-   * Set the response status code of the instance
-   *
-   * @param statusCode the status code to set in int
+   * Sets the response status code of the instance.
+   * @param statusCode the status code to set in {@code int}
    */
   private void setResponseStatusCode(int statusCode) {
     this.responseStatusCode = statusCode;
   }
 
   /**
-   * Set the response message of the instance
-   *
-   * @param message the message to set in String
+   * Sets the response message of the instance.
+   * @param message the message to set in {@code String}
    */
   private void setResponseMessage(String message) {
     this.responseMessage = message;
   }
 
   /**
-   * Set the response cookie by string of the instance
-   *
-   * @param cookie the cookie to set in String
+   * Sets the response cookie by string of the instance.
+   * @param cookie the cookie to set in {@code String}
    */
   private void setResponseCookieString(String cookie) {
     this.responseCookie = cookie;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   public String toString() {
     return "HttpRequest ("
         + "isSucceeded: "
@@ -335,10 +369,9 @@ public final class HttpRequest extends Request {
   }
 
   /**
-   * Send the request of the instance
-   *
-   * @return true if the request sent successfully and false if not, notice that false indicates
-   *     runtime error and exception occured
+   * Sends the request.
+   * @return {@code true} if the request sent successfully, specifically if the response status code is between {@code 200} and {@code 300}.
+   *         {@code false} otherwise.
    */
   public boolean send() {
 

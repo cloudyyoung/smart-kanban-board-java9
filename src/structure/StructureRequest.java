@@ -1,5 +1,7 @@
 package structure;
 
+import java.util.Map;
+
 import com.google.gson.*;
 
 public final class StructureRequest extends Request {
@@ -41,7 +43,7 @@ public final class StructureRequest extends Request {
     this.instance = instance;
   }
 
-  public void setResponseBody(HttpBody param) {
+  public void setResponseBody(Map<?, ?> param) {
     this.responseBody =
         new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(param);
   }

@@ -213,7 +213,7 @@ public class User {
     user.authenticate("cloudy", "cloudy");
     System.out.println(user);
 
-    Kanban.fetch();
+    Kanban.checkout();
     System.out.println(Kanban.current);
   }
 }
