@@ -9,14 +9,11 @@ import javafx.scene.layout.BorderPane;
 
 public class forgotPage2Controller {
 
-    @FXML
-    private BorderPane forgotPagePane2;
+  @FXML private BorderPane forgotPagePane2;
 
-    @FXML
-    void handleForgot2(MouseEvent event) throws IOException {
-        BorderPane pane = FXMLLoader.load(getClass().getResource("homePage.fxml"));
-        forgotPagePane2.getChildren().setAll(pane);
-
-    }
-
+  @FXML
+  void handleForgot2(MouseEvent event) throws IOException {
+    BorderPane pane = FXMLLoader.load(getClass().getResource("homePage.fxml"));
+    forgotPagePane2.getChildren().setAll(pane);
+  }
 }

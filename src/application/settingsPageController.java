@@ -81,17 +81,14 @@ public class settingsPageController {
 
   @FXML
   void changeUsername(ActionEvent event) {
-
   }
 
   @FXML
   void changeEmail(ActionEvent event) {
-
   }
 
   @FXML
   void changePassword(ActionEvent event) {
-
   }
 
   @FXML
@@ -102,7 +99,6 @@ public class settingsPageController {
 
   @FXML
   void showSearchPop(ActionEvent event) {
-
   }
 
   @FXML
@@ -116,5 +112,4 @@ public class settingsPageController {
     BorderPane pane = FXMLLoader.load(getClass().getResource("loginPage.fxml"));
     settingsPane.getChildren().setAll(pane);
   }
-
 }

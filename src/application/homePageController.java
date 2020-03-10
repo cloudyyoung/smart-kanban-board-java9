@@ -15,41 +15,29 @@ import structure.*;
 
 public class homePageController {
 
-  @FXML
-  private Label doingButton;
+  @FXML private Label doingButton;
 
-  @FXML
-  private BorderPane homePane;
+  @FXML private BorderPane homePane;
 
-  @FXML
-  private Label newBoardButton;
+  @FXML private Label newBoardButton;
 
-  @FXML
-  private Label todaysDate;
+  @FXML private Label todaysDate;
 
-  @FXML
-  private StackPane newBoardPopUp;
+  @FXML private StackPane newBoardPopUp;
 
-  @FXML
-  private Rectangle transRectangle;
+  @FXML private Rectangle transRectangle;
 
-  @FXML
-  private Label backlogButton;
+  @FXML private Label backlogButton;
 
-  @FXML
-  private Label todoButton;
+  @FXML private Label todoButton;
 
-  @FXML
-  private Label doneButton;
+  @FXML private Label doneButton;
 
-  @FXML
-  private StackPane newTaskPopUp;
+  @FXML private StackPane newTaskPopUp;
 
-  @FXML
-  private SVGPath newBoardExitButton;
+  @FXML private SVGPath newBoardExitButton;
 
-  @FXML
-  private SVGPath newTaskExitButton;
+  @FXML private SVGPath newTaskExitButton;
 
   @FXML
   void backlogNewTask(MouseEvent event) {
@@ -88,9 +76,7 @@ public class homePageController {
   }
 
   @FXML
-  void setDarkMode(ActionEvent event) {
-
-  }
+  void setDarkMode(ActionEvent event) {}
 
   @FXML
   void showLoginPage(MouseEvent event) throws IOException {
@@ -117,5 +103,4 @@ public class homePageController {
 
     todaysDate.setText(cap + " " + Time.currentDay() + ", " + Time.currentYear());
   }
-
 }
