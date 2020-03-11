@@ -8,15 +8,16 @@ import java.time.format.DateTimeFormatter;
 /**
  * Provides methods for returning current times and dates based off on devices local time
  *
+ * @since Kanban 1.0
+ * @version 1.0
  * @author Jerremy Lewis
  */
 public class Time {
 
   /**
-   * Method: currentHour24() Description: takes a date string and returns the current hour int in
-   * 24hr form
+   * Returns the current 24hr hour
    *
-   * @return int result
+   * @return the current 24hr hour
    */
   public static String currentHour24() {
 
@@ -37,10 +38,10 @@ public class Time {
   }
 
   /**
-   * Method: currentHour12() Description: converts from 24hr time to 12hr time if time is greater
-   * than 12
+   * Converts from 24hr time to 12hr time
    *
-   * @param int currentHour24 @Return int result
+   * @param currentHour24 the current 24h hour
+   * @return the result 12hr hour
    */
   public static String currentHour12(int currentHour24) {
     /** result: takes the 24 hour version of the time and converts it to 12 hour clock */
@@ -56,8 +57,9 @@ public class Time {
   }
 
   /**
-   * Method: currentMinute() Description: takes a date string and returns the current minute
-   * int @Return int result
+   * Returns the current minute
+   *
+   * @return the current minute
    */
   public static String currentMinute() {
 
@@ -80,8 +82,9 @@ public class Time {
   }
 
   /**
-   * Method: currentSecond() Description: takes a date string and returns the current second
-   * int @Return int result
+   * Returns the current second
+   *
+   * @return the current second
    */
   public static String currentSecond() {
 
@@ -102,8 +105,9 @@ public class Time {
   }
 
   /**
-   * Method: currentMonth() Description: takes a date string and returns the current month
-   * int @Return int result
+   * Returns the current month
+   *
+   * @return the current month
    */
   public static String currentMonth() {
 
@@ -124,8 +128,9 @@ public class Time {
   }
 
   /**
-   * Method: currentDay() Description: takes a date string and returns the current day int @Return
-   * int result
+   * Returns the current day
+   *
+   * @return the current day
    */
   public static String currentDay() {
 
@@ -146,8 +151,9 @@ public class Time {
   }
 
   /**
-   * Method: currentYear() Description: takes a date string and returns the current year int @Return
-   * int result
+   * Returns the current year
+   *
+   * @return the current year
    */
   public static String currentYear() {
 
@@ -168,8 +174,9 @@ public class Time {
   }
 
   /**
-   * Method: currentHour24() Description: takes a date string and returns the current hour in 24hr
-   * form @Return int result
+   * Returns the current name of the day. Such as {@code Wednesday}.
+   *
+   * @return the current name of the day
    */
   public static String currentDayName() {
 
@@ -185,9 +192,9 @@ public class Time {
   }
 
   /**
-   * Method: monthName() Description: takes a month integer and returns the name of the month
+   * Returns the name of the month. Such as {@code October}.
    *
-   * @return int monthName
+   * @return the name of the month
    */
   public static String monthName(int currentMonthNum) {
 
