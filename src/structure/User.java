@@ -1,7 +1,8 @@
 package structure;
 
 /**
- * The class {@code User} instance represents an Account which stores the users informations and provides needed methods to interact.
+ * The class {@code User} instance represents an Account which stores the users informations and
+ * provides needed methods to interact.
  */
 public class User {
 
@@ -20,19 +21,21 @@ public class User {
   /** The password of the account. */
   private String password;
 
-  /** The authentication status of the account. {@code true} represents the instance user is authenticated with the server successfully. {@code false} otherwise. */
+  /**
+   * The authentication status of the account. {@code true} represents the instance user is
+   * authenticated with the server successfully. {@code false} otherwise.
+   */
   private boolean authenticated;
 
   /** A boolean to indicate if the account is existing on the server. */
   private boolean existing;
 
-  /**
-   * Default constructor of {@code User}.
-   */
+  /** Default constructor of {@code User}. */
   public User() {}
 
   /**
    * Returns the username of the account.
+   *
    * @return the username of the account
    */
   public String getUsername() {
@@ -41,6 +44,7 @@ public class User {
 
   /**
    * Returns the user id of the account.
+   *
    * @return the user id of the account
    */
   public int getId() {
@@ -49,6 +53,7 @@ public class User {
 
   /**
    * Returns the session id of the account.
+   *
    * @return the session id of the account
    */
   public String getSessionId() {
@@ -57,6 +62,7 @@ public class User {
 
   /**
    * Sets the username of the account.
+   *
    * @param username the username to be set
    */
   public void setUsername(String username) {
@@ -65,6 +71,7 @@ public class User {
 
   /**
    * Sets the password of the account.
+   *
    * @param password the password to be set
    */
   public void setPassword(String password) {
@@ -73,6 +80,7 @@ public class User {
 
   /**
    * Returns the password of the account.
+   *
    * @return the password of the account
    */
   private String getPassword() {
@@ -81,8 +89,9 @@ public class User {
 
   /**
    * Return the authentication status of the account.
-   * @return {@code true} if the instance user is authenticated with the server successfully.
-   *         {@code false} otherwise.
+   *
+   * @return {@code true} if the instance user is authenticated with the server successfully. {@code
+   *     false} otherwise.
    */
   public boolean isAuthenticated() {
     return this.authenticated;
@@ -90,6 +99,7 @@ public class User {
 
   /**
    * Sets the user id of the account.
+   *
    * @param id the user id to be set
    */
   public void setId(Integer id) {
@@ -98,15 +108,14 @@ public class User {
 
   /**
    * Sets the session id of the account.
+   *
    * @param sessionId the session id to be set
    */
   public void setSessionId(String sessionId) {
     this.sessionId = sessionId;
   }
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   public String toString() {
     return "User (username: "
         + this.getUsername()
@@ -120,8 +129,10 @@ public class User {
   }
 
   /**
-   * <p>Authenticates the user account with the server.</p>
-   * <p>This is an <i>action</i> for controllers.</p>
+   * Authenticates the user account with the server.
+   *
+   * <p>This is an <i>action</i> for controllers.
+   *
    * @return the result object of this action
    */
   public Result authenticate() {
@@ -129,8 +140,10 @@ public class User {
   }
 
   /**
-   * <p>Authenticates the user account with the server.</p>
-   * <p>This is an <i>action</i> for controllers.</p>
+   * Authenticates the user account with the server.
+   *
+   * <p>This is an <i>action</i> for controllers.
+   *
    * @param username the username of the account
    * @param password the pssword of the account
    * @return the result object of this action
@@ -154,12 +167,13 @@ public class User {
       StructureRequest req2 = this.authenticateLocal();
       res.add(req2);
     }
-    
+
     return res;
   }
 
   /**
    * Authenticates the instance account in the server.
+   *
    * @param username the username of the account
    * @param password the password of the account
    * @return the http requests of the action
@@ -180,9 +194,10 @@ public class User {
 
   /**
    * Authenticates the instance account in local storage
+   *
    * @return the structure request of the action
    */
-  private StructureRequest authenticateLocal(){
+  private StructureRequest authenticateLocal() {
     this.authenticated = true;
     User.current = this;
     StructureRequest req = new StructureRequest(true, false, this);
@@ -190,8 +205,10 @@ public class User {
   }
 
   /**
-   * <p>Registers the instance account in the server.</p>
-   * <p>This is an <i>action</i> for controllers.</p>
+   * Registers the instance account in the server.
+   *
+   * <p>This is an <i>action</i> for controllers.
+   *
    * @param username the username of the account
    * @param password the password of the account
    * @param sec_ques the security question of the account

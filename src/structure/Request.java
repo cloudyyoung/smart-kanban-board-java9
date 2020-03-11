@@ -2,9 +2,7 @@ package structure;
 
 import java.util.Map;
 
-/**
- * The abtract class for all {@code Request} type class.
- */
+/** The abtract class for all {@code Request} type class. */
 public abstract class Request {
 
   /** A boolean to indicate whether the instance is successfully requested. */
@@ -15,6 +13,7 @@ public abstract class Request {
 
   /**
    * Returns a boolean to indicate whether the instance has exceptions occured.
+   *
    * @return a boolean to indicate whether the instance has exceptions occured
    * @see #setSucceeded(boolean)
    * @see #isSucceeded()
@@ -25,6 +24,7 @@ public abstract class Request {
 
   /**
    * Returns a boolean to indicate whether the instance is successfully requested
+   *
    * @return a boolean to indicate whether the instance is successfully requested
    * @see #setExcepted(boolean)
    * @see #isExcepted()
@@ -35,6 +35,7 @@ public abstract class Request {
 
   /**
    * Sets the succeeded status to the specified boolean
+   *
    * @param is the specified boolean
    * @see isSucceeded()
    */
@@ -44,6 +45,7 @@ public abstract class Request {
 
   /**
    * Sets the excepted status to the specified boolean
+   *
    * @param is the specified boolean
    * @see isExcepted()
    */
@@ -53,6 +55,7 @@ public abstract class Request {
 
   /**
    * Returns the response body of the instance.
+   *
    * @return the response body in {@code HttpBody}
    * @see #setResponseBody(Map)
    */
@@ -60,12 +63,14 @@ public abstract class Request {
 
   /**
    * Returns the response body of the instance.
+   *
    * @return the response body in {@code String}
    */
   public abstract String getResponseBodyString();
 
   /**
    * Sets the response body of the instance.
+   *
    * @param body the response body in {@code Map}, preferably in {@code HttpBody}
    * @see #setResponseBody(Map)
    */

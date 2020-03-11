@@ -22,8 +22,10 @@ public class Kanban extends Node {
   public Kanban() {}
 
   /**
-   * <p>Check out the {@code Kanban} data of current {@code User} from the server.</p>
-   * <p>This is an <i>action</i> for controllers.</p>
+   * Check out the {@code Kanban} data of current {@code User} from the server.
+   *
+   * <p>This is an <i>action</i> for controllers.
+   *
    * @return the result object of this action in {@code Result}
    */
   public static Result checkout() {

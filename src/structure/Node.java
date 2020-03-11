@@ -9,27 +9,40 @@ import com.google.gson.annotations.*;
 import java.lang.reflect.Constructor;
 
 /**
- * <p>The {@code Board} class, extends from {@code Node}.</p>
- * <p>The instance should contains {@code Column} object as children nodes.</p>
+ * The {@code Board} class, extends from {@code Node}.
+ *
+ * <p>The instance should contains {@code Column} object as children nodes.
+ *
  * @since Kanban 1.0
  * @version 2.1
  */
 public abstract class Node {
 
-  /** The id of the instance, provided by the server. It is exposed to Gson, cannot be serialized and can be deserialized. */
+  /**
+   * The id of the instance, provided by the server. It is exposed to Gson, cannot be serialized and
+   * can be deserialized.
+   */
   @Expose(serialize = false, deserialize = true)
   private int id;
 
   /** The title of the instance. It is exposed to Gson, can be both serialized and deserialized. */
   @Expose private String title;
 
-  /** The note(description) of the instance. It is exposed to Gson, can be both serialized and deserialized. */
+  /**
+   * The note(description) of the instance. It is exposed to Gson, can be both serialized and
+   * deserialized.
+   */
   @Expose private String note;
-  
-  /** The parent id of the instance. It is exposed to Gson, can be both serialized and deserialized. */
+
+  /**
+   * The parent id of the instance. It is exposed to Gson, can be both serialized and deserialized.
+   */
   @Expose private int parentId;
 
-  /** The boolean to indicate whether this instance is on the server. {@code false} inidicates this instance is only existing in local storage. */
+  /**
+   * The boolean to indicate whether this instance is on the server. {@code false} inidicates this
+   * instance is only existing in local storage.
+   */
   private boolean existing = false;
 
   /** The parent object of the instance. */
@@ -39,7 +52,9 @@ public abstract class Node {
   private HashMap<Integer, Node> nodes = new HashMap<Integer, Node>();
 
   /**
-   * <p>The dictionary of the {@code Node} hierarchy. It is used to identify the parent or children type.</p>
+   * The dictionary of the {@code Node} hierarchy. It is used to identify the parent or children
+   * type.
+   *
    * @see #getTypeByLevel(String, int)
    */
   private final HashMap<String, Integer> TYPE_DICTIONARY =
@@ -56,6 +71,7 @@ public abstract class Node {
 
   /**
    * Constructor of {@code Node}, provide id, title and note.
+   *
    * @param id the id in {@code int}
    * @param title the title in {@code String}
    * @param note the note in {@code String}
@@ -66,13 +82,12 @@ public abstract class Node {
     this.setNoteLocal(note);
   }
 
-  /**
-   * Default constructor of {@code Kanban}.
-   */
+  /** Default constructor of {@code Kanban}. */
   public Node() {}
 
   /**
    * Constructor of {@code Node}, provide title and note.
+   *
    * @param title the title in {@code String}
    * @param note the note in {@code String}
    */
@@ -81,8 +96,9 @@ public abstract class Node {
     this.setNoteLocal(note);
   }
 
- /**
+  /**
    * Constructor of {@code Node}, provide object to map.
+   *
    * @param obj the object to map in {@code HttpBody}
    */
   public Node(HttpBody obj) {
@@ -99,6 +115,7 @@ public abstract class Node {
 
   /**
    * Sets the children {@code Nodes} for the instance.
+   *
    * @param obj the object to map in {@code HttpBody}
    */
   private void extractChildrenNodes(HttpBody obj) {
@@ -129,8 +146,9 @@ public abstract class Node {
 
   /**
    * Returns if the instance is existing in the server.
-   * @return {@code true} if the instance is existing in the server.
-   *         {@code false} if the instance is only existing in the local storage.
+   *
+   * @return {@code true} if the instance is existing in the server. {@code false} if the instance
+   *     is only existing in the local storage.
    */
   public boolean isExisting() {
     return this.existing;
@@ -138,6 +156,7 @@ public abstract class Node {
 
   /**
    * Returns the type by specified type and level by using the dictionary {@link #TYPE_DICTIONARY}.
+   *
    * @see #TYPE_DICTIONARY
    * @param type the type to look up
    * @param level the number of levels to look up
@@ -164,6 +183,7 @@ public abstract class Node {
 
   /**
    * Returns the users id.
+   *
    * @return the id of the instance
    */
   public int getId() {
@@ -172,6 +192,7 @@ public abstract class Node {
 
   /**
    * Returns the parentid.
+   *
    * @return the parent object of the instance
    */
   public Node getParent() {
@@ -180,6 +201,7 @@ public abstract class Node {
 
   /**
    * Sets the id.
+   *
    * @param id the id of the instance
    */
   private void setId(int id) {
@@ -188,6 +210,7 @@ public abstract class Node {
 
   /**
    * Sets the parent {@code Node}, in local storage.
+   *
    * @param parent the strcuture request of the action
    */
   private StructureRequest setParentLocal(Node parent) {
@@ -199,8 +222,10 @@ public abstract class Node {
   }
 
   /**
-   * <p>Sets the parent {@code Node} of the instance.</p>
-   * <p>This is an <i>action</i> for controllers.</p>
+   * Sets the parent {@code Node} of the instance.
+   *
+   * <p>This is an <i>action</i> for controllers.
+   *
    * @param parent the parent {@code Node} of the instance
    * @return the result object of this action
    */
@@ -225,6 +250,7 @@ public abstract class Node {
 
   /**
    * Returns the title of the instance.
+   *
    * @return the title of the instance
    */
   public String getTitle() {
@@ -233,6 +259,7 @@ public abstract class Node {
 
   /**
    * Sets the title of the instance, in local storage.
+   *
    * @param title the strcuture request of the action
    */
   public StructureRequest setTitleLocal(String title) {
@@ -243,8 +270,10 @@ public abstract class Node {
   }
 
   /**
-   * <p>Sets the title of the instance.</p>
-   * <p>This is an <i>action</i> for controllers.</p>
+   * Sets the title of the instance.
+   *
+   * <p>This is an <i>action</i> for controllers.
+   *
    * @param title the title of the instance
    * @return the result object of this action
    */
@@ -262,6 +291,7 @@ public abstract class Node {
 
   /**
    * Sets the note of the instance, in local storage.
+   *
    * @param note the strcuture request of the action
    */
   public StructureRequest setNoteLocal(String note) {
@@ -272,8 +302,10 @@ public abstract class Node {
   }
 
   /**
-   * <p>Sets the note of the instance.</p>
-   * <p>This is an <i>action</i> for controllers.</p>
+   * Sets the note of the instance.
+   *
+   * <p>This is an <i>action</i> for controllers.
+   *
    * @param note the note of the instance
    * @return the result object of this action
    */
@@ -291,6 +323,7 @@ public abstract class Node {
 
   /**
    * Returns the note of the instance.
+   *
    * @return the note of the instance
    */
   public String getNote() {
@@ -299,6 +332,7 @@ public abstract class Node {
 
   /**
    * Sets the specified key and value, in the server.
+   *
    * @param key the key of the property
    * @param value the value of the property
    * @return the http request of this action, of sending the request to the server
@@ -319,8 +353,11 @@ public abstract class Node {
   }
 
   /**
-   * <p>Returns the parent type of the instance.</p>
-   * <p>The type of the instance will be used as specified type. Number {@code 1} will be used as specified number of levels.</p>
+   * Returns the parent type of the instance.
+   *
+   * <p>The type of the instance will be used as specified type. Number {@code 1} will be used as
+   * specified number of levels.
+   *
    * @return the parent type of the instance
    */
   public String getParentType() {
@@ -328,8 +365,10 @@ public abstract class Node {
   }
 
   /**
-   * <p>Returns the parent type, provide a specified type name.</p>
-   * <p>Number {@code 1} will be used as specified number of levels.</p>
+   * Returns the parent type, provide a specified type name.
+   *
+   * <p>Number {@code 1} will be used as specified number of levels.
+   *
    * @param type the specified parent type
    * @return the parent type of the instance. {@code null} if there is any invalidation.
    */
@@ -339,6 +378,7 @@ public abstract class Node {
 
   /**
    * Returns the parent type, provide a specified type name and number of levels.
+   *
    * @param type the specified parent type
    * @param level the specified number of levels
    * @return the parent type of the instance. {@code null} if there is any invalidation.
@@ -348,8 +388,11 @@ public abstract class Node {
   }
 
   /**
-   * <p>Returns the child type.</p>
-   * <p>The type of the instance will be used as specified type. Number {@code 1} will be used as specified number of levels.</p>
+   * Returns the child type.
+   *
+   * <p>The type of the instance will be used as specified type. Number {@code 1} will be used as
+   * specified number of levels.
+   *
    * @return the child type of the instance. {@code null} if there is any invalidation.
    */
   public String getChildType() {
@@ -357,26 +400,26 @@ public abstract class Node {
   }
 
   /**
-   * <p>Returns the child type, provide a specified type.</p>
-   * <p>Number {@code 1} will be used as specified number of levels.</p>
+   * Returns the child type, provide a specified type.
+   *
+   * <p>Number {@code 1} will be used as specified number of levels.
+   *
    * @return the child type of the instance. {@code null} if there is any invalidation.
    */
   public String getChildType(String type) {
     return this.getChildType(type, 1);
   }
 
-
   /**
-   * <p>Returns the child type, provide a specified type and number of levels.</p>
+   * Returns the child type, provide a specified type and number of levels.
+   *
    * @return the child type of the instance. {@code null} if there is any invalidation.
    */
   public String getChildType(String type, int level) {
     return this.getTypeByLevel(type, Math.abs(level));
   }
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   public String toString() {
     return this.getType()
         + " (id: "
@@ -391,8 +434,11 @@ public abstract class Node {
   }
 
   /**
-   * <p>Returns the request cookie for <b>sending all requests validly</b>.</p>
-   * <p>Generally, the server, specifically for PHP, the requests are identified by the {@code PHPSESSID} to determine whether they are valid (whether from a signed in user).</p>
+   * Returns the request cookie for <b>sending all requests validly</b>.
+   *
+   * <p>Generally, the server, specifically for PHP, the requests are identified by the {@code
+   * PHPSESSID} to determine whether they are valid (whether from a signed in user).
+   *
    * @return the request cookie object
    */
   private static HttpBody getRequestCookie() {
@@ -402,8 +448,10 @@ public abstract class Node {
   }
 
   /**
-   * <p>Creates the instance on the server.</p>
-   * <p>This is an <i>action</i> for controllers.</p>
+   * Creates the instance on the server.
+   *
+   * <p>This is an <i>action</i> for controllers.
+   *
    * @return the result object of this action
    */
   public Result add() {
@@ -417,7 +465,7 @@ public abstract class Node {
     req.send();
     res.add(req);
 
-    if(req.isSucceeded()){
+    if (req.isSucceeded()) {
       Node parent = this.getParent();
       StructureRequest req2 = parent.addNode(this);
       res.add(req2);
@@ -427,8 +475,10 @@ public abstract class Node {
   }
 
   /**
-   * <p>Removes the instance on the server.</p>
-   * <p>This is an <i>action</i> for controllers.</p>
+   * Removes the instance on the server.
+   *
+   * <p>This is an <i>action</i> for controllers.
+   *
    * @return the result object of this action
    */
   public Result remove() {
@@ -440,8 +490,8 @@ public abstract class Node {
     req.setRequestCookie(Node.getRequestCookie());
     req.send();
     res.add(req);
-    
-    if(req.isSucceeded()){
+
+    if (req.isSucceeded()) {
       Node parent = this.getParent();
       StructureRequest req2 = parent.removeNode(this.getId());
       res.add(req2);
@@ -452,6 +502,7 @@ public abstract class Node {
 
   /**
    * Adds a child node of the instance, in the local storage.
+   *
    * @param node the {@code Node} object to be added
    * @return the structure request of this action
    */
@@ -462,6 +513,7 @@ public abstract class Node {
 
   /**
    * Removes a child node of the instance, in the local storage.
+   *
    * @param id the id of the {@code Node} object to be removed
    * @return the strcuture request of the action
    */
@@ -472,6 +524,7 @@ public abstract class Node {
 
   /**
    * Returns the node of the instance maps to the specified id.
+   *
    * @param id the specified id
    * @return the node obejct maps to the specified id
    */
@@ -481,6 +534,7 @@ public abstract class Node {
 
   /**
    * Returns all the children nodes of the instance.
+   *
    * @return a {@code Collection} of all the children nodes
    */
   public Collection<Node> getNodes() {
@@ -489,6 +543,7 @@ public abstract class Node {
 
   /**
    * Returns the type of the instance
+   *
    * @return the type of the instance
    */
   public String getType() {
@@ -497,6 +552,7 @@ public abstract class Node {
 
   /**
    * Returns a specified type in a format of Java class. Such as {@code structure.Node}.
+   *
    * @param type a specified type
    * @return a string of a specified type in a format of Java class
    */
@@ -506,6 +562,7 @@ public abstract class Node {
 
   /**
    * Returns a specified type in a plural format
+   *
    * @param type a specified type
    * @return a string of a specified type in a plural format
    */
@@ -515,6 +572,7 @@ public abstract class Node {
 
   /**
    * Returns a specified type in a singular format.
+   *
    * @param type a specified type
    * @return a string of a specified type in a singular format
    */
@@ -524,6 +582,7 @@ public abstract class Node {
 
   /**
    * Returns a specified type in a proper-case format.
+   *
    * @param type a specified type
    * @return a string of a specified type in a proper-case format
    */
@@ -533,6 +592,7 @@ public abstract class Node {
 
   /**
    * Returns a specified type in a lower-case format.
+   *
    * @param type a specified type
    * @return a string of a specified type in a lower-case format
    */
@@ -542,6 +602,7 @@ public abstract class Node {
 
   /**
    * Returns a specified type in a upper-case format.
+   *
    * @param type a specified type
    * @return a string of a specified type in a upper-case format
    */

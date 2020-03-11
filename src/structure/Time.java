@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * Provides methods for returning current times and dates based off on devices local time
+ *
  * @since Kanban 1.0
  * @version 1.0
  * @author Jerremy Lewis
@@ -15,6 +16,7 @@ public class Time {
 
   /**
    * Returns the current 24hr hour
+   *
    * @return the current 24hr hour
    */
   public static int currentHour24() {
@@ -37,6 +39,7 @@ public class Time {
 
   /**
    * Converts from 24hr time to 12hr time
+   *
    * @param currentHour24 the current 24h hour
    * @return the result 12hr hour
    */
@@ -55,6 +58,7 @@ public class Time {
 
   /**
    * Returns the current minute
+   *
    * @return the current minute
    */
   public static int currentMinute() {
@@ -77,6 +81,7 @@ public class Time {
 
   /**
    * Returns the current second
+   *
    * @return the current second
    */
   public static int currentSecond() {
@@ -99,6 +104,7 @@ public class Time {
 
   /**
    * Returns the current month
+   *
    * @return the current month
    */
   public static int currentMonth() {
@@ -121,6 +127,7 @@ public class Time {
 
   /**
    * Returns the current day
+   *
    * @return the current day
    */
   public static int currentDay() {
@@ -143,6 +150,7 @@ public class Time {
 
   /**
    * Returns the current year
+   *
    * @return the current year
    */
   public static int currentYear() {
@@ -165,6 +173,7 @@ public class Time {
 
   /**
    * Returns the current name of the day. Such as {@code Wednesday}.
+   *
    * @return the current name of the day
    */
   public static String currentDayName() {
@@ -182,6 +191,7 @@ public class Time {
 
   /**
    * Returns the name of the month. Such as {@code October}.
+   *
    * @return the name of the month
    */
   public static String monthName(int currentMonthNum) {

@@ -2,21 +2,25 @@ package structure;
 
 import java.util.ArrayList;
 
-/**
- * The class for all <i>action</i> results.
- */
+/** The class for all <i>action</i> results. */
 public final class Result {
 
   /** An {@code ArrayList} which stores all the {@code Request} related to the instance. */
   private ArrayList<Request> list = new ArrayList<Request>();
-  
-  /** An {@code ArrayList} which stores all the excepted {@code Request} in {@link #list}.  */
+
+  /** An {@code ArrayList} which stores all the excepted {@code Request} in {@link #list}. */
   private ArrayList<Request> exceptionList = new ArrayList<Request>();
 
-  /** A boolean to indicate whether any of the related {@code Request} in {@link #list} has exception occured. */
+  /**
+   * A boolean to indicate whether any of the related {@code Request} in {@link #list} has exception
+   * occured.
+   */
   private boolean excepted = false;
 
-  /** A boolean to indicate whether the all the related {@code Request} in {@link #list} are successfully requested. */
+  /**
+   * A boolean to indicate whether the all the related {@code Request} in {@link #list} are
+   * successfully requested.
+   */
   private boolean succeeded = false;
 
   /** Default constructor of {@code Result}. */
@@ -24,6 +28,7 @@ public final class Result {
 
   /**
    * Adds a new related {@code Request} to the {@link list}.
+   *
    * @see #list
    * @see #remove(Request)
    */
@@ -37,6 +42,7 @@ public final class Result {
 
   /**
    * Removes a existing related {@code Request} in the {@link list}.
+   *
    * @param remove the {@code Request} object to be removed
    * @see #list
    * @see #add(Request)
@@ -48,6 +54,7 @@ public final class Result {
 
   /**
    * Removes a existing related {@code Request} in the {@link list}.
+   *
    * @param remove the index of object to be removed
    * @see #list
    * @see #add(Request)
@@ -57,9 +64,7 @@ public final class Result {
     this.checkException();
   }
 
-  /**
-   * Checks whether any of the related {@code Request} in {@link #list} has exception occured.
-   */
+  /** Checks whether any of the related {@code Request} in {@link #list} has exception occured. */
   private void checkException() {
     exceptionList.clear();
     boolean changed = false;
@@ -82,9 +87,11 @@ public final class Result {
   }
 
   /**
-   * Return a boolean to indicate whether any of the related {@code Request} in {@link #list} has exception occured.
-   * @return {@code true} if there is at least one related request has exception occured.
-   *         {@code false} otherwise.
+   * Return a boolean to indicate whether any of the related {@code Request} in {@link #list} has
+   * exception occured.
+   *
+   * @return {@code true} if there is at least one related request has exception occured. {@code
+   *     false} otherwise.
    * @see #setExcepted(boolean)
    * @see #isSucceeded()
    */
@@ -93,9 +100,10 @@ public final class Result {
   }
 
   /**
-   * Returns a boolean to indicate whether the all the related {@code Request} in {@link #list} are successfully requested.
-   * @return {@code true} if all the related requests are succeeded.
-   *         {@code false} otherwise.
+   * Returns a boolean to indicate whether the all the related {@code Request} in {@link #list} are
+   * successfully requested.
+   *
+   * @return {@code true} if all the related requests are succeeded. {@code false} otherwise.
    * @see #setSucceeded(boolean)
    * @see #isExcepted()
    */
@@ -104,18 +112,21 @@ public final class Result {
   }
 
   /**
-   * Sets {@link #excepted} to indicate whether any of the related {@code Request} in {@link #list} has exception occured.
-   * @param is {@code true} if there is at least one related request has exception occured.
-   *           {@code false} otherwise.
+   * Sets {@link #excepted} to indicate whether any of the related {@code Request} in {@link #list}
+   * has exception occured.
+   *
+   * @param is {@code true} if there is at least one related request has exception occured. {@code
+   *     false} otherwise.
    */
   private void setExcepted(boolean is) {
     this.excepted = is;
   }
 
   /**
-   * Sets {@link #succeeded} to indicate whether the all the related {@code Request} in {@link #list} are successfully requested.
-   * @param is {@code true} if all the related requests are succeeded.
-   *           {@code false} otherwise.
+   * Sets {@link #succeeded} to indicate whether the all the related {@code Request} in {@link
+   * #list} are successfully requested.
+   *
+   * @param is {@code true} if all the related requests are succeeded. {@code false} otherwise.
    */
   private void setSucceeded(boolean is) {
     this.succeeded = is;
@@ -123,6 +134,7 @@ public final class Result {
 
   /**
    * Returns a list of all related requests which have exceptions occured.
+   *
    * @return a list of all related requests which have exceptions occured
    */
   public ArrayList<Request> getExceptions() {
@@ -131,6 +143,7 @@ public final class Result {
 
   /**
    * Returns the first element of all related requests which have exceptions occured.
+   *
    * @return the first element of all related requests which have exceptions occured.
    */
   public Request getException() {
@@ -141,9 +154,7 @@ public final class Result {
     }
   }
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   public String toString() {
     return "Result ("
         + "isSucceeded: "
