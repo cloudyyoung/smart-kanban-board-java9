@@ -4,7 +4,7 @@ package structure;
  * <p>The {@code Kanban} class, extends from {@code Node}.</p>
  * <p>The instance should contains {@code Board} object as children nodes.</p>
  * @since Kanban 1.0
- * @version 2.0
+ * @version 2.1
  */
 public class Kanban extends Node {
 
@@ -23,7 +23,7 @@ public class Kanban extends Node {
 
   /**
    * <p>Check out the {@code Kanban} data of current {@code User} from the server.</p>
-   * <p>This is an <i>action</i> for the controller.</p>
+   * <p>This is an <i>action</i> for controllers.</p>
    * @return the result object of this action in {@code Result}
    */
   public static Result checkout() {

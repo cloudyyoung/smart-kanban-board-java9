@@ -229,8 +229,7 @@ public final class HttpRequest extends Request {
   }
 
   /**
-   * Returns the response body of the instance.
-   * @return the response body in {@code String}
+   * {@inheritDoc}
    */
   public String getResponseBodyString() {
     return this.responseBody;
@@ -269,8 +268,7 @@ public final class HttpRequest extends Request {
   }
 
   /**
-   * Returns the response body of the instance.
-   * @return the response body in {@code HttpBody}
+   * {@inheritDoc}
    */
   public HttpBody getResponseBody() {
     return new HttpBody(new Gson().fromJson(this.responseBody, Map.class));
@@ -309,9 +307,10 @@ public final class HttpRequest extends Request {
   }
 
   /**
-   * Sets the response body of the instance.
+   * {@inheritDoc}
    * @param body the response body in {@code Map}, preferably in {@code HttpBody}
    */
+  @Override
   protected void setResponseBody(Map<?, ?> body) {
     this.responseBody = new Gson().toJson(body);
   }

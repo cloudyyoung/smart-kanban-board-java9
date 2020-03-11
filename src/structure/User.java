@@ -1,119 +1,111 @@
 package structure;
 
 /**
- * this function stores the users username and password for use in the terminal class and for the
- * authentication process later on in this class
+ * The class {@code User} instance represents an Account which stores the users informations and provides needed methods to interact.
  */
 public class User {
-  /**
-   * username: stores the users username as a string id: gives the user an id so their information
-   * can be saved for the authentication process sessionId: users current session id so the user can
-   * return to the page they were previously on if they left password: stores the users password as
-   * a string current: the current signed in user
-   */
+
+  /** The current signed-in user instance. */
   public static User current;
 
+  /** The username of the account. */
   private String username;
+
+  /** The user id of the account. */
   private int id;
+
+  /** The session id of the account. For the server requests to be proceeded properly. */
   private String sessionId;
+
+  /** The password of the account. */
   private String password;
+
+  /** The authentication status of the account. {@code true} represents the instance user is authenticated with the server successfully. {@code false} otherwise. */
   private boolean authenticated;
 
-  /**
-   * resets the 4 variables listed above so a new user can login or so an account doesn't just stay
-   * open or logged in
-   */
-  public User() {
-    this.setUsername("");
-    this.setSessionId("");
-    this.setPassword("");
-  }
+  /** A boolean to indicate if the account is existing on the server. */
+  private boolean existing;
 
   /**
-   * gets username
-   *
-   * @return username as a string this is the user's username
+   * Default constructor of {@code User}.
+   */
+  public User() {}
+
+  /**
+   * Returns the username of the account.
+   * @return the username of the account
    */
   public String getUsername() {
     return this.username;
   }
 
   /**
-   * gets Id
-   *
-   * @return id as an int this is the user's id
+   * Returns the user id of the account.
+   * @return the user id of the account
    */
   public int getId() {
     return this.id;
   }
 
   /**
-   * gets SessonId
-   *
-   * @return Sessonid as a string this is the account's session id
+   * Returns the session id of the account.
+   * @return the session id of the account
    */
   public String getSessionId() {
     return this.sessionId;
   }
 
   /**
-   * sets the username
-   *
-   * @param aUsername as a string will be the user's user name
+   * Sets the username of the account.
+   * @param username the username to be set
    */
-  public void setUsername(String aUsername) {
-    this.username = aUsername;
+  public void setUsername(String username) {
+    this.username = username;
   }
 
   /**
-   * sets the password
-   *
-   * @param aPassword as a string will be the user's password
+   * Sets the password of the account.
+   * @param password the password to be set
    */
-  public void setPassword(String aPassword) {
-    this.password = aPassword;
+  public void setPassword(String password) {
+    this.password = password;
   }
 
   /**
-   * get the password
-   *
-   * @return password as string
+   * Returns the password of the account.
+   * @return the password of the account
    */
   private String getPassword() {
     return this.password;
   }
 
   /**
-   * current user is authenticated or not
-   *
-   * @return true is authenticated and false if not
+   * Return the authentication status of the account.
+   * @return {@code true} if the instance user is authenticated with the server successfully.
+   *         {@code false} otherwise.
    */
   public boolean isAuthenticated() {
     return this.authenticated;
   }
 
   /**
-   * sets the id
-   *
-   * @param aId as a int this is the accounts Id number
+   * Sets the user id of the account.
+   * @param id the user id to be set
    */
-  public void setId(Integer aId) {
-    this.id = aId;
+  public void setId(Integer id) {
+    this.id = id;
   }
 
   /**
-   * sets the sessionId
-   *
-   * @param aSessionId as a string this is the user's current session id
+   * Sets the session id of the account.
+   * @param sessionId the session id to be set
    */
-  public void setSessionId(String aSessionId) {
-    this.sessionId = aSessionId;
+  public void setSessionId(String sessionId) {
+    this.sessionId = sessionId;
   }
 
   /**
-   * To string
-   *
-   * @return a detailed string of the instance
+   * {@inheritDoc}
    */
   public String toString() {
     return "User (username: "
@@ -128,45 +120,51 @@ public class User {
   }
 
   /**
-   * authenticates the account that is trying to be logged into
-   *
-   * @return boolean if user name and password are correct
+   * <p>Authenticates the user account with the server.</p>
+   * <p>This is an <i>action</i> for controllers.</p>
+   * @return the result object of this action
    */
   public Result authenticate() {
     return this.authenticate(this.getUsername(), this.getPassword());
   }
 
   /**
-   * authenticates the account that is trying to be logged into
-   *
-   * @return boolean if user name and password are correct
-   * @param aUsername is the user's entered user name
-   * @param aPassword is the user's entered password
+   * <p>Authenticates the user account with the server.</p>
+   * <p>This is an <i>action</i> for controllers.</p>
+   * @param username the username of the account
+   * @param password the pssword of the account
+   * @return the result object of this action
    */
-  public Result authenticate(String aUsername, String aPassword) {
-    this.setUsername(aUsername);
-    this.setPassword(aPassword);
-
-    HttpRequest req = this._authenticate(username, password);
-
-    // System.out.println(req.getResponseStatusCode());
-    // System.out.println(req.getResponseBody());
-
-    if (req.isSucceeded()) {
-      HttpBody res = req.getResponseBody();
-      HttpBody cookie = req.getResponseCookie();
-      this.setId(res.getInt("id"));
-      this.setSessionId(cookie.getString("PHPSESSID"));
-      this.authenticated = true;
-      User.current = this;
-    }
+  public Result authenticate(String username, String password) {
+    this.setUsername(username);
+    this.setPassword(password);
 
     Result res = new Result();
+    HttpRequest req = this.authenticateRemote(username, password);
     res.add(req);
+
+    if (req.isSucceeded()) {
+      HttpBody response = req.getResponseBody();
+      HttpBody cookie = req.getResponseCookie();
+
+      this.setId(response.getInt("id"));
+      this.setSessionId(cookie.getString("PHPSESSID"));
+      this.existing = true;
+
+      StructureRequest req2 = this.authenticateLocal();
+      res.add(req2);
+    }
+    
     return res;
   }
 
-  private HttpRequest _authenticate(String username, String password) {
+  /**
+   * Authenticates the instance account in the server.
+   * @param username the username of the account
+   * @param password the password of the account
+   * @return the http requests of the action
+   */
+  private HttpRequest authenticateRemote(String username, String password) {
     HttpBody param = new HttpBody();
     param.put("username", this.getUsername());
     param.put("password", this.getPassword());
@@ -180,7 +178,27 @@ public class User {
     return req;
   }
 
-  public Result signup(String username, String password, String sec_ques, String sec_ans) {
+  /**
+   * Authenticates the instance account in local storage
+   * @return the structure request of the action
+   */
+  private StructureRequest authenticateLocal(){
+    this.authenticated = true;
+    User.current = this;
+    StructureRequest req = new StructureRequest(true, false, this);
+    return req;
+  }
+
+  /**
+   * <p>Registers the instance account in the server.</p>
+   * <p>This is an <i>action</i> for controllers.</p>
+   * @param username the username of the account
+   * @param password the password of the account
+   * @param sec_ques the security question of the account
+   * @param sec_ans the security answer of the the account
+   * @return the result object of this action
+   */
+  public Result resgister(String username, String password, String sec_ques, String sec_ans) {
     Result res = new Result();
 
     this.setUsername(username);
@@ -201,7 +219,7 @@ public class User {
     res.add(req);
 
     if (req.isSucceeded()) {
-      HttpRequest req2 = this._authenticate(username, password);
+      HttpRequest req2 = this.authenticateRemote(username, password);
       res.add(req2);
     }
 

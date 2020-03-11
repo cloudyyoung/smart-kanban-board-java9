@@ -4,28 +4,56 @@ import java.util.Map;
 
 import com.google.gson.*;
 
+/**
+ * <p>The class for storing requests within models.</p>
+ * <p>This class is extending from {@link Request} class.</p>
+ */
 public final class StructureRequest extends Request {
 
+  /** The related instance of the instance */
   private Object instance;
+
+  /** The response body of the instance */
   private String responseBody;
 
+  /** Default constructor of {@code StructureRequests}. */
   public StructureRequest() {}
 
+  /**
+   * Constructor of {@code StructureRequests}, provide instance.
+   * @param instance the related instance of the instance
+   */
   public StructureRequest(Object instance) {
     this.instance = instance;
   }
 
+  /**
+   * Constructor of {@code StructureRequests}, provide suuceeded and excepted.
+   * @param succeeded the boolean to represent whether the instance is successfully requested
+   * @param excepted the boolean to represent whether the instance has exceptions occured
+   */
   public StructureRequest(boolean succeeded, boolean excepted) {
     this.setSucceeded(succeeded);
     this.setExcepted(excepted);
   }
 
+  /**
+   * Constructor of {@code StructureRequests}, provide succeeded, excepted and related object.
+   * @param succeeded the boolean to represent whether the instance is successfully requested
+   * @param excepted the boolean to represent whether the instance has exceptions occured
+   * @param instance the related instance of the instance
+   */
   public StructureRequest(boolean succeeded, boolean excepted, Object instance) {
     this.setSucceeded(succeeded);
     this.setExcepted(excepted);
     this.instance = instance;
   }
 
+  /**
+   * {@inheritDoc}
+   * @param is the specified boolean
+   * @see isExcepted()
+   */
   @Override
   public void setExcepted(boolean is) {
     super.setExcepted(is);
@@ -35,20 +63,40 @@ public final class StructureRequest extends Request {
     }
   }
 
+  /**
+   * Returns the related instance of the instance.
+   * @return the related instance
+   */
   public Object getInstance() {
     return this.instance;
   }
 
+  /**
+   * Sets the related instance of the instance.
+   * @param instance the related instance
+   */
   public void setInstance(Object instance) {
     this.instance = instance;
   }
 
+  /**
+   * {@inheritDoc}
+   * @param param the response body in {@code Map}, preferably in {@code HttpBody}
+   * @see #setResponseBody(Map)
+   */
+  @Override
   public void setResponseBody(Map<?, ?> param) {
     this.responseBody =
         new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(param);
   }
 
-  // If succeeded return whats added else null
+  /**
+   * Adds new pair to the response body of the instance.
+   * @param key the key
+   * @param value the value
+   * @return {@code HttpBody} the object added if succeeded.
+   *         {@coee null} otherwise.
+   */
   public HttpBody addResponseBody(Object key, Object value) {
     try {
       HttpBody body = this.getResponseBody();
@@ -63,6 +111,11 @@ public final class StructureRequest extends Request {
     }
   }
 
+  /**
+   * Sets the error message to the response body of the instance.
+   * @param message the specified error message to set
+   * @return {@code HttpBody} the message added
+   */
   public HttpBody setErrorMessage(String message) {
     HttpBody body = new Gson().fromJson(this.responseBody, HttpBody.class);
     HttpBody error = body.getHttpBody("error");
@@ -71,14 +124,24 @@ public final class StructureRequest extends Request {
     return body;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   public HttpBody getResponseBody() {
     return new Gson().fromJson(this.responseBody, HttpBody.class);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   public String getResponseBodyString() {
     return this.responseBody;
   }
 
+  /**
+   * Returns the related instance in {@code String}
+   * @return the related instance in {@code String}
+   */
   private String getInstanceString() {
     if (this.instance != null) {
       return this.instance.toString();
@@ -87,6 +150,9 @@ public final class StructureRequest extends Request {
     }
   }
 
+  /**
+   * {@inheritDoc}
+   */
   public String toString() {
     return "StructureRequest ("
         + "instance: "
@@ -96,6 +162,10 @@ public final class StructureRequest extends Request {
         + ")";
   }
 
+  /**
+   * Returns the request error template
+   * @return the request error template
+   */
   private static HttpBody getErrorTemplate() {
     HttpBody error = new HttpBody();
     error.put("code", 400);
@@ -104,12 +174,5 @@ public final class StructureRequest extends Request {
     HttpBody body = new HttpBody();
     body.put("error", error);
     return body;
-  }
-
-  public static void main(String[] args) {
-    StructureRequest req = new StructureRequest();
-    req.addResponseBody("error", "222");
-    System.out.println(req);
-    System.out.println(StructureRequest.getErrorTemplate());
   }
 }
