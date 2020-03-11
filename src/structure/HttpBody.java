@@ -171,7 +171,8 @@ public final class HttpBody extends HashMap<Object, Object> {
 
   /**
    * {@inheritDoc}
-   *
+   * @param key {@inheritDoc}
+   * @return {@inheritDoc}
    * @see #put(Object)
    */
   @Override
@@ -181,7 +182,7 @@ public final class HttpBody extends HashMap<Object, Object> {
 
   /**
    * {@inheritDoc}
-   *
+   * @param key {@inheritDoc}
    * @return the value associated with {@code key} will be removed, and return the instance itself
    *     No element will be removed if there was no mapping for {@code key}
    * @see #remove(Object, Object)
@@ -200,7 +201,9 @@ public final class HttpBody extends HashMap<Object, Object> {
 
   /**
    * {@inheritDoc}
-   *
+   * @param key {@inheritDoc}
+   * @param value {@inheritDoc}
+   * @return {@inheritDoc}
    * @see #remove(Object)
    */
   @Override

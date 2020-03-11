@@ -258,7 +258,10 @@ public final class HttpRequest extends Request {
     return this.baseUrl;
   }
 
-  /** {@inheritDoc} */
+  /** 
+   * {@inheritDoc}
+   * @return {@inheritDoc}
+   */
   public String getResponseBodyString() {
     return this.responseBody;
   }
@@ -301,7 +304,10 @@ public final class HttpRequest extends Request {
     return this.requestCookie;
   }
 
-  /** {@inheritDoc} */
+  /** 
+   * {@inheritDoc}
+   * @return {@inheritDoc}
+   */
   @Override
   public HttpBody getResponseBody() {
     return new HttpBody(new Gson().fromJson(this.responseBody, Map.class));
@@ -348,7 +354,7 @@ public final class HttpRequest extends Request {
   /**
    * {@inheritDoc}
    *
-   * @param body the response body in {@code Map}, preferably in {@code HttpBody}
+   * @param body {@inheritDoc}
    * @version 2.1
    */
   @Override
