@@ -37,7 +37,7 @@ public abstract class Request {
    * Sets the succeeded status to the specified boolean
    *
    * @param is the specified boolean
-   * @see isSucceeded()
+   * @see #isSucceeded()
    */
   protected void setSucceeded(boolean is) {
     this.succeeded = is;
@@ -47,7 +47,7 @@ public abstract class Request {
    * Sets the excepted status to the specified boolean
    *
    * @param is the specified boolean
-   * @see isExcepted()
+   * @see #isExcepted()
    */
   protected void setExcepted(boolean is) {
     this.excepted = is;
