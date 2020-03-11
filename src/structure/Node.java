@@ -9,9 +9,7 @@ import com.google.gson.annotations.*;
 import java.lang.reflect.Constructor;
 
 /**
- * The {@code Board} class, extends from {@code Node}.
- *
- * <p>The instance should contains {@code Column} object as children nodes.
+ * The {@code Node} class.
  *
  * @since Kanban 1.0
  * @version 2.1

@@ -2,6 +2,14 @@ package structure;
 
 import com.google.gson.annotations.*;
 
+/**
+ * The {@code Board} class, extends from {@code Node}.
+ *
+ * <p>The instance should contains {@code Column} object as children nodes.
+ *
+ * @since Kanban 1.0
+ * @version 2.1
+ */
 public class Board extends Node {
 
   /** Color of the board, in HEX. */
