@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * This is a custom HashMap class for {@code JSON} to be used <b>fluently and elegantly</b>.
+ * This is a custom HashMap class for <b>fluently and elegantly</b> writing and reading values in {@code JSON}.<b></b>.
  *
  * <p>Originally, using a HashMap/ArrayList would always bother developers by having TypeCasting
  * warnings/exceptions, and also make the code less readable. This class is to perfectly avoid.
