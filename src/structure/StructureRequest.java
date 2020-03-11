@@ -8,6 +8,10 @@ import com.google.gson.*;
  * The class for storing requests within models.
  *
  * <p>This class is extending from {@link Request} class.
+ *
+ * @author Cloudy Young
+ * @since 2.0
+ * @version 2.0
  */
 public final class StructureRequest extends Request {
 
@@ -56,7 +60,7 @@ public final class StructureRequest extends Request {
   /**
    * {@inheritDoc}
    *
-   * @param is the specified boolean
+   * @param is {@inheritDoc}
    * @see isExcepted()
    */
   @Override
@@ -89,7 +93,7 @@ public final class StructureRequest extends Request {
   /**
    * {@inheritDoc}
    *
-   * @param param the response body in {@code Map}, preferably in {@code HttpBody}
+   * @param param {@inheritDoc}
    * @see #setResponseBody(Map)
    */
   @Override
@@ -103,7 +107,7 @@ public final class StructureRequest extends Request {
    *
    * @param key the key
    * @param value the value
-   * @return {@code HttpBody} the object added if succeeded. {@coee null} otherwise.
+   * @return {@code HttpBody} the object added if succeeded. {@code null} otherwise.
    */
   public HttpBody addResponseBody(Object key, Object value) {
     try {
@@ -133,12 +137,20 @@ public final class StructureRequest extends Request {
     return body;
   }
 
-  /** {@inheritDoc} */
+  /**
+   * {@inheritDoc}
+   *
+   * @return {@inheritDoc}
+   */
   public HttpBody getResponseBody() {
     return new Gson().fromJson(this.responseBody, HttpBody.class);
   }
 
-  /** {@inheritDoc} */
+  /**
+   * {@inheritDoc}
+   *
+   * @return {@inheritDoc}
+   */
   public String getResponseBodyString() {
     return this.responseBody;
   }

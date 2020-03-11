@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * Provides methods for returning current times and dates based off on devices local time
  *
- * @since Kanban 1.0
+ * @since 1.0
  * @version 1.0
  * @author Jerremy Lewis
  */
@@ -194,6 +194,7 @@ public class Time {
   /**
    * Returns the name of the month. Such as {@code October}.
    *
+   * @param currentMonthNum the number of month
    * @return the name of the month
    */
   public static String monthName(int currentMonthNum) {

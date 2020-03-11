@@ -20,11 +20,15 @@ import java.io.BufferedReader;
  * accept/return {@code HttpBody} type object.
  *
  * @author Cloudy Young
- * @see https://www.baeldung.com/httpurlconnection-post
- * @see http://alex-public-doc.s3.amazonaws.com/json_simple-1.1/index.html
- * @see https://www.tutorialspoint.com/json_simple/json_simple_quick_guide.htm
- * @see https://github.com/CloudyYoung/Kanban-Server/wiki
- * @since Kanban 1.0
+ * @see <a
+ *     href="https://www.baeldung.com/httpurlconnection-post">https://www.baeldung.com/httpurlconnection-post</a>
+ * @see <a
+ *     href="http://alex-public-doc.s3.amazonaws.com/json_simple-1.1/index.html">http://alex-public-doc.s3.amazonaws.com/json_simple-1.1/index.html</a>
+ * @see <a
+ *     href="https://www.tutorialspoint.com/json_simple/json_simple_quick_guide.htm">https://www.tutorialspoint.com/json_simple/json_simple_quick_guide.htm</a>
+ * @see <a
+ *     href="https://github.com/CloudyYoung/Kanban-Server/wiki">https://github.com/CloudyYoung/Kanban-Server/wiki</a>
+ * @since 1.0
  * @version 2.1
  */
 public final class HttpRequest extends Request {
@@ -63,8 +67,8 @@ public final class HttpRequest extends Request {
   private String responseBody;
 
   /**
-   * Constructor of {@HttpRequest}, provde url in {@code String}, param in {@code Object} and method
-   * in {@code String}
+   * Constructor of {@code HttpRequest}, provde url in {@code String}, param in {@code Object} and
+   * method in {@code String}
    *
    * @param url the request url in {@code String}
    * @param param the request body in {@code Object}, preferably in {@code HttpBody}
@@ -77,7 +81,7 @@ public final class HttpRequest extends Request {
   }
 
   /**
-   * Constructor of {@HttpRequest}, provde url in {@code String} and method in {@code String}
+   * Constructor of {@code HttpRequest}, provde url in {@code String} and method in {@code String}
    *
    * @param url the request url in {@code String}
    * @param method the request method in {@code String}
@@ -87,7 +91,7 @@ public final class HttpRequest extends Request {
     this.setRequestMethod(method);
   }
 
-  /** Default constructor of {@HttpRequest} */
+  /** Default constructor of {@code HttpRequest} */
   public HttpRequest() {
     this.setRequestMethod("GET");
   }
@@ -97,6 +101,7 @@ public final class HttpRequest extends Request {
    *
    * @param cookie the cookie in {@code String}
    * @return the cookie object in {@code HttpBody}
+   * @version 2.1
    */
   private HttpBody cookieStringToObject(String cookie) {
     HttpBody ret = new HttpBody();
@@ -117,6 +122,7 @@ public final class HttpRequest extends Request {
    *
    * @param cookie the cookie in {@code Map}
    * @return the cookie in {@code String}
+   * @version 2.1
    */
   private String cookieObjectToString(Map<?, ?> cookie) {
     String ret = "";
@@ -135,6 +141,7 @@ public final class HttpRequest extends Request {
    * @param method the request method in {@code String}, default value is GET, accpetable values
    *     are: GET, POST, PUT, DELETE, HEAD, PATCH and OPTIONS, otherwise: set to default.
    * @see #getRequestMethod()
+   * @version 2.1
    */
   public void setRequestMethod(String method) {
     if (method.equals("GET")
@@ -167,6 +174,7 @@ public final class HttpRequest extends Request {
    * @see #getRequestBody()
    * @see #getRequestBodyString()
    * @see #hasRequestBody()
+   * @version 2.1
    */
   public void setRequestBody(Object param) {
     this.requestBody =
@@ -196,6 +204,7 @@ public final class HttpRequest extends Request {
    * @see #getRequestBodyString()
    * @see #setRequestBody(Object)
    * @see #hasRequestBody()
+   * @version 2.1
    */
   public HttpBody getRequestBody() {
     return new Gson().fromJson(this.requestBody, HttpBody.class);
@@ -249,7 +258,11 @@ public final class HttpRequest extends Request {
     return this.baseUrl;
   }
 
-  /** {@inheritDoc} */
+  /**
+   * {@inheritDoc}
+   *
+   * @return {@inheritDoc}
+   */
   public String getResponseBodyString() {
     return this.responseBody;
   }
@@ -267,6 +280,7 @@ public final class HttpRequest extends Request {
    * Sets the request cookie of the instance.
    *
    * @param cookie the cookie to be set in {@code Map}
+   * @version 2.1
    */
   public void setRequestCookie(Map<?, ?> cookie) {
     this.requestCookie = this.cookieObjectToString(cookie);
@@ -276,6 +290,7 @@ public final class HttpRequest extends Request {
    * Returns the request cookie of the instance.
    *
    * @return the request cookie in {@code HttpBody}
+   * @version 2.1
    */
   public HttpBody getRequestCookie() {
     return this.cookieStringToObject(this.requestCookie);
@@ -290,7 +305,12 @@ public final class HttpRequest extends Request {
     return this.requestCookie;
   }
 
-  /** {@inheritDoc} */
+  /**
+   * {@inheritDoc}
+   *
+   * @return {@inheritDoc}
+   */
+  @Override
   public HttpBody getResponseBody() {
     return new HttpBody(new Gson().fromJson(this.responseBody, Map.class));
   }
@@ -308,6 +328,7 @@ public final class HttpRequest extends Request {
    * Returns the response cookie of the instance.
    *
    * @return the reponse cookie in {@code HttpBody}
+   * @version 2.1
    */
   public HttpBody getResponseCookie() {
     return this.cookieStringToObject(this.responseCookie);
@@ -317,6 +338,7 @@ public final class HttpRequest extends Request {
    * Returns the response cookie string of the instance.
    *
    * @return the reponse cookie in {@code String}
+   * @version 2.1
    */
   public String getResponseCookieString() {
     return this.responseCookie;
@@ -334,7 +356,8 @@ public final class HttpRequest extends Request {
   /**
    * {@inheritDoc}
    *
-   * @param body the response body in {@code Map}, preferably in {@code HttpBody}
+   * @param body {@inheritDoc}
+   * @version 2.1
    */
   @Override
   protected void setResponseBody(Map<?, ?> body) {
