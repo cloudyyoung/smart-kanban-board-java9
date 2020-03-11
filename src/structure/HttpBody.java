@@ -183,7 +183,7 @@ public final class HttpBody extends HashMap<Object, Object> {
    *
    * @return the value associated with {@code key} will be removed, and return the instance itself
    *     No element will be removed if there was no mapping for {@code key}
-   * @see #remove(Object)
+   * @see #remove(Object, Object)
    */
   @Override
   public HttpBody remove(Object key) {
