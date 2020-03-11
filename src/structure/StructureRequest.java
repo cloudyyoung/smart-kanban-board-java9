@@ -8,6 +8,9 @@ import com.google.gson.*;
  * The class for storing requests within models.
  *
  * <p>This class is extending from {@link Request} class.
+ * @author Cloudy Young
+ * @since Kanban 2.0
+ * @version 2.0
  */
 public final class StructureRequest extends Request {
 

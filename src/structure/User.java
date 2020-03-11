@@ -3,6 +3,8 @@ package structure;
 /**
  * The class {@code User} instance represents an Account which stores the users informations and
  * provides needed methods to interact.
+ * @since Kanban 1.0
+ * @version 2.1
  */
 public class User {
 

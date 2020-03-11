@@ -2,7 +2,12 @@ package structure;
 
 import java.util.ArrayList;
 
-/** The class for all <i>action</i> results. */
+/** 
+ * The class for all <i>action</i> results. 
+ * @author Cloudy Young
+ * @since Kanban 2.0
+ * @version 2.0
+ */
 public final class Result {
 
   /** An {@code ArrayList} which stores all the {@code Request} related to the instance. */

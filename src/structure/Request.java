@@ -2,7 +2,12 @@ package structure;
 
 import java.util.Map;
 
-/** The abtract class for all {@code Request} type class. */
+/** 
+ * The abtract class for all {@code Request} type class. 
+ * @author Cloudy Young
+ * @since Kanban 2.0
+ * @version 2.0
+ */
 public abstract class Request {
 
   /** A boolean to indicate whether the instance is successfully requested. */
