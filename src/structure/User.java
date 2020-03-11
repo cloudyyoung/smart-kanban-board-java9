@@ -136,6 +136,8 @@ public class User {
    * <p>This is an <i>action</i> for controllers.
    *
    * @return the result object of this action
+   * @since Kanban 1.0
+   * @version 2.1
    */
   public Result authenticate() {
     return this.authenticate(this.getUsername(), this.getPassword());
@@ -149,6 +151,8 @@ public class User {
    * @param username the username of the account
    * @param password the pssword of the account
    * @return the result object of this action
+   * @since Kanban 1.0
+   * @version 2.1
    */
   public Result authenticate(String username, String password) {
     this.setUsername(username);
@@ -179,6 +183,8 @@ public class User {
    * @param username the username of the account
    * @param password the password of the account
    * @return the http requests of the action
+   * @since Kanban 2.0
+   * @version 2.1
    */
   private HttpRequest authenticateRemote(String username, String password) {
     HttpBody param = new HttpBody();
@@ -198,6 +204,8 @@ public class User {
    * Authenticates the instance account in local storage
    *
    * @return the structure request of the action
+   * @since Kanban 2.0
+   * @version 2.1
    */
   private StructureRequest authenticateLocal() {
     this.authenticated = true;
@@ -210,6 +218,8 @@ public class User {
    * Returns the existing status of the instance account.
    *
    * @return the boolean to represents the account existing status
+   * @since Kanban 2.0
+   * @version 2.1
    */
   public boolean isExisting() {
     return this.existing;
@@ -225,6 +235,8 @@ public class User {
    * @param sec_ques the security question of the account
    * @param sec_ans the security answer of the the account
    * @return the result object of this action
+   * @since Kanban 2.0
+   * @version 2.1
    */
   public Result register(String username, String password, String sec_ques, String sec_ans) {
     Result res = new Result();

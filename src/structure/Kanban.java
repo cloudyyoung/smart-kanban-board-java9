@@ -31,6 +31,8 @@ public class Kanban extends Node {
    * <p>This is an <i>action</i> for controllers.
    *
    * @return the result object of this action in {@code Result}
+   * @since Kanban 2.0
+   * @version 2.0
    */
   public static Result checkout() {
     Result res = new Result();

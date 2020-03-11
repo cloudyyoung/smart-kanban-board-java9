@@ -70,6 +70,7 @@ public abstract class Request {
    * Returns the response body of the instance.
    *
    * @return the response body in {@code String}
+   * @version 2.1
    */
   public abstract String getResponseBodyString();
 
@@ -78,6 +79,7 @@ public abstract class Request {
    *
    * @param body the response body in {@code Map}, preferably in {@code HttpBody}
    * @see #setResponseBody(Map)
+   * @version 2.1
    */
   protected abstract void setResponseBody(Map<?, ?> body);
 }
