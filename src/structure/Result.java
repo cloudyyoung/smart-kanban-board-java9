@@ -2,7 +2,13 @@ package structure;
 
 import java.util.ArrayList;
 
-/** The class for all <i>action</i> results. */
+/**
+ * The class for all <i>action</i> results.
+ *
+ * @author Cloudy Young
+ * @since 2.0
+ * @version 2.0
+ */
 public final class Result {
 
   /** An {@code ArrayList} which stores all the {@code Request} related to the instance. */
@@ -29,6 +35,7 @@ public final class Result {
   /**
    * Adds a new related {@code Request} to the {@link list}.
    *
+   * @param add the related request to be added
    * @see #list
    * @see #remove(Request)
    */
@@ -55,7 +62,7 @@ public final class Result {
   /**
    * Removes a existing related {@code Request} in the {@link list}.
    *
-   * @param remove the index of object to be removed
+   * @param index the index of object to be removed
    * @see #list
    * @see #add(Request)
    */

@@ -8,17 +8,16 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * This is a custom HashMap class for {@code JSON} to be used <b>fluently and elegantly</b>.
+ * This is a custom HashMap class for <b>fluently and elegantly</b> writing and reading values in
+ * {@code JSON}.
  *
  * <p>Originally, using a HashMap/ArrayList would always bother developers by having TypeCasting
  * warnings/exceptions, and also make the code less readable. This class is to perfectly avoid.
  *
- * <p>
- *
  * <p>Though it extends from HashMap, developers are allowed to make it <b>perform a List</b>.
  *
  * @author Cloudy Young
- * @since Kanban 2.0
+ * @since 2.0
  * @version 2.1
  */
 public final class HttpBody extends HashMap<Object, Object> {
@@ -67,6 +66,7 @@ public final class HttpBody extends HashMap<Object, Object> {
    * and also be {@code HttpBody} instance.
    *
    * @param obj the {@code Object} to parse
+   * @return the parsed object
    */
   private Object parse(Object obj) {
     if (obj instanceof HttpBody) {
@@ -136,8 +136,8 @@ public final class HttpBody extends HashMap<Object, Object> {
    * @param key the Object of key
    * @param value the Object of value
    * @return the instance itself
-   * @see #get(Object, Object)
-   * @see #put(Object)
+   * @see #get(Object)
+   * @see #put(Object, Object)
    */
   @Override
   public HttpBody put(Object key, Object value) {
@@ -157,10 +157,10 @@ public final class HttpBody extends HashMap<Object, Object> {
    * <p>When the instance is not performing a {@code List}, this invocation <b>is invalid and will
    * be ignored</b>.
    *
-   * @param value
+   * @param value the value to be put
    * @return the instance itself
-   * @see #get(Object)
    * @see #put(Object, Object)
+   * @see #get(Object)
    */
   public HttpBody put(Object value) {
     if (this.isList) {
@@ -172,8 +172,9 @@ public final class HttpBody extends HashMap<Object, Object> {
   /**
    * {@inheritDoc}
    *
+   * @param key {@inheritDoc}
+   * @return {@inheritDoc}
    * @see #put(Object)
-   * @see #get(Object, Object)
    */
   @Override
   public Object get(Object key) {
@@ -183,9 +184,10 @@ public final class HttpBody extends HashMap<Object, Object> {
   /**
    * {@inheritDoc}
    *
+   * @param key {@inheritDoc}
    * @return the value associated with {@code key} will be removed, and return the instance itself
    *     No element will be removed if there was no mapping for {@code key}
-   * @see #remove(Object)
+   * @see #remove(Object, Object)
    */
   @Override
   public HttpBody remove(Object key) {
@@ -202,6 +204,9 @@ public final class HttpBody extends HashMap<Object, Object> {
   /**
    * {@inheritDoc}
    *
+   * @param key {@inheritDoc}
+   * @param value {@inheritDoc}
+   * @return {@inheritDoc}
    * @see #remove(Object)
    */
   @Override
@@ -221,12 +226,11 @@ public final class HttpBody extends HashMap<Object, Object> {
   }
 
   /**
-   * <b>This is a syntatic sugar.</b>
-   *
-   * <p>Returns {@code true} if the instance maps one or more keys to the specified value. More
+   * Returns {@code true} if the instance maps one or more keys to the specified value. More
    * formally, returns {@code true} if and only if the instance contains at least one mapping to a
    * value {@code v} such that {@code Objects.equals(value, v)}. This operation will probably
    * require time linear in the map size for most implementations of the {@code Map} interface.
+   * <b>This is a syntatic sugar.</b>
    *
    * @param value value whose presence in this instance is to be tested
    * @return {@code true} if the instance maps one or more keys to the specified value {@code false}
@@ -241,11 +245,10 @@ public final class HttpBody extends HashMap<Object, Object> {
   }
 
   /**
-   * <b>This is a syntatic sugar.</b>
-   *
-   * <p>Returns {@code true} if the instance contains a mapping for the specified key. More
-   * formally, returns {@code true} if and only if the instance contains a mapping for a key {@code
-   * k} such that {@code Objects.equals(key, k)}. (There can be at most one such mapping.)
+   * Returns {@code true} if the instance contains a mapping for the specified key. More formally,
+   * returns {@code true} if and only if the instance contains a mapping for a key {@code k} such
+   * that {@code Objects.equals(key, k)}. (There can be at most one such mapping.) <b>This is a
+   * syntatic sugar.</b>
    *
    * @param key key whose presence in this instance is to be tested
    * @return {@code true} if the instance contains a mapping for the specified key {@code false} if

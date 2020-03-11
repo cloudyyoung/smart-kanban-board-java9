@@ -9,11 +9,9 @@ import com.google.gson.annotations.*;
 import java.lang.reflect.Constructor;
 
 /**
- * The {@code Board} class, extends from {@code Node}.
+ * The {@code Node} class.
  *
- * <p>The instance should contains {@code Column} object as children nodes.
- *
- * @since Kanban 1.0
+ * @since 1.0
  * @version 2.1
  */
 public abstract class Node {
@@ -211,7 +209,8 @@ public abstract class Node {
   /**
    * Sets the parent {@code Node}, in local storage.
    *
-   * @param parent the strcuture request of the action
+   * @param parent the parent node of the instance
+   * @return the strcuture request of the action
    */
   private StructureRequest setParentLocal(Node parent) {
     this.parent = parent;
@@ -260,7 +259,8 @@ public abstract class Node {
   /**
    * Sets the title of the instance, in local storage.
    *
-   * @param title the strcuture request of the action
+   * @param title the title of the instance
+   * @return the strcuture request of the action
    */
   public StructureRequest setTitleLocal(String title) {
     this.title = title;
@@ -292,7 +292,8 @@ public abstract class Node {
   /**
    * Sets the note of the instance, in local storage.
    *
-   * @param note the strcuture request of the action
+   * @param note the note of the instance
+   * @return the strcuture request of the action
    */
   public StructureRequest setNoteLocal(String note) {
     this.note = note;
@@ -404,6 +405,7 @@ public abstract class Node {
    *
    * <p>Number {@code 1} will be used as specified number of levels.
    *
+   * @param type the specified type
    * @return the child type of the instance. {@code null} if there is any invalidation.
    */
   public String getChildType(String type) {
@@ -413,6 +415,8 @@ public abstract class Node {
   /**
    * Returns the child type, provide a specified type and number of levels.
    *
+   * @param type the specified type
+   * @param level the specified number of levels
    * @return the child type of the instance. {@code null} if there is any invalidation.
    */
   public String getChildType(String type, int level) {

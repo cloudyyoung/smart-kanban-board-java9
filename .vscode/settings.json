@@ -2,6 +2,7 @@
     "files.exclude": {
         "**/.*": true,
         "**/bin": true,
+        "**/doc": true,
         "**/**.class": true,
         "**/**.log": true,
     },
