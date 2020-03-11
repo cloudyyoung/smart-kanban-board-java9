@@ -16,7 +16,7 @@ public class Main extends Application {
     ui(args);
   }
 
-  public static void ui(String[] args){
+  public static void ui(String[] args) {
     launch(args);
   }
 
