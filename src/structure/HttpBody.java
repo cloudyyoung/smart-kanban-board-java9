@@ -223,7 +223,7 @@ public final class HttpBody extends HashMap<Object, Object> {
   }
 
   /**
-   * <p>Returns {@code true} if the instance maps one or more keys to the specified value. More
+   * Returns {@code true} if the instance maps one or more keys to the specified value. More
    * formally, returns {@code true} if and only if the instance contains at least one mapping to a
    * value {@code v} such that {@code Objects.equals(value, v)}. This operation will probably
    * require time linear in the map size for most implementations of the {@code Map} interface.
@@ -242,10 +242,10 @@ public final class HttpBody extends HashMap<Object, Object> {
   }
 
   /**
-   * <p>Returns {@code true} if the instance contains a mapping for the specified key. More
-   * formally, returns {@code true} if and only if the instance contains a mapping for a key {@code
-   * k} such that {@code Objects.equals(key, k)}. (There can be at most one such mapping.)
-   * <b>This is a syntatic sugar.</b>
+   * Returns {@code true} if the instance contains a mapping for the specified key. More formally,
+   * returns {@code true} if and only if the instance contains a mapping for a key {@code k} such
+   * that {@code Objects.equals(key, k)}. (There can be at most one such mapping.) <b>This is a
+   * syntatic sugar.</b>
    *
    * @param key key whose presence in this instance is to be tested
    * @return {@code true} if the instance contains a mapping for the specified key {@code false} if
