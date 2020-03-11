@@ -10,19 +10,32 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import structure.*;
 
-public class newAccPage3Controller {
+public class newAccPage3Controller extends newAccPage4Controller{
+  private String password;
 
-  @FXML private BorderPane newAccPane3;
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
-  @FXML private TextField passwordField;
+  public String getPassword() {
+    return password;
+  }
+  
+  @FXML
+  private BorderPane newAccPane3;
 
-  @FXML private Label nextBtn;
+  @FXML
+  private TextField passwordField;
+
+  @FXML
+  private Label nextBtn;
 
   @FXML
   void handleNxtBtn(MouseEvent event) throws IOException {
     String password = passwordField.getText();
-    User user = new User();
-    user.setPassword(password);
+    
+    super.setPassword(password);
+   
 
     BorderPane pane = FXMLLoader.load(getClass().getResource("newaccPage4.fxml"));
     newAccPane3.getChildren().setAll(pane);
