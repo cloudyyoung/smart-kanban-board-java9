@@ -5,7 +5,7 @@ package structure;
  *
  * <p>The instance should contains {@code Event} object as children nodes.
  *
- * @since Kanban 1.0
+ * @since 1.0
  * @version 2.1
  */
 public class Column extends Node {

@@ -2,7 +2,13 @@ package structure;
 
 import java.util.Map;
 
-/** The abtract class for all {@code Request} type class. */
+/**
+ * The abtract class for all {@code Request} type class.
+ *
+ * @author Cloudy Young
+ * @since 2.0
+ * @version 2.0
+ */
 public abstract class Request {
 
   /** A boolean to indicate whether the instance is successfully requested. */
@@ -65,6 +71,7 @@ public abstract class Request {
    * Returns the response body of the instance.
    *
    * @return the response body in {@code String}
+   * @version 2.1
    */
   public abstract String getResponseBodyString();
 
@@ -73,6 +80,7 @@ public abstract class Request {
    *
    * @param body the response body in {@code Map}, preferably in {@code HttpBody}
    * @see #setResponseBody(Map)
+   * @version 2.1
    */
   protected abstract void setResponseBody(Map<?, ?> body);
 }
