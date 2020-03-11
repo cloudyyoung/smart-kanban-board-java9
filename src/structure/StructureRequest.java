@@ -139,6 +139,7 @@ public final class StructureRequest extends Request {
 
   /**
    * {@inheritDoc}
+   *
    * @return {@inheritDoc}
    */
   public HttpBody getResponseBody() {
@@ -147,6 +148,7 @@ public final class StructureRequest extends Request {
 
   /**
    * {@inheritDoc}
+   *
    * @return {@inheritDoc}
    */
   public String getResponseBodyString() {

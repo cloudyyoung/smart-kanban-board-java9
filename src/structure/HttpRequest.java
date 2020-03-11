@@ -258,8 +258,9 @@ public final class HttpRequest extends Request {
     return this.baseUrl;
   }
 
-  /** 
+  /**
    * {@inheritDoc}
+   *
    * @return {@inheritDoc}
    */
   public String getResponseBodyString() {
@@ -304,8 +305,9 @@ public final class HttpRequest extends Request {
     return this.requestCookie;
   }
 
-  /** 
+  /**
    * {@inheritDoc}
+   *
    * @return {@inheritDoc}
    */
   @Override
