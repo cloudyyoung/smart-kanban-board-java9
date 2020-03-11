@@ -60,7 +60,7 @@ public final class StructureRequest extends Request {
   /**
    * {@inheritDoc}
    *
-   * @param is the specified boolean
+   * @param is {@inheritDoc}
    * @see isExcepted()
    */
   @Override
@@ -93,7 +93,7 @@ public final class StructureRequest extends Request {
   /**
    * {@inheritDoc}
    *
-   * @param param the response body in {@code Map}, preferably in {@code HttpBody}
+   * @param param {@inheritDoc}
    * @see #setResponseBody(Map)
    */
   @Override
@@ -137,12 +137,18 @@ public final class StructureRequest extends Request {
     return body;
   }
 
-  /** {@inheritDoc} */
+  /**
+   * {@inheritDoc}
+   * @return {@inheritDoc}
+   */
   public HttpBody getResponseBody() {
     return new Gson().fromJson(this.responseBody, HttpBody.class);
   }
 
-  /** {@inheritDoc} */
+  /**
+   * {@inheritDoc}
+   * @return {@inheritDoc}
+   */
   public String getResponseBodyString() {
     return this.responseBody;
   }
