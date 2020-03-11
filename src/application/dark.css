@@ -13,9 +13,16 @@
 
 
 /* Set Global Style */
-#bg, #bg-i {
+#bg {
   -fx-background-color: #0A0A0A;
 }
+
+#bg-i {
+  -fx-background-color: #0A0A0A;
+  -fx-opacity: 0.85;
+
+}
+
 
 #text-field-u, #text-field-ub {
   -fx-border-color: #ffffff;

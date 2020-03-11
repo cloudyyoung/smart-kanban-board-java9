@@ -54,7 +54,7 @@
                                     </VBox>
                                  </children>
                                  <VBox.margin>
-                                    <Insets top="30.0" />
+                                    <Insets top="20.0" />
                                  </VBox.margin>
                               </HBox>
                               <VBox alignment="TOP_CENTER">
@@ -93,36 +93,7 @@
                                           </TextField>
                                        </children>
                                        <VBox.margin>
-                                          <Insets bottom="15.0" top="30.0" />
-                                       </VBox.margin>
-                                    </HBox>
-                                    <HBox layoutX="10.0" layoutY="38.0" prefWidth="200.0">
-                                       <children>
-                                          <SVGPath id="icon" content="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z" fill="#2f2e2e" scaleX="0.6" scaleY="0.6">
-                                             <HBox.margin>
-                                                <Insets left="29.0" />
-                                             </HBox.margin>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </SVGPath>
-                                          <Label id="light-list" onMouseClicked="#showSettingsPage" text="Settings" textFill="#2f2e2e">
-                                             <font>
-                                                <Font name="NexaLight" size="14.0" />
-                                             </font>
-                                             <HBox.margin>
-                                                <Insets left="8.0" />
-                                             </HBox.margin>
-                                             <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                             </cursor>
-                                          </Label>
-                                       </children>
-                                       <cursor>
-                                          <Cursor fx:constant="DEFAULT" />
-                                       </cursor>
-                                       <VBox.margin>
-                                          <Insets bottom="10.0" />
+                                          <Insets bottom="15.0" top="17.0" />
                                        </VBox.margin>
                                     </HBox>
                                     <HBox id="list-i" alignment="CENTER_LEFT" prefWidth="200.0">
@@ -154,6 +125,35 @@
                                           <Cursor fx:constant="DEFAULT" />
                                        </cursor>
                                     </HBox>
+                                    <HBox layoutX="10.0" layoutY="38.0" prefWidth="200.0">
+                                       <children>
+                                          <SVGPath id="icon" content="M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z" fill="#2f2e2e" scaleX="0.6" scaleY="0.6">
+                                             <HBox.margin>
+                                                <Insets left="29.0" />
+                                             </HBox.margin>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </SVGPath>
+                                          <Label id="light-list" onMouseClicked="#showSettingsPage" text="Settings" textFill="#2f2e2e">
+                                             <font>
+                                                <Font name="NexaLight" size="14.0" />
+                                             </font>
+                                             <HBox.margin>
+                                                <Insets left="8.0" />
+                                             </HBox.margin>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </Label>
+                                       </children>
+                                       <cursor>
+                                          <Cursor fx:constant="DEFAULT" />
+                                       </cursor>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" />
+                                       </VBox.margin>
+                                    </HBox>
                                     <HBox id="list-i" layoutX="10.0" layoutY="203.0" prefWidth="200.0">
                                        <children>
                                           <SVGPath id="icon" content="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="#2f2e2e" scaleX="0.7" scaleY="0.7">
@@ -180,14 +180,14 @@
                                           <Cursor fx:constant="DEFAULT" />
                                        </cursor>
                                        <VBox.margin>
-                                          <Insets bottom="20.0" />
+                                          <Insets bottom="10.0" />
                                        </VBox.margin>
                                     </HBox>
                                     <VBox alignment="TOP_CENTER" prefWidth="100.0">
                                        <children>
-                                          <HBox id="list-i" fx:id="sideBoard1" alignment="CENTER_LEFT" prefWidth="200.0">
+                                          <HBox id="list-i" alignment="CENTER_LEFT" prefWidth="200.0">
                                              <children>
-                                                <Circle fx:id="sideBoard1C" fill="#ab50bd" radius="4.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0">
+                                                <Circle fill="#ab50bd" radius="4.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0">
                                                    <HBox.margin>
                                                       <Insets left="35.0" />
                                                    </HBox.margin>
@@ -220,9 +220,9 @@
                                                 <Cursor fx:constant="DEFAULT" />
                                              </cursor>
                                           </HBox>
-                                          <HBox id="list-i" fx:id="sideBoard2" alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefWidth="200.0">
+                                          <HBox id="list-i" alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefWidth="200.0">
                                              <children>
-                                                <Circle fx:id="sideBoard2C" fill="#3dd8ea" radius="4.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0">
+                                                <Circle fill="#3dd8ea" radius="4.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0">
                                                    <HBox.margin>
                                                       <Insets left="35.0" />
                                                    </HBox.margin>
@@ -255,9 +255,9 @@
                                                 <Insets bottom="10.0" />
                                              </VBox.margin>
                                           </HBox>
-                                          <HBox id="list-i" fx:id="sideBoard3" alignment="CENTER_LEFT" layoutX="10.0" layoutY="38.0" prefWidth="200.0">
+                                          <HBox id="list-i" alignment="CENTER_LEFT" layoutX="10.0" layoutY="38.0" prefWidth="200.0">
                                              <children>
-                                                <Circle fx:id="sideBoard3C" fill="#6d40a8" radius="4.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0">
+                                                <Circle fill="#6d40a8" radius="4.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0">
                                                    <HBox.margin>
                                                       <Insets left="35.0" />
                                                    </HBox.margin>
@@ -290,9 +290,9 @@
                                                 <Insets bottom="10.0" />
                                              </VBox.margin>
                                           </HBox>
-                                          <HBox id="list-i" fx:id="sideBoard4" alignment="CENTER_LEFT" layoutX="10.0" layoutY="70.0" prefWidth="200.0">
+                                          <HBox id="list-i" alignment="CENTER_LEFT" layoutX="10.0" layoutY="70.0" prefWidth="200.0">
                                              <children>
-                                                <Circle fx:id="sideBoard4C" fill="#6d40a8" radius="4.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0">
+                                                <Circle fill="#6d40a8" radius="4.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0">
                                                    <cursor>
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
@@ -325,9 +325,9 @@
                                                 <Insets bottom="10.0" />
                                              </VBox.margin>
                                           </HBox>
-                                          <HBox id="list-i" fx:id="sideBoard5" alignment="CENTER_LEFT" layoutX="10.0" layoutY="100.0" prefWidth="200.0">
+                                          <HBox id="list-i" alignment="CENTER_LEFT" layoutX="10.0" layoutY="100.0" prefWidth="200.0">
                                              <children>
-                                                <Circle fx:id="sideBoard5C" fill="#6d40a8" radius="4.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0">
+                                                <Circle fill="#6d40a8" radius="4.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0">
                                                    <cursor>
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
@@ -360,9 +360,9 @@
                                                 <Insets bottom="10.0" />
                                              </VBox.margin>
                                           </HBox>
-                                          <HBox id="list-i" fx:id="sideBoard6" alignment="CENTER_LEFT" layoutX="10.0" layoutY="120.0" prefWidth="200.0">
+                                          <HBox id="list-i" alignment="CENTER_LEFT" layoutX="10.0" layoutY="120.0" prefWidth="200.0">
                                              <children>
-                                                <Circle fx:id="sideBoard6C" fill="#6d40a8" radius="4.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0">
+                                                <Circle fill="#6d40a8" radius="4.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0">
                                                    <cursor>
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
@@ -395,9 +395,9 @@
                                                 <Insets bottom="10.0" />
                                              </VBox.margin>
                                           </HBox>
-                                          <HBox id="list-i" fx:id="sideBoard7" alignment="CENTER_LEFT" layoutX="10.0" layoutY="120.0" prefWidth="200.0">
+                                          <HBox id="list-i" alignment="CENTER_LEFT" layoutX="10.0" layoutY="120.0" prefWidth="200.0">
                                              <children>
-                                                <Circle fx:id="sideBoard7C" fill="#6d40a8" radius="4.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0">
+                                                <Circle fill="#6d40a8" radius="4.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0">
                                                    <cursor>
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
@@ -430,9 +430,9 @@
                                                 <Insets bottom="10.0" />
                                              </VBox.margin>
                                           </HBox>
-                                          <HBox id="list-i" fx:id="sideBoard8" alignment="CENTER_LEFT" layoutX="10.0" layoutY="140.0" prefWidth="200.0">
+                                          <HBox id="list-i" alignment="CENTER_LEFT" layoutX="10.0" layoutY="140.0" prefWidth="200.0">
                                              <children>
-                                                <Circle fx:id="sideBoard8C" fill="#6d40a8" radius="4.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0">
+                                                <Circle fill="#6d40a8" radius="4.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0">
                                                    <cursor>
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
@@ -514,9 +514,9 @@
                               </VBox>
                            </children>
                         </VBox>
-                        <VBox fx:id="searchList" pickOnBounds="false" prefHeight="200.0" prefWidth="200.0">
+                        <VBox fx:id="searchList" pickOnBounds="false" prefHeight="200.0" prefWidth="200.0" visible="false">
                            <children>
-                              <StackPane prefHeight="120.0" prefWidth="191.0" visible="false">
+                              <StackPane prefHeight="120.0" prefWidth="191.0">
                                  <children>
                                     <Rectangle id="search-bg" fill="WHITE" height="135.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="191.0">
                                        <StackPane.margin>
@@ -675,7 +675,7 @@
                                     </VBox>
                                  </children>
                                  <VBox.margin>
-                                    <Insets top="130.0" />
+                                    <Insets top="116.0" />
                                  </VBox.margin>
                               </StackPane>
                            </children>
@@ -691,7 +691,7 @@
                            <children>
                               <HBox prefHeight="54.0" prefWidth="200.0">
                                  <children>
-                                    <Label id="medium" fx:id="bigBoardTitle" text="Today">
+                                    <Label id="medium" text="Today">
                                        <font>
                                           <Font name="NexaBold" size="27.0" />
                                        </font>
@@ -2230,9 +2230,9 @@
                                           <Insets top="42.0" />
                                        </VBox.margin>
                                     </HBox>
-                                    <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" pickOnBounds="false" prefWidth="200.0">
+                                    <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefWidth="200.0">
                                        <children>
-                                          <VBox alignment="TOP_CENTER" pickOnBounds="false" prefWidth="156.0">
+                                          <VBox alignment="TOP_CENTER" prefWidth="156.0">
                                              <children>
                                                 <HBox alignment="TOP_CENTER" disable="true" prefWidth="200.0" visible="false">
                                                    <children>
@@ -2251,9 +2251,9 @@
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
                                                 </HBox>
-                                                <StackPane id="card-sp" fx:id="dblCardA1" layoutX="10.0" layoutY="101.0">
+                                                <StackPane id="card-sp" layoutX="10.0" layoutY="101.0">
                                                    <children>
-                                                      <Rectangle id="card-bg" fx:id="dblCardBGA1" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
+                                                      <Rectangle id="card-bg" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
                                                       <HBox alignment="CENTER_LEFT">
                                                          <children>
                                                             <Region layoutX="129.0" layoutY="10.0" prefWidth="15.0" />
@@ -2261,7 +2261,7 @@
                                                                <children>
                                                                   <VBox alignment="CENTER_LEFT" prefHeight="55.0">
                                                                      <children>
-                                                                        <Label id="card-bold" fx:id="dblCardTextA1" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
+                                                                        <Label id="card-bold" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -2272,7 +2272,7 @@
                                                                               <Insets top="3.0" />
                                                                            </VBox.margin>
                                                                         </Label>
-                                                                        <Label id="card-light" fx:id="dblCardTimeA1" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
+                                                                        <Label id="card-light" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -2301,9 +2301,9 @@
                                                       <Insets top="10.0" />
                                                    </padding>
                                                 </StackPane>
-                                                <StackPane id="card-sp" fx:id="dblCardA2" layoutX="10.0" layoutY="172.0">
+                                                <StackPane id="card-sp" layoutX="10.0" layoutY="172.0">
                                                    <children>
-                                                      <Rectangle id="card-bg" fx:id="dblCardBGA2" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
+                                                      <Rectangle id="card-bg" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
                                                       <HBox alignment="CENTER_LEFT">
                                                          <children>
                                                             <Region layoutX="129.0" layoutY="10.0" prefWidth="15.0" />
@@ -2311,7 +2311,7 @@
                                                                <children>
                                                                   <VBox alignment="CENTER_LEFT" prefHeight="55.0">
                                                                      <children>
-                                                                        <Label id="card-bold" fx:id="dblCardTextA2" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
+                                                                        <Label id="card-bold" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -2322,7 +2322,7 @@
                                                                               <Insets top="3.0" />
                                                                            </VBox.margin>
                                                                         </Label>
-                                                                        <Label id="card-light" fx:id="dblCardTimeA2" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
+                                                                        <Label id="card-light" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -2351,9 +2351,9 @@
                                                       <Insets top="10.0" />
                                                    </padding>
                                                 </StackPane>
-                                                <StackPane id="card-sp" fx:id="dblCardA3" layoutX="10.0" layoutY="243.0">
+                                                <StackPane id="card-sp" layoutX="10.0" layoutY="243.0">
                                                    <children>
-                                                      <Rectangle id="card-bg" fx:id="dblCardBGA3" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
+                                                      <Rectangle id="card-bg" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
                                                       <HBox alignment="CENTER_LEFT">
                                                          <children>
                                                             <Region layoutX="129.0" layoutY="10.0" prefWidth="15.0" />
@@ -2361,7 +2361,7 @@
                                                                <children>
                                                                   <VBox alignment="CENTER_LEFT" prefHeight="55.0">
                                                                      <children>
-                                                                        <Label id="card-bold" fx:id="dblCardTextA3" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
+                                                                        <Label id="card-bold" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -2372,7 +2372,7 @@
                                                                               <Insets top="3.0" />
                                                                            </VBox.margin>
                                                                         </Label>
-                                                                        <Label id="card-light" fx:id="dblCardTimeA3" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
+                                                                        <Label id="card-light" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -2401,9 +2401,9 @@
                                                       <Insets top="10.0" />
                                                    </padding>
                                                 </StackPane>
-                                                <StackPane id="card-sp" fx:id="dblCardA4" layoutX="10.0" layoutY="314.0">
+                                                <StackPane id="card-sp" layoutX="10.0" layoutY="314.0">
                                                    <children>
-                                                      <Rectangle id="card-bg" fx:id="dblCardBGA4" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
+                                                      <Rectangle id="card-bg" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
                                                       <HBox alignment="CENTER_LEFT">
                                                          <children>
                                                             <Region layoutX="129.0" layoutY="10.0" prefWidth="15.0" />
@@ -2411,7 +2411,7 @@
                                                                <children>
                                                                   <VBox alignment="CENTER_LEFT" prefHeight="55.0">
                                                                      <children>
-                                                                        <Label id="card-bold" fx:id="dblCardTextA4" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
+                                                                        <Label id="card-bold" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -2422,7 +2422,7 @@
                                                                               <Insets top="3.0" />
                                                                            </VBox.margin>
                                                                         </Label>
-                                                                        <Label id="card-light" fx:id="dblCardTimeA4" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
+                                                                        <Label id="card-light" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -2451,9 +2451,9 @@
                                                       <Insets top="10.0" />
                                                    </padding>
                                                 </StackPane>
-                                                <StackPane id="card-sp" fx:id="dblCardA5" layoutX="10.0" layoutY="314.0">
+                                                <StackPane id="card-sp" layoutX="10.0" layoutY="314.0">
                                                    <children>
-                                                      <Rectangle id="card-bg" fx:id="dblCardBGA5" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
+                                                      <Rectangle id="card-bg" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
                                                       <HBox alignment="CENTER_LEFT">
                                                          <children>
                                                             <Region layoutX="129.0" layoutY="10.0" prefWidth="15.0" />
@@ -2461,7 +2461,7 @@
                                                                <children>
                                                                   <VBox alignment="CENTER_LEFT" prefHeight="55.0">
                                                                      <children>
-                                                                        <Label id="card-bold" fx:id="dblCardTextA5" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
+                                                                        <Label id="card-bold" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -2472,7 +2472,7 @@
                                                                               <Insets top="3.0" />
                                                                            </VBox.margin>
                                                                         </Label>
-                                                                        <Label id="card-light" fx:id="dblCardTimeA5" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
+                                                                        <Label id="card-light" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -2501,9 +2501,9 @@
                                                       <Insets top="10.0" />
                                                    </padding>
                                                 </StackPane>
-                                                <StackPane id="card-sp" fx:id="dblCardA7" layoutX="10.0" layoutY="30.0">
+                                                <StackPane id="card-sp" layoutX="10.0" layoutY="30.0">
                                                    <children>
-                                                      <Rectangle id="card-bg" fx:id="dblCardBGA6" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
+                                                      <Rectangle id="card-bg" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
                                                       <HBox alignment="CENTER_LEFT">
                                                          <children>
                                                             <Region layoutX="129.0" layoutY="10.0" prefWidth="15.0" />
@@ -2511,7 +2511,7 @@
                                                                <children>
                                                                   <VBox alignment="CENTER_LEFT" prefHeight="55.0">
                                                                      <children>
-                                                                        <Label id="card-bold" fx:id="dblCardTextA6" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
+                                                                        <Label id="card-bold" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -2522,7 +2522,7 @@
                                                                               <Insets top="3.0" />
                                                                            </VBox.margin>
                                                                         </Label>
-                                                                        <Label id="card-light" fx:id="dblCardTimeA6" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
+                                                                        <Label id="card-light" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -2551,9 +2551,9 @@
                                                       <Insets top="10.0" />
                                                    </padding>
                                                 </StackPane>
-                                                <StackPane id="card-sp" fx:id="dblCardA7" layoutX="10.0" layoutY="243.0">
+                                                <StackPane id="card-sp" layoutX="10.0" layoutY="243.0">
                                                    <children>
-                                                      <Rectangle id="card-bg" fx:id="dblCardBGA7" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
+                                                      <Rectangle id="card-bg" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
                                                       <HBox alignment="CENTER_LEFT">
                                                          <children>
                                                             <Region layoutX="129.0" layoutY="10.0" prefWidth="15.0" />
@@ -2561,7 +2561,7 @@
                                                                <children>
                                                                   <VBox alignment="CENTER_LEFT" prefHeight="55.0">
                                                                      <children>
-                                                                        <Label id="card-bold" fx:id="dblCardTextA7" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
+                                                                        <Label id="card-bold" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -2572,7 +2572,7 @@
                                                                               <Insets top="3.0" />
                                                                            </VBox.margin>
                                                                         </Label>
-                                                                        <Label id="card-light" fx:id="dblCardTimeA7" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
+                                                                        <Label id="card-light" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -2606,7 +2606,7 @@
                                                 <Insets right="8.0" />
                                              </HBox.margin>
                                           </VBox>
-                                          <VBox alignment="TOP_CENTER" layoutX="302.0" layoutY="10.0" pickOnBounds="false" prefWidth="156.0">
+                                          <VBox alignment="TOP_CENTER" layoutX="302.0" layoutY="10.0" prefWidth="156.0">
                                              <children>
                                                 <HBox alignment="TOP_CENTER" disable="true" prefWidth="200.0" visible="false">
                                                    <children>
@@ -2625,7 +2625,7 @@
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
                                                 </HBox>
-                                                <StackPane id="card-sp" fx:id="dblCardB1">
+                                                <StackPane id="card-sp">
                                                    <children>
                                                       <Rectangle id="card-bg" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
                                                       <HBox alignment="CENTER_LEFT">
@@ -2635,7 +2635,7 @@
                                                                <children>
                                                                   <VBox alignment="CENTER_LEFT" prefHeight="55.0">
                                                                      <children>
-                                                                        <Label id="card-bold" fx:id="dblCardTextB1" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
+                                                                        <Label id="card-bold" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -2646,7 +2646,7 @@
                                                                               <Insets top="3.0" />
                                                                            </VBox.margin>
                                                                         </Label>
-                                                                        <Label id="card-light" fx:id="dblCardTimeB1" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
+                                                                        <Label id="card-light" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -2675,7 +2675,7 @@
                                                       <Insets top="10.0" />
                                                    </padding>
                                                 </StackPane>
-                                                <StackPane id="card-sp" fx:id="dblCardB2" layoutX="10.0" layoutY="30.0">
+                                                <StackPane id="card-sp" layoutX="10.0" layoutY="30.0">
                                                    <children>
                                                       <Rectangle id="card-bg" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
                                                       <HBox alignment="CENTER_LEFT">
@@ -2685,7 +2685,7 @@
                                                                <children>
                                                                   <VBox alignment="CENTER_LEFT" prefHeight="55.0">
                                                                      <children>
-                                                                        <Label id="card-bold" fx:id="dblCardTextB2" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
+                                                                        <Label id="card-bold" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -2696,7 +2696,7 @@
                                                                               <Insets top="3.0" />
                                                                            </VBox.margin>
                                                                         </Label>
-                                                                        <Label id="card-light" fx:id="dblCardTimeB2" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
+                                                                        <Label id="card-light" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -2725,7 +2725,7 @@
                                                       <Insets top="10.0" />
                                                    </padding>
                                                 </StackPane>
-                                                <StackPane id="card-sp" fx:id="dblCardB3" layoutX="10.0" layoutY="30.0">
+                                                <StackPane id="card-sp" layoutX="10.0" layoutY="30.0">
                                                    <children>
                                                       <Rectangle id="card-bg" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
                                                       <HBox alignment="CENTER_LEFT">
@@ -2735,7 +2735,7 @@
                                                                <children>
                                                                   <VBox alignment="CENTER_LEFT" prefHeight="55.0">
                                                                      <children>
-                                                                        <Label id="card-bold" fx:id="dblCardTextB3" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
+                                                                        <Label id="card-bold" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -2746,7 +2746,7 @@
                                                                               <Insets top="3.0" />
                                                                            </VBox.margin>
                                                                         </Label>
-                                                                        <Label id="card-light" fx:id="dblCardTimeB3" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
+                                                                        <Label id="card-light" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -2775,7 +2775,7 @@
                                                       <Insets top="10.0" />
                                                    </padding>
                                                 </StackPane>
-                                                <StackPane id="card-sp" fx:id="dblCardB4" layoutX="10.0" layoutY="101.0">
+                                                <StackPane id="card-sp" layoutX="10.0" layoutY="101.0">
                                                    <children>
                                                       <Rectangle id="card-bg" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
                                                       <HBox alignment="CENTER_LEFT">
@@ -2785,7 +2785,7 @@
                                                                <children>
                                                                   <VBox alignment="CENTER_LEFT" prefHeight="55.0">
                                                                      <children>
-                                                                        <Label id="card-bold" fx:id="dblCardTextB4" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
+                                                                        <Label id="card-bold" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -2796,7 +2796,7 @@
                                                                               <Insets top="3.0" />
                                                                            </VBox.margin>
                                                                         </Label>
-                                                                        <Label id="card-light" fx:id="dblCardTimeB4" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
+                                                                        <Label id="card-light" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -2825,7 +2825,7 @@
                                                       <Insets top="10.0" />
                                                    </padding>
                                                 </StackPane>
-                                                <StackPane id="card-sp" fx:id="dblCardB5" layoutX="10.0" layoutY="172.0">
+                                                <StackPane id="card-sp" layoutX="10.0" layoutY="172.0">
                                                    <children>
                                                       <Rectangle id="card-bg" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
                                                       <HBox alignment="CENTER_LEFT">
@@ -2835,7 +2835,7 @@
                                                                <children>
                                                                   <VBox alignment="CENTER_LEFT" prefHeight="55.0">
                                                                      <children>
-                                                                        <Label id="card-bold" fx:id="dblCardTextB5" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
+                                                                        <Label id="card-bold" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -2846,7 +2846,7 @@
                                                                               <Insets top="3.0" />
                                                                            </VBox.margin>
                                                                         </Label>
-                                                                        <Label id="card-light" fx:id="dblCardTimeB5" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
+                                                                        <Label id="card-light" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -2875,7 +2875,7 @@
                                                       <Insets top="10.0" />
                                                    </padding>
                                                 </StackPane>
-                                                <StackPane id="card-sp" fx:id="dblCardB6" layoutX="10.0" layoutY="172.0">
+                                                <StackPane id="card-sp" layoutX="10.0" layoutY="172.0">
                                                    <children>
                                                       <Rectangle id="card-bg" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
                                                       <HBox alignment="CENTER_LEFT">
@@ -2885,7 +2885,7 @@
                                                                <children>
                                                                   <VBox alignment="CENTER_LEFT" prefHeight="55.0">
                                                                      <children>
-                                                                        <Label id="card-bold" fx:id="dblCardTextB7" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
+                                                                        <Label id="card-bold" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -2896,7 +2896,7 @@
                                                                               <Insets top="3.0" />
                                                                            </VBox.margin>
                                                                         </Label>
-                                                                        <Label id="card-light" fx:id="dblCardTimeB6" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
+                                                                        <Label id="card-light" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -2925,7 +2925,7 @@
                                                       <Insets top="10.0" />
                                                    </padding>
                                                 </StackPane>
-                                                <StackPane id="card-sp" fx:id="dblCardB7" layoutX="10.0" layoutY="243.0">
+                                                <StackPane id="card-sp" layoutX="10.0" layoutY="243.0">
                                                    <children>
                                                       <Rectangle id="card-bg" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
                                                       <HBox alignment="CENTER_LEFT">
@@ -2935,7 +2935,7 @@
                                                                <children>
                                                                   <VBox alignment="CENTER_LEFT" prefHeight="55.0">
                                                                      <children>
-                                                                        <Label id="card-bold" fx:id="dblCardTextB7" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
+                                                                        <Label id="card-bold" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -2946,7 +2946,7 @@
                                                                               <Insets top="3.0" />
                                                                            </VBox.margin>
                                                                         </Label>
-                                                                        <Label id="card-light" fx:id="dblCardTimeB7" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
+                                                                        <Label id="card-light" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -2980,7 +2980,7 @@
                                                 <Insets left="8.0" right="8.0" />
                                              </HBox.margin>
                                           </VBox>
-                                          <VBox alignment="TOP_CENTER" layoutX="224.0" layoutY="10.0" pickOnBounds="false" prefWidth="156.0">
+                                          <VBox alignment="TOP_CENTER" layoutX="224.0" layoutY="10.0" prefWidth="156.0">
                                              <children>
                                                 <HBox alignment="TOP_CENTER" disable="true" prefWidth="200.0" visible="false">
                                                    <children>
@@ -2999,7 +2999,7 @@
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
                                                 </HBox>
-                                                <StackPane id="card-sp" fx:id="dblCardC1">
+                                                <StackPane id="card-sp">
                                                    <children>
                                                       <Rectangle id="card-bg" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
                                                       <HBox alignment="CENTER_LEFT">
@@ -3009,7 +3009,7 @@
                                                                <children>
                                                                   <VBox alignment="CENTER_LEFT" prefHeight="55.0">
                                                                      <children>
-                                                                        <Label id="card-bold" fx:id="dblCardTextC1" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
+                                                                        <Label id="card-bold" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -3020,7 +3020,7 @@
                                                                               <Insets top="3.0" />
                                                                            </VBox.margin>
                                                                         </Label>
-                                                                        <Label id="card-light" fx:id="dblCardTimeC1" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
+                                                                        <Label id="card-light" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -3049,7 +3049,7 @@
                                                       <Insets top="10.0" />
                                                    </padding>
                                                 </StackPane>
-                                                <StackPane id="card-sp" fx:id="dblCardC2" layoutX="10.0" layoutY="30.0">
+                                                <StackPane id="card-sp" layoutX="10.0" layoutY="30.0">
                                                    <children>
                                                       <Rectangle id="card-bg" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
                                                       <HBox alignment="CENTER_LEFT">
@@ -3059,7 +3059,7 @@
                                                                <children>
                                                                   <VBox alignment="CENTER_LEFT" prefHeight="55.0">
                                                                      <children>
-                                                                        <Label id="card-bold" fx:id="dblCardTextC2" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
+                                                                        <Label id="card-bold" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -3070,7 +3070,7 @@
                                                                               <Insets top="3.0" />
                                                                            </VBox.margin>
                                                                         </Label>
-                                                                        <Label id="card-light" fx:id="dblCardTimeC2" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
+                                                                        <Label id="card-light" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -3099,7 +3099,7 @@
                                                       <Insets top="10.0" />
                                                    </padding>
                                                 </StackPane>
-                                                <StackPane id="card-sp" fx:id="dblCardC3" layoutX="10.0" layoutY="101.0">
+                                                <StackPane id="card-sp" layoutX="10.0" layoutY="101.0">
                                                    <children>
                                                       <Rectangle id="card-bg" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
                                                       <HBox alignment="CENTER_LEFT">
@@ -3109,7 +3109,7 @@
                                                                <children>
                                                                   <VBox alignment="CENTER_LEFT" prefHeight="55.0">
                                                                      <children>
-                                                                        <Label id="card-bold" fx:id="dblCardTextC3" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
+                                                                        <Label id="card-bold" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -3120,7 +3120,7 @@
                                                                               <Insets top="3.0" />
                                                                            </VBox.margin>
                                                                         </Label>
-                                                                        <Label id="card-light" fx:id="dblCardTimeC3" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
+                                                                        <Label id="card-light" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -3149,7 +3149,7 @@
                                                       <Insets top="10.0" />
                                                    </padding>
                                                 </StackPane>
-                                                <StackPane id="card-sp" fx:id="dblCardC4" layoutX="10.0" layoutY="172.0">
+                                                <StackPane id="card-sp" layoutX="10.0" layoutY="172.0">
                                                    <children>
                                                       <Rectangle id="card-bg" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
                                                       <HBox alignment="CENTER_LEFT">
@@ -3159,7 +3159,7 @@
                                                                <children>
                                                                   <VBox alignment="CENTER_LEFT" prefHeight="55.0">
                                                                      <children>
-                                                                        <Label id="card-bold" fx:id="dblCardTextC4" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
+                                                                        <Label id="card-bold" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -3170,7 +3170,7 @@
                                                                               <Insets top="3.0" />
                                                                            </VBox.margin>
                                                                         </Label>
-                                                                        <Label id="card-light" fx:id="dblCardTimeC4" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
+                                                                        <Label id="card-light" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -3199,7 +3199,7 @@
                                                       <Insets top="10.0" />
                                                    </padding>
                                                 </StackPane>
-                                                <StackPane id="card-sp" fx:id="dblCardC5" layoutX="10.0" layoutY="172.0">
+                                                <StackPane id="card-sp" layoutX="10.0" layoutY="172.0">
                                                    <children>
                                                       <Rectangle id="card-bg" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
                                                       <HBox alignment="CENTER_LEFT">
@@ -3209,7 +3209,7 @@
                                                                <children>
                                                                   <VBox alignment="CENTER_LEFT" prefHeight="55.0">
                                                                      <children>
-                                                                        <Label id="card-bold" fx:id="dblCardTextC5" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
+                                                                        <Label id="card-bold" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -3220,7 +3220,7 @@
                                                                               <Insets top="3.0" />
                                                                            </VBox.margin>
                                                                         </Label>
-                                                                        <Label id="card-light" fx:id="dblCardTimeC5" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
+                                                                        <Label id="card-light" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -3249,7 +3249,7 @@
                                                       <Insets top="10.0" />
                                                    </padding>
                                                 </StackPane>
-                                                <StackPane id="card-sp" fx:id="dblCardC6" layoutX="10.0" layoutY="314.0">
+                                                <StackPane id="card-sp" layoutX="10.0" layoutY="314.0">
                                                    <children>
                                                       <Rectangle id="card-bg" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
                                                       <HBox alignment="CENTER_LEFT">
@@ -3259,7 +3259,7 @@
                                                                <children>
                                                                   <VBox alignment="CENTER_LEFT" prefHeight="55.0">
                                                                      <children>
-                                                                        <Label id="card-bold" fx:id="dblCardTextC6" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
+                                                                        <Label id="card-bold" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -3270,7 +3270,7 @@
                                                                               <Insets top="3.0" />
                                                                            </VBox.margin>
                                                                         </Label>
-                                                                        <Label id="card-light" fx:id="dblCardTimeC6" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
+                                                                        <Label id="card-light" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -3299,7 +3299,7 @@
                                                       <Insets top="10.0" />
                                                    </padding>
                                                 </StackPane>
-                                                <StackPane id="card-sp" fx:id="dblCardC7" layoutX="10.0" layoutY="385.0">
+                                                <StackPane id="card-sp" layoutX="10.0" layoutY="385.0">
                                                    <children>
                                                       <Rectangle id="card-bg" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
                                                       <HBox alignment="CENTER_LEFT">
@@ -3309,7 +3309,7 @@
                                                                <children>
                                                                   <VBox alignment="CENTER_LEFT" prefHeight="55.0">
                                                                      <children>
-                                                                        <Label id="card-bold" fx:id="dblCardTextC7" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
+                                                                        <Label id="card-bold" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -3320,7 +3320,7 @@
                                                                               <Insets top="3.0" />
                                                                            </VBox.margin>
                                                                         </Label>
-                                                                        <Label id="card-light" fx:id="dblCardTimeC7" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
+                                                                        <Label id="card-light" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -3354,7 +3354,7 @@
                                                 <Insets left="8.0" right="8.0" />
                                              </HBox.margin>
                                           </VBox>
-                                          <VBox alignment="TOP_CENTER" layoutX="466.0" layoutY="10.0" pickOnBounds="false" prefWidth="156.0">
+                                          <VBox alignment="TOP_CENTER" layoutX="466.0" layoutY="10.0" prefWidth="156.0">
                                              <children>
                                                 <HBox alignment="TOP_CENTER" disable="true" prefWidth="200.0" visible="false">
                                                    <children>
@@ -3373,7 +3373,7 @@
                                                       <Cursor fx:constant="HAND" />
                                                    </cursor>
                                                 </HBox>
-                                                <StackPane id="card-sp" fx:id="dblCardD1">
+                                                <StackPane id="card-sp">
                                                    <children>
                                                       <Rectangle id="card-bg" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
                                                       <HBox alignment="CENTER_LEFT">
@@ -3383,7 +3383,7 @@
                                                                <children>
                                                                   <VBox alignment="CENTER_LEFT" prefHeight="55.0">
                                                                      <children>
-                                                                        <Label id="card-bold" fx:id="dblCardTextD1" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
+                                                                        <Label id="card-bold" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -3394,7 +3394,7 @@
                                                                               <Insets top="3.0" />
                                                                            </VBox.margin>
                                                                         </Label>
-                                                                        <Label id="card-light" fx:id="dblCardTimeD1" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
+                                                                        <Label id="card-light" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -3423,7 +3423,7 @@
                                                       <Insets top="10.0" />
                                                    </padding>
                                                 </StackPane>
-                                                <StackPane id="card-sp" fx:id="dblCardD2" layoutX="10.0" layoutY="30.0">
+                                                <StackPane id="card-sp" layoutX="10.0" layoutY="30.0">
                                                    <children>
                                                       <Rectangle id="card-bg" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
                                                       <HBox alignment="CENTER_LEFT">
@@ -3433,7 +3433,7 @@
                                                                <children>
                                                                   <VBox alignment="CENTER_LEFT" prefHeight="55.0">
                                                                      <children>
-                                                                        <Label id="card-bold" fx:id="dblCardTextD2" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
+                                                                        <Label id="card-bold" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -3444,7 +3444,7 @@
                                                                               <Insets top="3.0" />
                                                                            </VBox.margin>
                                                                         </Label>
-                                                                        <Label id="card-light" fx:id="dblCardTimeD2" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
+                                                                        <Label id="card-light" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -3473,7 +3473,7 @@
                                                       <Insets top="10.0" />
                                                    </padding>
                                                 </StackPane>
-                                                <StackPane id="card-sp" fx:id="dblCardD3" layoutX="10.0" layoutY="101.0">
+                                                <StackPane id="card-sp" layoutX="10.0" layoutY="101.0">
                                                    <children>
                                                       <Rectangle id="card-bg" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
                                                       <HBox alignment="CENTER_LEFT">
@@ -3483,7 +3483,7 @@
                                                                <children>
                                                                   <VBox alignment="CENTER_LEFT" prefHeight="55.0">
                                                                      <children>
-                                                                        <Label id="card-bold" fx:id="dblCardTextD3" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
+                                                                        <Label id="card-bold" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -3494,7 +3494,7 @@
                                                                               <Insets top="3.0" />
                                                                            </VBox.margin>
                                                                         </Label>
-                                                                        <Label id="card-light" fx:id="dblCardTimeD3" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
+                                                                        <Label id="card-light" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -3523,7 +3523,7 @@
                                                       <Insets top="10.0" />
                                                    </padding>
                                                 </StackPane>
-                                                <StackPane id="card-sp" fx:id="dblCardD4" layoutX="10.0" layoutY="101.0">
+                                                <StackPane id="card-sp" layoutX="10.0" layoutY="101.0">
                                                    <children>
                                                       <Rectangle id="card-bg" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
                                                       <HBox alignment="CENTER_LEFT">
@@ -3533,7 +3533,7 @@
                                                                <children>
                                                                   <VBox alignment="CENTER_LEFT" prefHeight="55.0">
                                                                      <children>
-                                                                        <Label id="card-bold" fx:id="dblCardTextD4" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
+                                                                        <Label id="card-bold" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -3544,7 +3544,7 @@
                                                                               <Insets top="3.0" />
                                                                            </VBox.margin>
                                                                         </Label>
-                                                                        <Label id="card-light" fx:id="dblCardTimeD4" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
+                                                                        <Label id="card-light" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -3573,7 +3573,7 @@
                                                       <Insets top="10.0" />
                                                    </padding>
                                                 </StackPane>
-                                                <StackPane id="card-sp" fx:id="dblCardD5" layoutX="10.0" layoutY="243.0">
+                                                <StackPane id="card-sp" layoutX="10.0" layoutY="243.0">
                                                    <children>
                                                       <Rectangle id="card-bg" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
                                                       <HBox alignment="CENTER_LEFT">
@@ -3583,7 +3583,7 @@
                                                                <children>
                                                                   <VBox alignment="CENTER_LEFT" prefHeight="55.0">
                                                                      <children>
-                                                                        <Label id="card-bold" fx:id="dblCardTextD5" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
+                                                                        <Label id="card-bold" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -3594,7 +3594,7 @@
                                                                               <Insets top="3.0" />
                                                                            </VBox.margin>
                                                                         </Label>
-                                                                        <Label id="card-light" fx:id="dblCardTimeD5" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
+                                                                        <Label id="card-light" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -3623,7 +3623,7 @@
                                                       <Insets top="10.0" />
                                                    </padding>
                                                 </StackPane>
-                                                <StackPane id="card-sp" fx:id="dblCardD6" layoutX="10.0" layoutY="314.0">
+                                                <StackPane id="card-sp" layoutX="10.0" layoutY="314.0">
                                                    <children>
                                                       <Rectangle id="card-bg" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
                                                       <HBox alignment="CENTER_LEFT">
@@ -3633,7 +3633,7 @@
                                                                <children>
                                                                   <VBox alignment="CENTER_LEFT" prefHeight="55.0">
                                                                      <children>
-                                                                        <Label id="card-bold" fx:id="dblCardTextD6" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
+                                                                        <Label id="card-bold" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -3644,7 +3644,7 @@
                                                                               <Insets top="3.0" />
                                                                            </VBox.margin>
                                                                         </Label>
-                                                                        <Label id="card-light" fx:id="dblCardTimeD6" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
+                                                                        <Label id="card-light" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -3673,7 +3673,7 @@
                                                       <Insets top="10.0" />
                                                    </padding>
                                                 </StackPane>
-                                                <StackPane id="card-sp" fx:id="dblCardD7" layoutX="10.0" layoutY="385.0">
+                                                <StackPane id="card-sp" layoutX="10.0" layoutY="385.0">
                                                    <children>
                                                       <Rectangle id="card-bg" arcHeight="10.0" arcWidth="10.0" fill="#ab50bd" height="61.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="156.0" />
                                                       <HBox alignment="CENTER_LEFT">
@@ -3683,7 +3683,7 @@
                                                                <children>
                                                                   <VBox alignment="CENTER_LEFT" prefHeight="55.0">
                                                                      <children>
-                                                                        <Label id="card-bold" fx:id="dblCardTextD7" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
+                                                                        <Label id="card-bold" prefHeight="30.0" prefWidth="110.0" text="This is a two-story task requiring two stories" textFill="WHITE" wrapText="true">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
@@ -3694,7 +3694,7 @@
                                                                               <Insets top="3.0" />
                                                                            </VBox.margin>
                                                                         </Label>
-                                                                        <Label id="card-light" fx:id="dblCardTimeD7" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
+                                                                        <Label id="card-light" layoutX="10.0" layoutY="12.0" prefHeight="15.0" prefWidth="110.0" text="15 Minutes" textFill="WHITE">
                                                                            <cursor>
                                                                               <Cursor fx:constant="HAND" />
                                                                            </cursor>
