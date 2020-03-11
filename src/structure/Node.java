@@ -406,7 +406,7 @@ public abstract class Node {
    * Returns the child type, provide a specified type.
    *
    * <p>Number {@code 1} will be used as specified number of levels.
-   * 
+   *
    * @param the specified type
    * @return the child type of the instance. {@code null} if there is any invalidation.
    */

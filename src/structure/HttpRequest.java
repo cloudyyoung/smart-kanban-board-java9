@@ -20,10 +20,14 @@ import java.io.BufferedReader;
  * accept/return {@code HttpBody} type object.
  *
  * @author Cloudy Young
- * @see <a href="https://www.baeldung.com/httpurlconnection-post">https://www.baeldung.com/httpurlconnection-post</a>
- * @see <a href="http://alex-public-doc.s3.amazonaws.com/json_simple-1.1/index.html">http://alex-public-doc.s3.amazonaws.com/json_simple-1.1/index.html</a>
- * @see <a href="https://www.tutorialspoint.com/json_simple/json_simple_quick_guide.htm">https://www.tutorialspoint.com/json_simple/json_simple_quick_guide.htm</a>
- * @see <a href="https://github.com/CloudyYoung/Kanban-Server/wiki">https://github.com/CloudyYoung/Kanban-Server/wiki</a>
+ * @see <a
+ *     href="https://www.baeldung.com/httpurlconnection-post">https://www.baeldung.com/httpurlconnection-post</a>
+ * @see <a
+ *     href="http://alex-public-doc.s3.amazonaws.com/json_simple-1.1/index.html">http://alex-public-doc.s3.amazonaws.com/json_simple-1.1/index.html</a>
+ * @see <a
+ *     href="https://www.tutorialspoint.com/json_simple/json_simple_quick_guide.htm">https://www.tutorialspoint.com/json_simple/json_simple_quick_guide.htm</a>
+ * @see <a
+ *     href="https://github.com/CloudyYoung/Kanban-Server/wiki">https://github.com/CloudyYoung/Kanban-Server/wiki</a>
  * @since Kanban 1.0
  * @version 2.1
  */
@@ -63,8 +67,8 @@ public final class HttpRequest extends Request {
   private String responseBody;
 
   /**
-   * Constructor of {@code HttpRequest}, provde url in {@code String}, param in {@code Object} and method
-   * in {@code String}
+   * Constructor of {@code HttpRequest}, provde url in {@code String}, param in {@code Object} and
+   * method in {@code String}
    *
    * @param url the request url in {@code String}
    * @param param the request body in {@code Object}, preferably in {@code HttpBody}
