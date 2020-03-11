@@ -15,6 +15,7 @@ public class Kanban extends Node {
 
   /**
    * Constructor of {@code Kanban}
+   *
    * @param obj the {@code HttpBody} object to map
    */
   public Kanban(HttpBody obj) {
