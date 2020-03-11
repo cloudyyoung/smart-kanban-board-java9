@@ -13,7 +13,10 @@ public class Kanban extends Node {
   /** The current Kanban object */
   public static Kanban current;
 
-  /** Constructor of {@code Kanban} */
+  /**
+   * Constructor of {@code Kanban}
+   * @param obj the {@code HttpBody} object to map
+   */
   public Kanban(HttpBody obj) {
     super(obj);
   }

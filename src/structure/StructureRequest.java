@@ -103,7 +103,7 @@ public final class StructureRequest extends Request {
    *
    * @param key the key
    * @param value the value
-   * @return {@code HttpBody} the object added if succeeded. {@coee null} otherwise.
+   * @return {@code HttpBody} the object added if succeeded. {@code null} otherwise.
    */
   public HttpBody addResponseBody(Object key, Object value) {
     try {

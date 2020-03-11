@@ -10,7 +10,7 @@ public class Board extends Node {
   /**
    * Constructor of {@code Board}, provide {@code HttpBody}.
    *
-   * @param object the {@code HttpBody} for initialization
+   * @param obj the {@code HttpBody} for initialization
    */
   public Board(HttpBody obj) {
     super(obj);
@@ -18,7 +18,7 @@ public class Board extends Node {
   }
 
   /**
-   * Constructor of Board, provide title, note and color.
+   * Constructor of {@code Board}, provide title, note and color.
    *
    * @param title The title in {@code String}
    * @param note The note in {@code String}
@@ -30,7 +30,7 @@ public class Board extends Node {
   }
 
   /**
-   * Set the color in local storage.
+   * Sets the color of the board, in local storage.
    *
    * @param color The color in {@code String}
    */
@@ -39,9 +39,10 @@ public class Board extends Node {
   }
 
   /**
-   * Set the color.
+   * Sets the color of the board.
    *
    * @param color The color in {@code String}
+   * @return the http request of this action
    */
   public HttpRequest setColor(String color) {
     HttpRequest req = this.set("color", color);
@@ -52,7 +53,7 @@ public class Board extends Node {
   }
 
   /**
-   * Get the color.
+   * Returns the color of the board.
    *
    * @return color in {@code String}
    */
