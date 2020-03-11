@@ -67,8 +67,8 @@ public class loginPageController {
 
     boolean authenticated = true;
     User user = new User();
-    HttpRequest req = user.authenticate(username, password);
-    authenticated = req.isSucceed();
+    Result req = user.authenticate(username, password);
+    authenticated = req.isSucceeded();
 
     if (authenticated == true) {
       BorderPane pane = FXMLLoader.load(getClass().getResource("homePage.fxml"));
