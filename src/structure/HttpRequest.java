@@ -20,10 +20,14 @@ import java.io.BufferedReader;
  * accept/return {@code HttpBody} type object.
  *
  * @author Cloudy Young
- * @see https://www.baeldung.com/httpurlconnection-post
- * @see http://alex-public-doc.s3.amazonaws.com/json_simple-1.1/index.html
- * @see https://www.tutorialspoint.com/json_simple/json_simple_quick_guide.htm
- * @see https://github.com/CloudyYoung/Kanban-Server/wiki
+ * @see <a
+ *     href="https://www.baeldung.com/httpurlconnection-post">https://www.baeldung.com/httpurlconnection-post</a>
+ * @see <a
+ *     href="http://alex-public-doc.s3.amazonaws.com/json_simple-1.1/index.html">http://alex-public-doc.s3.amazonaws.com/json_simple-1.1/index.html</a>
+ * @see <a
+ *     href="https://www.tutorialspoint.com/json_simple/json_simple_quick_guide.htm">https://www.tutorialspoint.com/json_simple/json_simple_quick_guide.htm</a>
+ * @see <a
+ *     href="https://github.com/CloudyYoung/Kanban-Server/wiki">https://github.com/CloudyYoung/Kanban-Server/wiki</a>
  * @since Kanban 1.0
  * @version 2.1
  */
@@ -63,8 +67,8 @@ public final class HttpRequest extends Request {
   private String responseBody;
 
   /**
-   * Constructor of {@HttpRequest}, provde url in {@code String}, param in {@code Object} and method
-   * in {@code String}
+   * Constructor of {@code HttpRequest}, provde url in {@code String}, param in {@code Object} and
+   * method in {@code String}
    *
    * @param url the request url in {@code String}
    * @param param the request body in {@code Object}, preferably in {@code HttpBody}
@@ -77,7 +81,7 @@ public final class HttpRequest extends Request {
   }
 
   /**
-   * Constructor of {@HttpRequest}, provde url in {@code String} and method in {@code String}
+   * Constructor of {@code HttpRequest}, provde url in {@code String} and method in {@code String}
    *
    * @param url the request url in {@code String}
    * @param method the request method in {@code String}
@@ -87,7 +91,7 @@ public final class HttpRequest extends Request {
     this.setRequestMethod(method);
   }
 
-  /** Default constructor of {@HttpRequest} */
+  /** Default constructor of {@code HttpRequest} */
   public HttpRequest() {
     this.setRequestMethod("GET");
   }

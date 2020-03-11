@@ -8,12 +8,11 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * This is a custom HashMap class for {@code JSON} to be used <b>fluently and elegantly</b>.
+ * This is a custom HashMap class for <b>fluently and elegantly</b> writing and reading values in
+ * {@code JSON}.<b></b>.
  *
  * <p>Originally, using a HashMap/ArrayList would always bother developers by having TypeCasting
  * warnings/exceptions, and also make the code less readable. This class is to perfectly avoid.
- *
- * <p>
  *
  * <p>Though it extends from HashMap, developers are allowed to make it <b>perform a List</b>.
  *
@@ -67,6 +66,7 @@ public final class HttpBody extends HashMap<Object, Object> {
    * and also be {@code HttpBody} instance.
    *
    * @param obj the {@code Object} to parse
+   * @return the parsed object
    */
   private Object parse(Object obj) {
     if (obj instanceof HttpBody) {
@@ -136,8 +136,8 @@ public final class HttpBody extends HashMap<Object, Object> {
    * @param key the Object of key
    * @param value the Object of value
    * @return the instance itself
-   * @see #get(Object, Object)
-   * @see #put(Object)
+   * @see #get(Object)
+   * @see #put(Object, Object)
    */
   @Override
   public HttpBody put(Object key, Object value) {
@@ -157,10 +157,10 @@ public final class HttpBody extends HashMap<Object, Object> {
    * <p>When the instance is not performing a {@code List}, this invocation <b>is invalid and will
    * be ignored</b>.
    *
-   * @param value
+   * @param value the value to be put
    * @return the instance itself
-   * @see #get(Object)
    * @see #put(Object, Object)
+   * @see #get(Object)
    */
   public HttpBody put(Object value) {
     if (this.isList) {
@@ -173,7 +173,6 @@ public final class HttpBody extends HashMap<Object, Object> {
    * {@inheritDoc}
    *
    * @see #put(Object)
-   * @see #get(Object, Object)
    */
   @Override
   public Object get(Object key) {
@@ -185,7 +184,7 @@ public final class HttpBody extends HashMap<Object, Object> {
    *
    * @return the value associated with {@code key} will be removed, and return the instance itself
    *     No element will be removed if there was no mapping for {@code key}
-   * @see #remove(Object)
+   * @see #remove(Object, Object)
    */
   @Override
   public HttpBody remove(Object key) {
