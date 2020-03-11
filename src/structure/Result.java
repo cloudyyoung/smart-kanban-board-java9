@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /** 
  * The class for all <i>action</i> results. 
  * @author Cloudy Young
- * @since Kanban 2.0
+ * @since 2.0
  * @version 2.0
  */
 public final class Result {

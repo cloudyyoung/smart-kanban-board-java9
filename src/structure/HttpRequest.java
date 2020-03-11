@@ -28,7 +28,7 @@ import java.io.BufferedReader;
  *     href="https://www.tutorialspoint.com/json_simple/json_simple_quick_guide.htm">https://www.tutorialspoint.com/json_simple/json_simple_quick_guide.htm</a>
  * @see <a
  *     href="https://github.com/CloudyYoung/Kanban-Server/wiki">https://github.com/CloudyYoung/Kanban-Server/wiki</a>
- * @since Kanban 1.0
+ * @since 1.0
  * @version 2.1
  */
 public final class HttpRequest extends Request {

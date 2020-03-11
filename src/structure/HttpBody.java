@@ -17,7 +17,7 @@ import java.util.List;
  * <p>Though it extends from HashMap, developers are allowed to make it <b>perform a List</b>.
  *
  * @author Cloudy Young
- * @since Kanban 2.0
+ * @since 2.0
  * @version 2.1
  */
 public final class HttpBody extends HashMap<Object, Object> {

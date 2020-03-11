@@ -11,7 +11,7 @@ import java.lang.reflect.Constructor;
 /**
  * The {@code Node} class.
  *
- * @since Kanban 1.0
+ * @since 1.0
  * @version 2.1
  */
 public abstract class Node {

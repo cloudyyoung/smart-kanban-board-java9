@@ -7,7 +7,7 @@ import com.google.gson.annotations.*;
  *
  * <p>The instance should contains {@code Column} object as children nodes.
  *
- * @since Kanban 1.0
+ * @since 1.0
  * @version 2.1
  */
 public class Board extends Node {

@@ -9,7 +9,7 @@ import com.google.gson.*;
  *
  * <p>This class is extending from {@link Request} class.
  * @author Cloudy Young
- * @since Kanban 2.0
+ * @since 2.0
  * @version 2.0
  */
 public final class StructureRequest extends Request {
