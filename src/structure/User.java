@@ -224,7 +224,7 @@ public class User {
    * @param sec_ans the security answer of the the account
    * @return the result object of this action
    */
-  public Result resgister(String username, String password, String sec_ques, String sec_ans) {
+  public Result register(String username, String password, String sec_ques, String sec_ans) {
     Result res = new Result();
 
     this.setUsername(username);
