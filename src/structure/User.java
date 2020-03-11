@@ -204,11 +204,8 @@ public class User {
     return req;
   }
 
-
-  /**
-   * Sets the existing status of the instance account.
-   */
-  public boolean isExisting(){
+  /** Sets the existing status of the instance account. */
+  public boolean isExisting() {
     return this.existing;
   }
 
