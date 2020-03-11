@@ -28,7 +28,7 @@ public class User {
   private boolean authenticated;
 
   /** A boolean to indicate if the account is existing on the server. */
-  private boolean existing;
+  private boolean existing = false;
 
   /** Default constructor of {@code User}. */
   public User() {}
@@ -202,6 +202,14 @@ public class User {
     User.current = this;
     StructureRequest req = new StructureRequest(true, false, this);
     return req;
+  }
+
+
+  /**
+   * Sets the existing status of the instance account.
+   */
+  public boolean isExisting(){
+    return this.existing;
   }
 
   /**
