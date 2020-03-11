@@ -48,17 +48,13 @@ public class newAccPage4Controller {
     return graduate;
   }
 
-  @FXML
-  private BorderPane newAccPane4;
+  @FXML private BorderPane newAccPane4;
 
-  @FXML
-  private TextField motherBornField;
+  @FXML private TextField motherBornField;
 
-  @FXML
-  private TextField graduateField;
+  @FXML private TextField graduateField;
 
-  @FXML
-  private Label nextBtn;
+  @FXML private Label nextBtn;
 
   @FXML
   void handleNextBtn(MouseEvent event) throws IOException {
@@ -71,7 +67,7 @@ public class newAccPage4Controller {
     setMomBorn(momBorn);
 
     User user = new User();
-    //user.resgister(getUsername(), getPassword(), getMomBorn(), getGraduate());
+    // user.resgister(getUsername(), getPassword(), getMomBorn(), getGraduate());
     System.out.println(this.username + this.password + getMomBorn() + getGraduate());
 
     BorderPane pane = FXMLLoader.load(getClass().getResource("loginPage.fxml"));

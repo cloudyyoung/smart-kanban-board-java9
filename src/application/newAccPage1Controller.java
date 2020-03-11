@@ -10,9 +10,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import structure.*;
 
-public class newAccPage1Controller extends newAccPage4Controller{
+public class newAccPage1Controller extends newAccPage4Controller {
   private String email;
- 
 
   public void setEmail(String email) {
     this.email = email;
@@ -22,19 +21,16 @@ public class newAccPage1Controller extends newAccPage4Controller{
     return email;
   }
 
-  @FXML
-  private BorderPane newAccPane1;
+  @FXML private BorderPane newAccPane1;
 
-  @FXML
-  private TextField emailTextField;
+  @FXML private TextField emailTextField;
 
-  @FXML
-  private Label nextBtn;
+  @FXML private Label nextBtn;
 
   @FXML
   void handleNextClick(MouseEvent event) throws IOException {
     String email = emailTextField.getText();
-    
+
     setEmail(email);
 
     BorderPane pane = FXMLLoader.load(getClass().getResource("newaccPage2.fxml"));

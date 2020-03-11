@@ -10,7 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import structure.*;
 
-public class newAccPage2Controller extends newAccPage4Controller{
+public class newAccPage2Controller extends newAccPage4Controller {
   private String username;
 
   public void setUsername(String username) {
@@ -21,20 +21,16 @@ public class newAccPage2Controller extends newAccPage4Controller{
     return this.username;
   }
 
-  @FXML
-  private BorderPane newAccPane2;
+  @FXML private BorderPane newAccPane2;
 
-  @FXML
-  private TextField usernameField;
+  @FXML private TextField usernameField;
 
-  @FXML
-  private Label nxtBtn;
+  @FXML private Label nxtBtn;
 
   @FXML
   void handleNxtBtn(MouseEvent event) throws IOException {
     String userName = usernameField.getText();
-    
-    
+
     super.setUsername(username);
 
     BorderPane pane = FXMLLoader.load(getClass().getResource("newaccPage3.fxml"));
