@@ -9,9 +9,7 @@ import com.google.gson.annotations.*;
 import java.lang.reflect.Constructor;
 
 /**
- * The {@code Board} class, extends from {@code Node}.
- *
- * <p>The instance should contains {@code Column} object as children nodes.
+ * The {@code Node} class.
  *
  * @since Kanban 1.0
  * @version 2.1
@@ -211,7 +209,7 @@ public abstract class Node {
   /**
    * Sets the parent {@code Node}, in local storage.
    *
-   * @param the parent node of the instance
+   * @param parent the parent node of the instance
    * @return the strcuture request of the action
    */
   private StructureRequest setParentLocal(Node parent) {
@@ -261,7 +259,7 @@ public abstract class Node {
   /**
    * Sets the title of the instance, in local storage.
    *
-   * @param the title of the instance
+   * @param title the title of the instance
    * @return the strcuture request of the action
    */
   public StructureRequest setTitleLocal(String title) {
@@ -294,7 +292,7 @@ public abstract class Node {
   /**
    * Sets the note of the instance, in local storage.
    *
-   * @param the note of the instance
+   * @param note the note of the instance
    * @return the strcuture request of the action
    */
   public StructureRequest setNoteLocal(String note) {
@@ -407,7 +405,7 @@ public abstract class Node {
    *
    * <p>Number {@code 1} will be used as specified number of levels.
    *
-   * @param the specified type
+   * @param type the specified type
    * @return the child type of the instance. {@code null} if there is any invalidation.
    */
   public String getChildType(String type) {
@@ -417,8 +415,8 @@ public abstract class Node {
   /**
    * Returns the child type, provide a specified type and number of levels.
    *
-   * @param the specified type
-   * @param the specified number of levels
+   * @param type the specified type
+   * @param level the specified number of levels
    * @return the child type of the instance. {@code null} if there is any invalidation.
    */
   public String getChildType(String type, int level) {

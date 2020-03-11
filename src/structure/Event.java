@@ -1,5 +1,11 @@
 package structure;
 
+/**
+ * The {@code Event} class, extends from {@code Node}.
+ *
+ * @since Kanban 1.0
+ * @version 2.1
+ */
 public class Event extends Node {
   /**
    * Constructor of {@code Event}, provide {@code HttpBody}.
