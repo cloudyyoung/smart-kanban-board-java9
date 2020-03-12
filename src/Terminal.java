@@ -3,6 +3,7 @@ import structure.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+@SuppressWarnings("all")
 public class Terminal {
 
   private static ArrayList<Integer> availableHours = new ArrayList<Integer>(7);
@@ -76,7 +77,10 @@ public class Terminal {
 
         // REMOVE FOR AUTH
         // authenticated = true;
-        authenticated = User.authentication(username, password);
+        User user = new User();
+        Result res = user.authenticate(username, password);
+        authenticated = res.isSucceeded();
+        System.out.println(res);
       }
     }
 
