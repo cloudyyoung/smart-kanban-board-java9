@@ -34,6 +34,7 @@ It can be also found under "Release" panel or here:
 
 ## How to Compile and Run
 The Github Wiki link is here: [https://github.com/CloudyYoung/Smart-Kanban-Board/wiki/Compile-and-Run-the-Application](https://github.com/CloudyYoung/Smart-Kanban-Board/wiki/Compile-and-Run-the-Application)
+**Notice that the wiki is updated, if you are running the project v2.0 for the first time, you need to follow the new configuration procedure.**
 
 ## Terminal Commands
 Log-in Page
