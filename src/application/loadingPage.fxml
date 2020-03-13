@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane fx:id="loadingPane" maxHeight="660.0" maxWidth="960.0" minHeight="660.0" minWidth="960.0" prefHeight="660.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.loadingPageController">
+   <center>
+      <Pane id="bg" maxHeight="660.0" maxWidth="960.0" minHeight="660.0" minWidth="960.0" prefHeight="660.0" prefWidth="960.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox fx:id="boarder" alignment="CENTER" onMouseClicked="#loadingComplete" prefHeight="660.0" prefWidth="960.0">
+               <children>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <Circle id="circle" fx:id="blueCircle" fill="#3cdbeb" opacity="0.5" radius="10.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" HBox.hgrow="ALWAYS" />
+                        <Circle id="circle" fx:id="darkBlueCircle" fill="#3351a3" opacity="0.5" radius="10.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0">
+                           <HBox.margin>
+                              <Insets left="50.0" right="50.0" />
+                           </HBox.margin>
+                        </Circle>
+                        <Circle id="circle" fx:id="purpleCircle" fill="#9e32b2" opacity="0.5" radius="10.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+   </center>
+</BorderPane>

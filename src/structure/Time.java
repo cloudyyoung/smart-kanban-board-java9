@@ -19,7 +19,7 @@ public class Time {
    *
    * @return the current 24hr hour
    */
-  public static int currentHour24() {
+  public static String currentHour24() {
 
     /**
      * myDateObj: current date time (local time) taken from device myFormatObj: formatted time in
@@ -33,8 +33,8 @@ public class Time {
     String toParse = formattedDate.substring(11, 13);
 
     int result = Integer.parseInt(toParse);
-
-    return (int) result;
+    String resStr = "" + result;
+    return resStr;
   }
 
   /**
@@ -43,7 +43,7 @@ public class Time {
    * @param currentHour24 the current 24h hour
    * @return the result 12hr hour
    */
-  public static int currentHour12(int currentHour24) {
+  public static String currentHour12(int currentHour24) {
     /** result: takes the 24 hour version of the time and converts it to 12 hour clock */
     int result;
 
@@ -52,8 +52,8 @@ public class Time {
     } else {
       result = currentHour24;
     }
-
-    return (int) result;
+    String resStr = "" + result;
+    return resStr;
   }
 
   /**
@@ -61,7 +61,7 @@ public class Time {
    *
    * @return the current minute
    */
-  public static int currentMinute() {
+  public static String currentMinute() {
 
     /**
      * myDateObj: current date time (local time) taken from device myFormatObj: formatted time in
@@ -73,10 +73,12 @@ public class Time {
     String formattedDate = myDateObj.format(myFormatObj);
 
     String toParse = formattedDate.substring(14, 16);
-
+    String minute = toParse;
     int result = Integer.parseInt(toParse);
-
-    return (int) result;
+    if (result - 10 < 0) {
+      minute = "0" + minute;
+    }
+    return minute;
   }
 
   /**
@@ -84,7 +86,7 @@ public class Time {
    *
    * @return the current second
    */
-  public static int currentSecond() {
+  public static String currentSecond() {
 
     /**
      * myDateObj: current date time (local time) taken from device myFormatObj: formatted time in
@@ -98,8 +100,8 @@ public class Time {
     String toParse = formattedDate.substring(17, 19);
 
     int result = Integer.parseInt(toParse);
-
-    return (int) result;
+    String resStr = "" + result;
+    return resStr;
   }
 
   /**
@@ -107,7 +109,7 @@ public class Time {
    *
    * @return the current month
    */
-  public static int currentMonth() {
+  public static String currentMonth() {
 
     /**
      * myDateObj: current date taken from device myFormatObj: formatted date in dd-MM-yyyy
@@ -121,8 +123,8 @@ public class Time {
     String toParse = formattedDate.substring(3, 5);
 
     int result = Integer.parseInt(toParse);
-
-    return (int) result;
+    String resStr = "" + result;
+    return resStr;
   }
 
   /**
@@ -130,7 +132,7 @@ public class Time {
    *
    * @return the current day
    */
-  public static int currentDay() {
+  public static String currentDay() {
 
     /**
      * myDateObj: current date taken from device myFormatObj: formatted date in dd-MM-yyyy
@@ -144,8 +146,8 @@ public class Time {
     String toParse = formattedDate.substring(0, 2);
 
     int result = Integer.parseInt(toParse);
-
-    return (int) result;
+    String resStr = "" + result;
+    return resStr;
   }
 
   /**
@@ -153,7 +155,7 @@ public class Time {
    *
    * @return the current year
    */
-  public static int currentYear() {
+  public static String currentYear() {
 
     /**
      * myDateObj: current date taken from device myFormatObj: formatted date in dd-MM-yyyy
@@ -167,8 +169,8 @@ public class Time {
     String toParse = formattedDate.substring(6, 10);
 
     int result = Integer.parseInt(toParse);
-
-    return (int) result;
+    String resStr = "" + result;
+    return resStr;
   }
 
   /**

@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 @SuppressWarnings("all")
 public class Terminal {
-
+  // ***** need to implement all output to UI whenever the UI is ready
   private static ArrayList<Integer> availableHours = new ArrayList<Integer>(7);
   private static boolean authenticated = false;
 
@@ -49,50 +49,56 @@ public class Terminal {
       String username = keyboard.nextLine();
 
       if (username.equals("help")) {
-        System.out.println("");
-        System.out.println("List of Commands:");
-        System.out.println("  'create' : create a new account");
-        System.out.println("  'forgot' : recover an account");
-        System.out.println("  'exit' : terminates the program");
-        System.out.println("");
-
+        /*
+                System.out.println("");
+                System.out.println("List of Commands:");
+                System.out.println("  'create' : create a new account");
+                System.out.println("  'forgot' : recover an account");
+                System.out.println("  'exit' : terminates the program");
+                System.out.println("");
+        */
       } else if (username.equals("create")) {
-        System.out.println("");
-        System.out.println("This has yet to be implemented.");
-        System.out.println("");
-
+        /*
+                System.out.println("");
+                System.out.println("This has yet to be implemented.");
+                System.out.println("");
+        */
       } else if (username.equals("forgot")) {
-        System.out.println("");
-        System.out.println("This has yet to be implemented.");
-        System.out.println("");
-
+        /*
+                System.out.println("");
+                System.out.println("This has yet to be implemented.");
+                System.out.println("");
+        */
       } else if (username.equals("exit")) {
-        System.out.println("");
-        System.exit(0);
-
+        /*
+                System.out.println("");
+                System.exit(0);
+        */
       } else {
-        System.out.println("");
-        System.out.println("Password: ");
-        String password = keyboard.nextLine();
-
+        /*
+                System.out.println("");
+                System.out.println("Password: ");
+                String password = keyboard.nextLine();
+        */
         // REMOVE FOR AUTH
         // authenticated = true;
-        User user = new User();
-        Result res = user.authenticate(username, password);
-        authenticated = res.isSucceeded();
-        System.out.println(res);
+        // User user = new User();
+        // Result res = user.authenticate(username, password);
+        // authenticated = res.isSucceeded();
+        // System.out.println(res);
       }
     }
 
     System.out.println("");
 
     if (authenticated) {
-      System.out.println("");
-      // REMOVE FOR AUTH
-      // System.out.println("Welcome!");
-      System.out.println("Welcome " + User.current.getUsername() + "!");
-      System.out.println("");
-
+      /*
+            System.out.println("");
+            // REMOVE FOR AUTH
+            // System.out.println("Welcome!");
+            System.out.println("Welcome " + User.current.getUsername() + "!");
+            System.out.println("");
+      */
       showLogin = false;
     } else {
       System.out.println("Your username or password is incorrect.");
@@ -103,14 +109,15 @@ public class Terminal {
   }
 
   public static void showLoading() {
-    System.out.println("Welcome to Smart Kanban.");
-    System.out.println("");
-    System.out.print("  Loading.");
-    System.out.print(".");
-    System.out.print(".");
-    System.out.println("");
-    System.out.println("");
-  }
+    /*
+      System.out.println("Welcome to Smart Kanban.");
+      System.out.println("");
+      System.out.print("  Loading.");
+      System.out.print(".");
+      System.out.print(".");
+      System.out.println("");
+      System.out.println("");
+    */ }
 
   // Main program
   public static void showMain() {
@@ -118,10 +125,11 @@ public class Terminal {
     // Initialize variables
     Scanner keyboard = new Scanner(System.in);
     boolean onMain = true;
+    /*
 
-    System.out.println("You are now on Main.");
-    System.out.println("");
-
+        System.out.println("You are now on Main.");
+        System.out.println("");
+    */
     // Unless exited, stay on main page
     while (onMain == true) {
       System.out.println("Enter a cmd: ");
@@ -129,6 +137,7 @@ public class Terminal {
 
       // 'help' command prints a list of acceptable commands
       if (command.equals("help")) {
+        /*
         System.out.println("");
         System.out.println("List of Commands:");
         System.out.println("  'today' : prints your daily board");
@@ -138,6 +147,7 @@ public class Terminal {
         System.out.println("  'settings' : navigates to settings page");
         System.out.println("  'exit' : terminates the program");
         System.out.println("");
+        */
 
       } else if (command.equals("settings")) {
         showSettings();
@@ -147,7 +157,7 @@ public class Terminal {
         System.out.println("");
         System.out.println(
             "Time: "
-                + Time.currentHour12(Time.currentHour24())
+                // + Time.currentHour12(Time.currentHour24())
                 + ":"
                 + Time.currentMinute()
                 + " on "
@@ -174,13 +184,14 @@ public class Terminal {
       } else if (command.equals("list")) {
 
         // Get all board titles and list
-        System.out.println("");
-        System.out.println("These are your current boards: ");
-        System.out.println("  Today");
-        System.out.println("  Comp Sci");
-        System.out.println("  Personal");
-        System.out.println("");
-
+        /*
+                System.out.println("");
+                System.out.println("These are your current boards: ");
+                System.out.println("  Today");
+                System.out.println("  Comp Sci");
+                System.out.println("  Personal");
+                System.out.println("");
+        */
       } else if (command.equals("new")) {
         serveBoard(command);
 
@@ -213,6 +224,7 @@ public class Terminal {
 
       // 'help' commands prints list of available commands
       if (command.equals("help")) {
+        /*
         System.out.println("");
         System.out.println("List of Commands:");
         System.out.println("  'kanban settings' : change board preferences");
@@ -221,6 +233,7 @@ public class Terminal {
         System.out.println("  'back' : return to previous page");
         System.out.println("  'exit' : terminates the program");
         System.out.println("");
+        */
 
         // 'kanban settings' command navigates to kanban subsettings page
       } else if (command.equals("kanban settings")) {
@@ -278,31 +291,37 @@ public class Terminal {
       String command = keyboard.nextLine();
 
       if (command.equals("help")) {
-        System.out.println("");
-        System.out.println("List of Commands:");
-        System.out.println("  'clear boards' : clears all boards");
-        System.out.println("  'back' : return to previous page");
-        System.out.println("  'exit' : terminates the program");
-        System.out.println("");
-
+        /*
+                System.out.println("");
+                System.out.println("List of Commands:");
+                System.out.println("  'clear boards' : clears all boards");
+                System.out.println("  'back' : return to previous page");
+                System.out.println("  'exit' : terminates the program");
+                System.out.println("");
+        */
       } else if (command.equals("clear boards")) {
+        /*
         System.out.println("");
         System.out.println("all boards cleared.");
         System.out.println("");
+        */
 
       } else if (command.equals("back")) {
         showSettings();
         onKanbanSettings = false;
 
       } else if (command.equals("exit")) {
+        /*
         System.out.println("");
         System.exit(0);
+        */
 
       } else {
-        System.out.println("");
-        System.out.println("Unknown command. Type 'help' for a command list.");
-        System.out.println("");
-      }
+        /*
+          System.out.println("");
+          System.out.println("Unknown command. Type 'help' for a command list.");
+          System.out.println("");
+        */ }
     }
     keyboard.close();
   }
@@ -443,124 +462,5 @@ public class Terminal {
 
   public static void serveBoard(String name) {
     Scanner keyboard = new Scanner(System.in);
-
-    if (name.equals("today")) {
-      System.out.println("");
-      System.out.println("You are now on " + name + "'s board:");
-      System.out.println("");
-      System.out.println("Backlog:");
-      System.out.println("  Read economics chapter");
-      System.out.println("  30 minutes");
-      System.out.println("");
-      System.out.println("To Do:");
-      System.out.println("  Email Dr. Verwaal");
-      System.out.println("  5 minutes");
-      System.out.println("");
-      System.out.println("  Do the dishes");
-      System.out.println("  20 minutes");
-      System.out.println("");
-      System.out.println("  Pay rent");
-      System.out.println("  5 minutes");
-      System.out.println("");
-      System.out.println("Doing:");
-      System.out.println("");
-      System.out.println("  Present in tutorial");
-      System.out.println("  120 minutes");
-      System.out.println("");
-      System.out.println("Done:");
-      System.out.println("");
-      System.out.println("  Presentation slides for tutorial");
-      System.out.println("  30 minutes");
-      System.out.println("");
-      System.out.println("  Do practice quiz for wednesday");
-      System.out.println("  15 minutes");
-      System.out.println("");
-
-    } else if (name.equals("comp sci")) {
-      System.out.println("");
-      System.out.println("You are now on " + name + "'s board:");
-      System.out.println("");
-      System.out.println("Backlog:");
-      System.out.println("  Decide on GUI colors");
-      System.out.println("  15 minutes");
-      System.out.println("");
-      System.out.println("To Do:");
-      System.out.println("  Email Dr. Verwaal");
-      System.out.println("  5 minutes");
-      System.out.println("");
-      System.out.println("  Update README");
-      System.out.println("  20 minutes");
-      System.out.println("");
-      System.out.println("Doing:");
-      System.out.println("");
-      System.out.println("  Finish terminal() commands");
-      System.out.println("  60 minutes");
-      System.out.println("");
-      System.out.println("Done:");
-      System.out.println("");
-      System.out.println("  Presentation slides for tutorial");
-      System.out.println("  30 minutes");
-      System.out.println("");
-      System.out.println("  Do practice quiz for wednesday");
-      System.out.println("  15 minutes");
-      System.out.println("");
-
-    } else if (name.equals("personal")) {
-      System.out.println("");
-      System.out.println("You are now on " + name + "'s board:");
-      System.out.println("");
-      System.out.println("Backlog:");
-      System.out.println("");
-      System.out.println("To Do:");
-      System.out.println("  Do the dishes");
-      System.out.println("  20 minutes");
-      System.out.println("");
-      System.out.println("  Pay rent");
-      System.out.println("  5 minutes");
-      System.out.println("");
-      System.out.println("Doing:");
-      System.out.println("");
-      System.out.println("Done:");
-      System.out.println("");
-      System.out.println("  Check for T4 online");
-      System.out.println("  10 minutes");
-      System.out.println("");
-      System.out.println("  Go to the gym");
-      System.out.println("  60 minutes");
-      System.out.println("");
-
-    } else if (name.equals("new")) {
-      System.out.println("");
-      System.out.println("New board:");
-      System.out.println("  Title:");
-      System.out.print("  ");
-      String title = keyboard.nextLine();
-      System.out.println("");
-      System.out.println("New board " + title + " created. Add event (y/n)? ");
-      String command = keyboard.nextLine();
-      System.out.println("New event:");
-      System.out.println("");
-      System.out.println("");
-      System.out.println("  Category: ");
-      System.out.print("  ");
-      String category = keyboard.nextLine();
-      System.out.println("");
-      System.out.println("  Description: ");
-      System.out.print("  ");
-      String desc = keyboard.nextLine();
-      System.out.println("");
-      System.out.println("  Time Required (min): ");
-      System.out.print("  ");
-      String reqTime = keyboard.nextLine();
-      System.out.println("");
-
-      System.out.println("You are now on " + title + "'s board:");
-      System.out.println("");
-      System.out.println(category + ":");
-      System.out.println("");
-      System.out.println("  " + desc);
-      System.out.println("  " + reqTime + " minutes");
-      System.out.println("");
-    }
   }
 }
