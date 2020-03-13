@@ -27,8 +27,9 @@ problem of overwhelming the user with events, we are in the process of developin
 availability for work, then decides the most important events for the day given the workload of events backlogged and their 
 priority relative to other events. The most important events are then added to a daily kanban board for the user to complete.
 
-## Where to Find Demo One
-It can be found under "Release" panel or here:
+## Where to Find Demo Two
+There is a seperate branch for v2.0.
+It can be also found under "Release" panel or here:
 [https://github.com/CloudyYoung/Smart-Kanban-Board/tree/v1.0](https://github.com/CloudyYoung/Smart-Kanban-Board/tree/v1.0)
 
 ## How to Compile and Run
