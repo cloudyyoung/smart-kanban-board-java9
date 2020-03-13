@@ -8,17 +8,18 @@ import java.time.format.DateTimeFormatter;
 /**
  * Provides methods for returning current times and dates based off on devices local time
  *
+ * @since 1.0
+ * @version 1.0
  * @author Jerremy Lewis
  */
 public class Time {
 
   /**
-   * Method: currentHour24() Description: takes a date string and returns the current hour int in
-   * 24hr form
+   * Returns the current 24hr hour
    *
-   * @return int result
+   * @return the current 24hr hour
    */
-  public static int currentHour24() {
+  public static String currentHour24() {
 
     /**
      * myDateObj: current date time (local time) taken from device myFormatObj: formatted time in
@@ -32,17 +33,17 @@ public class Time {
     String toParse = formattedDate.substring(11, 13);
 
     int result = Integer.parseInt(toParse);
-
-    return (int) result;
+    String resStr = "" + result;
+    return resStr;
   }
 
   /**
-   * Method: currentHour12() Description: converts from 24hr time to 12hr time if time is greater
-   * than 12
+   * Converts from 24hr time to 12hr time
    *
-   * @param int currentHour24 @Return int result
+   * @param currentHour24 the current 24h hour
+   * @return the result 12hr hour
    */
-  public static int currentHour12(int currentHour24) {
+  public static String currentHour12(int currentHour24) {
     /** result: takes the 24 hour version of the time and converts it to 12 hour clock */
     int result;
 
@@ -51,15 +52,16 @@ public class Time {
     } else {
       result = currentHour24;
     }
-
-    return (int) result;
+    String resStr = "" + result;
+    return resStr;
   }
 
   /**
-   * Method: currentMinute() Description: takes a date string and returns the current minute
-   * int @Return int result
+   * Returns the current minute
+   *
+   * @return the current minute
    */
-  public static int currentMinute() {
+  public static String currentMinute() {
 
     /**
      * myDateObj: current date time (local time) taken from device myFormatObj: formatted time in
@@ -71,17 +73,20 @@ public class Time {
     String formattedDate = myDateObj.format(myFormatObj);
 
     String toParse = formattedDate.substring(14, 16);
-
+    String minute = toParse;
     int result = Integer.parseInt(toParse);
-
-    return (int) result;
+    if (result - 10 < 0) {
+      minute = "0" + minute;
+    }
+    return minute;
   }
 
   /**
-   * Method: currentSecond() Description: takes a date string and returns the current second
-   * int @Return int result
+   * Returns the current second
+   *
+   * @return the current second
    */
-  public static int currentSecond() {
+  public static String currentSecond() {
 
     /**
      * myDateObj: current date time (local time) taken from device myFormatObj: formatted time in
@@ -95,15 +100,16 @@ public class Time {
     String toParse = formattedDate.substring(17, 19);
 
     int result = Integer.parseInt(toParse);
-
-    return (int) result;
+    String resStr = "" + result;
+    return resStr;
   }
 
   /**
-   * Method: currentMonth() Description: takes a date string and returns the current month
-   * int @Return int result
+   * Returns the current month
+   *
+   * @return the current month
    */
-  public static int currentMonth() {
+  public static String currentMonth() {
 
     /**
      * myDateObj: current date taken from device myFormatObj: formatted date in dd-MM-yyyy
@@ -117,15 +123,16 @@ public class Time {
     String toParse = formattedDate.substring(3, 5);
 
     int result = Integer.parseInt(toParse);
-
-    return (int) result;
+    String resStr = "" + result;
+    return resStr;
   }
 
   /**
-   * Method: currentDay() Description: takes a date string and returns the current day int @Return
-   * int result
+   * Returns the current day
+   *
+   * @return the current day
    */
-  public static int currentDay() {
+  public static String currentDay() {
 
     /**
      * myDateObj: current date taken from device myFormatObj: formatted date in dd-MM-yyyy
@@ -139,15 +146,16 @@ public class Time {
     String toParse = formattedDate.substring(0, 2);
 
     int result = Integer.parseInt(toParse);
-
-    return (int) result;
+    String resStr = "" + result;
+    return resStr;
   }
 
   /**
-   * Method: currentYear() Description: takes a date string and returns the current year int @Return
-   * int result
+   * Returns the current year
+   *
+   * @return the current year
    */
-  public static int currentYear() {
+  public static String currentYear() {
 
     /**
      * myDateObj: current date taken from device myFormatObj: formatted date in dd-MM-yyyy
@@ -161,13 +169,14 @@ public class Time {
     String toParse = formattedDate.substring(6, 10);
 
     int result = Integer.parseInt(toParse);
-
-    return (int) result;
+    String resStr = "" + result;
+    return resStr;
   }
 
   /**
-   * Method: currentHour24() Description: takes a date string and returns the current hour in 24hr
-   * form @Return int result
+   * Returns the current name of the day. Such as {@code Wednesday}.
+   *
+   * @return the current name of the day
    */
   public static String currentDayName() {
 
@@ -183,9 +192,10 @@ public class Time {
   }
 
   /**
-   * Method: monthName() Description: takes a month integer and returns the name of the month
+   * Returns the name of the month. Such as {@code October}.
    *
-   * @return int monthName
+   * @param currentMonthNum the number of month
+   * @return the name of the month
    */
   public static String monthName(int currentMonthNum) {
 
