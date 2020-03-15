@@ -1,0 +1,317 @@
+
+/* Import Custom Fonts */
+@font-face {
+  font-family: "Nexa";
+  src: url("NexaBold.otf");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "Nexa";
+  src: url("NexaLight.otf");
+  font-weight: lighter;
+}
+
+@font-face {
+  font-family: "NotoSans JP";
+  src: url("NotoSansJP-Regular.otf");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "NotoSans JP";
+  src: url("NotoSansJP-Medium.otf");
+  font-weight: medium;
+}
+
+@font-face {
+  font-family: "NotoSans JP";
+  src: url("NotoSansJP-Bold.otf");
+  font-weight: bold;
+}
+
+/** ROOT + REBASE **/
+/** Best practices for multiple themes? Override variables here!  **/
+.root{
+	/** Override default Modena theme variables **/
+	-fx-base: #fff;
+	-fx-dark-text-color: #2f2e2e;
+    -fx-mid-text-color: #333;
+    -fx-light-text-color: #fff;
+	-fx-accent: derive(#2f2e2e, 10%);
+	-fx-default-button: #2f2e2e;
+	-fx-focus-color: -fx-default-button;
+	-fx-faint-focus-color: transparent;
+
+	-fx-side-background: #eee;
+	-fx-main-background: -fx-background;
+}
+
+.label, VBox, HBox, AnchorPane, BorderPane, FlowPane, GridPane, Pane, StackPane, TilePane{
+	-fx-background-color: transparent;
+}
+
+*{
+	-fx-text-fill: -fx-dark-text-color;
+}
+
+.tooltip{
+	-fx-background-color: #ffffffd3 !important;
+	-fx-text-fill: -fx-accent !important;
+	-fx-font-size: 11px !important;
+	-fx-font-weight: lighter !important;
+	-fx-border-radius: 4px !important;
+	-fx-background-radius: 4px !important;
+	-fx-padding: 5px !important;
+}
+
+.text-field{
+	-fx-border-width: 0px 0px 2px 0px;
+	-fx-border-color: -fx-accent;
+	-fx-background-color: transparent;
+	-fx-padding: 0px;
+	-fx-font-size: 14px;
+}
+
+/** Scroll Bar Global Re-Styling **/
+.scroll-pane, .scroll-pane .viewport {
+	-fx-background-color: transparent;
+	-fx-border-width: 0px;
+}
+
+.scroll-pane .scroll-bar{
+    -fx-background-color :transparent;
+	-fx-pref-width: 6px;
+	-fx-pref-height: 6px;
+	-fx-opacity: 0;
+}
+
+.scroll-pane:hover .scroll-bar{ /** Only show scroll bar when mouse is hover on scroll pane **/
+	-fx-opacity: 1;
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-background-color :transparent;
+    -fx-background-radius : 0px;
+    -fx-padding: -10px -10px;
+    -fx-opacity: 0%;
+}
+
+.scroll-bar .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-width: 0px;
+    -fx-background-radius: 0px;
+    -fx-border-radius: 0px;
+    -fx-opacity: 0;
+    -fx-padding: 0px;
+}
+
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow{
+    -fx-background-color :transparent;
+    -fx-shape: " ";
+    -fx-padding: 0px 2px;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: rgba(47, 46, 46, 0.2);
+    -fx-background-insets: 0px;
+    -fx-background-radius: 55px;
+    -fx-padding: 0px;
+}
+
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: rgba(47, 46, 46, 0.4);
+}
+
+
+/** For hidding the default example instance, uncomment once the models can properly render to the view **/
+.example-instance{
+	/*visibility: false !important;
+	-fx-pref-height: 0px !important;
+	-fx-min-height: 0px !important;
+	-fx-max-height: 0px !important;
+	-fx-pref-width: 0px !important;
+	-fx-max-width: 0px !important;
+	-fx-min-width: 0px !important; */
+}
+
+/** Typography **/
+
+.light{
+	-fx-font-size: lighter;
+}
+
+.bold{
+	-fx-font-size: bold;
+}
+
+/** Buttons **/
+.button, .choice-box{
+  -fx-background-color: transparent;
+  -fx-padding: 10px 15px;
+  -fx-alignment: left;
+  -fx-font-size: 14px;
+  font-family: "NotoSans JP Regular";
+  -fx-background-radius: 8px;
+  -fx-border-radius: 4px;
+}
+
+.button:hover, .choice-box:hover{
+  -fx-background-color: rgba(47, 46, 46, 0.1);
+}
+
+
+/** Side Menu Components **/
+/** Name your selector starting with .bg-side **/
+.bg-side{
+  -fx-background-color: -fx-side-background;
+}
+
+.bg-side *{
+  font-family: "NotoSans JP";
+  -fx-background-radius: 0px;
+  -fx-background-color: -fx-side-background;
+  -fx-max-width: 210px; /** Here to change the sidebar width **/
+}
+
+
+.bg-side .username{
+  font-family: "NotoSans JP";
+	-fx-padding: 18px 20px 18px 18px;
+}
+
+.bg-side .username #username-label{
+  font-family: "NotoSans JP";
+	-fx-font-size: 16px;
+	-fx-font-weight: 600;
+	-fx-font-weight: bold;
+}
+
+.bg-side *{
+  -fx-background-color: transparent;
+}
+
+.bg-side .button .circle{
+	-fx-stroke-width: 0px;
+}
+
+.bg-side .scroll-pane .button{ /** Board Selection Button Styles **/
+	-fx-padding: 10px 15px 10px 28.5px;
+    -fx-graphic-text-gap: 23.5px;
+    -fx-font-size: 14px;
+}
+
+.bg-side:hover .scroll-bar{ /** Only show scroll bar when mouse is hover on scroll pane **/
+	-fx-opacity: 1;
+}
+
+.bg-side .operation-list .button{
+	-fx-padding: 10px 15px 10px 29.5px;
+    -fx-graphic-text-gap: 23.5px;
+    -fx-font-size: 14px;
+}
+
+
+
+
+
+/** Board Panel Components **/
+
+.bg-main{
+  -fx-background-color: -fx-main-background;
+}
+
+
+.bg-main .tab-box{
+	-fx-padding: 8px 40px;
+}
+
+.bg-main .tab-box.title{
+	-fx-padding: 30px 40px 35px;
+}
+
+.bg-main .board-title{
+    font-family: "NotoSans JP";
+	-fx-font-size: 34px;
+	-fx-padding: 0px 0px -4px 0px;
+	-fx-font-weight: bold;
+}
+
+.bg-main #date-wrapper{
+	-fx-padding: 12px 0px 12px 30px;
+}
+
+.bg-main .choice-box{
+	-fx-min-width: 150px;
+	-fx-padding: 8px 8px;
+	-fx-background-radius: 8px;
+	-fx-border-radius: 4px;
+}
+
+.bg-main .scroll-pane.tab-box{
+	-fx-padding: 0px 40px;
+}
+
+.bg-main .column {
+	-fx-max-width: 260px;
+	-fx-pref-width: 260px;
+	-fx-background-color: transparent;
+	-fx-padding: 0px 4px 0px 2px;
+}
+
+.bg-main .column .title .label{
+	-fx-font-size: 16px;
+	-fx-font-weight: bold;
+}
+
+.bg-main .column .title .total{
+	-fx-min-width: 30px;
+	-fx-background-color: derive(-fx-accent, 30%);
+	-fx-text-fill: -fx-light-text-color;
+	-fx-background-radius: 55px;
+	-fx-padding: 0px;
+	-fx-font-size: 15px;
+	-fx-font-weight: normal;
+	-fx-padding: 0px 4px;
+}
+
+.bg-main .column .button{
+	-fx-max-width: 240px;
+	-fx-pref-width: 240px;
+    -fx-border-radius: 8px;
+	-fx-background-radius: 8px;
+    -fx-padding: 10px 20px;
+    -fx-margin: 10px;
+    -fx-font-size: 14px;
+    -fx-border-width: 0.5px;
+    -fx-border-color: derive(-fx-accent, 10%);
+    -fx-background-color: derive(-fx-accent, 0%);
+    -fx-text-fill: -fx-light-text-color;
+    -fx-graphic-text-gap: 12px;
+    -fx-content-display: right;
+}
+
+.bg-main .column .button:hover{
+    -fx-effect: dropshadow(gaussian, derive(-fx-accent, 90%), 6, 0, 0, 2);
+}
+
+.bg-main .columns{
+	-fx-spacing: 8px;
+}
+
+.bg-main .column VBox{
+	-fx-spacing: 12px;
+}
+
+.bg-main .search{
+	-fx-font-size: 34px;
+	-fx-font-weight: bold;
+}
+
+.bg-main:hover .scroll-bar{
+	-fx-opacity: 1;
+}

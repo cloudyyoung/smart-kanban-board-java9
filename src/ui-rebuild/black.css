@@ -1,0 +1,14 @@
+.root{
+	-fx-base: #fff;
+	-fx-dark-text-color: #fff;
+    -fx-mid-text-color: #333;
+    -fx-light-text-color: #2f2e2e;
+	-fx-accent: derive(#333, 99%);
+	-fx-default-button: #fff;
+	-fx-focus-color: -fx-default-button;
+	-fx-faint-focus-color: transparent;
+	
+
+	-fx-side-background: #1c1c1c;
+	-fx-main-background: #1c1c1c;
+}
