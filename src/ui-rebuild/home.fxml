@@ -13,7 +13,6 @@
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.SVGPath?>
@@ -36,17 +35,20 @@
                               </Circle>
                               <VBox id="list-i" alignment="CENTER_LEFT">
                                  <children>
-                                    <Label alignment="CENTER" style="-fx-font-size: 13px;" styleClass="light" text="Welcome,Welcome,Welcome,Welcome," textFill="#2f2e2e">
+                                    <Label styleClass="light" text="Welcome," textFill="#2f2e2e">
                                        <VBox.margin>
-                                          <Insets bottom="-4.0" />
+                                          <Insets />
                                        </VBox.margin>
                                        <font>
                                           <Font size="14.0" />
                                        </font>
+                                       <padding>
+                                          <Insets bottom="-4.0" />
+                                       </padding>
                                     </Label>
-                                    <Label id="username-label" fx:id="profileUsername" alignment="CENTER" styleClass="bold" text="Jerremy Lewis Jerremy Lewis Jerremy Lewis Jerremy Lewis">
+                                    <Label id="username-label" fx:id="profileUsername" styleClass="bold" text="Jerremy Lewis Jerremy Lewis Jerremy Lewis Jerremy Lewis">
                                        <font>
-                                          <Font name="System Bold" size="14.0" />
+                                          <Font size="14.0" />
                                        </font>
                                        <VBox.margin>
                                           <Insets />
@@ -54,6 +56,9 @@
                                        <tooltip>
                                           <Tooltip text="Jerremy Lewis Jerremy Lewis Jerremy Lewis Jerremy Lewis" />
                                        </tooltip>
+                                       <padding>
+                                          <Insets left="-1.0" />
+                                       </padding>
                                     </Label>
                                  </children>
                               </VBox>
@@ -103,27 +108,10 @@
                   </Button>
                </children>
             </VBox>
-            <Region maxHeight="-Infinity" minHeight="-Infinity" prefHeight="10.0" />
             <ScrollPane hbarPolicy="NEVER" VBox.vgrow="ALWAYS">
               <content>
                   <VBox>
                      <children>
-                        <Button graphicTextGap="0.0" mnemonicParsing="false" styleClass="example-instance" text="BoardBoardBoardBoardBoard">
-                           <graphic>
-                              <HBox>
-                                 <children>
-                                    <Circle fill="#2f2e2e" radius="9.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="board-list-circle">
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Circle>
-                                 </children>
-                              </HBox>
-                           </graphic>
-                           <tooltip>
-                              <Tooltip text="BoardBoardBoardBoardBoard" />
-                           </tooltip>
-                        </Button>
                         <Button graphicTextGap="0.0" mnemonicParsing="false" styleClass="example-instance" text="BoardBoardBoardBoardBoard">
                            <graphic>
                               <HBox>
@@ -362,16 +350,9 @@
             <content>
                   <VBox>
                      <children>
-                        <BorderPane>
-                           <right>
-                              <VBox id="date-wrapper" BorderPane.alignment="CENTER">
-                                 <children>
-                                    <ChoiceBox />
-                                 </children>
-                              </VBox>
-                           </right>
-                           <center>
-                              <VBox BorderPane.alignment="CENTER">
+                        <HBox>
+                           <children>
+                              <VBox>
                                  <children>
                                     <Label fx:id="boardTitle" minWidth="0.0" text="TodayTodayTodayTodayTodayTodayTodayTodayTodayTodayTodayToday" textOverrun="WORD_ELLIPSIS">
                                        <font>
@@ -385,7 +366,7 @@
                                           <Tooltip text="TodayTodayTodayTodayTodayTodayTodayTodayTodayTodayTodayToday" />
                                        </tooltip>
                                     </Label>
-                                    <Label id="medium" fx:id="boardNote" text="This is your today board.This is your today board.This is your today board.This is your today board.This is your today board." textOverrun="WORD_ELLIPSIS">
+                                    <Label fx:id="boardNote" styleClass="board-note" text="This is your today board.This is your today board.This is your today board.This is your today board.This is your today board." textOverrun="WORD_ELLIPSIS" wrapText="true">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -395,12 +376,17 @@
                                     </Label>
                                  </children>
                               </VBox>
-                           </center>
+                              <VBox id="date-wrapper">
+                                 <children>
+                                    <ChoiceBox />
+                                 </children>
+                              </VBox>
+                           </children>
                            <styleClass>
                               <String fx:value="tab-box" />
                               <String fx:value="title" />
                            </styleClass>
-                        </BorderPane>
+                        </HBox>
                         <ScrollPane fitToHeight="true" nodeOrientation="LEFT_TO_RIGHT" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
                            <content>
                               <HBox styleClass="columns">

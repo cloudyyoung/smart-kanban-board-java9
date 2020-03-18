@@ -12,23 +12,25 @@
   font-weight: lighter;
 }
 
+
 @font-face {
-  font-family: "NotoSans JP";
+  font-family: "Noto Sans JP";
   src: url("NotoSansJP-Regular.otf");
   font-weight: normal;
 }
 
 @font-face {
-  font-family: "NotoSans JP";
+  font-family: "Noto Sans JP";
   src: url("NotoSansJP-Medium.otf");
   font-weight: medium;
 }
 
 @font-face {
-  font-family: "NotoSans JP";
+  font-family: "Noto Sans JP";
   src: url("NotoSansJP-Bold.otf");
   font-weight: bold;
 }
+
 
 /** ROOT + REBASE **/
 /** Best practices for multiple themes? Override variables here!  **/
@@ -45,6 +47,9 @@
 
 	-fx-side-background: #eee;
 	-fx-main-background: -fx-background;
+
+	-fx-font-family: "Noto Sans JP Regular";
+	-fx-font-weight: normal;
 }
 
 .label, VBox, HBox, AnchorPane, BorderPane, FlowPane, GridPane, Pane, StackPane, TilePane{
@@ -53,13 +58,13 @@
 
 *{
 	-fx-text-fill: -fx-dark-text-color;
+	-fx-alignment: CENTER_LEFT;
 }
 
 .tooltip{
 	-fx-background-color: #ffffffd3 !important;
 	-fx-text-fill: -fx-accent !important;
 	-fx-font-size: 11px !important;
-	-fx-font-weight: lighter !important;
 	-fx-border-radius: 4px !important;
 	-fx-background-radius: 4px !important;
 	-fx-padding: 5px !important;
@@ -143,10 +148,12 @@
 
 .light{
 	-fx-font-size: lighter;
+	-fx-font-family: "Noto Sans JP Regular";
 }
 
 .bold{
 	-fx-font-size: bold;
+	-fx-font-family: "Noto Sans JP Bold";
 }
 
 /** Buttons **/
@@ -155,7 +162,6 @@
   -fx-padding: 10px 15px;
   -fx-alignment: left;
   -fx-font-size: 14px;
-  font-family: "NotoSans JP Regular";
   -fx-background-radius: 8px;
   -fx-border-radius: 4px;
 }
@@ -172,7 +178,6 @@
 }
 
 .bg-side *{
-  font-family: "NotoSans JP";
   -fx-background-radius: 0px;
   -fx-background-color: -fx-side-background;
   -fx-max-width: 210px; /** Here to change the sidebar width **/
@@ -180,15 +185,11 @@
 
 
 .bg-side .username{
-  font-family: "NotoSans JP";
-	-fx-padding: 18px 20px 18px 18px;
+	-fx-padding: 18px 20px 18px 18px !important;
 }
 
 .bg-side .username #username-label{
-  font-family: "NotoSans JP";
 	-fx-font-size: 16px;
-	-fx-font-weight: 600;
-	-fx-font-weight: bold;
 }
 
 .bg-side *{
@@ -199,22 +200,15 @@
 	-fx-stroke-width: 0px;
 }
 
-.bg-side .scroll-pane .button{ /** Board Selection Button Styles **/
-	-fx-padding: 10px 15px 10px 28.5px;
-    -fx-graphic-text-gap: 23.5px;
-    -fx-font-size: 14px;
-}
-
 .bg-side:hover .scroll-bar{ /** Only show scroll bar when mouse is hover on scroll pane **/
 	-fx-opacity: 1;
 }
 
-.bg-side .operation-list .button{
-	-fx-padding: 10px 15px 10px 29.5px;
+.bg-side .button{
+	-fx-padding: 12px 15px 12px 28.5px;
     -fx-graphic-text-gap: 23.5px;
-    -fx-font-size: 14px;
+    -fx-font-size: 13px;
 }
-
 
 
 
@@ -235,10 +229,12 @@
 }
 
 .bg-main .board-title{
-    font-family: "NotoSans JP";
 	-fx-font-size: 34px;
 	-fx-padding: 0px 0px -4px 0px;
-	-fx-font-weight: bold;
+}
+
+.bg-main .board-note{
+	-fx-font-size: 16px;
 }
 
 .bg-main #date-wrapper{
@@ -265,7 +261,6 @@
 
 .bg-main .column .title .label{
 	-fx-font-size: 16px;
-	-fx-font-weight: bold;
 }
 
 .bg-main .column .title .total{
@@ -275,8 +270,8 @@
 	-fx-background-radius: 55px;
 	-fx-padding: 0px;
 	-fx-font-size: 15px;
-	-fx-font-weight: normal;
 	-fx-padding: 0px 4px;
+	-fx-alignment: CENTER;
 }
 
 .bg-main .column .button{
@@ -284,7 +279,7 @@
 	-fx-pref-width: 240px;
     -fx-border-radius: 8px;
 	-fx-background-radius: 8px;
-    -fx-padding: 10px 20px;
+    -fx-padding: 12px 20px;
     -fx-margin: 10px;
     -fx-font-size: 14px;
     -fx-border-width: 0.5px;
@@ -304,12 +299,11 @@
 }
 
 .bg-main .column VBox{
-	-fx-spacing: 12px;
+	-fx-spacing: 16px;
 }
 
 .bg-main .search{
 	-fx-font-size: 34px;
-	-fx-font-weight: bold;
 }
 
 .bg-main:hover .scroll-bar{

@@ -1,14 +1,18 @@
 .root{
-	-fx-base: #fff;
+	-fx-base: #000;
 	-fx-dark-text-color: #fff;
     -fx-mid-text-color: #333;
-    -fx-light-text-color: #2f2e2e;
-	-fx-accent: derive(#333, 99%);
-	-fx-default-button: #fff;
+    -fx-light-text-color: #000;
+	-fx-accent: #ebebeb;
+	-fx-default-button: #000;
 	-fx-focus-color: -fx-default-button;
 	-fx-faint-focus-color: transparent;
 	
 
 	-fx-side-background: #1c1c1c;
 	-fx-main-background: #1c1c1c;
+}
+
+.bg-main .column .button:hover{
+	-fx-effect: none;
 }
