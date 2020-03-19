@@ -18,7 +18,7 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minWidth="700.0" prefHeight="700.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane minWidth="700.0" prefHeight="680.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <left>
       <VBox styleClass="bg-side">
          <children>
@@ -361,18 +361,24 @@
                                        <styleClass>
                                           <String fx:value="board-title" />
                                           <String fx:value="bold" />
+                                          <String fx:value="h2" />
                                        </styleClass>
                                        <tooltip>
                                           <Tooltip text="TodayTodayTodayTodayTodayTodayTodayTodayTodayTodayTodayToday" />
                                        </tooltip>
                                     </Label>
-                                    <Label fx:id="boardNote" styleClass="board-note" text="This is your today board.This is your today board.This is your today board.This is your today board.This is your today board." textOverrun="WORD_ELLIPSIS" wrapText="true">
+                                    <Label fx:id="boardNote" text="This is your today board.This is your today board.This is your today board.This is your today board.This is your today board." textOverrun="WORD_ELLIPSIS" wrapText="true">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                        <tooltip>
                                           <Tooltip text="This is your today board.This is your today board.This is your today board.This is your today board.This is your today board." />
                                        </tooltip>
+                                       <styleClass>
+                                          <String fx:value="board-note" />
+                                          <String fx:value="h5" />
+                                          <String fx:value="medium" />
+                                       </styleClass>
                                     </Label>
                                  </children>
                               </VBox>
@@ -395,12 +401,17 @@
                                        <children>
                                           <HBox styleClass="title">
                                              <children>
-                                                <Label alignment="CENTER" contentDisplay="CENTER" styleClass="total" text="4" textOverrun="CLIP">
+                                                <Label alignment="CENTER" contentDisplay="CENTER" text="4" textOverrun="CLIP" wrapText="true">
                                                    <HBox.margin>
                                                       <Insets right="4.0" top="2.0" />
                                                    </HBox.margin>
+                                                   <styleClass>
+                                                      <String fx:value="total" />
+                                                      <String fx:value="bold" />
+                                                      <String fx:value="h5" />
+                                                   </styleClass>
                                                 </Label>
-                                                <Label text="Love Me Like That - Carly Rae Jepsen" textOverrun="WORD_ELLIPSIS">
+                                                <Label styleClass="medium" text="Love Me Like That - Carly Rae Jepsen" textOverrun="WORD_ELLIPSIS">
                                                    <HBox.margin>
                                                       <Insets />
                                                    </HBox.margin>
@@ -470,12 +481,17 @@
                                        <children>
                                           <HBox styleClass="title">
                                              <children>
-                                                <Label alignment="CENTER" contentDisplay="CENTER" styleClass="total" text="5" textOverrun="CLIP">
+                                                <Label alignment="CENTER" contentDisplay="CENTER" text="5" textOverrun="CLIP" wrapText="true">
                                                    <HBox.margin>
                                                       <Insets right="4.0" top="2.0" />
                                                    </HBox.margin>
+                                                   <styleClass>
+                                                      <String fx:value="total" />
+                                                      <String fx:value="bold" />
+                                                      <String fx:value="h5" />
+                                                   </styleClass>
                                                 </Label>
-                                                <Label text="Dancing With Our Hands Tied - Taylor Swift" textOverrun="WORD_ELLIPSIS">
+                                                <Label styleClass="medium" text="Dancing With Our Hands Tied - Taylor Swift" textOverrun="WORD_ELLIPSIS">
                                                    <HBox.margin>
                                                       <Insets />
                                                    </HBox.margin>
@@ -554,12 +570,17 @@
                                        <children>
                                           <HBox styleClass="title">
                                              <children>
-                                                <Label alignment="CENTER" contentDisplay="CENTER" styleClass="total" text="2" textOverrun="CLIP">
+                                                <Label alignment="CENTER" contentDisplay="CENTER" text="2" textOverrun="CLIP" wrapText="true">
                                                    <HBox.margin>
                                                       <Insets right="4.0" top="2.0" />
                                                    </HBox.margin>
+                                                   <styleClass>
+                                                      <String fx:value="total" />
+                                                      <String fx:value="bold" />
+                                                      <String fx:value="h5" />
+                                                   </styleClass>
                                                 </Label>
-                                                <Label text="Cruel Summer - Taylor Swift" textOverrun="WORD_ELLIPSIS">
+                                                <Label styleClass="medium" text="Cruel Summer - Taylor Swift" textOverrun="WORD_ELLIPSIS">
                                                    <HBox.margin>
                                                       <Insets />
                                                    </HBox.margin>
@@ -611,12 +632,17 @@
                                        <children>
                                           <HBox styleClass="title">
                                              <children>
-                                                <Label alignment="CENTER" contentDisplay="CENTER" styleClass="total" text="1" textOverrun="CLIP">
+                                                <Label alignment="CENTER" contentDisplay="CENTER" text="1" textOverrun="CLIP" wrapText="true">
                                                    <HBox.margin>
                                                       <Insets right="4.0" top="2.0" />
                                                    </HBox.margin>
+                                                   <styleClass>
+                                                      <String fx:value="total" />
+                                                      <String fx:value="bold" />
+                                                      <String fx:value="h5" />
+                                                   </styleClass>
                                                 </Label>
-                                                <Label text="LIKE I WOULD - ZAYN" textOverrun="WORD_ELLIPSIS">
+                                                <Label styleClass="medium" text="LIKE I WOULD - ZAYN" textOverrun="WORD_ELLIPSIS">
                                                    <HBox.margin>
                                                       <Insets />
                                                    </HBox.margin>
@@ -678,6 +704,7 @@
                                        <styleClass>
                                           <String fx:value="bold" />
                                           <String fx:value="search" />
+                                          <String fx:value="h1" />
                                        </styleClass>
                                     </TextField>
                                  </children>

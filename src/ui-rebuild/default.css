@@ -52,8 +52,9 @@
 	-fx-font-weight: normal;
 }
 
-.label, VBox, HBox, AnchorPane, BorderPane, FlowPane, GridPane, Pane, StackPane, TilePane{
+.label, .button, .choicebox, VBox, HBox, AnchorPane, BorderPane, FlowPane, GridPane, Pane, StackPane, TilePane{
 	-fx-background-color: transparent;
+	-fx-font-size: 12px;
 }
 
 *{
@@ -68,6 +69,7 @@
 	-fx-border-radius: 4px !important;
 	-fx-background-radius: 4px !important;
 	-fx-padding: 5px !important;
+	-fx-font-family: "Noto Sans JP Regular" !important;
 }
 
 .text-field{
@@ -75,8 +77,9 @@
 	-fx-border-color: -fx-accent;
 	-fx-background-color: transparent;
 	-fx-padding: 0px;
-	-fx-font-size: 14px;
+	-fx-font-size: 12px;
 }
+
 
 /** Scroll Bar Global Re-Styling **/
 .scroll-pane, .scroll-pane .viewport {
@@ -144,24 +147,52 @@
 	-fx-min-width: 0px !important; */
 }
 
+
+
+
 /** Typography **/
 
-.light{
-	-fx-font-size: lighter;
-	-fx-font-family: "Noto Sans JP Regular";
+.medium{
+	-fx-font-weight: lighter;
+	-fx-font-family: "Noto Sans JP Medium";
 }
 
 .bold{
-	-fx-font-size: bold;
+	-fx-font-weight: bold;
 	-fx-font-family: "Noto Sans JP Bold";
 }
+
+.h1{
+	-fx-font-size: 36px;
+}
+
+.h2{
+	-fx-font-size: 30px;
+}
+
+.h3{
+	-fx-font-size: 24px;
+}
+
+.h4{
+	-fx-font-size: 18px;
+}
+
+.h5{
+	-fx-font-size: 14px;
+}
+
+.h6{
+	-fx-font-size: 12px;
+}
+
 
 /** Buttons **/
 .button, .choice-box{
   -fx-background-color: transparent;
   -fx-padding: 10px 15px;
   -fx-alignment: left;
-  -fx-font-size: 14px;
+  -fx-font-size: 12px;
   -fx-background-radius: 8px;
   -fx-border-radius: 4px;
 }
@@ -169,6 +200,7 @@
 .button:hover, .choice-box:hover{
   -fx-background-color: rgba(47, 46, 46, 0.1);
 }
+
 
 
 /** Side Menu Components **/
@@ -189,7 +221,7 @@
 }
 
 .bg-side .username #username-label{
-	-fx-font-size: 16px;
+	-fx-font-size: 14px;
 }
 
 .bg-side *{
@@ -207,7 +239,6 @@
 .bg-side .button{
 	-fx-padding: 12px 15px 12px 28.5px;
     -fx-graphic-text-gap: 23.5px;
-    -fx-font-size: 13px;
 }
 
 
@@ -225,16 +256,15 @@
 }
 
 .bg-main .tab-box.title{
-	-fx-padding: 30px 40px 35px;
+	-fx-padding: 30px 40px 30px;
 }
 
 .bg-main .board-title{
-	-fx-font-size: 34px;
-	-fx-padding: 0px 0px -4px 0px;
+	-fx-padding: 0px 0px -6px 0px;
 }
 
 .bg-main .board-note{
-	-fx-font-size: 16px;
+
 }
 
 .bg-main #date-wrapper{
@@ -260,16 +290,16 @@
 }
 
 .bg-main .column .title .label{
-	-fx-font-size: 16px;
+	-fx-font-size: 15px;
 }
 
 .bg-main .column .title .total{
 	-fx-min-width: 30px;
+	-fx-max-width: 500px;
 	-fx-background-color: derive(-fx-accent, 30%);
 	-fx-text-fill: -fx-light-text-color;
 	-fx-background-radius: 55px;
-	-fx-padding: 0px;
-	-fx-font-size: 15px;
+	-fx-font-size: 13px;
 	-fx-padding: 0px 4px;
 	-fx-alignment: CENTER;
 }
@@ -279,9 +309,8 @@
 	-fx-pref-width: 240px;
     -fx-border-radius: 8px;
 	-fx-background-radius: 8px;
-    -fx-padding: 12px 20px;
+    -fx-padding: 12px 17px;
     -fx-margin: 10px;
-    -fx-font-size: 14px;
     -fx-border-width: 0.5px;
     -fx-border-color: derive(-fx-accent, 10%);
     -fx-background-color: derive(-fx-accent, 0%);
@@ -303,9 +332,34 @@
 }
 
 .bg-main .search{
-	-fx-font-size: 34px;
+	
 }
 
 .bg-main:hover .scroll-bar{
 	-fx-opacity: 1;
+}
+
+
+
+
+/** Settings **/
+
+.bg-settings{
+	-fx-background-color: -fx-main-background;
+}
+
+.bg-settings .title{
+	-fx-alignment: CENTER_LEFT;
+	-fx-padding: 10px 20px;
+}
+
+.bg-settings .scroll-pane, .bg-settings .scroll-pane HBox, .bg-settings .scroll-pane VBox{
+	-fx-alignment: TOP_CENTER;
+	-fx-min-width: 500px;
+	/*-fx-pref-width: 500px;*/
+	-fx-max-width: 500px;
+}
+
+.bg-settings .scroll-pane .username{
+	-fx-padding: 0px 0px 0px 0px;
 }
