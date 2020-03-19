@@ -52,7 +52,7 @@
 	-fx-font-weight: normal;
 }
 
-.label, .button, .choicebox, VBox, HBox, AnchorPane, BorderPane, FlowPane, GridPane, Pane, StackPane, TilePane{
+.label, .button, .combo-box, VBox, HBox, AnchorPane, BorderPane, FlowPane, GridPane, Pane, StackPane, TilePane{
 	-fx-background-color: transparent;
 	-fx-font-size: 12px;
 }
@@ -73,12 +73,34 @@
 	-fx-effect: none;
 }
 
+
+/** Buttons and Forms **/
+.button, .combo-box{
+  -fx-background-color: inherit;
+  -fx-padding: 4px 6px;
+  -fx-alignment: left;
+  -fx-font-size: 12px;
+  -fx-background-radius: 0px;
+  -fx-border-radius: 0px;
+}
+
+.button:hover, .combo-box:hover{
+  -fx-background-color: derive(-fx-accent, 150%);
+}
+
+
 .text-field{
-	-fx-border-width: 0px 0px 2px 0px;
-	-fx-border-color: derive(-fx-accent, 80%);
 	-fx-background-color: transparent;
 	-fx-padding: 0px;
 	-fx-font-size: 12px;
+}
+
+
+.text-field, .combo-box{
+	-fx-border-width: 0px 0px 2px 0px;
+	-fx-border-color: derive(-fx-accent, 80%);
+	-fx-border-radius: 0px;
+	-fx-background-radius: 0px;
 }
 
 .text-field:focused, .text-field:hover{
@@ -86,24 +108,9 @@
 }
 
 
-/** Buttons **/
-.button, .choice-box{
-  -fx-background-color: transparent;
-  -fx-padding: 10px 15px;
-  -fx-alignment: left;
-  -fx-font-size: 12px;
-  -fx-background-radius: 8px;
-  -fx-border-radius: 4px;
-}
-
-.button:hover, .choice-box:hover{
-  -fx-background-color: derive(-fx-accent, 150%);
-}
-
-
 /** Scroll Bar Global Re-Styling **/
 .scroll-pane, .scroll-pane .viewport {
-	-fx-background-color: transparent;
+	-fx-background-color: default;
 	-fx-border-width: 0px;
 }
 
@@ -275,11 +282,11 @@
 	-fx-padding: 12px 0px 12px 30px;
 }
 
-.bg-main .choice-box{
+.bg-main .combo-box{
 	-fx-min-width: 150px;
 	-fx-padding: 8px 8px;
-	-fx-background-radius: 8px;
-	-fx-border-radius: 4px;
+	-fx-border-radius: 0px;
+	-fx-border-width: 0px;
 }
 
 .bg-main .scroll-pane.tab-box{
@@ -329,7 +336,7 @@
 }
 
 .bg-main .column .button:hover{
-    -fx-effect: dropshadow(gaussian, derive(-fx-accent, 90%), 6, 0, 0, 2);
+    -fx-effect: dropshadow(gaussian, derive(-fx-accent, 80%), 14, 0, 0, 2);
 }
 
 .bg-main .columns{
@@ -359,16 +366,43 @@
 
 .bg-settings .title{
 	-fx-alignment: CENTER_LEFT;
-	-fx-padding: 10px 20px;
+	-fx-padding: 6px 30px;
 }
 
-.bg-settings .scroll-pane, .bg-settings .scroll-pane HBox, .bg-settings .scroll-pane VBox{
-	-fx-alignment: TOP_CENTER;
-	-fx-min-width: 500px;
-	/*-fx-pref-width: 500px;*/
-	-fx-max-width: 500px;
+.bg-settings .title-wrapper{
+	-fx-background-color: -fx-base;
+	-fx-effect: dropshadow(gaussian, derive(-fx-accent, 140%), 12, 0, 0, 2);
 }
 
 .bg-settings .scroll-pane .username{
 	-fx-padding: 0px 0px 0px 0px;
+}
+
+.bg-settings .settings{
+	-fx-alignment: TOP_LEFT;
+	-fx-spacing: 25px;
+	-fx-max-width: 500px;
+}
+
+.bg-settings .settings-wrapper{
+	-fx-alignment: CENTER;
+	-fx-padding: 20px 10px 100px 10px;
+}
+
+.bg-settings .settings HBox .label{
+	-fx-pref-width: 350px;
+	-fx-pref-height: 35px;
+}
+
+.bg-settings .settings VBox{
+	-fx-spacing: 10px;
+}
+
+.bg-settings .availability HBox .combo-box{
+	-fx-min-width: 120px;
+	-fx-min-height: 35px;
+}
+
+.bg-settings .theme .combo-box{
+	-fx-min-width: 200px;
 }

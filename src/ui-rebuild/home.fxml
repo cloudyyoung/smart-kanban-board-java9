@@ -4,7 +4,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
@@ -341,6 +341,9 @@
               </content>
             </ScrollPane>
          </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
       </VBox>
    </left>
    <center>
@@ -384,7 +387,7 @@
                               </VBox>
                               <VBox id="date-wrapper">
                                  <children>
-                                    <ChoiceBox />
+                                    <ComboBox prefWidth="150.0" promptText="Date" />
                                  </children>
                               </VBox>
                            </children>
