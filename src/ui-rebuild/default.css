@@ -261,17 +261,23 @@
   -fx-background-color: -fx-main-background;
 }
 
+.bg-main .main{
+	-fx-spacing: 20px;
+}
+
 
 .bg-main .tab-box{
-	-fx-padding: 8px 40px;
+	/*-fx-padding: 8px 25px;*/
 }
 
 .bg-main .tab-box.title{
-	-fx-padding: 30px 40px 30px;
+	-fx-padding: 15px 40px 15px;
+	-fx-background-color: -fx-base;
+	-fx-effect: dropshadow(gaussian, derive(-fx-accent, 140%), 12, 0, 0, 2);
 }
 
 .bg-main .board-title{
-	-fx-padding: 0px 0px -6px 0px;
+	-fx-padding: 0px 0px -10px 0px;
 }
 
 .bg-main .board-note{
@@ -366,7 +372,7 @@
 
 .bg-settings .title{
 	-fx-alignment: CENTER_LEFT;
-	-fx-padding: 6px 30px;
+	-fx-padding: 8px 40px;
 }
 
 .bg-settings .title-wrapper{
@@ -386,7 +392,7 @@
 
 .bg-settings .settings-wrapper{
 	-fx-alignment: CENTER;
-	-fx-padding: 20px 10px 100px 10px;
+	-fx-padding: 20px 10px 40px 10px;
 }
 
 .bg-settings .settings HBox .label{
@@ -405,4 +411,8 @@
 
 .bg-settings .theme .combo-box{
 	-fx-min-width: 200px;
+}
+
+.bg-settings .settings .copyright{
+	-fx-spacing: 0px;
 }

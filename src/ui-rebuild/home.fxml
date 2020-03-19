@@ -351,7 +351,7 @@
         <tabs>
           <Tab closable="false" text="Board">
             <content>
-                  <VBox>
+                  <VBox styleClass="main">
                      <children>
                         <HBox>
                            <children>

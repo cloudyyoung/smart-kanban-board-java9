@@ -29,3 +29,18 @@
 .scroll-bar .thumb:hover {
   -fx-background-color: derive(-fx-base, 40%);
 }
+
+.bg-side{
+	-fx-border-width: 0px 1px 0px 0px;
+	-fx-border-color: derive(-fx-accent, -70%);
+}
+
+.bg-main .tab-box.title{
+	-fx-effect: none;
+}
+
+.bg-settings .title-wrapper{
+	-fx-effect: none;
+	-fx-border-width: 0px 0px 1px 0px;
+	-fx-border-color: derive(-fx-accent, -70%);
+}
