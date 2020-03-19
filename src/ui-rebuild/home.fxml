@@ -28,7 +28,7 @@
                      <graphic>
                         <HBox>
                            <children>
-                              <Circle fill="#2f2e2e" radius="20.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0">
+                              <Circle fill="#2f2e2e" radius="20.0">
                                  <HBox.margin>
                                     <Insets right="10.0" />
                                  </HBox.margin>
@@ -74,270 +74,37 @@
             </VBox>
             <VBox styleClass="operation-list">
                <children>
-                  <Button graphicTextGap="0.0" mnemonicParsing="false" styleClass="example-instance" text="Search">
+                  <Button styleClass="example-instance" text="Search">
                      <graphic>
-                        <HBox>
-                           <children>
-                              <SVGPath id="icon" content="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#2f2e2e">
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </SVGPath>
-                           </children>
-                        </HBox>
+                        <SVGPath id="icon" content="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#2f2e2e">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </SVGPath>
                      </graphic>
                      <tooltip>
                         <Tooltip text="Search any thing..." />
                      </tooltip>
                   </Button>
-                  <Button graphicTextGap="0.0" mnemonicParsing="false" styleClass="example-instance" text="Today">
+                  <Button text="Today">
                      <graphic>
-                        <HBox>
-                           <children>
-                              <Circle fill="#00b0f0" radius="9.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="board-list-circle">
-                                 <cursor>
-                                    <Cursor fx:constant="DEFAULT" />
-                                 </cursor>
-                              </Circle>
-                           </children>
-                        </HBox>
+                        <SVGPath content="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z" />
                      </graphic>
                      <tooltip>
                         <Tooltip text="Today" />
                      </tooltip>
+                     <styleClass>
+                        <String fx:value="example-instance" />
+                        <String fx:value="blue" />
+                        <String fx:value="select" />
+                        <String fx:value="board" />
+                     </styleClass>
                   </Button>
                </children>
             </VBox>
             <ScrollPane hbarPolicy="NEVER" VBox.vgrow="ALWAYS">
               <content>
-                  <VBox>
-                     <children>
-                        <Button graphicTextGap="0.0" mnemonicParsing="false" styleClass="example-instance" text="BoardBoardBoardBoardBoard">
-                           <graphic>
-                              <HBox>
-                                 <children>
-                                    <Circle fill="#2f2e2e" radius="9.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="board-list-circle">
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Circle>
-                                 </children>
-                              </HBox>
-                           </graphic>
-                           <tooltip>
-                              <Tooltip text="BoardBoardBoardBoardBoard" />
-                           </tooltip>
-                        </Button>
-                        <Button graphicTextGap="0.0" mnemonicParsing="false" styleClass="example-instance" text="BoardBoardBoardBoardBoard">
-                           <graphic>
-                              <HBox>
-                                 <children>
-                                    <Circle fill="#2f2e2e" radius="9.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="board-list-circle">
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Circle>
-                                 </children>
-                              </HBox>
-                           </graphic>
-                           <tooltip>
-                              <Tooltip text="BoardBoardBoardBoardBoard" />
-                           </tooltip>
-                        </Button>
-                        <Button graphicTextGap="0.0" mnemonicParsing="false" styleClass="example-instance" text="BoardBoardBoardBoardBoard">
-                           <graphic>
-                              <HBox>
-                                 <children>
-                                    <Circle fill="#2f2e2e" radius="9.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="board-list-circle">
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Circle>
-                                 </children>
-                              </HBox>
-                           </graphic>
-                           <tooltip>
-                              <Tooltip text="BoardBoardBoardBoardBoard" />
-                           </tooltip>
-                        </Button>
-                        <Button graphicTextGap="0.0" mnemonicParsing="false" styleClass="example-instance" text="BoardBoardBoardBoardBoard">
-                           <graphic>
-                              <HBox>
-                                 <children>
-                                    <Circle fill="#2f2e2e" radius="9.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="board-list-circle">
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Circle>
-                                 </children>
-                              </HBox>
-                           </graphic>
-                           <tooltip>
-                              <Tooltip text="BoardBoardBoardBoardBoard" />
-                           </tooltip>
-                        </Button>
-                        <Button graphicTextGap="0.0" mnemonicParsing="false" styleClass="example-instance" text="BoardBoardBoardBoardBoard">
-                           <graphic>
-                              <HBox>
-                                 <children>
-                                    <Circle fill="#2f2e2e" radius="9.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="board-list-circle">
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Circle>
-                                 </children>
-                              </HBox>
-                           </graphic>
-                           <tooltip>
-                              <Tooltip text="BoardBoardBoardBoardBoard" />
-                           </tooltip>
-                        </Button>
-                        <Button graphicTextGap="0.0" mnemonicParsing="false" styleClass="example-instance" text="BoardBoardBoardBoardBoard">
-                           <graphic>
-                              <HBox>
-                                 <children>
-                                    <Circle fill="#2f2e2e" radius="9.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="board-list-circle">
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Circle>
-                                 </children>
-                              </HBox>
-                           </graphic>
-                           <tooltip>
-                              <Tooltip text="BoardBoardBoardBoardBoard" />
-                           </tooltip>
-                        </Button>
-                        <Button graphicTextGap="0.0" mnemonicParsing="false" styleClass="example-instance" text="BoardBoardBoardBoardBoard">
-                           <graphic>
-                              <HBox>
-                                 <children>
-                                    <Circle fill="#2f2e2e" radius="9.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="board-list-circle">
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Circle>
-                                 </children>
-                              </HBox>
-                           </graphic>
-                           <tooltip>
-                              <Tooltip text="BoardBoardBoardBoardBoard" />
-                           </tooltip>
-                        </Button>
-                        <Button graphicTextGap="0.0" mnemonicParsing="false" styleClass="example-instance" text="BoardBoardBoardBoardBoard">
-                           <graphic>
-                              <HBox>
-                                 <children>
-                                    <Circle fill="#2f2e2e" radius="9.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="board-list-circle">
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Circle>
-                                 </children>
-                              </HBox>
-                           </graphic>
-                           <tooltip>
-                              <Tooltip text="BoardBoardBoardBoardBoard" />
-                           </tooltip>
-                        </Button>
-                        <Button graphicTextGap="0.0" mnemonicParsing="false" styleClass="example-instance" text="BoardBoardBoardBoardBoard">
-                           <graphic>
-                              <HBox>
-                                 <children>
-                                    <Circle fill="#2f2e2e" radius="9.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="board-list-circle">
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Circle>
-                                 </children>
-                              </HBox>
-                           </graphic>
-                           <tooltip>
-                              <Tooltip text="BoardBoardBoardBoardBoard" />
-                           </tooltip>
-                        </Button>
-                        <Button graphicTextGap="0.0" mnemonicParsing="false" styleClass="example-instance" text="BoardBoardBoardBoardBoard">
-                           <graphic>
-                              <HBox>
-                                 <children>
-                                    <Circle fill="#2f2e2e" radius="9.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="board-list-circle">
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Circle>
-                                 </children>
-                              </HBox>
-                           </graphic>
-                           <tooltip>
-                              <Tooltip text="BoardBoardBoardBoardBoard" />
-                           </tooltip>
-                        </Button>
-                        <Button graphicTextGap="0.0" mnemonicParsing="false" styleClass="example-instance" text="BoardBoardBoardBoardBoard">
-                           <graphic>
-                              <HBox>
-                                 <children>
-                                    <Circle fill="#2f2e2e" radius="9.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="board-list-circle">
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Circle>
-                                 </children>
-                              </HBox>
-                           </graphic>
-                           <tooltip>
-                              <Tooltip text="BoardBoardBoardBoardBoard" />
-                           </tooltip>
-                        </Button>
-                        <Button graphicTextGap="0.0" mnemonicParsing="false" styleClass="example-instance" text="BoardBoardBoardBoardBoard">
-                           <graphic>
-                              <HBox>
-                                 <children>
-                                    <Circle fill="#2f2e2e" radius="9.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="board-list-circle">
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Circle>
-                                 </children>
-                              </HBox>
-                           </graphic>
-                           <tooltip>
-                              <Tooltip text="BoardBoardBoardBoardBoard" />
-                           </tooltip>
-                        </Button>
-                        <Button graphicTextGap="0.0" mnemonicParsing="false" styleClass="example-instance" text="BoardBoardBoardBoardBoard">
-                           <graphic>
-                              <HBox>
-                                 <children>
-                                    <Circle fill="#2f2e2e" radius="9.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="board-list-circle">
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Circle>
-                                 </children>
-                              </HBox>
-                           </graphic>
-                           <tooltip>
-                              <Tooltip text="BoardBoardBoardBoardBoard" />
-                           </tooltip>
-                        </Button>
-                        <Button graphicTextGap="0.0" mnemonicParsing="false" styleClass="example-instance" text="BoardBoardBoardBoardBoard">
-                           <graphic>
-                              <HBox>
-                                 <children>
-                                    <Circle fill="#2f2e2e" radius="9.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" strokeWidth="0.0" styleClass="board-list-circle">
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </Circle>
-                                 </children>
-                              </HBox>
-                           </graphic>
-                           <tooltip>
-                              <Tooltip text="BoardBoardBoardBoardBoard" />
-                           </tooltip>
-                        </Button>
-                     </children>
-                  </VBox>
+                  <VBox />
               </content>
             </ScrollPane>
          </children>
@@ -351,7 +118,7 @@
         <tabs>
           <Tab closable="false" text="Board">
             <content>
-                  <VBox styleClass="main">
+                  <VBox>
                      <children>
                         <HBox>
                            <children>
@@ -370,7 +137,7 @@
                                           <Tooltip text="TodayTodayTodayTodayTodayTodayTodayTodayTodayTodayTodayToday" />
                                        </tooltip>
                                     </Label>
-                                    <Label fx:id="boardNote" text="This is your today board.This is your today board.This is your today board.This is your today board.This is your today board." textOverrun="WORD_ELLIPSIS" wrapText="true">
+                                    <Label fx:id="boardNote" text="This is your today board.This is your today board.This is your today board.This is your today board.This is your today board." textOverrun="WORD_ELLIPSIS">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -692,12 +459,16 @@
                            </content>
                         </ScrollPane>
                      </children>
+                     <styleClass>
+                        <String fx:value="main" />
+                        <String fx:value="blue" />
+                     </styleClass>
                   </VBox>
             </content>
           </Tab>
           <Tab closable="false" text="Search">
                <content>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
+                  <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-alignment: TOP_LEFT;">
                      <children>
                         <BorderPane>
                            <center>

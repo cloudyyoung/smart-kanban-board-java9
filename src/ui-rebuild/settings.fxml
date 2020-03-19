@@ -95,7 +95,7 @@
                                  </styleClass>
                               </Label>
                               <Label styleClass="h5" text="© 2020 Smart Kanban. All rights reserved" wrapText="true" />
-                              <Label styleClass="h5" text="Jerremy Lewis, Benjamin Wood, Caleb Wannamaker, Yunfan Yang" wrapText="true" />
+                              <Label styleClass="h5" text="Theodore Lewis, Benjamin Wood, Caleb Wannamaker, Yunfan Yang" wrapText="true" />
                            </children>
                         </VBox>
                      </children>

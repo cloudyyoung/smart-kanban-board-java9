@@ -2,7 +2,7 @@
 	-fx-base: #1c1c1c;
 	-fx-dark-text-color: #fff;
     -fx-mid-text-color: #333;
-    -fx-light-text-color: #000;
+    -fx-light-text-color: #fff;
 	-fx-accent: #ebebeb;
 	-fx-default-button: #ebebeb;
 	-fx-focus-color: -fx-default-button;
@@ -13,8 +13,17 @@
 	-fx-main-background: #1c1c1c;
 }
 
+/** Colors **/
+.root{
+	-fx-blue: #339ff7;
+	-fx-blue-background: derive(-fx-blue, -74%);
+	-fx-purple: #6b34ff;
+	-fx-purple-background: derive(-fx-purple, -74%);
+}
+
+
 .bg-main .column .button:hover{
-	-fx-effect: none;
+	-fx-effect: none !important;
 }
 
 .button:hover, .choice-box:hover{

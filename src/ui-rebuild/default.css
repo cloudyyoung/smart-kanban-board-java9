@@ -250,8 +250,14 @@
 .bg-side .button{
 	-fx-padding: 12px 15px 12px 28.5px;
     -fx-graphic-text-gap: 23.5px;
+	-fx-border-width: 0px 0px 0px 4px;
+	-fx-border-color: transparent;
 }
 
+.bg-side .button.select{
+	-fx-font-family: "Noto Sans JP Bold";
+	-fx-border-color: -fx-specialized-accent;
+}
 
 
 
@@ -271,13 +277,13 @@
 }
 
 .bg-main .tab-box.title{
-	-fx-padding: 15px 40px 15px;
+	-fx-padding: 20px 40px 20px;
 	-fx-background-color: -fx-base;
 	-fx-effect: dropshadow(gaussian, derive(-fx-accent, 140%), 12, 0, 0, 2);
 }
 
 .bg-main .board-title{
-	-fx-padding: 0px 0px -10px 0px;
+	-fx-padding: 0px 0px -4px 0px;
 }
 
 .bg-main .board-note{
@@ -295,8 +301,8 @@
 	-fx-border-width: 0px;
 }
 
-.bg-main .scroll-pane.tab-box{
-	-fx-padding: 0px 40px;
+.bg-main .columns{
+	-fx-padding: 0px 34px;
 }
 
 .bg-main .column {
@@ -304,6 +310,14 @@
 	-fx-pref-width: 260px;
 	-fx-background-color: transparent;
 	-fx-padding: 0px 4px 0px 2px;
+}
+
+.bg-main .column .scroll-pane VBox{
+	-fx-padding: 6px;
+}
+
+.bg-main .column HBox{
+	-fx-padding: 0px 6px;
 }
 
 .bg-main .column .title .label{
@@ -322,14 +336,14 @@
 }
 
 .bg-main .column .button{
-	-fx-max-width: 240px;
-	-fx-pref-width: 240px;
-    -fx-border-radius: 8px;
-	-fx-background-radius: 8px;
-    -fx-padding: 12px 17px;
+	-fx-max-width: 260px;
+	-fx-pref-width: 260px;
+    -fx-border-radius: 6px;
+	-fx-background-radius: 6px;
+    -fx-padding: 14px 18px;
     -fx-margin: 10px;
-    -fx-border-width: 0.5px;
-    -fx-border-color: derive(-fx-accent, 10%);
+    -fx-border-width: 0px;
+    -fx-border-color: transparent;
     -fx-background-color: derive(-fx-accent, 0%);
     -fx-text-fill: -fx-light-text-color;
     -fx-fill: -fx-light-text-color;
@@ -362,7 +376,60 @@
 }
 
 
+/** Detail Tab **/
+.bg-detail{
+	-fx-max-width: 300px;
+}
 
+
+/** Colors **/
+
+.root{
+	-fx-blue: #339ff7;
+	-fx-blue-background: derive(-fx-blue, 94%);
+	-fx-purple: #6b34ff;
+	-fx-purple-background: derive(-fx-purple, 124%);
+}
+
+.bg-side .button.blue, .bg-main .main.blue{
+	-fx-specialized-accent: -fx-blue;
+	-fx-specialized-accent-background: -fx-blue-background;
+}
+
+
+.bg-side .button.purple, .bg-main .main.purple{
+	-fx-specialized-accent: -fx-purple;
+	-fx-specialized-accent-background: -fx-purple-background;
+}
+
+.bg-side .button.select{
+	-fx-background-color: -fx-specialized-accent-background;
+	-fx-text-fill: -fx-specialized-accent;
+}
+
+.bg-side .button.select:hover{
+	-fx-background-color: derive(-fx-specialized-accent-background, -2%);
+}
+
+.bg-side .button SVGPath{
+	-fx-fill: -fx-specialized-accent;
+}
+
+.bg-main .board-title{
+	-fx-text-fill: -fx-specialized-accent;
+}
+
+.bg-main .main .column .button{
+	-fx-background-color: -fx-specialized-accent;
+}
+
+.bg-main .main .column .button:hover{
+    -fx-effect: dropshadow(gaussian, derive(-fx-specialized-accent, 80%), 14, 0, 0, 2);
+}
+
+.bg-main .main .column .title .total{
+	-fx-background-color: derive(-fx-specialized-accent, 30%);
+}
 
 /** Settings **/
 
