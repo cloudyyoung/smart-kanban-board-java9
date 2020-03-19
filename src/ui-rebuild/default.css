@@ -40,7 +40,7 @@
 	-fx-dark-text-color: #2f2e2e;
     -fx-mid-text-color: #333;
     -fx-light-text-color: #fff;
-	-fx-accent: derive(#2f2e2e, 10%);
+	-fx-accent: #2f2e2e;
 	-fx-default-button: #2f2e2e;
 	-fx-focus-color: -fx-default-button;
 	-fx-faint-focus-color: transparent;
@@ -63,21 +63,41 @@
 }
 
 .tooltip{
-	-fx-background-color: #ffffffd3 !important;
-	-fx-text-fill: -fx-accent !important;
+	-fx-background-color: derive(-fx-accent, 10%) !important;
+	-fx-text-fill: -fx-light-text-color !important;
 	-fx-font-size: 11px !important;
 	-fx-border-radius: 4px !important;
 	-fx-background-radius: 4px !important;
 	-fx-padding: 5px !important;
 	-fx-font-family: "Noto Sans JP Regular" !important;
+	-fx-effect: none;
 }
 
 .text-field{
 	-fx-border-width: 0px 0px 2px 0px;
-	-fx-border-color: -fx-accent;
+	-fx-border-color: derive(-fx-accent, 80%);
 	-fx-background-color: transparent;
 	-fx-padding: 0px;
 	-fx-font-size: 12px;
+}
+
+.text-field:focused, .text-field:hover{
+	-fx-border-color: -fx-accent;
+}
+
+
+/** Buttons **/
+.button, .choice-box{
+  -fx-background-color: transparent;
+  -fx-padding: 10px 15px;
+  -fx-alignment: left;
+  -fx-font-size: 12px;
+  -fx-background-radius: 8px;
+  -fx-border-radius: 4px;
+}
+
+.button:hover, .choice-box:hover{
+  -fx-background-color: derive(-fx-accent, 150%);
 }
 
 
@@ -120,19 +140,19 @@
 .scroll-bar .decrement-arrow{
     -fx-background-color :transparent;
     -fx-shape: " ";
-    -fx-padding: 0px 2px;
+    -fx-padding: 0px;
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: rgba(47, 46, 46, 0.2);
+    -fx-background-color: derive(-fx-accent, 125%);
     -fx-background-insets: 0px;
-    -fx-background-radius: 55px;
+    -fx-background-radius: 50px;
     -fx-padding: 0px;
 }
 
 
 .scroll-bar .thumb:hover {
-    -fx-background-color: rgba(47, 46, 46, 0.4);
+    -fx-background-color: derive(-fx-accent, 100%);
 }
 
 
@@ -185,22 +205,6 @@
 .h6{
 	-fx-font-size: 12px;
 }
-
-
-/** Buttons **/
-.button, .choice-box{
-  -fx-background-color: transparent;
-  -fx-padding: 10px 15px;
-  -fx-alignment: left;
-  -fx-font-size: 12px;
-  -fx-background-radius: 8px;
-  -fx-border-radius: 4px;
-}
-
-.button:hover, .choice-box:hover{
-  -fx-background-color: rgba(47, 46, 46, 0.1);
-}
-
 
 
 /** Side Menu Components **/
@@ -315,8 +319,13 @@
     -fx-border-color: derive(-fx-accent, 10%);
     -fx-background-color: derive(-fx-accent, 0%);
     -fx-text-fill: -fx-light-text-color;
+    -fx-fill: -fx-light-text-color;
     -fx-graphic-text-gap: 12px;
     -fx-content-display: right;
+}
+
+.bg-main .column .button SVGPath{
+    -fx-fill: -fx-light-text-color;
 }
 
 .bg-main .column .button:hover{

@@ -1,10 +1,10 @@
 .root{
-	-fx-base: #000;
+	-fx-base: #1c1c1c;
 	-fx-dark-text-color: #fff;
     -fx-mid-text-color: #333;
     -fx-light-text-color: #000;
 	-fx-accent: #ebebeb;
-	-fx-default-button: #000;
+	-fx-default-button: #ebebeb;
 	-fx-focus-color: -fx-default-button;
 	-fx-faint-focus-color: transparent;
 	
@@ -15,4 +15,17 @@
 
 .bg-main .column .button:hover{
 	-fx-effect: none;
+}
+
+.button:hover, .choice-box:hover{
+  -fx-background-color: derive(-fx-accent, -80%);
+}
+
+.scroll-bar .thumb {
+  -fx-background-color: derive(-fx-base, 20%);
+}
+
+
+.scroll-bar .thumb:hover {
+  -fx-background-color: derive(-fx-base, 40%);
 }
