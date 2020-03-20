@@ -284,11 +284,13 @@
 }
 
 .bg-main .board-title{
-	-fx-padding: 0px 0px -4px 0px;
+	-fx-border-width: 0px;
+	-fx-pref-width: 1000px;
 }
 
 .bg-main .board-note{
-
+	-fx-padding: -2px 0px 0px 0px;
+	-fx-border-width: 0px;
 }
 
 .bg-main #date-wrapper{
@@ -329,8 +331,10 @@
 }
 
 /** Column Title Label **/
-.bg-main .column .title .label{
+.bg-main .column .title .text-field{
 	-fx-font-size: 15px;
+	-fx-border-width: 0px;
+	-fx-pref-width: 300px;
 }
 
 /** Column Title Total **/

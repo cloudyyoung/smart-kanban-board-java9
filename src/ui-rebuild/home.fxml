@@ -124,31 +124,25 @@
                            <children>
                               <VBox>
                                  <children>
-                                    <Label fx:id="boardTitle" minWidth="0.0" text="TodayTodayTodayTodayTodayTodayTodayTodayTodayTodayTodayToday" textOverrun="WORD_ELLIPSIS">
-                                       <font>
-                                          <Font size="27.0" />
-                                       </font>
+                                    <TextField editable="false" text="TodayTodayTodayTodayTodayTodayTodayTodayTodayTodayTodayToday">
+                                       <tooltip>
+                                          <Tooltip text="TodayTodayTodayTodayTodayTodayTodayTodayTodayTodayTodayToday" />
+                                       </tooltip>
                                        <styleClass>
                                           <String fx:value="board-title" />
                                           <String fx:value="bold" />
                                           <String fx:value="h2" />
                                        </styleClass>
-                                       <tooltip>
-                                          <Tooltip text="TodayTodayTodayTodayTodayTodayTodayTodayTodayTodayTodayToday" />
-                                       </tooltip>
-                                    </Label>
-                                    <Label fx:id="boardNote" text="This is your today board.This is your today board.This is your today board.This is your today board.This is your today board." textOverrun="WORD_ELLIPSIS">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                       <tooltip>
-                                          <Tooltip text="This is your today board.This is your today board.This is your today board.This is your today board.This is your today board." />
-                                       </tooltip>
+                                    </TextField>
+                                    <TextField editable="false" text="This is your today board.This is your today board.This is your today board.This is your today board.This is your today board.">
                                        <styleClass>
                                           <String fx:value="board-note" />
                                           <String fx:value="h5" />
                                        </styleClass>
-                                    </Label>
+                                       <tooltip>
+                                          <Tooltip text="This is your today board.This is your today board.This is your today board.This is your today board.This is your today board." />
+                                       </tooltip>
+                                    </TextField>
                                  </children>
                               </VBox>
                               <VBox id="date-wrapper">
@@ -180,14 +174,11 @@
                                                       <String fx:value="h5" />
                                                    </styleClass>
                                                 </Label>
-                                                <Label styleClass="medium" text="Love Me Like That - Carly Rae Jepsen" textOverrun="WORD_ELLIPSIS">
-                                                   <HBox.margin>
-                                                      <Insets />
-                                                   </HBox.margin>
+                                                <TextField editable="false" styleClass="medium" text="Love Me Like That - Carly Rae Jepsen">
                                                    <tooltip>
                                                       <Tooltip text="Column Title Column Title Column Title Column Title Column Title" />
                                                    </tooltip>
-                                                </Label>
+                                                </TextField>
                                              </children>
                                              <VBox.margin>
                                                 <Insets />
@@ -257,14 +248,11 @@
                                                       <String fx:value="h5" />
                                                    </styleClass>
                                                 </Label>
-                                                <Label styleClass="medium" text="Dancing With Our Hands Tied - Taylor Swift" textOverrun="WORD_ELLIPSIS">
-                                                   <HBox.margin>
-                                                      <Insets />
-                                                   </HBox.margin>
+                                                <TextField editable="false" styleClass="medium" text="Dancing With Our Hands Tied - Taylor Swift">
                                                    <tooltip>
                                                       <Tooltip text="Column Title Column Title Column Title Column Title Column Title" />
                                                    </tooltip>
-                                                </Label>
+                                                </TextField>
                                              </children>
                                              <VBox.margin>
                                                 <Insets />
@@ -346,14 +334,11 @@
                                                       <String fx:value="h5" />
                                                    </styleClass>
                                                 </Label>
-                                                <Label styleClass="medium" text="Cruel Summer - Taylor Swift" textOverrun="WORD_ELLIPSIS">
-                                                   <HBox.margin>
-                                                      <Insets />
-                                                   </HBox.margin>
+                                                <TextField editable="false" styleClass="medium" text="Cruel Summer - Taylor Swift">
                                                    <tooltip>
                                                       <Tooltip text="Column Title Column Title Column Title Column Title Column Title" />
                                                    </tooltip>
-                                                </Label>
+                                                </TextField>
                                              </children>
                                              <VBox.margin>
                                                 <Insets />
@@ -408,14 +393,11 @@
                                                       <String fx:value="h5" />
                                                    </styleClass>
                                                 </Label>
-                                                <Label styleClass="medium" text="LIKE I WOULD - ZAYN" textOverrun="WORD_ELLIPSIS">
-                                                   <HBox.margin>
-                                                      <Insets />
-                                                   </HBox.margin>
+                                                <TextField editable="false" styleClass="medium" text="LIKE I WOULD - ZAYN">
                                                    <tooltip>
                                                       <Tooltip text="Column Title Column Title Column Title Column Title Column Title" />
                                                    </tooltip>
-                                                </Label>
+                                                </TextField>
                                              </children>
                                              <VBox.margin>
                                                 <Insets />
