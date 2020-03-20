@@ -1,3 +1,5 @@
+/** Padding/Margin cheatsheet **/
+/** -fx-padding: TOP RIGHT BOTTON LEFT; **/
 
 /* Import Custom Fonts */
 @font-face {
@@ -301,28 +303,37 @@
 }
 
 .bg-main .columns{
-	-fx-padding: 0px 34px;
+	-fx-padding: 0px 32px;
+	-fx-spacing: 6px;
 }
 
 .bg-main .column {
-	-fx-max-width: 260px;
-	-fx-pref-width: 260px;
+	-fx-max-width: 266px;
+	-fx-pref-width: 266px;
 	-fx-background-color: transparent;
-	-fx-padding: 0px 4px 0px 2px;
+	-fx-padding: 0px 0px 0px 0px;
 }
 
 .bg-main .column .scroll-pane VBox{
 	-fx-padding: 6px;
 }
 
+/** Column Title **/
 .bg-main .column HBox{
 	-fx-padding: 0px 6px;
 }
 
+/** Card Spacing **/
+.bg-main .column VBox{
+	-fx-spacing: 16px;
+}
+
+/** Column Title Label **/
 .bg-main .column .title .label{
 	-fx-font-size: 15px;
 }
 
+/** Column Title Total **/
 .bg-main .column .title .total{
 	-fx-min-width: 30px;
 	-fx-max-width: 500px;
@@ -334,9 +345,13 @@
 	-fx-alignment: CENTER;
 }
 
-.bg-main .column .button{
-	-fx-max-width: 260px;
-	-fx-pref-width: 260px;
+.bg-main .column .scroll-pane{
+	-fx-padding: 4px 0px 0px 0px;
+}
+
+.bg-main .column .scroll-pane .button{
+	-fx-max-width: 246px;
+	-fx-pref-width: 246px;
     -fx-border-radius: 6px;
 	-fx-background-radius: 6px;
     -fx-padding: 14px 18px;
@@ -350,20 +365,12 @@
     -fx-content-display: right;
 }
 
-.bg-main .column .button SVGPath{
+.bg-main .column .scroll-pane .button SVGPath{
     -fx-fill: -fx-light-text-color;
 }
 
-.bg-main .column .button:hover{
+.bg-main .column .scroll-pane .button:hover{
     -fx-effect: dropshadow(gaussian, derive(-fx-accent, 80%), 14, 0, 0, 2);
-}
-
-.bg-main .columns{
-	-fx-spacing: 8px;
-}
-
-.bg-main .column VBox{
-	-fx-spacing: 16px;
 }
 
 .bg-main .search{
