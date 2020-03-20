@@ -84,7 +84,7 @@
   -fx-border-radius: 0px;
 }
 
-.button:hover, .combo-box:hover{
+.button:hover, .button:focused, .combo-box:hover, .combo-box:focused, .text-field:hover, .text-field:focused{
   -fx-background-color: derive(-fx-accent, 150%);
 }
 
@@ -95,7 +95,6 @@
 	-fx-font-size: 12px;
 }
 
-
 .text-field, .combo-box{
 	-fx-border-width: 0px 0px 2px 0px;
 	-fx-border-color: derive(-fx-accent, 80%);
@@ -103,7 +102,7 @@
 	-fx-background-radius: 0px;
 }
 
-.text-field:focused, .text-field:hover{
+.text-field:focused, .text-field:focused, .button:focused, .combo-box:focused{
 	-fx-border-color: -fx-accent;
 }
 
