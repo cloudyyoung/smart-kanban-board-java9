@@ -147,7 +147,6 @@
                                        <styleClass>
                                           <String fx:value="board-note" />
                                           <String fx:value="h5" />
-                                          <String fx:value="medium" />
                                        </styleClass>
                                     </Label>
                                  </children>
