@@ -67,14 +67,14 @@
                      </graphic>
                      <styleClass>
                         <String fx:value="username" />
-                        <String fx:value="button" />
+                        <String fx:value="a" />
                      </styleClass>
                   </Button>
                </children>
             </VBox>
             <VBox styleClass="operation-list">
                <children>
-                  <Button styleClass="example-instance" text="Search">
+                  <Button text="Search">
                      <graphic>
                         <SVGPath id="icon" content="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#2f2e2e">
                            <cursor>
@@ -85,6 +85,10 @@
                      <tooltip>
                         <Tooltip text="Search any thing..." />
                      </tooltip>
+                     <styleClass>
+                        <String fx:value="example-instance" />
+                        <String fx:value="a" />
+                     </styleClass>
                   </Button>
                   <Button text="Today">
                      <graphic>
@@ -95,9 +99,8 @@
                      </tooltip>
                      <styleClass>
                         <String fx:value="example-instance" />
-                        <String fx:value="blue" />
-                        <String fx:value="select" />
-                        <String fx:value="board" />
+                        <String fx:value="selected" />
+                        <String fx:value="a" />
                      </styleClass>
                   </Button>
                </children>
@@ -118,7 +121,7 @@
         <tabs>
           <Tab closable="false" text="Board">
             <content>
-                  <VBox>
+                  <VBox styleClass="main">
                      <children>
                         <HBox>
                            <children>
@@ -165,14 +168,14 @@
                                           <HBox styleClass="title">
                                              <children>
                                                 <Label alignment="CENTER" contentDisplay="CENTER" text="4" textOverrun="CLIP" wrapText="true">
-                                                   <HBox.margin>
-                                                      <Insets right="4.0" top="2.0" />
-                                                   </HBox.margin>
                                                    <styleClass>
                                                       <String fx:value="total" />
                                                       <String fx:value="bold" />
                                                       <String fx:value="h5" />
                                                    </styleClass>
+                                                   <HBox.margin>
+                                                      <Insets right="4.0" />
+                                                   </HBox.margin>
                                                 </Label>
                                                 <TextField editable="false" styleClass="medium" text="Love Me Like That - Carly Rae Jepsen">
                                                    <tooltip>
@@ -239,14 +242,14 @@
                                           <HBox styleClass="title">
                                              <children>
                                                 <Label alignment="CENTER" contentDisplay="CENTER" text="5" textOverrun="CLIP" wrapText="true">
-                                                   <HBox.margin>
-                                                      <Insets right="4.0" top="2.0" />
-                                                   </HBox.margin>
                                                    <styleClass>
                                                       <String fx:value="total" />
                                                       <String fx:value="bold" />
                                                       <String fx:value="h5" />
                                                    </styleClass>
+                                                   <HBox.margin>
+                                                      <Insets right="4.0" />
+                                                   </HBox.margin>
                                                 </Label>
                                                 <TextField editable="false" styleClass="medium" text="Dancing With Our Hands Tied - Taylor Swift">
                                                    <tooltip>
@@ -325,14 +328,14 @@
                                           <HBox styleClass="title">
                                              <children>
                                                 <Label alignment="CENTER" contentDisplay="CENTER" text="2" textOverrun="CLIP" wrapText="true">
-                                                   <HBox.margin>
-                                                      <Insets right="4.0" top="2.0" />
-                                                   </HBox.margin>
                                                    <styleClass>
                                                       <String fx:value="total" />
                                                       <String fx:value="bold" />
                                                       <String fx:value="h5" />
                                                    </styleClass>
+                                                   <HBox.margin>
+                                                      <Insets right="4.0" />
+                                                   </HBox.margin>
                                                 </Label>
                                                 <TextField editable="false" styleClass="medium" text="Cruel Summer - Taylor Swift">
                                                    <tooltip>
@@ -384,14 +387,14 @@
                                           <HBox styleClass="title">
                                              <children>
                                                 <Label alignment="CENTER" contentDisplay="CENTER" text="1" textOverrun="CLIP" wrapText="true">
-                                                   <HBox.margin>
-                                                      <Insets right="4.0" top="2.0" />
-                                                   </HBox.margin>
                                                    <styleClass>
                                                       <String fx:value="total" />
                                                       <String fx:value="bold" />
                                                       <String fx:value="h5" />
                                                    </styleClass>
+                                                   <HBox.margin>
+                                                      <Insets right="4.0" />
+                                                   </HBox.margin>
                                                 </Label>
                                                 <TextField editable="false" styleClass="medium" text="LIKE I WOULD - ZAYN">
                                                    <tooltip>
@@ -434,10 +437,6 @@
                            </content>
                         </ScrollPane>
                      </children>
-                     <styleClass>
-                        <String fx:value="main" />
-                        <String fx:value="blue" />
-                     </styleClass>
                   </VBox>
             </content>
           </Tab>

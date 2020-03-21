@@ -39,16 +39,28 @@
 .root{
 	/** Override default Modena theme variables **/
 	-fx-base: #fff;
+	-fx-accent: #2f2e2e;
+
 	-fx-dark-text-color: #2f2e2e;
     -fx-mid-text-color: #333;
     -fx-light-text-color: #fff;
-	-fx-accent: #2f2e2e;
+
 	-fx-default-button: #2f2e2e;
-	-fx-focus-color: -fx-default-button;
+	-fx-focus-color: #2f2e2e12; /** 7% **/
 	-fx-faint-focus-color: transparent;
 
+	-fx-accent-90: #2f2e2ee6;
+	-fx-accent-80: #2f2e2ecc;
+	-fx-accent-70: #2f2e2eb3;
+	-fx-accent-60: #2f2e2e99;
+	-fx-accent-50: #2f2e2e80;
+	-fx-accent-40: #2f2e2e66;
+	-fx-accent-30: #2f2e2e4d;
+	-fx-accent-20: #2f2e2e33;
+	-fx-accent-10: #2f2e2e1a;
+
 	-fx-side-background: #eee;
-	-fx-main-background: -fx-background;
+	-fx-main-background: #fff;
 
 	-fx-font-family: "Noto Sans JP Regular";
 	-fx-font-weight: normal;
@@ -65,11 +77,11 @@
 }
 
 .tooltip{
-	-fx-background-color: derive(-fx-accent, 10%) !important;
+	-fx-background-color: -fx-accent !important;
 	-fx-text-fill: -fx-light-text-color !important;
-	-fx-font-size: 11px !important;
-	-fx-border-radius: 4px !important;
-	-fx-background-radius: 4px !important;
+	-fx-font-size: 10px !important;
+	-fx-border-radius: 0px !important;
+	-fx-background-radius: 0px !important;
 	-fx-padding: 5px !important;
 	-fx-font-family: "Noto Sans JP Regular" !important;
 	-fx-effect: none;
@@ -80,14 +92,32 @@
 .button, .combo-box{
   -fx-background-color: inherit;
   -fx-padding: 4px 6px;
-  -fx-alignment: left;
   -fx-font-size: 12px;
   -fx-background-radius: 0px;
   -fx-border-radius: 0px;
+  -fx-border-width: 0px;
+  -fx-border-color: transparent;
 }
 
-.button:hover, .button:focused, .combo-box:hover, .combo-box:focused, .text-field:hover, .text-field:focused{
-  -fx-background-color: derive(-fx-accent, 150%);
+.button.a{
+	-fx-alignment: CENTER_LEFT;
+	-fx-background-color: transparent;
+	-fx-text-fill: -fx-accent;
+}
+
+.button{
+  -fx-alignment: CENTER;
+  -fx-padding: 6px 8px;
+  -fx-background-color: -fx-accent;
+  -fx-text-fill: -fx-light-text-color;
+}
+
+.button.a:hover, .button.a:focused, .combo-box:hover, .combo-box:focused, .text-field:hover, .text-field:focused{
+  -fx-background-color: -fx-focus-color;
+}
+
+.button:hover, .button:focused{
+	-fx-background-color: -fx-accent-90;
 }
 
 
@@ -99,9 +129,10 @@
 
 .text-field, .combo-box{
 	-fx-border-width: 0px 0px 2px 0px;
-	-fx-border-color: derive(-fx-accent, 80%);
+	-fx-border-color: -fx-accent-40;
 	-fx-border-radius: 0px;
 	-fx-background-radius: 0px;
+    -fx-alignment: left;
 }
 
 .text-field:focused, .text-field:focused, .button:focused, .combo-box:focused{
@@ -152,7 +183,7 @@
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(-fx-accent, 125%);
+    -fx-background-color: -fx-accent-20;
     -fx-background-insets: 0px;
     -fx-background-radius: 50px;
     -fx-padding: 0px;
@@ -160,12 +191,12 @@
 
 
 .scroll-bar .thumb:hover {
-    -fx-background-color: derive(-fx-accent, 100%);
+    -fx-background-color: -fx-accent-60;
 }
 
 
 /** For hidding the default example instance, uncomment once the models can properly render to the view **/
-.example-instance{
+.example-instance, .hide{
 	/*visibility: false !important;
 	-fx-pref-height: 0px !important;
 	-fx-min-height: 0px !important;
@@ -229,7 +260,7 @@
 
 
 .bg-side .username{
-	-fx-padding: 18px 20px 18px 18px !important;
+	-fx-padding: 20px 12px 20px 12px !important;
 }
 
 .bg-side .username #username-label{
@@ -249,15 +280,21 @@
 }
 
 .bg-side .button{
-	-fx-padding: 12px 15px 12px 28.5px;
+	-fx-specialized-accent: -fx-accent;
+	-fx-padding: 14px 15px 14px 22.5px;
     -fx-graphic-text-gap: 23.5px;
 	-fx-border-width: 0px 0px 0px 4px;
 	-fx-border-color: transparent;
+	-fx-text-fill: -fx-specialized-accent;
 }
 
-.bg-side .button.select{
-	-fx-font-family: "Noto Sans JP Bold";
+.bg-side .button SVGPath{
+	-fx-fill: -fx-specialized-accent;
+}
+
+.bg-side .button.selected{
 	-fx-border-color: -fx-specialized-accent;
+	-fx-font-family: "Noto Sans JP Bold";
 }
 
 
@@ -269,7 +306,8 @@
 }
 
 .bg-main .main{
-	-fx-spacing: 20px;
+  -fx-spacing: 20px;
+  -fx-specialized-accent: -fx-accent;
 }
 
 
@@ -278,14 +316,14 @@
 }
 
 .bg-main .tab-box.title{
-	-fx-padding: 20px 40px 20px;
+	-fx-padding: 30px 50px 15px;
 	-fx-background-color: -fx-base;
-	-fx-effect: dropshadow(gaussian, derive(-fx-accent, 140%), 12, 0, 0, 2);
 }
 
 .bg-main .board-title{
 	-fx-border-width: 0px;
 	-fx-pref-width: 1000px;
+	-fx-text-fill: -fx-specialized-accent;
 }
 
 .bg-main .board-note{
@@ -305,8 +343,8 @@
 }
 
 .bg-main .columns{
-	-fx-padding: 0px 32px;
-	-fx-spacing: 6px;
+	-fx-padding: 0px 44px;
+	-fx-spacing: 16px;
 }
 
 .bg-main .column {
@@ -341,7 +379,7 @@
 .bg-main .column .title .total{
 	-fx-min-width: 30px;
 	-fx-max-width: 500px;
-	-fx-background-color: derive(-fx-accent, 30%);
+	-fx-background-color: derive(-fx-specialized-accent, 30%);
 	-fx-text-fill: -fx-light-text-color;
 	-fx-background-radius: 55px;
 	-fx-font-size: 13px;
@@ -354,27 +392,33 @@
 }
 
 .bg-main .column .scroll-pane .button{
+	-fx-alignment: CENTER_LEFT;
 	-fx-max-width: 246px;
 	-fx-pref-width: 246px;
-    -fx-border-radius: 6px;
-	-fx-background-radius: 6px;
+    -fx-border-radius: 4px;
+	-fx-background-radius: 4px;
     -fx-padding: 14px 18px;
     -fx-margin: 10px;
     -fx-border-width: 0px;
     -fx-border-color: transparent;
-    -fx-background-color: derive(-fx-accent, 0%);
+    -fx-background-color: -fx-specialized-accent;
     -fx-text-fill: -fx-light-text-color;
     -fx-fill: -fx-light-text-color;
     -fx-graphic-text-gap: 12px;
     -fx-content-display: right;
+    -fx-effect: dropshadow(gaussian, #00000026, 10, 0, 1, 2); /** 15% **/
 }
 
 .bg-main .column .scroll-pane .button SVGPath{
     -fx-fill: -fx-light-text-color;
 }
 
-.bg-main .column .scroll-pane .button:hover{
-    -fx-effect: dropshadow(gaussian, derive(-fx-accent, 80%), 14, 0, 0, 2);
+.bg-main .column .scroll-pane .button:hover, .bg-main .column .scroll-pane .button:focused{
+    -fx-effect: dropshadow(gaussian, #00000033, 10, 0, 1, 2); /** 20% **/
+}
+
+.bg-main .main .column .button:focused{
+	-fx-background-color: derive(-fx-specialized-accent, -16%);
 }
 
 .bg-main .search{
@@ -391,54 +435,9 @@
 	-fx-max-width: 300px;
 }
 
-
-/** Colors **/
-
-.root{
-	-fx-blue: #339ff7;
-	-fx-blue-background: derive(-fx-blue, 94%);
-	-fx-purple: #6b34ff;
-	-fx-purple-background: derive(-fx-purple, 124%);
-}
-
-.bg-side .button.blue, .bg-main .main.blue{
-	-fx-specialized-accent: -fx-blue;
-	-fx-specialized-accent-background: -fx-blue-background;
-}
-
-
-.bg-side .button.purple, .bg-main .main.purple{
-	-fx-specialized-accent: -fx-purple;
-	-fx-specialized-accent-background: -fx-purple-background;
-}
-
-.bg-side .button.select{
-	-fx-background-color: -fx-specialized-accent-background;
-	-fx-text-fill: -fx-specialized-accent;
-}
-
-.bg-side .button.select:hover{
-	-fx-background-color: derive(-fx-specialized-accent-background, -2%);
-}
-
-.bg-side .button SVGPath{
-	-fx-fill: -fx-specialized-accent;
-}
-
-.bg-main .board-title{
-	-fx-text-fill: -fx-specialized-accent;
-}
-
-.bg-main .main .column .button{
-	-fx-background-color: -fx-specialized-accent;
-}
-
-.bg-main .main .column .button:hover{
-    -fx-effect: dropshadow(gaussian, derive(-fx-specialized-accent, 80%), 14, 0, 0, 2);
-}
-
-.bg-main .main .column .title .total{
-	-fx-background-color: derive(-fx-specialized-accent, 30%);
+.check-box{
+	-fx-background-color: #fff;
+	-fx-text-fill: #fff;
 }
 
 /** Settings **/
@@ -454,7 +453,8 @@
 
 .bg-settings .title-wrapper{
 	-fx-background-color: -fx-base;
-	-fx-effect: dropshadow(gaussian, derive(-fx-accent, 140%), 12, 0, 0, 2);
+	-fx-border-width: 0px 0px 2px 0px;
+	-fx-border-color: -fx-accent-30;
 }
 
 .bg-settings .scroll-pane .username{
@@ -492,4 +492,14 @@
 
 .bg-settings .settings .copyright{
 	-fx-spacing: 0px;
+}
+
+.bg-settings .account .label{
+	-fx-min-width: 420px;
+	-fx-padding: 0px 120px 0px 0px;
+}
+
+.bg-settings .account .button{
+	-fx-min-width: 80px;
+	-fx-min-height: 35px;
 }
