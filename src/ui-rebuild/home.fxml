@@ -5,20 +5,23 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minWidth="700.0" prefHeight="680.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="680.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <left>
       <VBox styleClass="bg-side">
          <children>
@@ -148,7 +151,7 @@
                                     </TextField>
                                  </children>
                               </VBox>
-                              <VBox id="date-wrapper">
+                              <VBox id="date-wrapper" styleClass="hide">
                                  <children>
                                     <ComboBox prefWidth="150.0" promptText="Date" />
                                  </children>
@@ -191,7 +194,7 @@
                                              <content>
                                                 <VBox>
                                                    <children>
-                                                      <Button alignment="TOP_LEFT" mnemonicParsing="false" text="Hold on tight Lucky chance. It's mine Lucky strike. I'm your luck, take it." wrapText="true">
+                                                      <Button alignment="TOP_LEFT" mnemonicParsing="false" styleClass="selected" text="Hold on tight Lucky chance. It's mine Lucky strike. I'm your luck, take it." wrapText="true">
                                                          <graphic>
                                                             <SVGPath content="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
                                                                <cursor>
@@ -241,7 +244,7 @@
                                        <children>
                                           <HBox styleClass="title">
                                              <children>
-                                                <Label alignment="CENTER" contentDisplay="CENTER" text="5" textOverrun="CLIP" wrapText="true">
+                                                <Label alignment="CENTER" contentDisplay="CENTER" text="6" textOverrun="CLIP" wrapText="true">
                                                    <styleClass>
                                                       <String fx:value="total" />
                                                       <String fx:value="bold" />
@@ -305,6 +308,15 @@
                                                          </graphic>
                                                       </Button>
                                                       <Button alignment="TOP_LEFT" mnemonicParsing="false" text="But we were dancing, dancing with our hands tied, hands tied." wrapText="true">
+                                                         <graphic>
+                                                            <SVGPath content="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
+                                                               <cursor>
+                                                                  <Cursor fx:constant="DEFAULT" />
+                                                               </cursor>
+                                                            </SVGPath>
+                                                         </graphic>
+                                                      </Button>
+                                                      <Button alignment="TOP_LEFT" mnemonicParsing="false" text="This girl is like a dream, my wildest fantasy." wrapText="true">
                                                          <graphic>
                                                             <SVGPath content="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
                                                                <cursor>
@@ -470,4 +482,32 @@
         </tabs>
       </TabPane>
    </center>
+   <right>
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="bg-detail">
+         <content>
+            <VBox>
+               <children>
+                  <TextArea promptText="Title" text="Hold on tight Lucky chance. It's mine Lucky strike. I'm your luck, take it." wrapText="true">
+                     <styleClass>
+                        <String fx:value="h4" />
+                        <String fx:value="bold" />
+                     </styleClass></TextArea>
+                  <Region prefHeight="10.0" />
+                  <Button mnemonicParsing="false" styleClass="a" text="Add to Today">
+                     <graphic>
+                        <SVGPath id="icon" content="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" styleClass="a" text="Add due date">
+                     <graphic>
+                        <SVGPath id="icon" content="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                     </graphic>
+                  </Button>
+                  <DatePicker editable="false" promptText="Add due date" styleClass="hide" />
+                  <TextField promptText="Add note" styleClass="note" />
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </right>
 </BorderPane>

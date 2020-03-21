@@ -89,7 +89,7 @@
 
 
 /** Buttons and Forms **/
-.button, .combo-box{
+.button, .combo-box, .date-picker{
   -fx-background-color: inherit;
   -fx-padding: 4px 6px;
   -fx-font-size: 12px;
@@ -99,35 +99,46 @@
   -fx-border-color: transparent;
 }
 
-.button.a{
-	-fx-alignment: CENTER_LEFT;
-	-fx-background-color: transparent;
-	-fx-text-fill: -fx-accent;
+.button{
+  -fx-alignment: CENTER_LEFT;
+  -fx-padding: 8px 10px;
+  -fx-graphic-text-gap: 10px;
+  -fx-background-color: transparent;
+  -fx-text-fill: -fx-dark-text-color;
+  -fx-fill: -fx-dark-text-color;
 }
 
-.button{
-  -fx-alignment: CENTER;
-  -fx-padding: 6px 8px;
+.button *{
+	-fx-text-fill: -fx-dark-text-color;
+	-fx-fill: -fx-dark-text-color;
+}
+
+.button.primary{
   -fx-background-color: -fx-accent;
   -fx-text-fill: -fx-light-text-color;
 }
 
-.button.a:hover, .button.a:focused, .combo-box:hover, .combo-box:focused, .text-field:hover, .text-field:focused{
+.button.primary *{
+	-fx-text-fill: -fx-light-text-color;
+	-fx-fill: -fx-light-text-color;
+}
+
+.button:hover, .button:focused, .combo-box:hover, .combo-box:focused, .text-field:hover, .text-field:focused, .text-area .scroll-pane:hover, .text-area .scroll-pane:focused, .date-picker:hover, .date-picker:focused{
   -fx-background-color: -fx-focus-color;
 }
 
-.button:hover, .button:focused{
+.button.primary:hover, .button.primary:focused{
 	-fx-background-color: -fx-accent-90;
 }
 
 
-.text-field{
+.text-field, .text-area, .text-area *, .date-picker{
 	-fx-background-color: transparent;
 	-fx-padding: 0px;
 	-fx-font-size: 12px;
 }
 
-.text-field, .combo-box{
+.text-field, .combo-box, .text-area, .date-picker{
 	-fx-border-width: 0px 0px 2px 0px;
 	-fx-border-color: -fx-accent-40;
 	-fx-border-radius: 0px;
@@ -135,10 +146,19 @@
     -fx-alignment: left;
 }
 
-.text-field:focused, .text-field:focused, .button:focused, .combo-box:focused{
+.text-field:focused, .text-area:focused, .button:focused, .combo-box:focused, .date-picker:focused{
 	-fx-border-color: -fx-accent;
 }
 
+.text-area {
+	/*-fx-pref-row-count: 1;*/
+	-fx-min-height: 10px;
+}
+
+.text-area .scroll-pane{
+	-fx-hbar-policy:never;
+    -fx-vbar-policy:never; 
+}
 
 /** Scroll Bar Global Re-Styling **/
 .scroll-pane, .scroll-pane .viewport {
@@ -153,7 +173,7 @@
 	-fx-opacity: 0;
 }
 
-.scroll-pane:hover .scroll-bar{ /** Only show scroll bar when mouse is hover on scroll pane **/
+.scroll-pane:hover .scroll-bar{
 	-fx-opacity: 1;
 }
 
@@ -195,16 +215,128 @@
 }
 
 
-/** For hidding the default example instance, uncomment once the models can properly render to the view **/
-.example-instance, .hide{
-	/*visibility: false !important;
+/** Date Picker **/
+.date-picker .text-field{
+	-fx-border-width: 0px;
+}
+.date-picker .text-field{
+	-fx-background-color: transparent;
+}
+
+.date-picker-popup {
+    -fx-background-color: -fx-base;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-alignment: CENTER; /* VBox */
+    -fx-spacing: 0; /* VBox */
+    -fx-padding: 0px; /* 1 1 1 1 */
+    -fx-effect: dropshadow(gaussian , -fx-accent-20, 10, 0, 1, 2) !important;
+    -fx-max-width: 300px !important;
+}
+
+.date-picker-popup *{
+	-fx-alignment: CENTER !important;
+}
+
+.date-picker-popup .month-year-pane {
+	-fx-padding: 10px 14px !important;
+    -fx-background-color: transparent;
+}
+
+.date-picker-popup * .spinner .button {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 0;
+    -fx-border-width: 0px !important;
+	-fx-max-width: 30px !important;
+	-fx-max-height: 30px !important;
+	-fx-pref-width: 30px !important;
+	-fx-pref-height: 30px !important;
+}
+
+.date-picker-popup * .spinner .button:hover, .date-picker-popup * .spinner .button:focused {
+    -fx-background-color: -fx-focus-color;
+    -fx-color: -fx-focus-color;
+}
+
+.date-picker-popup * .spinner .button .left-arrow,
+.date-picker-popup * .spinner .button .right-arrow,
+.date-picker-popup * .spinner .button:hover .left-arrow,
+.date-picker-popup * .spinner .button:hover .right-arrow,
+.date-picker-popup * .spinner .button:pressed .left-arrow,
+.date-picker-popup * .spinner .button:pressed .right-arrow {
+    -fx-background-color: derive(-fx-dark-text-color, 45%) !important;
+}
+
+.date-picker-popup * .spinner .left-button {
+    -fx-padding: 0 0.333333em 0 0.25em !important; /* 0 4 0 3 */
+}
+.date-picker-popup * .spinner .right-button {
+    -fx-padding: 0 0.25em 0 0.333333em !important; /* 0 3 0 4 */
+}
+
+.date-picker-popup .month-year-pane .secondary-label{
+	-fx-text-fill: -fx-dark-text-color !important;
+}
+
+.date-picker-popup .calendar-grid {
+    -fx-background-color: -fx-base !important;
+}
+
+.date-picker-popup * .date-cell {
+    -fx-alignment: CENTER !important;
+    -fx-background-color: -fx-base !important;
+    -fx-text-fill: -fx-dark-text-color !important;
+    -fx-font-size: 12px !important;
+    -fx-padding: 7px !important;
+}
+
+.date-picker-popup * .day-name-cell,
+.date-picker-popup * .week-number-cell {
+    -fx-font-size: 12px !important;
+    -fx-max-width: 40px !important;
+    -fx-pref-width: 40px !important;
+}
+
+.date-picker-popup * .today {
+    -fx-background-color: -fx-accent, -fx-base, -fx-base !important;
+    -fx-background-insets: 1, 2, 3 !important;
+}
+
+.date-picker-popup * .day-cell:hover,
+.date-picker-popup * .selected,
+.date-picker-popup * .previous-month.selected,
+.date-picker-popup * .next-month.selected,
+.date-picker-popup * .previous-month:hover,
+.date-picker-popup * .next-month:hover,
+.date-picker-popup * .today:hover,
+.date-picker-popup * .today.selected {
+    -fx-background-color: -fx-accent !important;
+    -fx-text-fill: -fx-light-text-color !important;
+}
+
+.date-picker-popup * .previous-month,
+.date-picker-popup * .next-month {
+    -fx-background: derive(-fx-base, -40%) !important;
+}
+
+.date-picker-popup * .day-cell:hover .secondary-text,
+.date-picker-popup * .previous-month .secondary-text,
+.date-picker-popup * .next-month .secondary-text,
+.date-picker-popup * .selected .secondary-text {
+    -fx-background: derive(-fx-base, -20%) !important;
+}
+
+.hide{
+	visibility: false !important;
 	-fx-pref-height: 0px !important;
 	-fx-min-height: 0px !important;
 	-fx-max-height: 0px !important;
 	-fx-pref-width: 0px !important;
 	-fx-max-width: 0px !important;
-	-fx-min-width: 0px !important; */
+	-fx-min-width: 0px !important; 
 }
+
 
 
 
@@ -280,21 +412,22 @@
 }
 
 .bg-side .button{
-	-fx-specialized-accent: -fx-accent;
+	-fx-accent: -fx-accent;
 	-fx-padding: 14px 15px 14px 22.5px;
     -fx-graphic-text-gap: 23.5px;
 	-fx-border-width: 0px 0px 0px 4px;
 	-fx-border-color: transparent;
-	-fx-text-fill: -fx-specialized-accent;
+	-fx-text-fill: -fx-accent;
 }
 
 .bg-side .button SVGPath{
-	-fx-fill: -fx-specialized-accent;
+	-fx-fill: -fx-accent;
 }
 
 .bg-side .button.selected{
-	-fx-border-color: -fx-specialized-accent;
+	-fx-border-color: -fx-accent;
 	-fx-font-family: "Noto Sans JP Bold";
+	-fx-background-color: -fx-accent-10;
 }
 
 
@@ -307,7 +440,6 @@
 
 .bg-main .main{
   -fx-spacing: 20px;
-  -fx-specialized-accent: -fx-accent;
 }
 
 
@@ -316,19 +448,20 @@
 }
 
 .bg-main .tab-box.title{
-	-fx-padding: 30px 50px 15px;
+	-fx-padding: 30px 50px 15px 50px;
 	-fx-background-color: -fx-base;
 }
 
 .bg-main .board-title{
 	-fx-border-width: 0px;
 	-fx-pref-width: 1000px;
-	-fx-text-fill: -fx-specialized-accent;
+	-fx-text-fill: -fx-accent;
 }
 
 .bg-main .board-note{
 	-fx-padding: -2px 0px 0px 0px;
 	-fx-border-width: 0px;
+	-fx-text-fill: -fx-dark-text-color;
 }
 
 .bg-main #date-wrapper{
@@ -365,7 +498,7 @@
 
 /** Card Spacing **/
 .bg-main .column VBox{
-	-fx-spacing: 16px;
+	-fx-spacing: 8px;
 }
 
 /** Column Title Label **/
@@ -379,7 +512,7 @@
 .bg-main .column .title .total{
 	-fx-min-width: 30px;
 	-fx-max-width: 500px;
-	-fx-background-color: derive(-fx-specialized-accent, 30%);
+	-fx-background-color: derive(-fx-accent, 30%);
 	-fx-text-fill: -fx-light-text-color;
 	-fx-background-radius: 55px;
 	-fx-font-size: 13px;
@@ -401,7 +534,7 @@
     -fx-margin: 10px;
     -fx-border-width: 0px;
     -fx-border-color: transparent;
-    -fx-background-color: -fx-specialized-accent;
+    -fx-background-color: -fx-accent;
     -fx-text-fill: -fx-light-text-color;
     -fx-fill: -fx-light-text-color;
     -fx-graphic-text-gap: 12px;
@@ -409,7 +542,8 @@
     -fx-effect: dropshadow(gaussian, #00000026, 10, 0, 1, 2); /** 15% **/
 }
 
-.bg-main .column .scroll-pane .button SVGPath{
+.bg-main .column .scroll-pane .button *{
+	-fx-text-fill: -fx-light-text-color;
     -fx-fill: -fx-light-text-color;
 }
 
@@ -417,8 +551,12 @@
     -fx-effect: dropshadow(gaussian, #00000033, 10, 0, 1, 2); /** 20% **/
 }
 
+.bg-main .column .scroll-pane .button.selected{
+	-fx-effect: dropshadow(gaussian, #00000066, 10, 0, 1, 2); /** 40% **/
+}
+
 .bg-main .main .column .button:focused{
-	-fx-background-color: derive(-fx-specialized-accent, -16%);
+	-fx-background-color: derive(-fx-accent, -16%);
 }
 
 .bg-main .search{
@@ -432,13 +570,54 @@
 
 /** Detail Tab **/
 .bg-detail{
-	-fx-max-width: 300px;
+	-fx-background-color: -fx-side-background;
+	-fx-max-width: 280px;
+	-fx-min-width: 280px;
+	-fx-pref-width: 280px;
+	-fx-alignment: TOP_CENTER;
+	-fx-padding: 35px 20px;
 }
 
-.check-box{
-	-fx-background-color: #fff;
-	-fx-text-fill: #fff;
+.bg-detail VBox{
+	-fx-spacing: 10px;
 }
+
+.bg-detail .button, .bg-detail .date-picker{
+	-fx-pref-width: 240px;
+	-fx-alignment: LEFT_CENTER;
+	-fx-padding: 12px 14px;
+	-fx-border-width: 1.5px;
+	-fx-graphic-text-gap: 10px;
+	-fx-border-color: -fx-accent-40;
+}
+
+.bg-detail .button, .bg-detail .button *{
+	-fx-text-fill: -fx-accent-50;
+	-fx-fill: -fx-accent-50;
+}
+
+.bg-detail .button.filled, .bg-detail .button.filled *, .bg-detail .note.filled, .bg-detail .date-picker.filled{
+	-fx-text-fill: -fx-accent;
+	-fx-fill: -fx-accent;
+	-fx-border-color: -fx-accent;
+}
+
+.bg-detail .text-area{
+	-fx-text-fill: -fx-accent;
+	-fx-border-width: 0px;
+	-fx-pref-row-count: 4;
+	-fx-padding: -4px;
+}
+
+.bg-detail .text-area .scroll-pane{
+	-fx-padding: 4px;
+}
+
+.bg-detail .note{
+	-fx-padding: 12px 14px;
+	-fx-border-width: 1.5px;
+}
+
 
 /** Settings **/
 
