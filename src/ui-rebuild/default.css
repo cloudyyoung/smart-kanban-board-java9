@@ -759,3 +759,17 @@
 	-fx-font-size: 11px;
 	-fx-text-fill: #b30000;
 }
+
+
+/** Cover **/
+.bg-cover{
+	-fx-background-color: -fx-base;
+}
+
+.bg-cover .icon{
+	-fx-scale: 4.5;
+	-fx-scale-x: -fx-scale;
+	-fx-scale-y: -fx-scale;
+	-fx-fill: -fx-accent;
+	-fx-effect: dropshadow(gaussian, #00000080, 12, 0, 0, 0);
+}

@@ -30,10 +30,6 @@
 	-fx-border-color: -fx-accent-60;
 }
 
-.bg-main .tab-box.title{
-	-fx-effect: none;
-}
-
 .bg-main .column .scroll-pane .button{
     -fx-text-fill: -fx-dark-text-color;
     -fx-fill: -fx-dark-text-color;
