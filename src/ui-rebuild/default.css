@@ -106,6 +106,8 @@
   -fx-background-color: transparent;
   -fx-text-fill: -fx-dark-text-color;
   -fx-fill: -fx-dark-text-color;
+  -fx-border-width: 2px;
+  -fx-border-color: transparent;
 }
 
 .button *{
@@ -116,6 +118,7 @@
 .button.primary{
   -fx-background-color: -fx-accent;
   -fx-text-fill: -fx-light-text-color;
+  -fx-alignment: CENTER;
 }
 
 .button.primary *{
@@ -127,8 +130,13 @@
   -fx-background-color: -fx-focus-color;
 }
 
+.button:hover, .button:focused{
+  -fx-border-color: -fx-focus-color;
+}
+
 .button.primary:hover, .button.primary:focused{
 	-fx-background-color: -fx-accent-90;
+    -fx-border-color: -fx-accent-90;
 }
 
 
@@ -158,6 +166,15 @@
 .text-area .scroll-pane{
 	-fx-hbar-policy:never;
     -fx-vbar-policy:never; 
+}
+
+.tool-bar{
+	-fx-background-color: transparent;
+	-fx-border-width: 0px;
+}
+
+.combo-box .list-cell{
+	-fx-padding: 0px;
 }
 
 /** Scroll Bar Global Re-Styling **/
@@ -412,7 +429,6 @@
 }
 
 .bg-side .button{
-	-fx-accent: -fx-accent;
 	-fx-padding: 14px 15px 14px 22.5px;
     -fx-graphic-text-gap: 23.5px;
 	-fx-border-width: 0px 0px 0px 4px;
@@ -646,6 +662,10 @@
 	-fx-max-width: 500px;
 }
 
+.bg-settings .combo-box{
+	-fx-padding: 0px 10px;
+}
+
 .bg-settings .settings-wrapper{
 	-fx-alignment: CENTER;
 	-fx-padding: 20px 10px 40px 10px;
@@ -681,4 +701,57 @@
 .bg-settings .account .button{
 	-fx-min-width: 80px;
 	-fx-min-height: 35px;
+	-fx-padding: 0px;
+}
+
+
+/** Sign In **/
+.bg-signin{
+	-fx-background-color: -fx-main-background;
+}
+
+.bg-signin .signin-wrapper{
+	-fx-alignment: CENTER;
+	-fx-padding: 30px 10px 0px 10px;
+}
+
+.bg-signin .signin-wrapper VBox{
+	-fx-min-width: 350px;
+	-fx-max-width: 350px;
+	-fx-spacing: 0px;
+}
+
+.bg-signin .text-field, .bg-signin .combo-box{
+	-fx-pref-width: 350px;
+	-fx-padding: 6px 0px;
+}
+
+.bg-signin .signin-wrapper VBox{
+	-fx-spacing: 0px;
+}
+
+.bg-signin .signin-wrapper Pane .label{
+	-fx-max-width: 350px;
+}
+
+.bg-signin .tool-bar{
+	-fx-background-color: transparent;
+	-fx-border-width: 0px;
+	-fx-border-color: transparent;
+	/*-fx-padding: 20px 0px 0px 0px;*/
+	-fx-padding: 0px;
+}
+
+.bg-signin .tool-bar .button, .bg-signin .tool-bar .combo-bx{
+	-fx-content-display: RIGHT;
+}
+
+.bg-signin .username{
+	-fx-font-family: "Nexa Bold";
+}
+
+.bg-signin .error{
+	-fx-padding: 4px 0px;
+	-fx-font-size: 11px;
+	-fx-text-fill: #b30000;
 }

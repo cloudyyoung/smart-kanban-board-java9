@@ -1,13 +1,15 @@
 .root{
+
+	/** #1c1c1c Dark Black **/
 	-fx-base: #1c1c1c;
-	-fx-accent: #ebebeb;
+	-fx-accent: #fff;
 
 	-fx-dark-text-color: #fff;
     -fx-mid-text-color: #333;
     -fx-light-text-color: #1c1c1c;
 
-	-fx-default-button: #ebebeb;
-	-fx-focus-color: #ebebeb12; /** 7% **/
+	-fx-default-button: #fff;
+	-fx-focus-color: #ffffff12; /** 7% **/
 
 	-fx-accent-90: #ffffffe6;
 	-fx-accent-80: #ffffffcc;
