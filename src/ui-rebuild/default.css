@@ -394,6 +394,10 @@
 	-fx-font-size: 12px;
 }
 
+.nexa-bold{
+	-fx-font-family: "Nexa Bold";
+}
+
 
 /** Side Menu Components **/
 /** Name your selector starting with .bg-side **/
@@ -602,7 +606,6 @@
 .bg-detail .button, .bg-detail .date-picker{
 	-fx-pref-width: 240px;
 	-fx-alignment: LEFT_CENTER;
-	-fx-padding: 12px 14px;
 	-fx-border-width: 1.5px;
 	-fx-graphic-text-gap: 10px;
 	-fx-border-color: -fx-accent-40;
@@ -631,8 +634,11 @@
 }
 
 .bg-detail .note{
-	-fx-padding: 12px 14px;
 	-fx-border-width: 1.5px;
+}
+
+.bg-detail .button, .bg-detail .date-picker, .bg-detail .note{
+	-fx-padding: 10px 14px;
 }
 
 
@@ -703,7 +709,7 @@
 }
 
 
-/** Sign In **/
+/** Sign In (& Sign Up) **/
 .bg-signin{
 	-fx-background-color: -fx-main-background;
 }
