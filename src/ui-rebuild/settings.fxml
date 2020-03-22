@@ -126,14 +126,13 @@
    <top>
       <HBox styleClass="title-wrapper">
          <children>
-            <Button mnemonicParsing="false" text="&lt;" />
-            <Label text="Settings">
+            <Button mnemonicParsing="false" text="Settings">
                <styleClass>
                   <String fx:value="h2" />
                   <String fx:value="bold" />
                   <String fx:value="title" />
                </styleClass>
-            </Label>
+            </Button>
          </children>
       </HBox>
    </top>

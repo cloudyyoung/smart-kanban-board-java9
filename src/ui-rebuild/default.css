@@ -413,7 +413,8 @@
 }
 
 .bg-side .username #username-label{
-	-fx-font-size: 14px;
+	-fx-font-size: 16px;
+	-fx-font-family: "Nexa Bold";
 }
 
 .bg-side *{
@@ -664,6 +665,8 @@
 
 .bg-settings .combo-box{
 	-fx-padding: 0px 10px;
+	-fx-min-width: 120px;
+	-fx-min-height: 35px;
 }
 
 .bg-settings .settings-wrapper{
@@ -678,11 +681,6 @@
 
 .bg-settings .settings VBox{
 	-fx-spacing: 10px;
-}
-
-.bg-settings .availability HBox .combo-box{
-	-fx-min-width: 120px;
-	-fx-min-height: 35px;
 }
 
 .bg-settings .theme .combo-box{
