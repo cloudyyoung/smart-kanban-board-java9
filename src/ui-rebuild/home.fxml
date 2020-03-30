@@ -496,12 +496,12 @@
                   <Region prefHeight="10.0" />
                   <Button mnemonicParsing="false" styleClass="a" text="Add to Today">
                      <graphic>
-                        <SVGPath id="icon" content="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                        <SVGPath id="icon" content="M 9 5 L 9 6 L 5 6 L 5 28 L 27 28 L 27 6 L 23 6 L 23 5 L 21 5 L 21 6 L 11 6 L 11 5 Z M 7 8 L 9 8 L 9 9 L 11 9 L 11 8 L 21 8 L 21 9 L 23 9 L 23 8 L 25 8 L 25 10 L 7 10 Z M 7 12 L 25 12 L 25 26 L 7 26 Z M 20.28125 14.28125 L 15 19.5625 L 12.71875 17.28125 L 11.28125 18.71875 L 14.28125 21.71875 L 15 22.40625 L 15.71875 21.71875 L 21.71875 15.71875 Z" />
                      </graphic>
                   </Button>
                   <Button mnemonicParsing="false" styleClass="a" text="Add due date">
                      <graphic>
-                        <SVGPath id="icon" content="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                        <SVGPath id="icon" content="M 9 4 L 9 5 L 5 5 L 5 15 L 7 15 L 7 11 L 25 11 L 25 25 L 7 25 L 7 21 L 5 21 L 5 27 L 27 27 L 27 5 L 23 5 L 23 4 L 21 4 L 21 5 L 11 5 L 11 4 Z M 7 7 L 9 7 L 9 8 L 11 8 L 11 7 L 21 7 L 21 8 L 23 8 L 23 7 L 25 7 L 25 9 L 7 9 Z M 11 14 L 11 17 L 4 17 L 4 19 L 11 19 L 11 22 L 16 18 Z" />
                      </graphic>
                   </Button>
                   <DatePicker editable="false" promptText="Add due date" styleClass="hide" />
