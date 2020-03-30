@@ -20,4 +20,3 @@ public class Event extends Node {
     System.out.print("CloudyDD");
   }
 }
-
