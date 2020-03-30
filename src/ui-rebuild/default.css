@@ -34,6 +34,8 @@
 }
 
 
+
+
 /** ROOT + REBASE **/
 /** Best practices for multiple themes? Override variables here!  **/
 .root{
@@ -79,10 +81,11 @@
 .tooltip{
 	-fx-background-color: -fx-accent !important;
 	-fx-text-fill: -fx-light-text-color !important;
+	-fx-fill: -fx-light-text-color !important;
 	-fx-font-size: 10px !important;
 	-fx-border-radius: 0px !important;
 	-fx-background-radius: 0px !important;
-	-fx-padding: 5px !important;
+	-fx-padding: 4px 5px !important;
 	-fx-font-family: "Noto Sans JP Regular" !important;
 	-fx-effect: none;
 }
@@ -434,15 +437,28 @@
 }
 
 .bg-side .button{
-	-fx-padding: 14px 15px 14px 22.5px;
-    -fx-graphic-text-gap: 23.5px;
+	-fx-padding: 12px 18px 12px 18px;
+    -fx-graphic-text-gap: 18px;
 	-fx-border-width: 0px 0px 0px 4px;
 	-fx-border-color: transparent;
 	-fx-text-fill: -fx-accent;
 }
 
+.bg-side .operation-list .button{
+	-fx-max-height: 48px;
+	-fx-min-height: 47px;
+}
+
+.bg-side .operation-list .button HBox{
+	-fx-max-width: 26px;
+	-fx-min-width: 26px;
+	-fx-alignment: CENTER;
+}
+
 .bg-side .button SVGPath{
 	-fx-fill: -fx-accent;
+	-fx-scale-x: 0.8;
+	-fx-scale-y: 0.8;
 }
 
 .bg-side .button.selected{
@@ -471,6 +487,7 @@
 .bg-main .tab-box.title{
 	-fx-padding: 30px 50px 15px 50px;
 	-fx-background-color: -fx-base;
+	-fx-spacing: 10px;
 }
 
 .bg-main .board-title{
@@ -485,15 +502,18 @@
 	-fx-text-fill: -fx-dark-text-color;
 }
 
-.bg-main #date-wrapper{
-	-fx-padding: 12px 0px 12px 30px;
-}
-
 .bg-main .combo-box{
 	-fx-min-width: 150px;
 	-fx-padding: 8px 8px;
 	-fx-border-radius: 0px;
 	-fx-border-width: 0px;
+}
+
+.bg-main .tab-box.title .operation-list .button{
+	-fx-min-width: 46px;
+	-fx-max-width: 46px;
+	-fx-min-height: 46px;
+	-fx-max-height: 46px;
 }
 
 .bg-main .columns{
@@ -522,6 +542,10 @@
 	-fx-spacing: 8px;
 }
 
+.bg-main .column .title{
+	-fx-spacing: 4px;
+}
+
 /** Column Title Label **/
 .bg-main .column .title .text-field{
 	-fx-font-size: 15px;
@@ -541,42 +565,58 @@
 	-fx-alignment: CENTER;
 }
 
+.bg-main .column .title .button{
+	-fx-padding: 0px;
+	-fx-border-width: 0px;
+}
+
+.bg-main .column .title .button SVGPath{
+	-fx-scale-x: 0.7;
+	-fx-scale-y: 0.7;
+}
+
 .bg-main .column .scroll-pane{
 	-fx-padding: 4px 0px 0px 0px;
 }
 
-.bg-main .column .scroll-pane .button{
+.bg-main .column .scroll-pane.event-list .button{
 	-fx-alignment: CENTER_LEFT;
 	-fx-max-width: 246px;
 	-fx-pref-width: 246px;
     -fx-border-radius: 4px;
 	-fx-background-radius: 4px;
-    -fx-padding: 14px 18px;
+    -fx-padding: 14px 20px 14px 12px;
     -fx-margin: 10px;
     -fx-border-width: 0px;
     -fx-border-color: transparent;
     -fx-background-color: -fx-accent;
     -fx-text-fill: -fx-light-text-color;
     -fx-fill: -fx-light-text-color;
-    -fx-graphic-text-gap: 12px;
-    -fx-content-display: right;
+    -fx-graphic-text-gap: 10px;
+    -fx-content-display: LEFT;
     -fx-effect: dropshadow(gaussian, #00000026, 10, 0, 1, 2); /** 15% **/
 }
 
-.bg-main .column .scroll-pane .button *{
+.bg-main .column .scroll-pane.event-list .button *{
 	-fx-text-fill: -fx-light-text-color;
     -fx-fill: -fx-light-text-color;
 }
 
-.bg-main .column .scroll-pane .button:hover, .bg-main .column .scroll-pane .button:focused{
+.bg-main .column .scroll-pane.event-list .button SVGPath{
+	-fx-scale-x: 0.75;
+	-fx-scale-y: 0.75;
+}
+
+
+.bg-main .column .scroll-pane.event-list .button:hover, .bg-main .column .scroll-pane.event-list .button:focused{
     -fx-effect: dropshadow(gaussian, #00000033, 10, 0, 1, 2); /** 20% **/
 }
 
-.bg-main .column .scroll-pane .button.selected{
+.bg-main .column .scroll-pane.event-list .button.selected{
 	-fx-effect: dropshadow(gaussian, #00000066, 10, 0, 1, 2); /** 40% **/
 }
 
-.bg-main .main .column .button:focused{
+.bg-main .column .scroll-pane.event-list .button:focused{
 	-fx-background-color: derive(-fx-accent, -16%);
 }
 
@@ -773,3 +813,5 @@
 	-fx-fill: -fx-accent;
 	-fx-effect: dropshadow(gaussian, #00000080, 12, 0, 0, 0);
 }
+
+/** Icons **/
