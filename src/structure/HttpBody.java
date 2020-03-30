@@ -283,7 +283,7 @@ public final class HttpBody extends HashMap<Object, Object> {
   public Double getDouble(Object key) {
     return this.parseDouble(this.get(key));
   }
-
+  
   /**
    * Returns the value of specified key in {@code Boolean} type.
    *

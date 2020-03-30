@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Event",
+            "request": "launch",
+            "mainClass": "structure.Event",
+            "projectName": "Smart-Kanban-Board"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Node",
             "request": "launch",
             "mainClass": "structure.Node",
