@@ -656,6 +656,12 @@
 	-fx-fill: -fx-accent-50;
 }
 
+.bg-detail .button SVGPath{
+	-fx-scale-x: 0.8;
+	-fx-scale-y: 0.8;
+	-fx-translate-x: -3px;
+}
+
 .bg-detail .button.filled, .bg-detail .button.filled *, .bg-detail .note.filled, .bg-detail .date-picker.filled{
 	-fx-text-fill: -fx-accent;
 	-fx-fill: -fx-accent;
@@ -683,7 +689,6 @@
 
 
 /** Settings **/
-
 .bg-settings{
 	-fx-background-color: -fx-main-background;
 }
@@ -813,5 +818,3 @@
 	-fx-fill: -fx-accent;
 	-fx-effect: dropshadow(gaussian, #00000080, 12, 0, 0, 0);
 }
-
-/** Icons **/
