@@ -267,10 +267,10 @@ public class User {
     return res;
   }
 
-  public static Result authentication(String username, String password){
+  public static Result authentication(String username, String password) {
     User user = new User();
     Result res = user.authenticate(username, password);
-    if(res.isSucceeded()){
+    if (res.isSucceeded()) {
       User.current = user;
     }
     return res;

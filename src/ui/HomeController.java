@@ -12,52 +12,35 @@ import javafx.scene.shape.Circle;
 
 public class HomeController {
 
-    @FXML
-    private Button sideProfile;
+  @FXML private Button sideProfile;
 
-    @FXML
-    private Circle profileAvatar;
+  @FXML private Circle profileAvatar;
 
-    @FXML
-    private Label profileUsername;
+  @FXML private Label profileUsername;
 
-    @FXML
-    private Button sideSearch;
+  @FXML private Button sideSearch;
 
-    @FXML
-    private Button sideToday;
+  @FXML private Button sideToday;
 
-    @FXML
-    private Tab boardPane;
+  @FXML private Tab boardPane;
 
-    @FXML
-    private TextField boardTitle;
+  @FXML private TextField boardTitle;
 
-    @FXML
-    private TextField boardNote;
+  @FXML private TextField boardNote;
 
-    @FXML
-    private Button boardAddColumn;
+  @FXML private Button boardAddColumn;
 
-    @FXML
-    private HBox columnPane;
+  @FXML private HBox columnPane;
 
-    @FXML
-    private ScrollPane detailPane;
+  @FXML private ScrollPane detailPane;
 
-    @FXML
-    private TextArea detailTitle;
+  @FXML private TextArea detailTitle;
 
-    @FXML
-    private Button detailAdd2Today;
+  @FXML private Button detailAdd2Today;
 
-    @FXML
-    private Button detailDueDate;
+  @FXML private Button detailDueDate;
 
-    @FXML
-    private Button detailImportance;
+  @FXML private Button detailImportance;
 
-    @FXML
-    private TextField detailNote;
-
+  @FXML private TextField detailNote;
 }

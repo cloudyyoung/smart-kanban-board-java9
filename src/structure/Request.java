@@ -41,7 +41,7 @@ public abstract class Request {
     return this.succeeded;
   }
 
-  public boolean isFailed(){
+  public boolean isFailed() {
     return this.failed;
   }
 
@@ -65,7 +65,7 @@ public abstract class Request {
     this.excepted = is;
   }
 
-  protected void setFailed(boolean is){
+  protected void setFailed(boolean is) {
     this.failed = is;
   }
 

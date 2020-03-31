@@ -84,7 +84,7 @@ public final class Result {
         this.setExcepted(true);
         this.exceptionList.add(each);
         changed = true;
-      }else if (each.isFailed()) {
+      } else if (each.isFailed()) {
         this.setFailed(true);
         this.failList.add(each);
         changed = true;
@@ -124,7 +124,7 @@ public final class Result {
     return this.succeeded;
   }
 
-  public boolean isFailed(){
+  public boolean isFailed() {
     return this.failed;
   }
 
@@ -149,7 +149,7 @@ public final class Result {
     this.succeeded = is;
   }
 
-  private void setFailed(boolean is){
+  private void setFailed(boolean is) {
     this.failed = is;
   }
 
