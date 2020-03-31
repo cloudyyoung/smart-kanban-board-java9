@@ -37,7 +37,6 @@
                                           <Label text="Nice to meet you!">
                                              <styleClass>
                                                 <String fx:value="h3" />
-                                                <String fx:value="bold" />
                                              </styleClass>
                                           </Label>
                                        </children>
@@ -61,7 +60,6 @@
                                              </graphic>
                                              <styleClass>
                                                 <String fx:value="h5" />
-                                                <String fx:value="medium" />
                                                 <String fx:value="primary" />
                                              </styleClass>
                                           </Button>
@@ -88,7 +86,6 @@
                                           <Label text="Then,">
                                              <styleClass>
                                                 <String fx:value="h3" />
-                                                <String fx:value="bold" />
                                              </styleClass>
                                           </Label>
                                        </children>
@@ -105,7 +102,6 @@
                                           <Button defaultButton="true" mnemonicParsing="false" text="Back">
                                              <styleClass>
                                                 <String fx:value="h5" />
-                                                <String fx:value="medium" />
                                              </styleClass>
                                           </Button>
                                           <Button defaultButton="true" mnemonicParsing="false" text="Next">
@@ -118,7 +114,6 @@
                                              </graphic>
                                              <styleClass>
                                                 <String fx:value="h5" />
-                                                <String fx:value="medium" />
                                                 <String fx:value="primary" />
                                              </styleClass>
                                           </Button>
@@ -145,7 +140,6 @@
                                           <Label text="In case you forget,">
                                              <styleClass>
                                                 <String fx:value="h3" />
-                                                <String fx:value="bold" />
                                              </styleClass>
                                           </Label>
                                        </children>
@@ -162,7 +156,6 @@
                                           <Button defaultButton="true" mnemonicParsing="false" text="Back">
                                              <styleClass>
                                                 <String fx:value="h5" />
-                                                <String fx:value="medium" />
                                              </styleClass>
                                           </Button>
                                           <Button defaultButton="true" mnemonicParsing="false" text="Next">
@@ -175,7 +168,6 @@
                                              </graphic>
                                              <styleClass>
                                                 <String fx:value="h5" />
-                                                <String fx:value="medium" />
                                                 <String fx:value="primary" />
                                              </styleClass>
                                           </Button>
@@ -202,7 +194,6 @@
                                           <Label text="This is your questionThis is your questionThis is your questionThis is your questionThis is your question" wrapText="true">
                                              <styleClass>
                                                 <String fx:value="h3" />
-                                                <String fx:value="bold" />
                                              </styleClass>
                                           </Label>
                                        </children>
@@ -219,7 +210,6 @@
                                           <Button defaultButton="true" mnemonicParsing="false" text="Back">
                                              <styleClass>
                                                 <String fx:value="h5" />
-                                                <String fx:value="medium" />
                                              </styleClass>
                                           </Button>
                                           <Button defaultButton="true" mnemonicParsing="false" text="Sign Up">
@@ -232,7 +222,6 @@
                                              </graphic>
                                              <styleClass>
                                                 <String fx:value="h5" />
-                                                <String fx:value="medium" />
                                                 <String fx:value="primary" />
                                              </styleClass>
                                           </Button>
@@ -286,7 +275,6 @@
                                              </graphic>
                                              <styleClass>
                                                 <String fx:value="h5" />
-                                                <String fx:value="medium" />
                                                 <String fx:value="primary" />
                                              </styleClass>
                                           </Button>

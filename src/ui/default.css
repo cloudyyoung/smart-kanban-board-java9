@@ -768,6 +768,7 @@
 .bg-signin .text-field, .bg-signin .combo-box{
 	-fx-pref-width: 350px;
 	-fx-padding: 6px 0px;
+	-fx-font-family: "Nexa Bold";
 }
 
 .bg-signin .signin-wrapper VBox{
@@ -776,6 +777,7 @@
 
 .bg-signin .signin-wrapper Pane .label{
 	-fx-max-width: 350px;
+	-fx-font-family: "Noto Sans JP Light";
 }
 
 .bg-signin .tool-bar{
@@ -786,7 +788,7 @@
 	-fx-padding: 0px;
 }
 
-.bg-signin .tool-bar .button, .bg-signin .tool-bar .combo-bx{
+.bg-signin .tool-bar .button, .bg-signin .tool-bar .combo-box{
 	-fx-content-display: RIGHT;
 }
 
@@ -811,5 +813,42 @@
 	-fx-scale-x: -fx-scale;
 	-fx-scale-y: -fx-scale;
 	-fx-fill: -fx-accent;
-	-fx-effect: dropshadow(gaussian, #00000080, 12, 0, 0, 0);
+	-fx-effect: dropshadow(gaussian, -fx-accent-70, 12, 0, 0, 0);
+}
+
+/** Welcome **/
+
+.bg-welcome{
+	-fx-background-color: -fx-base;
+}
+
+.bg-welcome .welcome-wrapper{
+	-fx-alignment: CENTER;
+	-fx-padding: 30px 10px 0px 10px;
+}
+
+.bg-welcome .welcome-wrapper VBox{
+	-fx-alignment: CENTER;
+	-fx-min-width: 250px;
+	-fx-max-width: 250px;
+	-fx-spacing: 0px;
+}
+
+.bg-welcome .welcome-wrapper HBox.logo{
+	-fx-alignment: CENTER;
+	-fx-spacing: 4px;
+	-fx-font-family: "Nexa Bold";
+	-fx-text-fill: -fx-base;
+	-fx-scale-x: 2.4;
+	-fx-scale-y: 2.4;
+	-fx-padding: 0px 8px 30px 0px;
+}
+
+.bg-welcome .welcome-wrapper .operation{
+	-fx-spacing: 8px;
+}
+
+.bg-welcome .welcome-wrapper .operation .button{
+	-fx-pref-width: 200px;
+	-fx-padding: 10px;
 }

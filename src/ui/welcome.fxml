@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" styleClass="bg-welcome" vbarPolicy="NEVER" BorderPane.alignment="CENTER">
+         <content>
+            <HBox prefWidth="677.0" styleClass="welcome-wrapper">
+               <children>
+                  <VBox>
+                     <children>
+                        <HBox id="sk-logo" alignment="CENTER" styleClass="logo">
+                           <children>
+                              <SVGPath id="icon" content="M11.48,10.47L9.69 14.61 0 0 9.38 10.82 11.48 10.47z" fill="#2f2e2e" HBox.hgrow="ALWAYS" />
+                              <Label id="nexab" text="SmartKanban" textFill="#2f2e2e" HBox.hgrow="ALWAYS">
+                                 <font>
+                                    <Font name="NexaBold" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <VBox styleClass="operation">
+                           <children>
+                              <Button mnemonicParsing="false" styleClass="primary" text="Sign In" />
+                              <Button mnemonicParsing="false" styleClass="primary" text="Sign Up" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>
