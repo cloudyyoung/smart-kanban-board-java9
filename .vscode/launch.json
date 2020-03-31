@@ -6,6 +6,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - UI",
+            "request": "launch",
+            "mainClass": "ui.UI",
+            "projectName": "Smart-Kanban-Board"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Kanban",
+            "request": "launch",
+            "mainClass": "structure.Kanban",
+            "projectName": "Smart-Kanban-Board"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Event",
+            "request": "launch",
+            "mainClass": "structure.Event",
+            "projectName": "Smart-Kanban-Board"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Node",
             "request": "launch",
             "mainClass": "structure.Node",

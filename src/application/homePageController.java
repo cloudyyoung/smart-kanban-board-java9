@@ -370,7 +370,7 @@ public class homePageController {
 
     usernameLabel.setText(loginPageController.getUsername());
 
-    String str = (Time.monthName(Integer.parseInt(Time.currentMonth()))).toLowerCase();
+    String str = (Time.monthName(Time.currentMonth())).toLowerCase();
     String cap = str.substring(0, 1).toUpperCase() + str.substring(1);
 
     todaysDate.setText(cap + " " + Time.currentDay() + ", " + Time.currentYear());

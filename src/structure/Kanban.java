@@ -20,6 +20,26 @@ public class Kanban extends Node {
    */
   public Kanban(HttpBody obj) {
     super(obj);
+    // HttpBody board = new HttpBody();
+
+    Board board =
+        new Board(
+            1,
+            "Today",
+            Time.monthName(Time.currentMonth())
+                + " "
+                + Time.currentDay()
+                + ", "
+                + Time.currentYear(),
+            "#fd79a8");
+
+    Column todo = new Column(2, "To Do", "");
+    Column inprogress = new Column(3, "In Progress", "");
+    Column done = new Column(4, "Done", "");
+    board.addNode(todo);
+    board.addNode(inprogress);
+    board.addNode(done);
+    this.addNode(board);
   }
 
   /** Default constructor of {@code Kanban}. */
@@ -56,5 +76,20 @@ public class Kanban extends Node {
       res.add(req2);
     }
     return res;
+  }
+
+  /*
+   * Today
+   */
+  public static void generateToday() {}
+
+  public static void main(String[] args) {
+    User user = new User();
+    user.authenticate("cloudy", "cloudy");
+    System.out.println(user);
+
+    Kanban.checkout();
+
+    System.out.println(Kanban.current);
   }
 }

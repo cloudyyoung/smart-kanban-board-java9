@@ -17,4 +17,15 @@ public class Column extends Node {
   public Column(HttpBody obj) {
     super(obj);
   }
+
+  /**
+   * Constructor of {@code Column}, provide title, note and color.
+   *
+   * @param title The title in {@code String}
+   * @param note The note in {@code String}
+   * @param id THe id in {@code String}
+   */
+  public Column(int id, String title, String note) {
+    super(id, title, note);
+  }
 }

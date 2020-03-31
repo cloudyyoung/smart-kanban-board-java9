@@ -1,0 +1,40 @@
+.root{
+
+	/** #1c1c1c Dark Black **/
+	-fx-base: #1c1c1c;
+	-fx-accent: #fff;
+
+	-fx-dark-text-color: #fff;
+    -fx-mid-text-color: #333;
+    -fx-light-text-color: #1c1c1c;
+
+	-fx-default-button: #fff;
+	-fx-focus-color: #ffffff12; /** 7% **/
+
+	-fx-accent-90: #ffffffe6;
+	-fx-accent-80: #ffffffcc;
+	-fx-accent-70: #ffffffb3;
+	-fx-accent-60: #ffffff99;
+	-fx-accent-50: #ffffff80;
+	-fx-accent-40: #ffffff66;
+	-fx-accent-30: #ffffff4d;
+	-fx-accent-20: #ffffff33;
+	-fx-accent-10: #ffffff1a;
+
+	-fx-side-background: #1c1c1c;
+	-fx-main-background: #1c1c1c;
+}
+
+.bg-side{
+	-fx-border-width: 0px 1px 0px 0px;
+	-fx-border-color: -fx-accent-60;
+}
+
+.bg-main .column .scroll-pane .button{
+    -fx-text-fill: -fx-dark-text-color;
+    -fx-fill: -fx-dark-text-color;
+}
+
+.bg-main .column .scroll-pane .button SVGPath{
+    -fx-fill: -fx-dark-text-color;
+}

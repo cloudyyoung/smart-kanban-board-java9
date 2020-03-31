@@ -267,6 +267,15 @@ public class User {
     return res;
   }
 
+  public static Result authentication(String username, String password) {
+    User user = new User();
+    Result res = user.authenticate(username, password);
+    if (res.isSucceeded()) {
+      User.current = user;
+    }
+    return res;
+  }
+
   public static void main(String[] args) {
     User user = new User();
     user.authenticate("cloudy", "cloudy");
