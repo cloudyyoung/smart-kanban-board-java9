@@ -139,5 +139,4 @@ public class HomeController {
     boardTitle.setDisable(id < 100);
     boardNote.setDisable(id < 100);
   }
-
 }

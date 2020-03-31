@@ -3,8 +3,7 @@ package structure;
 /**
  * The {@code Kanban} class, extends from {@code Node}.
  *
- * <p>
- * The instance should contains {@code Board} object as children nodes.
+ * <p>The instance should contains {@code Board} object as children nodes.
  *
  * @since 1.0
  * @version 2.1
@@ -23,7 +22,16 @@ public class Kanban extends Node {
     super(obj);
     // HttpBody board = new HttpBody();
 
-    Board board = new Board(1, "Today", Time.monthName(Time.currentMonth()) + " " + Time.currentDay() + ", " + Time.currentYear(), "#fd79a8");
+    Board board =
+        new Board(
+            1,
+            "Today",
+            Time.monthName(Time.currentMonth())
+                + " "
+                + Time.currentDay()
+                + ", "
+                + Time.currentYear(),
+            "#fd79a8");
 
     Column todo = new Column(2, "To Do", "Plan ur days");
     Column inprogress = new Column(3, "In Progress", "Focus");
