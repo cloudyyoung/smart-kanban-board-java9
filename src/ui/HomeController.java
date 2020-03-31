@@ -26,11 +26,9 @@ public class HomeController {
 
   @FXML private Button sideToday;
 
-  @FXML
-  private VBox boardList;
-  
-  @FXML
-  private TabPane tabPane;
+  @FXML private VBox boardList;
+
+  @FXML private TabPane tabPane;
 
   @FXML private VBox boardPane;
 
@@ -99,18 +97,19 @@ public class HomeController {
     for (Node each : sideButtons) {
       System.out.println(each.getId());
       Button btn = (Button) each;
-      btn.setOnAction(event -> {
-        for (Node eachBtn : sideButtons) {
-          eachBtn.getStyleClass().remove("selected");
-        }
-        Node current = ((Node) event.getSource());
-        current.getStyleClass().add("selected");
-        if(current.equals(sideSearch)){
-          tabPane.getSelectionModel().select(1);
-        }else{
-          sideSelectDisplay(current);
-        }
-      });
+      btn.setOnAction(
+          event -> {
+            for (Node eachBtn : sideButtons) {
+              eachBtn.getStyleClass().remove("selected");
+            }
+            Node current = ((Node) event.getSource());
+            current.getStyleClass().add("selected");
+            if (current.equals(sideSearch)) {
+              tabPane.getSelectionModel().select(1);
+            } else {
+              sideSelectDisplay(current);
+            }
+          });
     }
 
     sidePane.requestFocus();
