@@ -23,9 +23,8 @@ public class Event extends Node {
   Long duration;
   // Duration store in timeStamp form (millissecond)
 
-  public Event(HttpBody obj, String eventName, Long dueDate, Long duration, int importanceLevel) {
+  public Event(HttpBody obj, Long dueDate, Long duration, int importanceLevel) {
     super(obj);
-    this.eventName = eventName;
     this.duration = duration;
     this.dueDate = dueDate;
     this.importanceLevel = importanceLevel;

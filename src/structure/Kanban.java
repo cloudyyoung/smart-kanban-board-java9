@@ -24,9 +24,9 @@ public class Kanban extends Node {
 
     Board board = new Board(1, "Today", "Everyday todo lists111", "#fd79a8");
 
-    Column todo = new Column(2, "Today", "Everyday todo lists");
-    Column inprogress = new Column(3, "Inprogress", "Everyday todo lists");
-    Column done = new Column(4, "Done", "Everyday todo lists");
+    Column todo = new Column(2, "To Do", "Plan ur days");
+    Column inprogress = new Column(3, "In Progress", "Focus");
+    Column done = new Column(4, "Done", "Bomb~");
     board.addNode(todo);
     board.addNode(inprogress);
     board.addNode(done);
@@ -69,20 +69,19 @@ public class Kanban extends Node {
     return res;
   }
 
-  // public static void main(String[] args) {
-  //   Kanban kb = new Kanban();
-  //   HttpBody hb = kb.today.getChildrenNodes();
-  //   System.out.print(hb);
-  //   Collection v = hb.values();
-  //   System.out.print(v);
-  //   v.forEach(i -> {
-  //     System.out.print(i);
-  //   });
-  // }
+  /*
+  * Today
+  */
+  public static void generateToday() {
+
+
+
+
+  }
 
   public static void main(String[] args) {
     User user = new User();
-    user.authenticate("cloudy", "cloudy");
+    user.authenticate("test", "test");
     System.out.println(user);
 
     Kanban.checkout();
