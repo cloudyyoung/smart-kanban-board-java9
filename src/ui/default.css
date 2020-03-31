@@ -5,32 +5,27 @@
 @font-face {
   font-family: "Nexa";
   src: url("NexaBold.otf");
-  font-weight: bold;
 }
 
 @font-face {
   font-family: "Nexa";
   src: url("NexaLight.otf");
-  font-weight: lighter;
 }
 
 
 @font-face {
   font-family: "Noto Sans JP";
   src: url("NotoSansJP-Regular.otf");
-  font-weight: normal;
 }
 
 @font-face {
   font-family: "Noto Sans JP";
   src: url("NotoSansJP-Medium.otf");
-  font-weight: medium;
 }
 
 @font-face {
   font-family: "Noto Sans JP";
   src: url("NotoSansJP-Bold.otf");
-  font-weight: bold;
 }
 
 
@@ -154,7 +149,7 @@
 	-fx-border-color: -fx-accent-40;
 	-fx-border-radius: 0px;
 	-fx-background-radius: 0px;
-    -fx-alignment: left;
+    -fx-alignment: CENTER_LEFT;
 }
 
 .text-field:focused, .text-area:focused, .button:focused, .combo-box:focused, .date-picker:focused{
@@ -182,7 +177,7 @@
 
 /** Scroll Bar Global Re-Styling **/
 .scroll-pane, .scroll-pane .viewport {
-	-fx-background-color: default;
+	-fx-background-color: transparent;
 	-fx-border-width: 0px;
 }
 
@@ -645,7 +640,7 @@
 
 .bg-detail .button, .bg-detail .date-picker{
 	-fx-pref-width: 240px;
-	-fx-alignment: LEFT_CENTER;
+	-fx-alignment: CENTER_LEFT;
 	-fx-border-width: 1.5px;
 	-fx-graphic-text-gap: 10px;
 	-fx-border-color: -fx-accent-40;
