@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-<BorderPane prefHeight="680.0" prefWidth="1020.0" styleClass="bg-signin" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.SignInController">
+<BorderPane prefHeight="680.0" prefWidth="1020.0" styleClass="bg-signin" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.SignUpController">
    <center>
       <TabPane fx:id="tabPane" side="BOTTOM" BorderPane.alignment="CENTER">
          <BorderPane.margin>
