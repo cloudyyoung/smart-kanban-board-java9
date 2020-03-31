@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1020.0" styleClass="bg-settings" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="680.0" prefWidth="1020.0" styleClass="bg-settings" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <center>
       <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -112,7 +112,7 @@
                                     <String fx:value="bold" />
                                  </styleClass>
                               </Label>
-                              <Label styleClass="h5" text="&#169; 2020 Smart Kanban. All rights reserved" wrapText="true" />
+                              <Label styleClass="h5" text="© 2020 Smart Kanban. All rights reserved" wrapText="true" />
                               <Label styleClass="h5" text="Theodore Lewis, Benjamin Wood, Caleb Wannamaker, Yunfan Yang" wrapText="true" />
                            </children>
                         </VBox>

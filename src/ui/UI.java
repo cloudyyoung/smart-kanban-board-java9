@@ -9,6 +9,9 @@ import javafx.scene.layout.BorderPane;
 
 public class UI extends Application {
 
+  private Stage stage;
+  private Scene scene;
+
   // Main Method
   public static void main(String[] args) {
     ui(args);
@@ -20,19 +23,18 @@ public class UI extends Application {
 
   // Start Method
   @Override
-  public void start(Stage primaryStage) {
+  public void start(Stage stage) {
     try {
-      FXMLLoader loader = new FXMLLoader();
-      BorderPane root = (BorderPane) loader.load(getClass().getResource("welcome.fxml"));
-      Scene scene = new Scene(root, 960, 660);
-      scene.getStylesheets().add(getClass().getResource("default.css").toExternalForm());
+      this.scene = new Scene(FXMLLoader.load(getClass().getResource("welcome.fxml")), 1020, 680);
+      this.scene.getStylesheets().add(getClass().getResource("default.css").toExternalForm());
 
-      primaryStage.setResizable(true);
-      primaryStage.setScene(scene);
-      primaryStage.setTitle("Smart Kanban");
-      primaryStage.show();
-      primaryStage.setMinHeight(680);
-      primaryStage.setMinWidth(1020);
+      this.stage = stage;
+      this.stage.setResizable(true);
+      this.stage.setScene(this.scene);
+      this.stage.setTitle("Smart Kanban");
+      this.stage.show();
+      this.stage.setMinHeight(600);
+      this.stage.setMinWidth(700);
 
     } catch (Exception e) {
       e.printStackTrace();

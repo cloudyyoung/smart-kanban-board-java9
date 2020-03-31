@@ -229,6 +229,13 @@
     -fx-background-color: -fx-accent-60;
 }
 
+.tab-pane {
+    -fx-tab-max-height: 0 ;
+} 
+.tab-pane .tab-header-area {
+    visibility: hidden ;
+}
+
 
 /** Date Picker **/
 .date-picker .text-field{
@@ -845,7 +852,7 @@
 }
 
 .bg-welcome .welcome-wrapper .operation{
-	-fx-spacing: 8px;
+	-fx-spacing: 16px;
 }
 
 .bg-welcome .welcome-wrapper .operation .button{
@@ -861,4 +868,13 @@
 .bg-welcome .welcome-wrapper .operation .button HBox{
 	-fx-pref-width: 30px;
 	-fx-alignment: CENTER;
+}
+
+.bg-welcome .copyright{
+	-fx-alignment: CENTER;
+}
+
+.bg-welcome .copyright .label{
+	-fx-font-size: 12px;
+	-fx-padding: 10px;
 }

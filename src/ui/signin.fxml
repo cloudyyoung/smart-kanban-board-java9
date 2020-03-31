@@ -16,9 +16,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1020.0" styleClass="bg-signin" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="680.0" prefWidth="1020.0" styleClass="bg-signin" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.SignInController">
    <center>
-      <TabPane side="BOTTOM" BorderPane.alignment="CENTER">
+      <TabPane fx:id="tabPane" side="BOTTOM" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets />
          </BorderPane.margin>
@@ -42,14 +42,14 @@
                                     </VBox>
                                     <VBox>
                                        <children>
-                                          <TextField promptText="Please enter your username" styleClass="h3" />
-                                          <Label styleClass="error" text="This is error text. This is error text. This is error text. This is error text. This is error text. " wrapText="true" />
+                                          <TextField fx:id="inputUsername" promptText="Please enter your username" styleClass="h3" />
+                                          <Label fx:id="labelErrorUsername" styleClass="error" text="This is error text. This is error text. This is error text. This is error text. This is error text. " wrapText="true" />
                                        </children>
                                     </VBox>
                                     <ToolBar nodeOrientation="LEFT_TO_RIGHT" styleClass="operation">
                                        <items>
-                                          <Region prefWidth="268.0" />
-                                          <Button defaultButton="true" mnemonicParsing="false" text="Next">
+                                          <Region prefWidth="272.0" />
+                                          <Button id="buttonNextUsername" defaultButton="true" mnemonicParsing="false" onAction="#next" text="Next">
                                              <graphic>
                                                 <SVGPath content="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
                                                    <cursor>
@@ -60,6 +60,7 @@
                                              <styleClass>
                                                 <String fx:value="h5" />
                                                 <String fx:value="primary" />
+                                                <String fx:value="medium" />
                                              </styleClass>
                                           </Button>
                                        </items>
@@ -91,19 +92,19 @@
                                     </VBox>
                                     <VBox>
                                        <children>
-                                          <TextField promptText="Enter your password" styleClass="h3" />
-                                          <Label styleClass="error" text="This is error text. This is error text. This is error text. This is error text. This is error text. " wrapText="true" />
+                                          <TextField fx:id="inputPassword" promptText="Enter your password" styleClass="h3" />
+                                          <Label fx:id="labelErrorPassword" styleClass="error" text="This is error text. This is error text. This is error text. This is error text. This is error text. " wrapText="true" />
                                        </children>
                                     </VBox>
                                     <ToolBar nodeOrientation="LEFT_TO_RIGHT" styleClass="operation">
                                        <items>
                                           <Region prefHeight="37.0" prefWidth="197.0" />
-                                          <Button defaultButton="true" mnemonicParsing="false" text="Back">
+                                          <Button id="buttonBackPassword" defaultButton="true" mnemonicParsing="false" onAction="#next" text="Back">
                                              <styleClass>
                                                 <String fx:value="h5" />
                                              </styleClass>
                                           </Button>
-                                          <Button defaultButton="true" mnemonicParsing="false" text="Sign In">
+                                          <Button id="buttonNextPassword" defaultButton="true" mnemonicParsing="false" onAction="#next" text="Sign In">
                                              <graphic>
                                                 <SVGPath content="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
                                                    <cursor>
@@ -114,6 +115,7 @@
                                              <styleClass>
                                                 <String fx:value="h5" />
                                                 <String fx:value="primary" />
+                                                <String fx:value="medium" />
                                              </styleClass>
                                           </Button>
                                        </items>
@@ -141,7 +143,7 @@
                                     </VBox>
                                     <VBox>
                                        <children>
-                                          <Label text="Jerremy Lewis">
+                                          <Label fx:id="profileUsername" text="Jerremy Lewis">
                                              <styleClass>
                                                 <String fx:value="h1" />
                                                 <String fx:value="bold" />
@@ -156,7 +158,7 @@
                                     <ToolBar nodeOrientation="LEFT_TO_RIGHT" styleClass="operation">
                                        <items>
                                           <Region prefWidth="270.0" />
-                                          <Button mnemonicParsing="false" text="Start">
+                                          <Button id="buttonNextStart" mnemonicParsing="false" onAction="#next" text="Start">
                                              <graphic>
                                                 <SVGPath content="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
                                                    <cursor>
@@ -167,6 +169,7 @@
                                              <styleClass>
                                                 <String fx:value="h5" />
                                                 <String fx:value="primary" />
+                                                <String fx:value="medium" />
                                              </styleClass>
                                           </Button>
                                        </items>

@@ -1,31 +1,41 @@
 package ui;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
+import javafx.event.*;
+import javafx.fxml.*;
+import javafx.scene.control.*;
+import javafx.stage.*;
+import javafx.scene.*;
 
 public class WelcomeController {
 
-  @FXML private ResourceBundle resources;
-
-  @FXML private URL location;
-
-  @FXML private Button buttonSignIn;
-
-  @FXML private Button buttonSignUp;
+  @FXML
+  private Button buttonSignIn;
 
   @FXML
-  void initialize() {
-    assert buttonSignIn != null
-        : "fx:id=\"buttonSignIn\" was not injected: check your FXML file 'welcome.fxml'.";
-    assert buttonSignUp != null
-        : "fx:id=\"buttonSignUp\" was not injected: check your FXML file 'welcome.fxml'.";
+  private Button buttonSignUp;
+
+  @FXML
+  void sign(ActionEvent event) {
+    Button button = (Button) event.getSource();
+    String id = button.getId();
+    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    Scene scene = ((Node) event.getSource()).getScene();
+
+    if (id.equals("signIn")) {
+      this.switchScene("signin.fxml", stage, scene);
+    } else if (id.equals("signUp")) {
+      this.switchScene("signup.fxml", stage, scene);
+    }
   }
 
-  @FXML
-  public void signIn(MouseEvent event) {
-    System.out.println(111);
+  void switchScene(String file, Stage stage, Scene oldScene) {
+    try {
+      Scene scene = new Scene(FXMLLoader.load(getClass().getResource(file)), oldScene.getWidth(), oldScene.getHeight());
+      scene.getStylesheets().add(getClass().getResource("default.css").toExternalForm());
+      stage.setScene(scene);
+      stage.show();
+    } catch (Exception e) {
+      // System.out.println(e);
+    }
   }
 }
