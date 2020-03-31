@@ -1,6 +1,7 @@
 package structure;
 
 import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -433,7 +434,7 @@ public abstract class Node {
         + "\", note: \""
         + this.getNote()
         + "\", nodes: "
-        + this.getChildrenNodes().values()
+        + this.getChildrenNodes().toString()
         + "\")";
   }
 
@@ -541,8 +542,9 @@ public abstract class Node {
    *
    * @return a {@code Collection} of all the children nodes
    */
-  public HttpBody getChildrenNodes() {
-    return new HttpBody(this.nodes.values());
+  public ArrayList<Node> getChildrenNodes() {
+    ArrayList<Node> arr = new ArrayList<Node>(this.nodes.values());
+    return arr;
   }
 
   /**
