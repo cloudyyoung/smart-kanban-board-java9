@@ -71,6 +71,7 @@ public class Kanban extends Node {
       req2.send();
 
       if (req2.isSucceeded()) {
+        System.out.println(req2.getResponseBody());
         Kanban.current = new Kanban(req2.getResponseBody());
       }
       res.add(req2);
@@ -81,15 +82,31 @@ public class Kanban extends Node {
   /*
    * Today
    */
-  public static void generateToday() {}
+  public static void generateToday() {
+    Kanban kanban = Kanban.current;
+    Node TodayBoard = kanban.getChildrenNodes().get(0);
+    for (Node board: kanban.getChildrenNodes()) {
+      if (board.getId() != 1) {
+        for (Node column: board.getChildrenNodes()) {
+          for (Node event: column.getChildrenNodes()) {
+            System.out.println(event);
+          }
+        }
+      }
+    }
+    System.out.println("\nTODAY------");
+    System.out.println(TodayBoard);
+  }
 
   public static void main(String[] args) {
     User user = new User();
-    user.authenticate("cloudy", "cloudy");
+    user.authenticate("test", "test");
     System.out.println(user);
 
     Kanban.checkout();
 
-    System.out.println(Kanban.current);
+    // System.out.println(Kanban.current);
+
+    generateToday();
   }
 }

@@ -133,8 +133,8 @@ public abstract class Node {
           this.nodes.put(nodeNew.getId(), nodeNew);
         }
       } catch (Exception e) {
-        // e.printStackTrace();
-        // e.getCause();
+        e.printStackTrace();
+        e.getCause();
         // fail silently
       }
     }

@@ -37,6 +37,35 @@ public class Event extends Node {
    */
   public Event(HttpBody obj) {
     super(obj);
+    // Back-End is int?
+    this.duration = Long.valueOf(obj.getString("duration").replace(".0", "")) | 0;
+    // this.dueDate = Long.valueOf(obj.getString("dueDate").replace(".0", "")) | 0;
+    this.importanceLevel = Integer.valueOf(obj.getString("importance_level").replace(".0", "")) | 0;
+  }
+
+    /**
+   * Returns the color of the board.
+   *
+   * @return color in {@code String}
+   */
+  public Long getDuration() {
+    return this.duration;
+  }
+  public String toString() {
+    return this.getType()
+        + " (id: "
+        + this.getId()
+        + ", title: \""
+        + this.getTitle()
+        + "\", note: \""
+        + this.getNote()
+        + "\", duration: "
+        + this.getDuration()
+        + ", importanceLevel: "
+        + this.importanceLevel
+        + ", nodes: "
+        + this.getChildrenNodes().toString()
+        + "\")";
   }
 
   public static void main(String[] args) {
