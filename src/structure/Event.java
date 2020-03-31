@@ -15,6 +15,7 @@ public class Event extends Node {
    * @param obj the {@code HttpBody} for initialization
    */
   String eventName;
+
   int importanceLevel;
   // importanceLevel range from 0 to 3, which 0 is not important and 3 is super important
   Long dueDate;

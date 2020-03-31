@@ -1,7 +1,5 @@
 package structure;
 
-import java.util.Collection;
-import java.util.Collections;
 
 /**
  * The {@code Kanban} class, extends from {@code Node}.
@@ -21,13 +19,12 @@ public class Kanban extends Node {
    *
    * @param obj the {@code HttpBody} object to map
    */
-
   public Kanban(HttpBody obj) {
     super(obj);
     // HttpBody board = new HttpBody();
 
     Board board = new Board(1, "Today", "Everyday todo lists111", "#fd79a8");
-    
+
     Column todo = new Column(2, "Today", "Everyday todo lists");
     Column inprogress = new Column(3, "Inprogress", "Everyday todo lists");
     Column done = new Column(4, "Done", "Everyday todo lists");
@@ -73,7 +70,6 @@ public class Kanban extends Node {
     return res;
   }
 
-  
   // public static void main(String[] args) {
   //   Kanban kb = new Kanban();
   //   HttpBody hb = kb.today.getChildrenNodes();
