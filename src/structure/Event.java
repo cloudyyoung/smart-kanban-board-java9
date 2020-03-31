@@ -30,6 +30,15 @@ public class Event extends Node {
     this.importanceLevel = importanceLevel;
   }
 
+  /**
+   * Constructor of {@code Event}, provide {@code HttpBody}.
+   *
+   * @param obj the {@code HttpBody} for initialization
+   */
+  public Event(HttpBody obj) {
+    super(obj);
+  }
+
   public static void main(String[] args) {
     Calendar c = Calendar.getInstance();
     // c.set(2012, 12, 11, 13, 15);

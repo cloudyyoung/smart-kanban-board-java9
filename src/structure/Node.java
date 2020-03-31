@@ -107,7 +107,7 @@ public abstract class Node {
       this.setNoteLocal(obj.getString("note"));
       this.existing = true;
     }
-    if (obj != null) {
+    if (this.getChildType() != null) {
       this.extractChildrenNodes(obj);
     }
   }
@@ -120,9 +120,6 @@ public abstract class Node {
   private void extractChildrenNodes(HttpBody obj) {
     String childType = Node.typeLower(Node.typePlural(this.getChildType()));
     HttpBody value = obj.getList(childType);
-    if (value == null) {
-      return;
-    }
     Collection<Object> list = value.values();
     for (Object each2 : list) {
       try {
