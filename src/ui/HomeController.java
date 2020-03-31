@@ -34,6 +34,9 @@ public class HomeController {
 
   @FXML
   private VBox boardList;
+  
+  @FXML
+  private TabPane tabPane;
 
   @FXML
   private VBox boardPane;
@@ -119,7 +122,11 @@ public class HomeController {
         }
         Node current = ((Node) event.getSource());
         current.getStyleClass().add("selected");
-        sideSelectDisplay(current);
+        if(current.equals(sideSearch)){
+          tabPane.getSelectionModel().select(1);
+        }else{
+          sideSelectDisplay(current);
+        }
       });
     }
 
@@ -145,6 +152,7 @@ public class HomeController {
 
   void sideSelectDisplay(Node btn) {
     String idRaw = btn.getId();
+    tabPane.getSelectionModel().select(0);
     if (!idRaw.contains("board-")) {
       return;
     }
