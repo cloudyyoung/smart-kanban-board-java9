@@ -147,7 +147,7 @@
                                     <VBox>
                                        <children>
                                           <ComboBox prefWidth="150.0" promptText="Choose a security question" styleClass="h3" />
-                                          <Label styleClass="error" wrapText="true" />
+                                          <Label fx:id="labelErrorSecQues" styleClass="error" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <ToolBar nodeOrientation="LEFT_TO_RIGHT" styleClass="operation">
@@ -201,7 +201,7 @@
                                     <VBox>
                                        <children>
                                           <TextField promptText="Please enter the answer" styleClass="h3" />
-                                          <Label styleClass="error" wrapText="true" />
+                                          <Label fx:id="labelErrorSecAns" styleClass="error" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <ToolBar nodeOrientation="LEFT_TO_RIGHT" styleClass="operation">

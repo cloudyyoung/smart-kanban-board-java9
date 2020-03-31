@@ -772,11 +772,18 @@
 	-fx-spacing: 0px;
 }
 
-.bg-signin .text-field, .bg-signin .combo-box{
+.bg-signin .text-field, .bg-signin .password-field, .bg-signin .combo-box{
 	-fx-pref-width: 350px;
-	-fx-padding: 6px 0px;
+	-fx-padding: 0px;
+	-fx-min-height: 55px;
 	-fx-font-family: "Nexa Bold";
 }
+
+.bg-signin .text-field:hover, .bg-signin .password-field:hover, .bg-signin .combo-box:hover,
+.bg-signin .text-field:focused, .bg-signin .password-field:focused, .bg-signin .combo-box:focused{
+	-fx-background-color: transparent;
+}
+
 
 .bg-signin .signin-wrapper VBox{
 	-fx-spacing: 0px;
@@ -801,6 +808,7 @@
 
 .bg-signin .username{
 	-fx-font-family: "Nexa Bold";
+	-fx-min-height: 46px;
 }
 
 .bg-signin .error{

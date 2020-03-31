@@ -126,7 +126,7 @@
    <center>
       <TabPane focusTraversable="false" prefHeight="200.0" prefWidth="200.0" side="BOTTOM" styleClass="bg-main" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab fx:id="mainTab" closable="false" text="Board">
+          <Tab fx:id="boardPane" closable="false" text="Board">
             <content>
                   <VBox styleClass="main">
                      <children>
@@ -157,9 +157,9 @@
                               </VBox>
                               <VBox styleClass="operation-list">
                                  <children>
-                                    <Button mnemonicParsing="false">
+                                    <Button fx:id="boardAddColumn" mnemonicParsing="false">
                                        <graphic>
-                                          <SVGPath fx:id="boardAddColumn" content="M 15 5 L 15 15 L 5 15 L 5 17 L 15 17 L 15 27 L 17 27 L 17 17 L 27 17 L 27 15 L 17 15 L 17 5 Z" />
+                                          <SVGPath content="M 15 5 L 15 15 L 5 15 L 5 17 L 15 17 L 15 27 L 17 27 L 17 17 L 27 17 L 27 15 L 17 15 L 17 5 Z" />
                                        </graphic>
                                     </Button>
                                  </children>
@@ -172,7 +172,7 @@
                         </HBox>
                         <ScrollPane fitToHeight="true" nodeOrientation="LEFT_TO_RIGHT" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
                            <content>
-                              <HBox styleClass="columns">
+                              <HBox fx:id="columnPane" styleClass="columns">
                                  <children>
                                     <VBox HBox.hgrow="ALWAYS">
                                        <children>
@@ -484,7 +484,7 @@
       </TabPane>
    </center>
    <right>
-      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="bg-detail">
+      <ScrollPane fx:id="detailPane" fitToWidth="true" hbarPolicy="NEVER" styleClass="bg-detail">
          <content>
             <VBox>
                <children>
@@ -494,23 +494,23 @@
                         <String fx:value="bold" />
                      </styleClass></TextArea>
                   <Region prefHeight="10.0" />
-                  <Button mnemonicParsing="false" styleClass="a" text="Add to Today">
+                  <Button fx:id="detailAdd2Today" mnemonicParsing="false" styleClass="a" text="Add to Today">
                      <graphic>
                         <SVGPath id="icon" content="M 9 5 L 9 6 L 5 6 L 5 28 L 27 28 L 27 6 L 23 6 L 23 5 L 21 5 L 21 6 L 11 6 L 11 5 Z M 7 8 L 9 8 L 9 9 L 11 9 L 11 8 L 21 8 L 21 9 L 23 9 L 23 8 L 25 8 L 25 10 L 7 10 Z M 7 12 L 25 12 L 25 26 L 7 26 Z M 20.28125 14.28125 L 15 19.5625 L 12.71875 17.28125 L 11.28125 18.71875 L 14.28125 21.71875 L 15 22.40625 L 15.71875 21.71875 L 21.71875 15.71875 Z" />
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" styleClass="a" text="Add due date">
+                  <Button fx:id="detailDueDate" mnemonicParsing="false" styleClass="a" text="Add due date">
                      <graphic>
                         <SVGPath id="icon" content="M 9 4 L 9 5 L 5 5 L 5 27 L 27 27 L 27 5 L 23 5 L 23 4 L 21 4 L 21 5 L 11 5 L 11 4 Z M 7 7 L 9 7 L 9 8 L 11 8 L 11 7 L 21 7 L 21 8 L 23 8 L 23 7 L 25 7 L 25 9 L 7 9 Z M 7 11 L 25 11 L 25 25 L 7 25 Z M 13 13 L 13 15 L 15 15 L 15 13 Z M 17 13 L 17 15 L 19 15 L 19 13 Z M 21 13 L 21 15 L 23 15 L 23 13 Z M 16 16 L 16 20 L 20 20 L 20 16 Z M 9 17 L 9 19 L 11 19 L 11 17 Z M 13 17 L 13 19 L 15 19 L 15 17 Z M 21 17 L 21 19 L 23 19 L 23 17 Z M 9 21 L 9 23 L 11 23 L 11 21 Z M 13 21 L 13 23 L 15 23 L 15 21 Z M 17 21 L 17 23 L 19 23 L 19 21 Z" />
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" styleClass="a" text="Add importance">
+                  <Button fx:id="detailImportance" mnemonicParsing="false" styleClass="a" text="Add importance">
                      <graphic>
                         <SVGPath id="icon" content="M 9 4 L 9 5 L 5 5 L 5 27 L 27 27 L 27 5 L 23 5 L 23 4 L 21 4 L 21 5 L 11 5 L 11 4 Z M 7 7 L 9 7 L 9 8 L 11 8 L 11 7 L 21 7 L 21 8 L 23 8 L 23 7 L 25 7 L 25 9 L 7 9 Z M 7 11 L 25 11 L 25 25 L 7 25 Z M 15 13 L 15 19 L 17 19 L 17 13 Z M 15 21 L 15 23 L 17 23 L 17 21 Z" />
                      </graphic>
                   </Button>
                   <DatePicker editable="false" promptText="Add due date" styleClass="hide" />
-                  <TextField promptText="Add note" styleClass="note" />
+                  <TextField fx:id="detailNote" promptText="Add note" styleClass="note" />
                </children>
             </VBox>
          </content>

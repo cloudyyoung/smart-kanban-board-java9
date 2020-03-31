@@ -17,6 +17,8 @@ public final class Result {
   /** An {@code ArrayList} which stores all the excepted {@code Request} in {@link #list}. */
   private ArrayList<Request> exceptionList = new ArrayList<Request>();
 
+  private ArrayList<Request> failList = new ArrayList<Request>();
+
   /**
    * A boolean to indicate whether any of the related {@code Request} in {@link #list} has exception
    * occured.
@@ -28,6 +30,8 @@ public final class Result {
    * successfully requested.
    */
   private boolean succeeded = false;
+
+  private boolean failed = false;
 
   /** Default constructor of {@code Result}. */
   public Result() {}
@@ -44,7 +48,7 @@ public final class Result {
       return;
     }
     this.list.add(add);
-    this.checkException();
+    this.checkout();
   }
 
   /**
@@ -56,7 +60,7 @@ public final class Result {
    */
   public void remove(Request remove) {
     this.list.remove(remove);
-    this.checkException();
+    this.checkout();
   }
 
   /**
@@ -68,11 +72,11 @@ public final class Result {
    */
   public void remove(int index) {
     this.list.remove(index);
-    this.checkException();
+    this.checkout();
   }
 
   /** Checks whether any of the related {@code Request} in {@link #list} has exception occured. */
-  private void checkException() {
+  private void checkout() {
     exceptionList.clear();
     boolean changed = false;
     for (Request each : list) {
@@ -80,16 +84,18 @@ public final class Result {
         this.setExcepted(true);
         this.exceptionList.add(each);
         changed = true;
-      }
-      if (!each.isSucceeded()) {
-        this.setSucceeded(false);
+      }else if (each.isFailed()) {
+        this.setFailed(true);
+        this.failList.add(each);
         changed = true;
       }
+
       if (changed) {
         return;
       }
     }
     this.setExcepted(false);
+    this.setFailed(false);
     this.setSucceeded(true);
   }
 
@@ -118,6 +124,10 @@ public final class Result {
     return this.succeeded;
   }
 
+  public boolean isFailed(){
+    return this.failed;
+  }
+
   /**
    * Sets {@link #excepted} to indicate whether any of the related {@code Request} in {@link #list}
    * has exception occured.
@@ -139,12 +149,22 @@ public final class Result {
     this.succeeded = is;
   }
 
+  private void setFailed(boolean is){
+    this.failed = is;
+  }
+
   /**
    * Returns a list of all related requests which have exceptions occured.
    *
    * @return a list of all related requests which have exceptions occured
    */
   public ArrayList<Request> getExceptions() {
+    this.checkout();
+    return new ArrayList<Request>(this.exceptionList);
+  }
+
+  public ArrayList<Request> getFails() {
+    this.checkout();
     return new ArrayList<Request>(this.exceptionList);
   }
 
@@ -154,8 +174,18 @@ public final class Result {
    * @return the first element of all related requests which have exceptions occured.
    */
   public Request getException() {
+    this.checkout();
     if (this.exceptionList.size() > 0) {
       return this.exceptionList.get(0);
+    } else {
+      return null;
+    }
+  }
+
+  public Request getFail() {
+    this.checkout();
+    if (this.failList.size() > 0) {
+      return this.failList.get(0);
     } else {
       return null;
     }
@@ -166,6 +196,8 @@ public final class Result {
     return "Result ("
         + "isSucceeded: "
         + this.isSucceeded()
+        + ", isFailed: "
+        + this.isFailed()
         + ", isExcepted: "
         + this.isExcepted()
         + ", Request: "

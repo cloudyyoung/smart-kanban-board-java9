@@ -17,6 +17,8 @@ public abstract class Request {
   /** A boolean to indicate whether the instance has exceptions occured. */
   private boolean excepted;
 
+  private boolean failed;
+
   /**
    * Returns a boolean to indicate whether the instance has exceptions occured.
    *
@@ -39,6 +41,10 @@ public abstract class Request {
     return this.succeeded;
   }
 
+  public boolean isFailed(){
+    return this.failed;
+  }
+
   /**
    * Sets the succeeded status to the specified boolean
    *
@@ -57,6 +63,10 @@ public abstract class Request {
    */
   protected void setExcepted(boolean is) {
     this.excepted = is;
+  }
+
+  protected void setFailed(boolean is){
+    this.failed = is;
   }
 
   /**

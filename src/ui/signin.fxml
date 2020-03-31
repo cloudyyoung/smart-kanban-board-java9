@@ -5,6 +5,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -92,7 +93,7 @@
                                     </VBox>
                                     <VBox>
                                        <children>
-                                          <TextField fx:id="inputPassword" promptText="Enter your password" styleClass="h3" />
+                                          <PasswordField fx:id="inputPassword" promptText="Enter your password" styleClass="h3" />
                                           <Label fx:id="labelErrorPassword" styleClass="error" text="This is error text. This is error text. This is error text. This is error text. This is error text. " wrapText="true" />
                                        </children>
                                     </VBox>
@@ -104,7 +105,7 @@
                                                 <String fx:value="h5" />
                                              </styleClass>
                                           </Button>
-                                          <Button id="buttonNextPassword" defaultButton="true" mnemonicParsing="false" onAction="#next" text="Sign In">
+                                          <Button id="buttonNextPassword-SignIn" defaultButton="true" mnemonicParsing="false" onAction="#next" text="Sign In">
                                              <graphic>
                                                 <SVGPath content="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
                                                    <cursor>
