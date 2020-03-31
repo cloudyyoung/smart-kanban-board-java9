@@ -3,7 +3,6 @@ package ui;
 import java.util.HashSet;
 import java.util.Set;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.*;
 import javafx.scene.Node;
@@ -15,59 +14,41 @@ import structure.*;
 
 public class HomeController {
 
-  @FXML
-  private Button sideProfile;
+  @FXML private Button sideProfile;
 
-  @FXML
-  private Circle profileAvatar;
+  @FXML private Circle profileAvatar;
 
-  @FXML
-  private Label profileUsername;
+  @FXML private Label profileUsername;
 
-  @FXML
-  private VBox sidePane;
+  @FXML private VBox sidePane;
 
-  @FXML
-  private Button sideSearch;
+  @FXML private Button sideSearch;
 
-  @FXML
-  private Button sideToday;
+  @FXML private Button sideToday;
 
-  @FXML
-  private VBox boardList;
+  @FXML private VBox boardList;
 
-  @FXML
-  private VBox boardPane;
+  @FXML private VBox boardPane;
 
-  @FXML
-  private TextField boardTitle;
+  @FXML private TextField boardTitle;
 
-  @FXML
-  private TextField boardNote;
+  @FXML private TextField boardNote;
 
-  @FXML
-  private Button boardAddColumn;
+  @FXML private Button boardAddColumn;
 
-  @FXML
-  private HBox columnPane;
+  @FXML private HBox columnPane;
 
-  @FXML
-  private ScrollPane detailPane;
+  @FXML private ScrollPane detailPane;
 
-  @FXML
-  private TextArea detailTitle;
+  @FXML private TextArea detailTitle;
 
-  @FXML
-  private Button detailAdd2Today;
+  @FXML private Button detailAdd2Today;
 
-  @FXML
-  private Button detailDueDate;
+  @FXML private Button detailDueDate;
 
-  @FXML
-  private Button detailImportance;
+  @FXML private Button detailImportance;
 
-  @FXML
-  private TextField detailNote;
+  @FXML private TextField detailNote;
 
   @FXML
   void initialize() {
@@ -85,7 +66,8 @@ public class HomeController {
 
         // Icon
         SVGPath svg = new SVGPath();
-        svg.setContent("M 5 5 L 5 6 L 5 27 L 27 27 L 27 5 L 5 5 z M 7 7 L 25 7 L 25 9 L 7 9 L 7 7 z M 7 11 L 25 11 L 25 25 L 7 25 L 7 11 z");
+        svg.setContent(
+            "M 5 5 L 5 6 L 5 27 L 27 27 L 27 5 L 5 5 z M 7 7 L 25 7 L 25 9 L 7 9 L 7 7 z M 7 11 L 25 11 L 25 25 L 7 25 L 7 11 z");
         HBox hbox = new HBox();
         hbox.getChildren().add(svg);
 
@@ -97,35 +79,35 @@ public class HomeController {
 
         // Add to list
         boardList.getChildren().add(node);
-      }else if(each.getId() == 1){
+      } else if (each.getId() == 1) {
         sideToday.setStyle(styleAccent(((Board) each).getColor()));
       }
     }
-    
+
     // Bind button action event for sidePane buttons
     Set<Node> sideButtons = new HashSet<Node>();
     sideButtons.addAll(sidePane.lookupAll(".button"));
     sideButtons.addAll(boardList.lookupAll(".button"));
 
-    for(Node each : sideButtons){
+    for (Node each : sideButtons) {
       System.out.println(each.getId());
       Button btn = (Button) each;
-      btn.setOnAction(event -> {
-        for (Node eachBtn : sideButtons) {
-          eachBtn.getStyleClass().remove("selected");
-        }
-        Node current = ((Node) event.getSource());
-        current.getStyleClass().add("selected");
-        sideSelectDisplay(current);
-      });
+      btn.setOnAction(
+          event -> {
+            for (Node eachBtn : sideButtons) {
+              eachBtn.getStyleClass().remove("selected");
+            }
+            Node current = ((Node) event.getSource());
+            current.getStyleClass().add("selected");
+            sideSelectDisplay(current);
+          });
     }
 
     sidePane.requestFocus();
     sideToday.fire();
   }
 
-  
-  String styleAccent(String hex){
+  String styleAccent(String hex) {
     String style = "";
     style += "-fx-accent: " + hex + ";";
     style += "-fx-accent-90: " + hex + "e6;";
@@ -141,9 +123,9 @@ public class HomeController {
     return style;
   }
 
-  void sideSelectDisplay(Node btn){
+  void sideSelectDisplay(Node btn) {
     String idRaw = btn.getId();
-    if(!idRaw.contains("board-")){
+    if (!idRaw.contains("board-")) {
       return;
     }
     String idStr = idRaw.split("-")[1];
