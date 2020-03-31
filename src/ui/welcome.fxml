@@ -10,11 +10,11 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.WelcomeController">
+<BorderPane fx:id="borderPane" prefHeight="680.0" prefWidth="1020.0" styleClass="bg-welcome" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.WelcomeController">
    <center>
-      <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" styleClass="bg-welcome" vbarPolicy="NEVER" BorderPane.alignment="CENTER">
+      <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" vbarPolicy="NEVER" BorderPane.alignment="CENTER">
          <content>
-            <HBox prefWidth="677.0" styleClass="welcome-wrapper">
+            <HBox styleClass="welcome-wrapper">
                <children>
                   <VBox>
                      <children>
@@ -30,7 +30,7 @@
                         </HBox>
                         <VBox styleClass="operation">
                            <children>
-                              <Button fx:id="buttonSignIn" focusTraversable="false" mnemonicParsing="false" onAction="#signIn" styleClass="primary" text="I have an account">
+                              <Button id="signIn" fx:id="buttonSignIn" focusTraversable="false" mnemonicParsing="false" onAction="#sign" styleClass="primary" text="I have an account">
                                  <graphic>
                                     <HBox>
                                        <children>
@@ -39,7 +39,7 @@
                                     </HBox>
                                  </graphic>
                               </Button>
-                              <Button fx:id="buttonSignUp" focusTraversable="false" mnemonicParsing="false" styleClass="primary" text="I need an account">
+                              <Button id="signUp" fx:id="buttonSignUp" focusTraversable="false" mnemonicParsing="false" onAction="#sign" styleClass="primary" text="I need an account">
                                  <graphic>
                                     <HBox>
                                        <children>
@@ -60,4 +60,11 @@
          </content>
       </ScrollPane>
    </center>
+   <bottom>
+      <VBox styleClass="copyright" BorderPane.alignment="CENTER">
+         <children>
+            <Label styleClass="h5" text="© 2020 Smart Kanban. All rights reserved" wrapText="true" />
+         </children>
+      </VBox>
+   </bottom>
 </BorderPane>

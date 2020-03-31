@@ -70,14 +70,9 @@ public class Kanban extends Node {
   }
 
   /*
-  * Today
-  */
-  public static void generateToday() {
-
-
-
-
-  }
+   * Today
+   */
+  public static void generateToday() {}
 
   public static void main(String[] args) {
     User user = new User();
