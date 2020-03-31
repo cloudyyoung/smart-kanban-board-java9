@@ -11,29 +11,21 @@ import structure.Result;
 
 public class SignUpController {
 
-  @FXML
-  private TabPane tabPane;
+  @FXML private TabPane tabPane;
 
-  @FXML
-  private TextField inputUsername;
+  @FXML private TextField inputUsername;
 
-  @FXML
-  private Label labelErrorUsername;
+  @FXML private Label labelErrorUsername;
 
-  @FXML
-  private PasswordField inputPassword;
+  @FXML private PasswordField inputPassword;
 
-  @FXML
-  private Label labelErrorPassword;
+  @FXML private Label labelErrorPassword;
 
-  @FXML
-  private Label labelErrorSecQues;
+  @FXML private Label labelErrorSecQues;
 
-  @FXML
-  private Label labelErrorSecAns;
+  @FXML private Label labelErrorSecAns;
 
-  @FXML
-  private Label profileUsername;
+  @FXML private Label profileUsername;
 
   private int tab = 0;
 
@@ -69,7 +61,7 @@ public class SignUpController {
       } catch (Exception e) {
         System.out.println(e);
       }
-    }else if(id.equals("buttonNextPassword-SignIn")){
+    } else if (id.equals("buttonNextPassword-SignIn")) {
 
       tabPane.setDisable(true);
       String username = inputUsername.getText();
@@ -77,22 +69,22 @@ public class SignUpController {
       Result res = User.authentication(username, password);
       tabPane.setDisable(false);
 
-      if(res.isSucceeded()){
+      if (res.isSucceeded()) {
         profileUsername.setText(username);
-      }else if(res.isFailed()){
+      } else if (res.isFailed()) {
         next = false;
-        String errorText = res.getFail().getResponseBody().getHttpBody("error").getString("message");
+        String errorText =
+            res.getFail().getResponseBody().getHttpBody("error").getString("message");
         labelErrorUsername.setText(errorText);
         labelErrorPassword.setText(errorText);
       }
     }
-    
-    if(next){
+
+    if (next) {
       if (id.contains("Back")) tab--;
       if (id.contains("Next")) tab++;
       tabPane.getSelectionModel().select(tab);
       tabPane.requestFocus();
     }
-
   }
 }
