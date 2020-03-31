@@ -158,5 +158,4 @@ public class HomeController {
     boardNote.setDisable(id < 100);
   }
 
-  @FXML private TextField detailNote;
 }
