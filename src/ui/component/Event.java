@@ -9,11 +9,9 @@ import structure.*;
 
 public class Event extends Button {
 
-  @FXML
-  private Button event;
+  @FXML private Button event;
 
-  @FXML
-  private SVGPath icon;
+  @FXML private SVGPath icon;
 
   private Node node;
 
@@ -45,5 +43,4 @@ public class Event extends Button {
   void initialize() {
     event.setText(node.getTitle());
   }
-
 }

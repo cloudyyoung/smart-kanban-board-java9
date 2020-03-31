@@ -8,18 +8,13 @@ import structure.*;
 
 public class Column extends VBox {
 
-  
-  @FXML
-  private Label eventCount;
+  @FXML private Label eventCount;
 
-  @FXML
-  private TextField columnTitle;
+  @FXML private TextField columnTitle;
 
-  @FXML
-  private Button eventAdd;
+  @FXML private Button eventAdd;
 
-  @FXML
-  private VBox eventList;
+  @FXML private VBox eventList;
 
   private Node node;
 
@@ -28,13 +23,13 @@ public class Column extends VBox {
     load();
   }
 
-  public Column(Node node){
+  public Column(Node node) {
     super();
     this.node = node;
     load();
   }
 
-  void load(){
+  void load() {
     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("column.fxml"));
     fxmlLoader.setRoot(this);
     fxmlLoader.setController(this);
@@ -47,16 +42,14 @@ public class Column extends VBox {
     }
   }
 
-  
   @FXML
   void initialize() {
     columnTitle.setText(node.getTitle());
     eventCount.setText(node.getChildrenNodes().size() + "");
 
-    for(Node each : node.getChildrenNodes()){
+    for (Node each : node.getChildrenNodes()) {
       Event event = new Event(each);
       eventList.getChildren().add(event);
     }
   }
-
 }
