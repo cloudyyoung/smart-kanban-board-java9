@@ -13,6 +13,7 @@ public class Event extends Node {
    *
    * @param obj the {@code HttpBody} for initialization
    */
+  String eventName;
   int importanceLevel;
   // importanceLevel range from 0 to 3, which 0 is not important and 3 is super important
   Long dueDate;
@@ -20,8 +21,9 @@ public class Event extends Node {
   Long duration;
   // Duration store in timeStamp form (millissecond)
 
-  public Event(HttpBody obj, Long dueDate, Long duration, int importanceLevel) {
+  public Event(HttpBody obj, String eventName, Long dueDate, Long duration, int importanceLevel) {
     super(obj);
+    this.eventName = eventName;
     this.duration = duration;
     this.dueDate = dueDate;
     this.importanceLevel = importanceLevel;

@@ -38,6 +38,18 @@ public class Board extends Node {
   }
 
   /**
+   * Constructor of {@code Board}, provide title, note and color.
+   *
+   * @param title The title in {@code String}
+   * @param note The note in {@code String}
+   * @param id THe id in {@code String}
+   */
+  public Board(int id, String title, String note, String color) {
+    super(id, title, note);
+    this.setColorLocal(color);
+  }
+
+  /**
    * Sets the color of the board, in local storage.
    *
    * @param color The color in {@code String}
@@ -85,7 +97,7 @@ public class Board extends Node {
         + this.getColor()
         + this.getNote()
         + ", nodes: "
-        + this.getNodes().toString()
+        + this.getChildrenNodes().toString()
         + "\")";
   }
 }

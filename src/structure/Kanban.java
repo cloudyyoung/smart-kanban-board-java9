@@ -1,5 +1,8 @@
 package structure;
 
+import java.util.Collection;
+import java.util.Collections;
+
 /**
  * The {@code Kanban} class, extends from {@code Node}.
  *
@@ -18,8 +21,20 @@ public class Kanban extends Node {
    *
    * @param obj the {@code HttpBody} object to map
    */
+
   public Kanban(HttpBody obj) {
     super(obj);
+    // HttpBody board = new HttpBody();
+
+    Board board = new Board(1, "Today", "Everyday todo lists111", "#fd79a8");
+    
+    Column todo = new Column(2, "Today", "Everyday todo lists");
+    Column inprogress = new Column(3, "Inprogress", "Everyday todo lists");
+    Column done = new Column(4, "Done", "Everyday todo lists");
+    board.addNode(todo);
+    board.addNode(inprogress);
+    board.addNode(done);
+    this.addNode(board);
   }
 
   /** Default constructor of {@code Kanban}. */
@@ -56,5 +71,27 @@ public class Kanban extends Node {
       res.add(req2);
     }
     return res;
+  }
+
+  
+  // public static void main(String[] args) {
+  //   Kanban kb = new Kanban();
+  //   HttpBody hb = kb.today.getChildrenNodes();
+  //   System.out.print(hb);
+  //   Collection v = hb.values();
+  //   System.out.print(v);
+  //   v.forEach(i -> {
+  //     System.out.print(i);
+  //   });
+  // }
+
+  public static void main(String[] args) {
+    User user = new User();
+    user.authenticate("cloudy", "cloudy");
+    System.out.println(user);
+
+    Kanban.checkout();
+
+    System.out.println(Kanban.current.getChildrenNodes().values());
   }
 }

@@ -212,7 +212,7 @@ public abstract class Node {
    * @param parent the parent node of the instance
    * @return the strcuture request of the action
    */
-  private StructureRequest setParentLocal(Node parent) {
+  protected StructureRequest setParentLocal(Node parent) {
     this.parent = parent;
     this.parentId = parent.getId();
 
@@ -433,7 +433,7 @@ public abstract class Node {
         + "\", note: \""
         + this.getNote()
         + "\", nodes: "
-        + this.getNodes().toString()
+        + this.getChildrenNodes().toString()
         + "\")";
   }
 
@@ -541,8 +541,8 @@ public abstract class Node {
    *
    * @return a {@code Collection} of all the children nodes
    */
-  public Collection<Node> getNodes() {
-    return this.nodes.values();
+  public HttpBody getChildrenNodes() {
+    return new HttpBody(this.nodes.values());
   }
 
   /**
