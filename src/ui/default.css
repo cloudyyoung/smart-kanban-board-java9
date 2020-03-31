@@ -850,5 +850,15 @@
 
 .bg-welcome .welcome-wrapper .operation .button{
 	-fx-pref-width: 200px;
-	-fx-padding: 10px;
+	-fx-padding: 10px 10px 10px 0px;
+}
+
+.bg-welcome .welcome-wrapper .operation .button SVGPath{
+	-fx-scale-x: 0.7;
+	-fx-scale-y: 0.7;
+}
+
+.bg-welcome .welcome-wrapper .operation .button HBox{
+	-fx-pref-width: 30px;
+	-fx-alignment: CENTER;
 }

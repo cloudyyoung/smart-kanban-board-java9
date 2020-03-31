@@ -81,9 +81,9 @@ public class Board extends Node {
         + ", title: \""
         + this.getTitle()
         + "\", note: \""
+        + this.getNote()
         + "\", color: "
         + this.getColor()
-        + this.getNote()
         + ", nodes: "
         + this.getNodes().toString()
         + "\")";
