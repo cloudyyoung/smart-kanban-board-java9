@@ -20,11 +20,11 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="680.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="680.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.HomeController">
    <left>
-      <VBox styleClass="bg-side">
+      <VBox fx:id="sidePane" styleClass="bg-side">
          <children>
-            <VBox>
+            <VBox focusTraversable="true">
                <children>
                   <Button fx:id="sideProfile" mnemonicParsing="false">
                      <graphic>
@@ -37,7 +37,7 @@
                               </Circle>
                               <VBox id="list-i" alignment="CENTER_LEFT">
                                  <children>
-                                    <Label styleClass="light" text="Welcome" textFill="#2f2e2e">
+                                    <Label styleClass="light" text="Welcome," textFill="#2f2e2e">
                                        <VBox.margin>
                                           <Insets />
                                        </VBox.margin>
@@ -48,16 +48,13 @@
                                           <Insets bottom="-2.0" />
                                        </padding>
                                     </Label>
-                                    <Label id="username-label" fx:id="profileUsername" styleClass="bold" text="Jerremy Lewis Jerremy Lewis Jerremy Lewis Jerremy Lewis">
+                                    <Label id="username-label" fx:id="profileUsername" prefHeight="19.0" prefWidth="122.0" styleClass="bold" text="Jerremy Lewis Jerremy Lewis Jerremy Lewis Jerremy Lewis">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                        <VBox.margin>
                                           <Insets />
                                        </VBox.margin>
-                                       <tooltip>
-                                          <Tooltip text="Jerremy Lewis Jerremy Lewis Jerremy Lewis Jerremy Lewis" />
-                                       </tooltip>
                                     </Label>
                                  </children>
                               </VBox>
@@ -93,7 +90,7 @@
                         <String fx:value="a" />
                      </styleClass>
                   </Button>
-                  <Button fx:id="sideToday" text="Today">
+                  <Button id="board-1" fx:id="sideToday" text="Today">
                      <tooltip>
                         <Tooltip text="Today" />
                      </tooltip>
@@ -114,7 +111,7 @@
             </VBox>
             <ScrollPane hbarPolicy="NEVER" VBox.vgrow="ALWAYS">
               <content>
-                  <VBox />
+                  <VBox fx:id="boardList" />
               </content>
             </ScrollPane>
          </children>
@@ -126,9 +123,9 @@
    <center>
       <TabPane focusTraversable="false" prefHeight="200.0" prefWidth="200.0" side="BOTTOM" styleClass="bg-main" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab fx:id="boardPane" closable="false" text="Board">
+          <Tab closable="false" text="Board">
             <content>
-                  <VBox styleClass="main">
+                  <VBox fx:id="boardPane" styleClass="main">
                      <children>
                         <HBox>
                            <children>

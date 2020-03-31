@@ -55,6 +55,7 @@
 	-fx-accent-30: #2f2e2e4d;
 	-fx-accent-20: #2f2e2e33;
 	-fx-accent-10: #2f2e2e1a;
+	-fx-accent-5: #2f2e2e0d;
 
 	-fx-side-background: #eee;
 	-fx-main-background: #fff;
@@ -417,15 +418,6 @@
 }
 
 
-.bg-side .username{
-	-fx-padding: 20px 12px 20px 12px !important;
-}
-
-.bg-side .username #username-label{
-	-fx-font-size: 16px;
-	-fx-font-family: "Nexa Bold";
-}
-
 .bg-side *{
   -fx-background-color: transparent;
 }
@@ -438,19 +430,28 @@
 	-fx-opacity: 1;
 }
 
+/* .bg-side .scroll-pane .button, */
 .bg-side .button{
 	-fx-padding: 12px 18px 12px 18px;
     -fx-graphic-text-gap: 18px;
 	-fx-border-width: 0px 0px 0px 4px;
 	-fx-border-color: transparent;
 	-fx-text-fill: -fx-accent;
+	-fx-pref-width: 1000px;
+	-fx-font-family: "Noto Sans JP Medium";
 }
 
+.bg-side .button:hover{
+	-fx-background-color: -fx-accent-5;
+}
+
+.bg-side .scroll-pane .button,
 .bg-side .operation-list .button{
 	-fx-max-height: 48px;
 	-fx-min-height: 47px;
 }
 
+.bg-side .scroll-pane .button HBox,
 .bg-side .operation-list .button HBox{
 	-fx-max-width: 26px;
 	-fx-min-width: 26px;
@@ -465,11 +466,23 @@
 
 .bg-side .button.selected{
 	-fx-border-color: -fx-accent;
-	-fx-font-family: "Noto Sans JP Bold";
 	-fx-background-color: -fx-accent-10;
 }
 
+.bg-side .scroll-pane{
+	-fx-border-width: 0px;
+	-fx-padding: 0px;
+}
 
+.bg-side .username{
+	-fx-padding: 20px 12px 20px 12px !important;
+}
+
+.bg-side .username #username-label{
+	-fx-font-size: 16px;
+	-fx-font-family: "Nexa Bold";
+	-fx-pref-width: 200px;
+}
 
 /** Board Panel Components **/
 
@@ -503,6 +516,12 @@
 	-fx-border-width: 0px;
 	-fx-text-fill: -fx-dark-text-color;
 }
+
+.bg-main .board-title:disabled,
+.bg-main .board-note:disabled{
+	-fx-opacity: 1;
+}
+
 
 .bg-main .combo-box{
 	-fx-min-width: 150px;
@@ -541,7 +560,7 @@
 
 /** Card Spacing **/
 .bg-main .column VBox{
-	-fx-spacing: 8px;
+	-fx-spacing: 10px;
 }
 
 .bg-main .column .title{
@@ -596,7 +615,7 @@
     -fx-fill: -fx-light-text-color;
     -fx-graphic-text-gap: 10px;
     -fx-content-display: LEFT;
-    -fx-effect: dropshadow(gaussian, #00000026, 10, 0, 1, 2); /** 15% **/
+    -fx-effect: dropshadow(gaussian, -fx-accent-30, 10, 0, 1, 2); /** 15% **/
 }
 
 .bg-main .column .scroll-pane.event-list .button *{
@@ -611,11 +630,11 @@
 
 
 .bg-main .column .scroll-pane.event-list .button:hover, .bg-main .column .scroll-pane.event-list .button:focused{
-    -fx-effect: dropshadow(gaussian, #00000033, 10, 0, 1, 2); /** 20% **/
+    -fx-effect: dropshadow(gaussian, -fx-accent-30, 10, 0, 1, 2); /** 20% **/
 }
 
 .bg-main .column .scroll-pane.event-list .button.selected{
-	-fx-effect: dropshadow(gaussian, #00000066, 10, 0, 1, 2); /** 40% **/
+	-fx-effect: dropshadow(gaussian, -fx-accent-50, 10, 0, 1, 2); /** 40% **/
 }
 
 .bg-main .column .scroll-pane.event-list .button:focused{
