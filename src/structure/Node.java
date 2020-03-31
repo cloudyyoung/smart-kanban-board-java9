@@ -433,7 +433,7 @@ public abstract class Node {
         + "\", note: \""
         + this.getNote()
         + "\", nodes: "
-        + this.getChildrenNodes().toString()
+        + this.getChildrenNodes().values()
         + "\")";
   }
 
