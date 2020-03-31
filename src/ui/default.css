@@ -432,8 +432,8 @@
 
 /* .bg-side .scroll-pane .button, */
 .bg-side .button{
-	-fx-padding: 12px 18px 12px 18px;
-    -fx-graphic-text-gap: 18px;
+	-fx-padding: 12px 20px 12px 20px;
+    -fx-graphic-text-gap: 20px;
 	-fx-border-width: 0px 0px 0px 4px;
 	-fx-border-color: transparent;
 	-fx-text-fill: -fx-accent;
@@ -475,7 +475,7 @@
 }
 
 .bg-side .username{
-	-fx-padding: 20px 12px 20px 12px !important;
+	-fx-padding: 22px 15px 22px 15px !important;
 }
 
 .bg-side .username #username-label{
@@ -796,6 +796,7 @@
 	-fx-padding: 0px;
 	-fx-min-height: 55px;
 	-fx-font-family: "Nexa Bold";
+	-fx-width: 8px !important;
 }
 
 .bg-signin .text-field:hover, .bg-signin .password-field:hover, .bg-signin .combo-box:hover,

@@ -25,9 +25,9 @@ public class Kanban extends Node {
 
     Board board = new Board(1, "Today", Time.monthName(Time.currentMonth()) + " " + Time.currentDay() + ", " + Time.currentYear(), "#fd79a8");
 
-    Column todo = new Column(2, "To Do", "Plan ur days");
-    Column inprogress = new Column(3, "In Progress", "Focus");
-    Column done = new Column(4, "Done", "Bomb~");
+    Column todo = new Column(2, "To Do", "");
+    Column inprogress = new Column(3, "In Progress", "");
+    Column done = new Column(4, "Done", "");
     board.addNode(todo);
     board.addNode(inprogress);
     board.addNode(done);
