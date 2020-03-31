@@ -9,23 +9,17 @@ import javafx.scene.*;
 
 public class SignUpController {
 
-  @FXML
-  private TabPane tabPane;
+  @FXML private TabPane tabPane;
 
-  @FXML
-  private TextField inputUsername;
+  @FXML private TextField inputUsername;
 
-  @FXML
-  private Label labelErrorUsername;
+  @FXML private Label labelErrorUsername;
 
-  @FXML
-  private TextField inputPassword;
+  @FXML private TextField inputPassword;
 
-  @FXML
-  private Label labelErrorPassword;
+  @FXML private Label labelErrorPassword;
 
-  @FXML
-  private Label profileUsername;
+  @FXML private Label profileUsername;
 
   private int tab = 0;
 
@@ -44,16 +38,18 @@ public class SignUpController {
 
     System.out.println(id);
 
-    if (id.contains("Back"))
-      tab--;
-    if (id.contains("Next"))
-      tab++;
+    if (id.contains("Back")) tab--;
+    if (id.contains("Next")) tab++;
 
     if (id.equals("buttonNextStart")) {
       try {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene oldScene = ((Node) event.getSource()).getScene();
-        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("home.fxml")), oldScene.getWidth(), oldScene.getHeight());
+        Scene scene =
+            new Scene(
+                FXMLLoader.load(getClass().getResource("home.fxml")),
+                oldScene.getWidth(),
+                oldScene.getHeight());
         scene.getStylesheets().add(getClass().getResource("default.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
@@ -66,5 +62,4 @@ public class SignUpController {
 
     tabPane.requestFocus();
   }
-
 }
