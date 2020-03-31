@@ -1,6 +1,7 @@
 package structure;
 
 import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -106,7 +107,7 @@ public abstract class Node {
       this.setNoteLocal(obj.getString("note"));
       this.existing = true;
     }
-    if (obj != null) {
+    if (this.getChildType() != null) {
       this.extractChildrenNodes(obj);
     }
   }
@@ -119,9 +120,6 @@ public abstract class Node {
   private void extractChildrenNodes(HttpBody obj) {
     String childType = Node.typeLower(Node.typePlural(this.getChildType()));
     HttpBody value = obj.getList(childType);
-    if (value == null) {
-      return;
-    }
     Collection<Object> list = value.values();
     for (Object each2 : list) {
       try {
@@ -212,7 +210,7 @@ public abstract class Node {
    * @param parent the parent node of the instance
    * @return the strcuture request of the action
    */
-  private StructureRequest setParentLocal(Node parent) {
+  protected StructureRequest setParentLocal(Node parent) {
     this.parent = parent;
     this.parentId = parent.getId();
 
@@ -433,7 +431,7 @@ public abstract class Node {
         + "\", note: \""
         + this.getNote()
         + "\", nodes: "
-        + this.getNodes().toString()
+        + this.getChildrenNodes().toString()
         + "\")";
   }
 
@@ -541,8 +539,9 @@ public abstract class Node {
    *
    * @return a {@code Collection} of all the children nodes
    */
-  public Collection<Node> getNodes() {
-    return this.nodes.values();
+  public ArrayList<Node> getChildrenNodes() {
+    ArrayList<Node> arr = new ArrayList<Node>(this.nodes.values());
+    return arr;
   }
 
   /**

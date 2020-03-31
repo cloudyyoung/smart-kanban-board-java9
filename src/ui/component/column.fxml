@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+
+<fx:root fillWidth="false" prefHeight="680.0" prefWidth="1020.0" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+  <HBox styleClass="title">
+      <children>
+        <Label fx:id="eventCount" alignment="CENTER" contentDisplay="CENTER" text="4" textOverrun="CLIP" wrapText="true">
+            <styleClass>
+              <String fx:value="total" />
+              <String fx:value="bold" />
+              <String fx:value="h5" />
+            </styleClass>
+        </Label>
+        <TextField fx:id="columnTitle" editable="false" styleClass="medium" text="Love Me Like That - Carly Rae Jepsen" />
+        <Button fx:id="eventAdd" mnemonicParsing="false">
+            <graphic>
+              <SVGPath content="M 15 5 L 15 15 L 5 15 L 5 17 L 15 17 L 15 27 L 17 27 L 17 17 L 27 17 L 27 15 L 17 15 L 17 5 Z" />
+            </graphic>
+        </Button>
+      </children>
+      <VBox.margin>
+        <Insets />
+      </VBox.margin>
+  </HBox>
+  <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="event-list" VBox.vgrow="ALWAYS">
+      <content>
+        <VBox fx:id="eventList" />
+      </content>
+  </ScrollPane>
+<styleClass>
+  <String fx:value="column" />
+  <String fx:value="example-instance" />
+</styleClass>
+</fx:root>

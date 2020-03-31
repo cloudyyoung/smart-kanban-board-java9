@@ -45,7 +45,7 @@ public final class HttpBody extends HashMap<Object, Object> {
    *
    * @param toCopy the {@code List} to copy
    */
-  public HttpBody(List<?> toCopy) {
+  public HttpBody(Collection<?> toCopy) {
     this.list(toCopy);
     this.isList = true;
   }

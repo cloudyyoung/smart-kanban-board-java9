@@ -396,6 +396,8 @@ public final class HttpRequest extends Request {
     return "HttpRequest ("
         + "isSucceeded: "
         + this.isSucceeded()
+        + ", isFailed: "
+        + this.isFailed()
         + ", isExcepted: "
         + this.isExcepted()
         + ", requestUrl: "
@@ -471,8 +473,10 @@ public final class HttpRequest extends Request {
 
       if (connection.getResponseCode() >= 400 && connection.getResponseCode() <= 599) {
         this.setSucceeded(false);
+        this.setFailed(true);
       } else {
         this.setSucceeded(true);
+        this.setFailed(false);
       }
       this.setExcepted(false);
 
@@ -481,6 +485,7 @@ public final class HttpRequest extends Request {
     } catch (Exception e) {
       this.setSucceeded(false);
       this.setExcepted(true);
+      this.setFailed(false);
       // e.printStackTrace();
       return false;
     }
