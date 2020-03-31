@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.WelcomeController">
+   <center>
+      <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" styleClass="bg-welcome" vbarPolicy="NEVER" BorderPane.alignment="CENTER">
+         <content>
+            <HBox prefWidth="677.0" styleClass="welcome-wrapper">
+               <children>
+                  <VBox>
+                     <children>
+                        <HBox id="sk-logo" alignment="CENTER" styleClass="logo">
+                           <children>
+                              <SVGPath id="icon" content="M11.48,10.47L9.69 14.61 0 0 9.38 10.82 11.48 10.47z" fill="#2f2e2e" HBox.hgrow="ALWAYS" />
+                              <Label id="nexab" text="SmartKanban" textFill="#2f2e2e" HBox.hgrow="ALWAYS">
+                                 <font>
+                                    <Font name="NexaBold" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <VBox styleClass="operation">
+                           <children>
+                              <Button fx:id="buttonSignIn" focusTraversable="false" mnemonicParsing="false" onAction="#signIn" styleClass="primary" text="I have an account">
+                                 <graphic>
+                                    <HBox>
+                                       <children>
+                                          <SVGPath content="M 16 4 C 12.145666 4 9 7.1456661 9 11 C 9 13.450073 10.345521 15.510309 12.261719 16.761719 C 8.0572865 18.3114 5 22.277903 5 27 L 7 27 C 7 22.045455 11.045455 18 16 18 C 16.822378 18 17.612595 18.123662 18.369141 18.332031 C 16.908231 19.7835 16 21.7906 16 24 C 16 28.4 19.6 32 24 32 C 28.4 32 32 28.4 32 24 C 32 19.6 28.4 16 24 16 C 22.666452 16 21.409406 16.33455 20.300781 16.917969 C 20.12256 16.860229 19.942757 16.805085 19.767578 16.740234 C 21.666746 15.485846 23 13.437045 23 11 C 23 7.1456661 19.854334 4 16 4 z M 16 6 C 18.773666 6 21 8.2263339 21 11 C 21 13.773666 18.773666 16 16 16 C 13.226334 16 11 13.773666 11 11 C 11 8.2263339 13.226334 6 16 6 z M 24 18 C 27.3 18 30 20.7 30 24 C 30 27.3 27.3 30 24 30 C 20.7 30 18 27.3 18 24 C 18 20.7 20.7 18 24 18 z M 27 21.300781 L 23.699219 24.599609 L 21.400391 22.300781 L 20 23.699219 L 23.699219 27.400391 L 28.400391 22.699219 L 27 21.300781 z" />
+                                       </children>
+                                    </HBox>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="buttonSignUp" focusTraversable="false" mnemonicParsing="false" styleClass="primary" text="I need an account">
+                                 <graphic>
+                                    <HBox>
+                                       <children>
+                                          <SVGPath content="M 12 2 C 8.144531 2 5 5.144531 5 9 C 5 11.410156 6.230469 13.550781 8.09375 14.8125 C 4.527344 16.34375 2 19.882813 2 24 L 4 24 C 4 19.570313 7.570313 16 12 16 C 13.375 16 14.65625 16.359375 15.78125 16.96875 C 14.671875 18.34375 14 20.101563 14 22 C 14 26.40625 17.59375 30 22 30 C 26.40625 30 30 26.40625 30 22 C 30 17.59375 26.40625 14 22 14 C 20.253906 14 18.628906 14.574219 17.3125 15.53125 C 16.871094 15.253906 16.390625 15.019531 15.90625 14.8125 C 17.769531 13.550781 19 11.410156 19 9 C 19 5.144531 15.855469 2 12 2 Z M 12 4 C 14.773438 4 17 6.226563 17 9 C 17 11.773438 14.773438 14 12 14 C 9.226563 14 7 11.773438 7 9 C 7 6.226563 9.226563 4 12 4 Z M 22 16 C 25.324219 16 28 18.675781 28 22 C 28 25.324219 25.324219 28 22 28 C 18.675781 28 16 25.324219 16 22 C 16 18.675781 18.675781 16 22 16 Z M 21 18 L 21 21 L 18 21 L 18 23 L 21 23 L 21 26 L 23 26 L 23 23 L 26 23 L 26 21 L 23 21 L 23 18 Z" />
+                                       </children>
+                                    </HBox>
+                                 </graphic>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>

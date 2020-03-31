@@ -26,11 +26,11 @@
          <children>
             <VBox>
                <children>
-                  <Button mnemonicParsing="false">
+                  <Button fx:id="sideProfile" mnemonicParsing="false">
                      <graphic>
                         <HBox>
                            <children>
-                              <Circle fill="#2f2e2e" radius="20.0">
+                              <Circle fx:id="profileAvatar" fill="#2f2e2e" radius="20.0">
                                  <HBox.margin>
                                     <Insets right="10.0" />
                                  </HBox.margin>
@@ -73,7 +73,7 @@
             </VBox>
             <VBox styleClass="operation-list">
                <children>
-                  <Button text="Search">
+                  <Button fx:id="sideSearch" text="Search">
                      <graphic>
                         <HBox>
                            <children>
@@ -93,7 +93,7 @@
                         <String fx:value="a" />
                      </styleClass>
                   </Button>
-                  <Button text="Today">
+                  <Button fx:id="sideToday" text="Today">
                      <tooltip>
                         <Tooltip text="Today" />
                      </tooltip>
@@ -126,7 +126,7 @@
    <center>
       <TabPane focusTraversable="false" prefHeight="200.0" prefWidth="200.0" side="BOTTOM" styleClass="bg-main" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab closable="false" text="Board">
+          <Tab fx:id="mainTab" closable="false" text="Board">
             <content>
                   <VBox styleClass="main">
                      <children>
@@ -134,7 +134,7 @@
                            <children>
                               <VBox>
                                  <children>
-                                    <TextField editable="false" text="TodayTodayTodayTodayTodayTodayTodayTodayTodayTodayTodayToday">
+                                    <TextField fx:id="boardTitle" editable="false" text="TodayTodayTodayTodayTodayTodayTodayTodayTodayTodayTodayToday">
                                        <tooltip>
                                           <Tooltip text="TodayTodayTodayTodayTodayTodayTodayTodayTodayTodayTodayToday" />
                                        </tooltip>
@@ -144,7 +144,7 @@
                                           <String fx:value="h2" />
                                        </styleClass>
                                     </TextField>
-                                    <TextField editable="false" text="This is your today board.This is your today board.This is your today board.This is your today board.This is your today board.">
+                                    <TextField fx:id="boardNote" editable="false" text="This is your today board.This is your today board.This is your today board.This is your today board.This is your today board.">
                                        <styleClass>
                                           <String fx:value="board-note" />
                                           <String fx:value="h5" />
@@ -159,7 +159,7 @@
                                  <children>
                                     <Button mnemonicParsing="false">
                                        <graphic>
-                                          <SVGPath content="M 15 5 L 15 15 L 5 15 L 5 17 L 15 17 L 15 27 L 17 27 L 17 17 L 27 17 L 27 15 L 17 15 L 17 5 Z" />
+                                          <SVGPath fx:id="boardAddColumn" content="M 15 5 L 15 15 L 5 15 L 5 17 L 15 17 L 15 27 L 17 27 L 17 17 L 27 17 L 27 15 L 17 15 L 17 5 Z" />
                                        </graphic>
                                     </Button>
                                  </children>
@@ -488,7 +488,7 @@
          <content>
             <VBox>
                <children>
-                  <TextArea promptText="Title" text="Hold on tight Lucky chance. It's mine Lucky strike. I'm your luck, take it." wrapText="true">
+                  <TextArea fx:id="detailTitle" promptText="Title" text="Hold on tight Lucky chance. It's mine Lucky strike. I'm your luck, take it." wrapText="true">
                      <styleClass>
                         <String fx:value="h4" />
                         <String fx:value="bold" />
@@ -501,7 +501,12 @@
                   </Button>
                   <Button mnemonicParsing="false" styleClass="a" text="Add due date">
                      <graphic>
-                        <SVGPath id="icon" content="M 9 4 L 9 5 L 5 5 L 5 15 L 7 15 L 7 11 L 25 11 L 25 25 L 7 25 L 7 21 L 5 21 L 5 27 L 27 27 L 27 5 L 23 5 L 23 4 L 21 4 L 21 5 L 11 5 L 11 4 Z M 7 7 L 9 7 L 9 8 L 11 8 L 11 7 L 21 7 L 21 8 L 23 8 L 23 7 L 25 7 L 25 9 L 7 9 Z M 11 14 L 11 17 L 4 17 L 4 19 L 11 19 L 11 22 L 16 18 Z" />
+                        <SVGPath id="icon" content="M 9 4 L 9 5 L 5 5 L 5 27 L 27 27 L 27 5 L 23 5 L 23 4 L 21 4 L 21 5 L 11 5 L 11 4 Z M 7 7 L 9 7 L 9 8 L 11 8 L 11 7 L 21 7 L 21 8 L 23 8 L 23 7 L 25 7 L 25 9 L 7 9 Z M 7 11 L 25 11 L 25 25 L 7 25 Z M 13 13 L 13 15 L 15 15 L 15 13 Z M 17 13 L 17 15 L 19 15 L 19 13 Z M 21 13 L 21 15 L 23 15 L 23 13 Z M 16 16 L 16 20 L 20 20 L 20 16 Z M 9 17 L 9 19 L 11 19 L 11 17 Z M 13 17 L 13 19 L 15 19 L 15 17 Z M 21 17 L 21 19 L 23 19 L 23 17 Z M 9 21 L 9 23 L 11 23 L 11 21 Z M 13 21 L 13 23 L 15 23 L 15 21 Z M 17 21 L 17 23 L 19 23 L 19 21 Z" />
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" styleClass="a" text="Add importance">
+                     <graphic>
+                        <SVGPath id="icon" content="M 9 4 L 9 5 L 5 5 L 5 27 L 27 27 L 27 5 L 23 5 L 23 4 L 21 4 L 21 5 L 11 5 L 11 4 Z M 7 7 L 9 7 L 9 8 L 11 8 L 11 7 L 21 7 L 21 8 L 23 8 L 23 7 L 25 7 L 25 9 L 7 9 Z M 7 11 L 25 11 L 25 25 L 7 25 Z M 15 13 L 15 19 L 17 19 L 17 13 Z M 15 21 L 15 23 L 17 23 L 17 21 Z" />
                      </graphic>
                   </Button>
                   <DatePicker editable="false" promptText="Add due date" styleClass="hide" />

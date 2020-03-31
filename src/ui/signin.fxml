@@ -4,7 +4,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
@@ -34,18 +33,17 @@
                                  <children>
                                     <VBox>
                                        <children>
-                                          <Label text="Nice to meet you!">
+                                          <Label text="Welcome,">
                                              <styleClass>
                                                 <String fx:value="h3" />
-                                                <String fx:value="bold" />
                                              </styleClass>
                                           </Label>
                                        </children>
                                     </VBox>
                                     <VBox>
                                        <children>
-                                          <TextField promptText="Please choose a username" styleClass="h3" />
-                                          <Label styleClass="error" wrapText="true" />
+                                          <TextField promptText="Please enter your username" styleClass="h3" />
+                                          <Label styleClass="error" text="This is error text. This is error text. This is error text. This is error text. This is error text. " wrapText="true" />
                                        </children>
                                     </VBox>
                                     <ToolBar nodeOrientation="LEFT_TO_RIGHT" styleClass="operation">
@@ -61,7 +59,6 @@
                                              </graphic>
                                              <styleClass>
                                                 <String fx:value="h5" />
-                                                <String fx:value="medium" />
                                                 <String fx:value="primary" />
                                              </styleClass>
                                           </Button>
@@ -88,27 +85,25 @@
                                           <Label text="Then,">
                                              <styleClass>
                                                 <String fx:value="h3" />
-                                                <String fx:value="bold" />
                                              </styleClass>
                                           </Label>
                                        </children>
                                     </VBox>
                                     <VBox>
                                        <children>
-                                          <TextField promptText="Choose your password" styleClass="h3" />
-                                          <Label styleClass="error" wrapText="true" />
+                                          <TextField promptText="Enter your password" styleClass="h3" />
+                                          <Label styleClass="error" text="This is error text. This is error text. This is error text. This is error text. This is error text. " wrapText="true" />
                                        </children>
                                     </VBox>
                                     <ToolBar nodeOrientation="LEFT_TO_RIGHT" styleClass="operation">
                                        <items>
-                                          <Region prefWidth="212.0" />
+                                          <Region prefHeight="37.0" prefWidth="197.0" />
                                           <Button defaultButton="true" mnemonicParsing="false" text="Back">
                                              <styleClass>
                                                 <String fx:value="h5" />
-                                                <String fx:value="medium" />
                                              </styleClass>
                                           </Button>
-                                          <Button defaultButton="true" mnemonicParsing="false" text="Next">
+                                          <Button defaultButton="true" mnemonicParsing="false" text="Sign In">
                                              <graphic>
                                                 <SVGPath content="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
                                                    <cursor>
@@ -118,121 +113,6 @@
                                              </graphic>
                                              <styleClass>
                                                 <String fx:value="h5" />
-                                                <String fx:value="medium" />
-                                                <String fx:value="primary" />
-                                             </styleClass>
-                                          </Button>
-                                       </items>
-                                    </ToolBar>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </HBox>
-                     </content>
-                  </ScrollPane>
-               </content>
-            </Tab>
-            <Tab closable="false" text="Security Question">
-               <content>
-                  <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER">
-                     <content>
-                        <HBox styleClass="signin-wrapper">
-                           <children>
-                              <VBox styleClass="settings">
-                                 <children>
-                                    <VBox>
-                                       <children>
-                                          <Label text="In case you forget,">
-                                             <styleClass>
-                                                <String fx:value="h3" />
-                                                <String fx:value="bold" />
-                                             </styleClass>
-                                          </Label>
-                                       </children>
-                                    </VBox>
-                                    <VBox>
-                                       <children>
-                                          <ComboBox prefWidth="150.0" promptText="Choose a security question" styleClass="h3" />
-                                          <Label styleClass="error" wrapText="true" />
-                                       </children>
-                                    </VBox>
-                                    <ToolBar nodeOrientation="LEFT_TO_RIGHT" styleClass="operation">
-                                       <items>
-                                          <Region prefWidth="212.0" />
-                                          <Button defaultButton="true" mnemonicParsing="false" text="Back">
-                                             <styleClass>
-                                                <String fx:value="h5" />
-                                                <String fx:value="medium" />
-                                             </styleClass>
-                                          </Button>
-                                          <Button defaultButton="true" mnemonicParsing="false" text="Next">
-                                             <graphic>
-                                                <SVGPath content="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
-                                                   <cursor>
-                                                      <Cursor fx:constant="DEFAULT" />
-                                                   </cursor>
-                                                </SVGPath>
-                                             </graphic>
-                                             <styleClass>
-                                                <String fx:value="h5" />
-                                                <String fx:value="medium" />
-                                                <String fx:value="primary" />
-                                             </styleClass>
-                                          </Button>
-                                       </items>
-                                    </ToolBar>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </HBox>
-                     </content>
-                  </ScrollPane>
-               </content>
-            </Tab>
-            <Tab closable="false" text="Security Answer">
-               <content>
-                  <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER">
-                     <content>
-                        <HBox styleClass="signin-wrapper">
-                           <children>
-                              <VBox styleClass="settings">
-                                 <children>
-                                    <VBox>
-                                       <children>
-                                          <Label text="This is your questionThis is your questionThis is your questionThis is your questionThis is your question" wrapText="true">
-                                             <styleClass>
-                                                <String fx:value="h3" />
-                                                <String fx:value="bold" />
-                                             </styleClass>
-                                          </Label>
-                                       </children>
-                                    </VBox>
-                                    <VBox>
-                                       <children>
-                                          <TextField promptText="Please enter the answer" styleClass="h3" />
-                                          <Label styleClass="error" wrapText="true" />
-                                       </children>
-                                    </VBox>
-                                    <ToolBar nodeOrientation="LEFT_TO_RIGHT" styleClass="operation">
-                                       <items>
-                                          <Region prefHeight="37.0" prefWidth="190.0" />
-                                          <Button defaultButton="true" mnemonicParsing="false" text="Back">
-                                             <styleClass>
-                                                <String fx:value="h5" />
-                                                <String fx:value="medium" />
-                                             </styleClass>
-                                          </Button>
-                                          <Button defaultButton="true" mnemonicParsing="false" text="Sign Up">
-                                             <graphic>
-                                                <SVGPath content="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
-                                                   <cursor>
-                                                      <Cursor fx:constant="DEFAULT" />
-                                                   </cursor>
-                                                </SVGPath>
-                                             </graphic>
-                                             <styleClass>
-                                                <String fx:value="h5" />
-                                                <String fx:value="medium" />
                                                 <String fx:value="primary" />
                                              </styleClass>
                                           </Button>
@@ -256,12 +136,12 @@
                                  <children>
                                     <VBox>
                                        <children>
-                                          <Label styleClass="h3" text="Welcome!" />
+                                          <Label styleClass="h3" text="Welcome back," />
                                        </children>
                                     </VBox>
                                     <VBox>
                                        <children>
-                                          <Label text="Jerremy Lewis" wrapText="true">
+                                          <Label text="Jerremy Lewis">
                                              <styleClass>
                                                 <String fx:value="h1" />
                                                 <String fx:value="bold" />
@@ -286,7 +166,6 @@
                                              </graphic>
                                              <styleClass>
                                                 <String fx:value="h5" />
-                                                <String fx:value="medium" />
                                                 <String fx:value="primary" />
                                              </styleClass>
                                           </Button>
