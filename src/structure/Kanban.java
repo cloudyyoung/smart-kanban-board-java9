@@ -85,10 +85,10 @@ public class Kanban extends Node {
   public static void generateToday() {
     Kanban kanban = Kanban.current;
     Node TodayBoard = kanban.getChildrenNodes().get(0);
-    for (Node board: kanban.getChildrenNodes()) {
+    for (Node board : kanban.getChildrenNodes()) {
       if (board.getId() != 1) {
-        for (Node column: board.getChildrenNodes()) {
-          for (Node event: column.getChildrenNodes()) {
+        for (Node column : board.getChildrenNodes()) {
+          for (Node event : column.getChildrenNodes()) {
             System.out.println(event);
           }
         }
