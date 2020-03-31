@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 
-public private class UI extends Application {
+public class UI extends Application {
 
   // Main Method
   public static void main(String[] args) {

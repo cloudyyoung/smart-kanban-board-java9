@@ -88,6 +88,6 @@ public class Kanban extends Node {
 
     Kanban.checkout();
 
-    System.out.println(Kanban.current.getChildrenNodes().values());
+    System.out.println(Kanban.current);
   }
 }
