@@ -132,9 +132,6 @@
                               <VBox>
                                  <children>
                                     <TextField fx:id="boardTitle" editable="false" text="TodayTodayTodayTodayTodayTodayTodayTodayTodayTodayTodayToday">
-                                       <tooltip>
-                                          <Tooltip text="TodayTodayTodayTodayTodayTodayTodayTodayTodayTodayTodayToday" />
-                                       </tooltip>
                                        <styleClass>
                                           <String fx:value="board-title" />
                                           <String fx:value="bold" />
@@ -146,9 +143,6 @@
                                           <String fx:value="board-note" />
                                           <String fx:value="h5" />
                                        </styleClass>
-                                       <tooltip>
-                                          <Tooltip text="This is your today board.This is your today board.This is your today board.This is your today board.This is your today board." />
-                                       </tooltip>
                                     </TextField>
                                  </children>
                               </VBox>

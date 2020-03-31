@@ -109,7 +109,7 @@ public class Time {
    *
    * @return the current month
    */
-  public static String currentMonth() {
+  public static Integer currentMonth() {
 
     /**
      * myDateObj: current date taken from device myFormatObj: formatted date in dd-MM-yyyy
@@ -122,9 +122,7 @@ public class Time {
 
     String toParse = formattedDate.substring(3, 5);
 
-    int result = Integer.parseInt(toParse);
-    String resStr = "" + result;
-    return resStr;
+    return Integer.parseInt(toParse);
   }
 
   /**
@@ -132,7 +130,7 @@ public class Time {
    *
    * @return the current day
    */
-  public static String currentDay() {
+  public static Integer currentDay() {
 
     /**
      * myDateObj: current date taken from device myFormatObj: formatted date in dd-MM-yyyy
@@ -145,9 +143,7 @@ public class Time {
 
     String toParse = formattedDate.substring(0, 2);
 
-    int result = Integer.parseInt(toParse);
-    String resStr = "" + result;
-    return resStr;
+    return Integer.parseInt(toParse);
   }
 
   /**
@@ -155,7 +151,7 @@ public class Time {
    *
    * @return the current year
    */
-  public static String currentYear() {
+  public static Integer currentYear() {
 
     /**
      * myDateObj: current date taken from device myFormatObj: formatted date in dd-MM-yyyy
@@ -168,9 +164,7 @@ public class Time {
 
     String toParse = formattedDate.substring(6, 10);
 
-    int result = Integer.parseInt(toParse);
-    String resStr = "" + result;
-    return resStr;
+    return Integer.parseInt(toParse);
   }
 
   /**
@@ -204,29 +198,29 @@ public class Time {
     int toCompare = (int) currentMonthNum;
 
     if (toCompare == 1) {
-      monthName = "JANUARY";
+      monthName = "January";
     } else if (toCompare == 2) {
-      monthName = "FEBRUARY";
+      monthName = "February";
     } else if (toCompare == 3) {
-      monthName = "MARCH";
+      monthName = "March";
     } else if (toCompare == 4) {
-      monthName = "APRIL";
+      monthName = "April";
     } else if (toCompare == 5) {
-      monthName = "MAY";
+      monthName = "May";
     } else if (toCompare == 6) {
-      monthName = "JUNE";
+      monthName = "June";
     } else if (toCompare == 7) {
-      monthName = "JULY";
+      monthName = "July";
     } else if (toCompare == 8) {
-      monthName = "AUGUST";
+      monthName = "August";
     } else if (toCompare == 9) {
-      monthName = "SEPTEMBER";
+      monthName = "September";
     } else if (toCompare == 10) {
-      monthName = "OCTOBER";
+      monthName = "October";
     } else if (toCompare == 11) {
-      monthName = "NOVEMBER";
+      monthName = "November";
     } else {
-      monthName = "DECEMBER";
+      monthName = "December";
     }
 
     return monthName;
