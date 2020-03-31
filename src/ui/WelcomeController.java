@@ -8,11 +8,9 @@ import javafx.scene.*;
 
 public class WelcomeController {
 
-  @FXML
-  private Button buttonSignIn;
+  @FXML private Button buttonSignIn;
 
-  @FXML
-  private Button buttonSignUp;
+  @FXML private Button buttonSignUp;
 
   @FXML
   void sign(ActionEvent event) {
@@ -30,7 +28,11 @@ public class WelcomeController {
 
   void switchScene(String file, Stage stage, Scene oldScene) {
     try {
-      Scene scene = new Scene(FXMLLoader.load(getClass().getResource(file)), oldScene.getWidth(), oldScene.getHeight());
+      Scene scene =
+          new Scene(
+              FXMLLoader.load(getClass().getResource(file)),
+              oldScene.getWidth(),
+              oldScene.getHeight());
       scene.getStylesheets().add(getClass().getResource("default.css").toExternalForm());
       stage.setScene(scene);
       stage.show();
