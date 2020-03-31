@@ -1,4 +1,5 @@
 package structure;
+
 import java.util.*;
 
 /**
@@ -26,12 +27,12 @@ public class Event extends Node {
     this.dueDate = dueDate;
     this.importanceLevel = importanceLevel;
   }
- 
+
   public static void main(String[] args) {
     Calendar c = Calendar.getInstance();
     // c.set(2012, 12, 11, 13, 15);
     Long dueDate = 12345677123456l;
-    
+
     // c.setTimeInMillis(dueDate);
     // c.set(2012, 0, 11, 13, 15);
     Long duration = 60000l;
