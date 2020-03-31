@@ -1,16 +1,13 @@
 package ui;
 
 // Imports
-import java.io.FileInputStream;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 
-private 
-
-public class UI extends Application {
+public private class UI extends Application {
 
   // Main Method
   public static void main(String[] args) {
@@ -29,7 +26,7 @@ public class UI extends Application {
       BorderPane root = (BorderPane) loader.load(getClass().getResource("welcome.fxml"));
       Scene scene = new Scene(root, 960, 660);
       scene.getStylesheets().add(getClass().getResource("default.css").toExternalForm());
-      
+
       primaryStage.setResizable(true);
       primaryStage.setScene(scene);
       primaryStage.setTitle("Smart Kanban");
