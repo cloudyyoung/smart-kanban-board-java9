@@ -110,7 +110,6 @@ public class Event extends Node {
     Long dueDate = 1585670400l * 1000;
     c.setTimeZone(TimeZone.getTimeZone("UTC"));
 
-
     c.setTimeInMillis(0);
     System.out.println(c.getTime());
 
@@ -120,9 +119,9 @@ public class Event extends Node {
     // c.set(2012, 0, 11, 13, 15);
     // Long duration = 60000l;
     // c.setTimeInMillis(dueDate);
-    //System.out.print(c.getTime());
+    // System.out.print(c.getTime());
 
-    ///c.setTimeInMillis(dueDate + duration);
-    //System.out.print(c.getTime());
+    /// c.setTimeInMillis(dueDate + duration);
+    // System.out.print(c.getTime());
   }
 }

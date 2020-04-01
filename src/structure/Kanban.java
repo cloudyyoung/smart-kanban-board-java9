@@ -1,11 +1,9 @@
 package structure;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TimeZone;
 
 /**
  * The {@code Kanban} class, extends from {@code Node}.
