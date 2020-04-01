@@ -2,6 +2,7 @@ package structure;
 
 import com.google.gson.*;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Map;
 import java.util.HashMap;
@@ -306,6 +307,10 @@ public final class HttpBody extends HashMap<Object, Object> {
     return this.parseString(this.get(key));
   }
 
+  public Long getLong(Object key){
+    return this.parseLong(this.get(key));
+  }
+
   /**
    * Returns the value of specified key in {@code HttpBody}(performing {@code Map}) type.
    *
@@ -383,6 +388,24 @@ public final class HttpBody extends HashMap<Object, Object> {
     try {
       return Double.parseDouble(obj.toString() + "");
     } catch (Throwable e) {
+      return null;
+    }
+  }
+
+  private Long parseLong(Object obj){
+    try{
+      String str = obj.toString();
+      if(str.indexOf(".") > -1 && str.indexOf("E") > -1){ // Scientific notation: 1.223E2
+        BigDecimal value = new BigDecimal(str);
+        System.out.println(value);
+        return value.longValue();
+      }else if (str.indexOf(".") > -1) { // Decimals: 100022.2
+        str = str.substring(0, str.indexOf("."));
+        return Long.parseLong(str);
+      }else{
+        return Long.parseLong(str);
+      }
+    }catch(Throwable e){
       return null;
     }
   }

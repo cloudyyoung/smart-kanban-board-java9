@@ -23,8 +23,8 @@ public class Event extends Node {
   Long duration;
   // Duration store in timeStamp form (millissecond)
 
-  public Event(HttpBody obj, Long dueDate, Long duration, int importanceLevel) {
-    super(obj);
+  public Event(String title, String note, Long dueDate, Long duration, int importanceLevel) {
+    super(title, note);
     this.duration = duration;
     this.dueDate = dueDate;
     this.importanceLevel = importanceLevel;
@@ -37,10 +37,11 @@ public class Event extends Node {
    */
   public Event(HttpBody obj) {
     super(obj);
-    // Back-End is int?
-    this.duration = Long.valueOf(obj.getString("duration").replace(".0", "")) | 0;
-    // this.dueDate = Long.valueOf(obj.getString("dueDate").replace(".0", "")) | 0;
-    this.importanceLevel = Integer.valueOf(obj.getString("importance_level").replace(".0", "")) | 0;
+    this.duration = obj.getLong("duration");
+    this.dueDate = obj.getLong("due_date");
+    this.importanceLevel = obj.getInt("importance_level");
+    // this.dueDate = Long.valueOf(obj.getString("due_date").replace(".0", "")) | 0;
+    // this.importanceLevel = Integer.valueOf(obj.getString("importance_level").replace(".0", "")) | 0;
   }
 
   /**
@@ -59,9 +60,9 @@ public class Event extends Node {
   public Long getImportanceLevel() {
     return this.duration;
   }
-  // left
+
   public Long getDueDate() {
-    return 0l;
+    return this.dueDate;
   }
 
   public String toString() {
@@ -76,7 +77,7 @@ public class Event extends Node {
         + this.getDuration()
         + ", importanceLevel: "
         + this.getImportanceLevel()
-        + ", nodes: "
+        + ", dueDate: "
         + this.getDueDate()
         + ", nodes: "
         + this.getChildrenNodes().toString()

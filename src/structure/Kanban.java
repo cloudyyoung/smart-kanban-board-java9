@@ -99,7 +99,7 @@ public class Kanban extends Node {
     HashMap<Integer, Event> map_todo = new HashMap<Integer, Event>();
 
     for (Node board : kanban.getChildrenNodes()) {
-      if (board.getId() != 1) {
+      if (board.getId() >= 100) {
         for (Node column : board.getChildrenNodes()) {
           for (Node event : column.getChildrenNodes()) {
             // todo.addNode(event);
@@ -158,7 +158,7 @@ public class Kanban extends Node {
 
   public static void main(String[] args) {
     User user = new User();
-    user.authenticate("test", "test");
+    user.authenticate("cloudy", "cloudy");
     System.out.println(user);
 
     Kanban.checkout();
