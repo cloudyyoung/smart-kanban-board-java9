@@ -14,497 +14,506 @@
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="680.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.HomeController">
-   <left>
-      <VBox fx:id="sidePane" styleClass="bg-side">
-         <children>
-            <VBox focusTraversable="true">
+
+<StackPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.HomeController">
+   <children>
+      <BorderPane prefHeight="680.0" prefWidth="1020.0">
+         <left>
+            <VBox fx:id="sidePane" styleClass="bg-side">
                <children>
-                  <Button fx:id="sideProfile" mnemonicParsing="false">
-                     <graphic>
-                        <HBox>
-                           <children>
-                              <Circle fx:id="profileAvatar" fill="#2f2e2e" radius="20.0">
-                                 <HBox.margin>
-                                    <Insets right="12.0" />
-                                 </HBox.margin>
-                              </Circle>
-                              <VBox id="list-i" alignment="CENTER_LEFT">
-                                 <children>
-                                    <Label styleClass="light" text="Welcome," textFill="#2f2e2e">
-                                       <VBox.margin>
-                                          <Insets />
-                                       </VBox.margin>
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                       <padding>
-                                          <Insets bottom="-2.0" />
-                                       </padding>
-                                    </Label>
-                                    <Label id="username-label" fx:id="profileUsername" prefHeight="19.0" prefWidth="122.0" styleClass="bold" text="Jerremy Lewis Jerremy Lewis Jerremy Lewis Jerremy Lewis">
-                                       <font>
-                                          <Font size="14.0" />
-                                       </font>
-                                       <VBox.margin>
-                                          <Insets />
-                                       </VBox.margin>
-                                    </Label>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </HBox>
-                     </graphic>
-                     <styleClass>
-                        <String fx:value="username" />
-                        <String fx:value="a" />
-                     </styleClass>
-                  </Button>
-               </children>
-            </VBox>
-            <VBox styleClass="operation-list">
-               <children>
-                  <Button fx:id="sideSearch" text="Search">
-                     <graphic>
-                        <HBox>
-                           <children>
-                              <SVGPath id="icon" content="M 19 3 C 13.488281 3 9 7.488281 9 13 C 9 15.394531 9.839844 17.589844 11.25 19.3125 L 3.28125 27.28125 L 4.71875 28.71875 L 12.6875 20.75 C 14.410156 22.160156 16.605469 23 19 23 C 24.511719 23 29 18.511719 29 13 C 29 7.488281 24.511719 3 19 3 Z M 19 5 C 23.429688 5 27 8.570313 27 13 C 27 17.429688 23.429688 21 19 21 C 14.570313 21 11 17.429688 11 13 C 11 8.570313 14.570313 5 19 5 Z" fill="#2f2e2e">
-                                 <cursor>
-                                    <Cursor fx:constant="DEFAULT" />
-                                 </cursor>
-                              </SVGPath>
-                           </children>
-                        </HBox>
-                     </graphic>
-                     <tooltip>
-                        <Tooltip text="Search any thing..." />
-                     </tooltip>
-                     <styleClass>
-                        <String fx:value="example-instance" />
-                        <String fx:value="a" />
-                     </styleClass>
-                  </Button>
-                  <Button id="board-1" fx:id="sideToday" text="Today">
-                     <tooltip>
-                        <Tooltip text="Today" />
-                     </tooltip>
-                     <styleClass>
-                        <String fx:value="example-instance" />
-                        <String fx:value="selected" />
-                        <String fx:value="a" />
-                     </styleClass>
-                     <graphic>
-                        <HBox>
-                           <children>
-                              <SVGPath content="M 9 5 L 9 6 L 5 6 L 5 28 L 27 28 L 27 6 L 23 6 L 23 5 L 21 5 L 21 6 L 11 6 L 11 5 Z M 7 8 L 9 8 L 9 9 L 11 9 L 11 8 L 21 8 L 21 9 L 23 9 L 23 8 L 25 8 L 25 10 L 7 10 Z M 7 12 L 25 12 L 25 26 L 7 26 Z M 20.28125 14.28125 L 15 19.5625 L 12.71875 17.28125 L 11.28125 18.71875 L 14.28125 21.71875 L 15 22.40625 L 15.71875 21.71875 L 21.71875 15.71875 Z" />
-                           </children>
-                        </HBox>
-                     </graphic>
-                  </Button>
-               </children>
-            </VBox>
-            <ScrollPane hbarPolicy="NEVER" VBox.vgrow="ALWAYS">
-              <content>
-                  <VBox fx:id="boardList" />
-              </content>
-            </ScrollPane>
-         </children>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-      </VBox>
-   </left>
-   <center>
-      <TabPane fx:id="tabPane" focusTraversable="false" prefHeight="200.0" prefWidth="200.0" side="BOTTOM" styleClass="bg-main" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-        <tabs>
-          <Tab closable="false" text="Board">
-            <content>
-                  <VBox fx:id="boardPane" styleClass="main">
+                  <VBox focusTraversable="true">
                      <children>
-                        <HBox>
-                           <children>
-                              <VBox>
+                        <Button fx:id="sideProfile" mnemonicParsing="false">
+                           <graphic>
+                              <HBox>
                                  <children>
-                                    <TextField fx:id="boardTitle" editable="false" text="TodayTodayTodayTodayTodayTodayTodayTodayTodayTodayTodayToday">
-                                       <styleClass>
-                                          <String fx:value="board-title" />
-                                          <String fx:value="bold" />
-                                          <String fx:value="h2" />
-                                       </styleClass>
-                                    </TextField>
-                                    <TextField fx:id="boardNote" editable="false" text="This is your today board.This is your today board.This is your today board.This is your today board.This is your today board.">
-                                       <styleClass>
-                                          <String fx:value="board-note" />
-                                          <String fx:value="h5" />
-                                       </styleClass>
-                                    </TextField>
-                                 </children>
-                              </VBox>
-                              <VBox styleClass="operation-list">
-                                 <children>
-                                    <Button fx:id="boardAddColumn" mnemonicParsing="false">
-                                       <graphic>
-                                          <SVGPath content="M 15 5 L 15 15 L 5 15 L 5 17 L 15 17 L 15 27 L 17 27 L 17 17 L 27 17 L 27 15 L 17 15 L 17 5 Z" />
-                                       </graphic>
-                                    </Button>
-                                 </children>
-                              </VBox>
-                           </children>
-                           <styleClass>
-                              <String fx:value="tab-box" />
-                              <String fx:value="title" />
-                           </styleClass>
-                        </HBox>
-                        <ScrollPane fitToHeight="true" nodeOrientation="LEFT_TO_RIGHT" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
-                           <content>
-                              <HBox fx:id="columnPane" styleClass="columns">
-                                 <children>
-                                    <VBox>
+                                    <Circle fx:id="profileAvatar" fill="#2f2e2e" radius="20.0">
+                                       <HBox.margin>
+                                          <Insets right="12.0" />
+                                       </HBox.margin>
+                                    </Circle>
+                                    <VBox id="list-i" alignment="CENTER_LEFT">
                                        <children>
-                                          <HBox styleClass="title">
-                                             <children>
-                                                <Label alignment="CENTER" contentDisplay="CENTER" text="4" textOverrun="CLIP" wrapText="true">
-                                                   <styleClass>
-                                                      <String fx:value="total" />
-                                                      <String fx:value="bold" />
-                                                      <String fx:value="h5" />
-                                                   </styleClass>
-                                                </Label>
-                                                <TextField editable="false" styleClass="medium" text="Love Me Like That - Carly Rae Jepsen">
-                                                   <tooltip>
-                                                      <Tooltip text="Column Title Column Title Column Title Column Title Column Title" />
-                                                   </tooltip>
-                                                </TextField>
-                                                <Button mnemonicParsing="false">
-                                                   <graphic>
-                                                      <SVGPath content="M 15 5 L 15 15 L 5 15 L 5 17 L 15 17 L 15 27 L 17 27 L 17 17 L 27 17 L 27 15 L 17 15 L 17 5 Z" />
-                                                   </graphic>
-                                                </Button>
-                                             </children>
+                                          <Label styleClass="light" text="Welcome," textFill="#2f2e2e">
                                              <VBox.margin>
                                                 <Insets />
                                              </VBox.margin>
-                                          </HBox>
-                                          <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="event-list" VBox.vgrow="ALWAYS">
-                                             <content>
-                                                <VBox>
-                                                   <children>
-                                                      <Button alignment="TOP_LEFT" mnemonicParsing="false" styleClass="selected" text="Hold on tight Lucky chance. It's mine Lucky strike. I'm your luck, take it." wrapText="true">
-                                                         <graphic>
-                                                            <SVGPath content="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
-                                                               <cursor>
-                                                                  <Cursor fx:constant="DEFAULT" />
-                                                               </cursor>
-                                                            </SVGPath>
-                                                         </graphic>
-                                                      </Button>
-                                                      <Button alignment="TOP_LEFT" mnemonicParsing="false" text="Luckitty-Cat - WJSN" wrapText="true">
-                                                         <graphic>
-                                                            <SVGPath content="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
-                                                               <cursor>
-                                                                  <Cursor fx:constant="DEFAULT" />
-                                                               </cursor>
-                                                            </SVGPath>
-                                                         </graphic>
-                                                      </Button>
-                                                      <Button alignment="TOP_LEFT" mnemonicParsing="false" text="He won't love you like I would, love you like I would, like I would." wrapText="true">
-                                                         <graphic>
-                                                            <SVGPath content="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
-                                                               <cursor>
-                                                                  <Cursor fx:constant="DEFAULT" />
-                                                               </cursor>
-                                                            </SVGPath>
-                                                         </graphic>
-                                                      </Button>
-                                                      <Button alignment="TOP_LEFT" mnemonicParsing="false" text="Fever dream high in the quiet of the night, you know that I caught it." wrapText="true">
-                                                         <graphic>
-                                                            <SVGPath content="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
-                                                               <cursor>
-                                                                  <Cursor fx:constant="DEFAULT" />
-                                                               </cursor>
-                                                            </SVGPath>
-                                                         </graphic>
-                                                      </Button>
-                                                   </children>
-                                                </VBox>
-                                             </content>
-                                          </ScrollPane>
-                                       </children>
-                                       <styleClass>
-                                          <String fx:value="column" />
-                                          <String fx:value="example-instance" />
-                                       </styleClass>
-                                    </VBox>
-                                    <VBox HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <HBox styleClass="title">
-                                             <children>
-                                                <Label alignment="CENTER" contentDisplay="CENTER" text="6" textOverrun="CLIP" wrapText="true">
-                                                   <styleClass>
-                                                      <String fx:value="total" />
-                                                      <String fx:value="bold" />
-                                                      <String fx:value="h5" />
-                                                   </styleClass>
-                                                </Label>
-                                                <TextField editable="false" styleClass="medium" text="Dancing With Our Hands Tied - Taylor Swift">
-                                                   <tooltip>
-                                                      <Tooltip text="Column Title Column Title Column Title Column Title Column Title" />
-                                                   </tooltip>
-                                                </TextField>
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets />
-                                             </VBox.margin>
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
                                              <padding>
-                                                <Insets top="-1.0" />
+                                                <Insets bottom="-2.0" />
                                              </padding>
-                                          </HBox>
-                                          <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="event-list" VBox.vgrow="ALWAYS">
-                                             <content>
-                                                <VBox>
-                                                   <children>
-                                                      <Button alignment="TOP_LEFT" mnemonicParsing="false" text="Look what you made me do, I'm with somebody new, oh baby baby, I'm dancing with a stranger." wrapText="true">
-                                                         <graphic>
-                                                            <SVGPath content="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
-                                                               <cursor>
-                                                                  <Cursor fx:constant="DEFAULT" />
-                                                               </cursor>
-                                                            </SVGPath>
-                                                         </graphic>
-                                                      </Button>
-                                                      <Button alignment="TOP_LEFT" mnemonicParsing="false" text="Random lyrics." wrapText="true">
-                                                         <graphic>
-                                                            <SVGPath content="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
-                                                               <cursor>
-                                                                  <Cursor fx:constant="DEFAULT" />
-                                                               </cursor>
-                                                            </SVGPath>
-                                                         </graphic>
-                                                      </Button>
-                                                      <Button alignment="TOP_LEFT" mnemonicParsing="false" text="I hear thunder in the distance, and it hits me in an instance. Crushing through my heart, and I'm blown apart. You don't love me like that." wrapText="true">
-                                                         <graphic>
-                                                            <SVGPath content="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
-                                                               <cursor>
-                                                                  <Cursor fx:constant="DEFAULT" />
-                                                               </cursor>
-                                                            </SVGPath>
-                                                         </graphic>
-                                                      </Button>
-                                                      <Button alignment="TOP_LEFT" mnemonicParsing="false" text="I feel the cool wind coming, end before the summer rain. I see the sky staring into the blue like it's not gonna end." wrapText="true">
-                                                         <graphic>
-                                                            <SVGPath content="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
-                                                               <cursor>
-                                                                  <Cursor fx:constant="DEFAULT" />
-                                                               </cursor>
-                                                            </SVGPath>
-                                                         </graphic>
-                                                      </Button>
-                                                      <Button alignment="TOP_LEFT" mnemonicParsing="false" text="But we were dancing, dancing with our hands tied, hands tied." wrapText="true">
-                                                         <graphic>
-                                                            <SVGPath content="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
-                                                               <cursor>
-                                                                  <Cursor fx:constant="DEFAULT" />
-                                                               </cursor>
-                                                            </SVGPath>
-                                                         </graphic>
-                                                      </Button>
-                                                      <Button alignment="TOP_LEFT" mnemonicParsing="false" text="This girl is like a dream, my wildest fantasy." wrapText="true">
-                                                         <graphic>
-                                                            <SVGPath content="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
-                                                               <cursor>
-                                                                  <Cursor fx:constant="DEFAULT" />
-                                                               </cursor>
-                                                            </SVGPath>
-                                                         </graphic>
-                                                      </Button>
-                                                   </children>
-                                                </VBox>
-                                             </content>
-                                          </ScrollPane>
-                                       </children>
-                                       <styleClass>
-                                          <String fx:value="column" />
-                                          <String fx:value="example-instance" />
-                                       </styleClass>
-                                    </VBox>
-                                    <VBox HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <HBox styleClass="title">
-                                             <children>
-                                                <Label alignment="CENTER" contentDisplay="CENTER" text="2" textOverrun="CLIP" wrapText="true">
-                                                   <styleClass>
-                                                      <String fx:value="total" />
-                                                      <String fx:value="bold" />
-                                                      <String fx:value="h5" />
-                                                   </styleClass>
-                                                </Label>
-                                                <TextField editable="false" styleClass="medium" text="Cruel Summer - Taylor Swift">
-                                                   <tooltip>
-                                                      <Tooltip text="Column Title Column Title Column Title Column Title Column Title" />
-                                                   </tooltip>
-                                                </TextField>
-                                             </children>
+                                          </Label>
+                                          <Label id="username-label" fx:id="profileUsername" prefHeight="19.0" prefWidth="122.0" styleClass="bold" text="Jerremy Lewis Jerremy Lewis Jerremy Lewis Jerremy Lewis">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
                                              <VBox.margin>
                                                 <Insets />
                                              </VBox.margin>
-                                             <padding>
-                                                <Insets top="-1.0" />
-                                             </padding>
-                                          </HBox>
-                                          <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="event-list" VBox.vgrow="ALWAYS">
-                                             <content>
-                                                <VBox>
-                                                   <children>
-                                                      <Button alignment="TOP_LEFT" mnemonicParsing="false" text="I, I loved you in secret. First sight, yeah, we love without reason." wrapText="true">
-                                                         <graphic>
-                                                            <SVGPath content="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
-                                                               <cursor>
-                                                                  <Cursor fx:constant="DEFAULT" />
-                                                               </cursor>
-                                                            </SVGPath>
-                                                         </graphic>
-                                                      </Button>
-                                                      <Button alignment="TOP_LEFT" mnemonicParsing="false" text="And my, my love had been frozen, deep blue but you painted me golden." wrapText="true">
-                                                         <graphic>
-                                                            <SVGPath content="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
-                                                               <cursor>
-                                                                  <Cursor fx:constant="DEFAULT" />
-                                                               </cursor>
-                                                            </SVGPath>
-                                                         </graphic>
-                                                      </Button>
-                                                   </children>
-                                                </VBox>
-                                             </content>
-                                          </ScrollPane>
+                                          </Label>
                                        </children>
-                                       <styleClass>
-                                          <String fx:value="column" />
-                                          <String fx:value="example-instance" />
-                                       </styleClass>
-                                    </VBox>
-                                    <VBox HBox.hgrow="ALWAYS">
-                                       <children>
-                                          <HBox styleClass="title">
-                                             <children>
-                                                <Label alignment="CENTER" contentDisplay="CENTER" text="1" textOverrun="CLIP" wrapText="true">
-                                                   <styleClass>
-                                                      <String fx:value="total" />
-                                                      <String fx:value="bold" />
-                                                      <String fx:value="h5" />
-                                                   </styleClass>
-                                                </Label>
-                                                <TextField editable="false" styleClass="medium" text="LIKE I WOULD - ZAYN">
-                                                   <tooltip>
-                                                      <Tooltip text="Column Title Column Title Column Title Column Title Column Title" />
-                                                   </tooltip>
-                                                </TextField>
-                                             </children>
-                                             <VBox.margin>
-                                                <Insets />
-                                             </VBox.margin>
-                                             <padding>
-                                                <Insets top="-1.0" />
-                                             </padding>
-                                          </HBox>
-                                          <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="event-list" VBox.vgrow="ALWAYS">
-                                             <content>
-                                                <VBox>
-                                                   <children>
-                                                      <Button alignment="TOP_LEFT" mnemonicParsing="false" text="This probably gonna sound wrong, promise it won't last long. If we can never go back, thought you'd like to know that." wrapText="true">
-                                                         <graphic>
-                                                            <SVGPath content="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
-                                                               <cursor>
-                                                                  <Cursor fx:constant="DEFAULT" />
-                                                               </cursor>
-                                                            </SVGPath>
-                                                         </graphic>
-                                                      </Button>
-                                                   </children>
-                                                </VBox>
-                                             </content>
-                                          </ScrollPane>
-                                       </children>
-                                       <styleClass>
-                                          <String fx:value="column" />
-                                          <String fx:value="example-instance" />
-                                       </styleClass>
                                     </VBox>
                                  </children>
                               </HBox>
-                           </content>
-                        </ScrollPane>
+                           </graphic>
+                           <styleClass>
+                              <String fx:value="username" />
+                              <String fx:value="a" />
+                           </styleClass>
+                        </Button>
                      </children>
                   </VBox>
-            </content>
-          </Tab>
-          <Tab closable="false" text="Search">
-               <content>
-                  <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-alignment: TOP_LEFT;">
+                  <VBox styleClass="operation-list">
                      <children>
-                        <BorderPane>
-                           <center>
-                              <VBox BorderPane.alignment="CENTER">
+                        <Button fx:id="sideSearch" text="Search">
+                           <graphic>
+                              <HBox>
                                  <children>
-                                    <TextField promptText="Search any thing...">
-                                       <styleClass>
-                                          <String fx:value="bold" />
-                                          <String fx:value="search" />
-                                          <String fx:value="h1" />
-                                       </styleClass>
-                                    </TextField>
+                                    <SVGPath id="icon" content="M 19 3 C 13.488281 3 9 7.488281 9 13 C 9 15.394531 9.839844 17.589844 11.25 19.3125 L 3.28125 27.28125 L 4.71875 28.71875 L 12.6875 20.75 C 14.410156 22.160156 16.605469 23 19 23 C 24.511719 23 29 18.511719 29 13 C 29 7.488281 24.511719 3 19 3 Z M 19 5 C 23.429688 5 27 8.570313 27 13 C 27 17.429688 23.429688 21 19 21 C 14.570313 21 11 17.429688 11 13 C 11 8.570313 14.570313 5 19 5 Z" fill="#2f2e2e">
+                                       <cursor>
+                                          <Cursor fx:constant="DEFAULT" />
+                                       </cursor>
+                                    </SVGPath>
                                  </children>
-                              </VBox>
-                           </center>
+                              </HBox>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="Search any thing..." />
+                           </tooltip>
                            <styleClass>
-                              <String fx:value="tab-box" />
-                              <String fx:value="title" />
+                              <String fx:value="example-instance" />
+                              <String fx:value="a" />
                            </styleClass>
-                        </BorderPane>
+                        </Button>
+                        <Button id="board-1" fx:id="sideToday" text="Today">
+                           <tooltip>
+                              <Tooltip text="Today" />
+                           </tooltip>
+                           <styleClass>
+                              <String fx:value="example-instance" />
+                              <String fx:value="selected" />
+                              <String fx:value="a" />
+                           </styleClass>
+                           <graphic>
+                              <HBox>
+                                 <children>
+                                    <SVGPath content="M 9 5 L 9 6 L 5 6 L 5 28 L 27 28 L 27 6 L 23 6 L 23 5 L 21 5 L 21 6 L 11 6 L 11 5 Z M 7 8 L 9 8 L 9 9 L 11 9 L 11 8 L 21 8 L 21 9 L 23 9 L 23 8 L 25 8 L 25 10 L 7 10 Z M 7 12 L 25 12 L 25 26 L 7 26 Z M 20.28125 14.28125 L 15 19.5625 L 12.71875 17.28125 L 11.28125 18.71875 L 14.28125 21.71875 L 15 22.40625 L 15.71875 21.71875 L 21.71875 15.71875 Z" />
+                                 </children>
+                              </HBox>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <ScrollPane hbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+                    <content>
+                        <VBox fx:id="boardList" />
+                    </content>
+                  </ScrollPane>
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </VBox>
+         </left>
+         <center>
+            <TabPane fx:id="tabPane" focusTraversable="false" prefHeight="200.0" prefWidth="200.0" side="BOTTOM" styleClass="bg-main" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+              <tabs>
+                <Tab closable="false" text="Board">
+                  <content>
+                        <VBox fx:id="boardPane" styleClass="main">
+                           <children>
+                              <HBox>
+                                 <children>
+                                    <VBox>
+                                       <children>
+                                          <TextField fx:id="boardTitle" editable="false" text="TodayTodayTodayTodayTodayTodayTodayTodayTodayTodayTodayToday">
+                                             <styleClass>
+                                                <String fx:value="board-title" />
+                                                <String fx:value="bold" />
+                                                <String fx:value="h2" />
+                                             </styleClass>
+                                          </TextField>
+                                          <TextField fx:id="boardNote" editable="false" text="This is your today board.This is your today board.This is your today board.This is your today board.This is your today board.">
+                                             <styleClass>
+                                                <String fx:value="board-note" />
+                                                <String fx:value="h5" />
+                                             </styleClass>
+                                          </TextField>
+                                       </children>
+                                    </VBox>
+                                    <VBox styleClass="operation-list">
+                                       <children>
+                                          <Button fx:id="boardAddColumn" mnemonicParsing="false">
+                                             <graphic>
+                                                <SVGPath content="M 15 5 L 15 15 L 5 15 L 5 17 L 15 17 L 15 27 L 17 27 L 17 17 L 27 17 L 27 15 L 17 15 L 17 5 Z" />
+                                             </graphic>
+                                          </Button>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="tab-box" />
+                                    <String fx:value="title" />
+                                 </styleClass>
+                              </HBox>
+                              <ScrollPane fitToHeight="true" nodeOrientation="LEFT_TO_RIGHT" vbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+                                 <content>
+                                    <HBox fx:id="columnPane" styleClass="columns">
+                                       <children>
+                                          <VBox>
+                                             <children>
+                                                <HBox styleClass="title">
+                                                   <children>
+                                                      <Label alignment="CENTER" contentDisplay="CENTER" text="4" textOverrun="CLIP" wrapText="true">
+                                                         <styleClass>
+                                                            <String fx:value="total" />
+                                                            <String fx:value="bold" />
+                                                            <String fx:value="h5" />
+                                                         </styleClass>
+                                                      </Label>
+                                                      <TextField editable="false" styleClass="medium" text="Love Me Like That - Carly Rae Jepsen">
+                                                         <tooltip>
+                                                            <Tooltip text="Column Title Column Title Column Title Column Title Column Title" />
+                                                         </tooltip>
+                                                      </TextField>
+                                                      <Button mnemonicParsing="false">
+                                                         <graphic>
+                                                            <SVGPath content="M 15 5 L 15 15 L 5 15 L 5 17 L 15 17 L 15 27 L 17 27 L 17 17 L 27 17 L 27 15 L 17 15 L 17 5 Z" />
+                                                         </graphic>
+                                                      </Button>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="event-list" VBox.vgrow="ALWAYS">
+                                                   <content>
+                                                      <VBox>
+                                                         <children>
+                                                            <Button alignment="TOP_LEFT" mnemonicParsing="false" styleClass="selected" text="Hold on tight Lucky chance. It's mine Lucky strike. I'm your luck, take it." wrapText="true">
+                                                               <graphic>
+                                                                  <SVGPath content="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
+                                                                     <cursor>
+                                                                        <Cursor fx:constant="DEFAULT" />
+                                                                     </cursor>
+                                                                  </SVGPath>
+                                                               </graphic>
+                                                            </Button>
+                                                            <Button alignment="TOP_LEFT" mnemonicParsing="false" text="Luckitty-Cat - WJSN" wrapText="true">
+                                                               <graphic>
+                                                                  <SVGPath content="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
+                                                                     <cursor>
+                                                                        <Cursor fx:constant="DEFAULT" />
+                                                                     </cursor>
+                                                                  </SVGPath>
+                                                               </graphic>
+                                                            </Button>
+                                                            <Button alignment="TOP_LEFT" mnemonicParsing="false" text="He won't love you like I would, love you like I would, like I would." wrapText="true">
+                                                               <graphic>
+                                                                  <SVGPath content="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
+                                                                     <cursor>
+                                                                        <Cursor fx:constant="DEFAULT" />
+                                                                     </cursor>
+                                                                  </SVGPath>
+                                                               </graphic>
+                                                            </Button>
+                                                            <Button alignment="TOP_LEFT" mnemonicParsing="false" text="Fever dream high in the quiet of the night, you know that I caught it." wrapText="true">
+                                                               <graphic>
+                                                                  <SVGPath content="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
+                                                                     <cursor>
+                                                                        <Cursor fx:constant="DEFAULT" />
+                                                                     </cursor>
+                                                                  </SVGPath>
+                                                               </graphic>
+                                                            </Button>
+                                                         </children>
+                                                      </VBox>
+                                                   </content>
+                                                </ScrollPane>
+                                             </children>
+                                             <styleClass>
+                                                <String fx:value="column" />
+                                                <String fx:value="example-instance" />
+                                             </styleClass>
+                                          </VBox>
+                                          <VBox HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <HBox styleClass="title">
+                                                   <children>
+                                                      <Label alignment="CENTER" contentDisplay="CENTER" text="6" textOverrun="CLIP" wrapText="true">
+                                                         <styleClass>
+                                                            <String fx:value="total" />
+                                                            <String fx:value="bold" />
+                                                            <String fx:value="h5" />
+                                                         </styleClass>
+                                                      </Label>
+                                                      <TextField editable="false" styleClass="medium" text="Dancing With Our Hands Tied - Taylor Swift">
+                                                         <tooltip>
+                                                            <Tooltip text="Column Title Column Title Column Title Column Title Column Title" />
+                                                         </tooltip>
+                                                      </TextField>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets top="-1.0" />
+                                                   </padding>
+                                                </HBox>
+                                                <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="event-list" VBox.vgrow="ALWAYS">
+                                                   <content>
+                                                      <VBox>
+                                                         <children>
+                                                            <Button alignment="TOP_LEFT" mnemonicParsing="false" text="Look what you made me do, I'm with somebody new, oh baby baby, I'm dancing with a stranger." wrapText="true">
+                                                               <graphic>
+                                                                  <SVGPath content="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
+                                                                     <cursor>
+                                                                        <Cursor fx:constant="DEFAULT" />
+                                                                     </cursor>
+                                                                  </SVGPath>
+                                                               </graphic>
+                                                            </Button>
+                                                            <Button alignment="TOP_LEFT" mnemonicParsing="false" text="Random lyrics." wrapText="true">
+                                                               <graphic>
+                                                                  <SVGPath content="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
+                                                                     <cursor>
+                                                                        <Cursor fx:constant="DEFAULT" />
+                                                                     </cursor>
+                                                                  </SVGPath>
+                                                               </graphic>
+                                                            </Button>
+                                                            <Button alignment="TOP_LEFT" mnemonicParsing="false" text="I hear thunder in the distance, and it hits me in an instance. Crushing through my heart, and I'm blown apart. You don't love me like that." wrapText="true">
+                                                               <graphic>
+                                                                  <SVGPath content="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
+                                                                     <cursor>
+                                                                        <Cursor fx:constant="DEFAULT" />
+                                                                     </cursor>
+                                                                  </SVGPath>
+                                                               </graphic>
+                                                            </Button>
+                                                            <Button alignment="TOP_LEFT" mnemonicParsing="false" text="I feel the cool wind coming, end before the summer rain. I see the sky staring into the blue like it's not gonna end." wrapText="true">
+                                                               <graphic>
+                                                                  <SVGPath content="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
+                                                                     <cursor>
+                                                                        <Cursor fx:constant="DEFAULT" />
+                                                                     </cursor>
+                                                                  </SVGPath>
+                                                               </graphic>
+                                                            </Button>
+                                                            <Button alignment="TOP_LEFT" mnemonicParsing="false" text="But we were dancing, dancing with our hands tied, hands tied." wrapText="true">
+                                                               <graphic>
+                                                                  <SVGPath content="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
+                                                                     <cursor>
+                                                                        <Cursor fx:constant="DEFAULT" />
+                                                                     </cursor>
+                                                                  </SVGPath>
+                                                               </graphic>
+                                                            </Button>
+                                                            <Button alignment="TOP_LEFT" mnemonicParsing="false" text="This girl is like a dream, my wildest fantasy." wrapText="true">
+                                                               <graphic>
+                                                                  <SVGPath content="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
+                                                                     <cursor>
+                                                                        <Cursor fx:constant="DEFAULT" />
+                                                                     </cursor>
+                                                                  </SVGPath>
+                                                               </graphic>
+                                                            </Button>
+                                                         </children>
+                                                      </VBox>
+                                                   </content>
+                                                </ScrollPane>
+                                             </children>
+                                             <styleClass>
+                                                <String fx:value="column" />
+                                                <String fx:value="example-instance" />
+                                             </styleClass>
+                                          </VBox>
+                                          <VBox HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <HBox styleClass="title">
+                                                   <children>
+                                                      <Label alignment="CENTER" contentDisplay="CENTER" text="2" textOverrun="CLIP" wrapText="true">
+                                                         <styleClass>
+                                                            <String fx:value="total" />
+                                                            <String fx:value="bold" />
+                                                            <String fx:value="h5" />
+                                                         </styleClass>
+                                                      </Label>
+                                                      <TextField editable="false" styleClass="medium" text="Cruel Summer - Taylor Swift">
+                                                         <tooltip>
+                                                            <Tooltip text="Column Title Column Title Column Title Column Title Column Title" />
+                                                         </tooltip>
+                                                      </TextField>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets top="-1.0" />
+                                                   </padding>
+                                                </HBox>
+                                                <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="event-list" VBox.vgrow="ALWAYS">
+                                                   <content>
+                                                      <VBox>
+                                                         <children>
+                                                            <Button alignment="TOP_LEFT" mnemonicParsing="false" text="I, I loved you in secret. First sight, yeah, we love without reason." wrapText="true">
+                                                               <graphic>
+                                                                  <SVGPath content="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
+                                                                     <cursor>
+                                                                        <Cursor fx:constant="DEFAULT" />
+                                                                     </cursor>
+                                                                  </SVGPath>
+                                                               </graphic>
+                                                            </Button>
+                                                            <Button alignment="TOP_LEFT" mnemonicParsing="false" text="And my, my love had been frozen, deep blue but you painted me golden." wrapText="true">
+                                                               <graphic>
+                                                                  <SVGPath content="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
+                                                                     <cursor>
+                                                                        <Cursor fx:constant="DEFAULT" />
+                                                                     </cursor>
+                                                                  </SVGPath>
+                                                               </graphic>
+                                                            </Button>
+                                                         </children>
+                                                      </VBox>
+                                                   </content>
+                                                </ScrollPane>
+                                             </children>
+                                             <styleClass>
+                                                <String fx:value="column" />
+                                                <String fx:value="example-instance" />
+                                             </styleClass>
+                                          </VBox>
+                                          <VBox HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <HBox styleClass="title">
+                                                   <children>
+                                                      <Label alignment="CENTER" contentDisplay="CENTER" text="1" textOverrun="CLIP" wrapText="true">
+                                                         <styleClass>
+                                                            <String fx:value="total" />
+                                                            <String fx:value="bold" />
+                                                            <String fx:value="h5" />
+                                                         </styleClass>
+                                                      </Label>
+                                                      <TextField editable="false" styleClass="medium" text="LIKE I WOULD - ZAYN">
+                                                         <tooltip>
+                                                            <Tooltip text="Column Title Column Title Column Title Column Title Column Title" />
+                                                         </tooltip>
+                                                      </TextField>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                   <padding>
+                                                      <Insets top="-1.0" />
+                                                   </padding>
+                                                </HBox>
+                                                <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="event-list" VBox.vgrow="ALWAYS">
+                                                   <content>
+                                                      <VBox>
+                                                         <children>
+                                                            <Button alignment="TOP_LEFT" mnemonicParsing="false" text="This probably gonna sound wrong, promise it won't last long. If we can never go back, thought you'd like to know that." wrapText="true">
+                                                               <graphic>
+                                                                  <SVGPath content="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
+                                                                     <cursor>
+                                                                        <Cursor fx:constant="DEFAULT" />
+                                                                     </cursor>
+                                                                  </SVGPath>
+                                                               </graphic>
+                                                            </Button>
+                                                         </children>
+                                                      </VBox>
+                                                   </content>
+                                                </ScrollPane>
+                                             </children>
+                                             <styleClass>
+                                                <String fx:value="column" />
+                                                <String fx:value="example-instance" />
+                                             </styleClass>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </content>
+                              </ScrollPane>
+                           </children>
+                        </VBox>
+                  </content>
+                </Tab>
+                <Tab closable="false" text="Search">
+                     <content>
+                        <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-alignment: TOP_LEFT;">
+                           <children>
+                              <BorderPane>
+                                 <center>
+                                    <VBox BorderPane.alignment="CENTER">
+                                       <children>
+                                          <TextField promptText="Search any thing...">
+                                             <styleClass>
+                                                <String fx:value="bold" />
+                                                <String fx:value="search" />
+                                                <String fx:value="h1" />
+                                             </styleClass>
+                                          </TextField>
+                                       </children>
+                                    </VBox>
+                                 </center>
+                                 <styleClass>
+                                    <String fx:value="tab-box" />
+                                    <String fx:value="title" />
+                                 </styleClass>
+                              </BorderPane>
+                           </children>
+                        </VBox>
+                     </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </center>
+         <right>
+            <ScrollPane fx:id="detailPane" fitToWidth="true" hbarPolicy="NEVER" styleClass="bg-detail">
+               <content>
+                  <VBox>
+                     <children>
+                        <TextArea fx:id="detailTitle" promptText="Title" text="Hold on tight Lucky chance. It's mine Lucky strike. I'm your luck, take it." wrapText="true">
+                           <styleClass>
+                              <String fx:value="h4" />
+                              <String fx:value="bold" />
+                           </styleClass>
+                        </TextArea>
+                        <Region prefHeight="10.0" />
+                        <Button fx:id="detailAdd2Today" mnemonicParsing="false" styleClass="a" text="Add to Today">
+                           <graphic>
+                              <SVGPath id="icon" content="M 9 5 L 9 6 L 5 6 L 5 28 L 27 28 L 27 6 L 23 6 L 23 5 L 21 5 L 21 6 L 11 6 L 11 5 Z M 7 8 L 9 8 L 9 9 L 11 9 L 11 8 L 21 8 L 21 9 L 23 9 L 23 8 L 25 8 L 25 10 L 7 10 Z M 7 12 L 25 12 L 25 26 L 7 26 Z M 20.28125 14.28125 L 15 19.5625 L 12.71875 17.28125 L 11.28125 18.71875 L 14.28125 21.71875 L 15 22.40625 L 15.71875 21.71875 L 21.71875 15.71875 Z" />
+                           </graphic>
+                        </Button>
+                        <Button fx:id="detailDueDate" mnemonicParsing="false" styleClass="a" text="Add due date">
+                           <graphic>
+                              <SVGPath id="icon" content="M 9 4 L 9 5 L 5 5 L 5 27 L 27 27 L 27 5 L 23 5 L 23 4 L 21 4 L 21 5 L 11 5 L 11 4 Z M 7 7 L 9 7 L 9 8 L 11 8 L 11 7 L 21 7 L 21 8 L 23 8 L 23 7 L 25 7 L 25 9 L 7 9 Z M 7 11 L 25 11 L 25 25 L 7 25 Z M 13 13 L 13 15 L 15 15 L 15 13 Z M 17 13 L 17 15 L 19 15 L 19 13 Z M 21 13 L 21 15 L 23 15 L 23 13 Z M 16 16 L 16 20 L 20 20 L 20 16 Z M 9 17 L 9 19 L 11 19 L 11 17 Z M 13 17 L 13 19 L 15 19 L 15 17 Z M 21 17 L 21 19 L 23 19 L 23 17 Z M 9 21 L 9 23 L 11 23 L 11 21 Z M 13 21 L 13 23 L 15 23 L 15 21 Z M 17 21 L 17 23 L 19 23 L 19 21 Z" />
+                           </graphic>
+                        </Button>
+                        <Button fx:id="detailImportance" mnemonicParsing="false" styleClass="a" text="Add importance">
+                           <graphic>
+                              <SVGPath id="icon" content="M 9 4 L 9 5 L 5 5 L 5 27 L 27 27 L 27 5 L 23 5 L 23 4 L 21 4 L 21 5 L 11 5 L 11 4 Z M 7 7 L 9 7 L 9 8 L 11 8 L 11 7 L 21 7 L 21 8 L 23 8 L 23 7 L 25 7 L 25 9 L 7 9 Z M 7 11 L 25 11 L 25 25 L 7 25 Z M 15 13 L 15 19 L 17 19 L 17 13 Z M 15 21 L 15 23 L 17 23 L 17 21 Z" />
+                           </graphic>
+                        </Button>
+                        <DatePicker editable="false" promptText="Add due date" styleClass="hide" />
+                        <TextField fx:id="detailNote" promptText="Add note" styleClass="note" />
                      </children>
                   </VBox>
                </content>
-          </Tab>
-        </tabs>
-      </TabPane>
-   </center>
-   <right>
-      <ScrollPane fx:id="detailPane" fitToWidth="true" hbarPolicy="NEVER" styleClass="bg-detail">
-         <content>
-            <VBox>
-               <children>
-                  <TextArea fx:id="detailTitle" promptText="Title" text="Hold on tight Lucky chance. It's mine Lucky strike. I'm your luck, take it." wrapText="true">
-                     <styleClass>
-                        <String fx:value="h4" />
-                        <String fx:value="bold" />
-                     </styleClass></TextArea>
-                  <Region prefHeight="10.0" />
-                  <Button fx:id="detailAdd2Today" mnemonicParsing="false" styleClass="a" text="Add to Today">
-                     <graphic>
-                        <SVGPath id="icon" content="M 9 5 L 9 6 L 5 6 L 5 28 L 27 28 L 27 6 L 23 6 L 23 5 L 21 5 L 21 6 L 11 6 L 11 5 Z M 7 8 L 9 8 L 9 9 L 11 9 L 11 8 L 21 8 L 21 9 L 23 9 L 23 8 L 25 8 L 25 10 L 7 10 Z M 7 12 L 25 12 L 25 26 L 7 26 Z M 20.28125 14.28125 L 15 19.5625 L 12.71875 17.28125 L 11.28125 18.71875 L 14.28125 21.71875 L 15 22.40625 L 15.71875 21.71875 L 21.71875 15.71875 Z" />
-                     </graphic>
-                  </Button>
-                  <Button fx:id="detailDueDate" mnemonicParsing="false" styleClass="a" text="Add due date">
-                     <graphic>
-                        <SVGPath id="icon" content="M 9 4 L 9 5 L 5 5 L 5 27 L 27 27 L 27 5 L 23 5 L 23 4 L 21 4 L 21 5 L 11 5 L 11 4 Z M 7 7 L 9 7 L 9 8 L 11 8 L 11 7 L 21 7 L 21 8 L 23 8 L 23 7 L 25 7 L 25 9 L 7 9 Z M 7 11 L 25 11 L 25 25 L 7 25 Z M 13 13 L 13 15 L 15 15 L 15 13 Z M 17 13 L 17 15 L 19 15 L 19 13 Z M 21 13 L 21 15 L 23 15 L 23 13 Z M 16 16 L 16 20 L 20 20 L 20 16 Z M 9 17 L 9 19 L 11 19 L 11 17 Z M 13 17 L 13 19 L 15 19 L 15 17 Z M 21 17 L 21 19 L 23 19 L 23 17 Z M 9 21 L 9 23 L 11 23 L 11 21 Z M 13 21 L 13 23 L 15 23 L 15 21 Z M 17 21 L 17 23 L 19 23 L 19 21 Z" />
-                     </graphic>
-                  </Button>
-                  <Button fx:id="detailImportance" mnemonicParsing="false" styleClass="a" text="Add importance">
-                     <graphic>
-                        <SVGPath id="icon" content="M 9 4 L 9 5 L 5 5 L 5 27 L 27 27 L 27 5 L 23 5 L 23 4 L 21 4 L 21 5 L 11 5 L 11 4 Z M 7 7 L 9 7 L 9 8 L 11 8 L 11 7 L 21 7 L 21 8 L 23 8 L 23 7 L 25 7 L 25 9 L 7 9 Z M 7 11 L 25 11 L 25 25 L 7 25 Z M 15 13 L 15 19 L 17 19 L 17 13 Z M 15 21 L 15 23 L 17 23 L 17 21 Z" />
-                     </graphic>
-                  </Button>
-                  <DatePicker editable="false" promptText="Add due date" styleClass="hide" />
-                  <TextField fx:id="detailNote" promptText="Add note" styleClass="note" />
-               </children>
-            </VBox>
-         </content>
-      </ScrollPane>
-   </right>
-</BorderPane>
+            </ScrollPane>
+         </right>
+      </BorderPane>
+      <Pane id="dragPane" fx:id="dragPane" />
+   </children>
+</StackPane>

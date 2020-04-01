@@ -52,6 +52,8 @@ public class HomeController {
 
   @FXML private TextField detailNote;
 
+  @FXML private Pane dragPane;
+
   @FXML
   void initialize() {
     // Intialize label text values
@@ -63,6 +65,9 @@ public class HomeController {
 
     // Check out kanban
     Kanban.checkout();
+
+    // Hide dragPane
+    dragPane.getStyleClass().add("hide");
 
     // Add list items
     boardList.getChildren().clear();

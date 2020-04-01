@@ -93,8 +93,8 @@ public class Kanban extends Node {
     Kanban kanban = Kanban.current;
     // create node refer to todayboard
     Node TodayBoard = kanban.getChildrenNodes().get(0);
-    for (Node node: kanban.getChildrenNodes()) {
-      Board board = (Board)node;
+    for (Node node : kanban.getChildrenNodes()) {
+      Board board = (Board) node;
       if (board.getId() == 1) {
         TodayBoard = board;
       }
@@ -111,11 +111,11 @@ public class Kanban extends Node {
     // All todo
     for (Node board : kanban.getChildrenNodes()) {
       if (board.getId() >= 100) {
-        // Board 
+        // Board
         Collection<Node> columns = board.getChildrenNodes();
-        
-        for (Node node: columns) {
-          Column column = (Column)node;
+
+        for (Node node : columns) {
+          Column column = (Column) node;
           if (column.getPreset() == 0) {
             // todo
             for (Node event : column.getChildrenNodes()) {
@@ -124,7 +124,7 @@ public class Kanban extends Node {
           } else if (column.getPreset() == 1) {
             // in process
             for (Node node_event : column.getChildrenNodes()) {
-              Event event = (Event)node_event;
+              Event event = (Event) node_event;
               if (!event.isExpired()) {
                 inprogress.addNode(event);
               }
@@ -132,7 +132,7 @@ public class Kanban extends Node {
           } else {
             // done
             for (Node node_event : column.getChildrenNodes()) {
-              Event event = (Event)node_event;
+              Event event = (Event) node_event;
               if (!event.isExpired()) {
                 done.addNode(event);
               }
@@ -143,7 +143,7 @@ public class Kanban extends Node {
     }
     // sort all todo and add into the Today
     arr_priority = sortEventPriority(map_todo);
-    for (Event event: arr_priority) {
+    for (Event event : arr_priority) {
       todo.addNode(event);
     }
 
@@ -156,7 +156,6 @@ public class Kanban extends Node {
     System.out.println("");
     System.out.println(done);
   }
-
 
   /**
    * Help function of {@code generateToday()} in {@code Kanban}
