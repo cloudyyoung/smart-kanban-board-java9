@@ -307,7 +307,7 @@ public final class HttpBody extends HashMap<Object, Object> {
     return this.parseString(this.get(key));
   }
 
-  public Long getLong(Object key){
+  public Long getLong(Object key) {
     return this.parseLong(this.get(key));
   }
 
@@ -392,20 +392,20 @@ public final class HttpBody extends HashMap<Object, Object> {
     }
   }
 
-  private Long parseLong(Object obj){
-    try{
+  private Long parseLong(Object obj) {
+    try {
       String str = obj.toString();
-      if(str.indexOf(".") > -1 && str.indexOf("E") > -1){ // Scientific notation: 1.223E2
+      if (str.indexOf(".") > -1 && str.indexOf("E") > -1) { // Scientific notation: 1.223E2
         BigDecimal value = new BigDecimal(str);
         System.out.println(value);
         return value.longValue();
-      }else if (str.indexOf(".") > -1) { // Decimals: 100022.2
+      } else if (str.indexOf(".") > -1) { // Decimals: 100022.2
         str = str.substring(0, str.indexOf("."));
         return Long.parseLong(str);
-      }else{
+      } else {
         return Long.parseLong(str);
       }
-    }catch(Throwable e){
+    } catch (Throwable e) {
       return null;
     }
   }

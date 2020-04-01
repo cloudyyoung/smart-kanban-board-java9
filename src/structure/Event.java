@@ -41,7 +41,8 @@ public class Event extends Node {
     this.dueDate = obj.getLong("due_date");
     this.importanceLevel = obj.getInt("importance_level");
     // this.dueDate = Long.valueOf(obj.getString("due_date").replace(".0", "")) | 0;
-    // this.importanceLevel = Integer.valueOf(obj.getString("importance_level").replace(".0", "")) | 0;
+    // this.importanceLevel = Integer.valueOf(obj.getString("importance_level").replace(".0", "")) |
+    // 0;
   }
 
   /**
