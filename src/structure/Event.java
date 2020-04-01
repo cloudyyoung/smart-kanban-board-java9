@@ -43,8 +43,7 @@ public class Event extends Node {
     this.importanceLevel = Integer.valueOf(obj.getString("importance_level").replace(".0", "")) | 0;
   }
 
-
-    /**
+  /**
    * Returns the color of the board.
    *
    * @return color in {@code String}
@@ -52,9 +51,11 @@ public class Event extends Node {
   public Long getDuration() {
     return this.duration;
   }
+
   public int getDurationInMinutes() {
-    return (int)(this.duration / 60000);
+    return (int) (this.duration / 60000);
   }
+
   public Long getImportanceLevel() {
     return this.duration;
   }
@@ -62,6 +63,7 @@ public class Event extends Node {
   public Long getDueDate() {
     return 0l;
   }
+
   public String toString() {
     return this.getType()
         + " (id: "
