@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 
 import com.google.gson.annotations.*;
 
@@ -48,7 +49,7 @@ public abstract class Node {
   private Node parent;
 
   /** The children {@code Node} object of the instance. */
-  private HashMap<Integer, Node> nodes = new HashMap<Integer, Node>();
+  private LinkedHashMap<Integer, Node> nodes = new LinkedHashMap<Integer, Node>();
 
   /**
    * The dictionary of the {@code Node} hierarchy. It is used to identify the parent or children
@@ -612,6 +613,13 @@ public abstract class Node {
   public static String typeUpper(String type) {
     return type.toUpperCase();
   }
+
+
+  // test
+  public LinkedHashMap<Integer, Node> getNodes() {
+    return this.nodes;
+  }
+
 
   public static void main(String[] args) {
     User user = new User();

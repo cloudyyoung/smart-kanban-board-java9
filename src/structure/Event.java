@@ -37,9 +37,21 @@ public class Event extends Node {
    */
   public Event(HttpBody obj) {
     super(obj);
-    this.duration = obj.getLong("duration");
-    this.dueDate = obj.getLong("due_date");
-    this.importanceLevel = obj.getInt("importance_level");
+    if (obj.getLong("duration") != null) {
+      this.duration = obj.getLong("duration");
+    } else {
+      this.duration = 0l;
+    }
+    if (obj.getLong("due_date") != null) {
+      this.dueDate = obj.getLong("due_date");
+    } else {
+      this.dueDate = 0l;
+    }
+    if (obj.getLong("importance_level") != null) {
+      this.importanceLevel = obj.getInt("importance_level");
+    } else {
+      this.importanceLevel = 0;
+    }
   }
 
   /**
@@ -82,19 +94,29 @@ public class Event extends Node {
         + "\")";
   }
 
+  public boolean isExpired() {
+    Calendar c = Calendar.getInstance();
+    System.out.println(c.getTimeInMillis() / 1000);
+    System.out.println(this.getDueDate());
+    if (this.getDueDate() > c.getTimeInMillis() / 1000) {
+      return false;
+    }
+    return true;
+  }
+
   public static void main(String[] args) {
     Calendar c = Calendar.getInstance();
     // c.set(2012, 12, 11, 13, 15);
-    Long dueDate = 12345677123456l;
+    //Long dueDate = 12345677123456l;
 
     // c.setTimeInMillis(dueDate);
     // c.set(2012, 0, 11, 13, 15);
     Long duration = 60000l;
-    c.setTimeInMillis(dueDate);
+    // c.setTimeInMillis(dueDate);
     System.out.print(c.getTime());
 
-    c.setTimeInMillis(dueDate + duration);
+    ///c.setTimeInMillis(dueDate + duration);
     System.out.print(c.getTime());
-    // System.out.print(c.getTimeInMillis());
+    System.out.print(c.getTimeInMillis());
   }
 }

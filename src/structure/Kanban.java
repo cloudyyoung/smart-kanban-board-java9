@@ -1,6 +1,7 @@
 package structure;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,7 +38,7 @@ public class Kanban extends Node {
                 + Time.currentYear(),
             "#fd79a8");
 
-    Column todo = new Column(2, "To Do", "");
+    Column todo = new Column(2, "To Do", "jimjimsjimshtodo");
     Column inprogress = new Column(3, "In Progress", "");
     Column done = new Column(4, "Done", "");
     board.addNode(todo);
@@ -90,40 +91,76 @@ public class Kanban extends Node {
     Kanban kanban = Kanban.current;
     // create node refer to todayboard
     Node TodayBoard = kanban.getChildrenNodes().get(0);
+    for (Node node: kanban.getChildrenNodes()) {
+      Board board = (Board)node;
+      if (board.getId() == 1) {
+        TodayBoard = board;
+      }
+    }
     Node todo = TodayBoard.getChildrenNodes().get(0);
     Node inprogress = TodayBoard.getChildrenNodes().get(1);
     Node done = TodayBoard.getChildrenNodes().get(2);
+
     // store the node of all event
     ArrayList<Event> arr_priority = new ArrayList<Event>();
     // store all events with id to node
     HashMap<Integer, Event> map_todo = new HashMap<Integer, Event>();
 
+    // All todo
     for (Node board : kanban.getChildrenNodes()) {
       if (board.getId() >= 100) {
-        for (Node column : board.getChildrenNodes()) {
-          for (Node event : column.getChildrenNodes()) {
-            // todo.addNode(event);
-            // System.out.println(event);
-            // arr_todo.add(event);
-            map_todo.put(event.getId(), (Event) event);
+        // Board 
+        Collection<Node> columns = board.getChildrenNodes();
+        
+        for (Node node: columns) {
+          Column column = (Column)node;
+          if (column.getPreset() == 0) {
+            // todo
+            for (Node event : column.getChildrenNodes()) {
+              map_todo.put(event.getId(), (Event) event);
+            }
+          } else if (column.getPreset() == 1) {
+            // in process
+            for (Node node_event : column.getChildrenNodes()) {
+              Event event = (Event)node_event;
+              if (!event.isExpired()) {
+                inprogress.addNode(event);
+              }
+            }
+          } else {
+            // done
+            for (Node node_event : column.getChildrenNodes()) {
+              Event event = (Event)node_event;
+              if (!event.isExpired()) {
+                done.addNode(event);
+              }
+            }
           }
         }
       }
     }
+    // sort all todo and add into the Today
     arr_priority = sortEventPriority(map_todo);
-    System.out.println("\nmap_todo------");
-    System.out.println(arr_priority);
+    for (Event event: arr_priority) {
+      todo.addNode(event);
+    }
+
     System.out.println("\nTODAY------");
-    System.out.println(TodayBoard);
+    // System.out.println(TodayBoard);
+    System.out.println("");
     System.out.println(todo);
+    System.out.println("");
     System.out.println(inprogress);
+    System.out.println("");
     System.out.println(done);
   }
+
 
   /**
    * Help function of {@code generateToday()} in {@code Kanban}
    *
-   * @param map {@code HashMap}, with (Id, Event)
+   * @param map {@code HashMap}, with (Id, Event), map of all the todo event
+   * @return an ArrayList in sorted priority order
    */
   public static ArrayList<Event> sortEventPriority(HashMap<Integer, Event> map) {
     ArrayList<Event> ret = new ArrayList<Event>();
@@ -135,7 +172,6 @@ public class Kanban extends Node {
       Map.Entry<Integer, Event> entry = map.entrySet().iterator().next();
       Event max_event = entry.getValue();
       int max = getPriority(max_event);
-
       for (Event event : copymap.values()) {
         // weight parameter here
         int priority = getPriority(event);
@@ -165,6 +201,7 @@ public class Kanban extends Node {
 
     // System.out.println(Kanban.current);
 
+    System.out.println("\ngenerateToday---");
     generateToday();
   }
 }

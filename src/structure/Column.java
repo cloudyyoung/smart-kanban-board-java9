@@ -14,8 +14,12 @@ public class Column extends Node {
    *
    * @param obj the {@code HttpBody} for initialization
    */
+
+  int preset;
+
   public Column(HttpBody obj) {
     super(obj);
+    this.preset = obj.getInt("preset");
   }
 
   /**
@@ -28,4 +32,24 @@ public class Column extends Node {
   public Column(int id, String title, String note) {
     super(id, title, note);
   }
+
+  public int getPreset() {
+    return this.preset;
+  }
+
+  public String toString() {
+    return this.getType()
+        + " (id: "
+        + this.getId()
+        + ", title: \""
+        + this.getTitle()
+        + "\", note: \""
+        + this.getNote()
+        + "\", preset: "
+        + this.getPreset()
+        + ", nodes: "
+        + this.getChildrenNodes().toString()
+        + "\")";
+  }
+
 }
