@@ -1,7 +1,6 @@
 package ui.component;
 
 import javafx.fxml.*;
-import javafx.scene.layout.*;
 import javafx.scene.shape.*;
 import javafx.scene.control.*;
 
