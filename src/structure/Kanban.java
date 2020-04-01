@@ -1,9 +1,14 @@
 package structure;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * The {@code Kanban} class, extends from {@code Node}.
  *
- * <p>The instance should contains {@code Board} object as children nodes.
+ * <p>
+ * The instance should contains {@code Board} object as children nodes.
  *
  * @since 1.0
  * @version 2.1
@@ -84,18 +89,72 @@ public class Kanban extends Node {
    */
   public static void generateToday() {
     Kanban kanban = Kanban.current;
+    // create node refer to todayboard
     Node TodayBoard = kanban.getChildrenNodes().get(0);
+    Node todo = TodayBoard.getChildrenNodes().get(0);
+    Node inprogress = TodayBoard.getChildrenNodes().get(1);
+    Node done = TodayBoard.getChildrenNodes().get(2);
+    //store the node of all event 
+    ArrayList<Event> arr_priority = new ArrayList<Event>();
+    // store all events with id to node
+    HashMap<Integer, Event> map_todo = new HashMap<Integer, Event>();
+
     for (Node board: kanban.getChildrenNodes()) {
       if (board.getId() != 1) {
         for (Node column: board.getChildrenNodes()) {
           for (Node event: column.getChildrenNodes()) {
-            System.out.println(event);
+            // todo.addNode(event);
+            // System.out.println(event);
+            // arr_todo.add(event);
+            map_todo.put(event.getId(), (Event)event);
           }
         }
       }
     }
+    arr_priority = sortEventPriority(map_todo);
+    System.out.println("\nmap_todo------");
+    System.out.println(arr_priority);
     System.out.println("\nTODAY------");
     System.out.println(TodayBoard);
+    System.out.println(todo);
+    System.out.println(inprogress);
+    System.out.println(done);
+  }
+
+    /**
+   * Help function of {@code generateToday()} in {@code Kanban}
+   * 
+   * @param map {@code HashMap}, with (Id, Event)
+   */
+  public static ArrayList<Event> sortEventPriority(HashMap<Integer, Event> map) {
+    ArrayList<Event> ret = new ArrayList<Event>();
+    // copy map
+    HashMap<Integer, Event> copymap = new HashMap<Integer, Event> ();
+    copymap.putAll(map);
+    while (copymap.size() > 0){
+      // set the max tp be the first event in the map
+      Map.Entry<Integer, Event> entry = map.entrySet().iterator().next();
+      Event max_event = entry.getValue();
+      int max = getPriority(max_event);
+      
+      for (Event event: copymap.values()) {
+        // weight parameter here
+        int priority = getPriority(event);
+        if (priority >= max) {
+          max = priority;
+          max_event = event;
+        }
+      }
+      ret.add(max_event);
+      copymap.remove(max_event.getId());
+    }
+    return ret;
+  }
+  /*
+  * Algorithm of get the priority value
+  */
+  public static Integer getPriority(Event event) {
+    return event.getId();
   }
 
   public static void main(String[] args) {
