@@ -32,9 +32,15 @@ public class SignUpController {
   @FXML
   void initialize() {
     // Intialize label text values
-    labelErrorUsername.setText("");
-    labelErrorPassword.setText("");
+    clearErrorLabel();
     profileUsername.setText("");
+  }
+
+  void clearErrorLabel(){
+    if(labelErrorUsername != null) labelErrorUsername.setText("");
+    if(labelErrorPassword != null) labelErrorPassword.setText("");
+    if(labelErrorSecQues != null) labelErrorSecQues.setText("");
+    if(labelErrorSecAns != null) labelErrorSecAns.setText("");
   }
 
   @FXML
@@ -42,9 +48,8 @@ public class SignUpController {
     Button button = (Button) event.getSource();
     String id = button.getId();
 
-    System.out.println(id);
-
     boolean next = true;
+    clearErrorLabel();
 
     if (id.equals("buttonNextStart")) {
       try {
@@ -61,6 +66,21 @@ public class SignUpController {
       } catch (Exception e) {
         System.out.println(e);
       }
+
+    } else if (id.equals("buttonNextUsername-SignIn")) {
+
+      tabPane.setDisable(true);
+      String username = inputUsername.getText();
+      Result res = User.authentication(username, "");
+      tabPane.setDisable(false);
+
+      int statusCode = res.getFailError().getInt("code");
+      String errorText = res.getFailError().getString("message");
+      if(statusCode == 403){
+        next = false;
+        labelErrorUsername.setText(errorText);
+      }
+
     } else if (id.equals("buttonNextPassword-SignIn")) {
 
       tabPane.setDisable(true);
@@ -73,11 +93,11 @@ public class SignUpController {
         profileUsername.setText(username);
       } else if (res.isFailed()) {
         next = false;
-        String errorText =
-            res.getFail().getResponseBody().getHttpBody("error").getString("message");
+        String errorText = res.getFailError().getString("message");
         labelErrorUsername.setText(errorText);
         labelErrorPassword.setText(errorText);
       }
+
     }
 
     if (next) {
@@ -87,4 +107,6 @@ public class SignUpController {
       tabPane.requestFocus();
     }
   }
+
+
 }

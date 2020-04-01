@@ -276,6 +276,11 @@ public class User {
     return res;
   }
 
+  public static Result registration(String username, String password, String sec_ques, String sec_ans){
+    User user = new User();
+    return user.register(username, password, sec_ques, sec_ans);
+  }
+
   public static void main(String[] args) {
     User user = new User();
     user.authenticate("cloudy", "cloudy");
