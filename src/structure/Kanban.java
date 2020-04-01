@@ -162,19 +162,22 @@ public class Kanban extends Node {
    * @return an ArrayList in sorted priority order
    */
   public static ArrayList<Event> sortEventPriority(HashMap<Integer, Event> map) {
+    System.out.println("map==========");
+    System.out.println(map);
+
     ArrayList<Event> ret = new ArrayList<Event>();
     // copy map
     HashMap<Integer, Event> copymap = new HashMap<Integer, Event>();
     copymap.putAll(map);
     while (copymap.size() > 0) {
       // set the max tp be the first event in the map
-      Map.Entry<Integer, Event> entry = map.entrySet().iterator().next();
+      Map.Entry<Integer, Event> entry = copymap.entrySet().iterator().next();
       Event max_event = entry.getValue();
       int max = getPriority(max_event);
       for (Event event : copymap.values()) {
         // weight parameter here
         int priority = getPriority(event);
-        if (priority >= max) {
+        if (priority < max) {
           max = priority;
           max_event = event;
         }
@@ -188,7 +191,11 @@ public class Kanban extends Node {
    * Algorithm of get the priority value
    */
   public static Integer getPriority(Event event) {
-    return event.getId();
+    int timeDifferenceInHours = event.getDueDate().intValue() / 3600;
+    int importancePriority = event.getImportanceLevel() * (timeDifferenceInHours / 24);
+    int priority = timeDifferenceInHours - importancePriority;
+    System.out.println(priority);
+    return priority;
   }
 
   public static void main(String[] args) {
