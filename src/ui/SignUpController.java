@@ -36,11 +36,11 @@ public class SignUpController {
     profileUsername.setText("");
   }
 
-  void clearErrorLabel(){
-    if(labelErrorUsername != null) labelErrorUsername.setText("");
-    if(labelErrorPassword != null) labelErrorPassword.setText("");
-    if(labelErrorSecQues != null) labelErrorSecQues.setText("");
-    if(labelErrorSecAns != null) labelErrorSecAns.setText("");
+  void clearErrorLabel() {
+    if (labelErrorUsername != null) labelErrorUsername.setText("");
+    if (labelErrorPassword != null) labelErrorPassword.setText("");
+    if (labelErrorSecQues != null) labelErrorSecQues.setText("");
+    if (labelErrorSecAns != null) labelErrorSecAns.setText("");
   }
 
   @FXML
@@ -76,7 +76,7 @@ public class SignUpController {
 
       int statusCode = res.getFailError().getInt("code");
       String errorText = res.getFailError().getString("message");
-      if(statusCode == 403){
+      if (statusCode == 403) {
         next = false;
         labelErrorUsername.setText(errorText);
       }
@@ -97,7 +97,6 @@ public class SignUpController {
         labelErrorUsername.setText(errorText);
         labelErrorPassword.setText(errorText);
       }
-
     }
 
     if (next) {
@@ -107,6 +106,4 @@ public class SignUpController {
       tabPane.requestFocus();
     }
   }
-
-
 }

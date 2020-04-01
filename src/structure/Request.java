@@ -69,7 +69,7 @@ public abstract class Request {
     this.failed = is;
   }
 
-  public HttpBody getResponseBodyError(){
+  public HttpBody getResponseBodyError() {
     return this.getResponseBody().getHttpBody("error");
   }
 

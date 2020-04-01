@@ -191,10 +191,10 @@ public final class Result {
     }
   }
 
-  public HttpBody getFailError(){
+  public HttpBody getFailError() {
     Request req = this.getFail();
     HttpBody body = null;
-    if(req != null){
+    if (req != null) {
       body = req.getResponseBodyError();
     }
     return body;
