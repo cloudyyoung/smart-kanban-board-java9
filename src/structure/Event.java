@@ -107,7 +107,7 @@ public class Event extends Node {
   public static void main(String[] args) {
     Calendar c = Calendar.getInstance();
     // c.set(2012, 12, 11, 13, 15);
-    //Long dueDate = 12345677123456l;
+    // Long dueDate = 12345677123456l;
 
     // c.setTimeInMillis(dueDate);
     // c.set(2012, 0, 11, 13, 15);
@@ -115,7 +115,7 @@ public class Event extends Node {
     // c.setTimeInMillis(dueDate);
     System.out.print(c.getTime());
 
-    ///c.setTimeInMillis(dueDate + duration);
+    /// c.setTimeInMillis(dueDate + duration);
     System.out.print(c.getTime());
     System.out.print(c.getTimeInMillis());
   }

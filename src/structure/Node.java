@@ -614,12 +614,10 @@ public abstract class Node {
     return type.toUpperCase();
   }
 
-
   // test
   public LinkedHashMap<Integer, Node> getNodes() {
     return this.nodes;
   }
-
 
   public static void main(String[] args) {
     User user = new User();

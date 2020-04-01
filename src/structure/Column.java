@@ -14,7 +14,6 @@ public class Column extends Node {
    *
    * @param obj the {@code HttpBody} for initialization
    */
-
   int preset;
 
   public Column(HttpBody obj) {
@@ -51,5 +50,4 @@ public class Column extends Node {
         + this.getChildrenNodes().toString()
         + "\")";
   }
-
 }
