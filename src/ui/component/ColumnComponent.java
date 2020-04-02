@@ -16,9 +16,9 @@ public class ColumnComponent extends VBox {
 
   @FXML private VBox eventList;
 
-  private structure.Column node;
+  private Column node;
 
-  public ColumnComponent(structure.Column node) {
+  public ColumnComponent(Column node) {
     super();
     this.node = node;
     load();

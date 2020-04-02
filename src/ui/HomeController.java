@@ -10,7 +10,7 @@ import javafx.scene.layout.*;
 import javafx.scene.shape.*;
 
 import structure.*;
-import ui.component.Column;
+import ui.component.*;
 
 public class HomeController {
 
@@ -118,7 +118,7 @@ public class HomeController {
     sideToday.fire();
   }
 
-  String styleAccent(String hex) {
+  public static String styleAccent(String hex) {
     String style = "";
     style += "-fx-accent: " + hex + ";";
     style += "-fx-accent-90: " + hex + "e6;";
@@ -153,7 +153,7 @@ public class HomeController {
 
     columnPane.getChildren().clear();
     for (structure.Node each : node.getChildrenNodes()) {
-      Node col = new Column(each);
+      Node col = new ColumnComponent((Column) each);
       columnPane.getChildren().add(col);
     }
   }
