@@ -127,6 +127,9 @@ public class SignUpController {
         String errorText = "Unexpected error occured";
         showError(errorText);
       } else {
+        if(id.contains("SignUp")){
+          User.authentication(inputUsername.getText(), inputPassword.getText());
+        }
         profileUsername.setText(User.current.getUsername());
       }
     }

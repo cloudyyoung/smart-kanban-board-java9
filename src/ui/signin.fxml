@@ -32,7 +32,7 @@
                                  <children>
                                     <VBox>
                                        <children>
-                                          <Label text="Welcome,">
+                                          <Label text="Long time no see,">
                                              <styleClass>
                                                 <String fx:value="h3" />
                                              </styleClass>

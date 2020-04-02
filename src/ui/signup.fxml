@@ -244,7 +244,7 @@
                                  <children>
                                     <VBox>
                                        <children>
-                                          <Label styleClass="h3" text="Welcome!" />
+                                          <Label styleClass="h3" text="Enjoy!" />
                                        </children>
                                     </VBox>
                                     <VBox>
