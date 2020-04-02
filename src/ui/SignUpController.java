@@ -75,13 +75,13 @@ public class SignUpController {
       int totalField = 2;
       Result res = User.authentication(username, password);
 
-      if(res.isFailed()){
+      if (res.isFailed()) {
         int statusCode = res.getFailError().getInt("code");
         HttpBody body = res.getFailError().getHttpBody("details");
         System.out.println(statusCode);
-        if(statusCode == 406 && totalField - body.size() > tab){
+        if (statusCode == 406 && totalField - body.size() > tab) {
           next = true;
-        }else{
+        } else {
           next = false;
           String errorText = res.getFailError().getString("message");
           labelErrorUsername.setText(errorText);
@@ -92,7 +92,7 @@ public class SignUpController {
         String errorText = "Unexpected error occured";
         labelErrorUsername.setText(errorText);
         labelErrorPassword.setText(errorText);
-      } else{
+      } else {
         profileUsername.setText(username);
       }
     }
