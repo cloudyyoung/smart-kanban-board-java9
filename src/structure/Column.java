@@ -13,9 +13,9 @@ import java.util.ArrayList;
  */
 public class Column extends Node {
 
-  public static int TO_DO = 0;
-  public static int IN_PROGRESS = 1;
-  public static int DONE = 2;
+  final public static int TO_DO = 0;
+  final public static int IN_PROGRESS = 1;
+  final public static int DONE = 2;
 
   /**
    * Constructor of {@code Column}, provide {@code HttpBody}.
@@ -46,11 +46,6 @@ public class Column extends Node {
 
   public int getPreset() {
     return this.preset;
-  }
-
-  @Override
-  public ArrayList<Node> getChildrenNodes(){
-    return super.getChildrenNodes();
   }
 
   public String toString() {
