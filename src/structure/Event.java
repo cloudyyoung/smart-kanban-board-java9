@@ -54,11 +54,6 @@ public class Event extends Node {
     }
   }
 
-  /**
-   * Returns the color of the board.
-   *
-   * @return color in {@code String}
-   */
   public Long getDuration() {
     return this.duration;
   }
@@ -94,6 +89,11 @@ public class Event extends Node {
         + "\")";
   }
 
+  /**
+   * Returns a boolean to represent if the event is over due.
+   * 
+   * @return a boolean to represent if the event is over due.
+   */
   public boolean isExpired() {
     Calendar c = Calendar.getInstance();
     // System.out.println(c.getTimeInMillis() / 1000);
@@ -102,6 +102,17 @@ public class Event extends Node {
       return false;
     }
     return true;
+  }
+
+  /**
+   * Returns an int of weight to represent the event priority.
+   * @return an int of weight to represent the event priority.
+   */
+  public Integer getPriority(){
+    int timeDifferenceInHours = this.getDueDate().intValue() / 3600;
+    int importancePriority = this.getImportanceLevel() * (timeDifferenceInHours / 24);
+    int priority = timeDifferenceInHours - importancePriority;
+    return priority;
   }
 
   public static void main(String[] args) {

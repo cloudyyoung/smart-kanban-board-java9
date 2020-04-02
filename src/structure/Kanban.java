@@ -122,9 +122,7 @@ public class Kanban extends Node {
             // in process
             for (Node node_event : column.getChildrenNodes()) {
               Event event = (Event) node_event;
-              if (!event.isExpired()) {
-                inprogress.addNode(event);
-              }
+              inprogress.addNode(event);
             }
           } else {
             // done
@@ -160,7 +158,7 @@ public class Kanban extends Node {
    * @param map {@code HashMap}, with (Id, Event), map of all the todo event
    * @return an ArrayList in sorted priority order
    */
-  public static ArrayList<Event> sortEventPriority(HashMap<Integer, Event> map) {
+  private static ArrayList<Event> sortEventPriority(HashMap<Integer, Event> map) {
     // System.out.println("map==========");
     // System.out.println(map);
 
@@ -172,10 +170,10 @@ public class Kanban extends Node {
       // set the max tp be the first event in the map
       Map.Entry<Integer, Event> entry = copymap.entrySet().iterator().next();
       Event max_event = entry.getValue();
-      int max = getPriority(max_event);
+      int max = max_event.getPriority();
       for (Event event : copymap.values()) {
         // weight parameter here
-        int priority = getPriority(event);
+        int priority = event.getPriority();
         if (priority < max) {
           max = priority;
           max_event = event;
@@ -185,16 +183,6 @@ public class Kanban extends Node {
       copymap.remove(max_event.getId());
     }
     return ret;
-  }
-  /*
-   * Algorithm of get the priority value
-   */
-  public static Integer getPriority(Event event) {
-    int timeDifferenceInHours = event.getDueDate().intValue() / 3600;
-    int importancePriority = event.getImportanceLevel() * (timeDifferenceInHours / 24);
-    int priority = timeDifferenceInHours - importancePriority;
-    // System.out.println(priority);
-    return priority;
   }
 
   public static void main(String[] args) {
