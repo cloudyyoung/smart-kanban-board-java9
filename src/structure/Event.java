@@ -55,7 +55,7 @@ public class Event extends Node {
     }
   }
 
-  public void setDuration(long duration){
+  public void setDuration(long duration) {
     this.duration = duration;
   }
 
@@ -67,7 +67,7 @@ public class Event extends Node {
     return (int) (this.duration / 60000);
   }
 
-  public void setImportanceLevel(int importance){
+  public void setImportanceLevel(int importance) {
     this.importanceLevel = importance;
   }
 
@@ -75,7 +75,7 @@ public class Event extends Node {
     return this.importanceLevel;
   }
 
-  public void setDueDate(long dueDate){
+  public void setDueDate(long dueDate) {
     this.dueDate = dueDate;
   }
 
