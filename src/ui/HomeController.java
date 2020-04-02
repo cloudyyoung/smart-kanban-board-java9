@@ -59,6 +59,15 @@ public class HomeController {
 
   @FXML
   void initialize() {
+
+    BoardComponent.boardPane = boardPane;
+    BoardComponent.boardTitle = boardTitle;
+    BoardComponent.boardNote = boardNote;
+    BoardComponent.columnPane = columnPane;
+    BoardComponent.sidePane = sidePane;
+    BoardComponent.boardList = boardList;
+    BoardComponent.tabPane = tabPane;
+
     // Intialize label text values
     profileUsername.setText(User.current.getUsername());
     profileUsername.setTooltip(new Tooltip(User.current.getUsername()));
@@ -74,16 +83,7 @@ public class HomeController {
     boardList.getChildren().clear();
     for (structure.Node each : Kanban.current.getChildrenNodes()) {
       // Add to list
-      BoardComponent node =
-          new BoardComponent(
-              (Board) each,
-              boardPane,
-              boardTitle,
-              boardNote,
-              columnPane,
-              sidePane,
-              boardList,
-              tabPane);
+      BoardComponent node = new BoardComponent((Board) each);
       if (each.getId() >= 100) {
         boardList.getChildren().add(node);
       } else {

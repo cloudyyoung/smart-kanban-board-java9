@@ -16,30 +16,16 @@ public class BoardComponent extends Button {
   @FXML private Button button;
 
   private Board node;
-  private VBox boardPane;
-  private TextField boardTitle;
-  private TextField boardNote;
-  private HBox columnPane;
-  private VBox sidePane;
-  private VBox boardList;
-  private TabPane tabPane;
+  public static VBox boardPane;
+  public static TextField boardTitle;
+  public static TextField boardNote;
+  public static HBox columnPane;
+  public static VBox sidePane;
+  public static VBox boardList;
+  public static TabPane tabPane;
 
-  public BoardComponent(
-      Board node,
-      VBox boardPane,
-      TextField boardTitle,
-      TextField boardNote,
-      HBox columnPane,
-      VBox sidePane,
-      VBox boardList,
-      TabPane tabPane) {
+  public BoardComponent(Board node) {
     this.node = node;
-    this.boardPane = boardPane;
-    this.boardTitle = boardTitle;
-    this.boardNote = boardNote;
-    this.columnPane = columnPane;
-    this.sidePane = sidePane;
-    this.boardList = boardList;
 
     load();
 
@@ -65,8 +51,7 @@ public class BoardComponent extends Button {
           }
 
           this.getStyleClass().add("selected");
-
-      this.tabPane.getSelectionModel().select(0);
+          this.tabPane.getSelectionModel().select(0);
 
           boardPane.setStyle(HomeController.styleAccent(node.getColor()));
           boardTitle.setText(this.node.getTitle());
