@@ -25,9 +25,8 @@ public class Kanban extends Node {
    */
   public Kanban(HttpBody obj) {
     super(obj);
-    // HttpBody board = new HttpBody();
 
-    Board board =
+    Board today =
         new Board(
             1,
             "Today",
@@ -38,13 +37,13 @@ public class Kanban extends Node {
                 + Time.currentYear(),
             "#fd79a8");
 
-    Column todo = new Column(2, "To Do", "jimjimsjimshtodo");
-    Column inprogress = new Column(3, "In Progress", "");
-    Column done = new Column(4, "Done", "");
-    board.addNode(todo);
-    board.addNode(inprogress);
-    board.addNode(done);
-    this.addNode(board);
+    Column todo = new Column(1, "To Do", "jimjimsjimshtodo");
+    Column inprogress = new Column(2, "In Progress", "");
+    Column done = new Column(3, "Done", "");
+    today.addNode(todo);
+    today.addNode(inprogress);
+    today.addNode(done);
+    this.addNode(today);
   }
 
   /** Default constructor of {@code Kanban}. */
@@ -89,16 +88,10 @@ public class Kanban extends Node {
   public void generateToday() {
     Kanban kanban = Kanban.current;
     // create node refer to todayboard
-    Node TodayBoard = kanban.getChildrenNodes().get(0);
-    for (Node node : kanban.getChildrenNodes()) {
-      Board board = (Board) node;
-      if (board.getId() == 1) {
-        TodayBoard = board;
-      }
-    }
-    Node todo = TodayBoard.getChildrenNodes().get(0);
-    Node inprogress = TodayBoard.getChildrenNodes().get(1);
-    Node done = TodayBoard.getChildrenNodes().get(2);
+    Node todayBoard = kanban.getNode(1);
+    Node todo = todayBoard.getNode(1);
+    Node inprogress = todayBoard.getNode(2);
+    Node done = todayBoard.getNode(3);
 
     // store the node of all event
     ArrayList<Event> arr_priority = new ArrayList<Event>();
@@ -108,39 +101,25 @@ public class Kanban extends Node {
     // All todo
     for (Node board : kanban.getChildrenNodes()) {
       if (board.getId() >= 100) {
-        // Board
-        Collection<Node> columns = board.getChildrenNodes();
-
-        for (Node node : columns) {
+        for (Node node : board.getChildrenNodes()) {
           Column column = (Column) node;
-          if (column.getPreset() == 0) {
-            // todo
-            for (Node event : column.getChildrenNodes()) {
-              map_todo.put(event.getId(), (Event) event);
-            }
-          } else if (column.getPreset() == 1) {
-            // in process
-            for (Node node_event : column.getChildrenNodes()) {
-              Event event = (Event) node_event;
+          for (Node event : column.getChildrenNodes()) {
+            if (column.getPreset() == Column.TO_DO) {
+              todo.addNode(event);
+            }else if (column.getPreset() == Column.IN_PROGRESS) {
               inprogress.addNode(event);
-            }
-          } else {
-            // done
-            for (Node node_event : column.getChildrenNodes()) {
-              Event event = (Event) node_event;
-              if (!event.isExpired()) {
-                done.addNode(event);
-              }
+            }else{
+              if (!((Event) event).isExpired()) done.addNode(event);
             }
           }
         }
       }
     }
     // sort all todo and add into the Today
-    arr_priority = sortEventPriority(map_todo);
-    for (Event event : arr_priority) {
-      todo.addNode(event);
-    }
+    // arr_priority = sortEventPriority(map_todo);
+    // for (Event event : arr_priority) {
+    //   todo.addNode(event);
+    // }
 
     // System.out.println("\nTODAY------");
     // // System.out.println(TodayBoard);

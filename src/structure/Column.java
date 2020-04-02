@@ -1,14 +1,22 @@
 package structure;
 
+import java.util.ArrayList;
+
 /**
  * The {@code Column} class, extends from {@code Node}.
  *
- * <p>The instance should contains {@code Event} object as children nodes.
+ * <p>
+ * The instance should contains {@code Event} object as children nodes.
  *
  * @since 1.0
  * @version 2.1
  */
 public class Column extends Node {
+
+  public static int TO_DO = 0;
+  public static int IN_PROGRESS = 1;
+  public static int DONE = 2;
+
   /**
    * Constructor of {@code Column}, provide {@code HttpBody}.
    *
@@ -18,7 +26,7 @@ public class Column extends Node {
 
   public Column(HttpBody obj) {
     super(obj);
-    this.preset = obj.getInt("preset");
+    this.setPreset(obj.getInt("preset"));
   }
 
   /**
@@ -32,8 +40,17 @@ public class Column extends Node {
     super(id, title, note);
   }
 
+  public void setPreset(int preset){
+    this.preset = preset;
+  }
+
   public int getPreset() {
     return this.preset;
+  }
+
+  @Override
+  public ArrayList<Node> getChildrenNodes(){
+    return super.getChildrenNodes();
   }
 
   public String toString() {

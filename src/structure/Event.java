@@ -9,6 +9,7 @@ import java.util.*;
  * @version 2.1
  */
 public class Event extends Node {
+
   /**
    * Constructor of {@code Event}, provide {@code HttpBody}.
    *
@@ -25,9 +26,9 @@ public class Event extends Node {
 
   public Event(String title, String note, Long dueDate, Long duration, int importanceLevel) {
     super(title, note);
-    this.duration = duration;
-    this.dueDate = dueDate;
-    this.importanceLevel = importanceLevel;
+    this.setDuration(duration);
+    this.setDueDate(dueDate);
+    this.setImportanceLevel(importanceLevel);
   }
 
   /**
@@ -54,6 +55,10 @@ public class Event extends Node {
     }
   }
 
+  public void setDuration(long duration){
+    this.duration = duration;
+  }
+
   public Long getDuration() {
     return this.duration;
   }
@@ -62,8 +67,16 @@ public class Event extends Node {
     return (int) (this.duration / 60000);
   }
 
+  public void setImportanceLevel(int importance){
+    this.importanceLevel = importance;
+  }
+
   public Integer getImportanceLevel() {
     return this.importanceLevel;
+  }
+
+  public void setDueDate(long dueDate){
+    this.dueDate = dueDate;
   }
 
   public Long getDueDate() {
