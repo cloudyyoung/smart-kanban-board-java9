@@ -77,9 +77,7 @@ public class BoardComponent extends Button{
   }
 
   @FXML
-  void initialize() {
-    
-  }
+  void initialize() {}
 
   public Board getNode() {
     return this.node;
