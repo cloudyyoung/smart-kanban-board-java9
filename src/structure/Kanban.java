@@ -1,7 +1,6 @@
 package structure;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -106,9 +105,9 @@ public class Kanban extends Node {
           for (Node event : column.getChildrenNodes()) {
             if (column.getPreset() == Column.TO_DO) {
               todo.addNode(event);
-            }else if (column.getPreset() == Column.IN_PROGRESS) {
+            } else if (column.getPreset() == Column.IN_PROGRESS) {
               inprogress.addNode(event);
-            }else{
+            } else {
               if (!((Event) event).isExpired()) done.addNode(event);
             }
           }

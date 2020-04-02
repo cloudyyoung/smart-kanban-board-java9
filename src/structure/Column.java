@@ -5,8 +5,7 @@ import java.util.ArrayList;
 /**
  * The {@code Column} class, extends from {@code Node}.
  *
- * <p>
- * The instance should contains {@code Event} object as children nodes.
+ * <p>The instance should contains {@code Event} object as children nodes.
  *
  * @since 1.0
  * @version 2.1
@@ -40,7 +39,7 @@ public class Column extends Node {
     super(id, title, note);
   }
 
-  public void setPreset(int preset){
+  public void setPreset(int preset) {
     this.preset = preset;
   }
 
@@ -49,7 +48,7 @@ public class Column extends Node {
   }
 
   @Override
-  public ArrayList<Node> getChildrenNodes(){
+  public ArrayList<Node> getChildrenNodes() {
     return super.getChildrenNodes();
   }
 
