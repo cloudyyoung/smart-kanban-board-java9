@@ -91,7 +91,7 @@ public class Event extends Node {
 
   /**
    * Returns a boolean to represent if the event is over due.
-   * 
+   *
    * @return a boolean to represent if the event is over due.
    */
   public boolean isExpired() {
@@ -106,9 +106,10 @@ public class Event extends Node {
 
   /**
    * Returns an int of weight to represent the event priority.
+   *
    * @return an int of weight to represent the event priority.
    */
-  public Integer getPriority(){
+  public Integer getPriority() {
     int timeDifferenceInHours = this.getDueDate().intValue() / 3600;
     int importancePriority = this.getImportanceLevel() * (timeDifferenceInHours / 24);
     int priority = timeDifferenceInHours - importancePriority;
