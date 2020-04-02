@@ -210,7 +210,7 @@ public abstract class Node {
 
     // Set new parent
     this.parent = parent;
-    if (this.getParent() != null) {
+    if (this.parent != null) {
       this.parentId = this.parent.getId();
       this.getParent().addNode(this);
     } else {
