@@ -60,7 +60,7 @@ public class BoardComponent extends Button {
           boardTitle.setDisable(this.node.getId() < 100);
           boardNote.setDisable(this.node.getId() < 100);
 
-          if(this.node.getId() == 1){
+          if (this.node.getId() == 1) {
             Kanban.current.generateToday();
           }
 
