@@ -1,6 +1,5 @@
 package ui.component;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 
 import javafx.fxml.*;

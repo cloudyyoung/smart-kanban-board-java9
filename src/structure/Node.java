@@ -14,11 +14,10 @@ import java.lang.reflect.Constructor;
  */
 public abstract class Node {
 
-  final public static int SORT_BY_ID = 0;
-  final public static int SORT_BY_PRIORITY = 5;
-  final public static int ORDER_BY_ASC = 0;
-  final public static int ORDER_BY_DESC = 1;
-
+  public static final int SORT_BY_ID = 0;
+  public static final int SORT_BY_PRIORITY = 5;
+  public static final int ORDER_BY_ASC = 0;
+  public static final int ORDER_BY_DESC = 1;
 
   /**
    * The id of the instance, provided by the server. It is exposed to Gson, cannot be serialized and
@@ -205,7 +204,7 @@ public abstract class Node {
    */
   protected StructureRequest setParentLocal(Node parent) {
     this.parent = parent;
-    if(this.parent != null){
+    if (this.parent != null) {
       this.parentId = this.parent.getId();
       this.parent.addNode(this);
     }
@@ -539,19 +538,22 @@ public abstract class Node {
     return this.getChildrenNodes(Node.SORT_BY_ID, Node.ORDER_BY_ASC);
   }
 
-  public ArrayList<Node> getChildrenNodes(int sortBy, int order){
+  public ArrayList<Node> getChildrenNodes(int sortBy, int order) {
     ArrayList<Node> list = new ArrayList<Node>(this.nodes.values());
     Collections.sort(
-      list, new Comparator<Node>() {
-      @Override
-      public int compare(Node entry1, Node entry2) {
-        if(entry1 instanceof Event && entry2 instanceof Event && (sortBy == Node.SORT_BY_PRIORITY)){
-          return ((Event) entry1).getPriority() - ((Event) entry2).getPriority();
-        }
-        return entry1.getId() - entry2.getId();
-      }
-    });
-    if(order == Node.ORDER_BY_DESC) Collections.reverse(list);
+        list,
+        new Comparator<Node>() {
+          @Override
+          public int compare(Node entry1, Node entry2) {
+            if (entry1 instanceof Event
+                && entry2 instanceof Event
+                && (sortBy == Node.SORT_BY_PRIORITY)) {
+              return ((Event) entry1).getPriority() - ((Event) entry2).getPriority();
+            }
+            return entry1.getId() - entry2.getId();
+          }
+        });
+    if (order == Node.ORDER_BY_DESC) Collections.reverse(list);
     return list;
   }
 

@@ -1,6 +1,5 @@
 package structure;
 
-
 /**
  * The {@code Column} class, extends from {@code Node}.
  *
