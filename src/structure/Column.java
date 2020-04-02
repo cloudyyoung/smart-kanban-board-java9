@@ -1,6 +1,5 @@
 package structure;
 
-import java.util.ArrayList;
 
 /**
  * The {@code Column} class, extends from {@code Node}.
@@ -12,9 +11,9 @@ import java.util.ArrayList;
  */
 public class Column extends Node {
 
-  final public static int TO_DO = 0;
-  final public static int IN_PROGRESS = 1;
-  final public static int DONE = 2;
+  public static final int TO_DO = 0;
+  public static final int IN_PROGRESS = 1;
+  public static final int DONE = 2;
 
   /**
    * Constructor of {@code Column}, provide {@code HttpBody}.
