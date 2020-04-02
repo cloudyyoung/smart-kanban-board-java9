@@ -59,7 +59,7 @@ public class BoardComponent extends Button{
 
       this.getStyleClass().add("selected");
 
-      tabPane.getSelectionModel().select(0);
+      this.tabPane.getSelectionModel().select(0);
 
       boardPane.setStyle(HomeController.styleAccent(node.getColor()));
       boardTitle.setText(this.node.getTitle());
@@ -75,9 +75,6 @@ public class BoardComponent extends Button{
       }
     });
   }
-
-  @FXML
-  void initialize() {}
 
   public Board getNode() {
     return this.node;
