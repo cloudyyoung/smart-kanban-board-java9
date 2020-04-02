@@ -204,7 +204,7 @@ public abstract class Node {
    */
   protected StructureRequest setParentLocal(Node parent) {
     // Remove self from old parent
-    if(this.getParent() != null){
+    if (this.getParent() != null) {
       this.getParent().removeNode(this);
     }
 
@@ -213,7 +213,7 @@ public abstract class Node {
     if (this.getParent() != null) {
       this.parentId = this.parent.getId();
       this.getParent().addNode(this);
-    }else{
+    } else {
       this.parentId = null;
     }
 
@@ -514,7 +514,7 @@ public abstract class Node {
   public StructureRequest addNode(Node nodeAdded) {
     if (nodeAdded != null) {
       this.nodes.put(nodeAdded.getId(), nodeAdded);
-      if(nodeAdded.getParent() != this) nodeAdded.setParent(this);
+      if (nodeAdded.getParent() != this) nodeAdded.setParent(this);
       return new StructureRequest(true, false, this);
     } else {
       return new StructureRequest(false, true, this);
@@ -532,7 +532,6 @@ public abstract class Node {
     return new StructureRequest(succeeded, !succeeded, this);
   }
 
-  
   /**
    * Removes a child node of the instance, in the local storage.
    *
