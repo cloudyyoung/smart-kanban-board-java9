@@ -73,13 +73,22 @@ public class HomeController {
     // Add list items
     boardList.getChildren().clear();
     for (structure.Node each : Kanban.current.getChildrenNodes()) {
-        // Add to list
-      BoardComponent node = new BoardComponent((Board) each, boardPane, boardTitle, boardNote, columnPane, sidePane, boardList, tabPane);
-      if(each.getId() >= 100){
+      // Add to list
+      BoardComponent node =
+          new BoardComponent(
+              (Board) each,
+              boardPane,
+              boardTitle,
+              boardNote,
+              columnPane,
+              sidePane,
+              boardList,
+              tabPane);
+      if (each.getId() >= 100) {
         boardList.getChildren().add(node);
-      }else{
+      } else {
         operationList.getChildren().add(node);
-        if(each.getId() == 1){
+        if (each.getId() == 1) {
           componentToday = node;
         }
       }
@@ -90,22 +99,22 @@ public class HomeController {
   }
 
   @FXML
-  void switchTab(ActionEvent event){
+  void switchTab(ActionEvent event) {
 
     HashSet<Node> sideButtons = new HashSet<Node>();
     sideButtons.addAll(sidePane.lookupAll(".button"));
     sideButtons.addAll(boardList.lookupAll(".button"));
 
-    for(Node each : sideButtons){
+    for (Node each : sideButtons) {
       each.getStyleClass().remove("selected");
     }
 
     Button button = (Button) event.getSource();
     button.getStyleClass().add("selected");
-    
-    if(button.equals(sideSearch)){
+
+    if (button.equals(sideSearch)) {
       tabPane.getSelectionModel().select(1);
-    }else if(button.equals(sideProfile)){
+    } else if (button.equals(sideProfile)) {
       try {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene oldScene = ((Node) event.getSource()).getScene();
@@ -120,7 +129,7 @@ public class HomeController {
       } catch (Exception e) {
         e.printStackTrace();
       }
-    }else{
+    } else {
       tabPane.getSelectionModel().select(0);
     }
   }
@@ -140,5 +149,4 @@ public class HomeController {
     style += "-fx-accent-5: " + hex + "0d;";
     return style;
   }
-
 }
