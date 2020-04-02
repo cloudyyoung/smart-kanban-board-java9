@@ -108,9 +108,9 @@ public class Kanban extends Node {
 
     Kanban.checkout();
 
-    // System.out.println(Kanban.current);
+    System.out.println(Kanban.current);
 
     // System.out.println(("\ngenerateToday---");
-    Kanban.current.generateToday();
+    // Kanban.current.generateToday();
   }
 }
