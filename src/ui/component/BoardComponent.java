@@ -62,7 +62,6 @@ public class BoardComponent extends Button {
           boardNote.setDisable(this.node.getId() < 100);
 
           columnPane.getChildren().clear();
-          Kanban.current.generateToday();
           for (structure.Node each : node.getChildrenNodes()) {
             Node col = new ColumnComponent((Column) each);
             columnPane.getChildren().add(col);

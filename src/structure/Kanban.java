@@ -42,9 +42,6 @@ public class Kanban extends Node {
     new Column(3, "Done", "", today);
   }
 
-  /** Default constructor of {@code Kanban}. */
-  public Kanban() {}
-
   /**
    * Check out the {@code Kanban} data of current {@code User} from the server.
    *
