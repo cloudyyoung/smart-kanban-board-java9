@@ -129,6 +129,8 @@
   -fx-fill: -fx-dark-text-color;
   -fx-border-width: 2px;
   -fx-border-color: transparent;
+  -fx-border-radius: 4px;
+  -fx-background-radius: 4px;
 }
 
 .button *{
@@ -152,7 +154,8 @@
 }
 
 .button:hover, .button:focused{
-  -fx-border-color: -fx-focus-color;
+  /* -fx-border-color: -fx-focus-color; */
+  -fx-border-color: transparent;
 }
 
 .button.primary:hover, .button.primary:focused{
@@ -522,7 +525,7 @@
 }
 
 .bg-main .tab-box.title{
-	-fx-padding: 30px 50px 15px 50px;
+	-fx-padding: 30px 50px 10px 50px;
 	-fx-background-color: -fx-base;
 	-fx-spacing: 10px;
 }
@@ -648,6 +651,16 @@
     -fx-effect: dropshadow(gaussian, -fx-accent-30, 10, 0, 1, 2); /** 15% **/
 }
 
+.bg-main .column .scroll-pane.event-list .button:hover{
+	-fx-background-color: derive(-fx-accent, -6%);
+    -fx-effect: dropshadow(gaussian, derive(-fx-accent, -6%), 10, 0, 1, 2); /** 15% **/
+}
+
+.bg-main .column .scroll-pane.event-list .button:focused{
+	-fx-background-color: derive(-fx-accent, -16%);
+    -fx-effect: dropshadow(gaussian, derive(-fx-accent, -16%), 10, 0, 1, 2); /** 15% **/
+}
+
 .bg-main .column .scroll-pane.event-list .button *{
 	-fx-text-fill: -fx-light-text-color;
     -fx-fill: -fx-light-text-color;
@@ -665,10 +678,6 @@
 
 .bg-main .column .scroll-pane.event-list .button.selected{
 	-fx-effect: dropshadow(gaussian, -fx-accent-50, 10, 0, 1, 2); /** 40% **/
-}
-
-.bg-main .column .scroll-pane.event-list .button:focused{
-	-fx-background-color: derive(-fx-accent, -16%);
 }
 
 .bg-main .search{
@@ -844,15 +853,15 @@
 	-fx-font-family: "Noto Sans JP Light";
 }
 
-.bg-signin .tool-bar{
+.bg-signin .operation{
 	-fx-background-color: transparent;
 	-fx-border-width: 0px;
 	-fx-border-color: transparent;
-	/*-fx-padding: 20px 0px 0px 0px;*/
 	-fx-padding: 0px;
+	-fx-alignment: CENTER_RIGHT;
 }
 
-.bg-signin .tool-bar .button, .bg-signin .tool-bar .combo-box{
+.bg-signin .operation .button, .bg-signin .operation .combo-box{
 	-fx-content-display: RIGHT;
 }
 

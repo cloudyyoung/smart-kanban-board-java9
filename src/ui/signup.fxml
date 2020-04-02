@@ -11,10 +11,8 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
@@ -48,9 +46,8 @@
                                           <Label fx:id="labelErrorUsername" styleClass="error" wrapText="true" />
                                        </children>
                                     </VBox>
-                                    <ToolBar nodeOrientation="LEFT_TO_RIGHT" styleClass="operation">
-                                       <items>
-                                          <Region prefWidth="268.0" />
+                                    <HBox styleClass="operation">
+                                       <children>
                                           <Button id="buttonNextUsername-SignUp" defaultButton="true" mnemonicParsing="false" onAction="#next" text="Next">
                                              <graphic>
                                                 <SVGPath content="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
@@ -62,10 +59,11 @@
                                              <styleClass>
                                                 <String fx:value="h5" />
                                                 <String fx:value="primary" />
+                                                <String fx:value="medium" />
                                              </styleClass>
                                           </Button>
-                                       </items>
-                                    </ToolBar>
+                                       </children>
+                                    </HBox>
                                  </children>
                               </VBox>
                            </children>
@@ -97,9 +95,8 @@
                                           <Label fx:id="labelErrorPassword" styleClass="error" wrapText="true" />
                                        </children>
                                     </VBox>
-                                    <ToolBar nodeOrientation="LEFT_TO_RIGHT" styleClass="operation">
-                                       <items>
-                                          <Region prefWidth="212.0" />
+                                    <HBox styleClass="operation">
+                                       <children>
                                           <Button id="buttonBackPassword" defaultButton="true" mnemonicParsing="false" onAction="#next" text="Back">
                                              <styleClass>
                                                 <String fx:value="h5" />
@@ -116,10 +113,11 @@
                                              <styleClass>
                                                 <String fx:value="h5" />
                                                 <String fx:value="primary" />
+                                                <String fx:value="medium" />
                                              </styleClass>
                                           </Button>
-                                       </items>
-                                    </ToolBar>
+                                       </children>
+                                    </HBox>
                                  </children>
                               </VBox>
                            </children>
@@ -151,9 +149,8 @@
                                           <Label fx:id="labelErrorSecQues" styleClass="error" wrapText="true" />
                                        </children>
                                     </VBox>
-                                    <ToolBar nodeOrientation="LEFT_TO_RIGHT" styleClass="operation">
-                                       <items>
-                                          <Region prefWidth="212.0" />
+                                    <HBox styleClass="operation">
+                                       <children>
                                           <Button id="buttonBackSecQues" defaultButton="true" mnemonicParsing="false" onAction="#next" text="Back">
                                              <styleClass>
                                                 <String fx:value="h5" />
@@ -170,10 +167,11 @@
                                              <styleClass>
                                                 <String fx:value="h5" />
                                                 <String fx:value="primary" />
+                                                <String fx:value="medium" />
                                              </styleClass>
                                           </Button>
-                                       </items>
-                                    </ToolBar>
+                                       </children>
+                                    </HBox>
                                  </children>
                               </VBox>
                            </children>
@@ -205,9 +203,8 @@
                                           <Label fx:id="labelErrorSecAns" styleClass="error" wrapText="true" />
                                        </children>
                                     </VBox>
-                                    <ToolBar nodeOrientation="LEFT_TO_RIGHT" styleClass="operation">
-                                       <items>
-                                          <Region prefHeight="37.0" prefWidth="190.0" />
+                                    <HBox styleClass="operation">
+                                       <children>
                                           <Button id="buttonBackSecAns" defaultButton="true" mnemonicParsing="false" onAction="#next" text="Back">
                                              <styleClass>
                                                 <String fx:value="h5" />
@@ -224,10 +221,11 @@
                                              <styleClass>
                                                 <String fx:value="h5" />
                                                 <String fx:value="primary" />
+                                                <String fx:value="medium" />
                                              </styleClass>
                                           </Button>
-                                       </items>
-                                    </ToolBar>
+                                       </children>
+                                    </HBox>
                                  </children>
                               </VBox>
                            </children>
@@ -263,9 +261,8 @@
                                           <Insets bottom="20.0" />
                                        </VBox.margin>
                                     </VBox>
-                                    <ToolBar nodeOrientation="LEFT_TO_RIGHT" styleClass="operation">
-                                       <items>
-                                          <Region prefWidth="270.0" />
+                                    <HBox styleClass="operation">
+                                       <children>
                                           <Button id="buttonNextStart" mnemonicParsing="false" onAction="#next" text="Start">
                                              <graphic>
                                                 <SVGPath content="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
@@ -277,10 +274,11 @@
                                              <styleClass>
                                                 <String fx:value="h5" />
                                                 <String fx:value="primary" />
+                                                <String fx:value="medium" />
                                              </styleClass>
                                           </Button>
-                                       </items>
-                                    </ToolBar>
+                                       </children>
+                                    </HBox>
                                  </children>
                               </VBox>
                            </children>
