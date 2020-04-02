@@ -77,18 +77,24 @@ public class SignUpController {
         // e.printStackTrace();
       }
 
-    } else if(id.equals("buttonNextSecQues-SignUp")){
-      labelSecurityAnswerQuestion.setText(comboSecurityQuestion.getSelectionModel().getSelectedItem());
-    } else{
+    } else if (id.equals("buttonNextSecQues-SignUp")) {
+      labelSecurityAnswerQuestion.setText(
+          comboSecurityQuestion.getSelectionModel().getSelectedItem());
+    } else {
       Result res;
       int totalField = 0;
 
       if (id.contains("SignIn")) {
         totalField = 2;
         res = User.authentication(inputUsername.getText(), inputPassword.getText());
-      }else{
+      } else {
         totalField = 4;
-        res = User.registration(inputUsername.getText(), inputPassword.getText(), comboSecurityQuestion.getSelectionModel().getSelectedItem(), inputSecurityAnswer.getText());
+        res =
+            User.registration(
+                inputUsername.getText(),
+                inputPassword.getText(),
+                comboSecurityQuestion.getSelectionModel().getSelectedItem(),
+                inputSecurityAnswer.getText());
       }
 
       if (res.isFailed()) {
@@ -120,7 +126,7 @@ public class SignUpController {
     }
   }
 
-  void showError(String error){
+  void showError(String error) {
     if (labelErrorUsername != null) labelErrorUsername.setText(error);
     if (labelErrorPassword != null) labelErrorPassword.setText(error);
     if (labelErrorSecQues != null) labelErrorSecQues.setText(error);
