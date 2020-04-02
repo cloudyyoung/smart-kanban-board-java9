@@ -460,7 +460,7 @@ public final class HttpBody extends HashMap<Object, Object> {
     param.put("username", "111");
     param.put("password", "222");
     String gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(param);
-    System.out.println(gson);
+  //System.out.println((gson);
     // HttpBody body = new HttpBody(param);
     // body.put("body", body);
     // System.out.println(body);
