@@ -65,9 +65,7 @@ public class HomeController {
 
     // Check out kanban
     Kanban.checkout();
-
-    // Hide dragPane
-    dragPane.getStyleClass().add("hide");
+    Kanban.generateToday();
 
     // Add list items
     boardList.getChildren().clear();

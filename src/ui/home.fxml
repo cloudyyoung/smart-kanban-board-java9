@@ -22,7 +22,6 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-
 <StackPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.HomeController">
    <children>
       <BorderPane prefHeight="680.0" prefWidth="1020.0">
@@ -514,6 +513,6 @@
             </ScrollPane>
          </right>
       </BorderPane>
-      <Pane id="dragPane" fx:id="dragPane" />
+      <Pane id="dragPane" fx:id="dragPane" mouseTransparent="true" />
    </children>
 </StackPane>

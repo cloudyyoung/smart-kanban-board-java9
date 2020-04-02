@@ -509,17 +509,25 @@
 	-fx-border-width: 0px;
 	-fx-pref-width: 1000px;
 	-fx-text-fill: -fx-accent;
+	-fx-cursor: auto;
 }
 
 .bg-main .board-note{
 	-fx-padding: -2px 0px 0px 0px;
 	-fx-border-width: 0px;
 	-fx-text-fill: -fx-dark-text-color;
+	-fx-cursor: auto;
+}
+
+.bg-main .board-title:read-only,
+.bg-main .board-note:read-only{
+	-fx-cursor: default;
 }
 
 .bg-main .board-title:disabled,
 .bg-main .board-note:disabled{
 	-fx-opacity: 1;
+	-fx-cursor: default;
 }
 
 
@@ -560,7 +568,7 @@
 
 /** Card Spacing **/
 .bg-main .column VBox{
-	-fx-spacing: 10px;
+	-fx-spacing: 12px;
 }
 
 .bg-main .column .title{

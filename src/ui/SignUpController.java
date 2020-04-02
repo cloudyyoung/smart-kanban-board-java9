@@ -7,6 +7,7 @@ import javafx.stage.*;
 import javafx.scene.*;
 
 import structure.User;
+import structure.HttpBody;
 import structure.Result;
 
 public class SignUpController {
@@ -64,38 +65,35 @@ public class SignUpController {
         stage.setScene(scene);
         stage.show();
       } catch (Exception e) {
-        System.out.println(e);
+        // e.printStackTrace();
       }
 
-    } else if (id.equals("buttonNextUsername-SignIn")) {
+    } else if (id.contains("SignIn")) {
 
-      tabPane.setDisable(true);
-      String username = inputUsername.getText();
-      Result res = User.authentication(username, "");
-      tabPane.setDisable(false);
-
-      int statusCode = res.getFailError().getInt("code");
-      String errorText = res.getFailError().getString("message");
-      if(statusCode == 403){
-        next = false;
-        labelErrorUsername.setText(errorText);
-      }
-
-    } else if (id.equals("buttonNextPassword-SignIn")) {
-
-      tabPane.setDisable(true);
       String username = inputUsername.getText();
       String password = inputPassword.getText();
+      int totalField = 2;
       Result res = User.authentication(username, password);
-      tabPane.setDisable(false);
 
-      if (res.isSucceeded()) {
-        profileUsername.setText(username);
-      } else if (res.isFailed()) {
+      if(res.isFailed()){
+        int statusCode = res.getFailError().getInt("code");
+        HttpBody body = res.getFailError().getHttpBody("details");
+        System.out.println(statusCode);
+        if(statusCode == 406 && totalField - body.size() > tab){
+          next = true;
+        }else{
+          next = false;
+          String errorText = res.getFailError().getString("message");
+          labelErrorUsername.setText(errorText);
+          labelErrorPassword.setText(errorText);
+        }
+      } else if (res.isExcepted()) {
         next = false;
-        String errorText = res.getFailError().getString("message");
+        String errorText = "Unexpected error occured";
         labelErrorUsername.setText(errorText);
         labelErrorPassword.setText(errorText);
+      } else{
+        profileUsername.setText(username);
       }
 
     }
