@@ -71,20 +71,8 @@ public class HomeController {
     boardList.getChildren().clear();
     for (structure.Node each : Kanban.current.getChildrenNodes()) {
       if (each.getId() >= 100) {
-
-        // Icon
-        SVGPath svg = new SVGPath();
-        svg.setContent(
-            "M 5 5 L 5 6 L 5 27 L 27 27 L 27 5 L 5 5 z M 7 7 L 25 7 L 25 9 L 7 9 L 7 7 z M 7 11 L 25 11 L 25 25 L 7 25 L 7 11 z");
-        HBox hbox = new HBox();
-        hbox.getChildren().add(svg);
-
-        // Button & text & tooltip
-        Button node = new Button(each.getTitle(), hbox);
-        node.setId("board-" + each.getId());
-        node.setStyle(styleAccent(((Board) each).getColor()));
-
         // Add to list
+        BoardComponent node = new BoardComponent((Board) each);
         boardList.getChildren().add(node);
       } else if (each.getId() == 1) {
         sideToday.setStyle(styleAccent(((Board) each).getColor()));

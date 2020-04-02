@@ -12,9 +12,9 @@ public class BoardComponent extends Button {
 
   @FXML private Button button;
 
-  @FXML private SVGPath icon;
+  @FXML private SVGPath boardIcon;
 
-  private structure.Board node;
+  private Board node;
 
   public BoardComponent(Board node) {
     super();
@@ -23,15 +23,21 @@ public class BoardComponent extends Button {
     this.setId("board-" + node.getId());
     this.setStyle(HomeController.styleAccent(node.getColor()));
     load();
+
+    SVGPath svg = new SVGPath();
+    svg.setContent(
+        "M 5 5 L 5 6 L 5 27 L 27 27 L 27 5 L 5 5 z M 7 7 L 25 7 L 25 9 L 7 9 L 7 7 z M 7 11 L 25 11 L 25 25 L 7 25 L 7 11 z");
+    HBox hbox = new HBox();
+    hbox.getChildren().add(svg);
+    this.setGraphic(hbox);
   }
 
   @FXML
   void initialize() {
-    icon.setContent(
-        "M 5 5 L 5 6 L 5 27 L 27 27 L 27 5 L 5 5 z M 7 7 L 25 7 L 25 9 L 7 9 L 7 7 z M 7 11 L 25 11 L 25 25 L 7 25 L 7 11 z");
+    
   }
 
-  public structure.Board getNode() {
+  public Board getNode() {
     return this.node;
   }
 
