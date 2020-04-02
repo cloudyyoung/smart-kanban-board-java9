@@ -6,7 +6,7 @@ import javafx.scene.control.*;
 
 import structure.*;
 
-public class Column extends VBox {
+public class ColumnComponent extends VBox {
 
   @FXML private Label eventCount;
 
@@ -16,14 +16,9 @@ public class Column extends VBox {
 
   @FXML private VBox eventList;
 
-  private Node node;
+  private structure.Column node;
 
-  public Column() {
-    super();
-    load();
-  }
-
-  public Column(Node node) {
+  public ColumnComponent(structure.Column node) {
     super();
     this.node = node;
     load();
@@ -48,7 +43,7 @@ public class Column extends VBox {
     eventCount.setText(node.getChildrenNodes().size() + "");
 
     for (Node each : node.getChildrenNodes()) {
-      Event event = new Event(each);
+      EventComponent event = new EventComponent(each);
       eventList.getChildren().add(event);
     }
   }

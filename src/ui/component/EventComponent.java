@@ -6,7 +6,7 @@ import javafx.scene.control.*;
 
 import structure.*;
 
-public class Event extends Button {
+public class EventComponent extends Button {
 
   @FXML private Button event;
 
@@ -14,12 +14,7 @@ public class Event extends Button {
 
   private Node node;
 
-  public Event() {
-    super();
-    load();
-  }
-
-  public Event(Node node) {
+  public EventComponent(Node node) {
     super();
     this.node = node;
     load();
