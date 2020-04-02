@@ -6,52 +6,9 @@
     "configurations": [
         {
             "type": "java",
-            "name": "CodeLens (Launch) - UI",
-            "request": "launch",
-            "mainClass": "ui.UI",
-            "projectName": "Smart-Kanban-Board"
-        },
-        {
-            "type": "java",
-            "name": "CodeLens (Launch) - Kanban",
-            "request": "launch",
-            "mainClass": "structure.Kanban",
-            "projectName": "Smart-Kanban-Board"
-        },
-        {
-            "type": "java",
-            "name": "CodeLens (Launch) - Event",
-            "request": "launch",
-            "mainClass": "structure.Event",
-            "projectName": "Smart-Kanban-Board"
-        },
-        {
-            "type": "java",
-            "name": "CodeLens (Launch) - Node",
-            "request": "launch",
-            "mainClass": "structure.Node",
-            "projectName": "Smart-Kanban-Board"
-        },
-        {
-            "type": "java",
-            "name": "CodeLens (Launch) - User",
-            "request": "launch",
-            "mainClass": "structure.User",
-            "projectName": "Smart-Kanban-Board"
-        },
-        {
-            "type": "java",
             "name": "CodeLens (Launch) - Main",
             "request": "launch",
             "mainClass": "Main",
-            "projectName": "Smart-Kanban-Board",
-            "vmArgs": "--module-path \"src/lib/javafx-sdk-11.0.2/lib\" --add-modules=ALL-MODULE-PATH"
-        },
-        {
-            "type": "java",
-            "name": "CodeLens (Launch) - Main",
-            "request": "launch",
-            "mainClass": "application.Main",
             "projectName": "Smart-Kanban-Board",
             "vmArgs": "--module-path \"src/lib/javafx-sdk-11.0.2/lib\" --add-modules=ALL-MODULE-PATH"
         }
