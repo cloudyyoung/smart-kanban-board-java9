@@ -96,8 +96,8 @@ public class Event extends Node {
 
   public boolean isExpired() {
     Calendar c = Calendar.getInstance();
-    System.out.println(c.getTimeInMillis() / 1000);
-    System.out.println(this.getDueDate());
+    // System.out.println(c.getTimeInMillis() / 1000);
+    // System.out.println(this.getDueDate());
     if (this.getDueDate() > c.getTimeInMillis() / 1000) {
       return false;
     }

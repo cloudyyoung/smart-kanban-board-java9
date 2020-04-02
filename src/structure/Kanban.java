@@ -76,7 +76,6 @@ public class Kanban extends Node {
       req2.send();
 
       if (req2.isSucceeded()) {
-        System.out.println(req2.getResponseBody());
         Kanban.current = new Kanban(req2.getResponseBody());
       }
       res.add(req2);
@@ -145,14 +144,14 @@ public class Kanban extends Node {
       todo.addNode(event);
     }
 
-    System.out.println("\nTODAY------");
-    // System.out.println(TodayBoard);
-    System.out.println("");
-    System.out.println(todo);
-    System.out.println("");
-    System.out.println(inprogress);
-    System.out.println("");
-    System.out.println(done);
+    // System.out.println("\nTODAY------");
+    // // System.out.println(TodayBoard);
+    // System.out.println("");
+    // System.out.println(todo);
+    // System.out.println("");
+    // System.out.println(inprogress);
+    // System.out.println("");
+    // System.out.println(done);
   }
 
   /**
@@ -162,8 +161,8 @@ public class Kanban extends Node {
    * @return an ArrayList in sorted priority order
    */
   public static ArrayList<Event> sortEventPriority(HashMap<Integer, Event> map) {
-    System.out.println("map==========");
-    System.out.println(map);
+    // System.out.println("map==========");
+    // System.out.println(map);
 
     ArrayList<Event> ret = new ArrayList<Event>();
     // copy map
@@ -194,7 +193,7 @@ public class Kanban extends Node {
     int timeDifferenceInHours = event.getDueDate().intValue() / 3600;
     int importancePriority = event.getImportanceLevel() * (timeDifferenceInHours / 24);
     int priority = timeDifferenceInHours - importancePriority;
-    System.out.println(priority);
+    // System.out.println(priority);
     return priority;
   }
 

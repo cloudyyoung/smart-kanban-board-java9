@@ -397,7 +397,6 @@ public final class HttpBody extends HashMap<Object, Object> {
       String str = obj.toString();
       if (str.indexOf(".") > -1 && str.indexOf("E") > -1) { // Scientific notation: 1.223E2
         BigDecimal value = new BigDecimal(str);
-        System.out.println(value);
         return value.longValue();
       } else if (str.indexOf(".") > -1) { // Decimals: 100022.2
         str = str.substring(0, str.indexOf("."));
