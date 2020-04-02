@@ -104,13 +104,13 @@ public class Kanban extends Node {
   public static void main(String[] args) {
     User user = new User();
     user.authenticate("cloudy", "cloudy");
-  //System.out.println((user);
+    // System.out.println((user);
 
     Kanban.checkout();
 
     // System.out.println(Kanban.current);
 
-  //System.out.println(("\ngenerateToday---");
+    // System.out.println(("\ngenerateToday---");
     Kanban.current.generateToday();
   }
 }

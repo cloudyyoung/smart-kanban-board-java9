@@ -285,9 +285,9 @@ public class User {
   public static void main(String[] args) {
     User user = new User();
     user.authenticate("cloudy", "cloudy");
-  //System.out.println((user);
+    // System.out.println((user);
 
     Kanban.checkout();
-  //System.out.println((Kanban.current);
+    // System.out.println((Kanban.current);
   }
 }

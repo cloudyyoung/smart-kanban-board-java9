@@ -115,7 +115,7 @@ public class SignUpController {
       if (res.isFailed()) {
         int statusCode = res.getFailError().getInt("code");
         HttpBody body = res.getFailError().getHttpBody("details");
-      //System.out.println((statusCode);
+        // System.out.println((statusCode);
         if (statusCode == 406 && totalField - body.size() > tab) {
           next = true;
         } else {

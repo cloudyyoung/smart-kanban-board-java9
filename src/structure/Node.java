@@ -657,14 +657,14 @@ public abstract class Node {
   public static void main(String[] args) {
     User user = new User();
     user.authenticate("cloudy", "cloudy");
-  //System.out.println((user);
+    // System.out.println((user);
     Kanban.checkout();
-  //System.out.println((Kanban.current);
+    // System.out.println((Kanban.current);
 
     Node node = Kanban.current.getNode(50);
-  //System.out.println((node);
+    // System.out.println((node);
     node.setTitle("new title");
-  //System.out.println((node);
+    // System.out.println((node);
 
     // Kanban kanban = new Kanban();
     // Board aNode = new Board("new Node2 cloudyyyyyy", "", "#00b0f0");
