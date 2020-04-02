@@ -39,7 +39,7 @@ public class SignUpController {
   @FXML
   void initialize() {
     // Intialize label text values
-    clearErrorLabel();
+    showError("");
     profileUsername.setText("");
     if(comboSecurityQuestion != null) comboSecurityQuestion.getItems().addAll(
       "What school did you attend for sixth grade?", 
@@ -50,20 +50,14 @@ public class SignUpController {
       );
   }
 
-  void clearErrorLabel() {
-    if (labelErrorUsername != null) labelErrorUsername.setText("");
-    if (labelErrorPassword != null) labelErrorPassword.setText("");
-    if (labelErrorSecQues != null) labelErrorSecQues.setText("");
-    if (labelErrorSecAns != null) labelErrorSecAns.setText("");
-  }
-
   @FXML
   void next(ActionEvent event) {
     Button button = (Button) event.getSource();
     String id = button.getId();
+    tabPane.setDisable(true);
 
     boolean next = true;
-    clearErrorLabel();
+    showError("");
 
     if (id.equals("buttonNextStart")) {
       try {
@@ -83,39 +77,17 @@ public class SignUpController {
 
     } else if(id.equals("buttonNextSecQues-SignUp")){
       labelSecurityAnswerQuestion.setText(comboSecurityQuestion.getSelectionModel().getSelectedItem());
-    } else if (id.contains("SignIn")) {
-      String username = inputUsername.getText();
-      String password = inputPassword.getText();
-      int totalField = 2;
-      Result res = User.authentication(username, password);
+    } else{
+      Result res;
+      int totalField = 0;
 
-      if (res.isFailed()) {
-        int statusCode = res.getFailError().getInt("code");
-        HttpBody body = res.getFailError().getHttpBody("details");
-        System.out.println(statusCode);
-        if (statusCode == 406 && totalField - body.size() > tab) {
-          next = true;
-        } else {
-          next = false;
-          String errorText = res.getFailError().getString("message");
-          labelErrorUsername.setText(errorText);
-          labelErrorPassword.setText(errorText);
-        }
-      } else if (res.isExcepted()) {
-        next = false;
-        String errorText = "Unexpected error occured";
-        labelErrorUsername.setText(errorText);
-        labelErrorPassword.setText(errorText);
-      } else {
-        profileUsername.setText(username);
+      if (id.contains("SignIn")) {
+        totalField = 2;
+        res = User.authentication(inputUsername.getText(), inputPassword.getText());
+      }else{
+        totalField = 4;
+        res = User.registration(inputUsername.getText(), inputPassword.getText(), comboSecurityQuestion.getSelectionModel().getSelectedItem(), inputSecurityAnswer.getText());
       }
-    } else if (id.contains("SignUp")) {
-      String username = inputUsername.getText();
-      String password = inputPassword.getText();
-      String sec_ques = comboSecurityQuestion.getSelectionModel().getSelectedItem();
-      String sec_ans = inputSecurityAnswer.getText();
-      int totalField = 4;
-      Result res = User.registration(username, password, sec_ques, sec_ans);
 
       if (res.isFailed()) {
         int statusCode = res.getFailError().getInt("code");
@@ -125,24 +97,18 @@ public class SignUpController {
           next = true;
         } else {
           next = false;
-          String errorText = res.getFailError().getString("message");
-          labelErrorUsername.setText(errorText);
-          labelErrorPassword.setText(errorText);
-          labelErrorSecQues.setText(errorText);
-          labelErrorSecAns.setText(errorText);
+          showError(res.getFailError().getString("message"));
         }
       } else if (res.isExcepted()) {
         next = false;
         String errorText = "Unexpected error occured";
-        labelErrorUsername.setText(errorText);
-        labelErrorPassword.setText(errorText);
-        labelErrorSecQues.setText(errorText);
-        labelErrorSecAns.setText(errorText);
+        showError(errorText);
       } else {
-        profileUsername.setText(username);
-        User.authentication(username, password);
+        profileUsername.setText(User.current.getUsername());
       }
     }
+
+    tabPane.setDisable(false);
 
     if (next) {
       if (id.contains("Back")) tab--;
@@ -150,5 +116,12 @@ public class SignUpController {
       tabPane.getSelectionModel().select(tab);
       tabPane.requestFocus();
     }
+  }
+
+  void showError(String error){
+    if (labelErrorUsername != null) labelErrorUsername.setText(error);
+    if (labelErrorPassword != null) labelErrorPassword.setText(error);
+    if (labelErrorSecQues != null) labelErrorSecQues.setText(error);
+    if (labelErrorSecAns != null) labelErrorSecAns.setText(error);
   }
 }
