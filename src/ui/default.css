@@ -461,6 +461,7 @@
     -fx-graphic-text-gap: 20px;
 	-fx-border-width: 0px 0px 0px 4px;
 	-fx-border-color: transparent;
+	-fx-border-radius: 0px;
 	-fx-text-fill: -fx-accent;
 	-fx-pref-width: 1000px;
 	-fx-font-family: "Noto Sans JP Medium";
