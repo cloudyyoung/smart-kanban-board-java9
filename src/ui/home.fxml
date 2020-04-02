@@ -86,18 +86,12 @@
                                  </children>
                               </HBox>
                            </graphic>
-                           <tooltip>
-                              <Tooltip text="Search any thing..." />
-                           </tooltip>
                            <styleClass>
                               <String fx:value="example-instance" />
                               <String fx:value="a" />
                            </styleClass>
                         </Button>
                         <Button id="board-1" fx:id="sideToday" text="Today">
-                           <tooltip>
-                              <Tooltip text="Today" />
-                           </tooltip>
                            <styleClass>
                               <String fx:value="example-instance" />
                               <String fx:value="selected" />
