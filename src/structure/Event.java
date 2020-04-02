@@ -10,22 +10,20 @@ import java.util.*;
  */
 public class Event extends Node {
 
+  private int importanceLevel;
+  // importanceLevel range from 0 to 3, which 0 is not important and 3 is super important
+  private Long dueDate;
+  // dueDate is the timeStamp
+  private Long duration;
+  // Duration store in timeStamp form (millissecond)
+
   /**
    * Constructor of {@code Event}, provide {@code HttpBody}.
    *
    * @param obj the {@code HttpBody} for initialization
    */
-  String eventName;
-
-  int importanceLevel;
-  // importanceLevel range from 0 to 3, which 0 is not important and 3 is super important
-  Long dueDate;
-  // dueDate is the timeStamp
-  Long duration;
-  // Duration store in timeStamp form (millissecond)
-
-  public Event(String title, String note, Long dueDate, Long duration, int importanceLevel) {
-    super(title, note);
+  public Event(Integer id, String title, String note, Long dueDate, Long duration, int importanceLevel, Node parent) {
+    super(id, title, note, parent);
     this.setDuration(duration);
     this.setDueDate(dueDate);
     this.setImportanceLevel(importanceLevel);
@@ -95,6 +93,8 @@ public class Event extends Node {
         + this.getDuration()
         + ", importanceLevel: "
         + this.getImportanceLevel()
+        + ", priority: "
+        + this.getPriority()
         + ", dueDate: "
         + this.getDueDate()
         + ", nodes: "

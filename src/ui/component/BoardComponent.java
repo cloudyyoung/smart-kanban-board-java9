@@ -1,5 +1,6 @@
 package ui.component;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import javafx.fxml.*;
@@ -60,11 +61,8 @@ public class BoardComponent extends Button {
           boardTitle.setDisable(this.node.getId() < 100);
           boardNote.setDisable(this.node.getId() < 100);
 
-          if (this.node.getId() == 1) {
-            Kanban.current.generateToday();
-          }
-
           columnPane.getChildren().clear();
+          Kanban.current.generateToday();
           for (structure.Node each : node.getChildrenNodes()) {
             Node col = new ColumnComponent((Column) each);
             columnPane.getChildren().add(col);

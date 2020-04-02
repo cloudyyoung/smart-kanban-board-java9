@@ -1,10 +1,6 @@
 package structure;
 
-import java.util.HashMap;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
+import java.util.*;
 
 import com.google.gson.annotations.*;
 
@@ -18,12 +14,18 @@ import java.lang.reflect.Constructor;
  */
 public abstract class Node {
 
+  final public static int SORT_BY_ID = 0;
+  final public static int SORT_BY_PRIORITY = 5;
+  final public static int ORDER_BY_ASC = 0;
+  final public static int ORDER_BY_DESC = 1;
+
+
   /**
    * The id of the instance, provided by the server. It is exposed to Gson, cannot be serialized and
    * can be deserialized.
    */
   @Expose(serialize = false, deserialize = true)
-  private int id;
+  private Integer id;
 
   /** The title of the instance. It is exposed to Gson, can be both serialized and deserialized. */
   @Expose private String title;
@@ -37,7 +39,7 @@ public abstract class Node {
   /**
    * The parent id of the instance. It is exposed to Gson, can be both serialized and deserialized.
    */
-  @Expose private int parentId;
+  @Expose private Integer parentId;
 
   /**
    * The boolean to indicate whether this instance is on the server. {@code false} inidicates this
@@ -75,26 +77,17 @@ public abstract class Node {
    * @param id the id in {@code int}
    * @param title the title in {@code String}
    * @param note the note in {@code String}
+   * @param parent the parent node in {@code Node}
    */
-  public Node(int id, String title, String note) {
+  public Node(Integer id, String title, String note, Node parent) {
     this.setId(id);
     this.setTitleLocal(title);
     this.setNoteLocal(note);
+    this.setParentLocal(parent);
   }
 
   /** Default constructor of {@code Kanban}. */
   public Node() {}
-
-  /**
-   * Constructor of {@code Node}, provide title and note.
-   *
-   * @param title the title in {@code String}
-   * @param note the note in {@code String}
-   */
-  public Node(String title, String note) {
-    this.setTitleLocal(title);
-    this.setNoteLocal(note);
-  }
 
   /**
    * Constructor of {@code Node}, provide object to map.
@@ -131,7 +124,6 @@ public abstract class Node {
         if (objNew instanceof Node) {
           Node nodeNew = (Node) objNew;
           nodeNew.setParentLocal(this);
-          this.nodes.put(nodeNew.getId(), nodeNew);
         }
       } catch (Exception e) {
         // e.printStackTrace();
@@ -183,7 +175,7 @@ public abstract class Node {
    *
    * @return the id of the instance
    */
-  public int getId() {
+  public Integer getId() {
     return this.id;
   }
 
@@ -201,7 +193,7 @@ public abstract class Node {
    *
    * @param id the id of the instance
    */
-  private void setId(int id) {
+  private void setId(Integer id) {
     this.id = id;
   }
 
@@ -213,7 +205,10 @@ public abstract class Node {
    */
   protected StructureRequest setParentLocal(Node parent) {
     this.parent = parent;
-    this.parentId = parent.getId();
+    if(this.parent != null){
+      this.parentId = this.parent.getId();
+      this.parent.addNode(this);
+    }
 
     StructureRequest req = new StructureRequest(true, false, this);
     return req;
@@ -541,8 +536,23 @@ public abstract class Node {
    * @return a {@code Collection} of all the children nodes
    */
   public ArrayList<Node> getChildrenNodes() {
-    ArrayList<Node> arr = new ArrayList<Node>(this.nodes.values());
-    return arr;
+    return this.getChildrenNodes(Node.SORT_BY_ID, Node.ORDER_BY_ASC);
+  }
+
+  public ArrayList<Node> getChildrenNodes(int sortBy, int order){
+    ArrayList<Node> list = new ArrayList<Node>(this.nodes.values());
+    Collections.sort(
+      list, new Comparator<Node>() {
+      @Override
+      public int compare(Node entry1, Node entry2) {
+        if(entry1 instanceof Event && entry2 instanceof Event && (sortBy == Node.SORT_BY_PRIORITY)){
+          return ((Event) entry1).getPriority() - ((Event) entry2).getPriority();
+        }
+        return entry1.getId() - entry2.getId();
+      }
+    });
+    if(order == Node.ORDER_BY_DESC) Collections.reverse(list);
+    return list;
   }
 
   /**

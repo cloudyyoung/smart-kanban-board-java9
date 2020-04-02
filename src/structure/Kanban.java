@@ -34,15 +34,12 @@ public class Kanban extends Node {
                 + Time.currentDay()
                 + ", "
                 + Time.currentYear(),
-            "#fd79a8");
+            "#fd79a8",
+          this);
 
-    Column todo = new Column(1, "To Do", "jimjimsjimshtodo");
-    Column inprogress = new Column(2, "In Progress", "");
-    Column done = new Column(3, "Done", "");
-    today.addNode(todo);
-    today.addNode(inprogress);
-    today.addNode(done);
-    this.addNode(today);
+    new Column(1, "To Do", "jimjimsjimshtodo", today);
+    new Column(2, "In Progress", "", today);
+    new Column(3, "Done", "", today);
   }
 
   /** Default constructor of {@code Kanban}. */
@@ -92,11 +89,6 @@ public class Kanban extends Node {
     Node inprogress = todayBoard.getNode(2);
     Node done = todayBoard.getNode(3);
 
-    // store the node of all event
-    ArrayList<Event> arr_priority = new ArrayList<Event>();
-    // store all events with id to node
-    HashMap<Integer, Event> map_todo = new HashMap<Integer, Event>();
-
     // All todo
     for (Node board : kanban.getChildrenNodes()) {
       if (board.getId() >= 100) {
@@ -114,53 +106,6 @@ public class Kanban extends Node {
         }
       }
     }
-    // sort all todo and add into the Today
-    // arr_priority = sortEventPriority(map_todo);
-    // for (Event event : arr_priority) {
-    //   todo.addNode(event);
-    // }
-
-    // System.out.println("\nTODAY------");
-    // // System.out.println(TodayBoard);
-    // System.out.println("");
-    // System.out.println(todo);
-    // System.out.println("");
-    // System.out.println(inprogress);
-    // System.out.println("");
-    // System.out.println(done);
-  }
-
-  /**
-   * Help function of {@code generateToday()} in {@code Kanban}
-   *
-   * @param map {@code HashMap}, with (Id, Event), map of all the todo event
-   * @return an ArrayList in sorted priority order
-   */
-  private static ArrayList<Event> sortEventPriority(HashMap<Integer, Event> map) {
-    // System.out.println("map==========");
-    // System.out.println(map);
-
-    ArrayList<Event> ret = new ArrayList<Event>();
-    // copy map
-    HashMap<Integer, Event> copymap = new HashMap<Integer, Event>();
-    copymap.putAll(map);
-    while (copymap.size() > 0) {
-      // set the max tp be the first event in the map
-      Map.Entry<Integer, Event> entry = copymap.entrySet().iterator().next();
-      Event max_event = entry.getValue();
-      int max = max_event.getPriority();
-      for (Event event : copymap.values()) {
-        // weight parameter here
-        int priority = event.getPriority();
-        if (priority < max) {
-          max = priority;
-          max_event = event;
-        }
-      }
-      ret.add(max_event);
-      copymap.remove(max_event.getId());
-    }
-    return ret;
   }
 
   public static void main(String[] args) {

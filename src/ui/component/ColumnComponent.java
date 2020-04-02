@@ -1,5 +1,7 @@
 package ui.component;
 
+import java.util.ArrayList;
+
 import javafx.fxml.*;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
@@ -32,8 +34,7 @@ public class ColumnComponent extends VBox {
     try {
       fxmlLoader.load();
     } catch (Exception e) {
-      // throw new RuntimeException(exception);
-      System.out.println(e);
+      e.printStackTrace();
     }
   }
 
@@ -42,9 +43,17 @@ public class ColumnComponent extends VBox {
     columnTitle.setText(node.getTitle());
     eventCount.setText(node.getChildrenNodes().size() + "");
 
-    for (Node each : node.getChildrenNodes()) {
+    ArrayList<structure.Node> list = null;
+    if (this.node.getParent().getId() == 1) {
+      list = this.node.getChildrenNodes(structure.Node.SORT_BY_PRIORITY, structure.Node.ORDER_BY_DESC);
+    }else{
+      list = this.node.getChildrenNodes();
+    }
+
+    for (Node each : list) {
       EventComponent event = new EventComponent(each);
       eventList.getChildren().add(event);
+
     }
   }
 }

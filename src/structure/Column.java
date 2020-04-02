@@ -35,8 +35,8 @@ public class Column extends Node {
    * @param note The note in {@code String}
    * @param id THe id in {@code String}
    */
-  public Column(int id, String title, String note) {
-    super(id, title, note);
+  public Column(int id, String title, String note, Node parent) {
+    super(id, title, note, parent);
   }
 
   public void setPreset(int preset) {

@@ -28,8 +28,7 @@ public class EventComponent extends Button {
     try {
       fxmlLoader.load();
     } catch (Exception e) {
-      // throw new RuntimeException(exception);
-      System.out.println(e);
+      e.printStackTrace();
     }
   }
 
