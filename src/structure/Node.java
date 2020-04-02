@@ -504,11 +504,11 @@ public abstract class Node {
    * @return the structure request of this action
    */
   public StructureRequest addNode(Node nodeAdded) {
-    if(nodeAdded != null){
+    if (nodeAdded != null) {
       this.nodes.put(nodeAdded.getId(), nodeAdded);
       nodeAdded.setParent(this);
       return new StructureRequest(true, false, this);
-    }else{
+    } else {
       return new StructureRequest(false, true, this);
     }
   }

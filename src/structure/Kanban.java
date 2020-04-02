@@ -1,6 +1,5 @@
 package structure;
 
-
 /**
  * The {@code Kanban} class, extends from {@code Node}.
  *
