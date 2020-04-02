@@ -205,11 +205,10 @@ public abstract class Node {
   protected StructureRequest setParentLocal(Node parent) {
     
     if (parent != null) {
-      // Remove self from old parent
-      if (this.getParent() != null) {
-        // this.getParent().removeNode(this);
-      System.out.println(this.getParent());
-    }
+       // Remove self from old parent
+      if (this.getParent() !=  null && this.getParent() != parent) {
+        this.getParent().removeNode(this);
+      }
 
       // Set new parent
       this.parent = parent;
@@ -517,7 +516,6 @@ public abstract class Node {
   public StructureRequest addNode(Node nodeAdded) {
     if (nodeAdded != null) {
       this.nodes.put(nodeAdded.getId(), nodeAdded);
-      if (nodeAdded.getParent() != this) nodeAdded.setParent(this);
       return new StructureRequest(true, false, this);
     } else {
       return new StructureRequest(false, true, this);
