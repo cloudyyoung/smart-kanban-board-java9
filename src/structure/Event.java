@@ -22,7 +22,14 @@ public class Event extends Node {
    *
    * @param obj the {@code HttpBody} for initialization
    */
-  public Event(Integer id, String title, String note, Long dueDate, Long duration, int importanceLevel, Node parent) {
+  public Event(
+      Integer id,
+      String title,
+      String note,
+      Long dueDate,
+      Long duration,
+      int importanceLevel,
+      Node parent) {
     super(id, title, note, parent);
     this.setDuration(duration);
     this.setDueDate(dueDate);

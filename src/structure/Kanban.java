@@ -1,8 +1,5 @@
 package structure;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * The {@code Kanban} class, extends from {@code Node}.
@@ -35,7 +32,7 @@ public class Kanban extends Node {
                 + ", "
                 + Time.currentYear(),
             "#fd79a8",
-          this);
+            this);
 
     new Column(1, "To Do", "jimjimsjimshtodo", today);
     new Column(2, "In Progress", "", today);
