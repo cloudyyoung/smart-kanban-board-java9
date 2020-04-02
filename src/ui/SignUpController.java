@@ -89,7 +89,7 @@ public class SignUpController {
         stage.setScene(scene);
         stage.show();
       } catch (Exception e) {
-        // e.printStackTrace();
+        e.printStackTrace();
       }
 
     } else if (id.equals("buttonNextSecQues-SignUp")) {

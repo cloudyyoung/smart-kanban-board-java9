@@ -1,14 +1,15 @@
 package ui;
 
 import java.util.HashSet;
-import java.util.Set;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.*;
+import javafx.scene.*;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.shape.*;
-
+import javafx.stage.*;
 import structure.*;
 import ui.component.*;
 
@@ -22,9 +23,9 @@ public class HomeController {
 
   @FXML private VBox sidePane;
 
-  @FXML private Button sideSearch;
+  @FXML private VBox operationList;
 
-  @FXML private Button sideToday;
+  @FXML private Button sideSearch;
 
   @FXML private VBox boardList;
 
@@ -54,6 +55,8 @@ public class HomeController {
 
   @FXML private Pane dragPane;
 
+  private BoardComponent componentToday;
+
   @FXML
   void initialize() {
     // Intialize label text values
@@ -70,40 +73,56 @@ public class HomeController {
     // Add list items
     boardList.getChildren().clear();
     for (structure.Node each : Kanban.current.getChildrenNodes()) {
-      if (each.getId() >= 100) {
         // Add to list
-        BoardComponent node = new BoardComponent((Board) each);
+      BoardComponent node = new BoardComponent((Board) each, boardPane, boardTitle, boardNote, columnPane, sidePane, boardList, tabPane);
+      if(each.getId() >= 100){
         boardList.getChildren().add(node);
-      } else if (each.getId() == 1) {
-        sideToday.setStyle(styleAccent(((Board) each).getColor()));
+      }else{
+        operationList.getChildren().add(node);
+        if(each.getId() == 1){
+          componentToday = node;
+        }
       }
     }
 
-    // Bind button action event for sidePane buttons
-    Set<Node> sideButtons = new HashSet<Node>();
+    sidePane.requestFocus();
+    componentToday.fire();
+  }
+
+  @FXML
+  void switchTab(ActionEvent event){
+
+    HashSet<Node> sideButtons = new HashSet<Node>();
     sideButtons.addAll(sidePane.lookupAll(".button"));
     sideButtons.addAll(boardList.lookupAll(".button"));
 
-    for (Node each : sideButtons) {
-      System.out.println(each.getId());
-      Button btn = (Button) each;
-      btn.setOnAction(
-          event -> {
-            for (Node eachBtn : sideButtons) {
-              eachBtn.getStyleClass().remove("selected");
-            }
-            Node current = ((Node) event.getSource());
-            current.getStyleClass().add("selected");
-            if (current.equals(sideSearch)) {
-              tabPane.getSelectionModel().select(1);
-            } else {
-              sideSelectDisplay(current);
-            }
-          });
+    for(Node each : sideButtons){
+      each.getStyleClass().remove("selected");
     }
 
-    sidePane.requestFocus();
-    sideToday.fire();
+    Button button = (Button) event.getSource();
+    button.getStyleClass().add("selected");
+    
+    if(button.equals(sideSearch)){
+      tabPane.getSelectionModel().select(1);
+    }else if(button.equals(sideProfile)){
+      try {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene oldScene = ((Node) event.getSource()).getScene();
+        Scene scene =
+            new Scene(
+                FXMLLoader.load(getClass().getResource("settings.fxml")),
+                oldScene.getWidth(),
+                oldScene.getHeight());
+        scene.getStylesheets().add(getClass().getResource("default.css").toExternalForm());
+        stage.setScene(scene);
+        stage.show();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    }else{
+      tabPane.getSelectionModel().select(0);
+    }
   }
 
   public static String styleAccent(String hex) {
@@ -122,27 +141,4 @@ public class HomeController {
     return style;
   }
 
-  void sideSelectDisplay(Node btn) {
-    String idRaw = btn.getId();
-    tabPane.getSelectionModel().select(0);
-    if (!idRaw.contains("board-")) {
-      return;
-    }
-    String idStr = idRaw.split("-")[1];
-    Integer id = Integer.parseInt(idStr);
-    Board node = (Board) Kanban.current.getNode(id);
-    boardPane.setStyle(styleAccent(node.getColor()));
-
-    boardTitle.setText(node.getTitle());
-    boardNote.setText(!node.getNote().equals("") ? node.getNote() : "No description");
-
-    boardTitle.setDisable(id < 100);
-    boardNote.setDisable(id < 100);
-
-    columnPane.getChildren().clear();
-    for (structure.Node each : node.getChildrenNodes()) {
-      Node col = new ColumnComponent((Column) each);
-      columnPane.getChildren().add(col);
-    }
-  }
 }
