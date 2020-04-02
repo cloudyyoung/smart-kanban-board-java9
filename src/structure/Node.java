@@ -203,10 +203,10 @@ public abstract class Node {
    * @return the strcuture request of the action
    */
   protected StructureRequest setParentLocal(Node parent) {
-    
+
     if (parent != null) {
-       // Remove self from old parent
-      if (this.getParent() !=  null && this.getParent() != parent) {
+      // Remove self from old parent
+      if (this.getParent() != null && this.getParent() != parent) {
         this.getParent().removeNode(this);
       }
 
