@@ -49,7 +49,22 @@ public class SignUpController {
               "In what city or town was your first job?",
               "What is your oldest sibling's middle name?",
               "In what city does your nearest sibling live?",
-              "What is the last name of the teacher who gave you your first failing grade?");
+              "What is the last name of the teacher who gave you your first failing grade?",
+              "What was the last name of your third grade teacher?",
+              "What was the name of the hospital where you were born?",
+              "What was the name of the company where you had your first job?",
+              "What is the first name of the boy or girl that you first kissed?",
+              "What was the make and model of your first car?",
+              "What was your favorite food as a child?",
+              "What is the name of your favorite childhood friend?",
+              "Where were you when you had your first alcoholic drink (or cigarette)?",
+              "What was the name of your second dog/cat/goldfish/etc?",
+              "Who was your childhood hero?",
+              "In what town or city did your mother and father meet?",
+              "What time of the day was your first child born? (hh:mm)",
+              "What were the last four digits of your childhood telephone number?",
+              "What was the house number and street name you lived in as a child?",
+              "What is your grandmother's (on your mother's side) maiden name?");
   }
 
   @FXML
