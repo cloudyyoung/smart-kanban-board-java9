@@ -41,13 +41,15 @@ public class SignUpController {
     // Intialize label text values
     clearErrorLabel();
     profileUsername.setText("");
-    if(comboSecurityQuestion != null) comboSecurityQuestion.getItems().addAll(
-      "What school did you attend for sixth grade?", 
-      "In what city or town was your first job?",
-      "What is your oldest sibling's middle name?",
-      "In what city does your nearest sibling live?",
-      "What is the last name of the teacher who gave you your first failing grade?"
-      );
+    if (comboSecurityQuestion != null)
+      comboSecurityQuestion
+          .getItems()
+          .addAll(
+              "What school did you attend for sixth grade?",
+              "In what city or town was your first job?",
+              "What is your oldest sibling's middle name?",
+              "In what city does your nearest sibling live?",
+              "What is the last name of the teacher who gave you your first failing grade?");
   }
 
   void clearErrorLabel() {
@@ -81,8 +83,9 @@ public class SignUpController {
         // e.printStackTrace();
       }
 
-    } else if(id.equals("buttonNextSecQues-SignUp")){
-      labelSecurityAnswerQuestion.setText(comboSecurityQuestion.getSelectionModel().getSelectedItem());
+    } else if (id.equals("buttonNextSecQues-SignUp")) {
+      labelSecurityAnswerQuestion.setText(
+          comboSecurityQuestion.getSelectionModel().getSelectedItem());
     } else if (id.contains("SignIn")) {
       String username = inputUsername.getText();
       String password = inputPassword.getText();
