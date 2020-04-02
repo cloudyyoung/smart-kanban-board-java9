@@ -22,7 +22,13 @@ public class SignUpController {
 
   @FXML private Label labelErrorPassword;
 
+  @FXML private ComboBox<String> comboSecurityQuestion;
+
   @FXML private Label labelErrorSecQues;
+
+  @FXML private Label labelSecurityAnswerQuestion;
+
+  @FXML private TextField inputSecurityAnswer;
 
   @FXML private Label labelErrorSecAns;
 
@@ -35,6 +41,13 @@ public class SignUpController {
     // Intialize label text values
     clearErrorLabel();
     profileUsername.setText("");
+    if(comboSecurityQuestion != null) comboSecurityQuestion.getItems().addAll(
+      "What school did you attend for sixth grade?", 
+      "In what city or town was your first job?",
+      "What is your oldest sibling's middle name?",
+      "In what city does your nearest sibling live?",
+      "What is the last name of the teacher who gave you your first failing grade?"
+      );
   }
 
   void clearErrorLabel() {
@@ -68,8 +81,9 @@ public class SignUpController {
         // e.printStackTrace();
       }
 
+    } else if(id.equals("buttonNextSecQues-SignUp")){
+      labelSecurityAnswerQuestion.setText(comboSecurityQuestion.getSelectionModel().getSelectedItem());
     } else if (id.contains("SignIn")) {
-
       String username = inputUsername.getText();
       String password = inputPassword.getText();
       int totalField = 2;
@@ -94,6 +108,39 @@ public class SignUpController {
         labelErrorPassword.setText(errorText);
       } else {
         profileUsername.setText(username);
+      }
+    } else if (id.contains("SignUp")) {
+      String username = inputUsername.getText();
+      String password = inputPassword.getText();
+      String sec_ques = comboSecurityQuestion.getSelectionModel().getSelectedItem();
+      String sec_ans = inputSecurityAnswer.getText();
+      int totalField = 4;
+      Result res = User.registration(username, password, sec_ques, sec_ans);
+
+      if (res.isFailed()) {
+        int statusCode = res.getFailError().getInt("code");
+        HttpBody body = res.getFailError().getHttpBody("details");
+        System.out.println(statusCode);
+        if (statusCode == 406 && totalField - body.size() > tab) {
+          next = true;
+        } else {
+          next = false;
+          String errorText = res.getFailError().getString("message");
+          labelErrorUsername.setText(errorText);
+          labelErrorPassword.setText(errorText);
+          labelErrorSecQues.setText(errorText);
+          labelErrorSecAns.setText(errorText);
+        }
+      } else if (res.isExcepted()) {
+        next = false;
+        String errorText = "Unexpected error occured";
+        labelErrorUsername.setText(errorText);
+        labelErrorPassword.setText(errorText);
+        labelErrorSecQues.setText(errorText);
+        labelErrorSecAns.setText(errorText);
+      } else {
+        profileUsername.setText(username);
+        User.authentication(username, password);
       }
     }
 

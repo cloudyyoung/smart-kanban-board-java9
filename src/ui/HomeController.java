@@ -81,7 +81,6 @@ public class HomeController {
 
         // Button & text & tooltip
         Button node = new Button(each.getTitle(), hbox);
-        node.setTooltip(new Tooltip(each.getTitle()));
         node.setId("board-" + each.getId());
         node.setStyle(styleAccent(((Board) each).getColor()));
 

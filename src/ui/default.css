@@ -69,6 +69,28 @@
 	-fx-font-size: 12px;
 }
 
+.combo-box .combo-box-popup{
+	-fx-font-family: "Noto Sans Regular";
+	-fx-font-size: 12px;
+}
+
+.combo-box .combo-box-popup .list-view {
+	-fx-border-width: 0px;
+	-fx-background-color: -fx-base;
+	-fx-effect: dropshadow(gaussian , -fx-accent-20, 10, 0, 1, 2) !important;
+	-fx-padding: 0px;
+}
+
+.combo-box .combo-box-popup .list-view .list-cell {
+    -fx-padding: 6px;
+    -fx-background-color: -fx-base;
+}
+.combo-box .combo-box-popup .list-view .list-cell:hover,
+.combo-box .combo-box-popup .list-view .list-cell:focused {
+    -fx-background-color: -fx-focus-color;
+}
+
+
 *{
 	-fx-text-fill: -fx-dark-text-color;
 	-fx-alignment: CENTER_LEFT;

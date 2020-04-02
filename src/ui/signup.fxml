@@ -147,7 +147,7 @@
                                     </VBox>
                                     <VBox>
                                        <children>
-                                          <ComboBox prefWidth="150.0" promptText="Choose a security question" styleClass="h3" />
+                                          <ComboBox fx:id="comboSecurityQuestion" prefWidth="150.0" promptText="Choose a security question" styleClass="h3" />
                                           <Label fx:id="labelErrorSecQues" styleClass="error" wrapText="true" />
                                        </children>
                                     </VBox>
@@ -192,7 +192,7 @@
                                  <children>
                                     <VBox>
                                        <children>
-                                          <Label text="This is your questionThis is your questionThis is your questionThis is your questionThis is your question" wrapText="true">
+                                          <Label fx:id="labelSecurityAnswerQuestion" text="This is your questionThis is your questionThis is your questionThis is your questionThis is your question" wrapText="true">
                                              <styleClass>
                                                 <String fx:value="h3" />
                                              </styleClass>
@@ -201,7 +201,7 @@
                                     </VBox>
                                     <VBox>
                                        <children>
-                                          <TextField promptText="Please enter the answer" styleClass="h3" />
+                                          <TextField fx:id="inputSecurityAnswer" promptText="Please enter the answer" styleClass="h3" />
                                           <Label fx:id="labelErrorSecAns" styleClass="error" wrapText="true" />
                                        </children>
                                     </VBox>
