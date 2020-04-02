@@ -77,7 +77,7 @@ public class HomeController {
 
     // Check out kanban
     Kanban.checkout();
-    Kanban.generateToday();
+    Kanban.current.generateToday();
 
     // Add list items
     boardList.getChildren().clear();

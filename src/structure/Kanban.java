@@ -87,7 +87,7 @@ public class Kanban extends Node {
   /*
    * Today
    */
-  public static void generateToday() {
+  public void generateToday() {
     Kanban kanban = Kanban.current;
     // create node refer to todayboard
     Node TodayBoard = kanban.getChildrenNodes().get(0);
@@ -208,6 +208,6 @@ public class Kanban extends Node {
     // System.out.println(Kanban.current);
 
     System.out.println("\ngenerateToday---");
-    generateToday();
+    Kanban.current.generateToday();
   }
 }
