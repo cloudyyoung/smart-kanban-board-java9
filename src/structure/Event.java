@@ -43,21 +43,9 @@ public class Event extends Node {
    */
   public Event(HttpBody obj) {
     super(obj);
-    if (obj.getLong("duration") != null) {
-      this.duration = obj.getLong("duration");
-    } else {
-      this.duration = 0l;
-    }
-    if (obj.getLong("due_date") != null) {
-      this.dueDate = obj.getLong("due_date");
-    } else {
-      this.dueDate = 0l;
-    }
-    if (obj.getLong("importance_level") != null) {
-      this.importanceLevel = obj.getInt("importance_level");
-    } else {
-      this.importanceLevel = 0;
-    }
+    this.duration = obj.getLong("duration");
+    this.dueDate = obj.getLong("due_date");
+    this.importanceLevel = obj.getInt("importance_level");
   }
 
   public void setDuration(long duration) {
@@ -66,6 +54,10 @@ public class Event extends Node {
 
   public Long getDuration() {
     return this.duration;
+  }
+
+  public Long getDurationValue(){
+    return this.duration != null ? this.duration : 0l;
   }
 
   public int getDurationInMinutes() {
@@ -86,6 +78,10 @@ public class Event extends Node {
 
   public Long getDueDate() {
     return this.dueDate;
+  }
+
+  public Long getDueDateValue(){
+    return this.dueDate != null ? this.dueDate : 0l;
   }
 
   public String toString() {
@@ -128,7 +124,7 @@ public class Event extends Node {
    * @return an int of weight to represent the event priority.
    */
   public Integer getPriority() {
-    int timeDifferenceInHours = this.getDueDate().intValue() / 3600;
+    int timeDifferenceInHours = this.getDueDateValue().intValue() / 3600;
     int importancePriority = this.getImportanceLevel() * (timeDifferenceInHours / 24);
     int priority = timeDifferenceInHours - importancePriority;
     return priority;
