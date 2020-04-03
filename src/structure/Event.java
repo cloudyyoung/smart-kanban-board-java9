@@ -56,7 +56,7 @@ public class Event extends Node {
     return this.duration;
   }
 
-  public Long getDurationValue(){
+  public Long getDurationValue() {
     return this.duration != null ? this.duration : 0l;
   }
 
@@ -80,7 +80,7 @@ public class Event extends Node {
     return this.dueDate;
   }
 
-  public Long getDueDateValue(){
+  public Long getDueDateValue() {
     return this.dueDate != null ? this.dueDate : 0l;
   }
 
