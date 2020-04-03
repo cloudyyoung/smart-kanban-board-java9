@@ -128,9 +128,9 @@ public class Event extends Node {
    * @return an int of weight to represent the event priority.
    */
   public Integer getPriority() {
-    int timeDifferenceInHours = this.getDueDate().intValue() / 3600;
-    int importancePriority = this.getImportanceLevel() * (timeDifferenceInHours / 24);
-    int priority = timeDifferenceInHours - importancePriority;
+    int dueDate = this.getDueDate().intValue() / 3600;
+    int importancePriority = this.getImportanceLevel() * (dueDate / 24);
+    int priority = dueDate - importancePriority;
     return priority;
   }
 
