@@ -46,7 +46,7 @@ public class ColumnComponent extends VBox {
     ArrayList<structure.Node> list = null;
     if (this.node.getParent().getId() == 1) {
       list =
-          this.node.getChildrenNodes(structure.Node.SORT_BY_PRIORITY, structure.Node.ORDER_BY_DESC);
+          this.node.getChildrenNodes(structure.Node.SORT_BY_PRIORITY, structure.Node.ORDER_BY_ASC);
     } else {
       list = this.node.getChildrenNodes();
     }
