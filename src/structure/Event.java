@@ -111,8 +111,9 @@ public class Event extends Node {
    * @return a boolean to represent if the event is over due.
    */
   public boolean isExpired() {
+    if(this.getDueDate() == null) return false;
     Calendar c = Calendar.getInstance();
-    if (this.getDueDate() > c.getTimeInMillis() / 1000) {
+    if (this.getDueDateValue() > c.getTimeInMillis() / 1000) {
       return false;
     }
     return true;
