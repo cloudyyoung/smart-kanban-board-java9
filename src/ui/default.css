@@ -385,10 +385,6 @@
 	-fx-min-width: 0px !important; 
 }
 
-
-
-
-
 /** Typography **/
 
 .medium{
@@ -427,6 +423,12 @@
 
 .nexa-bold{
 	-fx-font-family: "Nexa Bold";
+}
+
+
+/** Base **/
+.base{
+	-fx-alignment: CENTER;
 }
 
 
@@ -945,4 +947,22 @@
 .bg-welcome .copyright .label{
 	-fx-font-size: 12px;
 	-fx-padding: 10px;
+}
+
+
+/** Prompt **/
+.bg-prompt{
+	-fx-background-color: -fx-base;
+	-fx-background-radius: 4px;
+	-fx-effect: dropshadow(gaussian , -fx-accent-20, 10, 0, 1, 2) !important;
+	-fx-padding: 20px 25px;
+}
+
+.bg-prompt-wrapper{
+	-fx-alignment: CENTER;
+	-fx-padding: 30px;
+}
+
+.promt-cover{
+	-fx-background-color: -fx-accent-20;
 }

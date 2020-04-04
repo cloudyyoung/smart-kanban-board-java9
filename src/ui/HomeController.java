@@ -55,7 +55,12 @@ public class HomeController {
 
   @FXML private Pane dragPane;
 
+  @FXML private Pane promptCover;
+
+  @FXML private VBox promptEvent;
+
   private BoardComponent componentToday;
+
 
   @FXML
   void initialize() {
@@ -67,6 +72,9 @@ public class HomeController {
     BoardComponent.sidePane = sidePane;
     BoardComponent.boardList = boardList;
     BoardComponent.tabPane = tabPane;
+
+    promptCover.setVisible(false);
+    promptEvent.setVisible(false);
 
     // Intialize label text values
     profileUsername.setText(User.current.getUsername());
