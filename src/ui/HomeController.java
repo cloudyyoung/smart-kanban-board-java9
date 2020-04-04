@@ -61,7 +61,6 @@ public class HomeController {
 
   private BoardComponent componentToday;
 
-
   @FXML
   void initialize() {
 
