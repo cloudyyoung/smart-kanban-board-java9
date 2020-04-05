@@ -48,8 +48,8 @@ public class Column extends Node {
   public boolean hasEnoughTime(Event eventNext) {
     Long totalTime = 25200l;
     Long timeAccumulator = 0l;
-    for (Node node: this.getChildrenNodes()) {
-      Event event = (Event)node;
+    for (Node node : this.getChildrenNodes()) {
+      Event event = (Event) node;
       timeAccumulator += event.getDuration();
     }
     return (eventNext.getDuration() + timeAccumulator) <= totalTime ? true : false;
