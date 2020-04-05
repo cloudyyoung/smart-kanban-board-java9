@@ -85,7 +85,7 @@ public class Event extends Node {
     return this.dueDate != null ? this.dueDate : 0l;
   }
 
-  public String getDueDateString(){
+  public String getDueDateString() {
     Date date = new Date(this.getDueDateValue() * 1000);
     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     return formatter.format(date);

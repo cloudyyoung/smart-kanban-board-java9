@@ -167,7 +167,7 @@ public class HomeController {
   }
 
   @FXML
-  void closePrompt(){
+  void closePrompt() {
     promptEvent.setVisible(false);
   }
 

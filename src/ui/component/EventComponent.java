@@ -16,7 +16,7 @@ public class EventComponent extends Button {
   public static SVGPath icon;
 
   public static VBox promptEvent;
-  
+
   public static SVGPath promptEventIcon;
 
   public static TextArea promptEventTitle;
@@ -57,7 +57,7 @@ public class EventComponent extends Button {
 
   @FXML
   void initialize() {
-    if(((Column) this.node.getParent()).getPreset() == Column.DONE){
+    if (((Column) this.node.getParent()).getPreset() == Column.DONE) {
       this.setStyle("-fx-accent: -fx-accent-60");
     }
     event.setText(node.getTitle());
