@@ -13,7 +13,7 @@ public class EventComponent extends Button {
   @FXML private SVGPath icon;
 
   public static VBox promptEvent;
-  
+
   private Node node;
 
   public EventComponent(Node node) {
@@ -38,8 +38,9 @@ public class EventComponent extends Button {
   @FXML
   void initialize() {
     event.setText(node.getTitle());
-    this.setOnAction(e -> {
-      EventComponent.promptEvent.setVisible(true);
-    });
+    this.setOnAction(
+        e -> {
+          EventComponent.promptEvent.setVisible(true);
+        });
   }
 }
