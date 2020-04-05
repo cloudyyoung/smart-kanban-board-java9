@@ -81,9 +81,6 @@ public class HomeController {
   @FXML
   private TextArea promptEventNote;
 
-  private BoardComponent componentToday;
-
-
   @FXML
   void initialize() {
 
@@ -108,6 +105,8 @@ public class HomeController {
     // Check out kanban
     Kanban.checkout();
     Kanban.current.generateToday();
+
+    BoardComponent componentToday = null;
 
     // Add list items
     boardList.getChildren().clear();
