@@ -55,11 +55,34 @@ public class HomeController {
 
   @FXML private Pane dragPane;
 
-  @FXML private Pane promptCover;
-
   @FXML private VBox promptEvent;
 
+  @FXML
+  private SVGPath promptEventIcon;
+
+  @FXML
+  private TextArea promptEventTitle;
+
+  @FXML
+  private Label promptEventLocationBoard;
+
+  @FXML
+  private Label promptEventLocationColumn;
+
+  @FXML
+  private ComboBox<?> promptEventPriority;
+
+  @FXML
+  private DatePicker promptEventDueDate;
+
+  @FXML
+  private ComboBox<?> promptEventDuration;
+
+  @FXML
+  private TextArea promptEventNote;
+
   private BoardComponent componentToday;
+
 
   @FXML
   void initialize() {
@@ -71,6 +94,7 @@ public class HomeController {
     BoardComponent.sidePane = sidePane;
     BoardComponent.boardList = boardList;
     BoardComponent.tabPane = tabPane;
+    EventComponent.promptEvent = promptEvent;
 
     promptCover.setVisible(false);
     promptEvent.setVisible(false);

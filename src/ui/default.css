@@ -204,7 +204,10 @@
 /** Scroll Bar Global Re-Styling **/
 .scroll-pane, .scroll-pane .viewport {
 	-fx-background-color: transparent;
+	-fx-background-insets: 0px;
+	-fx-background-radius: 0px;
 	-fx-border-width: 0px;
+	-fx-border-radius: 0px;
 }
 
 .scroll-pane .scroll-bar{
@@ -951,18 +954,95 @@
 
 
 /** Prompt **/
+
+.prompt-cover{
+	-fx-background-color: -fx-accent-30;
+	-fx-alignment: CENTER;
+}
+
 .bg-prompt{
 	-fx-background-color: -fx-base;
-	-fx-background-radius: 4px;
 	-fx-effect: dropshadow(gaussian , -fx-accent-20, 10, 0, 1, 2) !important;
-	-fx-padding: 20px 25px;
-}
-
-.bg-prompt-wrapper{
+	-fx-padding: 0px;
+	-fx-border-width: 0px;
+	-fx-max-width: 550px;
 	-fx-alignment: CENTER;
-	-fx-padding: 30px;
 }
 
-.promt-cover{
-	-fx-background-color: -fx-accent-20;
+.bg-prompt .prompt-content-wrapper{
+	-fx-border-width: 0px;
+	-fx-spacing: 10px;
+	-fx-padding: 35px 50px 50px 50px;
+}
+
+.bg-prompt .prompt-title{
+	-fx-padding: 0px -5px;
+	-fx-spacing: 5px;
+}
+
+.bg-prompt .prompt-title SVGPath{
+	-fx-scale-x: 0.7;
+	-fx-scale-y: 0.7;
+	-fx-fill: -fx-accent-90;
+}
+
+.bg-prompt .prompt-title .label{
+	-fx-text-fill: -fx-accent-90;
+	-fx-font-size: 12.5px;
+}
+
+.bg-prompt .prompt-title .button{
+	-fx-padding: 0px;
+}
+
+.bg-prompt .prompt-title .button:hover, .bg-prompt .prompt-title .button:focused{
+	-fx-border-color: transparent;
+}
+
+.bg-prompt .prompt-title .button SVGPath{
+	-fx-scale-x: 0.65;
+	-fx-scale-y: 0.65;
+	-fx-fill: -fx-accent-90;
+}
+
+.bg-prompt .prompt-content{
+	-fx-padding: 0px;
+	-fx-spacing: 15px;
+}
+
+.bg-prompt .text-area{
+	-fx-pref-row-count: 1;
+	-fx-min-height: 41px;
+}
+
+.bg-prompt .text-area .content{
+	-fx-padding: 10px 0px;
+}
+
+.bg-prompt .text-area.title{
+	-fx-border-color: transparent;
+}
+
+.bg-prompt .field{
+	-fx-spacing: 10px;
+}
+
+.bg-prompt .field .field-value{
+	-fx-alignment: CENTER_RIGHT;
+	-fx-text-fill: -fx-accent;
+}
+
+.bg-prompt .field .text-area.field-value{
+	-fx-padding: 0px;
+}
+
+.bg-prompt .field .field-value.combo-box,
+.bg-prompt .field .field-value.date-picker{
+	-fx-min-width: 150px;
+	-fx-max-width: 150px;
+}
+
+.bg-prompt .field .field-name, .bg-prompt .field .field-value{
+	-fx-font-size: 12.5px;
+	-fx-padding: 5px 0px;
 }

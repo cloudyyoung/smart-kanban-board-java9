@@ -3,7 +3,7 @@ package ui.component;
 import javafx.fxml.*;
 import javafx.scene.shape.*;
 import javafx.scene.control.*;
-
+import javafx.scene.layout.*;
 import structure.*;
 
 public class EventComponent extends Button {
@@ -12,11 +12,14 @@ public class EventComponent extends Button {
 
   @FXML private SVGPath icon;
 
+  public static VBox promptEvent;
+  
   private Node node;
 
   public EventComponent(Node node) {
     super();
     this.node = node;
+    System.out.println(promptEvent);
     load();
   }
 
@@ -35,5 +38,8 @@ public class EventComponent extends Button {
   @FXML
   void initialize() {
     event.setText(node.getTitle());
+    this.setOnAction(e -> {
+      EventComponent.promptEvent.setVisible(true);
+    });
   }
 }

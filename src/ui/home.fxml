@@ -4,6 +4,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -492,20 +493,85 @@
                </content>
                <styleClass>
                   <String fx:value="bg-detail" />
+                  <String fx:value="account" />
                   <String fx:value="hide" />
                </styleClass>
             </ScrollPane>
          </right>
       </BorderPane>
       <Pane id="dragPane" fx:id="dragPane" mouseTransparent="true" />
-      <Pane fx:id="promptCover" prefHeight="200.0" prefWidth="200.0" styleClass="promt-cover" />
-      <VBox fx:id="promptEvent" fillWidth="false" styleClass="bg-prompt-wrapper">
+      <VBox fx:id="promptEvent" styleClass="prompt-cover">
          <children>
-            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0" styleClass="bg-prompt">
+            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="bg-prompt">
                <content>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
+                  <VBox styleClass="prompt-content-wrapper">
                      <children>
-                        <TextArea prefHeight="200.0" prefWidth="200.0" styleClass="h3" />
+                        <HBox styleClass="prompt-title">
+                           <children>
+                              <SVGPath fx:id="promptEventIcon" content="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z" fillRule="EVEN_ODD" mouseTransparent="true">
+                                 <cursor>
+                                    <Cursor fx:constant="DEFAULT" />
+                                 </cursor>
+                              </SVGPath>
+                              <Label text="Event" />
+                              <Pane HBox.hgrow="ALWAYS" />
+                              <Button mnemonicParsing="false">
+                                 <graphic>
+                                    <SVGPath content="M 7.21875 5.78125 L 5.78125 7.21875 L 14.5625 16 L 5.78125 24.78125 L 7.21875 26.21875 L 16 17.4375 L 24.78125 26.21875 L 26.21875 24.78125 L 17.4375 16 L 26.21875 7.21875 L 24.78125 5.78125 L 16 14.5625 Z" />
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox styleClass="prompt-content">
+                           <children>
+                              <TextArea fx:id="promptEventTitle" text="Hold on tight Lucky chance. It's mine Lucky strike. I'm your luck, take it." wrapText="true" HBox.hgrow="ALWAYS">
+                                 <styleClass>
+                                    <String fx:value="h4" />
+                                    <String fx:value="bold" />
+                                    <String fx:value="title" />
+                                 </styleClass>
+                              </TextArea>
+                           </children>
+                        </HBox>
+                        <VBox styleClass="prompt-content">
+                           <children>
+                              <HBox styleClass="field">
+                                 <children>
+                                    <Label styleClass="field-name" text="Location" />
+                                    <Pane HBox.hgrow="ALWAYS" />
+                                    <Label fx:id="promptEventLocationBoard" styleClass="field-value" text="Today" />
+                                    <Label style="-fx-text-fill: -fx-accent-50;" text="/" />
+                                    <Label fx:id="promptEventLocationColumn" styleClass="field-value" text="To Do" />
+                                 </children>
+                              </HBox>
+                              <HBox styleClass="field">
+                                 <children>
+                                    <Label styleClass="field-name" text="Priority" />
+                                    <Pane HBox.hgrow="ALWAYS" />
+                                    <ComboBox fx:id="promptEventPriority" styleClass="field-value" />
+                                 </children>
+                              </HBox>
+                              <HBox styleClass="field">
+                                 <children>
+                                    <Label styleClass="field-name" text="Due Date" />
+                                    <Pane HBox.hgrow="ALWAYS" />
+                                    <DatePicker fx:id="promptEventDueDate" editable="false" styleClass="field-value" />
+                                 </children>
+                              </HBox>
+                              <HBox styleClass="field">
+                                 <children>
+                                    <Label styleClass="field-name" text="Duration" />
+                                    <Pane HBox.hgrow="ALWAYS" />
+                                    <ComboBox fx:id="promptEventDuration" styleClass="field-value" />
+                                 </children>
+                              </HBox>
+                              <HBox styleClass="field">
+                                 <children>
+                                    <TextArea fx:id="promptEventNote" promptText="Notes" styleClass="field-value" wrapText="true" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
                      </children>
                   </VBox>
                </content>
