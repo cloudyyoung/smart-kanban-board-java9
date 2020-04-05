@@ -96,7 +96,6 @@ public class HomeController {
     BoardComponent.tabPane = tabPane;
     EventComponent.promptEvent = promptEvent;
 
-    promptCover.setVisible(false);
     promptEvent.setVisible(false);
 
     // Intialize label text values
