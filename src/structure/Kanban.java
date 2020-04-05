@@ -116,10 +116,12 @@ public class Kanban extends Node {
       if (board.getId() >= 100) {
         for (Node column : board.getChildrenNodes()) {
           for (Node node_event : column.getChildrenNodes()) {
-            Event event = (Event)node_event;
-              if (event.getTitle().indexOf(name) != -1 || event.getNote().indexOf(name) != -1 || Integer.toString(event.getId()).indexOf(name) != -1) {
-                ret.add(event);
-              }
+            Event event = (Event) node_event;
+            if (event.getTitle().indexOf(name) != -1
+                || event.getNote().indexOf(name) != -1
+                || Integer.toString(event.getId()).indexOf(name) != -1) {
+              ret.add(event);
+            }
           }
         }
       }
