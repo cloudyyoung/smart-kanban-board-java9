@@ -81,7 +81,7 @@ public class EventComponent extends Button {
           promptEventLocationBoard.setText(this.node.getParent().getParent().getTitle());
           promptEventLocationColumn.setText(this.node.getParent().getTitle());
           promptEventImportanceLevel.getSelectionModel().select(this.node.getImportanceLevel());
-          promptEventDueDate.setValue(LocalDate.parse(this.node.getDueDateString()));
+          promptEventDueDate.setValue((this.node.getDueDate() != null) ? LocalDate.parse(this.node.getDueDateString()) : null);
           promptEventDuration.getSelectionModel().select(this.node.getDurationValue().intValue() / 3600);
           promptEventNote.setText(this.node.getNote());
           promptEventIcon.setContent(icon.getContent());
