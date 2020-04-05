@@ -105,6 +105,7 @@ public class Kanban extends Node {
 
   /*
   * Search
+  *
   */
   public ArrayList<Event> searchByName(String name) {
     ArrayList<Event> ret = new ArrayList<Event>();
