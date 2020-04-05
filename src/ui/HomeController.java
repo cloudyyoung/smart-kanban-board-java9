@@ -57,29 +57,21 @@ public class HomeController {
 
   @FXML private VBox promptEvent;
 
-  @FXML
-  private SVGPath promptEventIcon;
+  @FXML private SVGPath promptEventIcon;
 
-  @FXML
-  private TextArea promptEventTitle;
+  @FXML private TextArea promptEventTitle;
 
-  @FXML
-  private Label promptEventLocationBoard;
+  @FXML private Label promptEventLocationBoard;
 
-  @FXML
-  private Label promptEventLocationColumn;
+  @FXML private Label promptEventLocationColumn;
 
-  @FXML
-  private ComboBox<?> promptEventPriority;
+  @FXML private ComboBox<?> promptEventPriority;
 
-  @FXML
-  private DatePicker promptEventDueDate;
+  @FXML private DatePicker promptEventDueDate;
 
-  @FXML
-  private ComboBox<?> promptEventDuration;
+  @FXML private ComboBox<?> promptEventDuration;
 
-  @FXML
-  private TextArea promptEventNote;
+  @FXML private TextArea promptEventNote;
 
   @FXML
   void initialize() {
