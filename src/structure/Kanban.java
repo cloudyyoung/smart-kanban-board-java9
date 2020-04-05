@@ -104,9 +104,9 @@ public class Kanban extends Node {
   }
 
   /*
-  * Search
-  *
-  */
+   * Search
+   *
+   */
   public ArrayList<Event> searchByName(String name) {
     ArrayList<Event> ret = new ArrayList<Event>();
     Kanban kanban = Kanban.current;
