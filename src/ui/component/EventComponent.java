@@ -52,6 +52,10 @@ public class EventComponent extends Button {
     load();
   }
 
+  public Event getNode(){
+    return this.node;
+  }
+
   void load() {
     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("event.fxml"));
     fxmlLoader.setRoot(this);
@@ -88,6 +92,8 @@ public class EventComponent extends Button {
           promptEventPromptTitle.setText("Edit event");
           promptEvent.setStyle(HomeController.styleAccent(this.color));
           promptEvent.getStyleClass().remove("hide");
+
+          HomeController.currentEvent = this;
         });
   }
 }

@@ -41,18 +41,6 @@ public class HomeController {
 
   @FXML private HBox columnPane;
 
-  @FXML private ScrollPane detailPane;
-
-  @FXML private TextArea detailTitle;
-
-  @FXML private Button detailAdd2Today;
-
-  @FXML private Button detailDueDate;
-
-  @FXML private Button detailImportance;
-
-  @FXML private TextField detailNote;
-
   @FXML private Pane dragPane;
 
   @FXML private VBox promptEvent;
@@ -74,6 +62,8 @@ public class HomeController {
   @FXML private ComboBox<String> promptEventDuration;
 
   @FXML private TextArea promptEventNote;
+
+  public static EventComponent currentEvent;
 
   @FXML
   void initialize() {
@@ -101,9 +91,6 @@ public class HomeController {
     // Intialize label text values
     profileUsername.setText(User.current.getUsername());
     profileUsername.setTooltip(new Tooltip(User.current.getUsername()));
-
-    // Hide detailPane
-    detailPane.getStyleClass().add("hide");
 
     // Check out kanban
     Kanban.checkout();
