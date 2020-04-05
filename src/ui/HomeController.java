@@ -59,6 +59,8 @@ public class HomeController {
 
   @FXML private SVGPath promptEventIcon;
 
+  @FXML private Label promptEventPromptTitle;
+
   @FXML private TextArea promptEventTitle;
 
   @FXML private Label promptEventLocationBoard;
@@ -84,6 +86,8 @@ public class HomeController {
     BoardComponent.boardList = boardList;
     BoardComponent.tabPane = tabPane;
     EventComponent.promptEvent = promptEvent;
+    EventComponent.promptEventIcon = promptEventIcon;
+    EventComponent.promptEventPromptTitle = promptEventPromptTitle;
     EventComponent.promptEventTitle = promptEventTitle;
     EventComponent.promptEventLocationBoard = promptEventLocationBoard;
     EventComponent.promptEventLocationColumn = promptEventLocationColumn;
@@ -92,7 +96,7 @@ public class HomeController {
     EventComponent.promptEventDuration = promptEventDuration;
     EventComponent.promptEventNote = promptEventNote;
 
-    promptEvent.setVisible(false);
+    promptEvent.getStyleClass().add("hide");
 
     // Intialize label text values
     profileUsername.setText(User.current.getUsername());
@@ -111,7 +115,7 @@ public class HomeController {
     promptEventImportanceLevel.getItems().addAll(0, 1, 2, 3);
     promptEventDuration
         .getItems()
-        .addAll("1 Hour", "2 Hours", "3 Hours", "4 Hours", "5 Hours", "6 Hours");
+        .addAll("1 Hour", "2 Hours", "3 Hours", "4 Hours", "5 Hours", "6 Hours", "7 Hours", "8 Hours", "9 Hours", "10 Hours", "11 Hours", "12 Hours");
 
     // Add list items
     boardList.getChildren().clear();
@@ -170,7 +174,7 @@ public class HomeController {
 
   @FXML
   void closePrompt() {
-    promptEvent.setVisible(false);
+    promptEvent.getStyleClass().add("hide");
   }
 
   public static String styleAccent(String hex) {
