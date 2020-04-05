@@ -109,7 +109,9 @@ public class HomeController {
 
     // Initialize Event panel
     promptEventImportanceLevel.getItems().addAll(0, 1, 2, 3);
-    promptEventDuration.getItems().addAll("1 Hour", "2 Hours", "3 Hours", "4 Hours", "5 Hours", "6 Hours");
+    promptEventDuration
+        .getItems()
+        .addAll("1 Hour", "2 Hours", "3 Hours", "4 Hours", "5 Hours", "6 Hours");
 
     // Add list items
     boardList.getChildren().clear();
