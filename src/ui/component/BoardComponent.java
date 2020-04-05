@@ -62,7 +62,7 @@ public class BoardComponent extends Button {
 
           columnPane.getChildren().clear();
           for (structure.Node each : node.getChildrenNodes()) {
-            Node col = new ColumnComponent((Column) each);
+            Node col = new ColumnComponent((Column) each, this.node.getColor());
             columnPane.getChildren().add(col);
           }
         });

@@ -19,10 +19,12 @@ public class ColumnComponent extends VBox {
   @FXML private VBox eventList;
 
   private Column node;
+  private String color;
 
-  public ColumnComponent(Column node) {
+  public ColumnComponent(Column node, String color) {
     super();
     this.node = node;
+    this.color = color;
     load();
   }
 
@@ -53,7 +55,7 @@ public class ColumnComponent extends VBox {
     // System.out.println(list);
 
     for (Node each : list) {
-      EventComponent event = new EventComponent(each);
+      EventComponent event = new EventComponent(each, color);
       eventList.getChildren().add(event);
     }
   }

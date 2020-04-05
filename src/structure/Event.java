@@ -1,5 +1,6 @@
 package structure;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -84,6 +85,12 @@ public class Event extends Node {
     return this.dueDate != null ? this.dueDate : 0l;
   }
 
+  public String getDueDateString(){
+    Date date = new Date(this.getDueDateValue() * 1000);
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+    return formatter.format(date);
+  }
+
   public String toString() {
     return this.getType()
         + " (id: "
@@ -113,7 +120,7 @@ public class Event extends Node {
   public boolean isExpired() {
     if (this.getDueDate() == null) return false;
     Calendar c = Calendar.getInstance();
-    if (this.getDueDateValue() > c.getTimeInMillis() / 1000) {
+    if (this.getDueDateValue() * 1000 > c.getTimeInMillis()) {
       return false;
     }
     return true;

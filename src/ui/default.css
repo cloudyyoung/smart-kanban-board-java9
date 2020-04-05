@@ -956,13 +956,13 @@
 /** Prompt **/
 
 .prompt-cover{
-	-fx-background-color: -fx-accent-30;
+	-fx-background-color: rgba(0, 0, 0, 0.3);
 	-fx-alignment: CENTER;
 }
 
 .bg-prompt{
 	-fx-background-color: -fx-base;
-	-fx-effect: dropshadow(gaussian , -fx-accent-20, 10, 0, 1, 2) !important;
+	-fx-effect: dropshadow(gaussian , rgba(0, 0, 0, 0.2), 10, 0, 1, 2) !important;
 	-fx-padding: 0px;
 	-fx-border-width: 0px;
 	-fx-max-width: 550px;
@@ -983,11 +983,11 @@
 .bg-prompt .prompt-title SVGPath{
 	-fx-scale-x: 0.7;
 	-fx-scale-y: 0.7;
-	-fx-fill: -fx-accent-90;
+	-fx-fill: -fx-dark-text-color;
 }
 
 .bg-prompt .prompt-title .label{
-	-fx-text-fill: -fx-accent-90;
+	-fx-text-fill: -fx-dark-text-color;
 	-fx-font-size: 12.5px;
 }
 
@@ -1002,7 +1002,7 @@
 .bg-prompt .prompt-title .button SVGPath{
 	-fx-scale-x: 0.65;
 	-fx-scale-y: 0.65;
-	-fx-fill: -fx-accent-90;
+	-fx-fill: -fx-dark-text-color;
 }
 
 .bg-prompt .prompt-content{
@@ -1021,15 +1021,20 @@
 
 .bg-prompt .text-area.title{
 	-fx-border-color: transparent;
+	-fx-text-fill: -fx-accent;
 }
 
 .bg-prompt .field{
 	-fx-spacing: 10px;
 }
 
+.bg-prompt .field .text-field, .bg-prompt .field .combo-box, .bg-prompt .field .date-picker, .bg-prompt .field .text-area{
+	-fx-border-color: rgba(24, 24, 24, 0.4);
+}
+
 .bg-prompt .field .field-value{
 	-fx-alignment: CENTER_RIGHT;
-	-fx-text-fill: -fx-accent;
+	-fx-text-fill: -fx-dark-text-color;
 }
 
 .bg-prompt .field .text-area.field-value{
@@ -1042,7 +1047,20 @@
 	-fx-max-width: 150px;
 }
 
+.bg-prompt .field .field-value.date-picker .text-field{
+	-fx-cursor: default;
+}
+
+
 .bg-prompt .field .field-name, .bg-prompt .field .field-value{
 	-fx-font-size: 12.5px;
 	-fx-padding: 5px 0px;
+}
+
+.bg-prompt .field .combo-box .combo-box-popup .list-view {
+	-fx-effect: dropshadow(gaussian , rgba(24, 24, 24, 0.2), 10, 0, 1, 2) !important;
+}
+
+.bg-prompt .field .date-picker-popup {
+    -fx-effect: dropshadow(gaussian , rgba(24, 24, 24, 0.2), 10, 0, 1, 2) !important;
 }

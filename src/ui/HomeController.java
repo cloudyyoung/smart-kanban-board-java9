@@ -65,11 +65,11 @@ public class HomeController {
 
   @FXML private Label promptEventLocationColumn;
 
-  @FXML private ComboBox<?> promptEventPriority;
+  @FXML private ComboBox<Integer> promptEventImportanceLevel;
 
   @FXML private DatePicker promptEventDueDate;
 
-  @FXML private ComboBox<?> promptEventDuration;
+  @FXML private ComboBox<String> promptEventDuration;
 
   @FXML private TextArea promptEventNote;
 
@@ -84,6 +84,13 @@ public class HomeController {
     BoardComponent.boardList = boardList;
     BoardComponent.tabPane = tabPane;
     EventComponent.promptEvent = promptEvent;
+    EventComponent.promptEventTitle = promptEventTitle;
+    EventComponent.promptEventLocationBoard = promptEventLocationBoard;
+    EventComponent.promptEventLocationColumn = promptEventLocationColumn;
+    EventComponent.promptEventImportanceLevel = promptEventImportanceLevel;
+    EventComponent.promptEventDueDate = promptEventDueDate;
+    EventComponent.promptEventDuration = promptEventDuration;
+    EventComponent.promptEventNote = promptEventNote;
 
     promptEvent.setVisible(false);
 
@@ -99,6 +106,9 @@ public class HomeController {
     Kanban.current.generateToday();
 
     BoardComponent componentToday = null;
+
+    // Initialize Event panel
+    promptEventImportanceLevel.getItems().addAll(0, 1, 2, 3);
 
     // Add list items
     boardList.getChildren().clear();
@@ -153,6 +163,11 @@ public class HomeController {
     } else {
       tabPane.getSelectionModel().select(0);
     }
+  }
+
+  @FXML
+  void closePrompt(){
+    promptEvent.setVisible(false);
   }
 
   public static String styleAccent(String hex) {
