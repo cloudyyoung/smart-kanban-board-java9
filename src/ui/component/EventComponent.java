@@ -82,7 +82,9 @@ public class EventComponent extends Button {
           promptEventLocationColumn.setText(this.node.getParent().getTitle());
           promptEventImportanceLevel.getSelectionModel().select(this.node.getImportanceLevel());
           promptEventDueDate.setValue(LocalDate.parse(this.node.getDueDateString()));
-          promptEventDuration.getSelectionModel().select(this.node.getDurationValue().intValue() / 3600);
+          promptEventDuration
+              .getSelectionModel()
+              .select(this.node.getDurationValue().intValue() / 3600);
           promptEventNote.setText(this.node.getNote());
           promptEventIcon.setContent(icon.getContent());
           promptEventPromptTitle.setText("Edit event");
