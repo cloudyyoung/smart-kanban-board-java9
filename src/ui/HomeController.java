@@ -142,6 +142,7 @@ public class HomeController {
         return;
       }
       ArrayList<structure.Node> list = Kanban.current.search(newText);
+      System.out.println(newText);
       System.out.println(list);
     });
 
