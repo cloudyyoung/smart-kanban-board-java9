@@ -107,7 +107,7 @@ public class Kanban extends Node {
    * Search
    *
    */
-  public ArrayList<Event> searchByName(String name) {
+  public static ArrayList<Event> searchByName(String name) {
     ArrayList<Event> ret = new ArrayList<Event>();
     Kanban kanban = Kanban.current;
 
@@ -137,6 +137,8 @@ public class Kanban extends Node {
     Kanban.checkout();
 
     System.out.println(Kanban.current);
+
+    System.out.println(searchByName("a"));
 
     // System.out.println(("\ngenerateToday---");
     // Kanban.current.generateToday();
