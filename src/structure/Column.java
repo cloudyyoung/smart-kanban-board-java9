@@ -47,7 +47,7 @@ public class Column extends Node {
 
   public boolean hasEnoughTime(Event eventNext) {
     Long totalTime = 25200l;
-    Long timeAccumulator = 0L;
+    Long timeAccumulator = 0l;
     for (Node node : this.getChildrenNodes()) {
       Event event = (Event) node;
       timeAccumulator += event.getDuration();
