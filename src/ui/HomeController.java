@@ -158,17 +158,15 @@ public class HomeController {
         .addListener(
             (observable, oldFocus, newFocus) -> {
               if (!newFocus) {
-            	  String title = promptEventTitle.getText();
-            	  currentEvent.setText(title);
-            	  currentEvent.getNode().setTitle(title);
+            	  currentEvent.getNode().setTitle(promptEventTitle.getText());
               }
             });
     
     promptEventTitle.textProperty()
     .addListener(
         (observable, oldText, newText) -> {
-    	  String title = promptEventTitle.getText();
-      	  currentEvent.setText(title);
+        	currentEvent.setText(promptEventTitle.getText());
+      	  
         });
 
     // The TextArea internally does not use the onKeyPressed property to handle keyboard input.
@@ -261,6 +259,7 @@ public class HomeController {
   @FXML
   void closePrompt() {
     promptEvent.getStyleClass().add("hide");
+    currentEvent.update();
   }
 
   public static String styleAccent(String hex) {

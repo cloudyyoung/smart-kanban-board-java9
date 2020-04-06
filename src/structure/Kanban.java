@@ -95,7 +95,7 @@ public class Kanban extends Node {
             } else if (column.getPreset() == Column.IN_PROGRESS) {
               inprogress.addNode(event);
             } else {
-              if (!((Event) event).isExpired()) done.addNode(event);
+              if (!((Event) event).isOverdue()) done.addNode(event);
             }
           }
         }

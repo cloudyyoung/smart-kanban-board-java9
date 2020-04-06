@@ -41,6 +41,7 @@ public class EventComponent extends Button {
       "M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z";
   public static final String CHECK_ICON =
       "M 16 4 C 9.3844239 4 4 9.3844287 4 16 C 4 22.615571 9.3844239 28 16 28 C 22.615576 28 28 22.615571 28 16 C 28 9.3844287 22.615576 4 16 4 z M 16 6 C 21.534697 6 26 10.465307 26 16 C 26 21.534693 21.534697 26 16 26 C 10.465303 26 6 21.534693 6 16 C 6 10.465307 10.465303 6 16 6 z M 20.949219 12 L 14.699219 18.25 L 11.449219 15 L 10.050781 16.400391 L 14.699219 21.050781 L 22.349609 13.400391 L 20.949219 12 z";
+  public static final String OVERDUE_ICON = "M 16 3.910156 C 9.332031 3.910156 3.910156 9.332031 3.910156 16 C 3.910156 22.667969 9.332031 28.089844 16 28.089844 C 22.667969 28.089844 28.089844 22.667969 28.089844 16 C 28.089844 9.332031 22.667969 3.910156 16 3.910156 Z M 16 5.769531 C 21.660156 5.769531 26.230469 10.339844 26.230469 16 C 26.230469 21.660156 21.660156 26.230469 16 26.230469 C 10.339844 26.230469 5.769531 21.660156 5.769531 16 C 5.769531 10.339844 10.339844 5.769531 16 5.769531 Z M 15.070312 10.421875 L 15.070312 12.28125 L 16.929688 12.28125 L 16.929688 10.421875 Z M 15.070312 14.140625 L 15.070312 21.578125 L 16.929688 21.578125 L 16.929688 14.140625 Z M 15.070312 14.140625";
 
   private Event node;
   private String color;
@@ -67,18 +68,24 @@ public class EventComponent extends Button {
       e.printStackTrace();
     }
   }
-
-  @FXML
-  void initialize() {
+  
+  public void update(){
     if (((Column) this.node.getParent()).getPreset() == Column.DONE) {
       this.setStyle("-fx-accent: -fx-accent-60");
       icon.setContent(CHECK_ICON);
+    } else if(this.node.isOverdue()) {
+      icon.setContent(OVERDUE_ICON);
     } else if (((Column) this.node.getParent()).getPreset() == Column.TO_DO) {
       icon.setContent(INACTIVE_ICON);
     } else if (((Column) this.node.getParent()).getPreset() == Column.IN_PROGRESS) {
       icon.setContent(ACTIVE_ICON);
     }
     event.setText(node.getTitle());
+  }
+
+  @FXML
+  void initialize() {
+    this.update();
     this.setOnAction(
         e -> {
           HomeController.currentEvent = this;

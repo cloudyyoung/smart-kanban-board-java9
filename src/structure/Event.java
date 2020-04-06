@@ -78,7 +78,7 @@ public class Event extends Node {
   }
 
   public Long getDueDateValue() {
-    return this.dueDate != null ? this.dueDate : 0l;
+    return this.dueDate != null ? this.dueDate : Long.MAX_VALUE;
   }
 
   public String getDueDateString() {
@@ -113,7 +113,7 @@ public class Event extends Node {
    *
    * @return a boolean to represent if the event is over due.
    */
-  public boolean isExpired() {
+  public boolean isOverdue() {
     if (this.getDueDate() == null) return false;
     Calendar c = Calendar.getInstance();
     if (this.getDueDateValue() * 1000 > c.getTimeInMillis()) {
