@@ -127,11 +127,11 @@ public class HomeController {
             (observable, oldDate, newDate) -> {
               if (newDate != null) {
                 System.out.println(Timestamp.valueOf(newDate.atStartOfDay()).getTime() / 1000);
-                Result res =
-                    currentEvent
-                        .getNode()
-                        .setDueDate(Timestamp.valueOf(newDate.atStartOfDay()).getTime() / 1000);
-                System.out.println(res);
+                // Result res =
+                //     currentEvent
+                //         .getNode()
+                //         .setDueDate(Timestamp.valueOf(newDate.atStartOfDay()).getTime() / 1000);
+                // System.out.println(res);
               }
               // ts.getTime();
               // System.out.println(currentEvent.getNode());
