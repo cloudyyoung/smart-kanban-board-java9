@@ -143,22 +143,27 @@ public class HomeController {
               System.out.println(list);
             });
 
-    
-    promptEventTitle.focusedProperty().addListener((observable, oldFocus, newFocus) -> {
-      if(!newFocus) currentEvent.getNode().setTitle(promptEventTitle.getText());
-    });
+    promptEventTitle
+        .focusedProperty()
+        .addListener(
+            (observable, oldFocus, newFocus) -> {
+              if (!newFocus) currentEvent.getNode().setTitle(promptEventTitle.getText());
+            });
 
-
-    // The TextArea internally does not use the onKeyPressed property to handle keyboard input. Therefore, setting onKeyPressed does not remove the original event handler.
-    // To prevent TextArea's internal handler for the Enter key, you need to add an event filter that consumes the event.
-    // @link: https://stackoverflow.com/questions/26752924/how-to-stop-cursor-from-moving-to-a-new-line-in-a-textarea-when-enter-is-pressed
-    promptEventTitle.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
-      if (e.getCode() == KeyCode.ENTER){
-        e.consume();
-        promptEvent.requestFocus();
-      }
-    });
-
+    // The TextArea internally does not use the onKeyPressed property to handle keyboard input.
+    // Therefore, setting onKeyPressed does not remove the original event handler.
+    // To prevent TextArea's internal handler for the Enter key, you need to add an event filter
+    // that consumes the event.
+    // @link:
+    // https://stackoverflow.com/questions/26752924/how-to-stop-cursor-from-moving-to-a-new-line-in-a-textarea-when-enter-is-pressed
+    promptEventTitle.addEventFilter(
+        KeyEvent.KEY_PRESSED,
+        e -> {
+          if (e.getCode() == KeyCode.ENTER) {
+            e.consume();
+            promptEvent.requestFocus();
+          }
+        });
 
     // Add list items
     boardList.getChildren().clear();
