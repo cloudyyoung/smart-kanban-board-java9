@@ -57,8 +57,8 @@ public final class Event extends Node {
   }
 
   public Result setDuration(Long duration) {
-	final Result res = new Result();
-	final HttpRequest req = this.set("duration", duration);
+    final Result res = new Result();
+    final HttpRequest req = this.set("duration", duration);
     res.add(req);
 
     if (req.isSucceeded()) {
