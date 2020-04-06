@@ -8,7 +8,7 @@ package structure;
  * @since 1.0
  * @version 2.1
  */
-public class Column extends Node {
+public final class Column extends Node {
 
   public static final int TO_DO = 0;
   public static final int IN_PROGRESS = 1;

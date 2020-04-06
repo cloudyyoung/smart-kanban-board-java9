@@ -9,7 +9,7 @@ import java.util.*;
  * @since 1.0
  * @version 2.1
  */
-public class Event extends Node {
+public final class Event extends Node {
 
   private int importanceLevel;
   // importanceLevel range from 0 to 3, which 0 is not important
