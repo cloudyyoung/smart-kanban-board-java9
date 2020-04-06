@@ -24,7 +24,14 @@ public class Event extends Node {
    *
    * @param obj the {@code HttpBody} for initialization
    */
-  public Event(Integer id, String title, String note, Long dueDate, Long duration, int importanceLevel, Node parent) {
+  public Event(
+      Integer id,
+      String title,
+      String note,
+      Long dueDate,
+      Long duration,
+      int importanceLevel,
+      Node parent) {
     super(id, title, note, parent);
     this.setDurationLocal(duration);
     this.setDueDateLocal(dueDate);
@@ -43,10 +50,9 @@ public class Event extends Node {
     this.setImportanceLevelLocal(obj.getInt("importance_level"));
   }
 
-  
-  private StructureRequest setDurationLocal(Long duration){
+  private StructureRequest setDurationLocal(Long duration) {
     this.duration = duration;
-    
+
     StructureRequest req = new StructureRequest(true, false, this);
     return req;
   }
@@ -75,9 +81,9 @@ public class Event extends Node {
     return (int) (this.duration / 60000);
   }
 
-  private StructureRequest setImportanceLevelLocal(int importance){
+  private StructureRequest setImportanceLevelLocal(int importance) {
     this.importanceLevel = importance;
-    
+
     StructureRequest req = new StructureRequest(true, false, this);
     return req;
   }
@@ -132,9 +138,23 @@ public class Event extends Node {
   }
 
   public String toString() {
-    return this.getType() + " (id: " + this.getId() + ", title: \"" + this.getTitle() + "\", note: \"" + this.getNote()
-        + "\", duration: " + this.getDuration() + ", importanceLevel: " + this.getImportanceLevel() + ", priority: "
-        + this.getPriority() + ", dueDate: " + this.getDueDate() + ", nodes: " + this.getChildrenNodes().toString()
+    return this.getType()
+        + " (id: "
+        + this.getId()
+        + ", title: \""
+        + this.getTitle()
+        + "\", note: \""
+        + this.getNote()
+        + "\", duration: "
+        + this.getDuration()
+        + ", importanceLevel: "
+        + this.getImportanceLevel()
+        + ", priority: "
+        + this.getPriority()
+        + ", dueDate: "
+        + this.getDueDate()
+        + ", nodes: "
+        + this.getChildrenNodes().toString()
         + "\")";
   }
 
@@ -144,8 +164,7 @@ public class Event extends Node {
    * @return a boolean to represent if the event is over due.
    */
   public boolean isOverdue() {
-    if (this.getDueDate() == null)
-      return false;
+    if (this.getDueDate() == null) return false;
     Calendar c = Calendar.getInstance();
     if (this.getDueDateValue() * 1000 > c.getTimeInMillis()) {
       return false;
