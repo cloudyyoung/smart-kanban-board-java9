@@ -187,13 +187,12 @@ public class HomeController {
     
     extraPane.getChildren().add(textHolder);
 
-
-    promptEventNote.focusedProperty()
-    .addListener(
-        (observable, oldFocus, newFocus) -> {
-          if (!newFocus) currentEvent.getNode().setNote(promptEventNote.getText());
-        });
-
+    promptEventNote
+        .focusedProperty()
+        .addListener(
+            (observable, oldFocus, newFocus) -> {
+              if (!newFocus) currentEvent.getNode().setNote(promptEventNote.getText());
+            });
 
     // Add list items
     boardList.getChildren().clear();
