@@ -126,9 +126,13 @@ public class HomeController {
         .valueProperty()
         .addListener(
             (observable, oldDate, newDate) -> {
+              Long timestamp = null;
+              if (newDate != null) {
+                timestamp = Timestamp.valueOf(newDate.atTime(LocalTime.MAX)).getTime() / 1000;
+              }
               currentEvent
                   .getNode()
-                  .setDueDate(Timestamp.valueOf(newDate.atTime(LocalTime.MAX)).getTime() / 1000);
+                  .setDueDate(timestamp);
             });
 
     inputSearch
