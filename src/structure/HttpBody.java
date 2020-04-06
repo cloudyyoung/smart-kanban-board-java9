@@ -446,5 +446,4 @@ public final class HttpBody extends HashMap<Object, Object> {
     }
     return new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(parse);
   }
-
 }
