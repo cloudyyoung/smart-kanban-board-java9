@@ -1,7 +1,7 @@
 // Import Classes
+import java.util.*;
 import structure.*;
-import java.util.ArrayList;
-import java.util.Scanner;
+
 
 @SuppressWarnings("all")
 public class Terminal {

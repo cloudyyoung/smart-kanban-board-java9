@@ -1,12 +1,11 @@
 package structure;
 
 import com.google.gson.*;
-
 import java.math.BigDecimal;
 import java.util.Collection;
-import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * This is a custom HashMap class for <b>fluently and elegantly</b> writing and reading values in
