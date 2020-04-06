@@ -137,14 +137,17 @@ public class HomeController {
               // System.out.println(currentEvent.getNode());
             });
 
-    inputSearch.textProperty().addListener((observable, oldText, newText) -> {
-      if(newText.equals("")){
-        return;
-      }
-      ArrayList<structure.Node> list = Kanban.current.search(newText);
-      System.out.println(newText);
-      System.out.println(list);
-    });
+    inputSearch
+        .textProperty()
+        .addListener(
+            (observable, oldText, newText) -> {
+              if (newText.equals("")) {
+                return;
+              }
+              ArrayList<structure.Node> list = Kanban.current.search(newText);
+              System.out.println(newText);
+              System.out.println(list);
+            });
 
     // Add list items
     boardList.getChildren().clear();
