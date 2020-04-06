@@ -157,7 +157,11 @@ public class HomeController {
         .focusedProperty()
         .addListener(
             (observable, oldFocus, newFocus) -> {
-              if (!newFocus) currentEvent.getNode().setTitle(promptEventTitle.getText());
+              if (!newFocus) {
+            	  String title = promptEventTitle.getText();
+            	  currentEvent.setText(title);
+            	  currentEvent.getNode().setTitle(title);
+              }
             });
 
     // The TextArea internally does not use the onKeyPressed property to handle keyboard input.
@@ -181,7 +185,7 @@ public class HomeController {
     textHolder.setStyle(promptEventTitle.getStyle());
     textHolder.setWrappingWidth(450);
     textHolder.layoutBoundsProperty().addListener((observable, oldValue, newValue) -> {
-       promptEventTitle.setPrefHeight(textHolder.getLayoutBounds().getHeight() + 24);
+       promptEventTitle.setPrefHeight(textHolder.getLayoutBounds().getHeight() + 23);
        System.out.println(textHolder.getLayoutBounds().getHeight());
     });
     
