@@ -126,11 +126,13 @@ public class HomeController {
         .addListener(
             (observable, oldDate, newDate) -> {
               if (newDate != null) {
-                System.out.println(Timestamp.valueOf(newDate.atTime(LocalTime.MAX)).getTime() / 1000);
+                System.out.println(
+                    Timestamp.valueOf(newDate.atTime(LocalTime.MAX)).getTime() / 1000);
                 Result res =
                     currentEvent
                         .getNode()
-                        .setDueDate(Timestamp.valueOf(newDate.atTime(LocalTime.MAX)).getTime() / 1000);
+                        .setDueDate(
+                            Timestamp.valueOf(newDate.atTime(LocalTime.MAX)).getTime() / 1000);
                 System.out.println(res);
               }
             });
