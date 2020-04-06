@@ -148,7 +148,7 @@
 }
 
 .text-field {
-  -fx-border-width: 0 0 0 0; 
+  -fx-border-width: 0;
   -fx-background-color: transparent;
   -fx-prompt-text-fill: #2F2E2E;
 }
@@ -156,7 +156,7 @@
 #search-text-field {
   -fx-font-family: 'Noto Sans JP Regular';
   -fx-font-size: 14px;
-  -fx-border-width: 0 0 0 0; 
+  -fx-border-width: 0;
   -fx-background-color: transparent;
   -fx-text-fill: #2F2E2E;
   -fx-inner-text-fill: #2F2E2E;
@@ -164,7 +164,7 @@
 
 #text-field-u {
   -fx-border-color: #2F2E2E;
-  -fx-border-width: 0 0 1 0; 
+  -fx-border-width: 0 0 1;
   -fx-background-color: transparent;
   -fx-font-family: 'Noto Sans JP Bold';
   -fx-font-size: 12px;
@@ -174,7 +174,7 @@
 
 #text-field-ub {
   -fx-border-color: #2F2E2E;
-  -fx-border-width: 0 0 1 0; 
+  -fx-border-width: 0 0 1;
   -fx-background-color: transparent;
   -fx-font-family: 'Noto Sans JP Regular';
   -fx-font-size: 12px;
@@ -278,7 +278,7 @@
 
 #pop-up-text-field {
   -fx-border-color: #ffffff;
-  -fx-border-width: 0 0 1 0; 
+  -fx-border-width: 0 0 1;
   -fx-background-color: transparent;
   -fx-font-family: 'Noto Sans JP Regular';
   -fx-font-size: 12px;
@@ -294,13 +294,13 @@
   -fx-font-family: "Noto Sans JP Regular";
   -fx-font-size: 27px;
   -fx-fill: #ffffff;
-} 
+}
 
 #popup-btn:hover {
   -fx-font-family: "Noto Sans JP Bold";
   -fx-font-size: 27px;
   -fx-fill: #ffffff;
-} 
+}
 
 #popup-close:hover {
   -fx-scale-x: 1.1;

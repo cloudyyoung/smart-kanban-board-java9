@@ -79,8 +79,8 @@
 	-fx-text-fill: -fx-light-text-color !important;
 	-fx-fill: -fx-light-text-color !important;
 	-fx-font-size: 10px !important;
-	-fx-border-radius: 0px !important;
-	-fx-background-radius: 0px !important;
+	-fx-border-radius: 0 !important;
+	-fx-background-radius: 0 !important;
 	-fx-padding: 4px 5px !important;
 	-fx-font-family: "Noto Sans JP Regular" !important;
 	-fx-effect: none;
@@ -92,9 +92,9 @@
   -fx-background-color: inherit;
   -fx-padding: 4px 6px;
   -fx-font-size: 12px;
-  -fx-background-radius: 0px;
-  -fx-border-radius: 0px;
-  -fx-border-width: 0px;
+  -fx-background-radius: 0;
+  -fx-border-radius: 0;
+  -fx-border-width: 0;
   -fx-border-color: transparent;
 }
 
@@ -141,15 +141,15 @@
 
 .text-field, .text-area, .text-area *, .date-picker{
 	-fx-background-color: transparent;
-	-fx-padding: 0px;
+	-fx-padding: 0;
 	-fx-font-size: 12px;
 }
 
 .text-field, .combo-box, .text-area, .date-picker{
-	-fx-border-width: 0px 0px 2px 0px;
+	-fx-border-width: 0 0 2px;
 	-fx-border-color: -fx-accent-40;
-	-fx-border-radius: 0px;
-	-fx-background-radius: 0px;
+	-fx-border-radius: 0;
+	-fx-background-radius: 0;
     -fx-alignment: CENTER_LEFT;
 }
 
@@ -164,22 +164,22 @@
 
 .text-area .scroll-pane{
 	-fx-hbar-policy:never;
-    -fx-vbar-policy:never; 
+    -fx-vbar-policy:never;
 }
 
 .tool-bar{
 	-fx-background-color: transparent;
-	-fx-border-width: 0px;
+	-fx-border-width: 0;
 }
 
 .combo-box .list-cell{
-	-fx-padding: 0px;
+	-fx-padding: 0;
 }
 
 /** Scroll Bar Global Re-Styling **/
 .scroll-pane, .scroll-pane .viewport {
 	-fx-background-color: transparent;
-	-fx-border-width: 0px;
+	-fx-border-width: 0;
 }
 
 .scroll-pane .scroll-bar{
@@ -196,33 +196,33 @@
 .scroll-bar .increment-button,
 .scroll-bar .decrement-button {
     -fx-background-color :transparent;
-    -fx-background-radius : 0px;
-    -fx-padding: -10px -10px;
+    -fx-background-radius : 0;
+    -fx-padding: -10px;
     -fx-opacity: 0%;
 }
 
 .scroll-bar .track{
     -fx-background-color: transparent;
     -fx-border-color: transparent;
-    -fx-border-width: 0px;
-    -fx-background-radius: 0px;
-    -fx-border-radius: 0px;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
     -fx-opacity: 0;
-    -fx-padding: 0px;
+    -fx-padding: 0;
 }
 
 .scroll-bar .increment-arrow,
 .scroll-bar .decrement-arrow{
     -fx-background-color :transparent;
     -fx-shape: " ";
-    -fx-padding: 0px;
+    -fx-padding: 0;
 }
 
 .scroll-bar .thumb {
     -fx-background-color: -fx-accent-20;
-    -fx-background-insets: 0px;
+    -fx-background-insets: 0;
     -fx-background-radius: 50px;
-    -fx-padding: 0px;
+    -fx-padding: 0;
 }
 
 
@@ -232,7 +232,7 @@
 
 .tab-pane {
     -fx-tab-max-height: 0 ;
-} 
+}
 .tab-pane .tab-header-area {
     visibility: hidden ;
 }
@@ -240,7 +240,7 @@
 
 /** Date Picker **/
 .date-picker .text-field{
-	-fx-border-width: 0px;
+	-fx-border-width: 0;
 }
 .date-picker .text-field{
 	-fx-background-color: transparent;
@@ -252,7 +252,7 @@
     -fx-background-radius: 0;
     -fx-alignment: CENTER; /* VBox */
     -fx-spacing: 0; /* VBox */
-    -fx-padding: 0px; /* 1 1 1 1 */
+    -fx-padding: 0; /* 1 1 1 1 */
     -fx-effect: dropshadow(gaussian , -fx-accent-20, 10, 0, 1, 2) !important;
     -fx-max-width: 300px !important;
 }
@@ -270,7 +270,7 @@
     -fx-background-color: transparent;
     -fx-background-insets: 0, 1, 2;
     -fx-background-radius: 0;
-    -fx-border-width: 0px !important;
+    -fx-border-width: 0 !important;
 	-fx-max-width: 30px !important;
 	-fx-max-height: 30px !important;
 	-fx-pref-width: 30px !important;
@@ -352,12 +352,12 @@
 
 .hide{
 	visibility: false !important;
-	-fx-pref-height: 0px !important;
-	-fx-min-height: 0px !important;
-	-fx-max-height: 0px !important;
-	-fx-pref-width: 0px !important;
-	-fx-max-width: 0px !important;
-	-fx-min-width: 0px !important; 
+	-fx-pref-height: 0 !important;
+	-fx-min-height: 0 !important;
+	-fx-max-height: 0 !important;
+	-fx-pref-width: 0 !important;
+	-fx-max-width: 0 !important;
+	-fx-min-width: 0 !important;
 }
 
 
@@ -412,7 +412,7 @@
 }
 
 .bg-side *{
-  -fx-background-radius: 0px;
+  -fx-background-radius: 0;
   -fx-background-color: -fx-side-background;
   -fx-max-width: 210px; /** Here to change the sidebar width **/
 }
@@ -423,7 +423,7 @@
 }
 
 .bg-side .button .circle{
-	-fx-stroke-width: 0px;
+	-fx-stroke-width: 0;
 }
 
 .bg-side:hover .scroll-bar{ /** Only show scroll bar when mouse is hover on scroll pane **/
@@ -432,9 +432,9 @@
 
 /* .bg-side .scroll-pane .button, */
 .bg-side .button{
-	-fx-padding: 12px 20px 12px 20px;
+	-fx-padding: 12px 20px;
     -fx-graphic-text-gap: 20px;
-	-fx-border-width: 0px 0px 0px 4px;
+	-fx-border-width: 0 0 0 4px;
 	-fx-border-color: transparent;
 	-fx-text-fill: -fx-accent;
 	-fx-pref-width: 1000px;
@@ -470,12 +470,12 @@
 }
 
 .bg-side .scroll-pane{
-	-fx-border-width: 0px;
-	-fx-padding: 0px;
+	-fx-border-width: 0;
+	-fx-padding: 0;
 }
 
 .bg-side .username{
-	-fx-padding: 22px 15px 22px 15px !important;
+	-fx-padding: 22px 15px !important;
 }
 
 .bg-side .username #username-label{
@@ -500,20 +500,20 @@
 }
 
 .bg-main .tab-box.title{
-	-fx-padding: 30px 50px 15px 50px;
+	-fx-padding: 30px 50px 15px;
 	-fx-background-color: -fx-base;
 	-fx-spacing: 10px;
 }
 
 .bg-main .board-title{
-	-fx-border-width: 0px;
+	-fx-border-width: 0;
 	-fx-pref-width: 1000px;
 	-fx-text-fill: -fx-accent;
 }
 
 .bg-main .board-note{
-	-fx-padding: -2px 0px 0px 0px;
-	-fx-border-width: 0px;
+	-fx-padding: -2px 0 0;
+	-fx-border-width: 0;
 	-fx-text-fill: -fx-dark-text-color;
 }
 
@@ -525,9 +525,9 @@
 
 .bg-main .combo-box{
 	-fx-min-width: 150px;
-	-fx-padding: 8px 8px;
-	-fx-border-radius: 0px;
-	-fx-border-width: 0px;
+	-fx-padding: 8px;
+	-fx-border-radius: 0;
+	-fx-border-width: 0;
 }
 
 .bg-main .tab-box.title .operation-list .button{
@@ -538,7 +538,7 @@
 }
 
 .bg-main .columns{
-	-fx-padding: 0px 44px;
+	-fx-padding: 0 44px;
 	-fx-spacing: 16px;
 }
 
@@ -546,7 +546,7 @@
 	-fx-max-width: 266px;
 	-fx-pref-width: 266px;
 	-fx-background-color: transparent;
-	-fx-padding: 0px 0px 0px 0px;
+	-fx-padding: 0;
 }
 
 .bg-main .column .scroll-pane VBox{
@@ -555,7 +555,7 @@
 
 /** Column Title **/
 .bg-main .column HBox{
-	-fx-padding: 0px 6px;
+	-fx-padding: 0 6px;
 }
 
 /** Card Spacing **/
@@ -570,7 +570,7 @@
 /** Column Title Label **/
 .bg-main .column .title .text-field{
 	-fx-font-size: 15px;
-	-fx-border-width: 0px;
+	-fx-border-width: 0;
 	-fx-pref-width: 300px;
 }
 
@@ -582,13 +582,13 @@
 	-fx-text-fill: -fx-light-text-color;
 	-fx-background-radius: 55px;
 	-fx-font-size: 13px;
-	-fx-padding: 0px 4px;
+	-fx-padding: 0 4px;
 	-fx-alignment: CENTER;
 }
 
 .bg-main .column .title .button{
-	-fx-padding: 0px;
-	-fx-border-width: 0px;
+	-fx-padding: 0;
+	-fx-border-width: 0;
 }
 
 .bg-main .column .title .button SVGPath{
@@ -597,7 +597,7 @@
 }
 
 .bg-main .column .scroll-pane{
-	-fx-padding: 4px 0px 0px 0px;
+	-fx-padding: 4px 0 0;
 }
 
 .bg-main .column .scroll-pane.event-list .button{
@@ -608,7 +608,7 @@
 	-fx-background-radius: 4px;
     -fx-padding: 14px 20px 14px 12px;
     -fx-margin: 10px;
-    -fx-border-width: 0px;
+    -fx-border-width: 0;
     -fx-border-color: transparent;
     -fx-background-color: -fx-accent;
     -fx-text-fill: -fx-light-text-color;
@@ -691,7 +691,7 @@
 
 .bg-detail .text-area{
 	-fx-text-fill: -fx-accent;
-	-fx-border-width: 0px;
+	-fx-border-width: 0;
 	-fx-pref-row-count: 4;
 	-fx-padding: -4px;
 }
@@ -721,12 +721,12 @@
 
 .bg-settings .title-wrapper{
 	-fx-background-color: -fx-base;
-	-fx-border-width: 0px 0px 2px 0px;
+	-fx-border-width: 0 0 2px;
 	-fx-border-color: -fx-accent-30;
 }
 
 .bg-settings .scroll-pane .username{
-	-fx-padding: 0px 0px 0px 0px;
+	-fx-padding: 0;
 }
 
 .bg-settings .settings{
@@ -736,14 +736,14 @@
 }
 
 .bg-settings .combo-box{
-	-fx-padding: 0px 10px;
+	-fx-padding: 0 10px;
 	-fx-min-width: 120px;
 	-fx-min-height: 35px;
 }
 
 .bg-settings .settings-wrapper{
 	-fx-alignment: CENTER;
-	-fx-padding: 20px 10px 40px 10px;
+	-fx-padding: 20px 10px 40px;
 }
 
 .bg-settings .settings HBox .label{
@@ -760,18 +760,18 @@
 }
 
 .bg-settings .settings .copyright{
-	-fx-spacing: 0px;
+	-fx-spacing: 0;
 }
 
 .bg-settings .account .label{
 	-fx-min-width: 420px;
-	-fx-padding: 0px 120px 0px 0px;
+	-fx-padding: 0 120px 0 0;
 }
 
 .bg-settings .account .button{
 	-fx-min-width: 80px;
 	-fx-min-height: 35px;
-	-fx-padding: 0px;
+	-fx-padding: 0;
 }
 
 
@@ -782,18 +782,18 @@
 
 .bg-signin .signin-wrapper{
 	-fx-alignment: CENTER;
-	-fx-padding: 30px 10px 0px 10px;
+	-fx-padding: 30px 10px 0;
 }
 
 .bg-signin .signin-wrapper VBox{
 	-fx-min-width: 350px;
 	-fx-max-width: 350px;
-	-fx-spacing: 0px;
+	-fx-spacing: 0;
 }
 
 .bg-signin .text-field, .bg-signin .password-field, .bg-signin .combo-box{
 	-fx-pref-width: 350px;
-	-fx-padding: 0px;
+	-fx-padding: 0;
 	-fx-min-height: 55px;
 	-fx-font-family: "Nexa Bold";
 	-fx-width: 8px !important;
@@ -806,7 +806,7 @@
 
 
 .bg-signin .signin-wrapper VBox{
-	-fx-spacing: 0px;
+	-fx-spacing: 0;
 }
 
 .bg-signin .signin-wrapper Pane .label{
@@ -816,10 +816,10 @@
 
 .bg-signin .tool-bar{
 	-fx-background-color: transparent;
-	-fx-border-width: 0px;
+	-fx-border-width: 0;
 	-fx-border-color: transparent;
 	/*-fx-padding: 20px 0px 0px 0px;*/
-	-fx-padding: 0px;
+	-fx-padding: 0;
 }
 
 .bg-signin .tool-bar .button, .bg-signin .tool-bar .combo-box{
@@ -832,7 +832,7 @@
 }
 
 .bg-signin .error{
-	-fx-padding: 4px 0px;
+	-fx-padding: 4px 0;
 	-fx-font-size: 11px;
 	-fx-text-fill: #b30000;
 }
@@ -859,14 +859,14 @@
 
 .bg-welcome .welcome-wrapper{
 	-fx-alignment: CENTER;
-	-fx-padding: 30px 10px 0px 10px;
+	-fx-padding: 30px 10px 0;
 }
 
 .bg-welcome .welcome-wrapper VBox{
 	-fx-alignment: CENTER;
 	-fx-min-width: 250px;
 	-fx-max-width: 250px;
-	-fx-spacing: 0px;
+	-fx-spacing: 0;
 }
 
 .bg-welcome .welcome-wrapper HBox.logo{
@@ -876,7 +876,7 @@
 	-fx-text-fill: -fx-base;
 	-fx-scale-x: 2.4;
 	-fx-scale-y: 2.4;
-	-fx-padding: 0px 8px 30px 0px;
+	-fx-padding: 0 8px 30px 0;
 }
 
 .bg-welcome .welcome-wrapper .operation{
@@ -885,7 +885,7 @@
 
 .bg-welcome .welcome-wrapper .operation .button{
 	-fx-pref-width: 200px;
-	-fx-padding: 10px 10px 10px 0px;
+	-fx-padding: 10px 10px 10px 0;
 }
 
 .bg-welcome .welcome-wrapper .operation .button SVGPath{
