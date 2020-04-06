@@ -272,8 +272,6 @@
 /** Date Picker **/
 .date-picker .text-field{
 	-fx-border-width: 0;
-}
-.date-picker .text-field{
 	-fx-background-color: transparent;
 }
 
@@ -448,10 +446,6 @@
   -fx-background-radius: 0;
   -fx-background-color: -fx-side-background;
   -fx-max-width: 210px; /** Here to change the sidebar width **/
-}
-
-
-.bg-side *{
   -fx-background-color: transparent;
 }
 
@@ -689,10 +683,6 @@
 	-fx-effect: dropshadow(gaussian, -fx-accent-50, 10, 0, 1, 2); /** 40% **/
 }
 
-.bg-main .search{
-	
-}
-
 .bg-main:hover .scroll-bar{
 	-fx-opacity: 1;
 }
@@ -773,12 +763,6 @@
 	-fx-padding: 30px 10px 0;
 }
 
-.bg-signin .signin-wrapper VBox{
-	-fx-min-width: 350px;
-	-fx-max-width: 350px;
-	-fx-spacing: 0;
-}
-
 .bg-signin .text-field, .bg-signin .password-field, .bg-signin .combo-box{
 	-fx-pref-width: 350px;
 	-fx-padding: 0;
@@ -794,6 +778,8 @@
 
 
 .bg-signin .signin-wrapper VBox{
+	-fx-min-width: 350px;
+	-fx-max-width: 350px;
 	-fx-spacing: 0;
 }
 
