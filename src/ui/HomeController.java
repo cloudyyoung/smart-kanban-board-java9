@@ -163,6 +163,13 @@ public class HomeController {
             	  currentEvent.getNode().setTitle(title);
               }
             });
+    
+    promptEventTitle.textProperty()
+    .addListener(
+        (observable, oldText, newText) -> {
+    	  String title = promptEventTitle.getText();
+      	  currentEvent.setText(title);
+        });
 
     // The TextArea internally does not use the onKeyPressed property to handle keyboard input.
     // Therefore, setting onKeyPressed does not remove the original event handler.
@@ -186,7 +193,6 @@ public class HomeController {
     textHolder.setWrappingWidth(450);
     textHolder.layoutBoundsProperty().addListener((observable, oldValue, newValue) -> {
        promptEventTitle.setPrefHeight(textHolder.getLayoutBounds().getHeight() + 23);
-       System.out.println(textHolder.getLayoutBounds().getHeight());
     });
     
     extraPane.getChildren().add(textHolder);
