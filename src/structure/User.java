@@ -281,13 +281,4 @@ public class User {
     User user = new User();
     return user.register(username, password, secQues, secAns);
   }
-
-  public static void main(String[] args) {
-    User user = new User();
-    user.authenticate("cloudy", "cloudy");
-    // System.out.println((user);
-
-    Kanban.checkout();
-    // System.out.println((Kanban.current);
-  }
 }
