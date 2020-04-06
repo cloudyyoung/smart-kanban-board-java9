@@ -155,11 +155,11 @@ public abstract class Node {
     lvl += level;
 
     String ret = null;
-    Iterator<?> keysItr = this.TYPE_DICTIONARY.keySet().iterator();
+    Iterator<?> keysItr = Node.TYPE_DICTIONARY.keySet().iterator();
 
     while (keysItr.hasNext()) {
       String key = (String) keysItr.next();
-      int value = (int) this.TYPE_DICTIONARY.get(key);
+      int value = (int) Node.TYPE_DICTIONARY.get(key);
 
       if (value == lvl) {
         ret = key;
