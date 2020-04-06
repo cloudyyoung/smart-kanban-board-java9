@@ -2,7 +2,6 @@
 import java.util.*;
 import structure.*;
 
-
 @SuppressWarnings("all")
 public class Terminal {
   // ***** need to implement all output to UI whenever the UI is ready
