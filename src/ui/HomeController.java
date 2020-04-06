@@ -98,7 +98,7 @@ public class HomeController {
     EventComponent.promptEventDuration = promptEventDuration;
     EventComponent.promptEventNote = promptEventNote;
 
-    promptEvent.getStyleClass().add("hide");
+    promptEvent.getStyleClass().setAll("hide");
     extraPane.setVisible(false);
 
     // Intialize label text values
@@ -214,7 +214,7 @@ public class HomeController {
             (observable, oldValue, newValue) -> {
               currentEvent
                   .getNode()
-                  .setDuration(promptEventDuration.getSelectionModel().getSelectedIndex() * 3600l);
+                  .setDuration(promptEventDuration.getSelectionModel().getSelectedIndex() * 3600L);
             });
 
     promptEventNote
