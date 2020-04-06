@@ -154,6 +154,8 @@
 
 .button.primary:hover, .button.primary:focused{
 	-fx-effect: dropshadow(gaussian, -fx-focus-color, 10, 0, 1, 2);
+	-fx-background-color: -fx-accent-90;
+    -fx-border-color: -fx-accent-90;
 }
 
 .button:hover, .button:focused, .combo-box:hover, .combo-box:focused, .text-field:hover, .text-field:focused, .text-area:hover, .text-area:focused, .date-picker:hover, .date-picker:focused{
@@ -164,12 +166,6 @@
   /* -fx-border-color: -fx-focus-color; */
   -fx-border-color: transparent;
 }
-
-.button.primary:hover, .button.primary:focused{
-	-fx-background-color: -fx-accent-90;
-    -fx-border-color: -fx-accent-90;
-}
-
 
 .text-field, .text-area, .text-area *, .date-picker{
 	-fx-background-color: transparent;
