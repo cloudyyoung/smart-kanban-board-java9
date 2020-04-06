@@ -100,7 +100,7 @@
 	-fx-background-color: -fx-accent !important;
 	-fx-text-fill: -fx-light-text-color !important;
 	-fx-fill: -fx-light-text-color !important;
-	-fx-font-size: 10 !important;
+	-fx-font-size: 10px !important;
 	-fx-border-radius: 0 !important;
 	-fx-background-radius: 0 !important;
 	-fx-padding: 4px 5px !important;
@@ -124,8 +124,8 @@
 
 .button{
   -fx-alignment: CENTER_LEFT;
-  -fx-padding: 8px 10;
-  -fx-graphic-text-gap: 10;
+  -fx-padding: 8px 10px;
+  -fx-graphic-text-gap: 10px;
   -fx-background-color: transparent;
   -fx-text-fill: -fx-dark-text-color;
   -fx-fill: -fx-dark-text-color;
@@ -187,7 +187,7 @@
 
 .text-area {
 	/*-fx-pref-row-count: 1;*/
-	-fx-min-height: 10;
+	-fx-min-height: 10px;
 }
 
 .text-area .scroll-pane{
@@ -228,7 +228,7 @@
 .scroll-bar .decrement-button {
     -fx-background-color :transparent;
     -fx-background-radius : 0;
-    -fx-padding: -10;
+    -fx-padding: -10px;
     -fx-opacity: 0%;
 }
 
@@ -252,7 +252,7 @@
 .scroll-bar .thumb {
     -fx-background-color: -fx-accent-20;
     -fx-background-insets: 0;
-    -fx-background-radius: 50;
+    -fx-background-radius: 50px;
     -fx-padding: 0;
 }
 
@@ -285,7 +285,7 @@
     -fx-spacing: 0; /* VBox */
     -fx-padding: 0; /* 1 1 1 1 */
     -fx-effect: dropshadow(gaussian , -fx-accent-20, 10, 0, 1, 2) !important;
-    -fx-max-width: 300 !important;
+    -fx-max-width: 300px !important;
 }
 
 .date-picker-popup *{
@@ -293,7 +293,7 @@
 }
 
 .date-picker-popup .month-year-pane {
-	-fx-padding: 10 14px !important;
+	-fx-padding: 10px 14px !important;
     -fx-background-color: transparent;
 }
 
@@ -302,10 +302,10 @@
     -fx-background-insets: 0, 1, 2;
     -fx-background-radius: 0;
     -fx-border-width: 0 !important;
-	-fx-max-width: 30 !important;
-	-fx-max-height: 30 !important;
-	-fx-pref-width: 30 !important;
-	-fx-pref-height: 30 !important;
+	-fx-max-width: 30px !important;
+	-fx-max-height: 30px !important;
+	-fx-pref-width: 30px !important;
+	-fx-pref-height: 30px !important;
 }
 
 .date-picker-popup * .spinner .button:hover, .date-picker-popup * .spinner .button:focused {
@@ -348,8 +348,8 @@
 .date-picker-popup * .day-name-cell,
 .date-picker-popup * .week-number-cell {
     -fx-font-size: 12px !important;
-    -fx-max-width: 40 !important;
-    -fx-pref-width: 40 !important;
+    -fx-max-width: 40px !important;
+    -fx-pref-width: 40px !important;
 }
 
 .date-picker-popup * .today {
@@ -408,7 +408,7 @@
 }
 
 .h2{
-	-fx-font-size: 30;
+	-fx-font-size: 30px;
 }
 
 .h3{
@@ -447,7 +447,7 @@
 .bg-side *{
   -fx-background-radius: 0;
   -fx-background-color: -fx-side-background;
-  -fx-max-width: 210; /** Here to change the sidebar width **/
+  -fx-max-width: 210px; /** Here to change the sidebar width **/
 }
 
 
@@ -465,13 +465,13 @@
 
 /* .bg-side .scroll-pane .button, */
 .bg-side .button{
-	-fx-padding: 12px 20;
-    -fx-graphic-text-gap: 20;
+	-fx-padding: 12px 20px;
+    -fx-graphic-text-gap: 20px;
 	-fx-border-width: 0 0 0 4px;
 	-fx-border-color: transparent;
 	-fx-border-radius: 0;
 	-fx-text-fill: -fx-accent;
-	-fx-pref-width: 1000;
+	-fx-pref-width: 1000px;
 	-fx-font-family: "Noto Sans JP Medium";
 }
 
@@ -515,7 +515,7 @@
 .bg-side .username #username-label{
 	-fx-font-size: 16px;
 	-fx-font-family: "Nexa Bold";
-	-fx-pref-width: 200;
+	-fx-pref-width: 200px;
 }
 
 /** Board Panel Components **/
@@ -525,7 +525,7 @@
 }
 
 .bg-main .main{
-  -fx-spacing: 20;
+  -fx-spacing: 20px;
 }
 
 
@@ -534,14 +534,14 @@
 }
 
 .bg-main .tab-box.title{
-	-fx-padding: 30 50 10;
+	-fx-padding: 30px 50px 10px;
 	-fx-background-color: -fx-base;
-	-fx-spacing: 10;
+	-fx-spacing: 10px;
 }
 
 .bg-main .board-title{
 	-fx-border-width: 0;
-	-fx-pref-width: 1000;
+	-fx-pref-width: 1000px;
 	-fx-text-fill: -fx-accent;
 	-fx-cursor: auto;
 }
@@ -566,7 +566,7 @@
 
 
 .bg-main .combo-box{
-	-fx-min-width: 150;
+	-fx-min-width: 150px;
 	-fx-padding: 8px;
 	-fx-border-radius: 0;
 	-fx-border-width: 0;
@@ -613,13 +613,13 @@
 .bg-main .column .title .text-field{
 	-fx-font-size: 15px;
 	-fx-border-width: 0;
-	-fx-pref-width: 300;
+	-fx-pref-width: 300px;
 }
 
 /** Column Title Total **/
 .bg-main .column .title .total{
-	-fx-min-width: 30;
-	-fx-max-width: 500;
+	-fx-min-width: 30px;
+	-fx-max-width: 500px;
 	-fx-background-color: derive(-fx-accent, 30%);
 	-fx-text-fill: -fx-light-text-color;
 	-fx-background-radius: 55px;
@@ -648,14 +648,14 @@
 	-fx-pref-width: 246px;
     -fx-border-radius: 4px;
 	-fx-background-radius: 4px;
-    -fx-padding: 14px 20 14px 12px;
-    -fx-margin: 10;
+    -fx-padding: 14px 20px 14px 12px;
+    -fx-margin: 10px;
     -fx-border-width: 0;
     -fx-border-color: transparent;
     -fx-background-color: -fx-accent;
     -fx-text-fill: -fx-light-text-color;
     -fx-fill: -fx-light-text-color;
-    -fx-graphic-text-gap: 10;
+    -fx-graphic-text-gap: 10px;
     -fx-content-display: LEFT;
     -fx-effect: dropshadow(gaussian, -fx-accent-20, 10, 0, 1, 2);
 }
@@ -704,7 +704,7 @@
 
 .bg-settings .title{
 	-fx-alignment: CENTER_LEFT;
-	-fx-padding: 8px 40;
+	-fx-padding: 8px 40px;
 }
 
 .bg-settings .title-wrapper{
@@ -720,31 +720,31 @@
 .bg-settings .settings{
 	-fx-alignment: TOP_LEFT;
 	-fx-spacing: 25px;
-	-fx-max-width: 500;
+	-fx-max-width: 500px;
 }
 
 .bg-settings .combo-box{
-	-fx-padding: 0 10;
-	-fx-min-width: 120;
+	-fx-padding: 0 10px;
+	-fx-min-width: 120px;
 	-fx-min-height: 35px;
 }
 
 .bg-settings .settings-wrapper{
 	-fx-alignment: CENTER;
-	-fx-padding: 20 10 40;
+	-fx-padding: 20px 10px 40px;
 }
 
 .bg-settings .settings HBox .label{
-	-fx-pref-width: 350;
+	-fx-pref-width: 350px;
 	-fx-pref-height: 35px;
 }
 
 .bg-settings .settings VBox{
-	-fx-spacing: 10;
+	-fx-spacing: 10px;
 }
 
 .bg-settings .theme .combo-box{
-	-fx-min-width: 200;
+	-fx-min-width: 200px;
 }
 
 .bg-settings .settings .copyright{
@@ -752,12 +752,12 @@
 }
 
 .bg-settings .account .label{
-	-fx-min-width: 420;
-	-fx-padding: 0 120 0 0;
+	-fx-min-width: 420px;
+	-fx-padding: 0 120px 0 0;
 }
 
 .bg-settings .account .button{
-	-fx-min-width: 80;
+	-fx-min-width: 80px;
 	-fx-min-height: 35px;
 	-fx-padding: 0;
 }
@@ -770,17 +770,17 @@
 
 .bg-signin .signin-wrapper{
 	-fx-alignment: CENTER;
-	-fx-padding: 30 10 0;
+	-fx-padding: 30px 10px 0;
 }
 
 .bg-signin .signin-wrapper VBox{
-	-fx-min-width: 350;
-	-fx-max-width: 350;
+	-fx-min-width: 350px;
+	-fx-max-width: 350px;
 	-fx-spacing: 0;
 }
 
 .bg-signin .text-field, .bg-signin .password-field, .bg-signin .combo-box{
-	-fx-pref-width: 350;
+	-fx-pref-width: 350px;
 	-fx-padding: 0;
 	-fx-min-height: 55px;
 	-fx-font-family: "Nexa Bold";
@@ -798,7 +798,7 @@
 }
 
 .bg-signin .signin-wrapper Pane .label{
-	-fx-max-width: 350;
+	-fx-max-width: 350px;
 	-fx-font-family: "Noto Sans JP Light";
 }
 
@@ -847,13 +847,13 @@
 
 .bg-welcome .welcome-wrapper{
 	-fx-alignment: CENTER;
-	-fx-padding: 30 10 0;
+	-fx-padding: 30px 10px 0;
 }
 
 .bg-welcome .welcome-wrapper VBox{
 	-fx-alignment: CENTER;
-	-fx-min-width: 250;
-	-fx-max-width: 250;
+	-fx-min-width: 250px;
+	-fx-max-width: 250px;
 	-fx-spacing: 0;
 }
 
@@ -864,7 +864,7 @@
 	-fx-text-fill: -fx-base;
 	-fx-scale-x: 2.4;
 	-fx-scale-y: 2.4;
-	-fx-padding: 0 8px 30 0;
+	-fx-padding: 0 8px 30px 0;
 }
 
 .bg-welcome .welcome-wrapper .operation{
@@ -872,8 +872,8 @@
 }
 
 .bg-welcome .welcome-wrapper .operation .button{
-	-fx-pref-width: 200;
-	-fx-padding: 10 10 10 0;
+	-fx-pref-width: 200px;
+	-fx-padding: 10px 10px 10px 0;
 }
 
 .bg-welcome .welcome-wrapper .operation .button SVGPath{
@@ -882,7 +882,7 @@
 }
 
 .bg-welcome .welcome-wrapper .operation .button HBox{
-	-fx-pref-width: 30;
+	-fx-pref-width: 30px;
 	-fx-alignment: CENTER;
 }
 
@@ -892,7 +892,7 @@
 
 .bg-welcome .copyright .label{
 	-fx-font-size: 12px;
-	-fx-padding: 10;
+	-fx-padding: 10px;
 }
 
 
@@ -901,7 +901,7 @@
 .prompt-cover{
 	-fx-background-color: rgba(0, 0, 0, 0.3);
 	-fx-alignment: CENTER;
-	-fx-padding: 30;
+	-fx-padding: 30px;
 }
 
 .bg-prompt{
@@ -909,14 +909,14 @@
 	-fx-effect: dropshadow(gaussian , rgba(0, 0, 0, 0.2), 10, 0, 1, 2) !important;
 	-fx-padding: 0;
 	-fx-border-width: 0;
-	-fx-max-width: 550;
+	-fx-max-width: 550px;
 	-fx-alignment: CENTER;
 }
 
 .bg-prompt .prompt-content-wrapper{
 	-fx-border-width: 0;
-	-fx-spacing: 10;
-	-fx-padding: 35px 50 50;
+	-fx-spacing: 10px;
+	-fx-padding: 35px 50px 50px;
 }
 
 .bg-prompt .prompt-title{
@@ -959,7 +959,7 @@
 }
 
 .bg-prompt .text-area .content{
-	-fx-padding: 10 0;
+	-fx-padding: 10px 0;
 }
 
 .bg-prompt .text-area.title{
@@ -970,7 +970,7 @@
 }
 
 .bg-prompt .field{
-	-fx-spacing: 10;
+	-fx-spacing: 10px;
 }
 
 .bg-prompt .field .text-field, .bg-prompt .field .combo-box, .bg-prompt .field .date-picker, .bg-prompt .field .text-area{
@@ -988,8 +988,8 @@
 
 .bg-prompt .field .field-value.combo-box,
 .bg-prompt .field .field-value.date-picker{
-	-fx-min-width: 150;
-	-fx-max-width: 150;
+	-fx-min-width: 150px;
+	-fx-max-width: 150px;
 }
 
 .bg-prompt .field .field-value.date-picker .text-field{
