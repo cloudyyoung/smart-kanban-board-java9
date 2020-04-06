@@ -10,7 +10,7 @@ import com.google.gson.annotations.*;
  * @since 1.0
  * @version 2.1
  */
-public class Board extends Node {
+public final class Board extends Node {
 
   /** Color of the board, in HEX. */
   @Expose private String color;
@@ -42,7 +42,7 @@ public class Board extends Node {
    *
    * @param color The color in {@code String}
    */
-  public void setColorLocal(String color) {
+  public final void setColorLocal(String color) {
     this.color = color;
   }
 

@@ -25,10 +25,10 @@ public class ColumnComponent extends VBox {
     super();
     this.node = node;
     this.color = color;
-    load();
+    this.load();
   }
 
-  void load() {
+  private final void load() {
     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("column.fxml"));
     fxmlLoader.setRoot(this);
     fxmlLoader.setController(this);

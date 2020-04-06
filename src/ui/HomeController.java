@@ -98,7 +98,7 @@ public class HomeController {
     EventComponent.promptEventDuration = promptEventDuration;
     EventComponent.promptEventNote = promptEventNote;
 
-    promptEvent.getStyleClass().setAll("hide");
+    promptEvent.getStyleClass().setAll("prompt-cover", "hide");
     extraPane.setVisible(false);
 
     // Intialize label text values
@@ -149,8 +149,6 @@ public class HomeController {
                 return;
               }
               ArrayList<structure.Node> list = Kanban.current.search(newText);
-              System.out.println(newText);
-              System.out.println(list);
             });
 
     promptEventTitle

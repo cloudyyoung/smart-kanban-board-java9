@@ -233,13 +233,13 @@ public class User {
    *
    * @param username the username of the account
    * @param password the password of the account
-   * @param sec_ques the security question of the account
-   * @param sec_ans the security answer of the the account
+   * @param secQues the security question of the account
+   * @param secAns the security answer of the the account
    * @return the result object of this action
    * @since 2.0
    * @version 2.1
    */
-  public Result register(String username, String password, String sec_ques, String sec_ans) {
+  public Result register(String username, String password, String secQues, String secAns) {
     Result res = new Result();
 
     this.setUsername(username);
@@ -248,8 +248,8 @@ public class User {
     HttpBody param = new HttpBody();
     param.put("username", this.getUsername());
     param.put("password", this.getPassword());
-    param.put("security_question", sec_ques);
-    param.put("security_answer", sec_ans);
+    param.put("security_question", secQues);
+    param.put("security_answer", secAns);
 
     HttpRequest req = new HttpRequest();
     req.setRequestUrl("/users/");
@@ -277,9 +277,9 @@ public class User {
   }
 
   public static Result registration(
-      String username, String password, String sec_ques, String sec_ans) {
+      String username, String password, String secQues, String secAns) {
     User user = new User();
-    return user.register(username, password, sec_ques, sec_ans);
+    return user.register(username, password, secQues, secAns);
   }
 
   public static void main(String[] args) {

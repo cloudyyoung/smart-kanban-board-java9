@@ -27,7 +27,7 @@ public class BoardComponent extends Button {
   public BoardComponent(Board node) {
     this.node = node;
 
-    load();
+    this.load();
 
     this.setText(node.getTitle());
     this.setId("board-" + node.getId());
@@ -72,7 +72,7 @@ public class BoardComponent extends Button {
     return this.node;
   }
 
-  void load() {
+  private final void load() {
     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("board.fxml"));
     fxmlLoader.setRoot(this);
     fxmlLoader.setController(this);

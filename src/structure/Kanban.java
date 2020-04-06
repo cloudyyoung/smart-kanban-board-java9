@@ -115,8 +115,8 @@ public class Kanban extends Node {
       // excluded Today
       if (board.getId() >= 100) {
         for (Node column : board.getChildrenNodes()) {
-          for (Node node_event : column.getChildrenNodes()) {
-            Event event = (Event) node_event;
+          for (Node nodeEvent : column.getChildrenNodes()) {
+            Event event = (Event) nodeEvent;
             if (event.getTitle().toLowerCase().indexOf(name.toLowerCase()) != -1
                 || event.getNote().toLowerCase().indexOf(name.toLowerCase()) != -1
                 || Integer.toString(event.getId()).indexOf(name) != -1) {

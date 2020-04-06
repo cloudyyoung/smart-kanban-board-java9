@@ -51,14 +51,14 @@ public class EventComponent extends Button {
     super();
     this.node = (Event) node;
     this.color = color;
-    load();
+    this.load();
   }
 
   public Event getNode() {
     return this.node;
   }
 
-  void load() {
+  private final void load() {
     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("event.fxml"));
     fxmlLoader.setRoot(this);
     fxmlLoader.setController(this);
