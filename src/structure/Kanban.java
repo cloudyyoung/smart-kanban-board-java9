@@ -129,7 +129,6 @@ public class Kanban extends Node {
     return ret;
   }
 
-
   public static void main(String[] args) {
     User user = new User();
     user.authenticate("cloudy", "cloudy");
