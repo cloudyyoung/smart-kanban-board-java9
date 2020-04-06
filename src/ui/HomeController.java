@@ -1,9 +1,8 @@
 package ui;
 
 import java.sql.Timestamp;
-import java.time.ZoneOffset;
-import java.util.ArrayList;
-import java.util.HashSet;
+import java.time.*;
+import java.util.*;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
@@ -127,15 +126,13 @@ public class HomeController {
         .addListener(
             (observable, oldDate, newDate) -> {
               if (newDate != null) {
-                System.out.println(Timestamp.valueOf(newDate.atStartOfDay()).getTime() / 1000);
-                // Result res =
-                //     currentEvent
-                //         .getNode()
-                //         .setDueDate(Timestamp.valueOf(newDate.atStartOfDay()).getTime() / 1000);
-                // System.out.println(res);
+                System.out.println(Timestamp.valueOf(newDate.atTime(LocalTime.MAX)).getTime() / 1000);
+                Result res =
+                    currentEvent
+                        .getNode()
+                        .setDueDate(Timestamp.valueOf(newDate.atTime(LocalTime.MAX)).getTime() / 1000);
+                System.out.println(res);
               }
-              // ts.getTime();
-              // System.out.println(currentEvent.getNode());
             });
 
     inputSearch
