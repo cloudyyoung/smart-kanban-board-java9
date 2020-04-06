@@ -118,7 +118,9 @@
   -fx-border-radius: 0px;
   -fx-border-width: 0px;
   -fx-border-color: transparent;
+
 }
+
 
 .button{
   -fx-alignment: CENTER_LEFT;
@@ -150,6 +152,10 @@
 	-fx-fill: -fx-light-text-color;
 }
 
+.button.primary:hover, .button.primary:focused{
+	-fx-effect: dropshadow(gaussian, -fx-focus-color, 10, 0, 1, 2);
+}
+
 .button:hover, .button:focused, .combo-box:hover, .combo-box:focused, .text-field:hover, .text-field:focused, .text-area:hover, .text-area:focused, .date-picker:hover, .date-picker:focused{
   -fx-background-color: -fx-focus-color;
 }
@@ -176,7 +182,7 @@
 	-fx-border-color: -fx-accent-40;
 	-fx-border-radius: 0px;
 	-fx-background-radius: 0px;
-    -fx-alignment: CENTER_LEFT;
+	-fx-alignment: CENTER_LEFT;	
 }
 
 .text-field:focused, .text-area:focused, .button:focused, .combo-box:focused, .date-picker:focused{
@@ -899,6 +905,7 @@
 .prompt-cover{
 	-fx-background-color: rgba(0, 0, 0, 0.3);
 	-fx-alignment: CENTER;
+	-fx-padding: 30px;
 }
 
 .bg-prompt{
@@ -953,7 +960,7 @@
 
 .bg-prompt .text-area{
 	-fx-pref-row-count: 1;
-	-fx-min-height: 41px;
+	-fx-min-height: 46px;
 }
 
 .bg-prompt .text-area .content{
@@ -961,6 +968,7 @@
 }
 
 .bg-prompt .text-area.title{
+	-fx-border-width: 0px;
 	-fx-border-color: transparent;
 	-fx-text-fill: -fx-accent;
 }

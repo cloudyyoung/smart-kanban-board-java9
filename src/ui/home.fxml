@@ -24,6 +24,7 @@
 
 <StackPane styleClass="base" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.HomeController">
    <children>
+      <Pane fx:id="extraPane" mouseTransparent="true" />
       <BorderPane prefHeight="680.0" prefWidth="1020.0">
          <left>
             <VBox fx:id="sidePane" styleClass="bg-side">
@@ -482,7 +483,7 @@
                               </Button>
                            </children>
                         </HBox>
-                        <VBox styleClass="prompt-content">
+                        <VBox fx:id="promptEventTitleWrapper" styleClass="prompt-content">
                            <children>
                               <TextArea fx:id="promptEventTitle" text="Hold on tight Lucky chance. It's mine Lucky strike. I'm your luck, take it." wrapText="true">
                                  <styleClass>

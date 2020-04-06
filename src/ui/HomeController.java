@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.shape.*;
+import javafx.scene.text.*;
 import javafx.stage.*;
 import structure.*;
 import ui.component.*;
@@ -53,6 +54,8 @@ public class HomeController {
   @FXML private SVGPath promptEventIcon;
 
   @FXML private Label promptEventPromptTitle;
+  
+  @FXML private VBox promptEventTitleWrapper;
 
   @FXML private TextArea promptEventTitle;
 
@@ -68,7 +71,11 @@ public class HomeController {
 
   @FXML private TextArea promptEventNote;
 
+  @FXML private Pane extraPane;
+
   public static EventComponent currentEvent;
+
+  private Text textHolder = new Text();
 
   @FXML
   void initialize() {
@@ -92,6 +99,7 @@ public class HomeController {
     EventComponent.promptEventNote = promptEventNote;
 
     promptEvent.getStyleClass().add("hide");
+    extraPane.setVisible(false);
 
     // Intialize label text values
     profileUsername.setText(User.current.getUsername());
@@ -166,6 +174,18 @@ public class HomeController {
             promptEvent.requestFocus();
           }
         });
+    
+    
+    textHolder.textProperty().bind(promptEventTitle.textProperty());
+    textHolder.getStyleClass().addAll(promptEventTitle.getStyleClass());
+    textHolder.setStyle(promptEventTitle.getStyle());
+    textHolder.setWrappingWidth(450);
+    textHolder.layoutBoundsProperty().addListener((observable, oldValue, newValue) -> {
+       promptEventTitle.setPrefHeight(textHolder.getLayoutBounds().getHeight() + 24);
+       System.out.println(textHolder.getLayoutBounds().getHeight());
+    });
+    
+    extraPane.getChildren().add(textHolder);
 
 
     promptEventNote.focusedProperty()
@@ -174,21 +194,6 @@ public class HomeController {
           if (!newFocus) currentEvent.getNode().setNote(promptEventNote.getText());
         });
 
-
-    // The TextArea internally does not use the onKeyPressed property to handle keyboard input.
-    // Therefore, setting onKeyPressed does not remove the original event handler.
-    // To prevent TextArea's internal handler for the Enter key, you need to add an event filter
-    // that consumes the event.
-    // @link:
-    // https://stackoverflow.com/questions/26752924/how-to-stop-cursor-from-moving-to-a-new-line-in-a-textarea-when-enter-is-pressed
-    promptEventTitle.addEventFilter(
-        KeyEvent.KEY_PRESSED,
-        e -> {
-          if (e.getCode() == KeyCode.ENTER) {
-            e.consume();
-            promptEvent.requestFocus();
-          }
-        });
 
     // Add list items
     boardList.getChildren().clear();
