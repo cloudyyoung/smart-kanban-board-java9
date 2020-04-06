@@ -9,13 +9,12 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * This is a custom HashMap class for <b>fluently and elegantly</b> writing and
- * reading values in {@code JSON}.
- * 
- * To avoid bothers of TypeCasting warnings from HashMap and ArrayList class,
- * this class is built for adapting all types of variables in one object. Object
- * could be both Map and List.
- * 
+ * This is a custom HashMap class for <b>fluently and elegantly</b> writing and reading values in
+ * {@code JSON}.
+ *
+ * <p>To avoid bothers of TypeCasting warnings from HashMap and ArrayList class, this class is built
+ * for adapting all types of variables in one object. Object could be both Map and List.
+ *
  * @author Cloudy Young
  * @since 2.0
  * @version 2.1

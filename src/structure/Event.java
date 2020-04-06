@@ -25,13 +25,13 @@ public final class Event extends Node {
    * @param obj the {@code HttpBody} for initialization
    */
   public Event(
-	  final Integer eventId,
-	  final String title,
-	  final String note,
-	  final Long dueDate,
-	  final Long duration,
-	  final int importanceLevel,
-	  final Node parent) {
+      final Integer eventId,
+      final String title,
+      final String note,
+      final Long dueDate,
+      final Long duration,
+      final int importanceLevel,
+      final Node parent) {
     super(eventId, title, note, parent);
     this.setDurationLocal(duration);
     this.setDueDateLocal(dueDate);
@@ -133,7 +133,7 @@ public final class Event extends Node {
     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
     return formatter.format(date);
   }
-  
+
   @Override
   public String toString() {
     return this.getType()
@@ -162,12 +162,12 @@ public final class Event extends Node {
    * @return a boolean to represent if the event is over due.
    */
   public boolean isOverdue() {
-	boolean isOverdue = false;
+    boolean isOverdue = false;
     if (this.getDueDate() != null) {
-    	Calendar calendar = Calendar.getInstance();
-	    if (this.getDueDateValue() * 1000 <= calendar.getTimeInMillis()) {
-	      isOverdue = true;
-	    }
+      Calendar calendar = Calendar.getInstance();
+      if (this.getDueDateValue() * 1000 <= calendar.getTimeInMillis()) {
+        isOverdue = true;
+      }
     }
     return isOverdue;
   }
@@ -178,9 +178,8 @@ public final class Event extends Node {
    * @return an int of weight to represent the event priority.
    */
   public Integer getPriority() {
-	final int hourWeight = this.getDueDateValue().intValue() / 3600;
+    final int hourWeight = this.getDueDateValue().intValue() / 3600;
     final int importanceWeight = this.getImportanceLevel() * (hourWeight / 24);
     return hourWeight - importanceWeight;
   }
-
 }
