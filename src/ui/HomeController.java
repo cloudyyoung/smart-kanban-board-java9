@@ -19,59 +19,86 @@ import ui.component.*;
 
 public class HomeController {
 
-  @FXML private Button sideProfile;
+  @FXML
+  private Button sideProfile;
 
-  @FXML private Circle profileAvatar;
+  @FXML
+  private Circle profileAvatar;
 
-  @FXML private Label profileUsername;
+  @FXML
+  private Label profileUsername;
 
-  @FXML private VBox sidePane;
+  @FXML
+  private VBox sidePane;
 
-  @FXML private VBox operationList;
+  @FXML
+  private VBox operationList;
 
-  @FXML private Button sideSearch;
+  @FXML
+  private Button sideSearch;
 
-  @FXML private VBox boardList;
+  @FXML
+  private VBox boardList;
 
-  @FXML private TabPane tabPane;
+  @FXML
+  private TabPane tabPane;
 
-  @FXML private VBox boardPane;
+  @FXML
+  private VBox boardPane;
 
-  @FXML private TextField boardTitle;
+  @FXML
+  private TextField boardTitle;
 
-  @FXML private TextField boardNote;
+  @FXML
+  private TextField boardNote;
 
-  @FXML private Button boardAddColumn;
+  @FXML
+  private Button boardAddColumn;
 
-  @FXML private HBox columnPane;
+  @FXML
+  private HBox columnPane;
 
-  @FXML private TextField inputSearch;
+  @FXML
+  private TextField inputSearch;
 
-  @FXML private Pane dragPane;
+  @FXML
+  private Pane dragPane;
 
-  @FXML private VBox promptEvent;
+  @FXML
+  private VBox promptEvent;
 
-  @FXML private SVGPath promptEventIcon;
+  @FXML
+  private SVGPath promptEventIcon;
 
-  @FXML private Label promptEventPromptTitle;
+  @FXML
+  private Label promptEventPromptTitle;
 
-  @FXML private VBox promptEventTitleWrapper;
+  @FXML
+  private VBox promptEventTitleWrapper;
 
-  @FXML private TextArea promptEventTitle;
+  @FXML
+  private TextArea promptEventTitle;
 
-  @FXML private Label promptEventLocationBoard;
+  @FXML
+  private Label promptEventLocationBoard;
 
-  @FXML private Label promptEventLocationColumn;
+  @FXML
+  private Label promptEventLocationColumn;
 
-  @FXML private ComboBox<String> promptEventImportanceLevel;
+  @FXML
+  private ComboBox<String> promptEventImportanceLevel;
 
-  @FXML private DatePicker promptEventDueDate;
+  @FXML
+  private DatePicker promptEventDueDate;
 
-  @FXML private ComboBox<String> promptEventDuration;
+  @FXML
+  private ComboBox<String> promptEventDuration;
 
-  @FXML private TextArea promptEventNote;
+  @FXML
+  private TextArea promptEventNote;
 
-  @FXML private Pane extraPane;
+  @FXML
+  private Pane extraPane;
 
   public static EventComponent currentEvent;
 
@@ -113,93 +140,73 @@ public class HomeController {
 
     // Initialize Event panel
     promptEventImportanceLevel.getItems().addAll("", "Level 1", "Level 2", "Level 3");
-    promptEventDuration
-        .getItems()
-        .addAll(
-            "",
-            "1 Hour",
-            "2 Hours",
-            "3 Hours",
-            "4 Hours",
-            "5 Hours",
-            "6 Hours",
-            "7 Hours",
-            "8 Hours",
-            "9 Hours",
-            "10 Hours",
-            "11 Hours",
-            "12 Hours");
+    promptEventDuration.getItems().addAll("", "1 Hour", "2 Hours", "3 Hours", "4 Hours", "5 Hours", "6 Hours",
+        "7 Hours", "8 Hours", "9 Hours", "10 Hours", "11 Hours", "12 Hours");
 
-    promptEventDueDate
-        .valueProperty()
-        .addListener(
-            (observable, oldDate, newDate) -> {
-              Long timestamp = null;
-              if (newDate != null) {
-                timestamp = Timestamp.valueOf(newDate.atTime(LocalTime.MAX)).getTime() / 1000;
-              }
-              currentEvent.getNode().setDueDate(timestamp);
-            });
+    promptEventDueDate.valueProperty().addListener((observable, oldDate, newDate) -> {
+      Long timestamp = null;
+      if (newDate != null) {
+        timestamp = Timestamp.valueOf(newDate.atTime(LocalTime.MAX)).getTime() / 1000;
+      }
+      currentEvent.getNode().setDueDate(timestamp);
+    });
 
-    inputSearch
-        .textProperty()
-        .addListener(
-            (observable, oldText, newText) -> {
-              if (newText.equals("")) {
-                return;
-              }
-              ArrayList<structure.Node> list = Kanban.current.search(newText);
-              System.out.println(newText);
-              System.out.println(list);
-            });
+    inputSearch.textProperty().addListener((observable, oldText, newText) -> {
+      if (newText.equals("")) {
+        return;
+      }
+      ArrayList<structure.Node> list = Kanban.current.search(newText);
+      System.out.println(newText);
+      System.out.println(list);
+    });
 
-    promptEventTitle
-        .focusedProperty()
-        .addListener(
-            (observable, oldFocus, newFocus) -> {
-              if (!newFocus) {
-            	  currentEvent.getNode().setTitle(promptEventTitle.getText());
-              }
-            });
-    
-    promptEventTitle.textProperty()
-    .addListener(
-        (observable, oldText, newText) -> {
-        	currentEvent.setText(promptEventTitle.getText());
-      	  
-        });
+    promptEventTitle.focusedProperty().addListener((observable, oldFocus, newFocus) -> {
+      if (!newFocus) {
+        currentEvent.getNode().setTitle(promptEventTitle.getText());
+      }
+    });
 
-    // The TextArea internally does not use the onKeyPressed property to handle keyboard input.
+    promptEventTitle.textProperty().addListener((observable, oldText, newText) -> {
+      currentEvent.setText(promptEventTitle.getText());
+
+    });
+
+    // The TextArea internally does not use the onKeyPressed property to handle
+    // keyboard input.
     // Therefore, setting onKeyPressed does not remove the original event handler.
-    // To prevent TextArea's internal handler for the Enter key, you need to add an event filter
-    // that consumes the event.
+    // To prevent TextArea's internal handler for the Enter key, you need to add an
+    // event filter that consumes the event.
     // @link:
     // https://stackoverflow.com/questions/26752924/how-to-stop-cursor-from-moving-to-a-new-line-in-a-textarea-when-enter-is-pressed
-    promptEventTitle.addEventFilter(
-        KeyEvent.KEY_PRESSED,
-        e -> {
-          if (e.getCode() == KeyCode.ENTER) {
-            e.consume();
-            promptEvent.requestFocus();
-          }
-        });
+    promptEventTitle.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
+      if (e.getCode() == KeyCode.ENTER) {
+        e.consume();
+        promptEvent.requestFocus();
+      }
+    });
 
     textHolder.textProperty().bind(promptEventTitle.textProperty());
     textHolder.getStyleClass().addAll(promptEventTitle.getStyleClass());
     textHolder.setStyle(promptEventTitle.getStyle());
     textHolder.setWrappingWidth(450);
     textHolder.layoutBoundsProperty().addListener((observable, oldValue, newValue) -> {
-       promptEventTitle.setPrefHeight(textHolder.getLayoutBounds().getHeight() + 23);
+      promptEventTitle.setPrefHeight(textHolder.getLayoutBounds().getHeight() + 23);
     });
-    
+
     extraPane.getChildren().add(textHolder);
 
-    promptEventNote
-        .focusedProperty()
-        .addListener(
-            (observable, oldFocus, newFocus) -> {
-              if (!newFocus) currentEvent.getNode().setNote(promptEventNote.getText());
-            });
+    promptEventImportanceLevel.valueProperty().addListener((observable, oldValue, newValue) -> {
+      currentEvent.getNode().setImportanceLevel(promptEventImportanceLevel.getSelectionModel().getSelectedIndex());
+    });
+
+    promptEventDuration.valueProperty().addListener((observable, oldValue, newValue) -> {
+      currentEvent.getNode().setDuration(promptEventDuration.getSelectionModel().getSelectedIndex() * 3600l);
+    });
+
+    promptEventNote.focusedProperty().addListener((observable, oldFocus, newFocus) -> {
+      if (!newFocus)
+        currentEvent.getNode().setNote(promptEventNote.getText());
+    });
 
     // Add list items
     boardList.getChildren().clear();
@@ -240,11 +247,8 @@ public class HomeController {
       try {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene oldScene = ((Node) event.getSource()).getScene();
-        Scene scene =
-            new Scene(
-                FXMLLoader.load(getClass().getResource("settings.fxml")),
-                oldScene.getWidth(),
-                oldScene.getHeight());
+        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("settings.fxml")), oldScene.getWidth(),
+            oldScene.getHeight());
         scene.getStylesheets().add(getClass().getResource("default.css").toExternalForm());
         stage.setScene(scene);
         stage.show();

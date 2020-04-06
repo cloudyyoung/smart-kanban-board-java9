@@ -12,7 +12,8 @@ import java.util.*;
 public class Event extends Node {
 
   private int importanceLevel;
-  // importanceLevel range from 0 to 3, which 0 is not important and 3 is super important
+  // importanceLevel range from 0 to 3, which 0 is not important
+  // and 3 is super important
   private Long dueDate;
   // dueDate is the timeStamp
   private Long duration;
@@ -23,18 +24,11 @@ public class Event extends Node {
    *
    * @param obj the {@code HttpBody} for initialization
    */
-  public Event(
-      Integer id,
-      String title,
-      String note,
-      Long dueDate,
-      Long duration,
-      int importanceLevel,
-      Node parent) {
+  public Event(Integer id, String title, String note, Long dueDate, Long duration, int importanceLevel, Node parent) {
     super(id, title, note, parent);
-    this.setDuration(duration);
+    this.setDurationLocal(duration);
     this.setDueDateLocal(dueDate);
-    this.setImportanceLevel(importanceLevel);
+    this.setImportanceLevelLocal(importanceLevel);
   }
 
   /**
@@ -44,13 +38,29 @@ public class Event extends Node {
    */
   public Event(HttpBody obj) {
     super(obj);
-    this.duration = obj.getLong("duration");
-    this.dueDate = obj.getLong("due_date");
-    this.importanceLevel = obj.getInt("importance_level");
+    this.setDurationLocal(obj.getLong("duration"));
+    this.setDueDateLocal(obj.getLong("due_date"));
+    this.setImportanceLevelLocal(obj.getInt("importance_level"));
   }
 
-  public void setDuration(long duration) {
+  
+  private StructureRequest setDurationLocal(Long duration){
     this.duration = duration;
+    
+    StructureRequest req = new StructureRequest(true, false, this);
+    return req;
+  }
+
+  public Result setDuration(Long duration) {
+    Result res = new Result();
+    HttpRequest req = this.set("duration", duration);
+    res.add(req);
+
+    if (req.isSucceeded()) {
+      StructureRequest req2 = this.setDurationLocal(duration);
+      res.add(req2);
+    }
+    return res;
   }
 
   public Long getDuration() {
@@ -65,12 +75,46 @@ public class Event extends Node {
     return (int) (this.duration / 60000);
   }
 
-  public void setImportanceLevel(int importance) {
+  private StructureRequest setImportanceLevelLocal(int importance){
     this.importanceLevel = importance;
+    
+    StructureRequest req = new StructureRequest(true, false, this);
+    return req;
+  }
+
+  public Result setImportanceLevel(int importance) {
+    Result res = new Result();
+    HttpRequest req = this.set("importance_level", importance);
+    res.add(req);
+
+    if (req.isSucceeded()) {
+      StructureRequest req2 = this.setImportanceLevelLocal(importance);
+      res.add(req2);
+    }
+    return res;
   }
 
   public Integer getImportanceLevel() {
     return this.importanceLevel;
+  }
+
+  private StructureRequest setDueDateLocal(Long dueDate) {
+    this.dueDate = dueDate;
+
+    StructureRequest req = new StructureRequest(true, false, this);
+    return req;
+  }
+
+  public Result setDueDate(Long dueDate) {
+    Result res = new Result();
+    HttpRequest req = this.set("due_date", dueDate);
+    res.add(req);
+
+    if (req.isSucceeded()) {
+      StructureRequest req2 = this.setDueDateLocal(dueDate);
+      res.add(req2);
+    }
+    return res;
   }
 
   public Long getDueDate() {
@@ -78,7 +122,7 @@ public class Event extends Node {
   }
 
   public Long getDueDateValue() {
-    return this.dueDate != null ? this.dueDate : Long.MAX_VALUE;
+    return this.dueDate != null ? this.dueDate : 9223372036854775807l;
   }
 
   public String getDueDateString() {
@@ -88,23 +132,9 @@ public class Event extends Node {
   }
 
   public String toString() {
-    return this.getType()
-        + " (id: "
-        + this.getId()
-        + ", title: \""
-        + this.getTitle()
-        + "\", note: \""
-        + this.getNote()
-        + "\", duration: "
-        + this.getDuration()
-        + ", importanceLevel: "
-        + this.getImportanceLevel()
-        + ", priority: "
-        + this.getPriority()
-        + ", dueDate: "
-        + this.getDueDate()
-        + ", nodes: "
-        + this.getChildrenNodes().toString()
+    return this.getType() + " (id: " + this.getId() + ", title: \"" + this.getTitle() + "\", note: \"" + this.getNote()
+        + "\", duration: " + this.getDuration() + ", importanceLevel: " + this.getImportanceLevel() + ", priority: "
+        + this.getPriority() + ", dueDate: " + this.getDueDate() + ", nodes: " + this.getChildrenNodes().toString()
         + "\")";
   }
 
@@ -114,7 +144,8 @@ public class Event extends Node {
    * @return a boolean to represent if the event is over due.
    */
   public boolean isOverdue() {
-    if (this.getDueDate() == null) return false;
+    if (this.getDueDate() == null)
+      return false;
     Calendar c = Calendar.getInstance();
     if (this.getDueDateValue() * 1000 > c.getTimeInMillis()) {
       return false;
@@ -132,25 +163,6 @@ public class Event extends Node {
     int importancePriority = this.getImportanceLevel() * (timeDifferenceInHours / 24);
     int priority = timeDifferenceInHours - importancePriority;
     return priority;
-  }
-
-  public StructureRequest setDueDateLocal(Long dueDate) {
-    this.dueDate = dueDate;
-
-    StructureRequest req = new StructureRequest(true, false, this);
-    return req;
-  }
-
-  public Result setDueDate(Long dueDate) {
-    Result res = new Result();
-    HttpRequest req = this.set("due_date", dueDate);
-    res.add(req);
-
-    if (req.isSucceeded()) {
-      StructureRequest req2 = this.setDueDateLocal(dueDate);
-      res.add(req2);
-    }
-    return res;
   }
 
   public static void main(String[] args) {
