@@ -43,7 +43,7 @@
     -fx-light-text-color: #fff;
 
 	-fx-default-button: #2f2e2e;
-	-fx-focus-color: #2f2e2e12; /** 7% **/
+	-fx-focus-color: #00000012; /** 7% **/
 	-fx-faint-focus-color: transparent;
 
 	-fx-accent-90: #2f2e2ee6;
@@ -142,6 +142,7 @@
   -fx-background-color: -fx-accent;
   -fx-text-fill: -fx-light-text-color;
   -fx-alignment: CENTER;
+  -fx-effect: dropshadow(gaussian, -fx-accent-20, 10, 0, 1, 2);
 }
 
 .button.primary *{
@@ -149,7 +150,7 @@
 	-fx-fill: -fx-light-text-color;
 }
 
-.button:hover, .button:focused, .combo-box:hover, .combo-box:focused, .text-field:hover, .text-field:focused, .text-area .scroll-pane:hover, .text-area .scroll-pane:focused, .date-picker:hover, .date-picker:focused{
+.button:hover, .button:focused, .combo-box:hover, .combo-box:focused, .text-field:hover, .text-field:focused, .text-area:hover, .text-area:focused, .date-picker:hover, .date-picker:focused{
   -fx-background-color: -fx-focus-color;
 }
 
@@ -654,7 +655,7 @@
     -fx-fill: -fx-light-text-color;
     -fx-graphic-text-gap: 10px;
     -fx-content-display: LEFT;
-    -fx-effect: dropshadow(gaussian, -fx-accent-30, 10, 0, 1, 2); /** 15% **/
+    -fx-effect: dropshadow(gaussian, -fx-accent-20, 10, 0, 1, 2);
 }
 
 .bg-main .column .scroll-pane.event-list .button:hover{

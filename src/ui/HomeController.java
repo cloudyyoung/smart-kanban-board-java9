@@ -4,11 +4,12 @@ import java.sql.Timestamp;
 import java.time.*;
 import java.util.*;
 
-import javafx.event.ActionEvent;
+import javafx.event.*;
 import javafx.fxml.*;
 import javafx.scene.*;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.shape.*;
 import javafx.stage.*;
@@ -125,14 +126,9 @@ public class HomeController {
         .valueProperty()
         .addListener(
             (observable, oldDate, newDate) -> {
-              if (newDate != null) {
-                System.out.println(Timestamp.valueOf(newDate.atTime(LocalTime.MAX)).getTime() / 1000);
-                Result res =
-                    currentEvent
-                        .getNode()
-                        .setDueDate(Timestamp.valueOf(newDate.atTime(LocalTime.MAX)).getTime() / 1000);
-                System.out.println(res);
-              }
+              currentEvent
+                  .getNode()
+                  .setDueDate(Timestamp.valueOf(newDate.atTime(LocalTime.MAX)).getTime() / 1000);
             });
 
     inputSearch
@@ -146,6 +142,23 @@ public class HomeController {
               System.out.println(newText);
               System.out.println(list);
             });
+
+    
+    promptEventTitle.focusedProperty().addListener((observable, oldFocus, newFocus) -> {
+      if(!newFocus) currentEvent.getNode().setTitle(promptEventTitle.getText());
+    });
+
+
+    // The TextArea internally does not use the onKeyPressed property to handle keyboard input. Therefore, setting onKeyPressed does not remove the original event handler.
+    // To prevent TextArea's internal handler for the Enter key, you need to add an event filter that consumes the event.
+    // @link: https://stackoverflow.com/questions/26752924/how-to-stop-cursor-from-moving-to-a-new-line-in-a-textarea-when-enter-is-pressed
+    promptEventTitle.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
+      if (e.getCode() == KeyCode.ENTER){
+        e.consume();
+        promptEvent.requestFocus();
+      }
+    });
+
 
     // Add list items
     boardList.getChildren().clear();
