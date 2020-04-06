@@ -159,13 +159,13 @@ public class Terminal {
             "Time: "
                 // + Time.currentHour12(Time.currentHour24())
                 + ":"
-                + Time.currentMinute()
+                + TimeUtils.currentMinute()
                 + " on "
-                + Time.currentDayName()
+                + TimeUtils.currentDayName()
                 + " the "
-                + Time.currentDay()
+                + TimeUtils.currentDay()
                 + " of "
-                + Time.currentYear());
+                + TimeUtils.currentYear());
         System.out.println("");
 
         // 'exit' command exits to program

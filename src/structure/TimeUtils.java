@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
  * @version 1.0
  * @author Jerremy Lewis
  */
-public class Time {
+public class TimeUtils {
 
   /**
    * Returns the current 24hr hour

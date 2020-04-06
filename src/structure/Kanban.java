@@ -27,11 +27,11 @@ public class Kanban extends Node {
         new Board(
             1,
             "Today",
-            Time.monthName(Time.currentMonth())
+            TimeUtils.monthName(TimeUtils.currentMonth())
                 + " "
-                + Time.currentDay()
+                + TimeUtils.currentDay()
                 + ", "
-                + Time.currentYear(),
+                + TimeUtils.currentYear(),
             "#fd79a8",
             this);
 
@@ -127,20 +127,5 @@ public class Kanban extends Node {
       }
     }
     return ret;
-  }
-
-  public static void main(String[] args) {
-    User user = new User();
-    user.authenticate("cloudy", "cloudy");
-    // System.out.println((user);
-
-    Kanban.checkout();
-
-    System.out.println(Kanban.current);
-
-    System.out.println(Kanban.current.search("a"));
-
-    // System.out.println(("\ngenerateToday---");
-    // Kanban.current.generateToday();
   }
 }

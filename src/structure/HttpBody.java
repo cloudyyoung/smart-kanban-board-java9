@@ -447,41 +447,4 @@ public final class HttpBody extends HashMap<Object, Object> {
     return new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(parse);
   }
 
-  public static void main(String[] args) {
-    // Map<?, ?> gson = new
-    // GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().fromJson("{'authenticated':
-    // true, 'existing': true, 'id': 1, 'username': 'cloudy', 'sessid':
-    // '97lp374dbvmgthms6uk3mdi9ru'}", Map.class);
-    // System.out.println(gson);
-
-    // HttpBody body = new HttpBody(gson);
-    // System.out.println(body);
-    // System.out.println(body.getInt("id"));
-    HashMap<String, String> param = new HashMap<String, String>();
-    param.put("username", "111");
-    param.put("password", "222");
-    String gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(param);
-    System.out.println((gson));
-    // HttpBody body = new HttpBody(param);
-    // body.put("body", body);
-    // System.out.println(body);
-    // System.out.println(body.getInt("password2"));
-    // System.out.println(body.hasKey("password"));
-
-    // ArrayList<Object> list = new ArrayList<Object>();
-    // list.add("111");
-    // list.add("aaa");
-    // list.add(787);
-    // list.add("333");
-    // list.add(body);
-    // HttpBody bod2 = new HttpBody(list);
-    // System.out.println(bod2);
-
-    // HttpBody bod3 = new HttpBody();
-    // HttpBody bod4 = new HttpBody(true);
-    // bod4.put(111).put(999);
-    // bod3.put("obj", bod4);
-    // System.out.println(bod3);
-    // System.out.println(bod3.get("obj") instanceof HttpBody);
-  }
 }
