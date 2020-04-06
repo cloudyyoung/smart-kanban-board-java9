@@ -7,6 +7,7 @@ import javafx.stage.*;
 import javafx.scene.*;
 
 import structure.User;
+import structure.HttpBody;
 import structure.Result;
 
 public class SignUpController {
@@ -21,7 +22,13 @@ public class SignUpController {
 
   @FXML private Label labelErrorPassword;
 
+  @FXML private ComboBox<String> comboSecurityQuestion;
+
   @FXML private Label labelErrorSecQues;
+
+  @FXML private Label labelSecurityAnswerQuestion;
+
+  @FXML private TextField inputSecurityAnswer;
 
   @FXML private Label labelErrorSecAns;
 
@@ -32,19 +39,42 @@ public class SignUpController {
   @FXML
   void initialize() {
     // Intialize label text values
-    labelErrorUsername.setText("");
-    labelErrorPassword.setText("");
+    showError("");
     profileUsername.setText("");
+    if (comboSecurityQuestion != null)
+      comboSecurityQuestion
+          .getItems()
+          .addAll(
+              "What school did you attend for sixth grade?",
+              "In what city or town was your first job?",
+              "What is your oldest sibling's middle name?",
+              "In what city does your nearest sibling live?",
+              "What is the last name of the teacher who gave you your first failing grade?",
+              "What was the last name of your third grade teacher?",
+              "What was the name of the hospital where you were born?",
+              "What was the name of the company where you had your first job?",
+              "What is the first name of the boy or girl that you first kissed?",
+              "What was the make and model of your first car?",
+              "What was your favorite food as a child?",
+              "What is the name of your favorite childhood friend?",
+              "Where were you when you had your first alcoholic drink (or cigarette)?",
+              "What was the name of your second dog/cat/goldfish/etc?",
+              "Who was your childhood hero?",
+              "In what town or city did your mother and father meet?",
+              "What time of the day was your first child born? (hh:mm)",
+              "What were the last four digits of your childhood telephone number?",
+              "What was the house number and street name you lived in as a child?",
+              "What is your grandmother's (on your mother's side) maiden name?");
   }
 
   @FXML
   void next(ActionEvent event) {
     Button button = (Button) event.getSource();
     String id = button.getId();
-
-    System.out.println(id);
+    tabPane.setDisable(true);
 
     boolean next = true;
+    showError("");
 
     if (id.equals("buttonNextStart")) {
       try {
@@ -59,26 +89,52 @@ public class SignUpController {
         stage.setScene(scene);
         stage.show();
       } catch (Exception e) {
-        System.out.println(e);
+        e.printStackTrace();
       }
-    } else if (id.equals("buttonNextPassword-SignIn")) {
 
-      tabPane.setDisable(true);
-      String username = inputUsername.getText();
-      String password = inputPassword.getText();
-      Result res = User.authentication(username, password);
-      tabPane.setDisable(false);
+    } else if (id.equals("buttonNextSecQues-SignUp")) {
+      labelSecurityAnswerQuestion.setText(
+          comboSecurityQuestion.getSelectionModel().getSelectedItem());
+    } else {
+      Result res;
+      int totalField = 0;
 
-      if (res.isSucceeded()) {
-        profileUsername.setText(username);
-      } else if (res.isFailed()) {
+      if (id.contains("SignIn")) {
+        totalField = 2;
+        res = User.authentication(inputUsername.getText(), inputPassword.getText());
+      } else {
+        totalField = 4;
+        res =
+            User.registration(
+                inputUsername.getText(),
+                inputPassword.getText(),
+                comboSecurityQuestion.getSelectionModel().getSelectedItem(),
+                inputSecurityAnswer.getText());
+      }
+
+      if (res.isFailed()) {
+        int statusCode = res.getFailError().getInt("code");
+        HttpBody body = res.getFailError().getHttpBody("details");
+        // System.out.println((statusCode);
+        if (statusCode == 406 && totalField - body.size() > tab) {
+          next = true;
+        } else {
+          next = false;
+          showError(res.getFailError().getString("message"));
+        }
+      } else if (res.isExcepted()) {
         next = false;
-        String errorText =
-            res.getFail().getResponseBody().getHttpBody("error").getString("message");
-        labelErrorUsername.setText(errorText);
-        labelErrorPassword.setText(errorText);
+        String errorText = "Unexpected error occured";
+        showError(errorText);
+      } else {
+        if (id.contains("SignUp")) {
+          User.authentication(inputUsername.getText(), inputPassword.getText());
+        }
+        profileUsername.setText(User.current.getUsername());
       }
     }
+
+    tabPane.setDisable(false);
 
     if (next) {
       if (id.contains("Back")) tab--;
@@ -86,5 +142,12 @@ public class SignUpController {
       tabPane.getSelectionModel().select(tab);
       tabPane.requestFocus();
     }
+  }
+
+  void showError(String error) {
+    if (labelErrorUsername != null) labelErrorUsername.setText(error);
+    if (labelErrorPassword != null) labelErrorPassword.setText(error);
+    if (labelErrorSecQues != null) labelErrorSecQues.setText(error);
+    if (labelErrorSecAns != null) labelErrorSecAns.setText(error);
   }
 }

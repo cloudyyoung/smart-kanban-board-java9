@@ -30,22 +30,10 @@ public class Board extends Node {
    *
    * @param title The title in {@code String}
    * @param note The note in {@code String}
-   * @param color The color in {@code String}
-   */
-  public Board(String title, String note, String color) {
-    super(title, note);
-    this.setColorLocal(color);
-  }
-
-  /**
-   * Constructor of {@code Board}, provide title, note and color.
-   *
-   * @param title The title in {@code String}
-   * @param note The note in {@code String}
    * @param id THe id in {@code String}
    */
-  public Board(int id, String title, String note, String color) {
-    super(id, title, note);
+  public Board(int id, String title, String note, String color, Node parent) {
+    super(id, title, note, parent);
     this.setColorLocal(color);
   }
 

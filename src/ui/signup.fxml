@@ -6,14 +6,13 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
@@ -47,10 +46,9 @@
                                           <Label fx:id="labelErrorUsername" styleClass="error" wrapText="true" />
                                        </children>
                                     </VBox>
-                                    <ToolBar nodeOrientation="LEFT_TO_RIGHT" styleClass="operation">
-                                       <items>
-                                          <Region prefWidth="268.0" />
-                                          <Button id="buttonNextUsername" defaultButton="true" mnemonicParsing="false" onAction="#next" text="Next">
+                                    <HBox styleClass="operation">
+                                       <children>
+                                          <Button id="buttonNextUsername-SignUp" defaultButton="true" mnemonicParsing="false" onAction="#next" text="Next">
                                              <graphic>
                                                 <SVGPath content="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
                                                    <cursor>
@@ -61,10 +59,11 @@
                                              <styleClass>
                                                 <String fx:value="h5" />
                                                 <String fx:value="primary" />
+                                                <String fx:value="medium" />
                                              </styleClass>
                                           </Button>
-                                       </items>
-                                    </ToolBar>
+                                       </children>
+                                    </HBox>
                                  </children>
                               </VBox>
                            </children>
@@ -92,19 +91,18 @@
                                     </VBox>
                                     <VBox>
                                        <children>
-                                          <TextField fx:id="inputPassword" promptText="Choose your password" styleClass="h3" />
+                                          <PasswordField fx:id="inputPassword" promptText="Choose your password" styleClass="h3" />
                                           <Label fx:id="labelErrorPassword" styleClass="error" wrapText="true" />
                                        </children>
                                     </VBox>
-                                    <ToolBar nodeOrientation="LEFT_TO_RIGHT" styleClass="operation">
-                                       <items>
-                                          <Region prefWidth="212.0" />
+                                    <HBox styleClass="operation">
+                                       <children>
                                           <Button id="buttonBackPassword" defaultButton="true" mnemonicParsing="false" onAction="#next" text="Back">
                                              <styleClass>
                                                 <String fx:value="h5" />
                                              </styleClass>
                                           </Button>
-                                          <Button id="buttonNextPassword" defaultButton="true" mnemonicParsing="false" onAction="#next" text="Next">
+                                          <Button id="buttonNextPassword-SignUp" defaultButton="true" mnemonicParsing="false" onAction="#next" text="Next">
                                              <graphic>
                                                 <SVGPath content="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
                                                    <cursor>
@@ -115,10 +113,11 @@
                                              <styleClass>
                                                 <String fx:value="h5" />
                                                 <String fx:value="primary" />
+                                                <String fx:value="medium" />
                                              </styleClass>
                                           </Button>
-                                       </items>
-                                    </ToolBar>
+                                       </children>
+                                    </HBox>
                                  </children>
                               </VBox>
                            </children>
@@ -146,19 +145,18 @@
                                     </VBox>
                                     <VBox>
                                        <children>
-                                          <ComboBox prefWidth="150.0" promptText="Choose a security question" styleClass="h3" />
+                                          <ComboBox fx:id="comboSecurityQuestion" prefWidth="150.0" promptText="Choose a security question" styleClass="h3" />
                                           <Label fx:id="labelErrorSecQues" styleClass="error" wrapText="true" />
                                        </children>
                                     </VBox>
-                                    <ToolBar nodeOrientation="LEFT_TO_RIGHT" styleClass="operation">
-                                       <items>
-                                          <Region prefWidth="212.0" />
+                                    <HBox styleClass="operation">
+                                       <children>
                                           <Button id="buttonBackSecQues" defaultButton="true" mnemonicParsing="false" onAction="#next" text="Back">
                                              <styleClass>
                                                 <String fx:value="h5" />
                                              </styleClass>
                                           </Button>
-                                          <Button id="buttonNextSecQues" defaultButton="true" mnemonicParsing="false" onAction="#next" text="Next">
+                                          <Button id="buttonNextSecQues-SignUp" defaultButton="true" mnemonicParsing="false" onAction="#next" text="Next">
                                              <graphic>
                                                 <SVGPath content="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
                                                    <cursor>
@@ -169,10 +167,11 @@
                                              <styleClass>
                                                 <String fx:value="h5" />
                                                 <String fx:value="primary" />
+                                                <String fx:value="medium" />
                                              </styleClass>
                                           </Button>
-                                       </items>
-                                    </ToolBar>
+                                       </children>
+                                    </HBox>
                                  </children>
                               </VBox>
                            </children>
@@ -191,7 +190,7 @@
                                  <children>
                                     <VBox>
                                        <children>
-                                          <Label text="This is your questionThis is your questionThis is your questionThis is your questionThis is your question" wrapText="true">
+                                          <Label fx:id="labelSecurityAnswerQuestion" text="This is your questionThis is your questionThis is your questionThis is your questionThis is your question" wrapText="true">
                                              <styleClass>
                                                 <String fx:value="h3" />
                                              </styleClass>
@@ -200,19 +199,18 @@
                                     </VBox>
                                     <VBox>
                                        <children>
-                                          <TextField promptText="Please enter the answer" styleClass="h3" />
+                                          <TextField fx:id="inputSecurityAnswer" promptText="Please enter the answer" styleClass="h3" />
                                           <Label fx:id="labelErrorSecAns" styleClass="error" wrapText="true" />
                                        </children>
                                     </VBox>
-                                    <ToolBar nodeOrientation="LEFT_TO_RIGHT" styleClass="operation">
-                                       <items>
-                                          <Region prefHeight="37.0" prefWidth="190.0" />
+                                    <HBox styleClass="operation">
+                                       <children>
                                           <Button id="buttonBackSecAns" defaultButton="true" mnemonicParsing="false" onAction="#next" text="Back">
                                              <styleClass>
                                                 <String fx:value="h5" />
                                              </styleClass>
                                           </Button>
-                                          <Button id="buttonNextSecAns" defaultButton="true" mnemonicParsing="false" onAction="#next" text="Sign Up">
+                                          <Button id="buttonNextSecAns-SignUp" defaultButton="true" mnemonicParsing="false" onAction="#next" text="Sign Up">
                                              <graphic>
                                                 <SVGPath content="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
                                                    <cursor>
@@ -223,10 +221,11 @@
                                              <styleClass>
                                                 <String fx:value="h5" />
                                                 <String fx:value="primary" />
+                                                <String fx:value="medium" />
                                              </styleClass>
                                           </Button>
-                                       </items>
-                                    </ToolBar>
+                                       </children>
+                                    </HBox>
                                  </children>
                               </VBox>
                            </children>
@@ -245,7 +244,7 @@
                                  <children>
                                     <VBox>
                                        <children>
-                                          <Label styleClass="h3" text="Welcome!" />
+                                          <Label styleClass="h3" text="Enjoy!" />
                                        </children>
                                     </VBox>
                                     <VBox>
@@ -262,9 +261,8 @@
                                           <Insets bottom="20.0" />
                                        </VBox.margin>
                                     </VBox>
-                                    <ToolBar nodeOrientation="LEFT_TO_RIGHT" styleClass="operation">
-                                       <items>
-                                          <Region prefWidth="270.0" />
+                                    <HBox styleClass="operation">
+                                       <children>
                                           <Button id="buttonNextStart" mnemonicParsing="false" onAction="#next" text="Start">
                                              <graphic>
                                                 <SVGPath content="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
@@ -276,10 +274,11 @@
                                              <styleClass>
                                                 <String fx:value="h5" />
                                                 <String fx:value="primary" />
+                                                <String fx:value="medium" />
                                              </styleClass>
                                           </Button>
-                                       </items>
-                                    </ToolBar>
+                                       </children>
+                                    </HBox>
                                  </children>
                               </VBox>
                            </children>

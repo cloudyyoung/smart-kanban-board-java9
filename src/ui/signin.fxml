@@ -10,10 +10,8 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
@@ -34,7 +32,7 @@
                                  <children>
                                     <VBox>
                                        <children>
-                                          <Label text="Welcome,">
+                                          <Label text="Long time no see,">
                                              <styleClass>
                                                 <String fx:value="h3" />
                                              </styleClass>
@@ -47,10 +45,9 @@
                                           <Label fx:id="labelErrorUsername" styleClass="error" text="This is error text. This is error text. This is error text. This is error text. This is error text. " wrapText="true" />
                                        </children>
                                     </VBox>
-                                    <ToolBar nodeOrientation="LEFT_TO_RIGHT" styleClass="operation">
-                                       <items>
-                                          <Region prefWidth="272.0" />
-                                          <Button id="buttonNextUsername" defaultButton="true" mnemonicParsing="false" onAction="#next" text="Next">
+                                    <VBox styleClass="operation">
+                                       <children>
+                                          <Button id="buttonNextUsername-SignIn" defaultButton="true" mnemonicParsing="false" onAction="#next" text="Next">
                                              <graphic>
                                                 <SVGPath content="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
                                                    <cursor>
@@ -64,8 +61,8 @@
                                                 <String fx:value="medium" />
                                              </styleClass>
                                           </Button>
-                                       </items>
-                                    </ToolBar>
+                                       </children>
+                                    </VBox>
                                  </children>
                               </VBox>
                            </children>
@@ -97,9 +94,8 @@
                                           <Label fx:id="labelErrorPassword" styleClass="error" text="This is error text. This is error text. This is error text. This is error text. This is error text. " wrapText="true" />
                                        </children>
                                     </VBox>
-                                    <ToolBar nodeOrientation="LEFT_TO_RIGHT" styleClass="operation">
-                                       <items>
-                                          <Region prefHeight="37.0" prefWidth="197.0" />
+                                    <HBox styleClass="operation">
+                                       <children>
                                           <Button id="buttonBackPassword" defaultButton="true" mnemonicParsing="false" onAction="#next" text="Back">
                                              <styleClass>
                                                 <String fx:value="h5" />
@@ -119,8 +115,8 @@
                                                 <String fx:value="medium" />
                                              </styleClass>
                                           </Button>
-                                       </items>
-                                    </ToolBar>
+                                       </children>
+                                    </HBox>
                                  </children>
                               </VBox>
                            </children>
@@ -156,9 +152,8 @@
                                           <Insets bottom="20.0" />
                                        </VBox.margin>
                                     </VBox>
-                                    <ToolBar nodeOrientation="LEFT_TO_RIGHT" styleClass="operation">
-                                       <items>
-                                          <Region prefWidth="270.0" />
+                                    <HBox styleClass="operation">
+                                       <children>
                                           <Button id="buttonNextStart" mnemonicParsing="false" onAction="#next" text="Start">
                                              <graphic>
                                                 <SVGPath content="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" fill="WHITE" fillRule="EVEN_ODD" mouseTransparent="true">
@@ -173,8 +168,8 @@
                                                 <String fx:value="medium" />
                                              </styleClass>
                                           </Button>
-                                       </items>
-                                    </ToolBar>
+                                       </children>
+                                    </HBox>
                                  </children>
                               </VBox>
                            </children>
