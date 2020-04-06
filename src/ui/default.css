@@ -960,7 +960,6 @@
 
 .bg-prompt .text-area{
 	-fx-pref-row-count: 1;
-	-fx-min-height: 46px;
 }
 
 .bg-prompt .text-area .content{
@@ -971,6 +970,7 @@
 	-fx-border-width: 0px;
 	-fx-border-color: transparent;
 	-fx-text-fill: -fx-accent;
+	-fx-min-height: 46px;
 }
 
 .bg-prompt .field{
