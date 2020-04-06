@@ -482,9 +482,9 @@
                               </Button>
                            </children>
                         </HBox>
-                        <HBox styleClass="prompt-content">
+                        <VBox styleClass="prompt-content">
                            <children>
-                              <TextArea fx:id="promptEventTitle" text="Hold on tight Lucky chance. It's mine Lucky strike. I'm your luck, take it." wrapText="true" HBox.hgrow="ALWAYS">
+                              <TextArea fx:id="promptEventTitle" text="Hold on tight Lucky chance. It's mine Lucky strike. I'm your luck, take it." wrapText="true">
                                  <styleClass>
                                     <String fx:value="h3" />
                                     <String fx:value="bold" />
@@ -492,7 +492,7 @@
                                  </styleClass>
                               </TextArea>
                            </children>
-                        </HBox>
+                        </VBox>
                         <VBox styleClass="prompt-content">
                            <children>
                               <HBox styleClass="field">
