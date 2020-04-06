@@ -158,18 +158,19 @@ public class HomeController {
         .addListener(
             (observable, oldFocus, newFocus) -> {
               if (!newFocus) {
-            	  String title = promptEventTitle.getText();
-            	  currentEvent.setText(title);
-            	  currentEvent.getNode().setTitle(title);
+                String title = promptEventTitle.getText();
+                currentEvent.setText(title);
+                currentEvent.getNode().setTitle(title);
               }
             });
-    
-    promptEventTitle.textProperty()
-    .addListener(
-        (observable, oldText, newText) -> {
-    	  String title = promptEventTitle.getText();
-      	  currentEvent.setText(title);
-        });
+
+    promptEventTitle
+        .textProperty()
+        .addListener(
+            (observable, oldText, newText) -> {
+              String title = promptEventTitle.getText();
+              currentEvent.setText(title);
+            });
 
     // The TextArea internally does not use the onKeyPressed property to handle keyboard input.
     // Therefore, setting onKeyPressed does not remove the original event handler.
@@ -190,10 +191,13 @@ public class HomeController {
     textHolder.getStyleClass().addAll(promptEventTitle.getStyleClass());
     textHolder.setStyle(promptEventTitle.getStyle());
     textHolder.setWrappingWidth(450);
-    textHolder.layoutBoundsProperty().addListener((observable, oldValue, newValue) -> {
-       promptEventTitle.setPrefHeight(textHolder.getLayoutBounds().getHeight() + 23);
-    });
-    
+    textHolder
+        .layoutBoundsProperty()
+        .addListener(
+            (observable, oldValue, newValue) -> {
+              promptEventTitle.setPrefHeight(textHolder.getLayoutBounds().getHeight() + 23);
+            });
+
     extraPane.getChildren().add(textHolder);
 
     promptEventNote
