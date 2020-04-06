@@ -174,11 +174,11 @@
 }
 
 .text-field, .combo-box, .text-area, .date-picker{
-	-fx-border-width: 0 0 2px 0;
+	-fx-border-width: 0 0 2px;
 	-fx-border-color: -fx-accent-40;
 	-fx-border-radius: 0;
 	-fx-background-radius: 0;
-	-fx-alignment: CENTER_LEFT;	
+	-fx-alignment: CENTER_LEFT;
 }
 
 .text-field:focused, .text-area:focused, .button:focused, .combo-box:focused, .date-picker:focused{
@@ -192,7 +192,7 @@
 
 .text-area .scroll-pane{
 	-fx-hbar-policy:never;
-    -fx-vbar-policy:never; 
+    -fx-vbar-policy:never;
 }
 
 .tool-bar{
@@ -228,7 +228,7 @@
 .scroll-bar .decrement-button {
     -fx-background-color :transparent;
     -fx-background-radius : 0;
-    -fx-padding: -10 -10;
+    -fx-padding: -10;
     -fx-opacity: 0%;
 }
 
@@ -263,7 +263,7 @@
 
 .tab-pane {
     -fx-tab-max-height: 0 ;
-} 
+}
 .tab-pane .tab-header-area {
     visibility: hidden ;
 }
@@ -388,7 +388,7 @@
 	-fx-max-height: 0 !important;
 	-fx-pref-width: 0 !important;
 	-fx-max-width: 0 !important;
-	-fx-min-width: 0 !important; 
+	-fx-min-width: 0 !important;
 }
 
 /** Typography **/
@@ -465,7 +465,7 @@
 
 /* .bg-side .scroll-pane .button, */
 .bg-side .button{
-	-fx-padding: 12px 20 12px 20;
+	-fx-padding: 12px 20;
     -fx-graphic-text-gap: 20;
 	-fx-border-width: 0 0 0 4px;
 	-fx-border-color: transparent;
@@ -509,7 +509,7 @@
 }
 
 .bg-side .username{
-	-fx-padding: 22px 15px 22px 15px !important;
+	-fx-padding: 22px 15px !important;
 }
 
 .bg-side .username #username-label{
@@ -534,7 +534,7 @@
 }
 
 .bg-main .tab-box.title{
-	-fx-padding: 30 50 10 50;
+	-fx-padding: 30 50 10;
 	-fx-background-color: -fx-base;
 	-fx-spacing: 10;
 }
@@ -547,7 +547,7 @@
 }
 
 .bg-main .board-note{
-	-fx-padding: -2px 0 0 0;
+	-fx-padding: -2px 0 0;
 	-fx-border-width: 0;
 	-fx-text-fill: -fx-dark-text-color;
 	-fx-cursor: auto;
@@ -567,7 +567,7 @@
 
 .bg-main .combo-box{
 	-fx-min-width: 150;
-	-fx-padding: 8px 8px;
+	-fx-padding: 8px;
 	-fx-border-radius: 0;
 	-fx-border-width: 0;
 }
@@ -588,7 +588,7 @@
 	-fx-max-width: 266px;
 	-fx-pref-width: 266px;
 	-fx-background-color: transparent;
-	-fx-padding: 0 0 0 0;
+	-fx-padding: 0;
 }
 
 .bg-main .column .scroll-pane VBox{
@@ -639,7 +639,7 @@
 }
 
 .bg-main .column .scroll-pane{
-	-fx-padding: 4px 0 0 0;
+	-fx-padding: 4px 0 0;
 }
 
 .bg-main .column .scroll-pane.event-list .button{
@@ -709,12 +709,12 @@
 
 .bg-settings .title-wrapper{
 	-fx-background-color: -fx-base;
-	-fx-border-width: 0 0 2px 0;
+	-fx-border-width: 0 0 2px;
 	-fx-border-color: -fx-accent-30;
 }
 
 .bg-settings .scroll-pane .username{
-	-fx-padding: 0 0 0 0;
+	-fx-padding: 0;
 }
 
 .bg-settings .settings{
@@ -731,7 +731,7 @@
 
 .bg-settings .settings-wrapper{
 	-fx-alignment: CENTER;
-	-fx-padding: 20 10 40 10;
+	-fx-padding: 20 10 40;
 }
 
 .bg-settings .settings HBox .label{
@@ -770,7 +770,7 @@
 
 .bg-signin .signin-wrapper{
 	-fx-alignment: CENTER;
-	-fx-padding: 30 10 0 10;
+	-fx-padding: 30 10 0;
 }
 
 .bg-signin .signin-wrapper VBox{
@@ -847,7 +847,7 @@
 
 .bg-welcome .welcome-wrapper{
 	-fx-alignment: CENTER;
-	-fx-padding: 30 10 0 10;
+	-fx-padding: 30 10 0;
 }
 
 .bg-welcome .welcome-wrapper VBox{
@@ -916,7 +916,7 @@
 .bg-prompt .prompt-content-wrapper{
 	-fx-border-width: 0;
 	-fx-spacing: 10;
-	-fx-padding: 35px 50 50 50;
+	-fx-padding: 35px 50 50;
 }
 
 .bg-prompt .prompt-title{
