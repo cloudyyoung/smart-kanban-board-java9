@@ -107,13 +107,14 @@ public class Kanban extends Node {
    * Search
    *
    */
-  public ArrayList<Event> searchByName(String name) {
-    ArrayList<Event> ret = new ArrayList<Event>();
+  public ArrayList<Node> search(String name) {
+    ArrayList<Node> ret = new ArrayList<Node>();
     Kanban kanban = Kanban.current;
 
     for (Node board : kanban.getChildrenNodes()) {
       // excluded Today
       if (board.getId() >= 100) {
+        
         for (Node column : board.getChildrenNodes()) {
           for (Node node_event : column.getChildrenNodes()) {
             Event event = (Event) node_event;
@@ -128,6 +129,7 @@ public class Kanban extends Node {
     }
     return ret;
   }
+
 
   public static void main(String[] args) {
     User user = new User();

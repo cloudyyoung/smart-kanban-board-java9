@@ -1,6 +1,7 @@
 package ui;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 import javafx.event.ActionEvent;
@@ -41,6 +42,8 @@ public class HomeController {
   @FXML private Button boardAddColumn;
 
   @FXML private HBox columnPane;
+
+  @FXML private TextField inputSearch;
 
   @FXML private Pane dragPane;
 
@@ -126,6 +129,14 @@ public class HomeController {
       }
       // ts.getTime();
       // System.out.println(currentEvent.getNode());
+    });
+
+    inputSearch.textProperty().addListener((observable, oldText, newText) -> {
+      if(newText.equals("")){
+        return;
+      }
+      ArrayList<structure.Node> list = Kanban.current.search(newText);
+      System.out.println(list);
     });
 
     // Add list items

@@ -436,7 +436,7 @@
                                  <center>
                                     <VBox BorderPane.alignment="CENTER">
                                        <children>
-                                          <TextField promptText="Search any thing...">
+                                          <TextField fx:id="inputSearch" promptText="Search any thing...">
                                              <styleClass>
                                                 <String fx:value="bold" />
                                                 <String fx:value="search" />
