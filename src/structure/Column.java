@@ -46,7 +46,7 @@ public final class Column extends Node {
   }
 
   public boolean hasEnoughTime(final Event eventNext) {
-	Long totalTime = 25_200L;
+    Long totalTime = 25_200L;
     Long timeAccumulator = 0L;
     for (final Node node : this.getChildrenNodes()) {
       final Event event = (Event) node;
@@ -54,7 +54,7 @@ public final class Column extends Node {
     }
     return (eventNext.getDuration() + timeAccumulator) <= totalTime ? true : false;
   }
-  
+
   @Override
   public String toString() {
     return this.getType()

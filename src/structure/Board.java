@@ -32,7 +32,12 @@ public final class Board extends Node {
    * @param note The note in {@code String}
    * @param boardId THe id in {@code String}
    */
-  public Board(final int boardId, final String title, final String note, final String color, final Node parent) { // NOPMD by 25985 on 2020-04-06, 9:26 a.m.
+  public Board(
+      final int boardId,
+      final String title,
+      final String note,
+      final String color,
+      final Node parent) { // NOPMD by 25985 on 2020-04-06, 9:26 a.m.
     super(boardId, title, note, parent);
     this.setColorLocal(color);
   }
@@ -53,7 +58,7 @@ public final class Board extends Node {
    * @return the http request of this action
    */
   public HttpRequest setColor(final String color) {
-	final HttpRequest req = this.set("color", color);
+    final HttpRequest req = this.set("color", color);
     if (req.isSucceeded()) {
       this.setColorLocal(color);
     }
