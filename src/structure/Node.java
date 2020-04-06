@@ -1,9 +1,6 @@
 package structure;
 
-import java.util.HashMap;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
+import java.util.*;
 
 import com.google.gson.annotations.*;
 
@@ -17,12 +14,17 @@ import java.lang.reflect.Constructor;
  */
 public abstract class Node {
 
+  public static final int SORT_BY_ID = 0;
+  public static final int SORT_BY_PRIORITY = 5;
+  public static final int ORDER_BY_ASC = 0;
+  public static final int ORDER_BY_DESC = 1;
+
   /**
    * The id of the instance, provided by the server. It is exposed to Gson, cannot be serialized and
    * can be deserialized.
    */
   @Expose(serialize = false, deserialize = true)
-  private int id;
+  private Integer id;
 
   /** The title of the instance. It is exposed to Gson, can be both serialized and deserialized. */
   @Expose private String title;
@@ -36,7 +38,7 @@ public abstract class Node {
   /**
    * The parent id of the instance. It is exposed to Gson, can be both serialized and deserialized.
    */
-  @Expose private int parentId;
+  @Expose private Integer parentId;
 
   /**
    * The boolean to indicate whether this instance is on the server. {@code false} inidicates this
@@ -48,7 +50,7 @@ public abstract class Node {
   private Node parent;
 
   /** The children {@code Node} object of the instance. */
-  private HashMap<Integer, Node> nodes = new HashMap<Integer, Node>();
+  private LinkedHashMap<Integer, Node> nodes = new LinkedHashMap<Integer, Node>();
 
   /**
    * The dictionary of the {@code Node} hierarchy. It is used to identify the parent or children
@@ -74,26 +76,17 @@ public abstract class Node {
    * @param id the id in {@code int}
    * @param title the title in {@code String}
    * @param note the note in {@code String}
+   * @param parent the parent node in {@code Node}
    */
-  public Node(int id, String title, String note) {
+  public Node(Integer id, String title, String note, Node parent) {
     this.setId(id);
     this.setTitleLocal(title);
     this.setNoteLocal(note);
+    this.setParentLocal(parent);
   }
 
   /** Default constructor of {@code Kanban}. */
   public Node() {}
-
-  /**
-   * Constructor of {@code Node}, provide title and note.
-   *
-   * @param title the title in {@code String}
-   * @param note the note in {@code String}
-   */
-  public Node(String title, String note) {
-    this.setTitleLocal(title);
-    this.setNoteLocal(note);
-  }
 
   /**
    * Constructor of {@code Node}, provide object to map.
@@ -130,7 +123,6 @@ public abstract class Node {
         if (objNew instanceof Node) {
           Node nodeNew = (Node) objNew;
           nodeNew.setParentLocal(this);
-          this.nodes.put(nodeNew.getId(), nodeNew);
         }
       } catch (Exception e) {
         // e.printStackTrace();
@@ -182,7 +174,7 @@ public abstract class Node {
    *
    * @return the id of the instance
    */
-  public int getId() {
+  public Integer getId() {
     return this.id;
   }
 
@@ -200,7 +192,7 @@ public abstract class Node {
    *
    * @param id the id of the instance
    */
-  private void setId(int id) {
+  private void setId(Integer id) {
     this.id = id;
   }
 
@@ -211,8 +203,21 @@ public abstract class Node {
    * @return the strcuture request of the action
    */
   protected StructureRequest setParentLocal(Node parent) {
-    this.parent = parent;
-    this.parentId = parent.getId();
+
+    if (parent != null) {
+      // Remove self from old parent
+      if (this.getParent() != null && this.getParent() != parent) {
+        this.getParent().removeNode(this);
+      }
+
+      // Set new parent
+      this.parent = parent;
+      this.parentId = this.parent.getId();
+      this.getParent().addNode(this);
+    } else {
+      this.parent = null;
+      this.parentId = null;
+    }
 
     StructureRequest req = new StructureRequest(true, false, this);
     return req;
@@ -251,7 +256,7 @@ public abstract class Node {
    * @return the title of the instance
    */
   public String getTitle() {
-    return this.title;
+    return this.title == null ? "" : this.title;
   }
 
   /**
@@ -326,7 +331,7 @@ public abstract class Node {
    * @return the note of the instance
    */
   public String getNote() {
-    return this.note;
+    return this.note == null ? "" : this.note;
   }
 
   /**
@@ -336,7 +341,7 @@ public abstract class Node {
    * @param value the value of the property
    * @return the http request of this action, of sending the request to the server
    */
-  protected HttpRequest set(String key, String value) {
+  protected HttpRequest set(Object key, Object value) {
     HttpBody body = new HttpBody();
     body.put(key, value);
 
@@ -346,8 +351,8 @@ public abstract class Node {
     req.setRequestBody(body);
     req.setRequestCookie(Node.getRequestCookie());
     req.send();
-    System.out.println(req.getRequestBodyString());
-    System.out.println(req.getResponseBodyString());
+    // System.out.println(req.getRequestBodyString());
+    // System.out.println(req.getResponseBodyString());
     return req;
   }
 
@@ -508,9 +513,13 @@ public abstract class Node {
    * @param node the {@code Node} object to be added
    * @return the structure request of this action
    */
-  public StructureRequest addNode(Node node) {
-    this.nodes.put(node.getId(), node);
-    return new StructureRequest(true, false, this);
+  public StructureRequest addNode(Node nodeAdded) {
+    if (nodeAdded != null) {
+      this.nodes.put(nodeAdded.getId(), nodeAdded);
+      return new StructureRequest(true, false, this);
+    } else {
+      return new StructureRequest(false, true, this);
+    }
   }
 
   /**
@@ -522,6 +531,16 @@ public abstract class Node {
   public StructureRequest removeNode(int id) {
     boolean succeeded = this.nodes.remove(id) != null;
     return new StructureRequest(succeeded, !succeeded, this);
+  }
+
+  /**
+   * Removes a child node of the instance, in the local storage.
+   *
+   * @param node the node instance of the {@code Node} object to be removed
+   * @return the strcuture request of the action
+   */
+  public StructureRequest removeNode(Node node) {
+    return this.removeNode(node.getId());
   }
 
   /**
@@ -540,8 +559,26 @@ public abstract class Node {
    * @return a {@code Collection} of all the children nodes
    */
   public ArrayList<Node> getChildrenNodes() {
-    ArrayList<Node> arr = new ArrayList<Node>(this.nodes.values());
-    return arr;
+    return this.getChildrenNodes(Node.SORT_BY_ID, Node.ORDER_BY_ASC);
+  }
+
+  public ArrayList<Node> getChildrenNodes(int sortBy, int order) {
+    ArrayList<Node> list = new ArrayList<Node>(this.nodes.values());
+    Collections.sort(
+        list,
+        new Comparator<Node>() {
+          @Override
+          public int compare(Node entry1, Node entry2) {
+            if (entry1 instanceof Event
+                && entry2 instanceof Event
+                && (sortBy == Node.SORT_BY_PRIORITY)) {
+              return ((Event) entry1).getPriority() - ((Event) entry2).getPriority();
+            }
+            return entry1.getId() - entry2.getId();
+          }
+        });
+    if (order == Node.ORDER_BY_DESC) Collections.reverse(list);
+    return list;
   }
 
   /**
@@ -613,17 +650,22 @@ public abstract class Node {
     return type.toUpperCase();
   }
 
+  // test
+  public LinkedHashMap<Integer, Node> getNodes() {
+    return this.nodes;
+  }
+
   public static void main(String[] args) {
     User user = new User();
     user.authenticate("cloudy", "cloudy");
-    System.out.println(user);
+    // System.out.println((user);
     Kanban.checkout();
-    System.out.println(Kanban.current);
+    // System.out.println((Kanban.current);
 
     Node node = Kanban.current.getNode(50);
-    System.out.println(node);
+    // System.out.println((node);
     node.setTitle("new title");
-    System.out.println(node);
+    // System.out.println((node);
 
     // Kanban kanban = new Kanban();
     // Board aNode = new Board("new Node2 cloudyyyyyy", "", "#00b0f0");

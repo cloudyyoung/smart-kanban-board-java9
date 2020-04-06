@@ -43,7 +43,7 @@
     -fx-light-text-color: #fff;
 
 	-fx-default-button: #2f2e2e;
-	-fx-focus-color: #2f2e2e12; /** 7% **/
+	-fx-focus-color: #00000012; /** 7% **/
 	-fx-faint-focus-color: transparent;
 
 	-fx-accent-90: #2f2e2ee6;
@@ -69,6 +69,28 @@
 	-fx-font-size: 12px;
 }
 
+.combo-box .combo-box-popup{
+	-fx-font-family: "Noto Sans Regular";
+	-fx-font-size: 12px;
+}
+
+.combo-box .combo-box-popup .list-view {
+	-fx-border-width: 0;
+	-fx-background-color: -fx-base;
+	-fx-effect: dropshadow(gaussian , -fx-accent-20, 10, 0, 1, 2) !important;
+	-fx-padding: 0;
+}
+
+.combo-box .combo-box-popup .list-view .list-cell {
+    -fx-padding: 6px;
+    -fx-background-color: -fx-base;
+}
+.combo-box .combo-box-popup .list-view .list-cell:hover,
+.combo-box .combo-box-popup .list-view .list-cell:focused {
+    -fx-background-color: -fx-focus-color;
+}
+
+
 *{
 	-fx-text-fill: -fx-dark-text-color;
 	-fx-alignment: CENTER_LEFT;
@@ -79,8 +101,8 @@
 	-fx-text-fill: -fx-light-text-color !important;
 	-fx-fill: -fx-light-text-color !important;
 	-fx-font-size: 10px !important;
-	-fx-border-radius: 0px !important;
-	-fx-background-radius: 0px !important;
+	-fx-border-radius: 0 !important;
+	-fx-background-radius: 0 !important;
 	-fx-padding: 4px 5px !important;
 	-fx-font-family: "Noto Sans JP Regular" !important;
 	-fx-effect: none;
@@ -92,11 +114,13 @@
   -fx-background-color: inherit;
   -fx-padding: 4px 6px;
   -fx-font-size: 12px;
-  -fx-background-radius: 0px;
-  -fx-border-radius: 0px;
-  -fx-border-width: 0px;
+  -fx-background-radius: 0;
+  -fx-border-radius: 0;
+  -fx-border-width: 0;
   -fx-border-color: transparent;
+
 }
+
 
 .button{
   -fx-alignment: CENTER_LEFT;
@@ -107,6 +131,8 @@
   -fx-fill: -fx-dark-text-color;
   -fx-border-width: 2px;
   -fx-border-color: transparent;
+  -fx-border-radius: 4px;
+  -fx-background-radius: 4px;
 }
 
 .button *{
@@ -118,6 +144,7 @@
   -fx-background-color: -fx-accent;
   -fx-text-fill: -fx-light-text-color;
   -fx-alignment: CENTER;
+  -fx-effect: dropshadow(gaussian, -fx-accent-20, 10, 0, 1, 2);
 }
 
 .button.primary *{
@@ -125,32 +152,33 @@
 	-fx-fill: -fx-light-text-color;
 }
 
-.button:hover, .button:focused, .combo-box:hover, .combo-box:focused, .text-field:hover, .text-field:focused, .text-area .scroll-pane:hover, .text-area .scroll-pane:focused, .date-picker:hover, .date-picker:focused{
-  -fx-background-color: -fx-focus-color;
-}
-
-.button:hover, .button:focused{
-  -fx-border-color: -fx-focus-color;
-}
-
 .button.primary:hover, .button.primary:focused{
+	-fx-effect: dropshadow(gaussian, -fx-focus-color, 10, 0, 1, 2);
 	-fx-background-color: -fx-accent-90;
     -fx-border-color: -fx-accent-90;
 }
 
+.button:hover, .button:focused, .combo-box:hover, .combo-box:focused, .text-field:hover, .text-field:focused, .text-area:hover, .text-area:focused, .date-picker:hover, .date-picker:focused{
+  -fx-background-color: -fx-focus-color;
+}
+
+.button:hover, .button:focused{
+  /* -fx-border-color: -fx-focus-color; */
+  -fx-border-color: transparent;
+}
 
 .text-field, .text-area, .text-area *, .date-picker{
 	-fx-background-color: transparent;
-	-fx-padding: 0px;
+	-fx-padding: 0;
 	-fx-font-size: 12px;
 }
 
 .text-field, .combo-box, .text-area, .date-picker{
-	-fx-border-width: 0px 0px 2px 0px;
+	-fx-border-width: 0 0 2px;
 	-fx-border-color: -fx-accent-40;
-	-fx-border-radius: 0px;
-	-fx-background-radius: 0px;
-    -fx-alignment: CENTER_LEFT;
+	-fx-border-radius: 0;
+	-fx-background-radius: 0;
+	-fx-alignment: CENTER_LEFT;
 }
 
 .text-field:focused, .text-area:focused, .button:focused, .combo-box:focused, .date-picker:focused{
@@ -164,22 +192,25 @@
 
 .text-area .scroll-pane{
 	-fx-hbar-policy:never;
-    -fx-vbar-policy:never; 
+    -fx-vbar-policy:never;
 }
 
 .tool-bar{
 	-fx-background-color: transparent;
-	-fx-border-width: 0px;
+	-fx-border-width: 0;
 }
 
 .combo-box .list-cell{
-	-fx-padding: 0px;
+	-fx-padding: 0;
 }
 
 /** Scroll Bar Global Re-Styling **/
 .scroll-pane, .scroll-pane .viewport {
 	-fx-background-color: transparent;
-	-fx-border-width: 0px;
+	-fx-background-insets: 0;
+	-fx-background-radius: 0;
+	-fx-border-width: 0;
+	-fx-border-radius: 0;
 }
 
 .scroll-pane .scroll-bar{
@@ -196,33 +227,33 @@
 .scroll-bar .increment-button,
 .scroll-bar .decrement-button {
     -fx-background-color :transparent;
-    -fx-background-radius : 0px;
-    -fx-padding: -10px -10px;
+    -fx-background-radius : 0;
+    -fx-padding: -10px;
     -fx-opacity: 0%;
 }
 
 .scroll-bar .track{
     -fx-background-color: transparent;
     -fx-border-color: transparent;
-    -fx-border-width: 0px;
-    -fx-background-radius: 0px;
-    -fx-border-radius: 0px;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
     -fx-opacity: 0;
-    -fx-padding: 0px;
+    -fx-padding: 0;
 }
 
 .scroll-bar .increment-arrow,
 .scroll-bar .decrement-arrow{
     -fx-background-color :transparent;
     -fx-shape: " ";
-    -fx-padding: 0px;
+    -fx-padding: 0;
 }
 
 .scroll-bar .thumb {
     -fx-background-color: -fx-accent-20;
-    -fx-background-insets: 0px;
+    -fx-background-insets: 0;
     -fx-background-radius: 50px;
-    -fx-padding: 0px;
+    -fx-padding: 0;
 }
 
 
@@ -232,7 +263,7 @@
 
 .tab-pane {
     -fx-tab-max-height: 0 ;
-} 
+}
 .tab-pane .tab-header-area {
     visibility: hidden ;
 }
@@ -240,7 +271,7 @@
 
 /** Date Picker **/
 .date-picker .text-field{
-	-fx-border-width: 0px;
+	-fx-border-width: 0;
 }
 .date-picker .text-field{
 	-fx-background-color: transparent;
@@ -252,7 +283,7 @@
     -fx-background-radius: 0;
     -fx-alignment: CENTER; /* VBox */
     -fx-spacing: 0; /* VBox */
-    -fx-padding: 0px; /* 1 1 1 1 */
+    -fx-padding: 0; /* 1 1 1 1 */
     -fx-effect: dropshadow(gaussian , -fx-accent-20, 10, 0, 1, 2) !important;
     -fx-max-width: 300px !important;
 }
@@ -270,7 +301,7 @@
     -fx-background-color: transparent;
     -fx-background-insets: 0, 1, 2;
     -fx-background-radius: 0;
-    -fx-border-width: 0px !important;
+    -fx-border-width: 0 !important;
 	-fx-max-width: 30px !important;
 	-fx-max-height: 30px !important;
 	-fx-pref-width: 30px !important;
@@ -352,17 +383,13 @@
 
 .hide{
 	visibility: false !important;
-	-fx-pref-height: 0px !important;
-	-fx-min-height: 0px !important;
-	-fx-max-height: 0px !important;
-	-fx-pref-width: 0px !important;
-	-fx-max-width: 0px !important;
-	-fx-min-width: 0px !important; 
+	-fx-pref-height: 0 !important;
+	-fx-min-height: 0 !important;
+	-fx-max-height: 0 !important;
+	-fx-pref-width: 0 !important;
+	-fx-max-width: 0 !important;
+	-fx-min-width: 0 !important;
 }
-
-
-
-
 
 /** Typography **/
 
@@ -405,6 +432,12 @@
 }
 
 
+/** Base **/
+.base{
+	-fx-alignment: CENTER;
+}
+
+
 /** Side Menu Components **/
 /** Name your selector starting with .bg-side **/
 .bg-side{
@@ -412,7 +445,7 @@
 }
 
 .bg-side *{
-  -fx-background-radius: 0px;
+  -fx-background-radius: 0;
   -fx-background-color: -fx-side-background;
   -fx-max-width: 210px; /** Here to change the sidebar width **/
 }
@@ -423,7 +456,7 @@
 }
 
 .bg-side .button .circle{
-	-fx-stroke-width: 0px;
+	-fx-stroke-width: 0;
 }
 
 .bg-side:hover .scroll-bar{ /** Only show scroll bar when mouse is hover on scroll pane **/
@@ -432,10 +465,11 @@
 
 /* .bg-side .scroll-pane .button, */
 .bg-side .button{
-	-fx-padding: 12px 20px 12px 20px;
+	-fx-padding: 12px 20px;
     -fx-graphic-text-gap: 20px;
-	-fx-border-width: 0px 0px 0px 4px;
+	-fx-border-width: 0 0 0 4px;
 	-fx-border-color: transparent;
+	-fx-border-radius: 0;
 	-fx-text-fill: -fx-accent;
 	-fx-pref-width: 1000px;
 	-fx-font-family: "Noto Sans JP Medium";
@@ -470,12 +504,12 @@
 }
 
 .bg-side .scroll-pane{
-	-fx-border-width: 0px;
-	-fx-padding: 0px;
+	-fx-border-width: 0;
+	-fx-padding: 0;
 }
 
 .bg-side .username{
-	-fx-padding: 22px 15px 22px 15px !important;
+	-fx-padding: 22px 15px !important;
 }
 
 .bg-side .username #username-label{
@@ -500,34 +534,42 @@
 }
 
 .bg-main .tab-box.title{
-	-fx-padding: 30px 50px 15px 50px;
+	-fx-padding: 30px 50px 10px;
 	-fx-background-color: -fx-base;
 	-fx-spacing: 10px;
 }
 
 .bg-main .board-title{
-	-fx-border-width: 0px;
+	-fx-border-width: 0;
 	-fx-pref-width: 1000px;
 	-fx-text-fill: -fx-accent;
+	-fx-cursor: auto;
 }
 
 .bg-main .board-note{
-	-fx-padding: -2px 0px 0px 0px;
-	-fx-border-width: 0px;
+	-fx-padding: -2px 0 0;
+	-fx-border-width: 0;
 	-fx-text-fill: -fx-dark-text-color;
+	-fx-cursor: auto;
+}
+
+.bg-main .board-title:read-only,
+.bg-main .board-note:read-only{
+	-fx-cursor: default;
 }
 
 .bg-main .board-title:disabled,
 .bg-main .board-note:disabled{
 	-fx-opacity: 1;
+	-fx-cursor: default;
 }
 
 
 .bg-main .combo-box{
 	-fx-min-width: 150px;
-	-fx-padding: 8px 8px;
-	-fx-border-radius: 0px;
-	-fx-border-width: 0px;
+	-fx-padding: 8px;
+	-fx-border-radius: 0;
+	-fx-border-width: 0;
 }
 
 .bg-main .tab-box.title .operation-list .button{
@@ -538,7 +580,7 @@
 }
 
 .bg-main .columns{
-	-fx-padding: 0px 44px;
+	-fx-padding: 0 44px;
 	-fx-spacing: 16px;
 }
 
@@ -546,7 +588,7 @@
 	-fx-max-width: 266px;
 	-fx-pref-width: 266px;
 	-fx-background-color: transparent;
-	-fx-padding: 0px 0px 0px 0px;
+	-fx-padding: 0;
 }
 
 .bg-main .column .scroll-pane VBox{
@@ -555,12 +597,12 @@
 
 /** Column Title **/
 .bg-main .column HBox{
-	-fx-padding: 0px 6px;
+	-fx-padding: 0 6px;
 }
 
 /** Card Spacing **/
 .bg-main .column VBox{
-	-fx-spacing: 10px;
+	-fx-spacing: 12px;
 }
 
 .bg-main .column .title{
@@ -570,7 +612,7 @@
 /** Column Title Label **/
 .bg-main .column .title .text-field{
 	-fx-font-size: 15px;
-	-fx-border-width: 0px;
+	-fx-border-width: 0;
 	-fx-pref-width: 300px;
 }
 
@@ -582,13 +624,13 @@
 	-fx-text-fill: -fx-light-text-color;
 	-fx-background-radius: 55px;
 	-fx-font-size: 13px;
-	-fx-padding: 0px 4px;
+	-fx-padding: 0 4px;
 	-fx-alignment: CENTER;
 }
 
 .bg-main .column .title .button{
-	-fx-padding: 0px;
-	-fx-border-width: 0px;
+	-fx-padding: 0;
+	-fx-border-width: 0;
 }
 
 .bg-main .column .title .button SVGPath{
@@ -597,7 +639,7 @@
 }
 
 .bg-main .column .scroll-pane{
-	-fx-padding: 4px 0px 0px 0px;
+	-fx-padding: 4px 0 0;
 }
 
 .bg-main .column .scroll-pane.event-list .button{
@@ -608,14 +650,24 @@
 	-fx-background-radius: 4px;
     -fx-padding: 14px 20px 14px 12px;
     -fx-margin: 10px;
-    -fx-border-width: 0px;
+    -fx-border-width: 0;
     -fx-border-color: transparent;
     -fx-background-color: -fx-accent;
     -fx-text-fill: -fx-light-text-color;
     -fx-fill: -fx-light-text-color;
     -fx-graphic-text-gap: 10px;
     -fx-content-display: LEFT;
-    -fx-effect: dropshadow(gaussian, -fx-accent-30, 10, 0, 1, 2); /** 15% **/
+    -fx-effect: dropshadow(gaussian, -fx-accent-20, 10, 0, 1, 2);
+}
+
+.bg-main .column .scroll-pane.event-list .button:hover{
+	-fx-background-color: derive(-fx-accent, -6%);
+    -fx-effect: dropshadow(gaussian, derive(-fx-accent, -6%), 10, 0, 1, 2); /** 15% **/
+}
+
+.bg-main .column .scroll-pane.event-list .button:focused{
+	-fx-background-color: derive(-fx-accent, -16%);
+    -fx-effect: dropshadow(gaussian, derive(-fx-accent, -16%), 10, 0, 1, 2); /** 15% **/
 }
 
 .bg-main .column .scroll-pane.event-list .button *{
@@ -637,10 +689,6 @@
 	-fx-effect: dropshadow(gaussian, -fx-accent-50, 10, 0, 1, 2); /** 40% **/
 }
 
-.bg-main .column .scroll-pane.event-list .button:focused{
-	-fx-background-color: derive(-fx-accent, -16%);
-}
-
 .bg-main .search{
 	
 }
@@ -648,66 +696,6 @@
 .bg-main:hover .scroll-bar{
 	-fx-opacity: 1;
 }
-
-
-/** Detail Tab **/
-.bg-detail{
-	-fx-background-color: -fx-side-background;
-	-fx-max-width: 280px;
-	-fx-min-width: 280px;
-	-fx-pref-width: 280px;
-	-fx-alignment: TOP_CENTER;
-	-fx-padding: 35px 20px;
-}
-
-.bg-detail VBox{
-	-fx-spacing: 10px;
-}
-
-.bg-detail .button, .bg-detail .date-picker{
-	-fx-pref-width: 240px;
-	-fx-alignment: CENTER_LEFT;
-	-fx-border-width: 1.5px;
-	-fx-graphic-text-gap: 10px;
-	-fx-border-color: -fx-accent-40;
-}
-
-.bg-detail .button, .bg-detail .button *{
-	-fx-text-fill: -fx-accent-50;
-	-fx-fill: -fx-accent-50;
-}
-
-.bg-detail .button SVGPath{
-	-fx-scale-x: 0.8;
-	-fx-scale-y: 0.8;
-	-fx-translate-x: -3px;
-}
-
-.bg-detail .button.filled, .bg-detail .button.filled *, .bg-detail .note.filled, .bg-detail .date-picker.filled{
-	-fx-text-fill: -fx-accent;
-	-fx-fill: -fx-accent;
-	-fx-border-color: -fx-accent;
-}
-
-.bg-detail .text-area{
-	-fx-text-fill: -fx-accent;
-	-fx-border-width: 0px;
-	-fx-pref-row-count: 4;
-	-fx-padding: -4px;
-}
-
-.bg-detail .text-area .scroll-pane{
-	-fx-padding: 4px;
-}
-
-.bg-detail .note{
-	-fx-border-width: 1.5px;
-}
-
-.bg-detail .button, .bg-detail .date-picker, .bg-detail .note{
-	-fx-padding: 10px 14px;
-}
-
 
 /** Settings **/
 .bg-settings{
@@ -721,12 +709,12 @@
 
 .bg-settings .title-wrapper{
 	-fx-background-color: -fx-base;
-	-fx-border-width: 0px 0px 2px 0px;
+	-fx-border-width: 0 0 2px;
 	-fx-border-color: -fx-accent-30;
 }
 
 .bg-settings .scroll-pane .username{
-	-fx-padding: 0px 0px 0px 0px;
+	-fx-padding: 0;
 }
 
 .bg-settings .settings{
@@ -736,14 +724,14 @@
 }
 
 .bg-settings .combo-box{
-	-fx-padding: 0px 10px;
+	-fx-padding: 0 10px;
 	-fx-min-width: 120px;
 	-fx-min-height: 35px;
 }
 
 .bg-settings .settings-wrapper{
 	-fx-alignment: CENTER;
-	-fx-padding: 20px 10px 40px 10px;
+	-fx-padding: 20px 10px 40px;
 }
 
 .bg-settings .settings HBox .label{
@@ -760,18 +748,18 @@
 }
 
 .bg-settings .settings .copyright{
-	-fx-spacing: 0px;
+	-fx-spacing: 0;
 }
 
 .bg-settings .account .label{
 	-fx-min-width: 420px;
-	-fx-padding: 0px 120px 0px 0px;
+	-fx-padding: 0 120px 0 0;
 }
 
 .bg-settings .account .button{
 	-fx-min-width: 80px;
 	-fx-min-height: 35px;
-	-fx-padding: 0px;
+	-fx-padding: 0;
 }
 
 
@@ -782,18 +770,18 @@
 
 .bg-signin .signin-wrapper{
 	-fx-alignment: CENTER;
-	-fx-padding: 30px 10px 0px 10px;
+	-fx-padding: 30px 10px 0;
 }
 
 .bg-signin .signin-wrapper VBox{
 	-fx-min-width: 350px;
 	-fx-max-width: 350px;
-	-fx-spacing: 0px;
+	-fx-spacing: 0;
 }
 
 .bg-signin .text-field, .bg-signin .password-field, .bg-signin .combo-box{
 	-fx-pref-width: 350px;
-	-fx-padding: 0px;
+	-fx-padding: 0;
 	-fx-min-height: 55px;
 	-fx-font-family: "Nexa Bold";
 	-fx-width: 8px !important;
@@ -806,7 +794,7 @@
 
 
 .bg-signin .signin-wrapper VBox{
-	-fx-spacing: 0px;
+	-fx-spacing: 0;
 }
 
 .bg-signin .signin-wrapper Pane .label{
@@ -814,15 +802,15 @@
 	-fx-font-family: "Noto Sans JP Light";
 }
 
-.bg-signin .tool-bar{
+.bg-signin .operation{
 	-fx-background-color: transparent;
-	-fx-border-width: 0px;
+	-fx-border-width: 0;
 	-fx-border-color: transparent;
-	/*-fx-padding: 20px 0px 0px 0px;*/
-	-fx-padding: 0px;
+	-fx-padding: 0;
+	-fx-alignment: CENTER_RIGHT;
 }
 
-.bg-signin .tool-bar .button, .bg-signin .tool-bar .combo-box{
+.bg-signin .operation .button, .bg-signin .operation .combo-box{
 	-fx-content-display: RIGHT;
 }
 
@@ -832,7 +820,7 @@
 }
 
 .bg-signin .error{
-	-fx-padding: 4px 0px;
+	-fx-padding: 4px 0;
 	-fx-font-size: 11px;
 	-fx-text-fill: #b30000;
 }
@@ -859,14 +847,14 @@
 
 .bg-welcome .welcome-wrapper{
 	-fx-alignment: CENTER;
-	-fx-padding: 30px 10px 0px 10px;
+	-fx-padding: 30px 10px 0;
 }
 
 .bg-welcome .welcome-wrapper VBox{
 	-fx-alignment: CENTER;
 	-fx-min-width: 250px;
 	-fx-max-width: 250px;
-	-fx-spacing: 0px;
+	-fx-spacing: 0;
 }
 
 .bg-welcome .welcome-wrapper HBox.logo{
@@ -876,7 +864,7 @@
 	-fx-text-fill: -fx-base;
 	-fx-scale-x: 2.4;
 	-fx-scale-y: 2.4;
-	-fx-padding: 0px 8px 30px 0px;
+	-fx-padding: 0 8px 30px 0;
 }
 
 .bg-welcome .welcome-wrapper .operation{
@@ -885,7 +873,7 @@
 
 .bg-welcome .welcome-wrapper .operation .button{
 	-fx-pref-width: 200px;
-	-fx-padding: 10px 10px 10px 0px;
+	-fx-padding: 10px 10px 10px 0;
 }
 
 .bg-welcome .welcome-wrapper .operation .button SVGPath{
@@ -905,4 +893,119 @@
 .bg-welcome .copyright .label{
 	-fx-font-size: 12px;
 	-fx-padding: 10px;
+}
+
+
+/** Prompt **/
+
+.prompt-cover{
+	-fx-background-color: rgba(0, 0, 0, 0.3);
+	-fx-alignment: CENTER;
+	-fx-padding: 30px;
+}
+
+.bg-prompt{
+	-fx-background-color: -fx-base;
+	-fx-effect: dropshadow(gaussian , rgba(0, 0, 0, 0.2), 10, 0, 1, 2) !important;
+	-fx-padding: 0;
+	-fx-border-width: 0;
+	-fx-max-width: 550px;
+	-fx-alignment: CENTER;
+}
+
+.bg-prompt .prompt-content-wrapper{
+	-fx-border-width: 0;
+	-fx-spacing: 10px;
+	-fx-padding: 35px 50px 50px;
+}
+
+.bg-prompt .prompt-title{
+	-fx-padding: 0 -5px;
+	-fx-spacing: 5px;
+}
+
+.bg-prompt .prompt-title SVGPath{
+	-fx-scale-x: 0.7;
+	-fx-scale-y: 0.7;
+	-fx-fill: -fx-dark-text-color;
+}
+
+.bg-prompt .prompt-title .label{
+	-fx-text-fill: -fx-dark-text-color;
+	-fx-font-size: 12.5px;
+}
+
+.bg-prompt .prompt-title .button{
+	-fx-padding: 0;
+}
+
+.bg-prompt .prompt-title .button:hover, .bg-prompt .prompt-title .button:focused{
+	-fx-border-color: transparent;
+}
+
+.bg-prompt .prompt-title .button SVGPath{
+	-fx-scale-x: 0.65;
+	-fx-scale-y: 0.65;
+	-fx-fill: -fx-dark-text-color;
+}
+
+.bg-prompt .prompt-content{
+	-fx-padding: 0;
+	-fx-spacing: 15px;
+}
+
+.bg-prompt .text-area{
+	-fx-pref-row-count: 1;
+}
+
+.bg-prompt .text-area .content{
+	-fx-padding: 10px 0;
+}
+
+.bg-prompt .text-area.title{
+	-fx-border-width: 0;
+	-fx-border-color: transparent;
+	-fx-text-fill: -fx-accent;
+	-fx-min-height: 46px;
+}
+
+.bg-prompt .field{
+	-fx-spacing: 10px;
+}
+
+.bg-prompt .field .text-field, .bg-prompt .field .combo-box, .bg-prompt .field .date-picker, .bg-prompt .field .text-area{
+	-fx-border-color: rgba(24, 24, 24, 0.4);
+}
+
+.bg-prompt .field .field-value{
+	-fx-alignment: CENTER_RIGHT;
+	-fx-text-fill: -fx-dark-text-color;
+}
+
+.bg-prompt .field .text-area.field-value{
+	-fx-padding: 0;
+}
+
+.bg-prompt .field .field-value.combo-box,
+.bg-prompt .field .field-value.date-picker{
+	-fx-min-width: 150px;
+	-fx-max-width: 150px;
+}
+
+.bg-prompt .field .field-value.date-picker .text-field{
+	-fx-cursor: default;
+}
+
+
+.bg-prompt .field .field-name, .bg-prompt .field .field-value{
+	-fx-font-size: 12.5px;
+	-fx-padding: 5px 0;
+}
+
+.bg-prompt .field .combo-box .combo-box-popup .list-view {
+	-fx-effect: dropshadow(gaussian , rgba(24, 24, 24, 0.2), 10, 0, 1, 2) !important;
+}
+
+.bg-prompt .field .date-picker-popup {
+    -fx-effect: dropshadow(gaussian , rgba(24, 24, 24, 0.2), 10, 0, 1, 2) !important;
 }

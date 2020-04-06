@@ -1,5 +1,7 @@
 package structure;
 
+import java.util.ArrayList;
+
 /**
  * The {@code Kanban} class, extends from {@code Node}.
  *
@@ -20,9 +22,8 @@ public class Kanban extends Node {
    */
   public Kanban(HttpBody obj) {
     super(obj);
-    // HttpBody board = new HttpBody();
 
-    Board board =
+    Board today =
         new Board(
             1,
             "Today",
@@ -31,19 +32,13 @@ public class Kanban extends Node {
                 + Time.currentDay()
                 + ", "
                 + Time.currentYear(),
-            "#fd79a8");
+            "#fd79a8",
+            this);
 
-    Column todo = new Column(2, "To Do", "");
-    Column inprogress = new Column(3, "In Progress", "");
-    Column done = new Column(4, "Done", "");
-    board.addNode(todo);
-    board.addNode(inprogress);
-    board.addNode(done);
-    this.addNode(board);
+    new Column(1, "To Do", "jimjimsjimshtodo", today);
+    new Column(2, "In Progress", "", today);
+    new Column(3, "Done", "", today);
   }
-
-  /** Default constructor of {@code Kanban}. */
-  public Kanban() {}
 
   /**
    * Check out the {@code Kanban} data of current {@code User} from the server.
@@ -81,15 +76,71 @@ public class Kanban extends Node {
   /*
    * Today
    */
-  public static void generateToday() {}
+  public void generateToday() {
+    Kanban kanban = Kanban.current;
+    // create node refer to todayboard
+    Node todayBoard = kanban.getNode(1);
+    Node todo = todayBoard.getNode(1);
+    Node inprogress = todayBoard.getNode(2);
+    Node done = todayBoard.getNode(3);
+
+    // All todo
+    for (Node board : kanban.getChildrenNodes()) {
+      if (board.getId() >= 100) {
+        for (Node node : board.getChildrenNodes()) {
+          Column column = (Column) node;
+          for (Node event : column.getChildrenNodes()) {
+            if (column.getPreset() == Column.TO_DO) {
+              todo.addNode(event);
+            } else if (column.getPreset() == Column.IN_PROGRESS) {
+              inprogress.addNode(event);
+            } else {
+              if (!((Event) event).isOverdue()) done.addNode(event);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /*
+   * Search
+   *
+   */
+  public ArrayList<Node> search(String name) {
+    ArrayList<Node> ret = new ArrayList<Node>();
+    Kanban kanban = Kanban.current;
+
+    for (Node board : kanban.getChildrenNodes()) {
+      // excluded Today
+      if (board.getId() >= 100) {
+        for (Node column : board.getChildrenNodes()) {
+          for (Node node_event : column.getChildrenNodes()) {
+            Event event = (Event) node_event;
+            if (event.getTitle().toLowerCase().indexOf(name.toLowerCase()) != -1
+                || event.getNote().toLowerCase().indexOf(name.toLowerCase()) != -1
+                || Integer.toString(event.getId()).indexOf(name) != -1) {
+              ret.add(event);
+            }
+          }
+        }
+      }
+    }
+    return ret;
+  }
 
   public static void main(String[] args) {
     User user = new User();
     user.authenticate("cloudy", "cloudy");
-    System.out.println(user);
+    // System.out.println((user);
 
     Kanban.checkout();
 
     System.out.println(Kanban.current);
+
+    System.out.println(Kanban.current.search("a"));
+
+    // System.out.println(("\ngenerateToday---");
+    // Kanban.current.generateToday();
   }
 }

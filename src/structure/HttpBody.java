@@ -2,6 +2,7 @@ package structure;
 
 import com.google.gson.*;
 
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Map;
 import java.util.HashMap;
@@ -306,6 +307,10 @@ public final class HttpBody extends HashMap<Object, Object> {
     return this.parseString(this.get(key));
   }
 
+  public Long getLong(Object key) {
+    return this.parseLong(this.get(key));
+  }
+
   /**
    * Returns the value of specified key in {@code HttpBody}(performing {@code Map}) type.
    *
@@ -387,6 +392,23 @@ public final class HttpBody extends HashMap<Object, Object> {
     }
   }
 
+  private Long parseLong(Object obj) {
+    try {
+      String str = obj.toString();
+      if (str.indexOf(".") > -1 && str.indexOf("E") > -1) { // Scientific notation: 1.223E2
+        BigDecimal value = new BigDecimal(str);
+        return value.longValue();
+      } else if (str.indexOf(".") > -1) { // Decimals: 100022.2
+        str = str.substring(0, str.indexOf("."));
+        return Long.parseLong(str);
+      } else {
+        return Long.parseLong(str);
+      }
+    } catch (Throwable e) {
+      return null;
+    }
+  }
+
   /**
    * Returns {@code Boolean} type of the given {@code Object}.
    *
@@ -438,7 +460,7 @@ public final class HttpBody extends HashMap<Object, Object> {
     param.put("username", "111");
     param.put("password", "222");
     String gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(param);
-    System.out.println(gson);
+    System.out.println((gson));
     // HttpBody body = new HttpBody(param);
     // body.put("body", body);
     // System.out.println(body);

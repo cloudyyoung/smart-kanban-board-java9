@@ -1,16 +1,21 @@
 package ui;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.sql.Timestamp;
+import java.time.*;
+import java.util.*;
 
+import javafx.event.*;
 import javafx.fxml.*;
+import javafx.scene.*;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.shape.*;
-
+import javafx.scene.text.*;
+import javafx.stage.*;
 import structure.*;
-import ui.component.Column;
+import ui.component.*;
 
 public class HomeController {
 
@@ -22,9 +27,9 @@ public class HomeController {
 
   @FXML private VBox sidePane;
 
-  @FXML private Button sideSearch;
+  @FXML private VBox operationList;
 
-  @FXML private Button sideToday;
+  @FXML private Button sideSearch;
 
   @FXML private VBox boardList;
 
@@ -40,83 +45,247 @@ public class HomeController {
 
   @FXML private HBox columnPane;
 
-  @FXML private ScrollPane detailPane;
+  @FXML private TextField inputSearch;
 
-  @FXML private TextArea detailTitle;
+  @FXML private Pane dragPane;
 
-  @FXML private Button detailAdd2Today;
+  @FXML private VBox promptEvent;
 
-  @FXML private Button detailDueDate;
+  @FXML private SVGPath promptEventIcon;
 
-  @FXML private Button detailImportance;
+  @FXML private Label promptEventPromptTitle;
 
-  @FXML private TextField detailNote;
+  @FXML private VBox promptEventTitleWrapper;
+
+  @FXML private TextArea promptEventTitle;
+
+  @FXML private Label promptEventLocationBoard;
+
+  @FXML private Label promptEventLocationColumn;
+
+  @FXML private ComboBox<String> promptEventImportanceLevel;
+
+  @FXML private DatePicker promptEventDueDate;
+
+  @FXML private ComboBox<String> promptEventDuration;
+
+  @FXML private TextArea promptEventNote;
+
+  @FXML private Pane extraPane;
+
+  public static EventComponent currentEvent;
+
+  private Text textHolder = new Text();
 
   @FXML
   void initialize() {
+
+    BoardComponent.boardPane = boardPane;
+    BoardComponent.boardTitle = boardTitle;
+    BoardComponent.boardNote = boardNote;
+    BoardComponent.columnPane = columnPane;
+    BoardComponent.sidePane = sidePane;
+    BoardComponent.boardList = boardList;
+    BoardComponent.tabPane = tabPane;
+    EventComponent.promptEvent = promptEvent;
+    EventComponent.promptEventIcon = promptEventIcon;
+    EventComponent.promptEventPromptTitle = promptEventPromptTitle;
+    EventComponent.promptEventTitle = promptEventTitle;
+    EventComponent.promptEventLocationBoard = promptEventLocationBoard;
+    EventComponent.promptEventLocationColumn = promptEventLocationColumn;
+    EventComponent.promptEventImportanceLevel = promptEventImportanceLevel;
+    EventComponent.promptEventDueDate = promptEventDueDate;
+    EventComponent.promptEventDuration = promptEventDuration;
+    EventComponent.promptEventNote = promptEventNote;
+
+    promptEvent.getStyleClass().setAll("hide");
+    extraPane.setVisible(false);
+
     // Intialize label text values
     profileUsername.setText(User.current.getUsername());
     profileUsername.setTooltip(new Tooltip(User.current.getUsername()));
 
-    // Hide detailPane
-    detailPane.getStyleClass().add("hide");
-
     // Check out kanban
     Kanban.checkout();
+    Kanban.current.generateToday();
+
+    BoardComponent componentToday = null;
+
+    // Initialize Event panel
+    promptEventImportanceLevel.getItems().addAll("", "Level 1", "Level 2", "Level 3");
+    promptEventDuration
+        .getItems()
+        .addAll(
+            "",
+            "1 Hour",
+            "2 Hours",
+            "3 Hours",
+            "4 Hours",
+            "5 Hours",
+            "6 Hours",
+            "7 Hours",
+            "8 Hours",
+            "9 Hours",
+            "10 Hours",
+            "11 Hours",
+            "12 Hours");
+
+    promptEventDueDate
+        .valueProperty()
+        .addListener(
+            (observable, oldDate, newDate) -> {
+              Long timestamp = null;
+              if (newDate != null) {
+                timestamp = Timestamp.valueOf(newDate.atTime(LocalTime.MAX)).getTime() / 1000;
+              }
+              currentEvent.getNode().setDueDate(timestamp);
+            });
+
+    inputSearch
+        .textProperty()
+        .addListener(
+            (observable, oldText, newText) -> {
+              if (newText.equals("")) {
+                return;
+              }
+              ArrayList<structure.Node> list = Kanban.current.search(newText);
+              System.out.println(newText);
+              System.out.println(list);
+            });
+
+    promptEventTitle
+        .focusedProperty()
+        .addListener(
+            (observable, oldFocus, newFocus) -> {
+              if (!newFocus) {
+                currentEvent.getNode().setTitle(promptEventTitle.getText());
+              }
+            });
+
+    promptEventTitle
+        .textProperty()
+        .addListener(
+            (observable, oldText, newText) -> {
+              currentEvent.setText(promptEventTitle.getText());
+            });
+
+    // The TextArea internally does not use the onKeyPressed property to handle
+    // keyboard input.
+    // Therefore, setting onKeyPressed does not remove the original event handler.
+    // To prevent TextArea's internal handler for the Enter key, you need to add an
+    // event filter that consumes the event.
+    // @link:
+    // https://stackoverflow.com/questions/26752924/how-to-stop-cursor-from-moving-to-a-new-line-in-a-textarea-when-enter-is-pressed
+    promptEventTitle.addEventFilter(
+        KeyEvent.KEY_PRESSED,
+        e -> {
+          if (e.getCode() == KeyCode.ENTER) {
+            e.consume();
+            promptEvent.requestFocus();
+          }
+        });
+
+    textHolder.textProperty().bind(promptEventTitle.textProperty());
+    textHolder.getStyleClass().addAll(promptEventTitle.getStyleClass());
+    textHolder.setStyle(promptEventTitle.getStyle());
+    textHolder.setWrappingWidth(450);
+    textHolder
+        .layoutBoundsProperty()
+        .addListener(
+            (observable, oldValue, newValue) -> {
+              promptEventTitle.setPrefHeight(textHolder.getLayoutBounds().getHeight() + 23);
+            });
+
+    extraPane.getChildren().add(textHolder);
+
+    promptEventImportanceLevel
+        .valueProperty()
+        .addListener(
+            (observable, oldValue, newValue) -> {
+              currentEvent
+                  .getNode()
+                  .setImportanceLevel(
+                      promptEventImportanceLevel.getSelectionModel().getSelectedIndex());
+            });
+
+    promptEventDuration
+        .valueProperty()
+        .addListener(
+            (observable, oldValue, newValue) -> {
+              currentEvent
+                  .getNode()
+                  .setDuration(promptEventDuration.getSelectionModel().getSelectedIndex() * 3600L);
+            });
+
+    promptEventNote
+        .focusedProperty()
+        .addListener(
+            (observable, oldFocus, newFocus) -> {
+              if (!newFocus) currentEvent.getNode().setNote(promptEventNote.getText());
+            });
 
     // Add list items
     boardList.getChildren().clear();
     for (structure.Node each : Kanban.current.getChildrenNodes()) {
+      // Add to list
+      BoardComponent node = new BoardComponent((Board) each);
       if (each.getId() >= 100) {
-
-        // Icon
-        SVGPath svg = new SVGPath();
-        svg.setContent(
-            "M 5 5 L 5 6 L 5 27 L 27 27 L 27 5 L 5 5 z M 7 7 L 25 7 L 25 9 L 7 9 L 7 7 z M 7 11 L 25 11 L 25 25 L 7 25 L 7 11 z");
-        HBox hbox = new HBox();
-        hbox.getChildren().add(svg);
-
-        // Button & text & tooltip
-        Button node = new Button(each.getTitle(), hbox);
-        node.setTooltip(new Tooltip(each.getTitle()));
-        node.setId("board-" + each.getId());
-        node.setStyle(styleAccent(((Board) each).getColor()));
-
-        // Add to list
         boardList.getChildren().add(node);
-      } else if (each.getId() == 1) {
-        sideToday.setStyle(styleAccent(((Board) each).getColor()));
+      } else {
+        operationList.getChildren().add(node);
+        if (each.getId() == 1) {
+          componentToday = node;
+        }
       }
     }
 
-    // Bind button action event for sidePane buttons
-    Set<Node> sideButtons = new HashSet<Node>();
+    sidePane.requestFocus();
+    componentToday.fire();
+  }
+
+  @FXML
+  void switchTab(ActionEvent event) {
+
+    HashSet<Node> sideButtons = new HashSet<Node>();
     sideButtons.addAll(sidePane.lookupAll(".button"));
     sideButtons.addAll(boardList.lookupAll(".button"));
 
     for (Node each : sideButtons) {
-      System.out.println(each.getId());
-      Button btn = (Button) each;
-      btn.setOnAction(
-          event -> {
-            for (Node eachBtn : sideButtons) {
-              eachBtn.getStyleClass().remove("selected");
-            }
-            Node current = ((Node) event.getSource());
-            current.getStyleClass().add("selected");
-            if (current.equals(sideSearch)) {
-              tabPane.getSelectionModel().select(1);
-            } else {
-              sideSelectDisplay(current);
-            }
-          });
+      each.getStyleClass().remove("selected");
     }
 
-    sidePane.requestFocus();
-    sideToday.fire();
+    Button button = (Button) event.getSource();
+    button.getStyleClass().add("selected");
+
+    if (button.equals(sideSearch)) {
+      tabPane.getSelectionModel().select(1);
+    } else if (button.equals(sideProfile)) {
+      try {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene oldScene = ((Node) event.getSource()).getScene();
+        Scene scene =
+            new Scene(
+                FXMLLoader.load(getClass().getResource("settings.fxml")),
+                oldScene.getWidth(),
+                oldScene.getHeight());
+        scene.getStylesheets().add(getClass().getResource("default.css").toExternalForm());
+        stage.setScene(scene);
+        stage.show();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    } else {
+      tabPane.getSelectionModel().select(0);
+    }
   }
 
-  String styleAccent(String hex) {
+  @FXML
+  void closePrompt() {
+    promptEvent.getStyleClass().add("hide");
+    currentEvent.update();
+  }
+
+  public static String styleAccent(String hex) {
     String style = "";
     style += "-fx-accent: " + hex + ";";
     style += "-fx-accent-90: " + hex + "e6;";
@@ -130,29 +299,5 @@ public class HomeController {
     style += "-fx-accent-10: " + hex + "1a;";
     style += "-fx-accent-5: " + hex + "0d;";
     return style;
-  }
-
-  void sideSelectDisplay(Node btn) {
-    String idRaw = btn.getId();
-    tabPane.getSelectionModel().select(0);
-    if (!idRaw.contains("board-")) {
-      return;
-    }
-    String idStr = idRaw.split("-")[1];
-    Integer id = Integer.parseInt(idStr);
-    Board node = (Board) Kanban.current.getNode(id);
-    boardPane.setStyle(styleAccent(node.getColor()));
-
-    boardTitle.setText(node.getTitle());
-    boardNote.setText(!node.getNote().equals("") ? node.getNote() : "No description");
-
-    boardTitle.setDisable(id < 100);
-    boardNote.setDisable(id < 100);
-
-    columnPane.getChildren().clear();
-    for (structure.Node each : node.getChildrenNodes()) {
-      Node col = new Column(each);
-      columnPane.getChildren().add(col);
-    }
   }
 }

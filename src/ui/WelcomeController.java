@@ -15,13 +15,12 @@ public class WelcomeController {
   @FXML
   void sign(ActionEvent event) {
     Button button = (Button) event.getSource();
-    String id = button.getId();
     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     Scene scene = ((Node) event.getSource()).getScene();
 
-    if (id.equals("signIn")) {
+    if (button.equals(buttonSignIn)) {
       this.switchScene("signin.fxml", stage, scene);
-    } else if (id.equals("signUp")) {
+    } else if (button.equals(buttonSignUp)) {
       this.switchScene("signup.fxml", stage, scene);
     }
   }
@@ -37,7 +36,7 @@ public class WelcomeController {
       stage.setScene(scene);
       stage.show();
     } catch (Exception e) {
-      // System.out.println(e);
+      // e.printStackTrace();
     }
   }
 }

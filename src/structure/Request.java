@@ -69,6 +69,10 @@ public abstract class Request {
     this.failed = is;
   }
 
+  public HttpBody getResponseBodyError() {
+    return this.getResponseBody().getHttpBody("error");
+  }
+
   /**
    * Returns the response body of the instance.
    *
