@@ -81,6 +81,8 @@ public class EventComponent extends Button {
     event.setText(node.getTitle());
     this.setOnAction(
         e -> {
+          HomeController.currentEvent = this;
+
           promptEventTitle.setText(this.node.getTitle());
           promptEventLocationBoard.setText(this.node.getParent().getParent().getTitle());
           promptEventLocationColumn.setText(this.node.getParent().getTitle());
@@ -97,8 +99,6 @@ public class EventComponent extends Button {
           promptEventPromptTitle.setText("Edit event");
           promptEvent.setStyle(HomeController.styleAccent(this.color));
           promptEvent.getStyleClass().remove("hide");
-
-          HomeController.currentEvent = this;
         });
   }
 }

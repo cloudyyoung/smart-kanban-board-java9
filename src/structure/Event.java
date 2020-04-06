@@ -33,7 +33,7 @@ public class Event extends Node {
       Node parent) {
     super(id, title, note, parent);
     this.setDuration(duration);
-    this.setDueDate(dueDate);
+    this.setDueDateLocal(dueDate);
     this.setImportanceLevel(importanceLevel);
   }
 
@@ -71,10 +71,6 @@ public class Event extends Node {
 
   public Integer getImportanceLevel() {
     return this.importanceLevel;
-  }
-
-  public void setDueDate(long dueDate) {
-    this.dueDate = dueDate;
   }
 
   public Long getDueDate() {
@@ -136,6 +132,26 @@ public class Event extends Node {
     int importancePriority = this.getImportanceLevel() * (timeDifferenceInHours / 24);
     int priority = timeDifferenceInHours - importancePriority;
     return priority;
+  }
+
+
+  public StructureRequest setDueDateLocal(Long dueDate) {
+    this.dueDate = dueDate;
+
+    StructureRequest req = new StructureRequest(true, false, this);
+    return req;
+  }
+
+  public Result setDueDate(Long dueDate) {
+    Result res = new Result();
+    HttpRequest req = this.set("due_date", dueDate);
+    res.add(req);
+
+    if (req.isSucceeded()) {
+      StructureRequest req2 = this.setDueDateLocal(dueDate);
+      res.add(req2);
+    }
+    return res;
   }
 
   public static void main(String[] args) {

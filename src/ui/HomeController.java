@@ -1,5 +1,6 @@
 package ui;
 
+import java.sql.Timestamp;
 import java.util.HashSet;
 
 import javafx.event.ActionEvent;
@@ -116,6 +117,16 @@ public class HomeController {
             "10 Hours",
             "11 Hours",
             "12 Hours");
+
+    promptEventDueDate.valueProperty().addListener((observable, oldDate, newDate) -> {
+      if(newDate != null){
+        System.out.println(Timestamp.valueOf(newDate.atStartOfDay()).getTime() / 1000);
+        Result res = currentEvent.getNode().setDueDate(Timestamp.valueOf(newDate.atStartOfDay()).getTime() / 1000);
+        System.out.println(res);
+      }
+      // ts.getTime();
+      // System.out.println(currentEvent.getNode());
+    });
 
     // Add list items
     boardList.getChildren().clear();

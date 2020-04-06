@@ -341,7 +341,7 @@ public abstract class Node {
    * @param value the value of the property
    * @return the http request of this action, of sending the request to the server
    */
-  protected HttpRequest set(String key, String value) {
+  protected HttpRequest set(Object key, Object value) {
     HttpBody body = new HttpBody();
     body.put(key, value);
 
