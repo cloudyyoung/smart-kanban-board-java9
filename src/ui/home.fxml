@@ -433,25 +433,22 @@
                      <content>
                         <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-alignment: TOP_LEFT;">
                            <children>
-                              <BorderPane>
-                                 <center>
-                                    <VBox BorderPane.alignment="CENTER">
-                                       <children>
-                                          <TextField fx:id="inputSearch" promptText="Search any thing...">
-                                             <styleClass>
-                                                <String fx:value="bold" />
-                                                <String fx:value="search" />
-                                                <String fx:value="h1" />
-                                             </styleClass>
-                                          </TextField>
-                                       </children>
-                                    </VBox>
-                                 </center>
+                              <VBox>
+                                 <children>
+                                    <TextField fx:id="inputSearch" promptText="Search any thing...">
+                                       <styleClass>
+                                          <String fx:value="bold" />
+                                          <String fx:value="search" />
+                                          <String fx:value="h1" />
+                                       </styleClass>
+                                    </TextField>
+                                 </children>
                                  <styleClass>
                                     <String fx:value="tab-box" />
                                     <String fx:value="title" />
                                  </styleClass>
-                              </BorderPane>
+                              </VBox>
+                              <VBox prefHeight="200.0" prefWidth="100.0" styleClass="bg-search" />
                            </children>
                         </VBox>
                      </content>
@@ -460,8 +457,8 @@
             </TabPane>
          </center>
       </BorderPane>
-      <Pane id="dragPane" fx:id="dragPane" mouseTransparent="true" />
-      <VBox fx:id="promptEvent" styleClass="prompt-cover">
+      <Pane id="dragPane" fx:id="dragPane" mouseTransparent="true" styleClass="hide" />
+      <VBox fx:id="promptEvent">
          <children>
             <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="bg-prompt">
                <content>
@@ -538,6 +535,10 @@
                </content>
             </ScrollPane>
          </children>
+         <styleClass>
+            <String fx:value="prompt-cover" />
+            <String fx:value="hide" />
+         </styleClass>
       </VBox>
    </children>
 </StackPane>

@@ -74,7 +74,7 @@ public class Event extends Node {
   }
 
   public Long getDurationValue() {
-    return this.duration != null ? this.duration : 0l;
+    return this.duration != null ? this.duration : 0L;
   }
 
   public int getDurationInMinutes() {
@@ -128,7 +128,7 @@ public class Event extends Node {
   }
 
   public Long getDueDateValue() {
-    return this.dueDate != null ? this.dueDate : 9223372036854775807l;
+    return this.dueDate != null ? this.dueDate : Long.MAX_VALUE;
   }
 
   public String getDueDateString() {
