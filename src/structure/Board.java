@@ -20,7 +20,7 @@ public final class Board extends Node {
    *
    * @param obj the {@code HttpBody} for initialization
    */
-  public Board(final HttpBody obj) {
+  public Board(HttpBody obj) {
     super(obj);
     this.color = obj.getString("color");
   }
@@ -47,7 +47,7 @@ public final class Board extends Node {
    *
    * @param color The color in {@code String}
    */
-  public void setColorLocal(final String color) {
+  public void setColorLocal(String color) {
     this.color = color;
   }
 
@@ -57,7 +57,7 @@ public final class Board extends Node {
    * @param color The color in {@code String}
    * @return the http request of this action
    */
-  public HttpRequest setColor(final String color) {
+  public HttpRequest setColor(String color) {
     final HttpRequest req = this.set("color", color);
     if (req.isSucceeded()) {
       this.setColorLocal(color);

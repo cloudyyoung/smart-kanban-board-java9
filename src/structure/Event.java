@@ -43,20 +43,20 @@ public final class Event extends Node {
    *
    * @param obj the {@code HttpBody} for initialization
    */
-  public Event(final HttpBody obj) {
+  public Event(HttpBody obj) {
     super(obj);
     this.setDurationLocal(obj.getLong("duration"));
     this.setDueDateLocal(obj.getLong("due_date"));
     this.setImportanceLevelLocal(obj.getInt("importance_level"));
   }
 
-  private StructureRequest setDurationLocal(final Long duration) {
+  private StructureRequest setDurationLocal(Long duration) {
     this.duration = duration;
 
     return new StructureRequest(true, false, this);
   }
 
-  public Result setDuration(final Long duration) {
+  public Result setDuration(Long duration) {
 	final Result res = new Result();
 	final HttpRequest req = this.set("duration", duration);
     res.add(req);
@@ -80,13 +80,13 @@ public final class Event extends Node {
     return (int) (this.duration / 60_000);
   }
 
-  private StructureRequest setImportanceLevelLocal(final int importance) {
+  private StructureRequest setImportanceLevelLocal(int importance) {
     this.importanceLevel = importance;
 
     return new StructureRequest(true, false, this);
   }
 
-  public Result setImportanceLevel(final int importance) {
+  public Result setImportanceLevel(int importance) {
     Result res = new Result();
     HttpRequest req = this.set("importance_level", importance);
     res.add(req);
@@ -102,13 +102,13 @@ public final class Event extends Node {
     return this.importanceLevel;
   }
 
-  private StructureRequest setDueDateLocal(final Long dueDate) {
+  private StructureRequest setDueDateLocal(Long dueDate) {
     this.dueDate = dueDate;
 
     return new StructureRequest(true, false, this);
   }
 
-  public Result setDueDate(final Long dueDate) {
+  public Result setDueDate(Long dueDate) {
     Result res = new Result();
     HttpRequest req = this.set("due_date", dueDate);
     res.add(req);

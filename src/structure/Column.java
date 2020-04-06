@@ -21,7 +21,7 @@ public final class Column extends Node {
    */
   private int preset;
 
-  public Column(final HttpBody obj) {
+  public Column(HttpBody obj) {
     super(obj);
     this.setPreset(obj.getInt("preset"));
   }
@@ -33,11 +33,11 @@ public final class Column extends Node {
    * @param note The note in {@code String}
    * @param columnId THe id in {@code String}
    */
-  public Column(final int columnId, final String title, final String note, final Node parent) {
+  public Column(int columnId, final String title, final String note, final Node parent) {
     super(columnId, title, note, parent);
   }
 
-  public void setPreset(final int preset) {
+  public void setPreset(int preset) {
     this.preset = preset;
   }
 
@@ -45,10 +45,10 @@ public final class Column extends Node {
     return this.preset;
   }
 
-  public boolean hasEnoughTime(final Event eventNext) {
+  public boolean hasEnoughTime(Event eventNext) {
     Long totalTime = 25_200L;
     Long timeAccumulator = 0L;
-    for (final Node node : this.getChildrenNodes()) {
+    for (Node node : this.getChildrenNodes()) {
       final Event event = (Event) node;
       timeAccumulator += event.getDuration();
     }

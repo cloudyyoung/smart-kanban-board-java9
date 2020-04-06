@@ -33,6 +33,7 @@ public final class HttpBody extends HashMap<Object, Object> {
 
 	/** Default constructor of {@code HttpBody}. */
 	public HttpBody() {
+		super();
 	}
 
 	/**
@@ -40,8 +41,9 @@ public final class HttpBody extends HashMap<Object, Object> {
 	 *
 	 * @param toCopy the {@code Map} to copy
 	 */
-	public HttpBody(final Map<?, ?> toCopy) {
-		this.map(toCopy);
+	public HttpBody(Map<?, ?> toCopy) {
+		super();
+		this.parseMap(toCopy);
 	}
 
 	/**
@@ -49,8 +51,9 @@ public final class HttpBody extends HashMap<Object, Object> {
 	 *
 	 * @param toCopy the {@code List} to copy
 	 */
-	public HttpBody(final Collection<?> toCopy) {
-		this.list(toCopy);
+	public HttpBody(Collection<?> toCopy) {
+		super();
+		this.parseList(toCopy);
 		this.list = true;
 	}
 
@@ -61,7 +64,8 @@ public final class HttpBody extends HashMap<Object, Object> {
 	 * @param isList a {@code boolean} to indicate if this instance should perform a
 	 *               {@code List}
 	 */
-	public HttpBody(final boolean isList) {
+	public HttpBody(boolean isList) {
+		super();
 		this.list = isList;
 	}
 
@@ -98,7 +102,7 @@ public final class HttpBody extends HashMap<Object, Object> {
 	 *
 	 * @param map the {@code Map} to put
 	 */
-	private void map(Map<?, ?> map) {
+	private void parseMap(Map<?, ?> map) {
 		for (Map.Entry<?, ?> each : map.entrySet()) {
 			this.put(each.getKey(), this.parse(each.getValue()));
 		}
@@ -113,7 +117,7 @@ public final class HttpBody extends HashMap<Object, Object> {
 	 *             {@code List}, {@code
 	 *     Collections}, etc
 	 */
-	private void list(Iterable<?> list) {
+	private void parseList(Iterable<?> list) {
 		for (Object each : list) {
 			this.put(this.size(), this.parse(each));
 		}
@@ -128,7 +132,7 @@ public final class HttpBody extends HashMap<Object, Object> {
 		if (this.list) {
 			Collection<Object> collect = this.values();
 			this.clear();
-			this.list(collect);
+			this.parseList(collect);
 		}
 	}
 
@@ -149,7 +153,7 @@ public final class HttpBody extends HashMap<Object, Object> {
 	 * @see #put(Object, Object)
 	 */
 	@Override
-	public HttpBody put(final Object key, final Object value) {
+	public HttpBody put(Object key, final Object value) {
 		Object newKey = key;
 		if (this.list) {
 			newKey = Integer.parseInt(key.toString());
@@ -174,7 +178,7 @@ public final class HttpBody extends HashMap<Object, Object> {
 	 * @see #put(Object, Object)
 	 * @see #get(Object)
 	 */
-	public HttpBody put(final Object value) {
+	public HttpBody put(Object value) {
 		if (this.list) {
 			this.put(this.size(), this.parse(value));
 		}
@@ -189,7 +193,7 @@ public final class HttpBody extends HashMap<Object, Object> {
 	 * @see #put(Object)
 	 */
 	@Override
-	public Object get(final Object key) {
+	public Object get(Object key) {
 		return super.get(key);
 	}
 
@@ -203,7 +207,7 @@ public final class HttpBody extends HashMap<Object, Object> {
 	 * @see #remove(Object, Object)
 	 */
 	@Override
-	public HttpBody remove(final Object key) {
+	public HttpBody remove(Object key) {
 		if (this.list) {
 			Integer index = this.parseInt(key);
 			if (index != null) {
@@ -225,7 +229,7 @@ public final class HttpBody extends HashMap<Object, Object> {
 	 * @see #remove(Object)
 	 */
 	@Override
-	public boolean remove(final Object key, final Object value) {
+	public boolean remove(Object key, final Object value) {
 		if (this.list) {
 			Object index = this.parseInt(key);
 			if (index == null) {
@@ -253,7 +257,7 @@ public final class HttpBody extends HashMap<Object, Object> {
 	 *         value {@code false} if the instance maps no key to the specified
 	 *         value or an exception is thrown
 	 */
-	public boolean hasValue(final Object value) {
+	public boolean hasValue(Object value) {
 		try {
 			return super.containsValue(value);
 		} catch (Throwable e) {
@@ -272,7 +276,7 @@ public final class HttpBody extends HashMap<Object, Object> {
 	 *         {@code false} if the instance maps no key to the specified value or
 	 *         an exception is thrown
 	 */
-	public boolean hasKey(final Object key) {
+	public boolean hasKey(Object key) {
 		try {
 			return super.containsKey(key);
 		} catch (Throwable e) {
@@ -288,7 +292,7 @@ public final class HttpBody extends HashMap<Object, Object> {
 	 *         maps to the specified key, or the mapped value cannot be represented
 	 *         as {@code Integer} type
 	 */
-	public Integer getInt(final Object key) {
+	public Integer getInt(Object key) {
 		return this.parseInt(this.get(key));
 	}
 
@@ -300,7 +304,7 @@ public final class HttpBody extends HashMap<Object, Object> {
 	 *         maps to the specified key, or the mapped value cannot be represented
 	 *         as {@code Double} type
 	 */
-	public Double getDouble(final Object key) {
+	public Double getDouble(Object key) {
 		return this.parseDouble(this.get(key));
 	}
 
@@ -312,7 +316,7 @@ public final class HttpBody extends HashMap<Object, Object> {
 	 *         maps to the specified key, or the mapped value cannot be represented
 	 *         as {@code Boolean} type
 	 */
-	public Boolean getBoolean(final Object key) {
+	public Boolean getBoolean(Object key) {
 		return this.parseBoolean(this.get(key));
 	}
 
@@ -324,11 +328,11 @@ public final class HttpBody extends HashMap<Object, Object> {
 	 *         maps to the specified key, or the mapped value cannot be represented
 	 *         as {@code String} type
 	 */
-	public String getString(final Object key) {
+	public String getString(Object key) {
 		return this.parseString(this.get(key));
 	}
 
-	public Long getLong(final Object key) {
+	public Long getLong(Object key) {
 		return this.parseLong(this.get(key));
 	}
 
@@ -342,7 +346,7 @@ public final class HttpBody extends HashMap<Object, Object> {
 	 *         value cannot be represented as {@code
 	 *     HttpBody}(performing {@code Map}) type
 	 */
-	public HttpBody getMap(final Object key) {
+	public HttpBody getMap(Object key) {
 		return (HttpBody) this.get(key);
 	}
 
@@ -356,7 +360,7 @@ public final class HttpBody extends HashMap<Object, Object> {
 	 *         value cannot be represented as {@code
 	 *     HttpBody}(performing {@code List}) type
 	 */
-	public HttpBody getList(final Object key) {
+	public HttpBody getList(Object key) {
 		if (this.getMap(key) == null || !this.getMap(key).isList())
 			return null;
 		return this.getMap(key);
@@ -370,7 +374,7 @@ public final class HttpBody extends HashMap<Object, Object> {
 	 *         maps to the specified key, or the mapped value cannot be represented
 	 *         as {@code HttpBody} type
 	 */
-	public HttpBody getHttpBody(final Object key) {
+	public HttpBody getHttpBody(Object key) {
 		if (this.get(key) instanceof HttpBody) {
 			return (HttpBody) this.get(key);
 		} else {
@@ -394,7 +398,7 @@ public final class HttpBody extends HashMap<Object, Object> {
 	 * @param obj the {@code Object} to be parsed
 	 * @return the parsed {@code Integer} object
 	 */
-	private Integer parseInt(final Object obj) {
+	private Integer parseInt(Object obj) {
 		try {
 			String str = obj.toString() + "";
 			if (str.indexOf(".") > -1) {
@@ -412,7 +416,7 @@ public final class HttpBody extends HashMap<Object, Object> {
 	 * @param obj the {@code Object} to be parsed
 	 * @return the parsed {@code Double} object
 	 */
-	private Double parseDouble(final Object obj) {
+	private Double parseDouble(Object obj) {
 		try {
 			return Double.parseDouble(obj.toString() + "");
 		} catch (Throwable e) {
@@ -420,7 +424,7 @@ public final class HttpBody extends HashMap<Object, Object> {
 		}
 	}
 
-	private Long parseLong(final Object obj) {
+	private Long parseLong(Object obj) {
 		try {
 			String str = obj.toString();
 			if (str.indexOf(".") > -1 && str.indexOf("E") > -1) { // Scientific notation: 1.223E2
@@ -443,7 +447,7 @@ public final class HttpBody extends HashMap<Object, Object> {
 	 * @param obj the {@code Object} to be parsed
 	 * @return the parsed {@code Boolean} object
 	 */
-	private Boolean parseBoolean(final Object obj) {
+	private Boolean parseBoolean(Object obj) {
 		return Boolean.parseBoolean(obj.toString() + "");
 	}
 
@@ -453,7 +457,7 @@ public final class HttpBody extends HashMap<Object, Object> {
 	 * @param obj the {@code Object} to be parsed
 	 * @return the parsed {@code String} object
 	 */
-	private String parseString(final Object obj) {
+	private String parseString(Object obj) {
 		try {
 			return obj.toString();
 		} catch (Throwable e) {
