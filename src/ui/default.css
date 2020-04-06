@@ -444,7 +444,6 @@
 
 .bg-side *{
   -fx-background-radius: 0;
-  -fx-background-color: -fx-side-background;
   -fx-max-width: 210px; /** Here to change the sidebar width **/
   -fx-background-color: transparent;
 }
