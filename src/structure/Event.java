@@ -134,7 +134,6 @@ public class Event extends Node {
     return priority;
   }
 
-
   public StructureRequest setDueDateLocal(Long dueDate) {
     this.dueDate = dueDate;
 

@@ -256,7 +256,7 @@ public abstract class Node {
    * @return the title of the instance
    */
   public String getTitle() {
-    return this.title;
+    return this.title == null ? "" : this.title;
   }
 
   /**
@@ -331,7 +331,7 @@ public abstract class Node {
    * @return the note of the instance
    */
   public String getNote() {
-    return this.note;
+    return this.note == null ? "" : this.note;
   }
 
   /**

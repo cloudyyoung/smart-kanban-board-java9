@@ -121,15 +121,21 @@ public class HomeController {
             "11 Hours",
             "12 Hours");
 
-    promptEventDueDate.valueProperty().addListener((observable, oldDate, newDate) -> {
-      if(newDate != null){
-        System.out.println(Timestamp.valueOf(newDate.atStartOfDay()).getTime() / 1000);
-        Result res = currentEvent.getNode().setDueDate(Timestamp.valueOf(newDate.atStartOfDay()).getTime() / 1000);
-        System.out.println(res);
-      }
-      // ts.getTime();
-      // System.out.println(currentEvent.getNode());
-    });
+    promptEventDueDate
+        .valueProperty()
+        .addListener(
+            (observable, oldDate, newDate) -> {
+              if (newDate != null) {
+                System.out.println(Timestamp.valueOf(newDate.atStartOfDay()).getTime() / 1000);
+                Result res =
+                    currentEvent
+                        .getNode()
+                        .setDueDate(Timestamp.valueOf(newDate.atStartOfDay()).getTime() / 1000);
+                System.out.println(res);
+              }
+              // ts.getTime();
+              // System.out.println(currentEvent.getNode());
+            });
 
     inputSearch.textProperty().addListener((observable, oldText, newText) -> {
       if(newText.equals("")){

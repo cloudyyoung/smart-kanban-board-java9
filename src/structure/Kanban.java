@@ -140,6 +140,8 @@ public class Kanban extends Node {
 
     System.out.println(Kanban.current);
 
+    System.out.println(Kanban.current.search("a"));
+
     // System.out.println(("\ngenerateToday---");
     // Kanban.current.generateToday();
   }
