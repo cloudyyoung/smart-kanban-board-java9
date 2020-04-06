@@ -146,12 +146,10 @@ public class HomeController {
               System.out.println(newText);
               System.out.println(list);
             });
-
     
     promptEventTitle.focusedProperty().addListener((observable, oldFocus, newFocus) -> {
       if(!newFocus) currentEvent.getNode().setTitle(promptEventTitle.getText());
     });
-
 
     // The TextArea internally does not use the onKeyPressed property to handle keyboard input. Therefore, setting onKeyPressed does not remove the original event handler.
     // To prevent TextArea's internal handler for the Enter key, you need to add an event filter that consumes the event.
