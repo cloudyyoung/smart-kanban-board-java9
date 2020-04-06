@@ -12,12 +12,12 @@ import java.util.ArrayList;
 public final class Result {
 
   /** An {@code ArrayList} which stores all the {@code Request} related to the instance. */
-  final private ArrayList<Request> list = new ArrayList<Request>();
+  private final ArrayList<Request> list = new ArrayList<Request>();
 
   /** An {@code ArrayList} which stores all the excepted {@code Request} in {@link #list}. */
-  final private ArrayList<Request> exceptionList = new ArrayList<Request>();
+  private final ArrayList<Request> exceptionList = new ArrayList<Request>();
 
-  final private ArrayList<Request> failList = new ArrayList<Request>();
+  private final ArrayList<Request> failList = new ArrayList<Request>();
 
   /**
    * A boolean to indicate whether any of the related {@code Request} in {@link #list} has exception
