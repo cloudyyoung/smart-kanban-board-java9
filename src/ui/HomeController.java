@@ -54,7 +54,7 @@ public class HomeController {
   @FXML private SVGPath promptEventIcon;
 
   @FXML private Label promptEventPromptTitle;
-  
+
   @FXML private VBox promptEventTitleWrapper;
 
   @FXML private TextArea promptEventTitle;
@@ -185,8 +185,7 @@ public class HomeController {
             promptEvent.requestFocus();
           }
         });
-    
-    
+
     textHolder.textProperty().bind(promptEventTitle.textProperty());
     textHolder.getStyleClass().addAll(promptEventTitle.getStyleClass());
     textHolder.setStyle(promptEventTitle.getStyle());
