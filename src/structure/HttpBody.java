@@ -142,7 +142,7 @@ public final class HttpBody extends HashMap<Object, Object> {
    */
   @Override
   public HttpBody put(Object key, Object value) {
-	  Object newKey = key;
+    Object newKey = key;
     if (this.isList) {
       newKey = Integer.parseInt(key.toString() + "");
     }

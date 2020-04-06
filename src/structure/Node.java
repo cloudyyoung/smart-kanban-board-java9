@@ -58,7 +58,7 @@ public abstract class Node {
    *
    * @see #getTypeByLevel(String, int)
    */
-  private final static HashMap<String, Integer> TYPE_DICTIONARY =
+  private static final HashMap<String, Integer> TYPE_DICTIONARY =
       new HashMap<String, Integer>() {
         private static final long serialVersionUID = 3312582702053699017L;
 
@@ -596,7 +596,7 @@ public abstract class Node {
    * @param type a specified type
    * @return a string of a specified type in a format of Java class
    */
-  public final static String typeClass(String type) {
+  public static final String typeClass(String type) {
     return "structure." + Node.typeProper(Node.typeSingular(type));
   }
 
@@ -606,7 +606,7 @@ public abstract class Node {
    * @param type a specified type
    * @return a string of a specified type in a plural format
    */
-  public final static String typePlural(String type) {
+  public static final String typePlural(String type) {
     return type.endsWith("s") || type.length() <= 0 ? type : type + "s";
   }
 
@@ -616,7 +616,7 @@ public abstract class Node {
    * @param type a specified type
    * @return a string of a specified type in a singular format
    */
-  public final static String typeSingular(String type) {
+  public static final String typeSingular(String type) {
     return type.endsWith("s") && type.length() > 0 ? type.substring(0, type.length() - 1) : type;
   }
 
@@ -626,7 +626,7 @@ public abstract class Node {
    * @param type a specified type
    * @return a string of a specified type in a proper-case format
    */
-  public final static String typeProper(String type) {
+  public static final String typeProper(String type) {
     return type.substring(0, 1).toUpperCase() + type.toLowerCase().substring(1);
   }
 
@@ -636,7 +636,7 @@ public abstract class Node {
    * @param type a specified type
    * @return a string of a specified type in a lower-case format
    */
-  public final static String typeLower(String type) {
+  public static final String typeLower(String type) {
     return type.toLowerCase();
   }
 
@@ -646,7 +646,7 @@ public abstract class Node {
    * @param type a specified type
    * @return a string of a specified type in a upper-case format
    */
-  public final static String typeUpper(String type) {
+  public static final String typeUpper(String type) {
     return type.toUpperCase();
   }
 
