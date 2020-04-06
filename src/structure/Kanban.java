@@ -1,5 +1,7 @@
 package structure;
 
+import java.util.ArrayList;
+
 /**
  * The {@code Kanban} class, extends from {@code Node}.
  *
@@ -99,6 +101,32 @@ public class Kanban extends Node {
         }
       }
     }
+  }
+
+  /*
+   * Search
+   *
+   */
+  public ArrayList<Event> searchByName(String name) {
+    ArrayList<Event> ret = new ArrayList<Event>();
+    Kanban kanban = Kanban.current;
+
+    for (Node board : kanban.getChildrenNodes()) {
+      // excluded Today
+      if (board.getId() >= 100) {
+        for (Node column : board.getChildrenNodes()) {
+          for (Node node_event : column.getChildrenNodes()) {
+            Event event = (Event) node_event;
+            if (event.getTitle().indexOf(name) != -1
+                || event.getNote().indexOf(name) != -1
+                || Integer.toString(event.getId()).indexOf(name) != -1) {
+              ret.add(event);
+            }
+          }
+        }
+      }
+    }
+    return ret;
   }
 
   public static void main(String[] args) {

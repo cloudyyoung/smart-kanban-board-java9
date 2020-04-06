@@ -52,7 +52,7 @@ public class EventComponent extends Button {
     load();
   }
 
-  public Event getNode(){
+  public Event getNode() {
     return this.node;
   }
 
