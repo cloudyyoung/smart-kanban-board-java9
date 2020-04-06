@@ -54,7 +54,7 @@ public class HomeController {
   @FXML private SVGPath promptEventIcon;
 
   @FXML private Label promptEventPromptTitle;
-  
+
   @FXML private VBox promptEventTitleWrapper;
 
   @FXML private TextArea promptEventTitle;
@@ -174,17 +174,19 @@ public class HomeController {
             promptEvent.requestFocus();
           }
         });
-    
-    
+
     textHolder.textProperty().bind(promptEventTitle.textProperty());
     textHolder.getStyleClass().addAll(promptEventTitle.getStyleClass());
     textHolder.setStyle(promptEventTitle.getStyle());
     textHolder.setWrappingWidth(450);
-    textHolder.layoutBoundsProperty().addListener((observable, oldValue, newValue) -> {
-       promptEventTitle.setPrefHeight(textHolder.getLayoutBounds().getHeight() + 24);
-       System.out.println(textHolder.getLayoutBounds().getHeight());
-    });
-    
+    textHolder
+        .layoutBoundsProperty()
+        .addListener(
+            (observable, oldValue, newValue) -> {
+              promptEventTitle.setPrefHeight(textHolder.getLayoutBounds().getHeight() + 24);
+              System.out.println(textHolder.getLayoutBounds().getHeight());
+            });
+
     extraPane.getChildren().add(textHolder);
 
     promptEventNote
