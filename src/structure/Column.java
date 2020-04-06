@@ -19,9 +19,9 @@ public final class Column extends Node {
    *
    * @param obj the {@code HttpBody} for initialization
    */
-  int preset;
+  private int preset;
 
-  public Column(HttpBody obj) {
+  public Column(final HttpBody obj) {
     super(obj);
     this.setPreset(obj.getInt("preset"));
   }
@@ -31,13 +31,13 @@ public final class Column extends Node {
    *
    * @param title The title in {@code String}
    * @param note The note in {@code String}
-   * @param id THe id in {@code String}
+   * @param columnId THe id in {@code String}
    */
-  public Column(int id, String title, String note, Node parent) {
-    super(id, title, note, parent);
+  public Column(final int columnId, final String title, final String note, final Node parent) {
+    super(columnId, title, note, parent);
   }
 
-  public void setPreset(int preset) {
+  public void setPreset(final int preset) {
     this.preset = preset;
   }
 
@@ -45,16 +45,17 @@ public final class Column extends Node {
     return this.preset;
   }
 
-  public boolean hasEnoughTime(Event eventNext) {
-    Long totalTime = 25200L;
+  public boolean hasEnoughTime(final Event eventNext) {
+	Long totalTime = 25_200L;
     Long timeAccumulator = 0L;
-    for (Node node : this.getChildrenNodes()) {
-      Event event = (Event) node;
+    for (final Node node : this.getChildrenNodes()) {
+      final Event event = (Event) node;
       timeAccumulator += event.getDuration();
     }
     return (eventNext.getDuration() + timeAccumulator) <= totalTime ? true : false;
   }
-
+  
+  @Override
   public String toString() {
     return this.getType()
         + " (id: "

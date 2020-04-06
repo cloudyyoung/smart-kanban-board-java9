@@ -20,7 +20,7 @@ public final class Board extends Node {
    *
    * @param obj the {@code HttpBody} for initialization
    */
-  public Board(HttpBody obj) {
+  public Board(final HttpBody obj) {
     super(obj);
     this.color = obj.getString("color");
   }
@@ -30,10 +30,10 @@ public final class Board extends Node {
    *
    * @param title The title in {@code String}
    * @param note The note in {@code String}
-   * @param id THe id in {@code String}
+   * @param boardId THe id in {@code String}
    */
-  public Board(int id, String title, String note, String color, Node parent) {
-    super(id, title, note, parent);
+  public Board(final int boardId, final String title, final String note, final String color, final Node parent) { // NOPMD by 25985 on 2020-04-06, 9:26 a.m.
+    super(boardId, title, note, parent);
     this.setColorLocal(color);
   }
 
@@ -42,7 +42,7 @@ public final class Board extends Node {
    *
    * @param color The color in {@code String}
    */
-  public final void setColorLocal(String color) {
+  public void setColorLocal(final String color) {
     this.color = color;
   }
 
@@ -52,8 +52,8 @@ public final class Board extends Node {
    * @param color The color in {@code String}
    * @return the http request of this action
    */
-  public HttpRequest setColor(String color) {
-    HttpRequest req = this.set("color", color);
+  public HttpRequest setColor(final String color) {
+	final HttpRequest req = this.set("color", color);
     if (req.isSucceeded()) {
       this.setColorLocal(color);
     }
