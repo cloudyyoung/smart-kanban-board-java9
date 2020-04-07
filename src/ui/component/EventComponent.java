@@ -47,6 +47,13 @@ public class EventComponent extends Button {
   private Event node;
   private String color;
 
+  public EventComponent(Node node) {
+    super();
+    this.node = (Event) node;
+    this.color = ((Board) this.node.getParent().getParent()).getColor();
+    this.load();
+  }
+
   public EventComponent(Node node, String color) {
     super();
     this.node = (Event) node;
@@ -72,7 +79,7 @@ public class EventComponent extends Button {
 
   public void update() {
     if (((Column) this.node.getParent()).getPreset() == Column.DONE) {
-      this.setStyle("-fx-accent: -fx-accent-60");
+      this.setStyle("-fx-accent: -fx-accent-60 !important;");
       icon.setContent(CHECK_ICON);
     } else if (this.node.isOverdue()) {
       icon.setContent(OVERDUE_ICON);
@@ -82,6 +89,7 @@ public class EventComponent extends Button {
       icon.setContent(ACTIVE_ICON);
     }
     event.setText(node.getTitle());
+    this.setStyle(this.getStyle() + HomeController.styleAccent(this.color));
   }
 
   @FXML

@@ -46,6 +46,8 @@ public class HomeController {
   @FXML private HBox columnPane;
 
   @FXML private TextField inputSearch;
+  
+  @FXML private VBox searchList;
 
   @FXML private Pane dragPane;
 
@@ -141,14 +143,20 @@ public class HomeController {
               currentEvent.getNode().setDueDate(timestamp);
             });
 
+
+    searchList.getChildren().clear();
     inputSearch
         .textProperty()
         .addListener(
             (observable, oldText, newText) -> {
-              if (newText.equals("")) {
-                return;
+              searchList.getChildren().clear();
+              if (!newText.equals("")) {
+                ArrayList<structure.Node> list = Kanban.current.search(newText);
+                for(structure.Node each : list){
+                  EventComponent event = new EventComponent(each);
+                  searchList.getChildren().add(event);
+                }
               }
-              ArrayList<structure.Node> list = Kanban.current.search(newText);
             });
 
     promptEventTitle

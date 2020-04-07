@@ -673,8 +673,14 @@
 	-fx-scale-y: 0.75;
 }
 
+.bg-main .search{
+	-fx-font-family: "Nexa Bold";
+	-fx-pref-height: 54px;
+}
+
 .bg-main .search-list{
 	-fx-padding: 20px 50px;
+	-fx-spacing: 15px;
 }
 
 .bg-main .search-list .card{
