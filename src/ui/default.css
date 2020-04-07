@@ -635,7 +635,7 @@
 	-fx-padding: 4px 0 0;
 }
 
-.bg-main .column .scroll-pane.event-list .button{
+.bg-main .column .scroll-pane.event-list .button, .card{
 	-fx-alignment: CENTER_LEFT;
 	-fx-max-width: 246px;
 	-fx-pref-width: 246px;
@@ -653,33 +653,42 @@
     -fx-effect: dropshadow(gaussian, -fx-accent-20, 10, 0, 1, 2);
 }
 
-.bg-main .column .scroll-pane.event-list .button:hover{
+.bg-main .column .scroll-pane.event-list .button:hover, .card:hover{
 	-fx-background-color: derive(-fx-accent, -6%);
-    -fx-effect: dropshadow(gaussian, derive(-fx-accent, -6%), 10, 0, 1, 2); /** 15% **/
+    -fx-effect: dropshadow(gaussian, derive(-fx-accent, -6%), 10, 0, 1, 2);
 }
 
-.bg-main .column .scroll-pane.event-list .button:focused{
+.bg-main .column .scroll-pane.event-list .button:focused, .card:focused{
 	-fx-background-color: derive(-fx-accent, -16%);
-    -fx-effect: dropshadow(gaussian, derive(-fx-accent, -16%), 10, 0, 1, 2); /** 15% **/
+    -fx-effect: dropshadow(gaussian, derive(-fx-accent, -16%), 10, 0, 1, 2);
 }
 
-.bg-main .column .scroll-pane.event-list .button *{
+.bg-main .column .scroll-pane.event-list .button *, .card *{
 	-fx-text-fill: -fx-light-text-color;
     -fx-fill: -fx-light-text-color;
 }
 
-.bg-main .column .scroll-pane.event-list .button SVGPath{
+.bg-main .column .scroll-pane.event-list .button SVGPath, .card SVGPath{
 	-fx-scale-x: 0.75;
 	-fx-scale-y: 0.75;
 }
 
-
-.bg-main .column .scroll-pane.event-list .button:hover, .bg-main .column .scroll-pane.event-list .button:focused{
-    -fx-effect: dropshadow(gaussian, -fx-accent-30, 10, 0, 1, 2); /** 20% **/
+.bg-main .search-list{
+	-fx-padding: 20px 50px;
 }
 
-.bg-main .column .scroll-pane.event-list .button.selected{
-	-fx-effect: dropshadow(gaussian, -fx-accent-50, 10, 0, 1, 2); /** 40% **/
+.bg-main .search-list .card{
+	-fx-pref-width: 1000px;
+	-fx-max-width: MAX_VALUE;
+}
+
+
+.bg-main .column .scroll-pane.event-list .button:hover, .bg-main .column .scroll-pane.event-list .button:focused, .card:hover, .card:focused{
+    -fx-effect: dropshadow(gaussian, -fx-accent-30, 10, 0, 1, 2);
+}
+
+.bg-main .column .scroll-pane.event-list .button.selected, .card.selected{
+	-fx-effect: dropshadow(gaussian, -fx-accent-50, 10, 0, 1, 2);
 }
 
 .bg-main:hover .scroll-bar{
@@ -774,7 +783,6 @@
 .bg-signin .text-field:focused, .bg-signin .password-field:focused, .bg-signin .combo-box:focused{
 	-fx-background-color: transparent;
 }
-
 
 .bg-signin .signin-wrapper VBox{
 	-fx-min-width: 350px;
