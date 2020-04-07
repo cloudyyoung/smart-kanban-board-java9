@@ -429,6 +429,11 @@
 	-fx-font-family: "Nexa Bold";
 }
 
+.nexa-light{
+	-fx-font-family: "Nexa Light";
+}
+
+
 
 /** Base **/
 .base{
@@ -708,13 +713,26 @@
 
 .bg-settings .title{
 	-fx-alignment: CENTER_LEFT;
-	-fx-padding: 8px 40px;
+	-fx-padding: 10px 20px;
+	-fx-border-radius: 0;
+	-fx-background-radius: 0;
+	-fx-border-width: 0;
+	-fx-graphic-text-gap: 15px;
+}
+
+.bg-settings .title:hover, .bg-settings .title:focused{
+	-fx-border-width: 0;
+}
+
+.bg-settings .title SVGPath{
+	-fx-scale-x: 0.8;
+	-fx-scale-y: 0.8;
 }
 
 .bg-settings .title-wrapper{
 	-fx-background-color: -fx-base;
 	-fx-border-width: 0 0 2px;
-	-fx-border-color: -fx-accent-30;
+	-fx-border-color: -fx-side-background;
 }
 
 .bg-settings .scroll-pane .username{
