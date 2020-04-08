@@ -94,6 +94,7 @@ public class SettingsController {
     } catch (Exception e) {
       e.printStackTrace();
     }
+  }
 
     @FXML
     void switchTheme(ActionEvent event){
