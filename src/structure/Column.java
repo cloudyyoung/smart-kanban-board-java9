@@ -55,9 +55,10 @@ public final class Column extends Node {
     return (eventNext.getDuration() + timeAccumulator) <= totalTime ? true : false;
   }
 
-  public void addEvent(String title, String note, long duration, long dueDate, int importanceLevel) {
+  public void addEvent(
+      String title, String note, long duration, long dueDate, int importanceLevel) {
     Node node = this.getParent().getParent();
-    Kanban kanban = (Kanban)node;
+    Kanban kanban = (Kanban) node;
     int id = kanban.getNextId();
     Event event = new Event(id, title, note, dueDate, duration, importanceLevel, this);
     this.addNode(event);
@@ -79,5 +80,4 @@ public final class Column extends Node {
         + this.getChildrenNodes().toString()
         + "\")";
   }
-
 }
