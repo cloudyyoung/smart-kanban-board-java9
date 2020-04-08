@@ -96,13 +96,13 @@ public class SettingsController {
     }
   }
 
-    @FXML
-    void switchTheme(ActionEvent event){
-        Scene scene = ((Node) event.getSource()).getScene();
-        scene.getStylesheets().clear();
-        scene.getStylesheets().add(getClass().getResource("default.css").toExternalForm());
-        if(themeCombo.getSelectionModel().getSelectedItem().toLowerCase().equals("dark")){
-            scene.getStylesheets().add(getClass().getResource("dark.css").toExternalForm());
-        }
+  @FXML
+  void switchTheme(ActionEvent event) {
+    Scene scene = ((Node) event.getSource()).getScene();
+    scene.getStylesheets().clear();
+    scene.getStylesheets().add(getClass().getResource("default.css").toExternalForm());
+    if (themeCombo.getSelectionModel().getSelectedItem().toLowerCase().equals("dark")) {
+      scene.getStylesheets().add(getClass().getResource("dark.css").toExternalForm());
     }
+  }
 }
