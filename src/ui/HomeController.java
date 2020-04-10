@@ -20,69 +20,37 @@ import ui.component.*;
 public class HomeController {
 
   @FXML private Button sideProfile;
-
   @FXML private Circle profileAvatar;
-
   @FXML private Label profileUsername;
-
   @FXML private VBox sidePane;
-
   @FXML private VBox operationList;
-
   @FXML private Button sideSearch;
-
   @FXML private VBox boardList;
-
   @FXML private TabPane tabPane;
-
   @FXML private VBox boardPane;
-
   @FXML private TextField boardTitle;
-
   @FXML private TextField boardNote;
-
   @FXML private Button boardEdit;
-
   @FXML private HBox columnPane;
-
   @FXML private TextField inputSearch;
-
   @FXML private VBox searchList;
-
   @FXML private Pane dragPane;
-
   @FXML private VBox promptEvent;
-
   @FXML private SVGPath promptEventIcon;
-
   @FXML private Label promptEventPromptTitle;
-
   @FXML private VBox promptEventTitleWrapper;
-
   @FXML private TextArea promptEventTitle;
-
   @FXML private Label promptEventLocationBoard;
-
   @FXML private Label promptEventLocationColumn;
-
   @FXML private ComboBox<String> promptEventImportanceLevel;
-
   @FXML private DatePicker promptEventDueDate;
-
   @FXML private ComboBox<String> promptEventDuration;
-
   @FXML private TextArea promptEventNote;
-
   @FXML private Pane extraPane;
-
   @FXML private VBox promptBoard;
-
   @FXML private SVGPath promptBoardIcon;
-
   @FXML private Label promptBoardPromptTitle;
-
   @FXML private TextArea promptBoardTitle;
-
   @FXML private TextArea promptBoardNote;
 
   public static EventComponent currentEvent;
@@ -100,6 +68,7 @@ public class HomeController {
     BoardComponent.sidePane = sidePane;
     BoardComponent.boardList = boardList;
     BoardComponent.tabPane = tabPane;
+    BoardComponent.boardEdit = boardEdit;
     EventComponent.promptEvent = promptEvent;
     EventComponent.promptEventIcon = promptEventIcon;
     EventComponent.promptEventPromptTitle = promptEventPromptTitle;
@@ -110,6 +79,7 @@ public class HomeController {
     EventComponent.promptEventDueDate = promptEventDueDate;
     EventComponent.promptEventDuration = promptEventDuration;
     EventComponent.promptEventNote = promptEventNote;
+    EventComponent.textHolder = textHolder;
 
     promptEvent.getStyleClass().setAll("prompt-cover", "hide");
     promptBoard.getStyleClass().setAll("prompt-cover", "hide");
@@ -200,7 +170,6 @@ public class HomeController {
           }
         });
 
-    textHolder.textProperty().bind(promptEventTitle.textProperty());
     textHolder.getStyleClass().addAll(promptEventTitle.getStyleClass());
     textHolder.setStyle(promptEventTitle.getStyle());
     textHolder.setWrappingWidth(450);
@@ -209,6 +178,7 @@ public class HomeController {
         .addListener(
             (observable, oldValue, newValue) -> {
               promptEventTitle.setPrefHeight(textHolder.getLayoutBounds().getHeight() + 23);
+              promptBoardTitle.setPrefHeight(textHolder.getLayoutBounds().getHeight() + 23);
             });
 
     extraPane.getChildren().add(textHolder);
@@ -250,7 +220,7 @@ public class HomeController {
     // Add list items
     operationList.getChildren().clear();
     boardList.getChildren().clear();
-    for (structure.Node each : Kanban.current.getChildrenNodes()) {
+    for (structure.Node each : Kanban.current.getNodes()) {
       // Add to list
       BoardComponent node = new BoardComponent((Board) each);
       if (each.getId() >= 100) {
@@ -308,10 +278,15 @@ public class HomeController {
     if (currentEvent != null) {
       currentEvent.update();
     }
+    if (currentBoard != null) {
+      currentBoard.update();
+      currentBoard.fire();
+    }
   }
 
   @FXML
   void editBoard() {
+    textHolder.textProperty().bind(promptBoardTitle.textProperty());
     promptBoard.getStyleClass().remove("hide");
     promptBoardTitle.setText(currentBoard.getNode().getTitle());
     promptBoardNote.setText(currentBoard.getNode().getNote());
@@ -320,15 +295,18 @@ public class HomeController {
   @FXML
   void deleteBoard(){
     currentBoard.getNode().remove();
-    listBoard();
-    closePrompt();
+    currentBoard = null;
+    this.listBoard();
+    this.closePrompt();
   }
 
   @FXML
   void deleteEvent(){
-    ColumnComponent parent = currentEvent.getParentComponent();
     currentEvent.getNode().remove();
-    parent.initialize();
+    Kanban.current.generateToday();
+    currentEvent.getParentComponent().listEvent();
+    currentEvent = null;
+    this.closePrompt();
   }
 
   public static String styleAccent(String hex) {
