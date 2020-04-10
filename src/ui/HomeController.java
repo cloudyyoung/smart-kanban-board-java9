@@ -75,24 +75,17 @@ public class HomeController {
 
   @FXML private Pane extraPane;
 
-  @FXML
-  private VBox promptBoard;
+  @FXML private VBox promptBoard;
 
-  @FXML
-  private SVGPath promptBoardIcon;
+  @FXML private SVGPath promptBoardIcon;
 
-  @FXML
-  private Label promptBoardPromptTitle;
+  @FXML private Label promptBoardPromptTitle;
 
-  @FXML
-  private TextArea promptBoardTitle;
+  @FXML private TextArea promptBoardTitle;
 
-  @FXML
-  private ComboBox<String> promptBoardPreset;
+  @FXML private ComboBox<String> promptBoardPreset;
 
-  @FXML
-  private TextArea promptBoardNote;
-
+  @FXML private TextArea promptBoardNote;
 
   public static EventComponent currentEvent;
   public static BoardComponent currentBoard;
@@ -309,13 +302,13 @@ public class HomeController {
   void closePrompt() {
     promptEvent.getStyleClass().add("hide");
     promptBoard.getStyleClass().add("hide");
-    if(currentEvent != null){
+    if (currentEvent != null) {
       currentEvent.update();
     }
   }
 
   @FXML
-  void editBoard(){
+  void editBoard() {
     promptBoard.getStyleClass().remove("hide");
     promptBoardTitle.setText(currentBoard.getNode().getTitle());
     promptBoardPreset.getItems().clear();
