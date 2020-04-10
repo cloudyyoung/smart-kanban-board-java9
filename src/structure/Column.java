@@ -59,7 +59,7 @@ public final class Column extends Node {
       String title, String note, long duration, long dueDate, int importanceLevel) {
     Node node = this.getParent().getParent();
     Kanban kanban = (Kanban) node;
-    int id = kanban.getNextId();
+    int id = kanban.getNextEventId();
     Event event = new Event(id, title, note, dueDate, duration, importanceLevel, this);
     this.addNode(event);
     return;
