@@ -561,7 +561,7 @@
             <String fx:value="hide" />
          </styleClass>
       </VBox>
-      <VBox fx:id="promptBoard" styleClass="prompt-cover">
+      <VBox fx:id="promptBoard">
          <children>
             <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="bg-prompt">
                <content>
@@ -603,7 +603,7 @@
                               </HBox>
                               <VBox>
                                  <children>
-                                    <Button mnemonicParsing="false" styleClass="card" text="Button">
+                                    <Button mnemonicParsing="false" styleClass="card">
                                        <graphic>
                                           <HBox styleClass="field">
                                              <children>
@@ -623,6 +623,10 @@
                </content>
             </ScrollPane>
          </children>
+         <styleClass>
+            <String fx:value="prompt-cover" />
+            <String fx:value="hide" />
+         </styleClass>
       </VBox>
    </children>
 </StackPane>

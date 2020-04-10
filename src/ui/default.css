@@ -449,7 +449,7 @@
 
 .bg-side *{
   -fx-background-radius: 0;
-  -fx-max-width: 210px; /** Here to change the sidebar width **/
+  -fx-max-width: 230px; /** Here to change the sidebar width **/
   -fx-background-color: transparent;
 }
 
@@ -463,7 +463,7 @@
 
 /* .bg-side .scroll-pane .button, */
 .bg-side .button{
-	-fx-padding: 12px 20px;
+	-fx-padding: 14px 30px;
     -fx-graphic-text-gap: 20px;
 	-fx-border-width: 0 0 0 4px;
 	-fx-border-color: transparent;
@@ -475,12 +475,6 @@
 
 .bg-side .button:hover{
 	-fx-background-color: -fx-accent-5;
-}
-
-.bg-side .scroll-pane .button,
-.bg-side .operation-list .button{
-	-fx-max-height: 48px;
-	-fx-min-height: 47px;
 }
 
 .bg-side .scroll-pane .button HBox,
@@ -507,7 +501,7 @@
 }
 
 .bg-side .username{
-	-fx-padding: 22px 15px !important;
+	-fx-padding: 22px 25px !important;
 }
 
 .bg-side .username #username-label{
@@ -532,7 +526,7 @@
 }
 
 .bg-main .tab-box.title{
-	-fx-padding: 30px 50px 10px;
+	-fx-padding: 20px 50px 10px;
 	-fx-background-color: -fx-base;
 	-fx-spacing: 10px;
 }
