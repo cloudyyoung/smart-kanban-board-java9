@@ -583,8 +583,8 @@
 }
 
 .bg-main .column {
-	-fx-max-width: 286px;
-	-fx-pref-width: 286px;
+	-fx-max-width: 276px;
+	-fx-pref-width: 276px;
 	-fx-background-color: transparent;
 	-fx-padding: 0;
 }
@@ -656,9 +656,9 @@
     -fx-effect: dropshadow(gaussian, -fx-accent-20, 10, 0, 1, 2);
 }
 
-.bg-main .column .scroll-pane.event-list{
-	-fx-max-width: 266px;
-	-fx-pref-width: 266px;
+.bg-main .column .scroll-pane.event-list .button, .bg-main .column .scroll-pane.event-list .card{
+	-fx-max-width: 256px;
+	-fx-pref-width: 256px;
 }
 
 .bg-main .column .scroll-pane.event-list .button:hover, .card:hover{
