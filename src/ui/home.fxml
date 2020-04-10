@@ -484,7 +484,7 @@
                      <children>
                         <HBox styleClass="prompt-title">
                            <children>
-                              <SVGPath fx:id="promptBoardIcon" content="M 16 4 C 9.382813 4 4 9.382813 4 16 C 4 22.617188 9.382813 28 16 28 C 22.617188 28 28 22.617188 28 16 C 28 9.382813 22.617188 4 16 4 Z M 16 6 C 21.535156 6 26 10.464844 26 16 C 26 21.535156 21.535156 26 16 26 C 10.464844 26 6 21.535156 6 16 C 6 10.464844 10.464844 6 16 6 Z" fillRule="EVEN_ODD">
+                              <SVGPath fx:id="promptBoardIcon" content="M 5 5 L 5 6 L 5 27 L 27 27 L 27 5 L 5 5 z M 7 7 L 25 7 L 25 9 L 7 9 L 7 7 z M 7 11 L 25 11 L 25 25 L 7 25 L 7 11 z" fillRule="EVEN_ODD">
                                  <cursor>
                                     <Cursor fx:constant="DEFAULT" />
                                  </cursor>
@@ -620,6 +620,61 @@
             <String fx:value="prompt-cover" />
             <String fx:value="hide" />
          </styleClass>
+      </VBox>
+      <VBox fx:id="promptColumn" styleClass="prompt-cover">
+         <children>
+            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="bg-prompt">
+               <content>
+                  <VBox styleClass="prompt-content-wrapper">
+                     <children>
+                        <HBox styleClass="prompt-title">
+                           <children>
+                              <SVGPath fx:id="promptColumnIcon" content="M 5 5 L 5 27 L 27 27 L 27 5 Z M 7 7 L 15 7 L 15 25 L 7 25 Z M 17 7 L 25 7 L 25 25 L 17 25 Z" fillRule="EVEN_ODD">
+                                 <cursor>
+                                    <Cursor fx:constant="DEFAULT" />
+                                 </cursor>
+                              </SVGPath>
+                              <Label fx:id="promptColumnPromptTitle" text="Column" />
+                              <Pane HBox.hgrow="ALWAYS" />
+                              <Button mnemonicParsing="false" onAction="#deleteBoard">
+                                 <graphic>
+                                    <SVGPath content="M 13.59375 4 L 13.28125 4.28125 L 12.5625 5 L 6 5 L 6 7 L 7 7 L 7 25 C 7 26.644531 8.355469 28 10 28 L 22 28 C 23.644531 28 25 26.644531 25 25 L 25 7 L 26 7 L 26 5 L 19.4375 5 L 18.71875 4.28125 L 18.40625 4 Z M 14.4375 6 L 17.5625 6 L 18.28125 6.71875 L 18.59375 7 L 23 7 L 23 25 C 23 25.554688 22.554688 26 22 26 L 10 26 C 9.445313 26 9 25.554688 9 25 L 9 7 L 13.40625 7 L 13.71875 6.71875 Z M 11 11 L 11 22 L 13 22 L 13 11 Z M 15 11 L 15 22 L 17 22 L 17 11 Z M 19 11 L 19 22 L 21 22 L 21 11 Z" />
+                                 </graphic>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#closePrompt">
+                                 <graphic>
+                                    <SVGPath content="M 7.21875 5.78125 L 5.78125 7.21875 L 14.5625 16 L 5.78125 24.78125 L 7.21875 26.21875 L 16 17.4375 L 24.78125 26.21875 L 26.21875 24.78125 L 17.4375 16 L 26.21875 7.21875 L 24.78125 5.78125 L 16 14.5625 Z" />
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <VBox styleClass="prompt-content">
+                           <children>
+                              <TextArea fx:id="promptColumnTitle" text="Hold on tight Lucky chance. It's mine Lucky strike. I'm your luck, take it." wrapText="true">
+                                 <styleClass>
+                                    <String fx:value="h3" />
+                                    <String fx:value="bold" />
+                                    <String fx:value="title" />
+                                 </styleClass>
+                              </TextArea>
+                           </children>
+                        </VBox>
+                        <VBox styleClass="prompt-content">
+                           <children>
+                              <HBox styleClass="field">
+                                 <children>
+                                    <Label styleClass="field-name" text="Preset" />
+                                    <Pane HBox.hgrow="ALWAYS" />
+                                    <ComboBox fx:id="promptColumnPreset" styleClass="field-value" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </content>
+            </ScrollPane>
+         </children>
       </VBox>
    </children>
 </StackPane>
