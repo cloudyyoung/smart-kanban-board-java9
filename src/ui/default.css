@@ -638,7 +638,7 @@
 	-fx-alignment: CENTER_LEFT;
     -fx-border-radius: 4px;
 	-fx-background-radius: 4px;
-    -fx-padding: 14px 20px 14px 12px;
+    -fx-padding: 16px 20px 16px 12px;
     -fx-margin: 10px;
     -fx-border-width: 0;
     -fx-border-color: transparent;
@@ -923,8 +923,8 @@
 	-fx-effect: dropshadow(gaussian , rgba(0, 0, 0, 0.2), 10, 0, 1, 2) !important;
 	-fx-padding: 0;
 	-fx-border-width: 0;
-	-fx-max-width: 550px;
-	-fx-alignment: CENTER;
+	-fx-max-width: 540px;
+	-fx-alignment: TOP_CENTER;
 }
 
 .bg-prompt .prompt-content-wrapper{
@@ -939,18 +939,21 @@
 }
 
 .bg-prompt .prompt-title SVGPath{
-	-fx-scale-x: 0.7;
-	-fx-scale-y: 0.7;
+	-fx-scale-x: 0.8;
+	-fx-scale-y: 0.8;
 	-fx-fill: -fx-dark-text-color;
 }
 
 .bg-prompt .prompt-title .label{
 	-fx-text-fill: -fx-dark-text-color;
-	-fx-font-size: 12.5px;
+	-fx-font-size: 14px;
 }
 
 .bg-prompt .prompt-title .button{
 	-fx-padding: 0;
+	-fx-pref-width: 34px;
+	-fx-pref-height: 34px;
+	-fx-alignment: CENTER;
 }
 
 .bg-prompt .prompt-title .button:hover, .bg-prompt .prompt-title .button:focused{
@@ -958,8 +961,8 @@
 }
 
 .bg-prompt .prompt-title .button SVGPath{
-	-fx-scale-x: 0.65;
-	-fx-scale-y: 0.65;
+	-fx-scale-x: 0.7;
+	-fx-scale-y: 0.7;
 	-fx-fill: -fx-dark-text-color;
 }
 
