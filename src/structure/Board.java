@@ -42,6 +42,13 @@ public final class Board extends Node {
     this.setColorLocal(color);
   }
 
+  public void createSubColumns() {
+    Column col1 = new Column();
+    
+
+    return;
+  }
+
   /**
    * Sets the color of the board, in local storage.
    *
