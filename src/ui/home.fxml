@@ -113,14 +113,14 @@
                                  <children>
                                     <VBox>
                                        <children>
-                                          <TextField fx:id="boardTitle" editable="false" text="TodayTodayTodayTodayTodayTodayTodayTodayTodayTodayTodayToday">
+                                          <TextField fx:id="boardTitle" disable="true" editable="false" text="TodayTodayTodayTodayTodayTodayTodayTodayTodayTodayTodayToday">
                                              <styleClass>
                                                 <String fx:value="board-title" />
                                                 <String fx:value="bold" />
                                                 <String fx:value="h2" />
                                              </styleClass>
                                           </TextField>
-                                          <TextField fx:id="boardNote" editable="false" text="This is your today board.This is your today board.This is your today board.This is your today board.This is your today board.">
+                                          <TextField fx:id="boardNote" disable="true" editable="false" text="This is your today board.This is your today board.This is your today board.This is your today board.This is your today board.">
                                              <styleClass>
                                                 <String fx:value="board-note" />
                                                 <String fx:value="h5" />

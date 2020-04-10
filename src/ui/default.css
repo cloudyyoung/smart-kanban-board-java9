@@ -608,6 +608,11 @@
 	-fx-pref-width: 300px;
 }
 
+.bg-main .column .title .text-field:disabled{
+	-fx-opacity: 1;
+}
+
+
 /** Column Title Total **/
 .bg-main .column .title .total{
 	-fx-min-width: 30px;

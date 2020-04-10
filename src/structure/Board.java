@@ -90,7 +90,7 @@ public final class Board extends Node {
         + "\", color: "
         + this.getColor()
         + ", nodes: "
-        + this.getChildrenNodes().toString()
+        + this.getNodes().toString()
         + "\")";
   }
 }

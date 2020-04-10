@@ -436,7 +436,7 @@ public abstract class Node {
         + "\", note: \""
         + this.getNote()
         + "\", nodes: "
-        + this.getChildrenNodes().toString()
+        + this.getNodes().toString()
         + "\")";
   }
 
@@ -501,6 +501,7 @@ public abstract class Node {
     if (req.isSucceeded()) {
       Node parent = this.getParent();
       StructureRequest req2 = parent.removeNode(this.getId());
+      this.setParentLocal(null);
       res.add(req2);
     }
 
@@ -553,16 +554,20 @@ public abstract class Node {
     return this.nodes.get(id);
   }
 
+  public final void clearNodes(){
+    this.nodes.clear();
+  }
+
   /**
    * Returns all the children nodes of the instance.
    *
    * @return a {@code Collection} of all the children nodes
    */
-  public final ArrayList<Node> getChildrenNodes() {
-    return this.getChildrenNodes(Node.SORT_BY_ID, Node.ORDER_BY_ASC);
+  public final ArrayList<Node> getNodes() {
+    return this.getNodes(Node.SORT_BY_ID, Node.ORDER_BY_ASC);
   }
 
-  public final ArrayList<Node> getChildrenNodes(int sortBy, int order) {
+  public final ArrayList<Node> getNodes(int sortBy, int order) {
     ArrayList<Node> list = new ArrayList<Node>(this.nodes.values());
     Collections.sort(
         list,

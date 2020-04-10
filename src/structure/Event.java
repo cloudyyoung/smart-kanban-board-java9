@@ -152,7 +152,7 @@ public final class Event extends Node {
         + ", dueDate: "
         + this.getDueDate()
         + ", nodes: "
-        + this.getChildrenNodes().toString()
+        + this.getNodes().toString()
         + "\")";
   }
 

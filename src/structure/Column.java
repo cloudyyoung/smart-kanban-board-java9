@@ -48,7 +48,7 @@ public final class Column extends Node {
   public boolean hasEnoughTime(Event eventNext) {
     Long totalTime = 25_200L;
     Long timeAccumulator = 0L;
-    for (Node node : this.getChildrenNodes()) {
+    for (Node node : this.getNodes()) {
       final Event event = (Event) node;
       timeAccumulator += event.getDuration();
     }
@@ -77,7 +77,7 @@ public final class Column extends Node {
         + "\", preset: "
         + this.getPreset()
         + ", nodes: "
-        + this.getChildrenNodes().toString()
+        + this.getNodes().toString()
         + "\")";
   }
 }

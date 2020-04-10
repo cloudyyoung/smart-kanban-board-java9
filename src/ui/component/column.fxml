@@ -20,7 +20,7 @@
               <String fx:value="h5" />
             </styleClass>
         </Label>
-        <TextField fx:id="columnTitle" editable="false" styleClass="medium" text="Love Me Like That - Carly Rae Jepsen" />
+        <TextField fx:id="columnTitle" disable="true" editable="false" styleClass="medium" text="Love Me Like That - Carly Rae Jepsen" />
         <Button fx:id="eventAdd" mnemonicParsing="false">
             <graphic>
               <SVGPath content="M 15 5 L 15 15 L 5 15 L 5 17 L 15 17 L 15 27 L 17 27 L 17 17 L 27 17 L 27 15 L 17 15 L 17 5 Z" />

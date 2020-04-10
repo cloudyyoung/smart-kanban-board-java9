@@ -76,11 +76,11 @@ public class Kanban extends Node {
   public int getNextId() {
     int max = 100;
     Kanban kanban = Kanban.current;
-    for (Node board : kanban.getChildrenNodes()) {
+    for (Node board : kanban.getNodes()) {
       if (board.getId() >= 100) {
-        for (Node node : board.getChildrenNodes()) {
+        for (Node node : board.getNodes()) {
           Column column = (Column) node;
-          for (Node event : column.getChildrenNodes()) {
+          for (Node event : column.getNodes()) {
             if (event.getId() > max) {
               max = event.getId();
             }
@@ -102,12 +102,16 @@ public class Kanban extends Node {
     Node inprogress = todayBoard.getNode(2);
     Node done = todayBoard.getNode(3);
 
+    todo.clearNodes();
+    inprogress.clearNodes();
+    done.clearNodes();
+
     // All todo
-    for (Node board : kanban.getChildrenNodes()) {
+    for (Node board : kanban.getNodes()) {
       if (board.getId() >= 100) {
-        for (Node node : board.getChildrenNodes()) {
+        for (Node node : board.getNodes()) {
           Column column = (Column) node;
-          for (Node event : column.getChildrenNodes()) {
+          for (Node event : column.getNodes()) {
             if (column.getPreset() == Column.TO_DO) {
               todo.addNode(event);
             } else if (column.getPreset() == Column.IN_PROGRESS) {
@@ -129,11 +133,11 @@ public class Kanban extends Node {
     ArrayList<Node> ret = new ArrayList<Node>();
     Kanban kanban = Kanban.current;
 
-    for (Node board : kanban.getChildrenNodes()) {
+    for (Node board : kanban.getNodes()) {
       // excluded Today
       if (board.getId() >= 100) {
-        for (Node column : board.getChildrenNodes()) {
-          for (Node nodeEvent : column.getChildrenNodes()) {
+        for (Node column : board.getNodes()) {
+          for (Node nodeEvent : column.getNodes()) {
             Event event = (Event) nodeEvent;
             if (event.getTitle().toLowerCase().indexOf(name.toLowerCase()) != -1
                 || event.getNote().toLowerCase().indexOf(name.toLowerCase()) != -1
