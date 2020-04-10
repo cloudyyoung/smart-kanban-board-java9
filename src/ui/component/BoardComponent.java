@@ -42,6 +42,8 @@ public class BoardComponent extends Button {
 
     this.setOnAction(
         e -> {
+          HomeController.currentBoard = this;
+
           HashSet<Node> sideButtons = new HashSet<Node>();
           sideButtons.addAll(sidePane.lookupAll(".button"));
           sideButtons.addAll(boardList.lookupAll(".button"));

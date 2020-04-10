@@ -133,9 +133,13 @@
                                     </VBox>
                                     <VBox styleClass="operation-list">
                                        <children>
-                                          <Button fx:id="boardAddColumn" mnemonicParsing="false">
+                                          <Button fx:id="boardEdit" mnemonicParsing="false" onAction="#editBoard">
                                              <graphic>
-                                                <SVGPath content="M 15 5 L 15 15 L 5 15 L 5 17 L 15 17 L 15 27 L 17 27 L 17 17 L 27 17 L 27 15 L 17 15 L 17 5 Z" />
+                                                <HBox style="-fx-alignment: CENTER;">
+                                                   <children>
+                                                      <SVGPath content="M 16 6 C 14.894531 6 14 6.894531 14 8 C 14 9.105469 14.894531 10 16 10 C 17.105469 10 18 9.105469 18 8 C 18 6.894531 17.105469 6 16 6 Z M 16 14 C 14.894531 14 14 14.894531 14 16 C 14 17.105469 14.894531 18 16 18 C 17.105469 18 18 17.105469 18 16 C 18 14.894531 17.105469 14 16 14 Z M 16 22 C 14.894531 22 14 22.894531 14 24 C 14 25.105469 14.894531 26 16 26 C 17.105469 26 18 25.105469 18 24 C 18 22.894531 17.105469 22 16 22 Z" />
+                                                   </children>
+                                                </HBox>
                                              </graphic>
                                           </Button>
                                        </children>
@@ -557,7 +561,7 @@
             <String fx:value="hide" />
          </styleClass>
       </VBox>
-      <VBox fx:id="promptBoard">
+      <VBox fx:id="promptBoard" styleClass="prompt-cover">
          <children>
             <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="bg-prompt">
                <content>
@@ -590,16 +594,35 @@
                               </TextArea>
                            </children>
                         </VBox>
-                        <VBox styleClass="prompt-content" />
+                        <VBox styleClass="prompt-content">
+                           <children>
+                              <HBox styleClass="field">
+                                 <children>
+                                    <TextArea fx:id="promptBoardNote" prefWidth="500.0" promptText="Notes" styleClass="field-value" wrapText="true" />
+                                 </children>
+                              </HBox>
+                              <VBox>
+                                 <children>
+                                    <Button mnemonicParsing="false" styleClass="card" text="Button">
+                                       <graphic>
+                                          <HBox styleClass="field">
+                                             <children>
+                                                <Label styleClass="field-name" text="Preset" />
+                                                <Pane HBox.hgrow="ALWAYS" />
+                                                <ComboBox fx:id="promptBoardPreset" styleClass="field-value" />
+                                             </children>
+                                          </HBox>
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
                      </children>
                   </VBox>
                </content>
             </ScrollPane>
          </children>
-         <styleClass>
-            <String fx:value="prompt-cover" />
-            <String fx:value="hide" />
-         </styleClass>
       </VBox>
    </children>
 </StackPane>

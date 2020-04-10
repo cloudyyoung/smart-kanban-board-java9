@@ -112,13 +112,13 @@
 /** Buttons and Forms **/
 .button, .combo-box, .date-picker{
   -fx-background-color: inherit;
-  -fx-padding: 4px 6px;
+  -fx-padding: 5px 6px;
   -fx-font-size: 12px;
   -fx-background-radius: 0;
   -fx-border-radius: 0;
   -fx-border-width: 0;
   -fx-border-color: transparent;
-
+  -fx-background-insets: 0px;
 }
 
 
@@ -583,8 +583,8 @@
 }
 
 .bg-main .column {
-	-fx-max-width: 266px;
-	-fx-pref-width: 266px;
+	-fx-max-width: 286px;
+	-fx-pref-width: 286px;
 	-fx-background-color: transparent;
 	-fx-padding: 0;
 }
@@ -642,8 +642,6 @@
 
 .bg-main .column .scroll-pane.event-list .button, .card{
 	-fx-alignment: CENTER_LEFT;
-	-fx-max-width: 246px;
-	-fx-pref-width: 246px;
     -fx-border-radius: 4px;
 	-fx-background-radius: 4px;
     -fx-padding: 14px 20px 14px 12px;
@@ -656,6 +654,11 @@
     -fx-graphic-text-gap: 10px;
     -fx-content-display: LEFT;
     -fx-effect: dropshadow(gaussian, -fx-accent-20, 10, 0, 1, 2);
+}
+
+.bg-main .column .scroll-pane.event-list{
+	-fx-max-width: 266px;
+	-fx-pref-width: 266px;
 }
 
 .bg-main .column .scroll-pane.event-list .button:hover, .card:hover{
@@ -973,6 +976,7 @@
 
 .bg-prompt .text-area{
 	-fx-pref-row-count: 1;
+	-fx-min-height: 38.5px;
 }
 
 .bg-prompt .text-area .content{

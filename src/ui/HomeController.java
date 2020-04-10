@@ -41,7 +41,7 @@ public class HomeController {
 
   @FXML private TextField boardNote;
 
-  @FXML private Button boardAddColumn;
+  @FXML private Button boardEdit;
 
   @FXML private HBox columnPane;
 
@@ -75,7 +75,27 @@ public class HomeController {
 
   @FXML private Pane extraPane;
 
+  @FXML
+  private VBox promptBoard;
+
+  @FXML
+  private SVGPath promptBoardIcon;
+
+  @FXML
+  private Label promptBoardPromptTitle;
+
+  @FXML
+  private TextArea promptBoardTitle;
+
+  @FXML
+  private ComboBox<String> promptBoardPreset;
+
+  @FXML
+  private TextArea promptBoardNote;
+
+
   public static EventComponent currentEvent;
+  public static BoardComponent currentBoard;
 
   private Text textHolder = new Text();
 
@@ -101,6 +121,7 @@ public class HomeController {
     EventComponent.promptEventNote = promptEventNote;
 
     promptEvent.getStyleClass().setAll("prompt-cover", "hide");
+    promptBoard.getStyleClass().setAll("prompt-cover", "hide");
     extraPane.setVisible(false);
 
     // Intialize label text values
@@ -287,7 +308,19 @@ public class HomeController {
   @FXML
   void closePrompt() {
     promptEvent.getStyleClass().add("hide");
-    currentEvent.update();
+    promptBoard.getStyleClass().add("hide");
+    if(currentEvent != null){
+      currentEvent.update();
+    }
+  }
+
+  @FXML
+  void editBoard(){
+    promptBoard.getStyleClass().remove("hide");
+    promptBoardTitle.setText(currentBoard.getNode().getTitle());
+    promptBoardPreset.getItems().clear();
+    promptBoardPreset.getItems().addAll("To Do", "In Progress", "Done");
+    promptBoardNote.setText(currentBoard.getNode().getNote());
   }
 
   public static String styleAccent(String hex) {
