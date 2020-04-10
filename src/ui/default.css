@@ -692,7 +692,6 @@
 
 .bg-main .search-list .card{
 	-fx-pref-width: 1000px;
-	-fx-max-width: MAX_VALUE;
 }
 
 

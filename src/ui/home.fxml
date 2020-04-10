@@ -476,7 +476,7 @@
          </center>
       </BorderPane>
       <Pane id="dragPane" fx:id="dragPane" mouseTransparent="true" styleClass="hide" />
-      <VBox fx:id="promptBoard" styleClass="prompt-cover">
+      <VBox fx:id="promptBoard">
          <children>
             <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="bg-prompt">
                <content>
@@ -529,8 +529,12 @@
                </content>
             </ScrollPane>
          </children>
+         <styleClass>
+            <String fx:value="prompt-cover" />
+            <String fx:value="hide" />
+         </styleClass>
       </VBox>
-      <VBox fx:id="promptEvent" styleClass="prompt-cover">
+      <VBox fx:id="promptEvent">
          <children>
             <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="bg-prompt">
                <content>
@@ -612,6 +616,10 @@
                </content>
             </ScrollPane>
          </children>
+         <styleClass>
+            <String fx:value="prompt-cover" />
+            <String fx:value="hide" />
+         </styleClass>
       </VBox>
    </children>
 </StackPane>
