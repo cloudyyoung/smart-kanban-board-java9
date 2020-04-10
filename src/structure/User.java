@@ -226,6 +226,11 @@ public class User {
     return this.existing;
   }
 
+  public void signout() {
+    this.authenticated = false;
+    User.current = null;
+  }
+
   /**
    * Registers the instance account in the server.
    *
