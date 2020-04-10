@@ -214,7 +214,7 @@ public class HomeController {
   }
 
   @FXML
-  void listBoard(){
+  void listBoard() {
     BoardComponent componentToday = null;
 
     // Add list items
@@ -293,7 +293,7 @@ public class HomeController {
   }
 
   @FXML
-  void deleteBoard(){
+  void deleteBoard() {
     currentBoard.getNode().remove();
     currentBoard = null;
     this.listBoard();

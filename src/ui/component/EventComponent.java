@@ -49,12 +49,12 @@ public class EventComponent extends Button {
     return this.node;
   }
 
-  public ColumnComponent getParentComponent(){
+  public ColumnComponent getParentComponent() {
     return this.parent;
   }
 
-  public String getColor(){
-    if(this.parent == null){
+  public String getColor() {
+    if (this.parent == null) {
       return ((Board) this.node.getParent().getParent()).getColor();
     }
     return this.parent.getColor();

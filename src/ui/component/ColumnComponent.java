@@ -25,15 +25,15 @@ public class ColumnComponent extends VBox {
     this.load();
   }
 
-  public Column getNode(){
+  public Column getNode() {
     return this.node;
   }
 
-  public String getColor(){
+  public String getColor() {
     return this.parent.getColor();
   }
-  
-  public BoardComponent getParentComponent(){
+
+  public BoardComponent getParentComponent() {
     return this.parent;
   }
 

@@ -76,7 +76,7 @@ public class BoardComponent extends Button {
     return this.node;
   }
 
-  public String getColor(){
+  public String getColor() {
     return this.node.getColor();
   }
 
