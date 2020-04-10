@@ -23,6 +23,8 @@ public final class Board extends Node {
   public Board(HttpBody obj) {
     super(obj);
     this.color = obj.getString("color");
+
+    this.createSubColumns();
   }
 
   /**
@@ -40,12 +42,20 @@ public final class Board extends Node {
       final Node parent) { // NOPMD by 25985 on 2020-04-06, 9:26 a.m.
     super(boardId, title, note, parent);
     this.setColorLocal(color);
+
+    this.createSubColumns();
   }
 
   public void createSubColumns() {
-    Column col1 = new Column();
-    
-
+    Node node = this.getParent();
+    Kanban kanban = (Kanban)node;
+    int nextId = kanban.getNextColumnId();
+    Column col1 = new Column(nextId, "To Do", "Todo", this);
+    Column col2 = new Column(nextId, "In Progress", "Todo", this);
+    Column col3 = new Column(nextId, "Done", "Todo", this);
+    this.addNode(col1);
+    this.addNode(col2);
+    this.addNode(col3);
     return;
   }
 
