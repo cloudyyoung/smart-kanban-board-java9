@@ -822,6 +822,7 @@
 	-fx-border-color: transparent;
 	-fx-padding: 0;
 	-fx-alignment: CENTER_RIGHT;
+	-fx-spacing: 10px;
 }
 
 .bg-signin .operation .button, .bg-signin .operation .combo-box{
