@@ -52,16 +52,11 @@ public class HomeController {
   @FXML private Label promptBoardPromptTitle;
   @FXML private TextArea promptBoardTitle;
   @FXML private TextArea promptBoardNote;
-  @FXML
-  private VBox promptColumn;
-  @FXML
-  private SVGPath promptColumnIcon;
-  @FXML
-  private Label promptColumnPromptTitle;
-  @FXML
-  private TextArea promptColumnTitle;
-  @FXML
-  private ComboBox<?> promptColumnPreset;
+  @FXML private VBox promptColumn;
+  @FXML private SVGPath promptColumnIcon;
+  @FXML private Label promptColumnPromptTitle;
+  @FXML private TextArea promptColumnTitle;
+  @FXML private ComboBox<?> promptColumnPreset;
 
   public static EventComponent currentEvent;
   public static BoardComponent currentBoard;
