@@ -98,9 +98,9 @@ public class Kanban extends Node {
       if (board.getId() >= 100) {
         for (Node node : board.getNodes()) {
           Column column = (Column) node;
-            if (column.getId() > max) {
-              max = column.getId();
-            }
+          if (column.getId() > max) {
+            max = column.getId();
+          }
         }
       }
     }

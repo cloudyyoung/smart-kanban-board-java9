@@ -44,7 +44,6 @@ public final class Board extends Node {
 
   public void createSubColumns() {
     Column col1 = new Column();
-    
 
     return;
   }
