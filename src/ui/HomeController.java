@@ -244,7 +244,7 @@ public class HomeController {
   }
 
   @FXML
-  void listBoard(){
+  void listBoard() {
     BoardComponent componentToday = null;
 
     // Add list items
@@ -318,14 +318,14 @@ public class HomeController {
   }
 
   @FXML
-  void deleteBoard(){
+  void deleteBoard() {
     currentBoard.getNode().remove();
     listBoard();
     closePrompt();
   }
 
   @FXML
-  void deleteEvent(){
+  void deleteEvent() {
     ColumnComponent parent = currentEvent.getParentComponent();
     currentEvent.getNode().remove();
     parent.initialize();
