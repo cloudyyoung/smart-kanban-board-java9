@@ -301,7 +301,7 @@ public class HomeController {
   }
 
   @FXML
-  void deleteEvent(){
+  void deleteEvent() {
     currentEvent.getNode().remove();
     Kanban.current.generateToday();
     currentEvent.getParentComponent().listEvent();

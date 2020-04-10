@@ -49,11 +49,10 @@ public class ColumnComponent extends VBox {
     }
   }
 
-  public void listEvent(){
+  public void listEvent() {
     ArrayList<structure.Node> list = null;
     if (this.node.getParent().getId() == 1) {
-      list =
-          this.node.getNodes(structure.Node.SORT_BY_PRIORITY, structure.Node.ORDER_BY_ASC);
+      list = this.node.getNodes(structure.Node.SORT_BY_PRIORITY, structure.Node.ORDER_BY_ASC);
     } else {
       list = this.node.getNodes();
     }

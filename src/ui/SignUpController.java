@@ -95,7 +95,7 @@ public class SignUpController {
     } else if (id.equals("buttonNextSecQues-SignUp")) {
       labelSecurityAnswerQuestion.setText(
           comboSecurityQuestion.getSelectionModel().getSelectedItem());
-    } else if(id.contains("Next")) {
+    } else if (id.contains("Next")) {
       Result res;
       int totalField = 0;
 

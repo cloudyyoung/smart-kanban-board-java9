@@ -554,7 +554,7 @@ public abstract class Node {
     return this.nodes.get(id);
   }
 
-  public final void clearNodes(){
+  public final void clearNodes() {
     this.nodes.clear();
   }
 

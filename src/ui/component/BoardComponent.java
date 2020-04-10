@@ -59,7 +59,7 @@ public class BoardComponent extends Button {
         });
   }
 
-  public void update(){
+  public void update() {
     this.setText(node.getTitle());
     this.setId("board-" + node.getId());
     this.setStyle(HomeController.styleAccent(node.getColor()));
