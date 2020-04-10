@@ -45,24 +45,28 @@ public class EventComponent extends Button {
       "M 16 3.910156 C 9.332031 3.910156 3.910156 9.332031 3.910156 16 C 3.910156 22.667969 9.332031 28.089844 16 28.089844 C 22.667969 28.089844 28.089844 22.667969 28.089844 16 C 28.089844 9.332031 22.667969 3.910156 16 3.910156 Z M 16 5.769531 C 21.660156 5.769531 26.230469 10.339844 26.230469 16 C 26.230469 21.660156 21.660156 26.230469 16 26.230469 C 10.339844 26.230469 5.769531 21.660156 5.769531 16 C 5.769531 10.339844 10.339844 5.769531 16 5.769531 Z M 15.070312 10.421875 L 15.070312 12.28125 L 16.929688 12.28125 L 16.929688 10.421875 Z M 15.070312 14.140625 L 15.070312 21.578125 L 16.929688 21.578125 L 16.929688 14.140625 Z M 15.070312 14.140625";
 
   private Event node;
-  private String color;
+  private ColumnComponent parent;
 
-  public EventComponent(Node node) {
+  public EventComponent(Node node, ColumnComponent parent) {
     super();
     this.node = (Event) node;
-    this.color = ((Board) this.node.getParent().getParent()).getColor();
-    this.load();
-  }
-
-  public EventComponent(Node node, String color) {
-    super();
-    this.node = (Event) node;
-    this.color = color;
+    this.parent = parent;
     this.load();
   }
 
   public Event getNode() {
     return this.node;
+  }
+
+  public ColumnComponent getParentComponent(){
+    return this.parent;
+  }
+
+  public String getColor(){
+    if(this.parent == null){
+      return ((Board) this.node.getParent().getParent()).getColor();
+    }
+    return this.parent.getColor();
   }
 
   private final void load() {
@@ -89,7 +93,7 @@ public class EventComponent extends Button {
       icon.setContent(ACTIVE_ICON);
     }
     event.setText(node.getTitle());
-    this.setStyle(this.getStyle() + HomeController.styleAccent(this.color));
+    this.setStyle(this.getStyle() + HomeController.styleAccent(this.getColor()));
   }
 
   @FXML
@@ -113,7 +117,7 @@ public class EventComponent extends Button {
           promptEventNote.setText(this.node.getNote());
           promptEventIcon.setContent(icon.getContent());
           promptEventPromptTitle.setText("Edit event");
-          promptEvent.setStyle(HomeController.styleAccent(this.color));
+          promptEvent.setStyle(HomeController.styleAccent(this.getColor()));
           promptEvent.getStyleClass().remove("hide");
         });
   }

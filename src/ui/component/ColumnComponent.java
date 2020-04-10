@@ -19,13 +19,25 @@ public class ColumnComponent extends VBox {
   @FXML private VBox eventList;
 
   private Column node;
-  private String color;
+  private BoardComponent parent;
 
-  public ColumnComponent(Column node, String color) {
+  public ColumnComponent(Column node, BoardComponent parent) {
     super();
     this.node = node;
-    this.color = color;
+    this.parent = parent;
     this.load();
+  }
+
+  public Column getNode(){
+    return this.node;
+  }
+
+  public String getColor(){
+    return this.parent.getColor();
+  }
+  
+  public BoardComponent getParentComponent(){
+    return this.parent;
   }
 
   private final void load() {
@@ -41,7 +53,7 @@ public class ColumnComponent extends VBox {
   }
 
   @FXML
-  void initialize() {
+  public void initialize() {
     columnTitle.setText(node.getTitle());
     eventCount.setText(node.getChildrenNodes().size() + "");
 
@@ -54,8 +66,9 @@ public class ColumnComponent extends VBox {
     }
     // System.out.println(list);
 
+    eventList.getChildren().clear();
     for (Node each : list) {
-      EventComponent event = new EventComponent(each, color);
+      EventComponent event = new EventComponent(each, this);
       eventList.getChildren().add(event);
     }
   }

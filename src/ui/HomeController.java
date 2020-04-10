@@ -83,8 +83,6 @@ public class HomeController {
 
   @FXML private TextArea promptBoardTitle;
 
-  @FXML private ComboBox<String> promptBoardPreset;
-
   @FXML private TextArea promptBoardNote;
 
   public static EventComponent currentEvent;
@@ -125,8 +123,6 @@ public class HomeController {
     Kanban.checkout();
     Kanban.current.generateToday();
 
-    BoardComponent componentToday = null;
-
     // Initialize Event panel
     promptEventImportanceLevel.getItems().addAll("", "Level 1", "Level 2", "Level 3");
     promptEventDuration
@@ -166,7 +162,7 @@ public class HomeController {
               if (!newText.equals("")) {
                 ArrayList<structure.Node> list = Kanban.current.search(newText);
                 for (structure.Node each : list) {
-                  EventComponent event = new EventComponent(each);
+                  EventComponent event = new EventComponent(each, null);
                   searchList.getChildren().add(event);
                 }
               }
@@ -243,7 +239,16 @@ public class HomeController {
               if (!newFocus) currentEvent.getNode().setNote(promptEventNote.getText());
             });
 
+    sidePane.requestFocus();
+    listBoard();
+  }
+
+  @FXML
+  void listBoard(){
+    BoardComponent componentToday = null;
+
     // Add list items
+    operationList.getChildren().clear();
     boardList.getChildren().clear();
     for (structure.Node each : Kanban.current.getChildrenNodes()) {
       // Add to list
@@ -257,8 +262,6 @@ public class HomeController {
         }
       }
     }
-
-    sidePane.requestFocus();
     componentToday.fire();
   }
 
@@ -311,9 +314,21 @@ public class HomeController {
   void editBoard() {
     promptBoard.getStyleClass().remove("hide");
     promptBoardTitle.setText(currentBoard.getNode().getTitle());
-    promptBoardPreset.getItems().clear();
-    promptBoardPreset.getItems().addAll("To Do", "In Progress", "Done");
     promptBoardNote.setText(currentBoard.getNode().getNote());
+  }
+
+  @FXML
+  void deleteBoard(){
+    currentBoard.getNode().remove();
+    listBoard();
+    closePrompt();
+  }
+
+  @FXML
+  void deleteEvent(){
+    ColumnComponent parent = currentEvent.getParentComponent();
+    currentEvent.getNode().remove();
+    parent.initialize();
   }
 
   public static String styleAccent(String hex) {
