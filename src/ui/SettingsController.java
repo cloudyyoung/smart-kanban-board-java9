@@ -107,8 +107,7 @@ public class SettingsController {
   }
 
   @FXML
-  void signout(){
+  void signout() {
     User.getCurrent().signout();
-
   }
 }

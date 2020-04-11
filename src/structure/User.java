@@ -173,7 +173,7 @@ public class User {
     return res;
   }
 
-  public Result authenticate(){
+  public Result authenticate() {
 
     HttpBody body = User.readLocalFile();
 
@@ -238,7 +238,7 @@ public class User {
     User.current = null;
 
     StructureRequest req = new StructureRequest(true, false, this);
-    Result res =  new Result();
+    Result res = new Result();
     res.add(req);
     return res;
   }
@@ -276,7 +276,7 @@ public class User {
       // Fail silently
     }
 
-    String str =  Encrytion.decrypt(encryptStr, "secret");
+    String str = Encrytion.decrypt(encryptStr, "secret");
     return new HttpBody(new Gson().fromJson(str, Map.class));
   }
 
@@ -320,8 +320,8 @@ public class User {
 
     return res;
   }
-  
-  public static User getCurrent(){
+
+  public static User getCurrent() {
     return User.getCurrent();
   }
 
