@@ -13,7 +13,13 @@ public class ColumnComponent extends VBox {
   @FXML private Label eventCount;
   @FXML private TextField columnTitle;
   @FXML private Button eventAdd;
+  @FXML private Button columnEdit;
   @FXML private VBox eventList;
+
+  public static VBox promptColumn;
+  public static Label promptColumnPromptTitle;
+  public static TextArea promptColumnTitle;
+  public static ComboBox<String> promptColumnPreset;
 
   private Column node;
   private BoardComponent parent;
@@ -66,9 +72,23 @@ public class ColumnComponent extends VBox {
     eventCount.setText(list.size() + "");
   }
 
+  public void update(){
+    columnTitle.setText(this.node.getTitle());
+  }
+
   @FXML
   void initialize() {
-    columnTitle.setText(this.node.getTitle());
+    this.update();
     this.listEvent();
+  }
+
+  @FXML
+  void editColumn(){
+    promptColumn.getStyleClass().remove("hide");
+    promptColumnPromptTitle.setText("Edit column");
+    promptColumnTitle.setText(this.node.getTitle());
+    promptColumnPreset.getItems().clear();
+    promptColumnPreset.getItems().addAll("To Do", "In Progress", "Done");
+    
   }
 }

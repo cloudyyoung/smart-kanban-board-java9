@@ -264,8 +264,11 @@
 .tab-pane {
     -fx-tab-max-height: 0 ;
 }
-.tab-pane .tab-header-area {
-    visibility: hidden ;
+.tab-pane .tab-header-area, .tab-pane .tab-header-area * {
+	visibility: hidden ;
+	-fx-padding: 0;
+	-fx-max-height: 0;
+	-fx-max-width: 0;
 }
 
 
@@ -569,6 +572,7 @@
 	-fx-max-width: 46px;
 	-fx-min-height: 46px;
 	-fx-max-height: 46px;
+	-fx-alignment: CENTER;
 }
 
 .bg-main .columns{
@@ -628,6 +632,9 @@
 .bg-main .column .title .button{
 	-fx-padding: 0;
 	-fx-border-width: 0;
+	-fx-min-width: 22px;
+	-fx-pref-height: 22px;
+	-fx-alignment: CENTER;
 }
 
 .bg-main .column .title .button SVGPath{

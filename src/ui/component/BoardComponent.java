@@ -45,24 +45,15 @@ public class BoardComponent extends Button {
           }
 
           this.getStyleClass().add("selected");
-          tabPane.getSelectionModel().select(0);
-
-          boardPane.setStyle(HomeController.styleAccent(node.getColor()));
-          boardTitle.setText(this.node.getTitle());
-          boardNote.setText(!this.node.getNote().equals("") ? node.getNote() : "No description");
-
-          columnPane.getChildren().clear();
-          for (structure.Node each : node.getNodes()) {
-            Node col = new ColumnComponent((Column) each, this);
-            columnPane.getChildren().add(col);
-          }
+          this.update();
+          this.listColumn();
         });
   }
 
   public void update() {
-    this.setText(node.getTitle());
-    this.setId("board-" + node.getId());
-    this.setStyle(HomeController.styleAccent(node.getColor()));
+    this.setText(this.node.getTitle());
+    this.setId("board-" + this.node.getId());
+    this.setStyle(HomeController.styleAccent(this.node.getColor()));
 
     SVGPath svg = new SVGPath();
     svg.setContent(
@@ -70,6 +61,20 @@ public class BoardComponent extends Button {
     HBox hbox = new HBox();
     hbox.getChildren().add(svg);
     this.setGraphic(hbox);
+    
+    tabPane.getSelectionModel().select(0);
+
+    boardPane.setStyle(HomeController.styleAccent(this.node.getColor()));
+    boardTitle.setText(this.node.getTitle());
+    boardNote.setText(!this.node.getNote().equals("") ? this.node.getNote() : "No description");
+  }
+
+  public void listColumn(){
+    columnPane.getChildren().clear();
+    for (structure.Node each : this.node.getNodes()) {
+      Node col = new ColumnComponent((Column) each, this);
+      columnPane.getChildren().add(col);
+    }
   }
 
   public Board getNode() {

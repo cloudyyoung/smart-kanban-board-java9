@@ -56,10 +56,11 @@ public class HomeController {
   @FXML private SVGPath promptColumnIcon;
   @FXML private Label promptColumnPromptTitle;
   @FXML private TextArea promptColumnTitle;
-  @FXML private ComboBox<?> promptColumnPreset;
+  @FXML private ComboBox<String> promptColumnPreset;
 
   public static EventComponent currentEvent;
   public static BoardComponent currentBoard;
+  public static ColumnComponent currentColumn;
 
   private Text textHolder = new Text();
 
@@ -85,9 +86,12 @@ public class HomeController {
     EventComponent.promptEventDuration = promptEventDuration;
     EventComponent.promptEventNote = promptEventNote;
     EventComponent.textHolder = textHolder;
+    ColumnComponent.promptColumn = promptColumn;
+    ColumnComponent.promptColumnPromptTitle = promptColumnPromptTitle;
+    ColumnComponent.promptColumnTitle = promptColumnTitle;
+    ColumnComponent.promptColumnPreset = promptColumnPreset;
 
-    promptEvent.getStyleClass().setAll("prompt-cover", "hide");
-    promptBoard.getStyleClass().setAll("prompt-cover", "hide");
+    this.closePrompt();
     extraPane.setVisible(false);
 
     // Intialize label text values
@@ -278,14 +282,21 @@ public class HomeController {
 
   @FXML
   void closePrompt() {
-    promptEvent.getStyleClass().add("hide");
-    promptBoard.getStyleClass().add("hide");
+    promptEvent.getStyleClass().setAll("prompt-cover", "hide");
+    promptBoard.getStyleClass().setAll("prompt-cover", "hide");
+    promptColumn.getStyleClass().setAll("prompt-cover", "hide");
     if (currentEvent != null) {
       currentEvent.update();
+      currentEvent = null;
     }
     if (currentBoard != null) {
       currentBoard.update();
       currentBoard.fire();
+      currentBoard = null;
+    }
+    if(currentColumn != null){
+      currentColumn.update();
+      currentColumn = null;
     }
   }
 
@@ -300,7 +311,6 @@ public class HomeController {
   @FXML
   void deleteBoard() {
     currentBoard.getNode().remove();
-    currentBoard = null;
     this.listBoard();
     this.closePrompt();
   }
@@ -310,7 +320,13 @@ public class HomeController {
     currentEvent.getNode().remove();
     Kanban.current.generateToday();
     currentEvent.getParentComponent().listEvent();
-    currentEvent = null;
+    this.closePrompt();
+  }
+
+  @FXML
+  void deleteColumn(){
+    currentColumn.getNode().remove();
+    currentColumn.getParentComponent().listColumn();
     this.closePrompt();
   }
 
