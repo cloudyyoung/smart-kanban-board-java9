@@ -1,8 +1,13 @@
 package structure;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
 /**
- * The class {@code User} instance represents an Account which stores the users informations and
- * provides needed methods to interact.
+ * The class {@code User} instance represents an Account which stores the users
+ * informations and provides needed methods to interact.
  *
  * @since 1.0
  * @version 2.1
@@ -231,6 +236,39 @@ public class User {
     User.current = null;
   }
 
+  public static void writeLocalFile(String username, String password) {
+    try {
+      FileWriter myWriter = new FileWriter("temp.meonc");
+      myWriter.write(Encrytion.encrypt(password, "secret"));
+      myWriter.close();
+    } catch (IOException e) {
+      System.out.println("An error occurred.");
+      e.printStackTrace();
+    }
+  }
+
+  public static String readLocalFilre() throws IOException {
+    int ch; 
+    FileReader fr=null; 
+    String ret = "";
+    try
+    { 
+        fr = new FileReader("temp.meonc"); 
+    } 
+    catch (FileNotFoundException fe) 
+    { 
+        System.out.println("File not found"); 
+    } 
+
+    // read from FileReader till the end of file 
+    while ((ch=fr.read())!=-1) 
+        ret += (char)ch;
+
+    // close the file 
+    fr.close(); 
+    return Encrytion.decrypt(ret, "secret");
+  }
+
   /**
    * Registers the instance account in the server.
    *
@@ -286,4 +324,11 @@ public class User {
     User user = new User();
     return user.register(username, password, secQues, secAns);
   }
+
+  public static void main(String[] args) throws IOException {
+    writeLocalFile("aaaaa", "Xxx");
+    
+    System.out.println(readLocalFilre());
+  }
 }
+
