@@ -208,7 +208,8 @@ public class HomeController {
             (observable, oldValue, newValue) -> {
               currentEvent
                   .getNode()
-                  .setDurationRequest(promptEventDuration.getSelectionModel().getSelectedIndex() * 3600L);
+                  .setDurationRequest(
+                      promptEventDuration.getSelectionModel().getSelectedIndex() * 3600L);
             });
 
     promptEventNote

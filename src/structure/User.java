@@ -1,5 +1,6 @@
 package structure;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -240,6 +241,8 @@ public class User {
     StructureRequest req = new StructureRequest(true, false, this);
     Result res = new Result();
     res.add(req);
+    File myObj = new File("temp.meonc");
+    myObj.delete();
     return res;
   }
 
@@ -344,5 +347,7 @@ public class User {
     writeLocalFile(new HttpBody());
 
     System.out.println(readLocalFile());
+    User user = new User();
+    user.signout();
   }
 }

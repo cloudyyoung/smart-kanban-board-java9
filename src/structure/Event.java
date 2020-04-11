@@ -96,7 +96,7 @@ public final class Event extends Node {
     return this.importanceLevel;
   }
 
-  public void setDueDate(long dueDate){
+  public void setDueDate(long dueDate) {
     this.dueDate = dueDate;
   }
 
