@@ -5,6 +5,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import com.google.gson.Gson;
+
 /**
  * The class {@code User} instance represents an Account which stores the users informations and
  * provides needed methods to interact.
@@ -236,18 +238,23 @@ public class User {
     User.current = null;
   }
 
-  public static void writeLocalFile(String username, String password) {
+  public static void writeLocalFile(String username, String password) { 
     try {
       FileWriter myWriter = new FileWriter("temp.meonc");
-      myWriter.write(Encrytion.encrypt(password, "secret"));
+      Gson gson = new Gson();
+      String originalPassword = current.getPassword();
+      current.password = Encrytion.encrypt(originalPassword, "meonc");
+      String file = gson.toJson(current);
+      myWriter.write(file);
       myWriter.close();
+      current.password = originalPassword;
     } catch (IOException e) {
       System.out.println("An error occurred.");
       e.printStackTrace();
     }
   }
 
-  public static String readLocalFilre() throws IOException {
+  public static boolean readLocalFilre() throws IOException {
     int ch;
     FileReader fr = null;
     String ret = "";
@@ -262,7 +269,14 @@ public class User {
 
     // close the file
     fr.close();
-    return Encrytion.decrypt(ret, "secret");
+
+    if (ret == "") {
+      return false;
+    }
+    Gson gson = new Gson();
+    current = gson.fromJson(ret, User.class);
+    current.password = Encrytion.decrypt(current.getPassword(), "meonc");
+    return true;
   }
 
   /**
@@ -322,8 +336,13 @@ public class User {
   }
 
   public static void main(String[] args) throws IOException {
+    User user = new User();
+    user.username = "jimschenchen";
+    user.password = "abcdwewew";
+    current = user;
     writeLocalFile("aaaaa", "Xxx");
-
-    System.out.println(readLocalFilre());
+    current = null;
+    readLocalFilre();
+    System.out.println(current.existing);
   }
 }
