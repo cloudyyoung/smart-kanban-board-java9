@@ -198,7 +198,7 @@ public class HomeController {
             (observable, oldValue, newValue) -> {
               currentEvent
                   .getNode()
-                  .setImportanceLevel(
+                  .setImportanceLevelRequest(
                       promptEventImportanceLevel.getSelectionModel().getSelectedIndex());
             });
 
@@ -208,7 +208,7 @@ public class HomeController {
             (observable, oldValue, newValue) -> {
               currentEvent
                   .getNode()
-                  .setDuration(promptEventDuration.getSelectionModel().getSelectedIndex() * 3600L);
+                  .setDurationRequest(promptEventDuration.getSelectionModel().getSelectedIndex() * 3600L);
             });
 
     promptEventNote

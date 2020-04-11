@@ -41,7 +41,7 @@ public final class Board extends Node {
       final String color,
       final Node parent) { // NOPMD by 25985 on 2020-04-06, 9:26 a.m.
     super(boardId, title, note, parent);
-    this.setColorLocal(color);
+    this.setColor(color);
 
     this.createSubColumns();
   }
@@ -60,7 +60,7 @@ public final class Board extends Node {
    *
    * @param color The color in {@code String}
    */
-  public void setColorLocal(String color) {
+  public void setColor(String color) {
     this.color = color;
   }
 
@@ -70,10 +70,10 @@ public final class Board extends Node {
    * @param color The color in {@code String}
    * @return the http request of this action
    */
-  public HttpRequest setColor(String color) {
+  public HttpRequest setColorRequest(String color) {
     final HttpRequest req = this.set("color", color);
     if (req.isSucceeded()) {
-      this.setColorLocal(color);
+      this.setColor(color);
     }
     return req;
   }

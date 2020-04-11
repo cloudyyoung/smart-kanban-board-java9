@@ -281,8 +281,6 @@ public abstract class Node {
 
     if (req.isSucceeded()) {
       this.setTitle(title);
-      StructureRequest req2 = new StructureRequest(true, false, this);
-      res.add(req2);
     }
     return res;
   }
@@ -311,8 +309,6 @@ public abstract class Node {
 
     if (req.isSucceeded()) {
       this.setNote(note);
-      StructureRequest req2 = new StructureRequest(true, false, this);
-      res.add(req2);
     }
     return res;
   }
@@ -507,7 +503,7 @@ public abstract class Node {
    * @param node the {@code Node} object to be added
    * @return the structure request of this action
    */
-  public final void addNode(Node nodeAdded) {
+  protected final void addNode(Node nodeAdded) {
     this.nodes.put(nodeAdded.getId(), nodeAdded);
   }
 

@@ -33,9 +33,9 @@ public final class Event extends Node {
       final int importanceLevel,
       final Node parent) {
     super(eventId, title, note, parent);
-    this.setDurationLocal(duration);
-    this.setDueDateLocal(dueDate);
-    this.setImportanceLevelLocal(importanceLevel);
+    this.setDuration(duration);
+    this.setDueDate(dueDate);
+    this.setImportanceLevel(importanceLevel);
   }
 
   /**
@@ -45,25 +45,22 @@ public final class Event extends Node {
    */
   public Event(HttpBody obj) {
     super(obj);
-    this.setDurationLocal(obj.getLong("duration"));
-    this.setDueDateLocal(obj.getLong("due_date"));
-    this.setImportanceLevelLocal(obj.getInt("importance_level"));
+    this.setDuration(obj.getLong("duration"));
+    this.setDueDate(obj.getLong("due_date"));
+    this.setImportanceLevel(obj.getInt("importance_level"));
   }
 
-  private StructureRequest setDurationLocal(Long duration) {
+  protected void setDuration(Long duration) {
     this.duration = duration;
-
-    return new StructureRequest(true, false, this);
   }
 
-  public Result setDuration(Long duration) {
+  public Result setDurationRequest(Long duration) {
     final Result res = new Result();
     final HttpRequest req = this.set("duration", duration);
     res.add(req);
 
     if (req.isSucceeded()) {
-      final StructureRequest req2 = this.setDurationLocal(duration);
-      res.add(req2);
+      this.setDuration(duration);
     }
     return res;
   }
@@ -80,20 +77,17 @@ public final class Event extends Node {
     return (int) (this.duration / 60_000);
   }
 
-  private StructureRequest setImportanceLevelLocal(int importance) {
+  private void setImportanceLevel(int importance) {
     this.importanceLevel = importance;
-
-    return new StructureRequest(true, false, this);
   }
 
-  public Result setImportanceLevel(int importance) {
+  public Result setImportanceLevelRequest(int importance) {
     Result res = new Result();
     HttpRequest req = this.set("importance_level", importance);
     res.add(req);
 
     if (req.isSucceeded()) {
-      StructureRequest req2 = this.setImportanceLevelLocal(importance);
-      res.add(req2);
+      this.setImportanceLevel(importance);
     }
     return res;
   }
@@ -102,10 +96,8 @@ public final class Event extends Node {
     return this.importanceLevel;
   }
 
-  private StructureRequest setDueDateLocal(Long dueDate) {
+  public void setDueDate(long dueDate){
     this.dueDate = dueDate;
-
-    return new StructureRequest(true, false, this);
   }
 
   public Result setDueDate(Long dueDate) {
@@ -114,8 +106,7 @@ public final class Event extends Node {
     res.add(req);
 
     if (req.isSucceeded()) {
-      StructureRequest req2 = this.setDueDateLocal(dueDate);
-      res.add(req2);
+      this.setDueDate(dueDate);
     }
     return res;
   }
