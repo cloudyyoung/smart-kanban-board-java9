@@ -38,7 +38,7 @@
                                           <String fx:value="h4" />
                                           <String fx:value="nexa-bold" />
                                        </styleClass></Label>
-                                    <Button fx:id="accountSignOut" mnemonicParsing="false" styleClass="primary" text="Sign Out" />
+                                    <Button fx:id="accountSignOut" mnemonicParsing="false" onAction="#signout" styleClass="primary" text="Sign Out" />
                                  </children>
                               </HBox>
                            </children>

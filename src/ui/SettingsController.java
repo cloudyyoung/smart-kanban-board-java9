@@ -107,7 +107,21 @@ public class SettingsController {
   }
 
   @FXML
-  void signout() {
+  void signout(ActionEvent event) {
     User.getCurrent().signout();
+    try {
+      Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+      Scene oldScene = ((Node) event.getSource()).getScene();
+      Scene scene =
+          new Scene(
+              FXMLLoader.load(getClass().getResource("welcome.fxml")),
+              oldScene.getWidth(),
+              oldScene.getHeight());
+      scene.getStylesheets().add(getClass().getResource("default.css").toExternalForm());
+      stage.setScene(scene);
+      stage.show();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 }

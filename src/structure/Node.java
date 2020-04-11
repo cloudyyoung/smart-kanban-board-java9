@@ -94,11 +94,12 @@ public abstract class Node {
    * @param obj the object to map in {@code HttpBody}
    */
   public Node(HttpBody obj) {
-    if (!this.getType().equals("Kanban")) {
-      this.setId(obj.getInt("id"));
+    this.setId(obj.getInt("id"));
+    this.existing = true;
+
+    if (this instanceof Kanban == false) {
       this.setTitleLocal(obj.getString("title"));
       this.setNoteLocal(obj.getString("note"));
-      this.existing = true;
     }
     if (this.getChildType() != null) {
       this.extractChildrenNodes(obj);
@@ -474,6 +475,7 @@ public abstract class Node {
 
     if (req.isSucceeded()) {
       Node parent = this.getParent();
+      this.setId(req.getResponseBody().getInt("id"));
       StructureRequest req2 = parent.addNode(this);
       res.add(req2);
     }
