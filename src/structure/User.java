@@ -335,8 +335,8 @@ public class User {
     User user = new User();
     return user.register(username, password, secQues, secAns);
   }
-  
-  public static User getCurrent(){
+
+  public static User getCurrent() {
     return User.current;
   }
 
