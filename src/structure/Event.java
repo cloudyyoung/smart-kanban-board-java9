@@ -25,14 +25,13 @@ public final class Event extends Node {
    * @param obj the {@code HttpBody} for initialization
    */
   public Event(
-      final Integer eventId,
       final String title,
       final String note,
       final Long dueDate,
       final Long duration,
       final int importanceLevel,
       final Node parent) {
-    super(eventId, title, note, parent);
+    super(title, note, parent);
     this.setDuration(duration);
     this.setDueDateRequest(dueDate);
     this.setImportanceLevel(importanceLevel);
@@ -43,7 +42,7 @@ public final class Event extends Node {
    *
    * @param obj the {@code HttpBody} for initialization
    */
-  public Event(HttpBody obj) {
+  protected Event(HttpBody obj) {
     super(obj);
     this.setDuration(obj.getLong("duration"));
     this.setDueDate(obj.getLong("due_date"));
@@ -96,7 +95,7 @@ public final class Event extends Node {
     return this.importanceLevel;
   }
 
-  public void setDueDate(Long dueDate) {
+  protected void setDueDate(Long dueDate) {
     this.dueDate = dueDate;
   }
 

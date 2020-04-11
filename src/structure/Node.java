@@ -52,6 +52,8 @@ public abstract class Node {
   /** The children {@code Node} object of the instance. */
   private LinkedHashMap<Integer, Node> nodes = new LinkedHashMap<Integer, Node>();
 
+  private static int idAutoIncrement = 0;
+
   /**
    * The dictionary of the {@code Node} hierarchy. It is used to identify the parent or children
    * type.
@@ -78,8 +80,8 @@ public abstract class Node {
    * @param note the note in {@code String}
    * @param parent the parent node in {@code Node}
    */
-  public Node(Integer id, String title, String note, Node parent) {
-    this.setId(id);
+  public Node(String title, String note, Node parent) {
+    this.setId(idAutoIncrement ++);
     this.setTitle(title);
     this.setNote(note);
     this.setParent(parent);

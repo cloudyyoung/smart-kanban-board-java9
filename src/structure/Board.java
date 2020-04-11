@@ -20,11 +20,9 @@ public final class Board extends Node {
    *
    * @param obj the {@code HttpBody} for initialization
    */
-  public Board(HttpBody obj) {
+  protected Board(HttpBody obj) {
     super(obj);
     this.color = obj.getString("color");
-
-    this.createSubColumns();
   }
 
   /**
@@ -35,21 +33,18 @@ public final class Board extends Node {
    * @param boardId THe id in {@code String}
    */
   public Board(
-      final int boardId,
       final String title,
       final String note,
       final String color,
       final Node parent) { // NOPMD by 25985 on 2020-04-06, 9:26 a.m.
-    super(boardId, title, note, parent);
+    super(title, note, parent);
     this.setColor(color);
-
-    this.createSubColumns();
   }
 
-  public void createSubColumns() {
-    Column col1 = new Column(99, "To Do", "Todo", this);
-    Column col2 = new Column(98, "In Progress", "Todo", this);
-    Column col3 = new Column(97, "Done", "Todo", this);
+  protected void createSubColumns() {
+    Column col1 = new Column("To Do", "Todo", this);
+    Column col2 = new Column("In Progress", "Todo", this);
+    Column col3 = new Column("Done", "Todo", this);
     col1.createRequest();
     col2.createRequest();
     col3.createRequest();
@@ -60,7 +55,7 @@ public final class Board extends Node {
    *
    * @param color The color in {@code String}
    */
-  public void setColor(String color) {
+  protected void setColor(String color) {
     this.color = color;
   }
 

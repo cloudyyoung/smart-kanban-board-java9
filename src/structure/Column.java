@@ -21,7 +21,7 @@ public final class Column extends Node {
    */
   private int preset;
 
-  public Column(HttpBody obj) {
+  protected Column(HttpBody obj) {
     super(obj);
     this.setPreset(obj.getInt("preset"));
   }
@@ -33,11 +33,11 @@ public final class Column extends Node {
    * @param note The note in {@code String}
    * @param columnId THe id in {@code String}
    */
-  public Column(int columnId, final String title, final String note, final Node parent) {
-    super(columnId, title, note, parent);
+  public Column(final String title, final String note, final Node parent) {
+    super(title, note, parent);
   }
 
-  public void setPreset(int preset) {
+  protected void setPreset(int preset) {
     this.preset = preset;
   }
 

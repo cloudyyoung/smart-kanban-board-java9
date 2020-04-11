@@ -20,12 +20,11 @@ public class Kanban extends Node {
    *
    * @param obj the {@code HttpBody} object to map
    */
-  public Kanban(HttpBody obj) {
+  protected Kanban(HttpBody obj) {
     super(obj);
 
     Board today =
         new Board(
-            1,
             "Today",
             TimeUtils.monthName(TimeUtils.currentMonth())
                 + " "
@@ -35,9 +34,9 @@ public class Kanban extends Node {
             "#fd79a8",
             this);
 
-    new Column(1, "To Do", "jimjimsjimshtodo", today);
-    new Column(2, "In Progress", "", today);
-    new Column(3, "Done", "", today);
+    new Column("To Do", "jimjimsjimshtodo", today);
+    new Column("In Progress", "", today);
+    new Column("Done", "", today);
   }
 
   /**
