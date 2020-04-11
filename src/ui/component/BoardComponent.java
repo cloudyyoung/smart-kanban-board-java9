@@ -61,7 +61,7 @@ public class BoardComponent extends Button {
     HBox hbox = new HBox();
     hbox.getChildren().add(svg);
     this.setGraphic(hbox);
-    
+
     tabPane.getSelectionModel().select(0);
 
     boardPane.setStyle(HomeController.styleAccent(this.node.getColor()));
@@ -69,7 +69,7 @@ public class BoardComponent extends Button {
     boardNote.setText(!this.node.getNote().equals("") ? this.node.getNote() : "No description");
   }
 
-  public void listColumn(){
+  public void listColumn() {
     columnPane.getChildren().clear();
     for (structure.Node each : this.node.getNodes()) {
       Node col = new ColumnComponent((Column) each, this);

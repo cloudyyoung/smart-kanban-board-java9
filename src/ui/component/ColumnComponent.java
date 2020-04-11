@@ -72,7 +72,7 @@ public class ColumnComponent extends VBox {
     eventCount.setText(list.size() + "");
   }
 
-  public void update(){
+  public void update() {
     columnTitle.setText(this.node.getTitle());
   }
 
@@ -83,12 +83,11 @@ public class ColumnComponent extends VBox {
   }
 
   @FXML
-  void editColumn(){
+  void editColumn() {
     promptColumn.getStyleClass().remove("hide");
     promptColumnPromptTitle.setText("Edit column");
     promptColumnTitle.setText(this.node.getTitle());
     promptColumnPreset.getItems().clear();
     promptColumnPreset.getItems().addAll("To Do", "In Progress", "Done");
-    
   }
 }
