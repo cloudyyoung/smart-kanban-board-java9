@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Kanban extends Node {
 
   /** The current Kanban object */
-  public static Kanban current;
+  private static Kanban current;
 
   /**
    * Constructor of {@code Kanban}
@@ -51,13 +51,13 @@ public class Kanban extends Node {
    */
   public static Result checkout() {
     Result res = new Result();
-    if (User.current == null) {
+    if (User.getCurrent() == null) {
       StructureRequest req2 = new StructureRequest(false, true);
       req2.setErrorMessage("User not authenticated");
       res.add(req2);
     } else {
       HttpBody cookie = new HttpBody();
-      cookie.put("PHPSESSID", User.current.getSessionId());
+      cookie.put("PHPSESSID", User.getCurrent().getSessionId());
 
       HttpRequest req2 = new HttpRequest();
       req2.setRequestUrl("/kanban");
@@ -139,6 +139,10 @@ public class Kanban extends Node {
         }
       }
     }
+  }
+
+  public static Kanban getCurrent() {
+    return Kanban.current;
   }
 
   /*

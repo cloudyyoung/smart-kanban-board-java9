@@ -4,9 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Map;
 
-import com.google.gson.*;
+import com.google.gson.Gson;
 
 /**
  * The class {@code User} instance represents an Account which stores the users informations and
@@ -15,10 +14,10 @@ import com.google.gson.*;
  * @since 1.0
  * @version 2.1
  */
-public class User {
+public class readUser {
 
   /** The current signed-in user instance. */
-  private static User current;
+  public static readUser current;
 
   /** The username of the account. */
   private String username;
@@ -42,7 +41,7 @@ public class User {
   private boolean existing = false;
 
   /** Default constructor of {@code User}. */
-  public User() {}
+  public readUser() {}
 
   /**
    * Returns the username of the account.
@@ -76,7 +75,7 @@ public class User {
    *
    * @param username the username to be set
    */
-  private void setUsername(String username) {
+  public void setUsername(String username) {
     this.username = username;
   }
 
@@ -85,7 +84,7 @@ public class User {
    *
    * @param password the password to be set
    */
-  private void setPassword(String password) {
+  public void setPassword(String password) {
     this.password = password;
   }
 
@@ -144,6 +143,19 @@ public class User {
    *
    * <p>This is an <i>action</i> for controllers.
    *
+   * @return the result object of this action
+   * @since 1.0
+   * @version 2.1
+   */
+  public Result authenticate() {
+    return this.authenticate(this.getUsername(), this.getPassword());
+  }
+
+  /**
+   * Authenticates the user account with the server.
+   *
+   * <p>This is an <i>action</i> for controllers.
+   *
    * @param username the username of the account
    * @param password the pssword of the account
    * @return the result object of this action
@@ -169,18 +181,6 @@ public class User {
       StructureRequest req2 = this.authenticateLocal();
       res.add(req2);
     }
-
-    return res;
-  }
-
-  public Result authenticate() {
-
-    HttpBody body = User.readLocalFile();
-
-    String username = body.getString("username");
-    String password = body.getString("password");
-
-    Result res = this.authenticate(username, password);
 
     return res;
   }
@@ -217,7 +217,7 @@ public class User {
    */
   private StructureRequest authenticateLocal() {
     this.authenticated = true;
-    User.current = this;
+    readUser.current = this;
     StructureRequest req = new StructureRequest(true, false, this);
     return req;
   }
@@ -233,51 +233,45 @@ public class User {
     return this.existing;
   }
 
-  public Result signout() {
+  public void signout() {
     this.authenticated = false;
-    User.current = null;
-
-    StructureRequest req = new StructureRequest(true, false, this);
-    Result res = new Result();
-    res.add(req);
-    return res;
+    readUser.current = null;
   }
 
-  private static void writeLocalFile(Map<?, ?> body) {
+  public static void storeUser() { 
     try {
       FileWriter myWriter = new FileWriter("temp.meonc");
-      String str = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(body);
-      myWriter.write(Encrytion.encrypt(str, "secret"));
+      Gson gson = new Gson();
+      String originalPassword = current.getPassword();
+      current.password = Encrytion.encrypt(originalPassword, "meonc");
+      String file = gson.toJson(current);
+      myWriter.write(file);
       myWriter.close();
+      current.password = originalPassword;
     } catch (IOException e) {
-      // System.out.println("An error occurred.");
-      // e.printStackTrace();
-      // Fail silently
+      System.out.println("An error occurred.");
+      e.printStackTrace();
     }
   }
 
-  private static HttpBody readLocalFile() {
+  public static boolean readStoredUser() throws IOException {
     int ch;
-    FileReader fr = null;
-    String encryptStr = "";
+    FileReader fileReader = null;
+    String ret = "";
     try {
-      fr = new FileReader("temp.meonc");
-
-      // read from FileReader till the end of file
-      while ((ch = fr.read()) != -1) encryptStr += (char) ch;
-
-      // close the file
-      fr.close();
-    } catch (FileNotFoundException e) {
-      // System.out.println("File not found");
-      // Fail silently
-    } catch (IOException e) {
-      // System.out.println("IO Exception");
-      // Fail silently
+      fileReader = new FileReader("temp.meonc");
+    } catch (FileNotFoundException fe) {
+      System.out.println("File not found");
     }
-
-    String str = Encrytion.decrypt(encryptStr, "secret");
-    return new HttpBody(new Gson().fromJson(str, Map.class));
+    while ((ch = fileReader.read()) != -1) ret += (char) ch;
+    fileReader.close();
+    if (ret == "") {
+      return false;
+    }
+    Gson gson = new Gson();
+    current = gson.fromJson(ret, readUser.class);
+    current.password = Encrytion.decrypt(current.getPassword(), "meonc");
+    return true;
   }
 
   /**
@@ -322,27 +316,28 @@ public class User {
   }
 
   public static Result authentication(String username, String password) {
-    User user = new User();
+    readUser user = new readUser();
     Result res = user.authenticate(username, password);
     if (res.isSucceeded()) {
-      User.current = user;
+      readUser.current = user;
     }
     return res;
   }
 
   public static Result registration(
       String username, String password, String secQues, String secAns) {
-    User user = new User();
+    readUser user = new readUser();
     return user.register(username, password, secQues, secAns);
   }
 
-  public static User getCurrent() {
-    return User.current;
-  }
-
   public static void main(String[] args) throws IOException {
-    writeLocalFile(new HttpBody());
-
-    System.out.println(readLocalFile());
+    readUser user = new readUser();
+    user.username = "jimschenchen";
+    user.password = "abcdwewew";
+    current = user;
+    writeLocalFile("aaaaa", "Xxx");
+    current = null;
+    readStoredUser();
+    System.out.println(current.existing);
   }
 }

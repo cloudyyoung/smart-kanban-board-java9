@@ -95,12 +95,12 @@ public class HomeController {
     extraPane.setVisible(false);
 
     // Intialize label text values
-    profileUsername.setText(User.current.getUsername());
-    profileUsername.setTooltip(new Tooltip(User.current.getUsername()));
+    profileUsername.setText(User.getCurrent().getUsername());
+    profileUsername.setTooltip(new Tooltip(User.getCurrent().getUsername()));
 
     // Check out kanban
     Kanban.checkout();
-    Kanban.current.generateToday();
+    Kanban.getCurrent().generateToday();
 
     // Initialize Event panel
     promptEventImportanceLevel.getItems().addAll("", "Level 1", "Level 2", "Level 3");
@@ -139,7 +139,7 @@ public class HomeController {
             (observable, oldText, newText) -> {
               searchList.getChildren().clear();
               if (!newText.equals("")) {
-                ArrayList<structure.Node> list = Kanban.current.search(newText);
+                ArrayList<structure.Node> list = Kanban.getCurrent().search(newText);
                 for (structure.Node each : list) {
                   EventComponent event = new EventComponent(each, null);
                   searchList.getChildren().add(event);
@@ -229,7 +229,7 @@ public class HomeController {
     // Add list items
     operationList.getChildren().clear();
     boardList.getChildren().clear();
-    for (structure.Node each : Kanban.current.getNodes()) {
+    for (structure.Node each : Kanban.getCurrent().getNodes()) {
       // Add to list
       BoardComponent node = new BoardComponent((Board) each);
       if (each.getId() >= 100) {
@@ -318,7 +318,7 @@ public class HomeController {
   @FXML
   void deleteEvent() {
     currentEvent.getNode().remove();
-    Kanban.current.generateToday();
+    Kanban.getCurrent().generateToday();
     currentEvent.getParentComponent().listEvent();
     this.closePrompt();
   }

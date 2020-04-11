@@ -44,7 +44,7 @@ public class SettingsController {
 
   @FXML
   void initialize() {
-    accountUsername.setText(User.current.getUsername());
+    accountUsername.setText(User.getCurrent().getUsername());
 
     ArrayList<String> hours = new ArrayList<String>();
     hours.add("0 Hour");
@@ -104,5 +104,10 @@ public class SettingsController {
     if (themeCombo.getSelectionModel().getSelectedItem().toLowerCase().equals("dark")) {
       scene.getStylesheets().add(getClass().getResource("dark.css").toExternalForm());
     }
+  }
+
+  @FXML
+  void signout() {
+    User.getCurrent().signout();
   }
 }
