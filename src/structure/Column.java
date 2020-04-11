@@ -55,12 +55,6 @@ public final class Column extends Node {
     return (eventNext.getDuration() + timeAccumulator) <= totalTime ? true : false;
   }
 
-  public void addEvent(
-      String title, String note, long duration, long dueDate, int importanceLevel) {
-    Event event = new Event(99, title, note, dueDate, duration, importanceLevel, this);
-    event.createRequest();
-  }
-
   @Override
   public String toString() {
     return this.getType()
