@@ -198,7 +198,7 @@ public class HomeController {
             (observable, oldValue, newValue) -> {
               currentEvent
                   .getNode()
-                  .setImportanceLevel(
+                  .setImportanceLevelRequest(
                       promptEventImportanceLevel.getSelectionModel().getSelectedIndex());
             });
 
@@ -208,7 +208,8 @@ public class HomeController {
             (observable, oldValue, newValue) -> {
               currentEvent
                   .getNode()
-                  .setDuration(promptEventDuration.getSelectionModel().getSelectedIndex() * 3600L);
+                  .setDurationRequest(
+                      promptEventDuration.getSelectionModel().getSelectedIndex() * 3600L);
             });
 
     promptEventNote
@@ -310,14 +311,14 @@ public class HomeController {
 
   @FXML
   void deleteBoard() {
-    currentBoard.getNode().remove();
+    currentBoard.getNode().removeRequest();
     this.listBoard();
     this.closePrompt();
   }
 
   @FXML
   void deleteEvent() {
-    currentEvent.getNode().remove();
+    currentEvent.getNode().removeRequest();
     Kanban.getCurrent().generateToday();
     currentEvent.getParentComponent().listEvent();
     this.closePrompt();
@@ -325,7 +326,7 @@ public class HomeController {
 
   @FXML
   void deleteColumn() {
-    currentColumn.getNode().remove();
+    currentColumn.getNode().removeRequest();
     currentColumn.getParentComponent().listColumn();
     this.closePrompt();
   }
