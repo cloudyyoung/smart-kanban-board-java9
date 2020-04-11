@@ -310,14 +310,14 @@ public class HomeController {
 
   @FXML
   void deleteBoard() {
-    currentBoard.getNode().remove();
+    currentBoard.getNode().removeRequest();
     this.listBoard();
     this.closePrompt();
   }
 
   @FXML
   void deleteEvent() {
-    currentEvent.getNode().remove();
+    currentEvent.getNode().removeRequest();
     Kanban.getCurrent().generateToday();
     currentEvent.getParentComponent().listEvent();
     this.closePrompt();
@@ -325,7 +325,7 @@ public class HomeController {
 
   @FXML
   void deleteColumn() {
-    currentColumn.getNode().remove();
+    currentColumn.getNode().removeRequest();
     currentColumn.getParentComponent().listColumn();
     this.closePrompt();
   }

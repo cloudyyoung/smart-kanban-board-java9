@@ -50,9 +50,9 @@ public final class Board extends Node {
     Column col1 = new Column(99, "To Do", "Todo", this);
     Column col2 = new Column(98, "In Progress", "Todo", this);
     Column col3 = new Column(97, "Done", "Todo", this);
-    col1.add();
-    col2.add();
-    col3.add();
+    col1.createRequest();
+    col2.createRequest();
+    col3.createRequest();
   }
 
   /**

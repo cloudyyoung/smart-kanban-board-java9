@@ -451,7 +451,7 @@ public abstract class Node {
    *
    * @return the result object of this action
    */
-  public Result add() {
+  public Result createRequest() {
     Result res = new Result();
 
     HttpRequest req = new HttpRequest();
@@ -465,7 +465,8 @@ public abstract class Node {
     if (req.isSucceeded()) {
       Node parent = this.getParent();
       this.setId(req.getResponseBody().getInt("id"));
-      StructureRequest req2 = parent.addNode(this);
+      parent.addNode(this);
+      StructureRequest req2 = new StructureRequest(true, false, this);
       res.add(req2);
     }
 
@@ -479,7 +480,7 @@ public abstract class Node {
    *
    * @return the result object of this action
    */
-  public Result remove() {
+  public Result removeRequest() {
     Result res = new Result();
 
     HttpRequest req = new HttpRequest();
@@ -491,7 +492,8 @@ public abstract class Node {
 
     if (req.isSucceeded()) {
       Node parent = this.getParent();
-      StructureRequest req2 = parent.removeNode(this.getId());
+      parent.removeNode(this.getId());
+      StructureRequest req2 = new StructureRequest(true, false, this);
       this.setParent(null);
       res.add(req2);
     }
@@ -505,13 +507,8 @@ public abstract class Node {
    * @param node the {@code Node} object to be added
    * @return the structure request of this action
    */
-  public final StructureRequest addNode(Node nodeAdded) {
-    if (nodeAdded != null) {
-      this.nodes.put(nodeAdded.getId(), nodeAdded);
-      return new StructureRequest(true, false, this);
-    } else {
-      return new StructureRequest(false, true, this);
-    }
+  public final void addNode(Node nodeAdded) {
+    this.nodes.put(nodeAdded.getId(), nodeAdded);
   }
 
   /**
@@ -520,9 +517,8 @@ public abstract class Node {
    * @param id the id of the {@code Node} object to be removed
    * @return the strcuture request of the action
    */
-  public final StructureRequest removeNode(int id) {
-    boolean succeeded = this.nodes.remove(id) != null;
-    return new StructureRequest(succeeded, !succeeded, this);
+  public final void removeNode(int id) {
+    this.nodes.remove(id);
   }
 
   /**
@@ -531,8 +527,8 @@ public abstract class Node {
    * @param node the node instance of the {@code Node} object to be removed
    * @return the strcuture request of the action
    */
-  public final StructureRequest removeNode(Node node) {
-    return this.removeNode(node.getId());
+  public final void removeNode(Node node) {
+    this.removeNode(node.getId());
   }
 
   /**
