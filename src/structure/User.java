@@ -4,6 +4,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Map;
+
+import com.google.gson.*;
 
 /**
  * The class {@code User} instance represents an Account which stores the users informations and
@@ -73,7 +76,7 @@ public class User {
    *
    * @param username the username to be set
    */
-  public void setUsername(String username) {
+  private void setUsername(String username) {
     this.username = username;
   }
 
@@ -82,7 +85,7 @@ public class User {
    *
    * @param password the password to be set
    */
-  public void setPassword(String password) {
+  private void setPassword(String password) {
     this.password = password;
   }
 
@@ -141,19 +144,6 @@ public class User {
    *
    * <p>This is an <i>action</i> for controllers.
    *
-   * @return the result object of this action
-   * @since 1.0
-   * @version 2.1
-   */
-  public Result authenticate() {
-    return this.authenticate(this.getUsername(), this.getPassword());
-  }
-
-  /**
-   * Authenticates the user account with the server.
-   *
-   * <p>This is an <i>action</i> for controllers.
-   *
    * @param username the username of the account
    * @param password the pssword of the account
    * @return the result object of this action
@@ -179,6 +169,18 @@ public class User {
       StructureRequest req2 = this.authenticateLocal();
       res.add(req2);
     }
+
+    return res;
+  }
+
+  public Result authenticate(){
+
+    HttpBody body = User.readLocalFile();
+
+    String username = body.getString("username");
+    String password = body.getString("password");
+
+    Result res = this.authenticate(username, password);
 
     return res;
   }
@@ -236,33 +238,41 @@ public class User {
     User.current = null;
   }
 
-  public static void writeLocalFile(String username, String password) {
+  private static void writeLocalFile(Map<?, ?> body) {
     try {
       FileWriter myWriter = new FileWriter("temp.meonc");
-      myWriter.write(Encrytion.encrypt(password, "secret"));
+      String str = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(body);
+      myWriter.write(Encrytion.encrypt(str, "secret"));
       myWriter.close();
     } catch (IOException e) {
-      System.out.println("An error occurred.");
-      e.printStackTrace();
+      // System.out.println("An error occurred.");
+      // e.printStackTrace();
+      // Fail silently
     }
   }
 
-  public static String readLocalFilre() throws IOException {
+  private static HttpBody readLocalFile() {
     int ch;
     FileReader fr = null;
-    String ret = "";
+    String encryptStr = "";
     try {
       fr = new FileReader("temp.meonc");
-    } catch (FileNotFoundException fe) {
-      System.out.println("File not found");
+
+      // read from FileReader till the end of file
+      while ((ch = fr.read()) != -1) encryptStr += (char) ch;
+
+      // close the file
+      fr.close();
+    } catch (FileNotFoundException e) {
+      // System.out.println("File not found");
+      // Fail silently
+    } catch (IOException e) {
+      // System.out.println("IO Exception");
+      // Fail silently
     }
 
-    // read from FileReader till the end of file
-    while ((ch = fr.read()) != -1) ret += (char) ch;
-
-    // close the file
-    fr.close();
-    return Encrytion.decrypt(ret, "secret");
+    String str =  Encrytion.decrypt(encryptStr, "secret");
+    return new HttpBody(new Gson().fromJson(str, Map.class));
   }
 
   /**
@@ -322,8 +332,8 @@ public class User {
   }
 
   public static void main(String[] args) throws IOException {
-    writeLocalFile("aaaaa", "Xxx");
+    writeLocalFile(new HttpBody());
 
-    System.out.println(readLocalFilre());
+    System.out.println(readLocalFile());
   }
 }
