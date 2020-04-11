@@ -320,10 +320,6 @@ public class User {
 
     return res;
   }
-  
-  public static User getCurrent(){
-    return User.getCurrent();
-  }
 
   public static Result authentication(String username, String password) {
     User user = new User();
@@ -338,6 +334,10 @@ public class User {
       String username, String password, String secQues, String secAns) {
     User user = new User();
     return user.register(username, password, secQues, secAns);
+  }
+  
+  public static User getCurrent(){
+    return User.current;
   }
 
   public static void main(String[] args) throws IOException {
