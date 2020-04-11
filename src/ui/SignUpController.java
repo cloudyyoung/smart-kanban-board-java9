@@ -130,7 +130,7 @@ public class SignUpController {
         if (id.contains("SignUp")) {
           User.authentication(inputUsername.getText(), inputPassword.getText());
         }
-        profileUsername.setText(User.current.getUsername());
+        profileUsername.setText(User.getCurrent().getUsername());
       }
     }
 

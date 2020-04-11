@@ -450,7 +450,7 @@ public abstract class Node {
    */
   private final HttpBody getRequestCookie() {
     HttpBody cookie = new HttpBody();
-    cookie.put("PHPSESSID", User.current.getSessionId());
+    cookie.put("PHPSESSID", User.getCurrent().getSessionId());
     return cookie;
   }
 

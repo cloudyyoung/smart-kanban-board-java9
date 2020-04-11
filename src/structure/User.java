@@ -18,7 +18,7 @@ import com.google.gson.*;
 public class User {
 
   /** The current signed-in user instance. */
-  public static User current;
+  private static User current;
 
   /** The username of the account. */
   private String username;
@@ -233,9 +233,14 @@ public class User {
     return this.existing;
   }
 
-  public void signout() {
+  public Result signout() {
     this.authenticated = false;
     User.current = null;
+
+    StructureRequest req = new StructureRequest(true, false, this);
+    Result res =  new Result();
+    res.add(req);
+    return res;
   }
 
   private static void writeLocalFile(Map<?, ?> body) {
@@ -314,6 +319,10 @@ public class User {
     }
 
     return res;
+  }
+  
+  public static User getCurrent(){
+    return User.getCurrent();
   }
 
   public static Result authentication(String username, String password) {
