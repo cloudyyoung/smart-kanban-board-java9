@@ -238,7 +238,7 @@ public class readUser {
     readUser.current = null;
   }
 
-  public static void storeUser() { 
+  public static void storeUser() {
     try {
       FileWriter myWriter = new FileWriter("temp.meonc");
       Gson gson = new Gson();
