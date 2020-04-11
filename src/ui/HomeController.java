@@ -294,7 +294,7 @@ public class HomeController {
       currentBoard.fire();
       currentBoard = null;
     }
-    if(currentColumn != null){
+    if (currentColumn != null) {
       currentColumn.update();
       currentColumn = null;
     }
@@ -324,7 +324,7 @@ public class HomeController {
   }
 
   @FXML
-  void deleteColumn(){
+  void deleteColumn() {
     currentColumn.getNode().remove();
     currentColumn.getParentComponent().listColumn();
     this.closePrompt();
