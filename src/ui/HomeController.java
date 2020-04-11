@@ -152,7 +152,7 @@ public class HomeController {
         .addListener(
             (observable, oldFocus, newFocus) -> {
               if (!newFocus) {
-                currentEvent.getNode().setTitle(promptEventTitle.getText());
+                currentEvent.getNode().setTitleRequest(promptEventTitle.getText());
               }
             });
 
@@ -215,7 +215,7 @@ public class HomeController {
         .focusedProperty()
         .addListener(
             (observable, oldFocus, newFocus) -> {
-              if (!newFocus) currentEvent.getNode().setNote(promptEventNote.getText());
+              if (!newFocus) currentEvent.getNode().setNoteRequest(promptEventNote.getText());
             });
 
     sidePane.requestFocus();

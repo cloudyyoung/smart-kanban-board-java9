@@ -80,9 +80,9 @@ public abstract class Node {
    */
   public Node(Integer id, String title, String note, Node parent) {
     this.setId(id);
-    this.setTitleLocal(title);
-    this.setNoteLocal(note);
-    this.setParentLocal(parent);
+    this.setTitle(title);
+    this.setNote(note);
+    this.setParent(parent);
   }
 
   /** Default constructor of {@code Kanban}. */
@@ -98,8 +98,8 @@ public abstract class Node {
     this.existing = true;
 
     if (this instanceof Kanban == false) {
-      this.setTitleLocal(obj.getString("title"));
-      this.setNoteLocal(obj.getString("note"));
+      this.setTitle(obj.getString("title"));
+      this.setNote(obj.getString("note"));
     }
     if (this.getChildType() != null) {
       this.extractChildrenNodes(obj);
@@ -123,7 +123,7 @@ public abstract class Node {
         Object objNew = constructor.newInstance(each2);
         if (objNew instanceof Node) {
           Node nodeNew = (Node) objNew;
-          nodeNew.setParentLocal(this);
+          nodeNew.setParent(this);
         }
       } catch (Exception e) {
         // e.printStackTrace();
@@ -201,10 +201,8 @@ public abstract class Node {
    * Sets the parent {@code Node}, in local storage.
    *
    * @param parent the parent node of the instance
-   * @return the strcuture request of the action
    */
-  private final StructureRequest setParentLocal(Node parent) {
-
+  private final void setParent(Node parent) {
     if (parent != null) {
       // Remove self from old parent
       if (this.getParent() != null && this.getParent() != parent) {
@@ -216,12 +214,10 @@ public abstract class Node {
       this.parentId = this.parent.getId();
       this.getParent().addNode(this);
     } else {
+      // Remove parent
       this.parent = null;
       this.parentId = null;
     }
-
-    StructureRequest req = new StructureRequest(true, false, this);
-    return req;
   }
 
   /**
@@ -232,7 +228,7 @@ public abstract class Node {
    * @param parent the parent {@code Node} of the instance
    * @return the result object of this action
    */
-  public final Result setParent(Node parent) {
+  public final Result setParentRequest(Node parent) {
     Result res = new Result();
     if (this instanceof Event) {
       String parentType = Node.typeLower(Node.typePlural(this.getParentType()));
@@ -240,7 +236,8 @@ public abstract class Node {
       res.add(req);
 
       if (req.isSucceeded()) {
-        StructureRequest req2 = this.setParentLocal(parent);
+        this.setParent(parent);
+        StructureRequest req2 = new StructureRequest(true, false, this);
         res.add(req2);
       }
     } else {
@@ -264,13 +261,9 @@ public abstract class Node {
    * Sets the title of the instance, in local storage.
    *
    * @param title the title of the instance
-   * @return the strcuture request of the action
    */
-  public final StructureRequest setTitleLocal(String title) {
+  public final void setTitle(String title) {
     this.title = title;
-
-    StructureRequest req = new StructureRequest(true, false, this);
-    return req;
   }
 
   /**
@@ -281,13 +274,14 @@ public abstract class Node {
    * @param title the title of the instance
    * @return the result object of this action
    */
-  public final Result setTitle(String title) {
+  public final Result setTitleRequest(String title) {
     Result res = new Result();
     HttpRequest req = this.set("title", title);
     res.add(req);
 
     if (req.isSucceeded()) {
-      StructureRequest req2 = this.setTitleLocal(title);
+      this.setTitle(title);
+      StructureRequest req2 = new StructureRequest(true, false, this);
       res.add(req2);
     }
     return res;
@@ -297,13 +291,9 @@ public abstract class Node {
    * Sets the note of the instance, in local storage.
    *
    * @param note the note of the instance
-   * @return the strcuture request of the action
    */
-  public final StructureRequest setNoteLocal(String note) {
+  public final void setNote(String note) {
     this.note = note;
-
-    StructureRequest req = new StructureRequest(true, false, this);
-    return req;
   }
 
   /**
@@ -314,13 +304,14 @@ public abstract class Node {
    * @param note the note of the instance
    * @return the result object of this action
    */
-  public final Result setNote(String note) {
+  public final Result setNoteRequest(String note) {
     Result res = new Result();
     HttpRequest req = this.set("note", note);
     res.add(req);
 
     if (req.isSucceeded()) {
-      StructureRequest req2 = this.setNoteLocal(note);
+      this.setNote(note);
+      StructureRequest req2 = new StructureRequest(true, false, this);
       res.add(req2);
     }
     return res;
@@ -352,8 +343,6 @@ public abstract class Node {
     req.setRequestBody(body);
     req.setRequestCookie(this.getRequestCookie());
     req.send();
-    // System.out.println(req.getRequestBodyString());
-    // System.out.println(req.getResponseBodyString());
     return req;
   }
 
@@ -503,7 +492,7 @@ public abstract class Node {
     if (req.isSucceeded()) {
       Node parent = this.getParent();
       StructureRequest req2 = parent.removeNode(this.getId());
-      this.setParentLocal(null);
+      this.setParent(null);
       res.add(req2);
     }
 
