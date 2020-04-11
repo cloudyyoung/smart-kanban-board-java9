@@ -21,7 +21,7 @@ public final class Column extends Node {
    */
   private int preset;
 
-  protected Column(HttpBody obj) {
+  public Column(HttpBody obj) {
     super(obj);
     this.setPreset(obj.getInt("preset"));
   }

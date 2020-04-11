@@ -42,7 +42,7 @@ public final class Event extends Node {
    *
    * @param obj the {@code HttpBody} for initialization
    */
-  protected Event(HttpBody obj) {
+  public Event(HttpBody obj) {
     super(obj);
     this.setDuration(obj.getLong("duration"));
     this.setDueDate(obj.getLong("due_date"));

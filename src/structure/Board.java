@@ -20,7 +20,7 @@ public final class Board extends Node {
    *
    * @param obj the {@code HttpBody} for initialization
    */
-  protected Board(HttpBody obj) {
+  public Board(HttpBody obj) {
     super(obj);
     this.color = obj.getString("color");
   }

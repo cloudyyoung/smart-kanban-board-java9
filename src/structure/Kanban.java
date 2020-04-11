@@ -15,6 +15,11 @@ public class Kanban extends Node {
   /** The current Kanban object */
   private static Kanban current;
 
+  private Board today;
+  private Column todayToDo;
+  private Column todayInProgress;
+  private Column todayDone;
+
   /**
    * Constructor of {@code Kanban}
    *
@@ -23,7 +28,7 @@ public class Kanban extends Node {
   protected Kanban(HttpBody obj) {
     super(obj);
 
-    Board today =
+    this.today =
         new Board(
             "Today",
             TimeUtils.monthName(TimeUtils.currentMonth())
@@ -34,9 +39,9 @@ public class Kanban extends Node {
             "#fd79a8",
             this);
 
-    new Column("To Do", "jimjimsjimshtodo", today);
-    new Column("In Progress", "", today);
-    new Column("Done", "", today);
+    this.todayToDo = new Column("To Do", "jimjimsjimshtodo", today);
+    this.todayInProgress = new Column("In Progress", "", today);
+    this.todayDone = new Column("Done", "", today);
   }
 
   /**
@@ -76,29 +81,23 @@ public class Kanban extends Node {
    * Today
    */
   public void generateToday() {
-    Kanban kanban = Kanban.current;
-    // create node refer to todayboard
-    Node todayBoard = kanban.getNode(1);
-    Node todo = todayBoard.getNode(1);
-    Node inprogress = todayBoard.getNode(2);
-    Node done = todayBoard.getNode(3);
 
-    todo.clearNodes();
-    inprogress.clearNodes();
-    done.clearNodes();
+    this.todayToDo.clearNodes();
+    this.todayInProgress.clearNodes();
+    this.todayDone.clearNodes();
 
     // All todo
-    for (Node board : kanban.getNodes()) {
+    for (Node board : this.getNodes()) {
       if (board.getId() >= 100) {
         for (Node node : board.getNodes()) {
           Column column = (Column) node;
           for (Node event : column.getNodes()) {
             if (column.getPreset() == Column.TO_DO) {
-              todo.addNode(event);
+              this.todayToDo.addNode(event);
             } else if (column.getPreset() == Column.IN_PROGRESS) {
-              inprogress.addNode(event);
+              this.todayInProgress.addNode(event);
             } else {
-              if (!((Event) event).isOverdue()) done.addNode(event);
+              if (!((Event) event).isOverdue()) this.todayDone.addNode(event);
             }
           }
         }

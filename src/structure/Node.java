@@ -52,7 +52,7 @@ public abstract class Node {
   /** The children {@code Node} object of the instance. */
   private LinkedHashMap<Integer, Node> nodes = new LinkedHashMap<Integer, Node>();
 
-  private static int idAutoIncrement = 0;
+  private static int idAutoIncrement = 1;
 
   /**
    * The dictionary of the {@code Node} hierarchy. It is used to identify the parent or children
