@@ -85,15 +85,12 @@ public abstract class Node {
     this.setParent(parent);
   }
 
-  /** Default constructor of {@code Kanban}. */
-  public Node() {}
-
   /**
    * Constructor of {@code Node}, provide object to map.
    *
    * @param obj the object to map in {@code HttpBody}
    */
-  public Node(HttpBody obj) {
+  protected Node(HttpBody obj) {
     this.setId(obj.getInt("id"));
     this.existing = true;
 
@@ -262,7 +259,7 @@ public abstract class Node {
    *
    * @param title the title of the instance
    */
-  public final void setTitle(String title) {
+  protected final void setTitle(String title) {
     this.title = title;
   }
 
@@ -290,7 +287,7 @@ public abstract class Node {
    *
    * @param note the note of the instance
    */
-  public final void setNote(String note) {
+  protected final void setNote(String note) {
     this.note = note;
   }
 
@@ -509,7 +506,7 @@ public abstract class Node {
    * @param id the id of the {@code Node} object to be removed
    * @return the strcuture request of the action
    */
-  public final void removeNode(int id) {
+  protected final void removeNode(int id) {
     this.nodes.remove(id);
   }
 
@@ -519,7 +516,7 @@ public abstract class Node {
    * @param node the node instance of the {@code Node} object to be removed
    * @return the strcuture request of the action
    */
-  public final void removeNode(Node node) {
+  protected final void removeNode(Node node) {
     this.removeNode(node.getId());
   }
 
@@ -533,7 +530,7 @@ public abstract class Node {
     return this.nodes.get(id);
   }
 
-  public final void clearNodes() {
+  protected final void clearNodes() {
     this.nodes.clear();
   }
 
@@ -580,7 +577,7 @@ public abstract class Node {
    * @param type a specified type
    * @return a string of a specified type in a format of Java class
    */
-  public static final String typeClass(String type) {
+  private static final String typeClass(String type) {
     return "structure." + Node.typeProper(Node.typeSingular(type));
   }
 
@@ -590,7 +587,7 @@ public abstract class Node {
    * @param type a specified type
    * @return a string of a specified type in a plural format
    */
-  public static final String typePlural(String type) {
+  private static final String typePlural(String type) {
     return type.endsWith("s") || type.length() <= 0 ? type : type + "s";
   }
 
@@ -600,7 +597,7 @@ public abstract class Node {
    * @param type a specified type
    * @return a string of a specified type in a singular format
    */
-  public static final String typeSingular(String type) {
+  private static final String typeSingular(String type) {
     return type.endsWith("s") && type.length() > 0 ? type.substring(0, type.length() - 1) : type;
   }
 
@@ -610,7 +607,7 @@ public abstract class Node {
    * @param type a specified type
    * @return a string of a specified type in a proper-case format
    */
-  public static final String typeProper(String type) {
+  private static final String typeProper(String type) {
     return type.substring(0, 1).toUpperCase() + type.toLowerCase().substring(1);
   }
 
@@ -620,7 +617,7 @@ public abstract class Node {
    * @param type a specified type
    * @return a string of a specified type in a lower-case format
    */
-  public static final String typeLower(String type) {
+  private static final String typeLower(String type) {
     return type.toLowerCase();
   }
 
@@ -630,7 +627,7 @@ public abstract class Node {
    * @param type a specified type
    * @return a string of a specified type in a upper-case format
    */
-  public static final String typeUpper(String type) {
+  private static final String typeUpper(String type) {
     return type.toUpperCase();
   }
 }
