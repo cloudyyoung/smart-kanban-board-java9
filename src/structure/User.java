@@ -241,7 +241,7 @@ public class User {
     StructureRequest req = new StructureRequest(true, false, this);
     Result res = new Result();
     res.add(req);
-    File myObj = new File("temp.meonc"); 
+    File myObj = new File("temp.meonc");
     myObj.delete();
     return res;
   }
