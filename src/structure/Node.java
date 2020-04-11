@@ -462,8 +462,6 @@ public abstract class Node {
       Node parent = this.getParent();
       this.setId(req.getResponseBody().getInt("id"));
       parent.addNode(this);
-      StructureRequest req2 = new StructureRequest(true, false, this);
-      res.add(req2);
     }
 
     return res;
@@ -489,9 +487,7 @@ public abstract class Node {
     if (req.isSucceeded()) {
       Node parent = this.getParent();
       parent.removeNode(this.getId());
-      StructureRequest req2 = new StructureRequest(true, false, this);
       this.setParent(null);
-      res.add(req2);
     }
 
     return res;
