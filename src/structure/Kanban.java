@@ -73,40 +73,6 @@ public class Kanban extends Node {
     return res;
   }
 
-  public int getNextEventId() {
-    int max = 100;
-    Kanban kanban = Kanban.current;
-    for (Node board : kanban.getNodes()) {
-      if (board.getId() >= 100) {
-        for (Node node : board.getNodes()) {
-          Column column = (Column) node;
-          for (Node event : column.getNodes()) {
-            if (event.getId() > max) {
-              max = event.getId();
-            }
-          }
-        }
-      }
-    }
-    return max + 1;
-  }
-
-  public int getNextColumnId() {
-    int max = 100;
-    Kanban kanban = Kanban.current;
-    for (Node board : kanban.getNodes()) {
-      if (board.getId() >= 100) {
-        for (Node node : board.getNodes()) {
-          Column column = (Column) node;
-          if (column.getId() > max) {
-            max = column.getId();
-          }
-        }
-      }
-    }
-    return max + 1;
-  }
-
   /*
    * Today
    */

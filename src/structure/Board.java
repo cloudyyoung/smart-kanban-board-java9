@@ -47,16 +47,12 @@ public final class Board extends Node {
   }
 
   public void createSubColumns() {
-    Node node = this.getParent();
-    Kanban kanban = (Kanban) node;
-    int nextId = kanban.getNextColumnId();
-    Column col1 = new Column(nextId, "To Do", "Todo", this);
-    Column col2 = new Column(nextId, "In Progress", "Todo", this);
-    Column col3 = new Column(nextId, "Done", "Todo", this);
-    this.addNode(col1);
-    this.addNode(col2);
-    this.addNode(col3);
-    return;
+    Column col1 = new Column(99, "To Do", "Todo", this);
+    Column col2 = new Column(98, "In Progress", "Todo", this);
+    Column col3 = new Column(97, "Done", "Todo", this);
+    col1.add();
+    col2.add();
+    col3.add();
   }
 
   /**
