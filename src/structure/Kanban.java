@@ -107,7 +107,7 @@ public class Kanban extends Node {
     }
   }
 
-  public static Kanban getCurrent(){
+  public static Kanban getCurrent() {
     return Kanban.current;
   }
 
