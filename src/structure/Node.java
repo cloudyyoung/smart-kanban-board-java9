@@ -96,7 +96,7 @@ public abstract class Node {
   public Node(HttpBody obj) {
     this.setId(obj.getInt("id"));
     this.existing = true;
-
+    
     if (this instanceof Kanban == false) {
       this.setTitle(obj.getString("title"));
       this.setNote(obj.getString("note"));
