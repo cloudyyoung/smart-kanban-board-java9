@@ -34,7 +34,7 @@ public final class Event extends Node {
       final Node parent) {
     super(eventId, title, note, parent);
     this.setDuration(duration);
-    this.setDueDate(dueDate);
+    this.setDueDateRequest(dueDate);
     this.setImportanceLevel(importanceLevel);
   }
 
@@ -96,11 +96,11 @@ public final class Event extends Node {
     return this.importanceLevel;
   }
 
-  public void setDueDate(long dueDate) {
+  public void setDueDate(Long dueDate) {
     this.dueDate = dueDate;
   }
 
-  public Result setDueDate(Long dueDate) {
+  public Result setDueDateRequest(Long dueDate) {
     Result res = new Result();
     HttpRequest req = this.set("due_date", dueDate);
     res.add(req);

@@ -129,7 +129,7 @@ public class HomeController {
               if (newDate != null) {
                 timestamp = Timestamp.valueOf(newDate.atTime(LocalTime.MAX)).getTime() / 1000;
               }
-              currentEvent.getNode().setDueDate(timestamp);
+              currentEvent.getNode().setDueDateRequest(timestamp);
             });
 
     searchList.getChildren().clear();
