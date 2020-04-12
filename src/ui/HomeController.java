@@ -54,6 +54,7 @@ public class HomeController {
   @FXML private TextArea promptBoardNote;
   @FXML private VBox promptColumn;
   @FXML private SVGPath promptColumnIcon;
+  @FXML private Button columnDelete;
   @FXML private Label promptColumnPromptTitle;
   @FXML private TextArea promptColumnTitle;
   @FXML private ComboBox<String> promptColumnPreset;
@@ -91,6 +92,7 @@ public class HomeController {
     ColumnComponent.promptColumnTitle = promptColumnTitle;
     ColumnComponent.promptColumnPreset = promptColumnPreset;
     ColumnComponent.dragPane = dragPane;
+    ColumnComponent.columnDelete = columnDelete;
 
     this.closePrompt();
     extraPane.setVisible(false);
@@ -220,6 +222,14 @@ public class HomeController {
               if (!newFocus) currentEvent.getNode().setNoteRequest(promptEventNote.getText());
             });
 
+    promptBoardTitle
+        .focusedProperty()
+        .addListener(
+            (observable, oldFocus, newFocus) -> {
+              if (!newFocus) currentColumn.getNode().setTitleRequest(promptColumnTitle.getText());
+            });
+
+
     promptColumnPreset.getItems().addAll("To Do", "In Progress", "Done");
 
     promptColumnPreset
@@ -308,16 +318,16 @@ public class HomeController {
     promptBoard.getStyleClass().setAll("prompt-cover", "hide");
     promptColumn.getStyleClass().setAll("prompt-cover", "hide");
     if (currentEvent != null) {
-      currentEvent.update();
+      currentEvent.display();
       currentEvent = null;
     }
     if (currentBoard != null) {
-      currentBoard.update();
+      currentBoard.display();
       currentBoard.fire();
       currentBoard = null;
     }
     if (currentColumn != null) {
-      currentColumn.update();
+      currentColumn.display();
       currentColumn = null;
     }
   }
@@ -341,14 +351,14 @@ public class HomeController {
   void deleteEvent() {
     currentEvent.getNode().removeRequest();
     Kanban.getCurrent().generateToday();
-    currentEvent.getParentComponent().listEvent();
+    currentEvent.getParentComponent().list();
     this.closePrompt();
   }
 
   @FXML
   void deleteColumn() {
     currentColumn.getNode().removeRequest();
-    currentColumn.getParentComponent().listColumn();
+    currentColumn.getParentComponent().list();
     this.closePrompt();
   }
 

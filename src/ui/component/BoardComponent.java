@@ -2,6 +2,7 @@ package ui.component;
 
 import java.util.HashSet;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.Node;
 import javafx.scene.layout.*;
@@ -29,28 +30,28 @@ public class BoardComponent extends Button {
     this.node = node;
 
     this.load();
-    this.update();
-
-    this.setOnAction(
-        e -> {
-          HomeController.currentBoard = this;
-          boardEdit.setVisible(this.node.getId() >= 100);
-
-          HashSet<Node> sideButtons = new HashSet<Node>();
-          sideButtons.addAll(sidePane.lookupAll(".button"));
-          sideButtons.addAll(boardList.lookupAll(".button"));
-
-          for (Node each : sideButtons) {
-            each.getStyleClass().remove("selected");
-          }
-
-          this.getStyleClass().add("selected");
-          this.update();
-          this.listColumn();
-        });
+    this.display();
   }
 
-  public void update() {
+  @FXML
+  void open(ActionEvent e){
+    HomeController.currentBoard = this;
+    boardEdit.setVisible(this.node.getId() >= 100);
+
+    HashSet<Node> sideButtons = new HashSet<Node>();
+    sideButtons.addAll(sidePane.lookupAll(".button"));
+    sideButtons.addAll(boardList.lookupAll(".button"));
+
+    for (Node each : sideButtons) {
+      each.getStyleClass().remove("selected");
+    }
+
+    this.getStyleClass().add("selected");
+    this.display();
+    this.list();
+  }
+
+  public void display() {
     this.setText(this.node.getTitle());
     this.setId("board-" + this.node.getId());
     this.setStyle(HomeController.styleAccent(this.node.getColor()));
@@ -69,7 +70,7 @@ public class BoardComponent extends Button {
     boardNote.setText(!this.node.getNote().equals("") ? this.node.getNote() : "No description");
   }
 
-  public void listColumn() {
+  public void list() {
     columnPane.getChildren().clear();
     for (structure.Node each : this.node.getNodes()) {
       Node col = new ColumnComponent((Column) each, this);

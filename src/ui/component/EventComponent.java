@@ -2,6 +2,7 @@ package ui.component;
 
 import java.time.LocalDate;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.shape.*;
 import javafx.scene.text.Text;
@@ -44,7 +45,7 @@ public class EventComponent extends Button {
     super();
     this.node = (Event) node;
     this.parent = parent;
-    this.load();
+    this.loadDisplay();
   }
 
   public Event getNode() {
@@ -62,7 +63,7 @@ public class EventComponent extends Button {
     return this.parent.getColor();
   }
 
-  private final void load() {
+  private final void loadDisplay() {
     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("event.fxml"));
     fxmlLoader.setRoot(this);
     fxmlLoader.setController(this);
@@ -74,7 +75,7 @@ public class EventComponent extends Button {
     }
   }
 
-  public void update() {
+  public void display() {
     if (((Column) this.node.getParent()).getPreset() == Column.DONE) {
       this.setStyle("-fx-accent: -fx-accent-60 !important;");
       icon.setContent(CHECK_ICON);
@@ -89,31 +90,39 @@ public class EventComponent extends Button {
     this.setStyle(this.getStyle() + HomeController.styleAccent(this.getColor()));
   }
 
+
+  @FXML
+  void create(){
+
+
+  }
+
+  @FXML
+  void update(ActionEvent e){
+    HomeController.currentEvent = this;
+    textHolder.textProperty().bind(promptEventTitle.textProperty());
+
+    promptEventTitle.setText(this.node.getTitle());
+    promptEventLocationBoard.setText(this.node.getParent().getParent().getTitle());
+    promptEventLocationColumn.setText(this.node.getParent().getTitle());
+    promptEventImportanceLevel.getSelectionModel().select(this.node.getImportanceLevel());
+    promptEventDueDate.setValue(
+        (this.node.getDueDate() != null)
+            ? LocalDate.parse(this.node.getDueDateString())
+            : null);
+    promptEventDuration
+        .getSelectionModel()
+        .select(this.node.getDurationValue().intValue() / 3600);
+    promptEventNote.setText(this.node.getNote());
+    promptEventIcon.setContent(icon.getContent());
+    promptEventPromptTitle.setText("Edit event");
+    promptEvent.setStyle(HomeController.styleAccent(this.getColor()));
+    promptEvent.getStyleClass().remove("hide");
+  }
+
   @FXML
   void initialize() {
-    this.update();
-    this.setOnAction(
-        e -> {
-          HomeController.currentEvent = this;
-          textHolder.textProperty().bind(promptEventTitle.textProperty());
-
-          promptEventTitle.setText(this.node.getTitle());
-          promptEventLocationBoard.setText(this.node.getParent().getParent().getTitle());
-          promptEventLocationColumn.setText(this.node.getParent().getTitle());
-          promptEventImportanceLevel.getSelectionModel().select(this.node.getImportanceLevel());
-          promptEventDueDate.setValue(
-              (this.node.getDueDate() != null)
-                  ? LocalDate.parse(this.node.getDueDateString())
-                  : null);
-          promptEventDuration
-              .getSelectionModel()
-              .select(this.node.getDurationValue().intValue() / 3600);
-          promptEventNote.setText(this.node.getNote());
-          promptEventIcon.setContent(icon.getContent());
-          promptEventPromptTitle.setText("Edit event");
-          promptEvent.setStyle(HomeController.styleAccent(this.getColor()));
-          promptEvent.getStyleClass().remove("hide");
-        });
+    this.display();
   }
 
   // drag
