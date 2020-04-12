@@ -230,10 +230,10 @@ public class HomeController {
             });
 
     promptColumnTitle
-        .textProperty()
+    .focusedProperty()
         .addListener(
-            (observable, oldText, newText) -> {
-              currentColumn.getNode().setTitleRequest(newText);
+            (observable, oldFocus, newFocus) -> {
+              if (!newFocus) currentColumn.getNode().setTitleRequest(promptColumnTitle.getText());
             });
 
     sidePane.requestFocus();

@@ -94,6 +94,7 @@ public class ColumnComponent extends VBox {
   @FXML
   void editColumn(ActionEvent e) {
     HomeController.currentColumn = this;
+    promptColumn.setStyle(HomeController.styleAccent(this.getColor()));
     promptColumn.getStyleClass().remove("hide");
     promptColumnPromptTitle.setText("Edit column");
     promptColumnTitle.setText(this.node.getTitle());

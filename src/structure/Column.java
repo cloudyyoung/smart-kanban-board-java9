@@ -40,7 +40,6 @@ public final class Column extends Node {
 
   protected void setPreset(int preset) {
     this.preset = preset;
-    System.out.println(preset);
   }
 
   public Result setPresetRequest(int preset) {
