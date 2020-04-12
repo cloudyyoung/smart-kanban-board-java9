@@ -296,7 +296,7 @@ public class User {
     return res;
   }
 
-  public static Result authentication(String username, String password) {
+  public static Result authenticationRequest(String username, String password) {
     User user = new User();
     Result res = user.signInRequest(username, password);
     if (res.isSucceeded()) {
@@ -305,7 +305,7 @@ public class User {
     return res;
   }
 
-  public static Result registration(
+  public static Result registrationRequest(
       String username, String password, String secQues, String secAns) {
     User user = new User();
     return user.signUpRequest(username, password, secQues, secAns);
