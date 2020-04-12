@@ -137,6 +137,7 @@ public class EventComponent extends Button {
 
   @FXML
   void EventMouseReleased(MouseEvent event) {
+    System.out.println("EventMouseReleased");
     Button button = (Button) event.getSource();
     if (button.getParent() != originalParent) {
       return;
