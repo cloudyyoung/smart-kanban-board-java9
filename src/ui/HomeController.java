@@ -370,23 +370,23 @@ public class HomeController {
   @FXML
   void PanelMouseDragOver(MouseDragEvent event) {
     System.out.println("PanelMouseDragOver");
-      Button button = (Button) event.getGestureSource();
-      button.setLayoutX(event.getSceneX());
-      button.setLayoutY(event.getSceneY());
-    System.out.println(event.getSource());
-  }
-
-  @FXML
-  void EventMouseDragReleased(MouseDragEvent event) throws InterruptedException {
-    // set DragPane transparent to 100
-    System.out.println("PanelMouseReleased");
-    dragPane.setMouseTransparent(true);
-
-    Thread.sleep(1000);
-    ColumnComponent current = (ColumnComponent) event.getSource();
-    System.out.println(event.getSource());
     Button button = (Button) event.getGestureSource();
-    System.out.println(event.getGestureSource());
-    current.getEventList().getChildren().add(button);
+    button.setLayoutX(event.getSceneX());
+    button.setLayoutY(event.getSceneY());
+    System.out.println(event.getSource());
   }
+
+  // @FXML
+  // void EventMouseDragReleased(MouseDragEvent event) {
+  //   // set DragPane transparent to 100
+  //   System.out.println("PanelMouseReleased");
+  //   dragPane.setMouseTransparent(true);
+
+
+  //   ColumnComponent current = (ColumnComponent) event.getSource();
+  //   System.out.println(event.getSource());
+  //   Button button = (Button) event.getGestureSource();
+  //   System.out.println(event.getGestureSource());
+  //   current.getEventList().getChildren().add(button);
+  // }
 }

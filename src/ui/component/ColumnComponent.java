@@ -124,29 +124,23 @@ public class ColumnComponent extends VBox {
   }
 
   // drag
-  // @FXML
-  // void MouseDragReleased(MouseDragEvent event) {
-  //   System.out.println("MouseDragReleased");
-  //   // Button button = HomeController.currentCard;
-  //   // HomeController.currentStayColumn = (ColumnComponent) event.getSource();
-  //   // eventList.getChildren().add(button);
-  //   ColumnComponent current = (ColumnComponent) event.getSource();
-
-
-
-  //   Button button = (Button) event.getGestureSource();
-
-  //   current.getEventList().getChildren().add(button);
-    
-  // }
-
-  
   @FXML
-  void EventDragExited(MouseDragEvent event) {
-    System.out.println("EventDragExited");
+  void MouseDragReleased(MouseDragEvent event) {
+    System.out.println("MouseDragReleased");
+    // Button button = HomeController.currentCard;
+    // HomeController.currentStayColumn = (ColumnComponent) event.getSource();
+    // eventList.getChildren().add(button);
     ColumnComponent current = (ColumnComponent) event.getSource();
     Button button = (Button) event.getGestureSource();
     current.getEventList().getChildren().add(button);
   }
+
+  
+  // @FXML
+  // void EventDragExited(MouseDragEvent event) {
+  //   ColumnComponent current = (ColumnComponent) event.getSource();
+  //   Button button = (Button) event.getGestureSource();
+  //   current.getEventList().getChildren().add(button);
+  // }
 
 }

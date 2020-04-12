@@ -146,11 +146,11 @@ public class EventComponent extends Button {
       Button card = (Button) event.getSource();
       card.startFullDrag();
       // add card to dragPane
-      this.parentController.dragPane.getChildren().add(card);
+      // this.parentController.dragPane.getChildren().add(card);
       // set DragPane transparent to 0
-      this.parentController.dragPane.setMouseTransparent(false);
+      // this.parentController.dragPane.setMouseTransparent(false);
       // seet this card
-      HomeController.currentCard = card;
+      // HomeController.currentCard = card;
   }
 
   // @FXML
