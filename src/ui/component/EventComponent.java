@@ -114,34 +114,6 @@ public class EventComponent extends Button {
     this.display();
   }
 
-  // drag
-  @FXML
-  void EventDragDetected(MouseEvent event) {
-    // activative drag
-    Button button = (Button) event.getSource();
-    originalParent = (VBox) button.getParent();
-    button.startFullDrag();
-    this.parentController.dragPane.getChildren().add(button);
-
-    // Dragboard db = button.startDragAndDrop(TransferMode.ANY);        
-    // /* put a string on dragboard */
-    // ClipboardContent content = new ClipboardContent();
-    // content.putString(button.getText());
-    // db.setContent(content);
-    // event.consume();
-  }
-
-  // @FXML
-  // void EventMouseReleased(MouseEvent event) {
-  //   System.out.println("EventMouseReleased");
-  //   Button button = (Button) event.getSource();
-  //   if (button.getParent() != originalParent) {
-  //     return;
-  //   } else {
-  //     originalParent.getChildren().add(button);
-  //   }
-  // }
-
   @FXML
   void EventDragDone(DragEvent event) {
     System.out.println("EventDragDone");

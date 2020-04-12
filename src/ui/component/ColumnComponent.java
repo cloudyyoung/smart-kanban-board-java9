@@ -112,11 +112,4 @@ public class ColumnComponent extends VBox {
     }
   }
 
-  // drag
-  @FXML
-  void EventMouseDragReleased(MouseDragEvent event) {
-    System.out.println("EventMouseDragReleased");
-    Button button = (Button) event.getGestureSource();
-    eventList.getChildren().add(button);
-  }
 }
