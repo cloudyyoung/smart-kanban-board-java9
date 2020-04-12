@@ -31,7 +31,7 @@ public class Kanban extends Node {
     this.today =
         new Board(
             "Today",
-            TimeUtils.monthName(TimeUtils.currentMonth())
+            TimeUtils.currentMonthName()
                 + " "
                 + TimeUtils.currentDay()
                 + ", "

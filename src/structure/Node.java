@@ -111,12 +111,12 @@ public abstract class Node {
    * @param obj the object to map in {@code HttpBody}
    */
   private final void extractChildrenNodes(HttpBody obj) {
-    String childType = Node.typeLower(Node.typePlural(this.getChildType()));
+    String childType = NodeTypeUtils.typeUrl(this.getChildType());
     HttpBody value = obj.getList(childType);
     Collection<Object> list = value.values();
     for (Object each2 : list) {
       try {
-        String type = Node.typeClass(childType);
+        String type = NodeTypeUtils.typeClass(childType);
         Class<?> cls = Class.forName(type);
         Constructor<?> constructor = cls.getConstructor(HttpBody.class);
         Object objNew = constructor.newInstance(each2);
@@ -230,7 +230,7 @@ public abstract class Node {
   public final Result setParentRequest(Node parent) {
     Result res = new Result();
     if (this instanceof Event) {
-      String parentType = Node.typeLower(Node.typePlural(this.getParentType()));
+      String parentType = NodeTypeUtils.typeUrl(this.getParentType());
       HttpRequest req = this.set(parentType + "_id", parent.getId() + "");
       res.add(req);
 
@@ -333,7 +333,7 @@ public abstract class Node {
     body.put(key, value);
 
     HttpRequest req = new HttpRequest();
-    req.setRequestUrl("/" + Node.typeLower(Node.typePlural(this.getType())) + "/" + this.getId());
+    req.setRequestUrl("/" + NodeTypeUtils.typeUrl(this.getType()) + "/" + this.getId());
     req.setRequestMethod("PUT");
     req.setRequestBody(body);
     req.setRequestCookie(this.getRequestCookie());
@@ -450,7 +450,7 @@ public abstract class Node {
     Result res = new Result();
 
     HttpRequest req = new HttpRequest();
-    req.setRequestUrl("/" + Node.typeLower(Node.typePlural(this.getType())));
+    req.setRequestUrl("/" + NodeTypeUtils.typeUrl(this.getType()));
     req.setRequestMethod("POST");
     req.setRequestBody(this);
     req.setRequestCookie(this.getRequestCookie());
@@ -477,7 +477,7 @@ public abstract class Node {
     Result res = new Result();
 
     HttpRequest req = new HttpRequest();
-    req.setRequestUrl("/" + Node.typeLower(Node.typePlural(this.getType())) + "/" + this.getId());
+    req.setRequestUrl("/" + NodeTypeUtils.typeUrl(this.getType()) + "/" + this.getId());
     req.setRequestMethod("DELETE");
     req.setRequestCookie(this.getRequestCookie());
     req.send();
@@ -571,55 +571,5 @@ public abstract class Node {
    */
   public final String getType() {
     return this.getClass().getSimpleName();
-  }
-
-  /**
-   * Returns a specified type in a format of Java class. Such as {@code structure.Node}.
-   *
-   * @param type a specified type
-   * @return a string of a specified type in a format of Java class
-   */
-  private static final String typeClass(String type) {
-    return "structure." + Node.typeProper(Node.typeSingular(type));
-  }
-
-  /**
-   * Returns a specified type in a plural format
-   *
-   * @param type a specified type
-   * @return a string of a specified type in a plural format
-   */
-  private static final String typePlural(String type) {
-    return type.endsWith("s") || type.length() <= 0 ? type : type + "s";
-  }
-
-  /**
-   * Returns a specified type in a singular format.
-   *
-   * @param type a specified type
-   * @return a string of a specified type in a singular format
-   */
-  private static final String typeSingular(String type) {
-    return type.endsWith("s") && type.length() > 0 ? type.substring(0, type.length() - 1) : type;
-  }
-
-  /**
-   * Returns a specified type in a proper-case format.
-   *
-   * @param type a specified type
-   * @return a string of a specified type in a proper-case format
-   */
-  private static final String typeProper(String type) {
-    return type.substring(0, 1).toUpperCase() + type.toLowerCase().substring(1);
-  }
-
-  /**
-   * Returns a specified type in a lower-case format.
-   *
-   * @param type a specified type
-   * @return a string of a specified type in a lower-case format
-   */
-  private static final String typeLower(String type) {
-    return type.toLowerCase();
   }
 }
