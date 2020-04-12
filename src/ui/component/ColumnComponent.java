@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import structure.*;
 import ui.HomeController;
@@ -116,14 +117,29 @@ public class ColumnComponent extends VBox {
   }
 
   // drag
+  // @FXML
+  // void MouseDragReleased(MouseDragEvent event) {
+  //   System.out.println("MouseDragReleased");
+  //   // Button button = HomeController.currentCard;
+  //   // HomeController.currentStayColumn = (ColumnComponent) event.getSource();
+  //   // eventList.getChildren().add(button);
+  //   ColumnComponent current = (ColumnComponent) event.getSource();
+
+
+
+  //   Button button = (Button) event.getGestureSource();
+
+  //   current.getEventList().getChildren().add(button);
+    
+  // }
+
+  
   @FXML
-  void MouseEnter(MouseEvent event) {
-    System.out.println("EventMouseDragReleased");
-    // Button button = HomeController.currentCard;
-    HomeController.currentStayColumn = this;
-    // eventList.getChildren().add(button);
-    // set DragPane transparent to 100
-    // this.parentController.dragPane.setMouseTransparent(true);
+  void EventDragExited(MouseDragEvent event) {
+    System.out.println("EventDragExited");
+    ColumnComponent current = (ColumnComponent) event.getSource();
+    Button button = (Button) event.getGestureSource();
+    current.getEventList().getChildren().add(button);
   }
 
 }

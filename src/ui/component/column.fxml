@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-<fx:root onMouseEntered="#MouseEnter" fillWidth="false" prefHeight="680.0" prefWidth="1020.0" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root onMouseDragExited="#EventDragExited" fillWidth="false" prefHeight="680.0" prefWidth="1020.0" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <HBox styleClass="title">
       <children>
         <Label fx:id="eventCount" alignment="CENTER" contentDisplay="CENTER" text="4" textOverrun="CLIP" wrapText="true">
