@@ -101,11 +101,11 @@ public class SignUpController {
 
       if (id.contains("SignIn")) {
         totalField = 2;
-        res = User.authentication(inputUsername.getText(), inputPassword.getText());
+        res = User.authenticationRequest(inputUsername.getText(), inputPassword.getText());
       } else {
         totalField = 4;
         res =
-            User.registration(
+            User.registrationRequest(
                 inputUsername.getText(),
                 inputPassword.getText(),
                 comboSecurityQuestion.getSelectionModel().getSelectedItem(),
@@ -128,7 +128,7 @@ public class SignUpController {
         showError(errorText);
       } else {
         if (id.contains("SignUp")) {
-          User.authentication(inputUsername.getText(), inputPassword.getText());
+          User.authenticationRequest(inputUsername.getText(), inputPassword.getText());
         }
         profileUsername.setText(User.getCurrent().getUsername());
       }
