@@ -476,8 +476,8 @@
             </TabPane>
          </center>
       </BorderPane>
-      <Pane id="dragPane" fx:id="dragPane" onMouseDragOver="#PanelMouseDragOver" />
-      <VBox fx:id="promptBoard">
+      <Pane id="dragPane" fx:id="dragPane" onMouseDragOver="#PanelMouseDragOver" onMouseDragExited="#EventMouseDragReleased" />
+      <VBox fx:id="promptBoard" styleClass="prompt-cover">
          <children>
             <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="bg-prompt">
                <content>

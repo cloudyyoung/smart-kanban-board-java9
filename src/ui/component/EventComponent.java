@@ -153,13 +153,13 @@ public class EventComponent extends Button {
       HomeController.currentCard = card;
   }
 
-  @FXML
-  void EventDragDone(MouseDragEvent event) {
-    System.out.println("EventDragDone");
-    Button button = HomeController.currentCard;
-    ColumnComponent cc = HomeController.currentStayColumn;
-    cc.getEventList().getChildren().add(button);
-    // set DragPane transparent to 100
-    this.parentController.dragPane.setMouseTransparent(true);
-  }
+  // @FXML
+  // void EventDragDone(MouseDragEvent event) {
+  //   System.out.println("EventDragDone");
+  //   Button button = HomeController.currentCard;
+  //   ColumnComponent cc = HomeController.currentStayColumn;
+  //   cc.getEventList().getChildren().add(button);
+  //   // set DragPane transparent to 100
+  //   this.parentController.dragPane.setMouseTransparent(true);
+  // }
 }
