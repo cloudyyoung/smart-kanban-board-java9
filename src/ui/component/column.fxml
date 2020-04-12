@@ -36,9 +36,9 @@
         <Insets />
       </VBox.margin>
   </HBox>
-  <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="event-list" VBox.vgrow="ALWAYS">
+  <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="event-list" VBox.vgrow="ALWAYS" onMouseDragReleased="#EventMouseDragReleased">
       <content>
-        <VBox fx:id="eventList" />
+        <VBox fx:id="eventList"/>
       </content>
   </ScrollPane>
 <styleClass>

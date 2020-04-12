@@ -7,7 +7,7 @@ import javafx.fxml.*;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.scene.Node;
-
+import javafx.scene.input.MouseDragEvent;
 import structure.*;
 import ui.HomeController;
 
@@ -28,6 +28,7 @@ public class ColumnComponent extends VBox {
   public static Label promptColumnPromptTitle;
   public static TextArea promptColumnTitle;
   public static ComboBox<String> promptColumnPreset;
+  public static Pane dragPane;
   public static Button columnDelete;
 
   private Column node;
@@ -116,5 +117,13 @@ public class ColumnComponent extends VBox {
     } else {
       columnDelete.getStyleClass().remove("hide");
     }
+  }
+
+  // drag
+  @FXML
+  void EventMouseDragReleased(MouseDragEvent event) {
+    System.out.println("EventMouseDragReleased");
+    Button button = (Button) event.getGestureSource();
+    eventList.getChildren().add(button);
   }
 }

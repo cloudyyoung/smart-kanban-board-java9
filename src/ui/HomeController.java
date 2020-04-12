@@ -91,6 +91,7 @@ public class HomeController {
     ColumnComponent.promptColumnPromptTitle = promptColumnPromptTitle;
     ColumnComponent.promptColumnTitle = promptColumnTitle;
     ColumnComponent.promptColumnPreset = promptColumnPreset;
+    ColumnComponent.dragPane = dragPane;
     ColumnComponent.columnDelete = columnDelete;
 
     this.closePrompt();
@@ -376,4 +377,13 @@ public class HomeController {
     style += "-fx-accent-5: " + hex + "0d;";
     return style;
   }
+
+
+  // drag and drop
+    @FXML
+    void PanelMouseDragOver(MouseDragEvent event) {
+        Button button = (Button) event.getGestureSource();
+        button.setLayoutX(event.getSceneX());
+        button.setLayoutY(event.getSceneY());
+    }
 }
