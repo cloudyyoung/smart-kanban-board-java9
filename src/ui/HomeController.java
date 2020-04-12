@@ -104,7 +104,7 @@ public class HomeController {
   @FXML
   public Button eventCreate;
   @FXML
-  private Button columnCreate;
+  public Button columnCreate;
 
   public static EventComponent currentEvent;
   public static BoardComponent currentBoard;
@@ -331,14 +331,18 @@ public class HomeController {
 
   @FXML
   void createEventRequest(){
-    Result res = currentEvent.getNode().createRequest();
-    System.out.println(res);
+    currentEvent.getNode().createRequest();
+    Kanban.getCurrent().generateToday();
+    currentEvent.getParentComponent().list();
+    this.closePrompt();
   }
 
   @FXML
   void createColumnRequest(){
-    Result res = currentColumn.getNode().createRequest();
-    System.out.println(res);
+    currentColumn.getNode().createRequest();
+    Kanban.getCurrent().generateToday();
+    currentColumn.getParentComponent().list();
+    this.closePrompt();
   }
 
   public static String styleAccent(String hex) {

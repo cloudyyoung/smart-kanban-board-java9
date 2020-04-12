@@ -33,7 +33,7 @@ public class ColumnComponent extends VBox {
     this.node = node;
     this.parent = parent;
     this.parentController = parentController;
-    this.load();
+    this.loadDisplay();
   }
 
   public Column getNode() {
@@ -52,7 +52,7 @@ public class ColumnComponent extends VBox {
     return this.eventList;
   }
 
-  private final void load() {
+  private final void loadDisplay() {
     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("column.fxml"));
     fxmlLoader.setRoot(this);
     fxmlLoader.setController(this);
@@ -101,11 +101,15 @@ public class ColumnComponent extends VBox {
   @FXML
   void update(ActionEvent e) {
     this.displayPrompt();
+    this.parentController.columnDelete.getStyleClass().remove("hide");
+    this.parentController.columnCreate.getStyleClass().add("hide");
   }
 
   @FXML
   void create(ActionEvent e){
     this.displayPrompt();
+    this.parentController.columnDelete.getStyleClass().add("hide");
+    this.parentController.columnCreate.getStyleClass().remove("hide");
   }
 
   private void displayPrompt(){
