@@ -73,7 +73,7 @@ public abstract class Node {
       };
 
   /**
-   * Constructor of {@code Node}, provide id, title and note.
+   * Constructor of {@code Node}, provide title, note and parent.
    *
    * @param id the id in {@code int}
    * @param title the title in {@code String}
