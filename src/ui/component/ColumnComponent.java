@@ -100,6 +100,15 @@ public class ColumnComponent extends VBox {
 
   @FXML
   void update(ActionEvent e) {
+    this.displayPrompt();
+  }
+
+  @FXML
+  void create(ActionEvent e){
+    this.displayPrompt();
+  }
+
+  private void displayPrompt(){
     HomeController.currentColumn = this;
     this.parentController.promptColumn.setStyle(HomeController.styleAccent(this.getColor()));
     this.parentController.promptColumn.getStyleClass().remove("hide");

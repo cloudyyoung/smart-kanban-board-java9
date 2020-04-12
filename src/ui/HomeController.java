@@ -103,6 +103,8 @@ public class HomeController {
   public Button eventDelete;
   @FXML
   public Button eventCreate;
+  @FXML
+  private Button columnCreate;
 
   public static EventComponent currentEvent;
   public static BoardComponent currentBoard;
@@ -298,7 +300,7 @@ public class HomeController {
   }
 
   @FXML
-  void editBoard() {
+  void updateBoardRequest() {
     textHolder.textProperty().bind(promptBoardTitle.textProperty());
     promptBoard.getStyleClass().remove("hide");
     promptBoardTitle.setText(currentBoard.getNode().getTitle());
@@ -306,14 +308,14 @@ public class HomeController {
   }
 
   @FXML
-  void deleteBoard() {
+  void deleteBoardRequest() {
     currentBoard.getNode().removeRequest();
     this.listBoard();
     this.closePrompt();
   }
 
   @FXML
-  void deleteEvent() {
+  void deleteEventRequest() {
     currentEvent.getNode().removeRequest();
     Kanban.getCurrent().generateToday();
     currentEvent.getParentComponent().list();
@@ -321,15 +323,21 @@ public class HomeController {
   }
 
   @FXML
-  void deleteColumn() {
+  void deleteColumnRequest() {
     currentColumn.getNode().removeRequest();
     currentColumn.getParentComponent().list();
     this.closePrompt();
   }
 
   @FXML
-  void createEvent(){
+  void createEventRequest(){
     Result res = currentEvent.getNode().createRequest();
+    System.out.println(res);
+  }
+
+  @FXML
+  void createColumnRequest(){
+    Result res = currentColumn.getNode().createRequest();
     System.out.println(res);
   }
 
