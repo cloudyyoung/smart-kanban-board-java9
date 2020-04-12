@@ -117,7 +117,7 @@ public class ColumnComponent extends VBox {
   void MouseReleased(MouseEvent event) {
     System.out.println("EventMouseDragReleased");
     Button button = HomeController.currentCard;
-    eventList.getChildren().add(button);
+    this.eventList.getChildren().add(button);
     // set DragPane transparent to 100
     this.parentController.dragPane.setMouseTransparent(true);
   }
