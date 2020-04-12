@@ -42,15 +42,15 @@ public final class Column extends Node {
     this.preset = preset;
     System.out.println(this.preset);
   }
-  
+
   public Result setPresetRequest(int preset) {
-	HttpRequest req = this.set("preset", preset);
-	if (req.isSucceeded()) {
+    HttpRequest req = this.set("preset", preset);
+    if (req.isSucceeded()) {
       this.setPreset(preset);
     }
-	Result res = new Result();
-	res.add(req);
-	return res;
+    Result res = new Result();
+    res.add(req);
+    return res;
   }
 
   public int getPreset() {
