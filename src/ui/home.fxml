@@ -103,7 +103,7 @@
             </VBox>
          </left>
          <center>
-            <TabPane fx:id="tabPane" focusTraversable="false" onMouseDragOver="#PanelMouseDragOver" prefHeight="200.0" prefWidth="200.0" side="BOTTOM" styleClass="bg-main" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+            <TabPane fx:id="tabPane" focusTraversable="false" side="BOTTOM" styleClass="bg-main" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
               <tabs>
                 <Tab closable="false" text="Board">
                   <content>
@@ -476,7 +476,7 @@
             </TabPane>
          </center>
       </BorderPane>
-      <Pane id="dragPane" fx:id="dragPane" mouseTransparent="true" />
+      <Pane id="dragPane" fx:id="dragPane" />
       <VBox fx:id="promptBoard" styleClass="prompt-cover">
          <children>
             <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="bg-prompt">
