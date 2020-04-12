@@ -13,31 +13,35 @@ import java.util.ArrayList;
 public class Kanban extends Node {
 
   /** The current Kanban object */
-  public static Kanban current;
+  private static Kanban current;
+
+  private Board today;
+  private Column todayToDo;
+  private Column todayInProgress;
+  private Column todayDone;
 
   /**
    * Constructor of {@code Kanban}
    *
    * @param obj the {@code HttpBody} object to map
    */
-  public Kanban(HttpBody obj) {
+  protected Kanban(HttpBody obj) {
     super(obj);
 
-    Board today =
+    this.today =
         new Board(
-            1,
             "Today",
-            Time.monthName(Time.currentMonth())
+            TimeUtils.monthName(TimeUtils.currentMonth())
                 + " "
-                + Time.currentDay()
+                + TimeUtils.currentDay()
                 + ", "
-                + Time.currentYear(),
+                + TimeUtils.currentYear(),
             "#fd79a8",
             this);
 
-    new Column(1, "To Do", "jimjimsjimshtodo", today);
-    new Column(2, "In Progress", "", today);
-    new Column(3, "Done", "", today);
+    this.todayToDo = new Column("To Do", "jimjimsjimshtodo", today);
+    this.todayInProgress = new Column("In Progress", "", today);
+    this.todayDone = new Column("Done", "", today);
   }
 
   /**
@@ -51,13 +55,13 @@ public class Kanban extends Node {
    */
   public static Result checkout() {
     Result res = new Result();
-    if (User.current == null) {
+    if (User.getCurrent() == null) {
       StructureRequest req2 = new StructureRequest(false, true);
       req2.setErrorMessage("User not authenticated");
       res.add(req2);
     } else {
       HttpBody cookie = new HttpBody();
-      cookie.put("PHPSESSID", User.current.getSessionId());
+      cookie.put("PHPSESSID", User.getCurrent().getSessionId());
 
       HttpRequest req2 = new HttpRequest();
       req2.setRequestUrl("/kanban");
@@ -77,30 +81,32 @@ public class Kanban extends Node {
    * Today
    */
   public void generateToday() {
-    Kanban kanban = Kanban.current;
-    // create node refer to todayboard
-    Node todayBoard = kanban.getNode(1);
-    Node todo = todayBoard.getNode(1);
-    Node inprogress = todayBoard.getNode(2);
-    Node done = todayBoard.getNode(3);
+
+    this.todayToDo.clearNodes();
+    this.todayInProgress.clearNodes();
+    this.todayDone.clearNodes();
 
     // All todo
-    for (Node board : kanban.getChildrenNodes()) {
+    for (Node board : this.getNodes()) {
       if (board.getId() >= 100) {
-        for (Node node : board.getChildrenNodes()) {
+        for (Node node : board.getNodes()) {
           Column column = (Column) node;
-          for (Node event : column.getChildrenNodes()) {
+          for (Node event : column.getNodes()) {
             if (column.getPreset() == Column.TO_DO) {
-              todo.addNode(event);
+              this.todayToDo.addNode(event);
             } else if (column.getPreset() == Column.IN_PROGRESS) {
-              inprogress.addNode(event);
+              this.todayInProgress.addNode(event);
             } else {
-              if (!((Event) event).isOverdue()) done.addNode(event);
+              if (!((Event) event).isOverdue()) this.todayDone.addNode(event);
             }
           }
         }
       }
     }
+  }
+
+  public static Kanban getCurrent() {
+    return Kanban.current;
   }
 
   /*
@@ -111,12 +117,12 @@ public class Kanban extends Node {
     ArrayList<Node> ret = new ArrayList<Node>();
     Kanban kanban = Kanban.current;
 
-    for (Node board : kanban.getChildrenNodes()) {
+    for (Node board : kanban.getNodes()) {
       // excluded Today
       if (board.getId() >= 100) {
-        for (Node column : board.getChildrenNodes()) {
-          for (Node node_event : column.getChildrenNodes()) {
-            Event event = (Event) node_event;
+        for (Node column : board.getNodes()) {
+          for (Node nodeEvent : column.getNodes()) {
+            Event event = (Event) nodeEvent;
             if (event.getTitle().toLowerCase().indexOf(name.toLowerCase()) != -1
                 || event.getNote().toLowerCase().indexOf(name.toLowerCase()) != -1
                 || Integer.toString(event.getId()).indexOf(name) != -1) {
@@ -127,20 +133,5 @@ public class Kanban extends Node {
       }
     }
     return ret;
-  }
-
-  public static void main(String[] args) {
-    User user = new User();
-    user.authenticate("cloudy", "cloudy");
-    // System.out.println((user);
-
-    Kanban.checkout();
-
-    System.out.println(Kanban.current);
-
-    System.out.println(Kanban.current.search("a"));
-
-    // System.out.println(("\ngenerateToday---");
-    // Kanban.current.generateToday();
   }
 }

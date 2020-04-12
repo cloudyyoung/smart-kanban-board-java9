@@ -95,7 +95,7 @@ public class SignUpController {
     } else if (id.equals("buttonNextSecQues-SignUp")) {
       labelSecurityAnswerQuestion.setText(
           comboSecurityQuestion.getSelectionModel().getSelectedItem());
-    } else {
+    } else if (id.contains("Next")) {
       Result res;
       int totalField = 0;
 
@@ -130,7 +130,7 @@ public class SignUpController {
         if (id.contains("SignUp")) {
           User.authentication(inputUsername.getText(), inputPassword.getText());
         }
-        profileUsername.setText(User.current.getUsername());
+        profileUsername.setText(User.getCurrent().getUsername());
       }
     }
 

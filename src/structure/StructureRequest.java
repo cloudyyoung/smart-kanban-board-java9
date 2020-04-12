@@ -169,6 +169,7 @@ public final class StructureRequest extends Request {
   }
 
   /** {@inheritDoc} */
+  @Override
   public String toString() {
     return "StructureRequest ("
         + "instance: "

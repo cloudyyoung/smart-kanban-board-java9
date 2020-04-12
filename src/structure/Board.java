@@ -10,7 +10,7 @@ import com.google.gson.annotations.*;
  * @since 1.0
  * @version 2.1
  */
-public class Board extends Node {
+public final class Board extends Node {
 
   /** Color of the board, in HEX. */
   @Expose private String color;
@@ -30,11 +30,24 @@ public class Board extends Node {
    *
    * @param title The title in {@code String}
    * @param note The note in {@code String}
-   * @param id THe id in {@code String}
+   * @param boardId THe id in {@code String}
    */
-  public Board(int id, String title, String note, String color, Node parent) {
-    super(id, title, note, parent);
-    this.setColorLocal(color);
+  public Board(
+      final String title,
+      final String note,
+      final String color,
+      final Node parent) { // NOPMD by 25985 on 2020-04-06, 9:26 a.m.
+    super(title, note, parent);
+    this.setColor(color);
+  }
+
+  protected void createSubColumns() {
+    Column col1 = new Column("To Do", "Todo", this);
+    Column col2 = new Column("In Progress", "Todo", this);
+    Column col3 = new Column("Done", "Todo", this);
+    col1.createRequest();
+    col2.createRequest();
+    col3.createRequest();
   }
 
   /**
@@ -42,7 +55,7 @@ public class Board extends Node {
    *
    * @param color The color in {@code String}
    */
-  public void setColorLocal(String color) {
+  protected void setColor(String color) {
     this.color = color;
   }
 
@@ -52,10 +65,10 @@ public class Board extends Node {
    * @param color The color in {@code String}
    * @return the http request of this action
    */
-  public HttpRequest setColor(String color) {
-    HttpRequest req = this.set("color", color);
+  public HttpRequest setColorRequest(String color) {
+    final HttpRequest req = this.set("color", color);
     if (req.isSucceeded()) {
-      this.setColorLocal(color);
+      this.setColor(color);
     }
     return req;
   }
@@ -85,7 +98,7 @@ public class Board extends Node {
         + "\", color: "
         + this.getColor()
         + ", nodes: "
-        + this.getChildrenNodes().toString()
+        + this.getNodes().toString()
         + "\")";
   }
 }

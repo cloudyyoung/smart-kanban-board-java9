@@ -1,6 +1,7 @@
 package structure;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * The class for all <i>action</i> results.
@@ -12,12 +13,12 @@ import java.util.ArrayList;
 public final class Result {
 
   /** An {@code ArrayList} which stores all the {@code Request} related to the instance. */
-  private ArrayList<Request> list = new ArrayList<Request>();
+  private final ArrayList<Request> list = new ArrayList<Request>();
 
   /** An {@code ArrayList} which stores all the excepted {@code Request} in {@link #list}. */
-  private ArrayList<Request> exceptionList = new ArrayList<Request>();
+  private final ArrayList<Request> exceptionList = new ArrayList<Request>();
 
-  private ArrayList<Request> failList = new ArrayList<Request>();
+  private final ArrayList<Request> failList = new ArrayList<Request>();
 
   /**
    * A boolean to indicate whether any of the related {@code Request} in {@link #list} has exception
@@ -49,6 +50,20 @@ public final class Result {
     }
     this.list.add(add);
     this.checkout();
+  }
+
+  public void addAll(Result res) {
+    this.list.addAll(res.list);
+  }
+
+  public void addAll(Request... add) {
+    for (Request each : add) {
+      this.list.add(each);
+    }
+  }
+
+  public void addAll(Collection<Request> add) {
+    this.addAll(add);
   }
 
   /**
@@ -201,6 +216,7 @@ public final class Result {
   }
 
   /** {@inheritDoc} */
+  @Override
   public String toString() {
     return "Result ("
         + "isSucceeded: "

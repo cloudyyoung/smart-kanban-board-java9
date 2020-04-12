@@ -11,24 +11,39 @@ import structure.*;
 public class ColumnComponent extends VBox {
 
   @FXML private Label eventCount;
-
   @FXML private TextField columnTitle;
-
   @FXML private Button eventAdd;
-
+  @FXML private Button columnEdit;
   @FXML private VBox eventList;
 
-  private Column node;
-  private String color;
+  public static VBox promptColumn;
+  public static Label promptColumnPromptTitle;
+  public static TextArea promptColumnTitle;
+  public static ComboBox<String> promptColumnPreset;
 
-  public ColumnComponent(Column node, String color) {
+  private Column node;
+  private BoardComponent parent;
+
+  public ColumnComponent(Column node, BoardComponent parent) {
     super();
     this.node = node;
-    this.color = color;
-    load();
+    this.parent = parent;
+    this.load();
   }
 
-  void load() {
+  public Column getNode() {
+    return this.node;
+  }
+
+  public String getColor() {
+    return this.parent.getColor();
+  }
+
+  public BoardComponent getParentComponent() {
+    return this.parent;
+  }
+
+  private final void load() {
     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("column.fxml"));
     fxmlLoader.setRoot(this);
     fxmlLoader.setController(this);
@@ -40,23 +55,39 @@ public class ColumnComponent extends VBox {
     }
   }
 
-  @FXML
-  void initialize() {
-    columnTitle.setText(node.getTitle());
-    eventCount.setText(node.getChildrenNodes().size() + "");
-
+  public void listEvent() {
     ArrayList<structure.Node> list = null;
     if (this.node.getParent().getId() == 1) {
-      list =
-          this.node.getChildrenNodes(structure.Node.SORT_BY_PRIORITY, structure.Node.ORDER_BY_ASC);
+      list = this.node.getNodes(structure.Node.SORT_BY_PRIORITY, structure.Node.ORDER_BY_ASC);
     } else {
-      list = this.node.getChildrenNodes();
+      list = this.node.getNodes();
     }
     // System.out.println(list);
 
+    eventList.getChildren().clear();
     for (Node each : list) {
-      EventComponent event = new EventComponent(each, color);
+      EventComponent event = new EventComponent(each, this);
       eventList.getChildren().add(event);
     }
+    eventCount.setText(list.size() + "");
+  }
+
+  public void update() {
+    columnTitle.setText(this.node.getTitle());
+  }
+
+  @FXML
+  void initialize() {
+    this.update();
+    this.listEvent();
+  }
+
+  @FXML
+  void editColumn() {
+    promptColumn.getStyleClass().remove("hide");
+    promptColumnPromptTitle.setText("Edit column");
+    promptColumnTitle.setText(this.node.getTitle());
+    promptColumnPreset.getItems().clear();
+    promptColumnPreset.getItems().addAll("To Do", "In Progress", "Done");
   }
 }
