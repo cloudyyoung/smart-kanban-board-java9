@@ -108,6 +108,7 @@ public class HomeController {
   public static BoardComponent currentBoard;
   public static ColumnComponent currentColumn;
   public static VBox originalParent;
+  public static Button currentDragButton;
 
   @FXML
   void initialize() {
@@ -360,33 +361,13 @@ public class HomeController {
 
   @FXML
   void MouseDragReleased(MouseDragEvent event) {
-    // try {
-    //   Thread.sleep(1000);
-    // } catch (InterruptedException e) {
-    //   e.printStackTrace();
-    // }
     System.out.println("MouseDragReleasedHome");
     Button btn = (Button) event.getGestureSource();
     if (btn.getParent().getClass() == VBox.class) {
-      return;
     } else {
       originalParent.getChildren().add(btn);
-    }
-
+    } 
+    currentDragButton = null;
+    originalParent = null;
   }
-
-  // @FXML
-  // void EventMouseDragReleased(MouseDragEvent event) {
-  //   // set DragPane transparent to 100
-  //   System.out.println("PanelMouseReleased");
-  //   dragPane.setMouseTransparent(true);
-
-
-  //   ColumnComponent current = (ColumnComponent) event.getSource();
-  //   System.out.println(event.getSource());
-  //   Button button = (Button) event.getGestureSource();
-  //   System.out.println(event.getGestureSource());
-  //   current.getEventList().getChildren().add(button);
-  // }
-
 }
