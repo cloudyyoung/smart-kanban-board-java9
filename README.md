@@ -4,6 +4,7 @@
 ![Java-Format](https://github.com/CloudyYoung/Smart-Kanban-Board/workflows/Java-Format/badge.svg)
 [![Build Status](https://travis-ci.com/CloudyYoung/Smart-Kanban-Board.svg?token=xvFzJVyxhP7YsvANEEBw&branch=master)](https://travis-ci.com/CloudyYoung/Smart-Kanban-Board)
 [![time tracker](https://wakatime.com/badge/github/CloudyYoung/Smart-Kanban-Board.svg)](https://wakatime.com/badge/github/CloudyYoung/Smart-Kanban-Board)
+![Java-Format](https://github.com/CloudyYoung/Smart-Kanban-Board/workflows/Java-Format/badge.svg)
 
 
 ## Team Members
