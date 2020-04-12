@@ -114,14 +114,4 @@ public class EventComponent extends Button {
     this.display();
   }
 
-  @FXML
-  void EventDragDone(DragEvent event) {
-    System.out.println("EventDragDone");
-  }
-
-  @FXML
-  void EventDragOver(DragEvent event) {
-    System.out.println("EventDragOver");
-  } 
-
 }
