@@ -327,8 +327,9 @@ public class HomeController {
   }
 
   @FXML
-  void createEvent() {
-
+  void createEvent(){
+    Result res = currentEvent.getNode().createRequest();
+    System.out.println(res);
   }
 
   public static String styleAccent(String hex) {

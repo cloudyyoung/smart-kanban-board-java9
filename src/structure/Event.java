@@ -2,6 +2,7 @@ package structure;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
+import com.google.gson.annotations.*;
 
 /**
  * The {@code Event} class, extends from {@code Node}.
@@ -11,12 +12,14 @@ import java.util.*;
  */
 public final class Event extends Node {
 
-  private int importanceLevel;
+  @SerializedName("importance_level")
+  @Expose private int importanceLevel;
   // importanceLevel range from 0 to 3, which 0 is not important
   // and 3 is super important
-  private Long dueDate;
+  @SerializedName("due_date")
+  @Expose private Long dueDate;
   // dueDate is the timeStamp
-  private Long duration;
+  @Expose private Long duration;
   // Duration store in timeStamp form (millissecond)
 
   /**

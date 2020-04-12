@@ -38,6 +38,7 @@ public abstract class Node {
   /**
    * The parent id of the instance. It is exposed to Gson, can be both serialized and deserialized.
    */
+  @SerializedName("parent_id")
   @Expose private Integer parentId;
 
   /**
