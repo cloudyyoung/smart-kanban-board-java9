@@ -137,6 +137,8 @@ public class EventComponent extends Button {
       }
 
       Button card = (Button) event.getSource();
+      card.setLayoutX(event.getSceneX());
+      card.setLayoutY(event.getSceneY());
       card.startFullDrag();
       HomeController.originalParent = (VBox) card.getParent();
       HomeController.currentDragButton = card;

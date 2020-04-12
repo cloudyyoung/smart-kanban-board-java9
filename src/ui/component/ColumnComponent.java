@@ -123,7 +123,7 @@ public class ColumnComponent extends VBox {
   }
 
   @FXML
-  void createChild(ActionEvent e){
+  void createChild(ActionEvent e) {
     Event event = new Event("Untitled Event", "", null, null, 0, this.node);
     EventComponent eventComponent = new EventComponent(event, this, this.parentController);
     eventComponent.create(e);
