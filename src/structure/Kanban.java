@@ -39,9 +39,9 @@ public class Kanban extends Node {
             "#fd79a8",
             this);
 
-    this.todayToDo = new Column("To Do", "jimjimsjimshtodo", today);
-    this.todayInProgress = new Column("In Progress", "", today);
-    this.todayDone = new Column("Done", "", today);
+    this.todayToDo = new Column("To Do", "jimjimsjimshtodo", 0, today);
+    this.todayInProgress = new Column("In Progress", "", 1, today);
+    this.todayDone = new Column("Done", "", 2, today);
   }
 
   /**

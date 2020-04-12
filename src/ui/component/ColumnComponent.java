@@ -8,6 +8,7 @@ import javafx.scene.layout.*;
 import javafx.scene.control.*;
 
 import structure.*;
+import ui.HomeController;
 
 public class ColumnComponent extends VBox {
 
@@ -81,14 +82,22 @@ public class ColumnComponent extends VBox {
   void initialize() {
     this.update();
     this.listEvent();
+    if (this.node.getParent().getId() >= 100) {
+      columnEdit.getStyleClass().remove("hide");
+      eventAdd.getStyleClass().remove("hide");
+    } else {
+      columnEdit.getStyleClass().add("hide");
+      eventAdd.getStyleClass().add("hide");
+    }
   }
 
   @FXML
   void editColumn(ActionEvent e) {
+    HomeController.currentColumn = this;
+    promptColumn.setStyle(HomeController.styleAccent(this.getColor()));
     promptColumn.getStyleClass().remove("hide");
     promptColumnPromptTitle.setText("Edit column");
     promptColumnTitle.setText(this.node.getTitle());
-    promptColumnPreset.getItems().clear();
-    promptColumnPreset.getItems().addAll("To Do", "In Progress", "Done");
+    promptColumnPreset.getSelectionModel().select(this.node.getPreset());
   }
 }

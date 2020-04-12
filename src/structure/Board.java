@@ -42,9 +42,9 @@ public final class Board extends Node {
   }
 
   protected void createSubColumns() {
-    Column col1 = new Column("To Do", "Todo", this);
-    Column col2 = new Column("In Progress", "Todo", this);
-    Column col3 = new Column("Done", "Todo", this);
+    Column col1 = new Column("To Do", "Todo", 0, this);
+    Column col2 = new Column("In Progress", "Todo", 1, this);
+    Column col3 = new Column("Done", "Todo", 2, this);
     col1.createRequest();
     col2.createRequest();
     col3.createRequest();
@@ -65,12 +65,14 @@ public final class Board extends Node {
    * @param color The color in {@code String}
    * @return the http request of this action
    */
-  public HttpRequest setColorRequest(String color) {
-    final HttpRequest req = this.set("color", color);
+  public Result setColorRequest(String color) {
+    HttpRequest req = this.set("color", color);
     if (req.isSucceeded()) {
       this.setColor(color);
     }
-    return req;
+    Result res = new Result();
+    res.add(req);
+    return res;
   }
 
   /**
