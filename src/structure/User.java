@@ -151,51 +151,13 @@ public class User {
    * @since 1.0
    * @version 2.1
    */
-  public Result authenticate(String username, String password) {
+  public Result signInRequest(String username, String password) {
+    Result res = new Result();
+
     this.setUsername(username);
     this.setPassword(password);
 
-    Result res = new Result();
-    HttpRequest req = this.authenticateRemote(username, password);
-    res.add(req);
-
-    if (req.isSucceeded()) {
-      HttpBody response = req.getResponseBody();
-      HttpBody cookie = req.getResponseCookie();
-
-      this.setId(response.getInt("id"));
-      this.setSessionId(cookie.getString("PHPSESSID"));
-      this.existing = true;
-
-      StructureRequest req2 = this.authenticateLocal();
-      res.add(req2);
-    }
-
-    return res;
-  }
-
-  public Result authenticate() {
-
-    HttpBody body = User.readLocalFile();
-
-    String username = body.getString("username");
-    String password = body.getString("password");
-
-    Result res = this.authenticate(username, password);
-
-    return res;
-  }
-
-  /**
-   * Authenticates the instance account in the server.
-   *
-   * @param username the username of the account
-   * @param password the password of the account
-   * @return the http requests of the action
-   * @since 2.0
-   * @version 2.1
-   */
-  private HttpRequest authenticateRemote(String username, String password) {
+    // Request server to sign in
     HttpBody param = new HttpBody();
     param.put("username", this.getUsername());
     param.put("password", this.getPassword());
@@ -206,21 +168,34 @@ public class User {
     req.setRequestBody(param);
     req.send();
 
-    return req;
+    res.add(req);
+
+    if (req.isSucceeded()) {
+      HttpBody response = req.getResponseBody();
+      HttpBody cookie = req.getResponseCookie();
+
+      this.setId(response.getInt("id"));
+      this.setSessionId(cookie.getString("PHPSESSID"));
+      this.existing = true;
+
+      // Sign in locally
+      this.authenticated = true;
+      User.current = this;
+    }
+
+    return res;
   }
 
-  /**
-   * Authenticates the instance account in local storage
-   *
-   * @return the structure request of the action
-   * @since 2.0
-   * @version 2.1
-   */
-  private StructureRequest authenticateLocal() {
-    this.authenticated = true;
-    User.current = this;
-    StructureRequest req = new StructureRequest(true, false, this);
-    return req;
+  public Result signInLocalRequest() {
+
+    HttpBody body = User.readLocalFile();
+
+    String username = body.getString("username");
+    String password = body.getString("password");
+
+    Result res = this.signInRequest(username, password);
+
+    return res;
   }
 
   /**
@@ -234,7 +209,7 @@ public class User {
     return this.existing;
   }
 
-  public Result signout() {
+  public Result signOut() {
     this.authenticated = false;
     User.current = null;
 
@@ -317,8 +292,7 @@ public class User {
     res.add(req);
 
     if (req.isSucceeded()) {
-      HttpRequest req2 = this.authenticateRemote(username, password);
-      res.add(req2);
+      this.signInRequest(username, password);
     }
 
     return res;
@@ -326,7 +300,7 @@ public class User {
 
   public static Result authentication(String username, String password) {
     User user = new User();
-    Result res = user.authenticate(username, password);
+    Result res = user.signInRequest(username, password);
     if (res.isSucceeded()) {
       User.current = user;
     }
@@ -348,6 +322,6 @@ public class User {
 
     System.out.println(readLocalFile());
     User user = new User();
-    user.signout();
+    user.signOut();
   }
 }
