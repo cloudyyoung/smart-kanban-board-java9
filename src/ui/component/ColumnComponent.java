@@ -17,7 +17,7 @@ public class ColumnComponent extends VBox {
   @FXML
   private TextField columnTitle;
   @FXML
-  private Button eventAdd;
+  private Button eventCreate;
   @FXML
   private Button columnEdit;
   @FXML
@@ -91,12 +91,12 @@ public class ColumnComponent extends VBox {
   void initialize() {
     this.display();
     this.list();
-    if (this.node.getParent().getId() >= 100) {
-      columnEdit.getStyleClass().remove("hide");
-      eventAdd.getStyleClass().remove("hide");
-    } else {
+    if (this.node.getParent().isSpecialized()) {
       columnEdit.getStyleClass().add("hide");
-      eventAdd.getStyleClass().add("hide");
+      eventCreate.getStyleClass().add("hide");
+    } else {
+      columnEdit.getStyleClass().remove("hide");
+      eventCreate.getStyleClass().remove("hide");
     }
   }
 
@@ -113,6 +113,13 @@ public class ColumnComponent extends VBox {
     } else {
       this.parentController.columnDelete.getStyleClass().remove("hide");
     }
+  }
+
+  @FXML
+  void createChild(ActionEvent e){
+    Event event = new Event("", "", null, null, 0, this.node);
+    EventComponent eventComponent = new EventComponent(event, this, this.parentController);
+    eventComponent.create(e);
   }
 
   // drag

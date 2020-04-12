@@ -477,7 +477,7 @@
          </center>
       </BorderPane>
       <Pane id="dragPane" fx:id="dragPane" onMouseDragOver="#PanelMouseDragOver" />
-      <VBox fx:id="promptBoard" styleClass="prompt-cover">
+      <VBox fx:id="promptBoard">
          <children>
             <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="bg-prompt">
                <content>
@@ -530,6 +530,10 @@
                </content>
             </ScrollPane>
          </children>
+         <styleClass>
+            <String fx:value="prompt-cover" />
+            <String fx:value="hide" />
+         </styleClass>
       </VBox>
       <VBox fx:id="promptEvent">
          <children>
@@ -546,9 +550,14 @@
                               </SVGPath>
                               <Label fx:id="promptEventPromptTitle" text="Event" />
                               <Pane HBox.hgrow="ALWAYS" />
-                              <Button mnemonicParsing="false" onAction="#deleteEvent">
+                              <Button fx:id="eventDelete" mnemonicParsing="false" onAction="#deleteEvent">
                                  <graphic>
                                     <SVGPath content="M 13.59375 4 L 13.28125 4.28125 L 12.5625 5 L 6 5 L 6 7 L 7 7 L 7 25 C 7 26.644531 8.355469 28 10 28 L 22 28 C 23.644531 28 25 26.644531 25 25 L 25 7 L 26 7 L 26 5 L 19.4375 5 L 18.71875 4.28125 L 18.40625 4 Z M 14.4375 6 L 17.5625 6 L 18.28125 6.71875 L 18.59375 7 L 23 7 L 23 25 C 23 25.554688 22.554688 26 22 26 L 10 26 C 9.445313 26 9 25.554688 9 25 L 9 7 L 13.40625 7 L 13.71875 6.71875 Z M 11 11 L 11 22 L 13 22 L 13 11 Z M 15 11 L 15 22 L 17 22 L 17 11 Z M 19 11 L 19 22 L 21 22 L 21 11 Z" />
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="eventCreate" mnemonicParsing="false" onAction="#createEvent" styleClass="primary">
+                                 <graphic>
+                                    <SVGPath content="M 15 5 L 15 15 L 5 15 L 5 17 L 15 17 L 15 27 L 17 27 L 17 17 L 27 17 L 27 15 L 17 15 L 17 5 Z" />
                                  </graphic>
                               </Button>
                               <Button mnemonicParsing="false" onAction="#closePrompt">

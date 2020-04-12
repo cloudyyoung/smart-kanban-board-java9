@@ -30,7 +30,7 @@ public class BoardComponent extends Button {
   @FXML
   void open(ActionEvent e){
     HomeController.currentBoard = this;
-    this.parentController.boardEdit.setVisible(this.node.getId() >= 100);
+    this.parentController.boardEdit.setVisible(!this.node.isSpecialized());
 
     HashSet<Node> sideButtons = new HashSet<Node>();
     sideButtons.addAll(this.parentController.sidePane.lookupAll(".button"));
