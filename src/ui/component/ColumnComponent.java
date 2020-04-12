@@ -6,8 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
-import javafx.scene.Node;
 import javafx.scene.input.MouseDragEvent;
+import javafx.scene.input.MouseEvent;
 import structure.*;
 import ui.HomeController;
 
@@ -110,6 +110,16 @@ public class ColumnComponent extends VBox {
     } else {
       this.parentController.columnDelete.getStyleClass().remove("hide");
     }
+  }
+
+  // drag
+  @FXML
+  void MouseReleased(MouseEvent event) {
+    System.out.println("EventMouseDragReleased");
+    Button button = HomeController.currentCard;
+    eventList.getChildren().add(button);
+    // set DragPane transparent to 100
+    this.parentController.dragPane.setMouseTransparent(true);
   }
 
 }

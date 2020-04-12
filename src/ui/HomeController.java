@@ -63,6 +63,7 @@ public class HomeController {
   public static EventComponent currentEvent;
   public static BoardComponent currentBoard;
   public static ColumnComponent currentColumn;
+  public static Button currentCard;
 
 
   @FXML
@@ -224,6 +225,9 @@ public class HomeController {
 
     sidePane.requestFocus();
     listBoard();
+
+    // set transparent to 100
+    dragPane.setMouseTransparent(true);
   }
 
   @FXML
@@ -354,10 +358,10 @@ public class HomeController {
 
 
   // drag and drop
-    @FXML
-    void PanelMouseDragOver(MouseDragEvent event) {
-        Button button = (Button) event.getGestureSource();
-        button.setLayoutX(event.getSceneX());
-        button.setLayoutY(event.getSceneY());
-    }
+  @FXML
+  void PanelMouseDragOver(MouseDragEvent event) {
+      Button button = (Button) event.getGestureSource();
+      button.setLayoutX(event.getSceneX());
+      button.setLayoutY(event.getSceneY());
+  }
 }

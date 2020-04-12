@@ -33,7 +33,6 @@ public class EventComponent extends Button {
   private Event node;
   private ColumnComponent parent;
   private HomeController parentController;
-  private VBox originalParent;
 
   public EventComponent(Node node, ColumnComponent parent, HomeController parentController) {
     super();
@@ -114,4 +113,17 @@ public class EventComponent extends Button {
     this.display();
   }
 
+  // drag
+  @FXML
+  void EventDragDetected(MouseEvent event) {
+      // activative card drag
+      Button card = (Button) event.getSource();
+      card.startFullDrag();
+      // add card to dragPane
+      this.parentController.dragPane.getChildren().add(card);
+      // set DragPane transparent to 0
+      this.parentController.dragPane.setMouseTransparent(false);
+      // seet this card
+      HomeController.currentCard = card;
+  }
 }
