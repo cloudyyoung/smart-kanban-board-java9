@@ -55,6 +55,18 @@ public final class Column extends Node {
     return (eventNext.getDuration() + timeAccumulator) <= totalTime ? true : false;
   }
 
+  public boolean isTheLastPresetColumn (int preset) {
+    int count = 0;
+    Board board = (Board) this.getParent();
+    for (Node node : board.getNodes()) {
+      Column column = (Column) node;
+      if (column.getPreset() == preset) {
+        count += 1;
+      }
+    }
+    return count <= 1;
+  }
+
   @Override
   public String toString() {
     return this.getType()
