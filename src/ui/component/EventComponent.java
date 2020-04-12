@@ -6,6 +6,7 @@ import javafx.fxml.*;
 import javafx.scene.shape.*;
 import javafx.scene.text.Text;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import structure.*;
 import ui.*;
@@ -37,6 +38,7 @@ public class EventComponent extends Button {
 
   private Event node;
   private ColumnComponent parent;
+  private VBox originalParent;
 
   public EventComponent(Node node, ColumnComponent parent) {
     super();
@@ -112,5 +114,25 @@ public class EventComponent extends Button {
           promptEvent.setStyle(HomeController.styleAccent(this.getColor()));
           promptEvent.getStyleClass().remove("hide");
         });
+  }
+
+  // drag
+  @FXML
+  void EventDragDetected(MouseEvent event) {
+      // activative drag
+      Button button = (Button) event.getSource();
+      originalParent = (VBox) button.getParent();
+      button.startFullDrag();
+      ColumnComponent.dragPane.getChildren().add(button);
+  }
+
+  @FXML
+  void EventMouseReleased(MouseEvent event) {
+    Button button = (Button) event.getSource();
+    if (button.getParent() != originalParent) {
+      return;
+    } else {
+      originalParent.getChildren().add(button);
+    }
   }
 }

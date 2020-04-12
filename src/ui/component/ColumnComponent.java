@@ -6,7 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
-
+import javafx.scene.input.MouseDragEvent;
 import structure.*;
 import ui.HomeController;
 
@@ -22,6 +22,7 @@ public class ColumnComponent extends VBox {
   public static Label promptColumnPromptTitle;
   public static TextArea promptColumnTitle;
   public static ComboBox<String> promptColumnPreset;
+  public static Pane dragPane;
 
   private Column node;
   private BoardComponent parent;
@@ -99,5 +100,13 @@ public class ColumnComponent extends VBox {
     promptColumnPromptTitle.setText("Edit column");
     promptColumnTitle.setText(this.node.getTitle());
     promptColumnPreset.getSelectionModel().select(this.node.getPreset());
+  }
+
+  // drag
+  @FXML
+  void EventMouseDragReleased(MouseDragEvent event) {
+    System.out.println("EventMouseDragReleased");
+    Button button = (Button) event.getGestureSource();
+    eventList.getChildren().add(button);
   }
 }
