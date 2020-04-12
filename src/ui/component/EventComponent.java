@@ -7,7 +7,11 @@ import javafx.fxml.*;
 import javafx.scene.shape.*;
 import javafx.scene.text.Text;
 import javafx.scene.control.*;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.DragEvent;
+import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.*;
 import structure.*;
 import ui.*;
@@ -113,11 +117,18 @@ public class EventComponent extends Button {
   // drag
   @FXML
   void EventDragDetected(MouseEvent event) {
-      // activative drag
-      Button button = (Button) event.getSource();
-      originalParent = (VBox) button.getParent();
-      button.startFullDrag();
-      this.parentController.dragPane.getChildren().add(button);
+    // activative drag
+    Button button = (Button) event.getSource();
+    originalParent = (VBox) button.getParent();
+    button.startFullDrag();
+    this.parentController.dragPane.getChildren().add(button);
+
+    // Dragboard db = button.startDragAndDrop(TransferMode.ANY);        
+    // /* put a string on dragboard */
+    // ClipboardContent content = new ClipboardContent();
+    // content.putString(button.getText());
+    // db.setContent(content);
+    // event.consume();
   }
 
   // @FXML
@@ -130,4 +141,15 @@ public class EventComponent extends Button {
   //     originalParent.getChildren().add(button);
   //   }
   // }
+
+  @FXML
+  void EventDragDone(DragEvent event) {
+    System.out.println("EventDragDone");
+  }
+
+  @FXML
+  void EventDragOver(DragEvent event) {
+    System.out.println("EventDragOver");
+  } 
+
 }
