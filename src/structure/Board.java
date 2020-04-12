@@ -36,7 +36,7 @@ public final class Board extends Node {
       final String title,
       final String note,
       final String color,
-      final Node parent) { // NOPMD by 25985 on 2020-04-06, 9:26 a.m.
+      final Node parent) {
     super(title, note, parent);
     this.setColor(color);
   }

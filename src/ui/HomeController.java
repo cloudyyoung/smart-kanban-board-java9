@@ -59,6 +59,9 @@ public class HomeController {
   @FXML public TextArea promptColumnTitle;
   @FXML public ComboBox<String> promptColumnPreset;
   @FXML public Text textHolder = new Text();
+  @FXML public Button eventDelete;
+  @FXML public Button eventCreate;
+
 
   public static EventComponent currentEvent;
   public static BoardComponent currentBoard;
@@ -240,7 +243,7 @@ public class HomeController {
     for (structure.Node each : Kanban.getCurrent().getNodes()) {
       // Add to list
       BoardComponent node = new BoardComponent((Board) each, this);
-      if (each.getId() >= 100) {
+      if (!each.isSpecialized()) {
         boardList.getChildren().add(node);
       } else {
         operationList.getChildren().add(node);
@@ -338,6 +341,11 @@ public class HomeController {
     currentColumn.getNode().removeRequest();
     currentColumn.getParentComponent().list();
     this.closePrompt();
+  }
+
+  @FXML
+  void createEvent(){
+
   }
 
   public static String styleAccent(String hex) {

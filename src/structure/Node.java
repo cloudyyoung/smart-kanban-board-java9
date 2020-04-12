@@ -54,6 +54,8 @@ public abstract class Node {
 
   private int idAutoIncrement = 1;
 
+  private boolean specialized = false;
+
   /**
    * The dictionary of the {@code Node} hierarchy. It is used to identify the parent or children
    * type.
@@ -80,7 +82,7 @@ public abstract class Node {
    * @param note the note in {@code String}
    * @param parent the parent node in {@code Node}
    */
-  public Node(String title, String note, Node parent) {
+  protected Node(String title, String note, Node parent) {
     this.setId(parent.idAutoIncrement++);
     this.setTitle(title);
     this.setNote(note);
@@ -99,6 +101,7 @@ public abstract class Node {
     if (this instanceof Kanban == false) {
       this.setTitle(obj.getString("title"));
       this.setNote(obj.getString("note"));
+      this.existing = true;
     }
     if (this.getChildType() != null) {
       this.extractChildrenNodes(obj);
@@ -211,7 +214,10 @@ public abstract class Node {
       // Set new parent
       this.parent = parent;
       this.parentId = this.parent.getId();
-      this.getParent().addNode(this);
+
+      if(this.isExisting() || this.isSpecialized()){
+        this.getParent().addNode(this);
+      }
     } else {
       // Remove parent
       this.parent = null;
@@ -349,7 +355,7 @@ public abstract class Node {
    *
    * @return the parent type of the instance
    */
-  public final String getParentType() {
+  protected final String getParentType() {
     return this.getParentType(this.getType());
   }
 
@@ -361,7 +367,7 @@ public abstract class Node {
    * @param type the specified parent type
    * @return the parent type of the instance. {@code null} if there is any invalidation.
    */
-  public final String getParentType(String type) {
+  protected final String getParentType(String type) {
     return this.getParentType(type, -1);
   }
 
@@ -372,7 +378,7 @@ public abstract class Node {
    * @param level the specified number of levels
    * @return the parent type of the instance. {@code null} if there is any invalidation.
    */
-  public final String getParentType(String type, int level) {
+  protected final String getParentType(String type, int level) {
     return this.getTypeByLevel(type, Math.abs(level) * -1);
   }
 
@@ -384,7 +390,7 @@ public abstract class Node {
    *
    * @return the child type of the instance. {@code null} if there is any invalidation.
    */
-  public final String getChildType() {
+  protected final String getChildType() {
     return this.getChildType(this.getType());
   }
 
@@ -396,7 +402,7 @@ public abstract class Node {
    * @param type the specified type
    * @return the child type of the instance. {@code null} if there is any invalidation.
    */
-  public final String getChildType(String type) {
+  protected final String getChildType(String type) {
     return this.getChildType(type, 1);
   }
 
@@ -407,7 +413,7 @@ public abstract class Node {
    * @param level the specified number of levels
    * @return the child type of the instance. {@code null} if there is any invalidation.
    */
-  public final String getChildType(String type, int level) {
+  protected final String getChildType(String type, int level) {
     return this.getTypeByLevel(type, Math.abs(level));
   }
 
@@ -571,5 +577,15 @@ public abstract class Node {
    */
   public final String getType() {
     return this.getClass().getSimpleName();
+  }
+
+  public final boolean isSpecialized(){
+    return this.specialized;
+  }
+
+  protected final void setSpecialized(boolean is){
+    this.specialized = is;
+    this.existing = is;
+    this.setParent(this.parent);
   }
 }
