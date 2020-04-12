@@ -23,7 +23,7 @@ public class BoardComponent extends Button {
     this.node = node;
     this.parentController = parentController;
 
-    this.load();
+    this.loadDisplay();
     this.display();
   }
 
@@ -80,7 +80,7 @@ public class BoardComponent extends Button {
     return this.node.getColor();
   }
 
-  private final void load() {
+  private final void loadDisplay() {
     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("board.fxml"));
     fxmlLoader.setRoot(this);
     fxmlLoader.setController(this);
