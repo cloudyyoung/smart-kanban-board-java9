@@ -16,7 +16,6 @@ public class BoardComponent extends Button {
 
   @FXML private Button button;
 
-  private Board node;
   public static VBox boardPane;
   public static TextField boardTitle;
   public static TextField boardNote;
@@ -26,8 +25,12 @@ public class BoardComponent extends Button {
   public static TabPane tabPane;
   public static Button boardEdit;
 
-  public BoardComponent(Board node) {
+  private Board node;
+  private HomeController parentController;
+
+  public BoardComponent(Board node, HomeController parentController) {
     this.node = node;
+    this.parentController = parentController;
 
     this.load();
     this.display();
@@ -73,7 +76,7 @@ public class BoardComponent extends Button {
   public void list() {
     columnPane.getChildren().clear();
     for (structure.Node each : this.node.getNodes()) {
-      Node col = new ColumnComponent((Column) each, this);
+      Node col = new ColumnComponent((Column) each, this, this.parentController);
       columnPane.getChildren().add(col);
     }
   }

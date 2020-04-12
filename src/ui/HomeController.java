@@ -19,45 +19,45 @@ import ui.component.*;
 
 public class HomeController {
 
-  @FXML private Button sideProfile;
-  @FXML private Circle profileAvatar;
-  @FXML private Label profileUsername;
-  @FXML private VBox sidePane;
-  @FXML private VBox operationList;
-  @FXML private Button sideSearch;
-  @FXML private VBox boardList;
-  @FXML private TabPane tabPane;
-  @FXML private VBox boardPane;
-  @FXML private TextField boardTitle;
-  @FXML private TextField boardNote;
-  @FXML private Button boardEdit;
-  @FXML private HBox columnPane;
-  @FXML private TextField inputSearch;
-  @FXML private VBox searchList;
-  @FXML private Pane dragPane;
-  @FXML private VBox promptEvent;
-  @FXML private SVGPath promptEventIcon;
-  @FXML private Label promptEventPromptTitle;
-  @FXML private VBox promptEventTitleWrapper;
-  @FXML private TextArea promptEventTitle;
-  @FXML private Label promptEventLocationBoard;
-  @FXML private Label promptEventLocationColumn;
-  @FXML private ComboBox<String> promptEventImportanceLevel;
-  @FXML private DatePicker promptEventDueDate;
-  @FXML private ComboBox<String> promptEventDuration;
-  @FXML private TextArea promptEventNote;
-  @FXML private Pane extraPane;
-  @FXML private VBox promptBoard;
-  @FXML private SVGPath promptBoardIcon;
-  @FXML private Label promptBoardPromptTitle;
-  @FXML private TextArea promptBoardTitle;
-  @FXML private TextArea promptBoardNote;
-  @FXML private VBox promptColumn;
-  @FXML private SVGPath promptColumnIcon;
-  @FXML private Button columnDelete;
-  @FXML private Label promptColumnPromptTitle;
-  @FXML private TextArea promptColumnTitle;
-  @FXML private ComboBox<String> promptColumnPreset;
+  @FXML public Button sideProfile;
+  @FXML public Circle profileAvatar;
+  @FXML public Label profileUsername;
+  @FXML public VBox sidePane;
+  @FXML public VBox operationList;
+  @FXML public Button sideSearch;
+  @FXML public VBox boardList;
+  @FXML public TabPane tabPane;
+  @FXML public VBox boardPane;
+  @FXML public TextField boardTitle;
+  @FXML public TextField boardNote;
+  @FXML public Button boardEdit;
+  @FXML public HBox columnPane;
+  @FXML public TextField inputSearch;
+  @FXML public VBox searchList;
+  @FXML public Pane dragPane;
+  @FXML public VBox promptEvent;
+  @FXML public SVGPath promptEventIcon;
+  @FXML public Label promptEventPromptTitle;
+  @FXML public VBox promptEventTitleWrapper;
+  @FXML public TextArea promptEventTitle;
+  @FXML public Label promptEventLocationBoard;
+  @FXML public Label promptEventLocationColumn;
+  @FXML public ComboBox<String> promptEventImportanceLevel;
+  @FXML public DatePicker promptEventDueDate;
+  @FXML public ComboBox<String> promptEventDuration;
+  @FXML public TextArea promptEventNote;
+  @FXML public Pane extraPane;
+  @FXML public VBox promptBoard;
+  @FXML public SVGPath promptBoardIcon;
+  @FXML public Label promptBoardPromptTitle;
+  @FXML public TextArea promptBoardTitle;
+  @FXML public TextArea promptBoardNote;
+  @FXML public VBox promptColumn;
+  @FXML public SVGPath promptColumnIcon;
+  @FXML public Button columnDelete;
+  @FXML public Label promptColumnPromptTitle;
+  @FXML public TextArea promptColumnTitle;
+  @FXML public ComboBox<String> promptColumnPreset;
 
   public static EventComponent currentEvent;
   public static BoardComponent currentBoard;
@@ -143,7 +143,7 @@ public class HomeController {
               if (!newText.equals("")) {
                 ArrayList<structure.Node> list = Kanban.getCurrent().search(newText);
                 for (structure.Node each : list) {
-                  EventComponent event = new EventComponent(each, null);
+                  EventComponent event = new EventComponent(each, null, this);
                   searchList.getChildren().add(event);
                 }
               }
@@ -260,7 +260,7 @@ public class HomeController {
     boardList.getChildren().clear();
     for (structure.Node each : Kanban.getCurrent().getNodes()) {
       // Add to list
-      BoardComponent node = new BoardComponent((Board) each);
+      BoardComponent node = new BoardComponent((Board) each, this);
       if (each.getId() >= 100) {
         boardList.getChildren().add(node);
       } else {

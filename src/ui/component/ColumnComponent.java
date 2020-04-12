@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
+import javafx.scene.Node;
 
 import structure.*;
 import ui.HomeController;
@@ -31,11 +32,13 @@ public class ColumnComponent extends VBox {
 
   private Column node;
   private BoardComponent parent;
+  private HomeController parentController;
 
-  public ColumnComponent(Column node, BoardComponent parent) {
+  public ColumnComponent(Column node, BoardComponent parent, HomeController parentController) {
     super();
     this.node = node;
     this.parent = parent;
+    this.parentController = parentController;
     this.load();
   }
 
@@ -61,6 +64,9 @@ public class ColumnComponent extends VBox {
     } catch (Exception e) {
       e.printStackTrace();
     }
+
+    System.out.println(fxmlLoader.getLocation());
+    System.out.println(fxmlLoader.getController().toString());
   }
 
   public void list() {
@@ -73,8 +79,8 @@ public class ColumnComponent extends VBox {
     // System.out.println(list);
 
     eventList.getChildren().clear();
-    for (Node each : list) {
-      EventComponent event = new EventComponent(each, this);
+    for (structure.Node each : list) {
+      EventComponent event = new EventComponent(each, this, this.parentController);
       eventList.getChildren().add(event);
     }
     eventCount.setText(list.size() + "");

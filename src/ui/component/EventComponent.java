@@ -38,11 +38,13 @@ public class EventComponent extends Button {
 
   private Event node;
   private ColumnComponent parent;
+  private HomeController parentController;
 
-  public EventComponent(Node node, ColumnComponent parent) {
+  public EventComponent(Node node, ColumnComponent parent, HomeController parentController) {
     super();
     this.node = (Event) node;
     this.parent = parent;
+    this.parentController = parentController;
     this.loadDisplay();
   }
 
@@ -86,13 +88,6 @@ public class EventComponent extends Button {
     }
     event.setText(node.getTitle());
     this.setStyle(this.getStyle() + HomeController.styleAccent(this.getColor()));
-  }
-
-
-  @FXML
-  void create(){
-
-
   }
 
   @FXML
