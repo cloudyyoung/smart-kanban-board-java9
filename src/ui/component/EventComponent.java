@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
+import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.*;
@@ -128,7 +129,7 @@ public class EventComponent extends Button {
   }
 
   @FXML
-  void EventDragDone(DragEvent event) {
+  void EventDragDone(MouseDragEvent event) {
     System.out.println("EventDragDone");
     Button button = HomeController.currentCard;
     ColumnComponent cc = HomeController.currentStayColumn;
