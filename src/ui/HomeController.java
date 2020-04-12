@@ -321,12 +321,12 @@ public class HomeController {
       currentEvent = null;
     }
     if (currentBoard != null) {
-      currentBoard.update();
+      currentBoard.display();
       currentBoard.fire();
       currentBoard = null;
     }
     if (currentColumn != null) {
-      currentColumn.update();
+      currentColumn.display();
       currentColumn = null;
     }
   }
@@ -350,14 +350,14 @@ public class HomeController {
   void deleteEvent() {
     currentEvent.getNode().removeRequest();
     Kanban.getCurrent().generateToday();
-    currentEvent.getParentComponent().listEvent();
+    currentEvent.getParentComponent().list();
     this.closePrompt();
   }
 
   @FXML
   void deleteColumn() {
     currentColumn.getNode().removeRequest();
-    currentColumn.getParentComponent().listColumn();
+    currentColumn.getParentComponent().list();
     this.closePrompt();
   }
 

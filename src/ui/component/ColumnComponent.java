@@ -12,11 +12,16 @@ import ui.HomeController;
 
 public class ColumnComponent extends VBox {
 
-  @FXML private Label eventCount;
-  @FXML private TextField columnTitle;
-  @FXML private Button eventAdd;
-  @FXML private Button columnEdit;
-  @FXML private VBox eventList;
+  @FXML
+  private Label eventCount;
+  @FXML
+  private TextField columnTitle;
+  @FXML
+  private Button eventAdd;
+  @FXML
+  private Button columnEdit;
+  @FXML
+  private VBox eventList;
 
   public static VBox promptColumn;
   public static Label promptColumnPromptTitle;
@@ -58,7 +63,7 @@ public class ColumnComponent extends VBox {
     }
   }
 
-  public void listEvent() {
+  public void list() {
     ArrayList<structure.Node> list = null;
     if (this.node.getParent().getId() == 1) {
       list = this.node.getNodes(structure.Node.SORT_BY_PRIORITY, structure.Node.ORDER_BY_ASC);
@@ -75,14 +80,14 @@ public class ColumnComponent extends VBox {
     eventCount.setText(list.size() + "");
   }
 
-  public void update() {
+  public void display() {
     columnTitle.setText(this.node.getTitle());
   }
 
   @FXML
   void initialize() {
-    this.update();
-    this.listEvent();
+    this.display();
+    this.list();
     if (this.node.getParent().getId() >= 100) {
       columnEdit.getStyleClass().remove("hide");
       eventAdd.getStyleClass().remove("hide");
@@ -93,16 +98,16 @@ public class ColumnComponent extends VBox {
   }
 
   @FXML
-  void editColumn(ActionEvent e) {
+  void update(ActionEvent e) {
     HomeController.currentColumn = this;
     promptColumn.setStyle(HomeController.styleAccent(this.getColor()));
     promptColumn.getStyleClass().remove("hide");
     promptColumnPromptTitle.setText("Edit column");
     promptColumnTitle.setText(this.node.getTitle());
     promptColumnPreset.getSelectionModel().select(this.node.getPreset());
-    if(this.node.isOnlyPreset()){
+    if (this.node.isOnlyPreset()) {
       columnDelete.getStyleClass().add("hide");
-    }else{
+    } else {
       columnDelete.getStyleClass().remove("hide");
     }
   }
