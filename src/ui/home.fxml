@@ -27,7 +27,7 @@
       <Pane fx:id="extraPane" mouseTransparent="true" />
       <BorderPane prefHeight="680.0" prefWidth="1020.0">
          <left>
-            <VBox fx:id="sidePane" styleClass="bg-side">
+            <VBox fx:id="sidePane" styleClass="bg-side" onMouseDragReleased="#MouseDragReleased">
                <children>
                   <VBox focusTraversable="true">
                      <children>
@@ -103,7 +103,7 @@
             </VBox>
          </left>
          <center>
-            <TabPane fx:id="tabPane" focusTraversable="false" side="BOTTOM" styleClass="bg-main" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER" onMouseDragOver="#PanelMouseDragOver">
+            <TabPane fx:id="tabPane" focusTraversable="false" side="BOTTOM" styleClass="bg-main" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER" onMouseDragReleased="#MouseDragReleased" onMouseDragOver="#PanelMouseDragOver">
               <tabs>
                 <Tab closable="false" text="Board">
                   <content>

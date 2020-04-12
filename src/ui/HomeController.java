@@ -19,55 +19,95 @@ import ui.component.*;
 
 public class HomeController {
 
-  @FXML public Button sideProfile;
-  @FXML public Circle profileAvatar;
-  @FXML public Label profileUsername;
-  @FXML public VBox sidePane;
-  @FXML public VBox operationList;
-  @FXML public Button sideSearch;
-  @FXML public VBox boardList;
-  @FXML public TabPane tabPane;
-  @FXML public VBox boardPane;
-  @FXML public TextField boardTitle;
-  @FXML public TextField boardNote;
-  @FXML public Button boardEdit;
-  @FXML public HBox columnPane;
-  @FXML public TextField inputSearch;
-  @FXML public VBox searchList;
-  @FXML public Pane dragPane;
-  @FXML public VBox promptEvent;
-  @FXML public SVGPath promptEventIcon;
-  @FXML public Label promptEventPromptTitle;
-  @FXML public VBox promptEventTitleWrapper;
-  @FXML public TextArea promptEventTitle;
-  @FXML public Label promptEventLocationBoard;
-  @FXML public Label promptEventLocationColumn;
-  @FXML public ComboBox<String> promptEventImportanceLevel;
-  @FXML public DatePicker promptEventDueDate;
-  @FXML public ComboBox<String> promptEventDuration;
-  @FXML public TextArea promptEventNote;
-  @FXML public Pane extraPane;
-  @FXML public VBox promptBoard;
-  @FXML public SVGPath promptBoardIcon;
-  @FXML public Label promptBoardPromptTitle;
-  @FXML public TextArea promptBoardTitle;
-  @FXML public TextArea promptBoardNote;
-  @FXML public VBox promptColumn;
-  @FXML public SVGPath promptColumnIcon;
-  @FXML public Button columnDelete;
-  @FXML public Label promptColumnPromptTitle;
-  @FXML public TextArea promptColumnTitle;
-  @FXML public ComboBox<String> promptColumnPreset;
-  @FXML public Text textHolder = new Text();
-  @FXML public Button eventDelete;
-  @FXML public Button eventCreate;
-
+  @FXML
+  public Button sideProfile;
+  @FXML
+  public Circle profileAvatar;
+  @FXML
+  public Label profileUsername;
+  @FXML
+  public VBox sidePane;
+  @FXML
+  public VBox operationList;
+  @FXML
+  public Button sideSearch;
+  @FXML
+  public VBox boardList;
+  @FXML
+  public TabPane tabPane;
+  @FXML
+  public VBox boardPane;
+  @FXML
+  public TextField boardTitle;
+  @FXML
+  public TextField boardNote;
+  @FXML
+  public Button boardEdit;
+  @FXML
+  public HBox columnPane;
+  @FXML
+  public TextField inputSearch;
+  @FXML
+  public VBox searchList;
+  @FXML
+  public Pane dragPane;
+  @FXML
+  public VBox promptEvent;
+  @FXML
+  public SVGPath promptEventIcon;
+  @FXML
+  public Label promptEventPromptTitle;
+  @FXML
+  public VBox promptEventTitleWrapper;
+  @FXML
+  public TextArea promptEventTitle;
+  @FXML
+  public Label promptEventLocationBoard;
+  @FXML
+  public Label promptEventLocationColumn;
+  @FXML
+  public ComboBox<String> promptEventImportanceLevel;
+  @FXML
+  public DatePicker promptEventDueDate;
+  @FXML
+  public ComboBox<String> promptEventDuration;
+  @FXML
+  public TextArea promptEventNote;
+  @FXML
+  public Pane extraPane;
+  @FXML
+  public VBox promptBoard;
+  @FXML
+  public SVGPath promptBoardIcon;
+  @FXML
+  public Label promptBoardPromptTitle;
+  @FXML
+  public TextArea promptBoardTitle;
+  @FXML
+  public TextArea promptBoardNote;
+  @FXML
+  public VBox promptColumn;
+  @FXML
+  public SVGPath promptColumnIcon;
+  @FXML
+  public Button columnDelete;
+  @FXML
+  public Label promptColumnPromptTitle;
+  @FXML
+  public TextArea promptColumnTitle;
+  @FXML
+  public ComboBox<String> promptColumnPreset;
+  @FXML
+  public Text textHolder = new Text();
+  @FXML
+  public Button eventDelete;
+  @FXML
+  public Button eventCreate;
 
   public static EventComponent currentEvent;
   public static BoardComponent currentBoard;
   public static ColumnComponent currentColumn;
-  public static Button currentCard;
-  public static ColumnComponent currentStayColumn;
+  public static VBox originalParent;
 
   @FXML
   void initialize() {
@@ -85,64 +125,38 @@ public class HomeController {
 
     // Initialize Event panel
     promptEventImportanceLevel.getItems().addAll("", "Level 1", "Level 2", "Level 3");
-    promptEventDuration
-        .getItems()
-        .addAll(
-            "",
-            "1 Hour",
-            "2 Hours",
-            "3 Hours",
-            "4 Hours",
-            "5 Hours",
-            "6 Hours",
-            "7 Hours",
-            "8 Hours",
-            "9 Hours",
-            "10 Hours",
-            "11 Hours",
-            "12 Hours");
+    promptEventDuration.getItems().addAll("", "1 Hour", "2 Hours", "3 Hours", "4 Hours", "5 Hours", "6 Hours",
+        "7 Hours", "8 Hours", "9 Hours", "10 Hours", "11 Hours", "12 Hours");
 
-    promptEventDueDate
-        .valueProperty()
-        .addListener(
-            (observable, oldDate, newDate) -> {
-              Long timestamp = null;
-              if (newDate != null) {
-                timestamp = Timestamp.valueOf(newDate.atTime(LocalTime.MAX)).getTime() / 1000;
-              }
-              currentEvent.getNode().setDueDateRequest(timestamp);
-            });
+    promptEventDueDate.valueProperty().addListener((observable, oldDate, newDate) -> {
+      Long timestamp = null;
+      if (newDate != null) {
+        timestamp = Timestamp.valueOf(newDate.atTime(LocalTime.MAX)).getTime() / 1000;
+      }
+      currentEvent.getNode().setDueDateRequest(timestamp);
+    });
 
     searchList.getChildren().clear();
-    inputSearch
-        .textProperty()
-        .addListener(
-            (observable, oldText, newText) -> {
-              searchList.getChildren().clear();
-              if (!newText.equals("")) {
-                ArrayList<structure.Node> list = Kanban.getCurrent().search(newText);
-                for (structure.Node each : list) {
-                  EventComponent event = new EventComponent(each, null, this);
-                  searchList.getChildren().add(event);
-                }
-              }
-            });
+    inputSearch.textProperty().addListener((observable, oldText, newText) -> {
+      searchList.getChildren().clear();
+      if (!newText.equals("")) {
+        ArrayList<structure.Node> list = Kanban.getCurrent().search(newText);
+        for (structure.Node each : list) {
+          EventComponent event = new EventComponent(each, null, this);
+          searchList.getChildren().add(event);
+        }
+      }
+    });
 
-    promptEventTitle
-        .focusedProperty()
-        .addListener(
-            (observable, oldFocus, newFocus) -> {
-              if (!newFocus) {
-                currentEvent.getNode().setTitleRequest(promptEventTitle.getText());
-              }
-            });
+    promptEventTitle.focusedProperty().addListener((observable, oldFocus, newFocus) -> {
+      if (!newFocus) {
+        currentEvent.getNode().setTitleRequest(promptEventTitle.getText());
+      }
+    });
 
-    promptEventTitle
-        .textProperty()
-        .addListener(
-            (observable, oldText, newText) -> {
-              currentEvent.setText(promptEventTitle.getText());
-            });
+    promptEventTitle.textProperty().addListener((observable, oldText, newText) -> {
+      currentEvent.setText(promptEventTitle.getText());
+    });
 
     // The TextArea internally does not use the onKeyPressed property to handle
     // keyboard input.
@@ -151,80 +165,52 @@ public class HomeController {
     // event filter that consumes the event.
     // @link:
     // https://stackoverflow.com/questions/26752924/how-to-stop-cursor-from-moving-to-a-new-line-in-a-textarea-when-enter-is-pressed
-    promptEventTitle.addEventFilter(
-        KeyEvent.KEY_PRESSED,
-        e -> {
-          if (e.getCode() == KeyCode.ENTER) {
-            e.consume();
-            promptEvent.requestFocus();
-          }
-        });
+    promptEventTitle.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
+      if (e.getCode() == KeyCode.ENTER) {
+        e.consume();
+        promptEvent.requestFocus();
+      }
+    });
 
     textHolder.getStyleClass().addAll(promptEventTitle.getStyleClass());
     textHolder.setStyle(promptEventTitle.getStyle());
     textHolder.setWrappingWidth(450);
-    textHolder
-        .layoutBoundsProperty()
-        .addListener(
-            (observable, oldValue, newValue) -> {
-              promptEventTitle.setPrefHeight(textHolder.getLayoutBounds().getHeight() + 23);
-              promptBoardTitle.setPrefHeight(textHolder.getLayoutBounds().getHeight() + 23);
-            });
+    textHolder.layoutBoundsProperty().addListener((observable, oldValue, newValue) -> {
+      promptEventTitle.setPrefHeight(textHolder.getLayoutBounds().getHeight() + 23);
+      promptBoardTitle.setPrefHeight(textHolder.getLayoutBounds().getHeight() + 23);
+    });
 
     extraPane.getChildren().add(textHolder);
 
-    promptEventImportanceLevel
-        .valueProperty()
-        .addListener(
-            (observable, oldValue, newValue) -> {
-              currentEvent
-                  .getNode()
-                  .setImportanceLevelRequest(
-                      promptEventImportanceLevel.getSelectionModel().getSelectedIndex());
-            });
+    promptEventImportanceLevel.valueProperty().addListener((observable, oldValue, newValue) -> {
+      currentEvent.getNode()
+          .setImportanceLevelRequest(promptEventImportanceLevel.getSelectionModel().getSelectedIndex());
+    });
 
-    promptEventDuration
-        .valueProperty()
-        .addListener(
-            (observable, oldValue, newValue) -> {
-              currentEvent
-                  .getNode()
-                  .setDurationRequest(
-                      promptEventDuration.getSelectionModel().getSelectedIndex() * 3600L);
-            });
+    promptEventDuration.valueProperty().addListener((observable, oldValue, newValue) -> {
+      currentEvent.getNode().setDurationRequest(promptEventDuration.getSelectionModel().getSelectedIndex() * 3600L);
+    });
 
-    promptEventNote
-        .focusedProperty()
-        .addListener(
-            (observable, oldFocus, newFocus) -> {
-              if (!newFocus) currentEvent.getNode().setNoteRequest(promptEventNote.getText());
-            });
+    promptEventNote.focusedProperty().addListener((observable, oldFocus, newFocus) -> {
+      if (!newFocus)
+        currentEvent.getNode().setNoteRequest(promptEventNote.getText());
+    });
 
-    promptBoardTitle
-        .focusedProperty()
-        .addListener(
-            (observable, oldFocus, newFocus) -> {
-              if (!newFocus) currentColumn.getNode().setTitleRequest(promptColumnTitle.getText());
-            });
-
+    promptBoardTitle.focusedProperty().addListener((observable, oldFocus, newFocus) -> {
+      if (!newFocus)
+        currentColumn.getNode().setTitleRequest(promptColumnTitle.getText());
+    });
 
     promptColumnPreset.getItems().addAll("To Do", "In Progress", "Done");
 
-    promptColumnPreset
-        .valueProperty()
-        .addListener(
-            (observable, oldValue, newValue) -> {
-              currentColumn
-                  .getNode()
-                  .setPresetRequest(promptColumnPreset.getSelectionModel().getSelectedIndex());
-            });
+    promptColumnPreset.valueProperty().addListener((observable, oldValue, newValue) -> {
+      currentColumn.getNode().setPresetRequest(promptColumnPreset.getSelectionModel().getSelectedIndex());
+    });
 
-    promptColumnTitle
-        .focusedProperty()
-        .addListener(
-            (observable, oldFocus, newFocus) -> {
-              if (!newFocus) currentColumn.getNode().setTitleRequest(promptColumnTitle.getText());
-            });
+    promptColumnTitle.focusedProperty().addListener((observable, oldFocus, newFocus) -> {
+      if (!newFocus)
+        currentColumn.getNode().setTitleRequest(promptColumnTitle.getText());
+    });
 
     sidePane.requestFocus();
     listBoard();
@@ -277,11 +263,8 @@ public class HomeController {
       try {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene oldScene = ((Node) event.getSource()).getScene();
-        Scene scene =
-            new Scene(
-                FXMLLoader.load(getClass().getResource("settings.fxml")),
-                oldScene.getWidth(),
-                oldScene.getHeight());
+        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("settings.fxml")), oldScene.getWidth(),
+            oldScene.getHeight());
         scene.getStylesheets().add(getClass().getResource("default.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
@@ -344,7 +327,7 @@ public class HomeController {
   }
 
   @FXML
-  void createEvent(){
+  void createEvent() {
 
   }
 
@@ -364,7 +347,6 @@ public class HomeController {
     return style;
   }
 
-
   // drag and drop
   @FXML
   void PanelMouseDragOver(MouseDragEvent event) {
@@ -373,6 +355,23 @@ public class HomeController {
     button.setLayoutX(event.getSceneX());
     button.setLayoutY(event.getSceneY());
     System.out.println(event.getSource());
+  }
+
+  @FXML
+  void MouseDragReleased(MouseDragEvent event) {
+    // try {
+    //   Thread.sleep(1000);
+    // } catch (InterruptedException e) {
+    //   e.printStackTrace();
+    // }
+    System.out.println("MouseDragReleasedHome");
+    Button btn = (Button) event.getGestureSource();
+    if (btn.getParent().getClass() == VBox.class) {
+      return;
+    } else {
+      originalParent.getChildren().add(btn);
+    }
+
   }
 
   // @FXML
@@ -388,4 +387,5 @@ public class HomeController {
   //   System.out.println(event.getGestureSource());
   //   current.getEventList().getChildren().add(button);
   // }
+
 }

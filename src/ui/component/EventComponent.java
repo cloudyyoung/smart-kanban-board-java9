@@ -145,6 +145,10 @@ public class EventComponent extends Button {
       // activative card drag
       Button card = (Button) event.getSource();
       card.startFullDrag();
+      HomeController.originalParent = (VBox) card.getParent();
+      this.parentController.dragPane.getChildren().add(card);
+      
+
       // add card to dragPane
       // this.parentController.dragPane.getChildren().add(card);
       // set DragPane transparent to 0
