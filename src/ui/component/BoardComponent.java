@@ -16,15 +16,6 @@ public class BoardComponent extends Button {
 
   @FXML private Button button;
 
-  public static VBox boardPane;
-  public static TextField boardTitle;
-  public static TextField boardNote;
-  public static HBox columnPane;
-  public static VBox sidePane;
-  public static VBox boardList;
-  public static TabPane tabPane;
-  public static Button boardEdit;
-
   private Board node;
   private HomeController parentController;
 
@@ -39,11 +30,11 @@ public class BoardComponent extends Button {
   @FXML
   void open(ActionEvent e){
     HomeController.currentBoard = this;
-    boardEdit.setVisible(this.node.getId() >= 100);
+    this.parentController.boardEdit.setVisible(this.node.getId() >= 100);
 
     HashSet<Node> sideButtons = new HashSet<Node>();
-    sideButtons.addAll(sidePane.lookupAll(".button"));
-    sideButtons.addAll(boardList.lookupAll(".button"));
+    sideButtons.addAll(this.parentController.sidePane.lookupAll(".button"));
+    sideButtons.addAll(this.parentController.boardList.lookupAll(".button"));
 
     for (Node each : sideButtons) {
       each.getStyleClass().remove("selected");
@@ -66,18 +57,18 @@ public class BoardComponent extends Button {
     hbox.getChildren().add(svg);
     this.setGraphic(hbox);
 
-    tabPane.getSelectionModel().select(0);
+    this.parentController.tabPane.getSelectionModel().select(0);
 
-    boardPane.setStyle(HomeController.styleAccent(this.node.getColor()));
-    boardTitle.setText(this.node.getTitle());
-    boardNote.setText(!this.node.getNote().equals("") ? this.node.getNote() : "No description");
+    this.parentController.boardPane.setStyle(HomeController.styleAccent(this.node.getColor()));
+    this.parentController.boardTitle.setText(this.node.getTitle());
+    this.parentController.boardNote.setText(!this.node.getNote().equals("") ? this.node.getNote() : "No description");
   }
 
   public void list() {
-    columnPane.getChildren().clear();
+    this.parentController.columnPane.getChildren().clear();
     for (structure.Node each : this.node.getNodes()) {
       Node col = new ColumnComponent((Column) each, this, this.parentController);
-      columnPane.getChildren().add(col);
+      this.parentController.columnPane.getChildren().add(col);
     }
   }
 

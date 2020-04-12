@@ -58,41 +58,15 @@ public class HomeController {
   @FXML public Label promptColumnPromptTitle;
   @FXML public TextArea promptColumnTitle;
   @FXML public ComboBox<String> promptColumnPreset;
+  @FXML public Text textHolder = new Text();
 
   public static EventComponent currentEvent;
   public static BoardComponent currentBoard;
   public static ColumnComponent currentColumn;
 
-  private Text textHolder = new Text();
 
   @FXML
   void initialize() {
-
-    BoardComponent.boardPane = boardPane;
-    BoardComponent.boardTitle = boardTitle;
-    BoardComponent.boardNote = boardNote;
-    BoardComponent.columnPane = columnPane;
-    BoardComponent.sidePane = sidePane;
-    BoardComponent.boardList = boardList;
-    BoardComponent.tabPane = tabPane;
-    BoardComponent.boardEdit = boardEdit;
-    EventComponent.promptEvent = promptEvent;
-    EventComponent.promptEventIcon = promptEventIcon;
-    EventComponent.promptEventPromptTitle = promptEventPromptTitle;
-    EventComponent.promptEventTitle = promptEventTitle;
-    EventComponent.promptEventLocationBoard = promptEventLocationBoard;
-    EventComponent.promptEventLocationColumn = promptEventLocationColumn;
-    EventComponent.promptEventImportanceLevel = promptEventImportanceLevel;
-    EventComponent.promptEventDueDate = promptEventDueDate;
-    EventComponent.promptEventDuration = promptEventDuration;
-    EventComponent.promptEventNote = promptEventNote;
-    EventComponent.textHolder = textHolder;
-    ColumnComponent.promptColumn = promptColumn;
-    ColumnComponent.promptColumnPromptTitle = promptColumnPromptTitle;
-    ColumnComponent.promptColumnTitle = promptColumnTitle;
-    ColumnComponent.promptColumnPreset = promptColumnPreset;
-    ColumnComponent.dragPane = dragPane;
-    ColumnComponent.columnDelete = columnDelete;
 
     this.closePrompt();
     extraPane.setVisible(false);
