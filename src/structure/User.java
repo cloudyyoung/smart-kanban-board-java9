@@ -193,9 +193,7 @@ public class User {
     String username = body.getString("username");
     String password = body.getString("password");
 
-    Result res = this.signInRequest(username, password);
-
-    return res;
+    return this.signInRequest(username, password);
   }
 
   /**
