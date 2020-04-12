@@ -64,7 +64,7 @@ public class HomeController {
   public static BoardComponent currentBoard;
   public static ColumnComponent currentColumn;
   public static Button currentCard;
-
+  public static ColumnComponent currentStayColumn;
 
   @FXML
   void initialize() {
