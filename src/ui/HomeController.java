@@ -352,12 +352,4 @@ public class HomeController {
     return style;
   }
 
-
-  // drag and drop
-    @FXML
-    void PanelMouseDragOver(MouseDragEvent event) {
-        Button button = (Button) event.getGestureSource();
-        button.setLayoutX(event.getSceneX());
-        button.setLayoutY(event.getSceneY());
-    }
 }
