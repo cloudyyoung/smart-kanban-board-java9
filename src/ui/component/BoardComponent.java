@@ -80,6 +80,13 @@ public class BoardComponent extends Button {
     return this.node.getColor();
   }
 
+  @FXML
+  public void createChild(ActionEvent e){
+    Column column = new Column("Untitled Column", "", 0, this.node);
+    ColumnComponent ColumnComponent = new ColumnComponent(column, this, this.parentController);
+    ColumnComponent.create(e);
+  }
+
   private final void loadDisplay() {
     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("board.fxml"));
     fxmlLoader.setRoot(this);

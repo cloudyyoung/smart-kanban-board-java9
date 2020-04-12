@@ -10,7 +10,7 @@ import com.google.gson.annotations.*;
  * @since 1.0
  * @version 2.1
  */
-public final class Event extends Node {
+public class Event extends Node {
 
   @SerializedName("importance_level")
   @Expose private int importanceLevel;
@@ -28,12 +28,12 @@ public final class Event extends Node {
    * @param obj the {@code HttpBody} for initialization
    */
   public Event(
-      final String title,
-      final String note,
-      final Long dueDate,
-      final Long duration,
-      final int importanceLevel,
-      final Node parent) {
+      String title,
+      String note,
+      Long dueDate,
+      Long duration,
+      int importanceLevel,
+      Node parent) {
     super(title, note, parent);
     this.setDuration(duration);
     this.setDueDateRequest(dueDate);
@@ -57,12 +57,19 @@ public final class Event extends Node {
   }
 
   public Result setDurationRequest(Long duration) {
-    final Result res = new Result();
-    final HttpRequest req = this.set("duration", duration);
-    res.add(req);
-
-    if (req.isSucceeded()) {
+    Result res = new Result();
+    if(!this.isExisting()){
       this.setDuration(duration);
+      
+      StructureRequest req = new StructureRequest(true, false, this);
+      res.add(req);
+    }else{
+      HttpRequest req = this.set("duration", duration);
+      res.add(req);
+
+      if (req.isSucceeded()) {
+        this.setDuration(duration);
+      }
     }
     return res;
   }
@@ -85,11 +92,18 @@ public final class Event extends Node {
 
   public Result setImportanceLevelRequest(int importance) {
     Result res = new Result();
-    HttpRequest req = this.set("importance_level", importance);
-    res.add(req);
-
-    if (req.isSucceeded()) {
+    if(!this.isExisting()){
       this.setImportanceLevel(importance);
+      
+      StructureRequest req = new StructureRequest(true, false, this);
+      res.add(req);
+    }else{
+      HttpRequest req = this.set("importance_level", importance);
+      res.add(req);
+
+      if (req.isSucceeded()) {
+        this.setImportanceLevel(importance);
+      }
     }
     return res;
   }
@@ -171,8 +185,8 @@ public final class Event extends Node {
    * @return an int of weight to represent the event priority.
    */
   public Integer getPriority() {
-    final int hourWeight = this.getDueDateValue().intValue() / 3600;
-    final int importanceWeight = this.getImportanceLevel() * (hourWeight / 24);
+    int hourWeight = this.getDueDateValue().intValue() / 3600;
+    int importanceWeight = this.getImportanceLevel() * (hourWeight / 24);
     return hourWeight - importanceWeight;
   }
 }

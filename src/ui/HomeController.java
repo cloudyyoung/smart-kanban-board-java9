@@ -338,6 +338,11 @@ public class HomeController {
   }
 
   @FXML
+  void createColumnChild(ActionEvent e){
+    currentBoard.createChild(e);
+  }
+
+  @FXML
   void createColumnRequest(){
     currentColumn.getNode().createRequest();
     Kanban.getCurrent().generateToday();

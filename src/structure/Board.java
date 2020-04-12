@@ -66,12 +66,19 @@ public final class Board extends Node {
    * @return the http request of this action
    */
   public Result setColorRequest(String color) {
-    HttpRequest req = this.set("color", color);
-    if (req.isSucceeded()) {
-      this.setColor(color);
-    }
     Result res = new Result();
-    res.add(req);
+    if(!this.isExisting()){
+      this.setColor(color);
+
+      StructureRequest req = new StructureRequest(true, false, this);
+      res.add(req);
+    }else{
+      HttpRequest req = this.set("color", color);
+      if (req.isSucceeded()) {
+        this.setColor(color);
+      }
+      res.add(req);
+    }
     return res;
   }
 

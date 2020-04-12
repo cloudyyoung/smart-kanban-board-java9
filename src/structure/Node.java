@@ -488,6 +488,7 @@ public abstract class Node {
     }else{
       HttpBody body = new HttpBody(this);
       body.put(NodeTypeUtils.typeId(this.getParentType()) + "_id", body.getInt("parent_id"));
+      body.remove("parent_id");
       System.out.println(body);
   
       HttpRequest req = new HttpRequest();

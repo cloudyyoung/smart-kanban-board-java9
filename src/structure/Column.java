@@ -1,9 +1,12 @@
 package structure;
 
+import com.google.gson.annotations.Expose;
+
 /**
  * The {@code Column} class, extends from {@code Node}.
  *
- * <p>The instance should contains {@code Event} object as children nodes.
+ * <p>
+ * The instance should contains {@code Event} object as children nodes.
  *
  * @since 1.0
  * @version 2.1
@@ -19,7 +22,7 @@ public final class Column extends Node {
    *
    * @param obj the {@code HttpBody} for initialization
    */
-  private int preset;
+  @Expose private int preset;
 
   public Column(HttpBody obj) {
     super(obj);
@@ -43,12 +46,22 @@ public final class Column extends Node {
   }
 
   public Result setPresetRequest(int preset) {
-    HttpRequest req = this.set("preset", preset);
-    if (req.isSucceeded()) {
-      this.setPreset(preset);
-    }
     Result res = new Result();
-    res.add(req);
+    if(!this.isExisting()){
+      this.setPreset(preset);
+      
+      StructureRequest req = new StructureRequest(true, false, this);
+      res.add(req);
+    }else{
+      HttpRequest req = this.set("preset", preset);
+      if (req.isSucceeded()) {
+        this.setPreset(preset);
+
+        StructureRequest req2 = new StructureRequest(true, false, this);
+        res.add(req2);
+      }
+      res.add(req);
+    }
     return res;
   }
 
