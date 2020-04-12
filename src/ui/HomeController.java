@@ -231,7 +231,7 @@ public class HomeController {
             });
 
     promptColumnTitle
-    .focusedProperty()
+        .focusedProperty()
         .addListener(
             (observable, oldFocus, newFocus) -> {
               if (!newFocus) currentColumn.getNode().setTitleRequest(promptColumnTitle.getText());
