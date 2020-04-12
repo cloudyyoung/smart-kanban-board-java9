@@ -242,7 +242,7 @@ public class HomeController {
         }
       }
     }
-    if(componentToday != null){
+    if (componentToday != null) {
       componentToday.fire();
     }
   }
