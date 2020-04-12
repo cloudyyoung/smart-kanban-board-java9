@@ -81,6 +81,13 @@ public class ColumnComponent extends VBox {
   void initialize() {
     this.update();
     this.listEvent();
+    if(this.node.getParent().getId() >= 100){
+      columnEdit.getStyleClass().remove("hide");
+      eventAdd.getStyleClass().remove("hide");
+    }else{
+      columnEdit.getStyleClass().add("hide");
+      eventAdd.getStyleClass().add("hide");
+    }
   }
 
   @FXML
@@ -90,5 +97,12 @@ public class ColumnComponent extends VBox {
     promptColumnTitle.setText(this.node.getTitle());
     promptColumnPreset.getItems().clear();
     promptColumnPreset.getItems().addAll("To Do", "In Progress", "Done");
+    promptColumnPreset.getSelectionModel().select(this.node.getPreset());
+    promptColumnPreset.valueProperty().addListener((observable, oldValue, newValue) -> {
+      this.node.setPresetRequest(promptColumnPreset.getSelectionModel().getSelectedIndex());
+    });
+    columnTitle.textProperty().addListener((observable, oldText, newText) -> {
+      this.node.setTitleRequest(newText);
+    });
   }
 }

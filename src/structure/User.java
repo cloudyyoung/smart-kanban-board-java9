@@ -223,7 +223,7 @@ public class User {
     try {
       FileWriter myWriter = new FileWriter("temp.meonc");
       String str = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(body);
-      myWriter.write(Encrytion.encrypt(str, "secret"));
+      myWriter.write(EncrytionUtils.encrypt(str, "secret"));
       myWriter.close();
     } catch (IOException e) {
       // System.out.println("An error occurred.");
@@ -252,7 +252,7 @@ public class User {
       // Fail silently
     }
 
-    String str = Encrytion.decrypt(encryptStr, "secret");
+    String str = EncrytionUtils.decrypt(encryptStr, "secret");
     return new HttpBody(new Gson().fromJson(str, Map.class));
   }
 

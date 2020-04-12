@@ -33,15 +33,28 @@ public final class Column extends Node {
    * @param note The note in {@code String}
    * @param columnId THe id in {@code String}
    */
-  public Column(final String title, final String note, final Node parent) {
+  public Column(final String title, final String note, final int preset, final Node parent) {
     super(title, note, parent);
+    this.setPreset(preset);
   }
 
   protected void setPreset(int preset) {
     this.preset = preset;
+    System.out.println(this.preset);
+  }
+  
+  public Result setPresetRequest(int preset) {
+	HttpRequest req = this.set("preset", preset);
+	if (req.isSucceeded()) {
+      this.setPreset(preset);
+    }
+	Result res = new Result();
+	res.add(req);
+	return res;
   }
 
   public int getPreset() {
+    System.out.println(this.preset);
     return this.preset;
   }
 
