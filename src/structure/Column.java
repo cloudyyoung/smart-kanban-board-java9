@@ -66,7 +66,7 @@ public final class Column extends Node {
     return (eventNext.getDuration() + timeAccumulator) <= totalTime ? true : false;
   }
 
-  public boolean isTheLastPresetColumn (int preset) {
+  public boolean isTheLastPresetColumn(int preset) {
     int count = 0;
     Board board = (Board) this.getParent();
     for (Node node : board.getNodes()) {
