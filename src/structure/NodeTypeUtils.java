@@ -2,18 +2,18 @@ package structure;
 
 public final class NodeTypeUtils {
 
-	public static final String typeClass(String str){
+  public static final String typeClass(String str) {
     return "structure." + typeProper(typeSingular(str));
-	}
+  }
 
-	/**
+  /**
    * Returns a specified type in a format of Java class. Such as {@code structure.Node}.
    *
    * @param type a specified type
    * @return a string of a specified type in a format of Java class
    */
   public static final String typeUrl(String str) {
-		return typeLower(typePlural(str));
+    return typeLower(typePlural(str));
   }
 
   /**

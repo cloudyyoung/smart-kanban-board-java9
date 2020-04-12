@@ -184,13 +184,13 @@ public class TimeUtils {
     return currDayName;
   }
 
-   /**
+  /**
    * Returns the name of current month. Such as {@code October}.
    *
    * @param currentMonthNum the number of month
    * @return the name of the month
    */
-  public static String currentMonthName(){
+  public static String currentMonthName() {
     String monthName = "";
     int toCompare = currentMonth();
 
