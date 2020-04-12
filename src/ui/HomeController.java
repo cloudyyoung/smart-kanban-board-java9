@@ -364,20 +364,18 @@ public class HomeController {
   // drag and drop
   @FXML
   void PanelMouseDragOver(MouseDragEvent event) {
-    System.out.println("PanelMouseDragOver");
     Button button = (Button) event.getGestureSource();
     button.setLayoutX(event.getSceneX());
     button.setLayoutY(event.getSceneY());
-    System.out.println(event.getSource());
   }
 
   @FXML
   void MouseDragReleased(MouseDragEvent event) {
-    System.out.println("MouseDragReleasedHome");
-    Button btn = (Button) event.getGestureSource();
+    EventComponent btn = (EventComponent) event.getGestureSource();
     if (btn.getParent().getClass() == VBox.class) {
     } else {
       originalParent.getChildren().add(btn);
+      // btn.getNode().setParentRequest(originalParent.getNode());
     } 
     currentDragButton = null;
     originalParent = null;
