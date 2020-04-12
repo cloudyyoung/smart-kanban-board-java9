@@ -622,14 +622,4 @@ public abstract class Node {
   private static final String typeLower(String type) {
     return type.toLowerCase();
   }
-
-  /**
-   * Returns a specified type in a upper-case format.
-   *
-   * @param type a specified type
-   * @return a string of a specified type in a upper-case format
-   */
-  private static final String typeUpper(String type) {
-    return type.toUpperCase();
-  }
 }
