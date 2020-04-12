@@ -242,7 +242,9 @@ public class HomeController {
         }
       }
     }
-    componentToday.fire();
+    if(componentToday != null){
+      componentToday.fire();
+    }
   }
 
   @FXML
