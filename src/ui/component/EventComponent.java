@@ -120,14 +120,14 @@ public class EventComponent extends Button {
       this.parentController.dragPane.getChildren().add(button);
   }
 
-  @FXML
-  void EventMouseReleased(MouseEvent event) {
-    System.out.println("EventMouseReleased");
-    Button button = (Button) event.getSource();
-    if (button.getParent() != originalParent) {
-      return;
-    } else {
-      originalParent.getChildren().add(button);
-    }
-  }
+  // @FXML
+  // void EventMouseReleased(MouseEvent event) {
+  //   System.out.println("EventMouseReleased");
+  //   Button button = (Button) event.getSource();
+  //   if (button.getParent() != originalParent) {
+  //     return;
+  //   } else {
+  //     originalParent.getChildren().add(button);
+  //   }
+  // }
 }
