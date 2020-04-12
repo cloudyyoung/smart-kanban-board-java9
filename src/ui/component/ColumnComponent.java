@@ -24,13 +24,6 @@ public class ColumnComponent extends VBox {
   @FXML
   private VBox eventList;
 
-  public static VBox promptColumn;
-  public static Label promptColumnPromptTitle;
-  public static TextArea promptColumnTitle;
-  public static ComboBox<String> promptColumnPreset;
-  public static Pane dragPane;
-  public static Button columnDelete;
-
   private Column node;
   private BoardComponent parent;
   private HomeController parentController;
@@ -107,15 +100,15 @@ public class ColumnComponent extends VBox {
   @FXML
   void update(ActionEvent e) {
     HomeController.currentColumn = this;
-    promptColumn.setStyle(HomeController.styleAccent(this.getColor()));
-    promptColumn.getStyleClass().remove("hide");
-    promptColumnPromptTitle.setText("Edit column");
-    promptColumnTitle.setText(this.node.getTitle());
-    promptColumnPreset.getSelectionModel().select(this.node.getPreset());
+    this.parentController.promptColumn.setStyle(HomeController.styleAccent(this.getColor()));
+    this.parentController.promptColumn.getStyleClass().remove("hide");
+    this.parentController.promptColumnPromptTitle.setText("Edit column");
+    this.parentController.promptColumnTitle.setText(this.node.getTitle());
+    this.parentController.promptColumnPreset.getSelectionModel().select(this.node.getPreset());
     if (this.node.isOnlyPreset()) {
-      columnDelete.getStyleClass().add("hide");
+      this.parentController.columnDelete.getStyleClass().add("hide");
     } else {
-      columnDelete.getStyleClass().remove("hide");
+      this.parentController.columnDelete.getStyleClass().remove("hide");
     }
   }
 
