@@ -136,9 +136,13 @@ public class ColumnComponent extends VBox {
   // drag
   @FXML
   void MouseDragReleased(MouseDragEvent event) {
-    System.out.println("MouseDragReleased");
     ColumnComponent current = (ColumnComponent) event.getSource();
-    Button button = (Button) event.getGestureSource();
+    EventComponent button = (EventComponent) event.getGestureSource();
     current.getEventList().getChildren().add(button);
+
+    // System.out.println(current.getNode());
+    // System.out.println(button.getNode());
+    
+    System.out.println(button.getNode().setParentRequest(current.getNode()));
   }
 }
