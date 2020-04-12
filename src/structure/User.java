@@ -269,7 +269,7 @@ public class User {
    * @since 2.0
    * @version 2.1
    */
-  public Result register(String username, String password, String secQues, String secAns) {
+  public Result signUpRequest(String username, String password, String secQues, String secAns) {
     Result res = new Result();
 
     this.setUsername(username);
@@ -308,7 +308,7 @@ public class User {
   public static Result registration(
       String username, String password, String secQues, String secAns) {
     User user = new User();
-    return user.register(username, password, secQues, secAns);
+    return user.signUpRequest(username, password, secQues, secAns);
   }
 
   public static User getCurrent() {
