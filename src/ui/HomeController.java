@@ -213,10 +213,27 @@ public class HomeController {
             });
 
     promptEventNote
-        .focusedProperty()
+      .focusedProperty()
+      .addListener(
+          (observable, oldFocus, newFocus) -> {
+            if (!newFocus) currentEvent.getNode().setNoteRequest(promptEventNote.getText());
+          });
+
+          
+    promptColumnPreset.getItems().addAll("To Do", "In Progress", "Done");
+
+    promptColumnPreset
+        .valueProperty()
         .addListener(
-            (observable, oldFocus, newFocus) -> {
-              if (!newFocus) currentEvent.getNode().setNoteRequest(promptEventNote.getText());
+            (observable, oldValue, newValue) -> {
+              currentColumn.getNode().setPresetRequest(promptColumnPreset.getSelectionModel().getSelectedIndex());
+            });
+
+    promptColumnTitle
+        .textProperty()
+        .addListener(
+            (observable, oldText, newText) -> {
+              currentColumn.getNode().setTitleRequest(newText);
             });
 
     sidePane.requestFocus();

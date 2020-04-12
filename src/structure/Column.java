@@ -40,7 +40,7 @@ public final class Column extends Node {
 
   protected void setPreset(int preset) {
     this.preset = preset;
-    System.out.println(this.preset);
+    System.out.println(preset);
   }
 
   public Result setPresetRequest(int preset) {
@@ -54,7 +54,6 @@ public final class Column extends Node {
   }
 
   public int getPreset() {
-    System.out.println(this.preset);
     return this.preset;
   }
 

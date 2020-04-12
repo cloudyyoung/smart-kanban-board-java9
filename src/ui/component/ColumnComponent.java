@@ -8,6 +8,7 @@ import javafx.scene.layout.*;
 import javafx.scene.control.*;
 
 import structure.*;
+import ui.HomeController;
 
 public class ColumnComponent extends VBox {
 
@@ -92,23 +93,10 @@ public class ColumnComponent extends VBox {
 
   @FXML
   void editColumn(ActionEvent e) {
+    HomeController.currentColumn = this;
     promptColumn.getStyleClass().remove("hide");
     promptColumnPromptTitle.setText("Edit column");
     promptColumnTitle.setText(this.node.getTitle());
-    promptColumnPreset.getItems().clear();
-    promptColumnPreset.getItems().addAll("To Do", "In Progress", "Done");
     promptColumnPreset.getSelectionModel().select(this.node.getPreset());
-    promptColumnPreset
-        .valueProperty()
-        .addListener(
-            (observable, oldValue, newValue) -> {
-              this.node.setPresetRequest(promptColumnPreset.getSelectionModel().getSelectedIndex());
-            });
-    columnTitle
-        .textProperty()
-        .addListener(
-            (observable, oldText, newText) -> {
-              this.node.setTitleRequest(newText);
-            });
   }
 }
