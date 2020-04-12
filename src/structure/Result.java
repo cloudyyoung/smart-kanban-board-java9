@@ -52,17 +52,17 @@ public final class Result {
     this.checkout();
   }
 
-  public void addAll(Result res){
+  public void addAll(Result res) {
     this.list.addAll(res.list);
   }
 
-  public void addAll(Request ... add){
-    for(Request each : add){
+  public void addAll(Request... add) {
+    for (Request each : add) {
       this.list.add(each);
     }
   }
 
-  public void addAll(Collection<Request> add){
+  public void addAll(Collection<Request> add) {
     this.addAll(add);
   }
 
