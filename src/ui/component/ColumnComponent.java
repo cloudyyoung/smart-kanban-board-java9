@@ -2,6 +2,7 @@ package ui.component;
 
 import java.util.ArrayList;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
@@ -83,7 +84,7 @@ public class ColumnComponent extends VBox {
   }
 
   @FXML
-  void editColumn() {
+  void editColumn(ActionEvent e) {
     promptColumn.getStyleClass().remove("hide");
     promptColumnPromptTitle.setText("Edit column");
     promptColumnTitle.setText(this.node.getTitle());
