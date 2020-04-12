@@ -62,9 +62,6 @@ public class ColumnComponent extends VBox {
     } catch (Exception e) {
       e.printStackTrace();
     }
-
-    System.out.println(fxmlLoader.getLocation());
-    System.out.println(fxmlLoader.getController().toString());
   }
 
   public void list() {
@@ -118,7 +115,7 @@ public class ColumnComponent extends VBox {
 
   @FXML
   void createChild(ActionEvent e){
-    Event event = new Event("", "", null, null, 0, this.node);
+    Event event = new Event("Untitled Event", "", null, null, 0, this.node);
     EventComponent eventComponent = new EventComponent(event, this, this.parentController);
     eventComponent.create(e);
   }

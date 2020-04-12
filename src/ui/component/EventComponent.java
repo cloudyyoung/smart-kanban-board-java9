@@ -87,6 +87,19 @@ public class EventComponent extends Button {
 
   @FXML
   void update(ActionEvent e){
+    this.displayPrompt();
+    this.parentController.eventDelete.getStyleClass().remove("hide");
+    this.parentController.eventCreate.getStyleClass().add("hide");
+  }
+
+  @FXML
+  void create(ActionEvent e){
+    this.displayPrompt();
+    this.parentController.eventDelete.getStyleClass().add("hide");
+    this.parentController.eventCreate.getStyleClass().remove("hide");
+  }
+
+  private void displayPrompt(){
     HomeController.currentEvent = this;
     this.parentController.textHolder.textProperty().bind(this.parentController.promptEventTitle.textProperty());
 
@@ -107,31 +120,6 @@ public class EventComponent extends Button {
     this.parentController.promptEventPromptTitle.setText("Edit event");
     this.parentController.promptEvent.setStyle(HomeController.styleAccent(this.getColor()));
     this.parentController.promptEvent.getStyleClass().remove("hide");
-
-    this.parentController.eventDelete.getStyleClass().remove("hide");
-    this.parentController.eventCreate.getStyleClass().add("hide");
-  }
-
-  @FXML
-  void create(ActionEvent e){
-    HomeController.currentEvent = this;
-    this.parentController.textHolder.textProperty().bind(this.parentController.promptEventTitle.textProperty());
-
-    this.parentController.promptEventTitle.setText("");
-    this.parentController.promptEventLocationBoard.setText(this.node.getParent().getParent().getTitle());
-    this.parentController.promptEventLocationColumn.setText(this.node.getParent().getTitle());
-    this.parentController.promptEventImportanceLevel.getSelectionModel().select(0);
-    this.parentController.promptEventDueDate.setValue(null);
-
-    this.parentController.promptEventDuration.getSelectionModel().select(0);
-    this.parentController.promptEventNote.setText(this.node.getNote());
-    this.parentController.promptEventIcon.setContent(icon.getContent());
-    this.parentController.promptEventPromptTitle.setText("Create event");
-    this.parentController.promptEvent.setStyle(HomeController.styleAccent(this.getColor()));
-    this.parentController.promptEvent.getStyleClass().remove("hide");
-
-    this.parentController.eventDelete.getStyleClass().add("hide");
-    this.parentController.eventCreate.getStyleClass().remove("hide");
   }
 
   @FXML

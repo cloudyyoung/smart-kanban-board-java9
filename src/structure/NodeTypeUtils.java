@@ -16,6 +16,10 @@ public final class NodeTypeUtils {
     return typeLower(typePlural(str));
   }
 
+  public static final String typeId(String str){
+    return typeLower(typeSingular(str));
+  }
+
   /**
    * Returns a specified type in a plural format
    *
