@@ -236,6 +236,11 @@ public abstract class Node {
    */
   public final Result setParentRequest(Node parent) {
     Result res = new Result();
+    if(!this.isExisting()){
+      this.setParent(parent);
+      StructureRequest req2 = new StructureRequest(true, false, this);
+      res.add(req2);
+    }
     if (this instanceof Event) {
       String parentType = NodeTypeUtils.typeUrl(this.getParentType());
       HttpRequest req = this.set(parentType + "_id", parent.getId() + "");
@@ -251,7 +256,7 @@ public abstract class Node {
       req2.setErrorMessage("Instance can only be type of Event");
       res.add(req2);
     }
-    return null;
+    return res;
   }
 
   /**
@@ -282,12 +287,23 @@ public abstract class Node {
    */
   public final Result setTitleRequest(String title) {
     Result res = new Result();
-    HttpRequest req = this.set("title", title);
-    res.add(req);
-
-    if (req.isSucceeded()) {
+    if(!this.isExisting()){
       this.setTitle(title);
+
+      StructureRequest req = new StructureRequest(true, false, this);
+      res.add(req);
+    }else{
+      HttpRequest req = this.set("title", title);
+      res.add(req);
+
+      if (req.isSucceeded()) {
+        this.setTitle(title);
+
+        StructureRequest req2 = new StructureRequest(true, false, this);
+        res.add(req2);
+      }
     }
+    
     return res;
   }
 
@@ -310,11 +326,21 @@ public abstract class Node {
    */
   public final Result setNoteRequest(String note) {
     Result res = new Result();
-    HttpRequest req = this.set("note", note);
-    res.add(req);
-
-    if (req.isSucceeded()) {
+    if(!this.isExisting()){
       this.setNote(note);
+        
+      StructureRequest req = new StructureRequest(true, false, this);
+      res.add(req);
+    }else{
+      HttpRequest req = this.set("note", note);
+      res.add(req);
+
+      if (req.isSucceeded()) {
+        this.setNote(note);
+        
+        StructureRequest req2 = new StructureRequest(true, false, this);
+        res.add(req2);
+      }
     }
     return res;
   }
@@ -456,19 +482,33 @@ public abstract class Node {
   public Result createRequest() {
     Result res = new Result();
 
-    HttpRequest req = new HttpRequest();
-    req.setRequestUrl("/" + NodeTypeUtils.typeUrl(this.getType()));
-    req.setRequestMethod("POST");
-    req.setRequestBody(this);
-    req.setRequestCookie(this.getRequestCookie());
-    req.send();
-    res.add(req);
+    if(this.isExisting()){
+      StructureRequest req2 = new StructureRequest(false, true, this);
+      req2.setErrorMessage("Event is already exisiting");
+      res.add(req2);
+    }else{
+      HttpBody body = new HttpBody(this);
+      body.put(NodeTypeUtils.typeId(this.getParentType()) + "_id", body.getInt("parent_id"));
+      System.out.println(body);
+  
+      HttpRequest req = new HttpRequest();
+      req.setRequestUrl("/" + NodeTypeUtils.typeUrl(this.getType()));
+      req.setRequestMethod("POST");
+      req.setRequestBody(body);
+      req.setRequestCookie(this.getRequestCookie());
+      req.send();
+      res.add(req);
+  
+      if (req.isSucceeded()) {
+        Node parent = this.getParent();
+        this.setId(req.getResponseBody().getInt("id"));
+        parent.addNode(this);
 
-    if (req.isSucceeded()) {
-      Node parent = this.getParent();
-      this.setId(req.getResponseBody().getInt("id"));
-      parent.addNode(this);
+        StructureRequest req2 = new StructureRequest(true, false, this);
+        res.add(req2);
+      }
     }
+    
 
     return res;
   }
@@ -483,19 +523,28 @@ public abstract class Node {
   public Result removeRequest() {
     Result res = new Result();
 
-    HttpRequest req = new HttpRequest();
-    req.setRequestUrl("/" + NodeTypeUtils.typeUrl(this.getType()) + "/" + this.getId());
-    req.setRequestMethod("DELETE");
-    req.setRequestCookie(this.getRequestCookie());
-    req.send();
-    res.add(req);
+    if(!this.isExisting()){
+      StructureRequest req2 = new StructureRequest(false, true, this);
+      req2.setErrorMessage("Event is not exisiting");
+      res.add(req2);
+    }else{
 
-    if (req.isSucceeded()) {
-      Node parent = this.getParent();
-      parent.removeNode(this.getId());
-      this.setParent(null);
+      HttpRequest req = new HttpRequest();
+      req.setRequestUrl("/" + NodeTypeUtils.typeUrl(this.getType()) + "/" + this.getId());
+      req.setRequestMethod("DELETE");
+      req.setRequestCookie(this.getRequestCookie());
+      req.send();
+      res.add(req);
+
+      if (req.isSucceeded()) {
+        Node parent = this.getParent();
+        parent.removeNode(this.getId());
+        this.setParent(null);
+        
+        StructureRequest req2 = new StructureRequest(true, false, this);
+        res.add(req2);
+      }
     }
-
     return res;
   }
 

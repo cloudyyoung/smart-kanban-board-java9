@@ -1,6 +1,8 @@
 package structure;
 
 import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
+
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.HashMap;
@@ -29,6 +31,12 @@ public final class HttpBody extends HashMap<Object, Object> {
   /** Default constructor of {@code HttpBody}. */
   public HttpBody() {
     super();
+  }
+
+  public HttpBody(Object obj){
+    Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+    Map<Object, Object> map = gson.fromJson(gson.toJson(obj), new TypeToken<Map<Object, Object>>(){}.getType());
+    this.parseMap(map);
   }
 
   /**
