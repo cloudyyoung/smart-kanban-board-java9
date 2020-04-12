@@ -477,7 +477,7 @@
          </center>
       </BorderPane>
       <Pane id="dragPane" fx:id="dragPane" mouseTransparent="true" />
-      <VBox fx:id="promptBoard">
+      <VBox fx:id="promptBoard" styleClass="prompt-cover">
          <children>
             <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="bg-prompt">
                <content>
