@@ -22,6 +22,7 @@ public class ColumnComponent extends VBox {
   public static Label promptColumnPromptTitle;
   public static TextArea promptColumnTitle;
   public static ComboBox<String> promptColumnPreset;
+  public static Button columnDelete;
 
   private Column node;
   private BoardComponent parent;
@@ -99,5 +100,10 @@ public class ColumnComponent extends VBox {
     promptColumnPromptTitle.setText("Edit column");
     promptColumnTitle.setText(this.node.getTitle());
     promptColumnPreset.getSelectionModel().select(this.node.getPreset());
+    if(this.node.isOnlyPreset()){
+      columnDelete.getStyleClass().add("hide");
+    }else{
+      columnDelete.getStyleClass().remove("hide");
+    }
   }
 }
