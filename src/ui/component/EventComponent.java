@@ -71,6 +71,9 @@ public class EventComponent extends Button {
   }
 
   public void display() {
+    if(this.node == null || this.node.getParent() == null){
+      return;
+    }
     if (((Column) this.node.getParent()).getPreset() == Column.DONE) {
       this.setStyle("-fx-accent: -fx-accent-60 !important;");
       icon.setContent(CHECK_ICON);

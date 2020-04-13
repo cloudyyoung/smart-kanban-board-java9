@@ -141,7 +141,7 @@ public final class StructureRequest extends Request {
    * @return {@inheritDoc}
    */
   public HttpBody getResponseBody() {
-    return new Gson().fromJson(this.responseBody, HttpBody.class);
+    return new HttpBody(new Gson().fromJson(this.responseBody, Map.class));
   }
 
   /**

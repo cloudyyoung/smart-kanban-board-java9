@@ -242,7 +242,7 @@ public abstract class Node {
       res.add(req2);
     }else if (this instanceof Event) {
       String parentType = NodeTypeUtils.typeUrl(this.getParentType());
-      HttpRequest req = this.set(parentType + "_id", parent.getId() + "");
+      HttpRequest req = this.update(parentType + "_id", parent.getId() + "");
       res.add(req);
 
       if (req.isSucceeded()) {
@@ -292,7 +292,7 @@ public abstract class Node {
       StructureRequest req = new StructureRequest(true, false, this);
       res.add(req);
     }else{
-      HttpRequest req = this.set("title", title);
+      HttpRequest req = this.update("title", title);
       res.add(req);
 
       if (req.isSucceeded()) {
@@ -331,7 +331,7 @@ public abstract class Node {
       StructureRequest req = new StructureRequest(true, false, this);
       res.add(req);
     }else{
-      HttpRequest req = this.set("note", note);
+      HttpRequest req = this.update("note", note);
       res.add(req);
 
       if (req.isSucceeded()) {
@@ -360,7 +360,7 @@ public abstract class Node {
    * @param value the value of the property
    * @return the http request of this action, of sending the request to the server
    */
-  protected final HttpRequest set(Object key, Object value) {
+  protected final HttpRequest update(Object key, Object value) {
     HttpBody body = new HttpBody();
     body.put(key, value);
 
@@ -508,8 +508,7 @@ public abstract class Node {
         res.add(req2);
       }
     }
-    
-
+    System.out.println(res);
     return res;
   }
 
@@ -520,7 +519,7 @@ public abstract class Node {
    *
    * @return the result object of this action
    */
-  public Result removeRequest() {
+  public Result deleteRequest() {
     Result res = new Result();
 
     if(!this.isExisting()){
@@ -538,13 +537,14 @@ public abstract class Node {
 
       if (req.isSucceeded()) {
         Node parent = this.getParent();
-        parent.removeNode(this.getId());
+        parent.removeNode(this);
         this.setParent(null);
         
         StructureRequest req2 = new StructureRequest(true, false, this);
         res.add(req2);
       }
     }
+    System.out.println(res);
     return res;
   }
 

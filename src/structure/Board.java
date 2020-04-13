@@ -73,7 +73,7 @@ public final class Board extends Node {
       StructureRequest req = new StructureRequest(true, false, this);
       res.add(req);
     }else{
-      HttpRequest req = this.set("color", color);
+      HttpRequest req = this.update("color", color);
       if (req.isSucceeded()) {
         this.setColor(color);
       }

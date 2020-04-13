@@ -53,7 +53,7 @@ public final class Column extends Node {
       StructureRequest req = new StructureRequest(true, false, this);
       res.add(req);
     }else{
-      HttpRequest req = this.set("preset", preset);
+      HttpRequest req = this.update("preset", preset);
       if (req.isSucceeded()) {
         this.setPreset(preset);
 

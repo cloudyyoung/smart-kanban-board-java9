@@ -310,26 +310,26 @@ public class HomeController {
 
   @FXML
   void deleteBoardRequest() {
-    currentBoard.getNode().removeRequest();
-    currentBoard = null;
+    currentBoard.getNode().deleteRequest();
     this.listBoard();
+    currentBoard = null;
     this.closePrompt();
   }
 
   @FXML
   void deleteEventRequest() {
-    currentEvent.getNode().removeRequest();
-    currentEvent = null;
-    Kanban.getCurrent().generateToday();
+    currentEvent.getNode().deleteRequest();
     currentEvent.getParentComponent().list();
+    Kanban.getCurrent().generateToday();
+    currentEvent = null;
     this.closePrompt();
   }
 
   @FXML
   void deleteColumnRequest() {
-    currentColumn.getNode().removeRequest();
-    currentColumn = null;
+    currentColumn.getNode().deleteRequest();
     currentColumn.getParentComponent().list();
+    currentColumn = null;
     this.closePrompt();
   }
 
@@ -357,6 +357,7 @@ public class HomeController {
 
   public static String styleAccent(String hex) {
     String style = "";
+    if(hex == null || hex.equals("")) hex = "#242424";
     style += "-fx-accent: " + hex + ";";
     style += "-fx-accent-90: " + hex + "e6;";
     style += "-fx-accent-80: " + hex + "cc;";

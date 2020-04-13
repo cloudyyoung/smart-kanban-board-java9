@@ -64,7 +64,7 @@ public class Event extends Node {
       StructureRequest req = new StructureRequest(true, false, this);
       res.add(req);
     }else{
-      HttpRequest req = this.set("duration", duration);
+      HttpRequest req = this.update("duration", duration);
       res.add(req);
 
       if (req.isSucceeded()) {
@@ -98,7 +98,7 @@ public class Event extends Node {
       StructureRequest req = new StructureRequest(true, false, this);
       res.add(req);
     }else{
-      HttpRequest req = this.set("importance_level", importance);
+      HttpRequest req = this.update("importance_level", importance);
       res.add(req);
 
       if (req.isSucceeded()) {
@@ -118,7 +118,7 @@ public class Event extends Node {
 
   public Result setDueDateRequest(Long dueDate) {
     Result res = new Result();
-    HttpRequest req = this.set("due_date", dueDate);
+    HttpRequest req = this.update("due_date", dueDate);
     res.add(req);
 
     if (req.isSucceeded()) {
