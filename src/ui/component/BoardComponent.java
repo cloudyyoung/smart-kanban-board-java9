@@ -29,7 +29,7 @@ public class BoardComponent extends Button {
 
   @FXML
   void open(ActionEvent e){
-    HomeController.currentBoard = this;
+    this.parentController.currentBoard = this;
     this.parentController.boardEdit.setVisible(!this.node.isSpecialized());
 
     HashSet<Node> sideButtons = new HashSet<Node>();
@@ -78,6 +78,30 @@ public class BoardComponent extends Button {
 
   public String getColor() {
     return this.node.getColor();
+  }
+
+  @FXML
+  public void update(ActionEvent e){
+    this.displayPrompt();
+    this.parentController.promptBoardPromptTitle.setText("Edit Board");
+    this.parentController.show(this.parentController.boardDelete, this.parentController.boardChildCreate);
+    this.parentController.hide(this.parentController.boardCreate);
+  }
+
+  @FXML
+  void create(ActionEvent e){
+    this.displayPrompt();
+    this.parentController.promptBoardPromptTitle.setText("Create Board");
+    this.parentController.hide(this.parentController.boardDelete);
+    this.parentController.hide(this.parentController.boardDelete, this.parentController.boardChildCreate);
+    this.parentController.show(this.parentController.boardCreate);
+  }
+
+  private void displayPrompt(){
+    this.parentController.textHolder.textProperty().bind(this.parentController.promptBoardTitle.textProperty());
+    this.parentController.promptBoardTitle.setText(this.parentController.currentBoard.getNode().getTitle());
+    this.parentController.promptBoardNote.setText(this.parentController.currentBoard.getNode().getNote());
+    this.parentController.show(this.parentController.promptBoard);
   }
 
   @FXML

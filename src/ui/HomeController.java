@@ -105,12 +105,19 @@ public class HomeController {
   public Button eventCreate;
   @FXML
   public Button columnCreate;
+  @FXML
+  public Button boardDelete;
+  @FXML
+  public Button boardChildCreate;
+  @FXML
+  public Button boardCreate;
 
-  public static EventComponent currentEvent;
-  public static BoardComponent currentBoard;
-  public static ColumnComponent currentColumn;
-  public static VBox originalParent;
-  public static Button currentDragButton;
+  public EventComponent currentEvent;
+  public BoardComponent currentBoard;
+  public ColumnComponent currentColumn;
+  public VBox originalParent;
+  public Button currentDragButton;
+  
 
   @FXML
   void initialize() {
@@ -215,8 +222,8 @@ public class HomeController {
         currentColumn.getNode().setTitleRequest(promptColumnTitle.getText());
     });
 
-    sidePane.requestFocus();
-    listBoard();
+    this.sidePane.requestFocus();
+    this.listBoard();
 
     // set transparent to 100
     dragPane.setMouseTransparent(true);
@@ -281,35 +288,30 @@ public class HomeController {
 
   @FXML
   void closePrompt() {
-    promptEvent.getStyleClass().setAll("prompt-cover", "hide");
-    promptBoard.getStyleClass().setAll("prompt-cover", "hide");
-    promptColumn.getStyleClass().setAll("prompt-cover", "hide");
-    if (currentEvent != null) {
-      currentEvent.display();
-      currentEvent = null;
+    this.hide(this.promptEvent, this.promptBoard, this.promptColumn);
+    if (this.currentEvent != null) {
+      this.currentEvent.display();
+      this.currentEvent = null;
     }
-    if (currentBoard != null) {
-      currentBoard.display();
-      currentBoard.fire();
-      currentBoard = null;
+    if (this.currentBoard != null) {
+      this.currentBoard.display();
+      this.currentBoard.fire();
     }
-    if (currentColumn != null) {
-      currentColumn.display();
-      currentColumn = null;
+    if (this.currentColumn != null) {
+      this.currentColumn.display();
+      this.currentColumn = null;
     }
   }
 
   @FXML
-  void updateBoardRequest() {
-    textHolder.textProperty().bind(promptBoardTitle.textProperty());
-    promptBoard.getStyleClass().remove("hide");
-    promptBoardTitle.setText(currentBoard.getNode().getTitle());
-    promptBoardNote.setText(currentBoard.getNode().getNote());
+  void displayBoardPrompt(ActionEvent e) {
+    currentBoard.update(e);
   }
 
   @FXML
   void deleteBoardRequest() {
     currentBoard.getNode().removeRequest();
+    currentBoard = null;
     this.listBoard();
     this.closePrompt();
   }
@@ -317,6 +319,7 @@ public class HomeController {
   @FXML
   void deleteEventRequest() {
     currentEvent.getNode().removeRequest();
+    currentEvent = null;
     Kanban.getCurrent().generateToday();
     currentEvent.getParentComponent().list();
     this.closePrompt();
@@ -325,6 +328,7 @@ public class HomeController {
   @FXML
   void deleteColumnRequest() {
     currentColumn.getNode().removeRequest();
+    currentColumn = null;
     currentColumn.getParentComponent().list();
     this.closePrompt();
   }
@@ -338,7 +342,8 @@ public class HomeController {
   }
 
   @FXML
-  void createColumnChild(ActionEvent e){
+  void createBoardChild(ActionEvent e){
+    this.closePrompt();
     currentBoard.createChild(e);
   }
 
@@ -383,5 +388,21 @@ public class HomeController {
     } 
     currentDragButton = null;
     originalParent = null;
+  }
+
+  public void hide(Node... nodes){
+    for(Node each : nodes){
+      if(!each.getStyleClass().contains("hide")){
+        each.getStyleClass().add("hide");
+      }
+    }
+  }
+
+  public void show(Node... nodes){
+    for(Node each : nodes){
+      while(each.getStyleClass().contains("hide")){
+        each.getStyleClass().remove("hide");
+      }
+    }
   }
 }

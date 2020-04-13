@@ -127,14 +127,12 @@ public final class StructureRequest extends Request {
    * Sets the error message to the response body of the instance.
    *
    * @param message the specified error message to set
-   * @return {@code HttpBody} the message added
    */
-  public HttpBody setErrorMessage(String message) {
-    HttpBody body = new Gson().fromJson(this.responseBody, HttpBody.class);
+  public void setErrorMessage(String message) {
+    HttpBody body = this.getResponseBody();
     HttpBody error = body.getHttpBody("error");
     error.put("message", message);
-    this.responseBody = body.toString();
-    return body;
+    this.setResponseBody(body);
   }
 
   /**

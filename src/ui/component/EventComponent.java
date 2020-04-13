@@ -88,19 +88,21 @@ public class EventComponent extends Button {
   @FXML
   void update(ActionEvent e){
     this.displayPrompt();
-    this.parentController.eventDelete.getStyleClass().remove("hide");
-    this.parentController.eventCreate.getStyleClass().add("hide");
+    this.parentController.show(this.parentController.eventDelete);
+    this.parentController.hide(this.parentController.eventCreate);
+    this.parentController.promptEventPromptTitle.setText("Edit event");
   }
 
   @FXML
   void create(ActionEvent e){
     this.displayPrompt();
-    this.parentController.eventDelete.getStyleClass().add("hide");
-    this.parentController.eventCreate.getStyleClass().remove("hide");
+    this.parentController.hide(this.parentController.eventDelete);
+    this.parentController.show(this.parentController.eventCreate);
+    this.parentController.promptEventPromptTitle.setText("Create event");
   }
 
   private void displayPrompt(){
-    HomeController.currentEvent = this;
+    this.parentController.currentEvent = this;
     this.parentController.textHolder.textProperty().bind(this.parentController.promptEventTitle.textProperty());
 
     this.parentController.promptEventTitle.setText(this.node.getTitle());
@@ -117,9 +119,8 @@ public class EventComponent extends Button {
         .select(this.node.getDurationValue().intValue() / 3600);
     this.parentController.promptEventNote.setText(this.node.getNote());
     this.parentController.promptEventIcon.setContent(icon.getContent());
-    this.parentController.promptEventPromptTitle.setText("Edit event");
     this.parentController.promptEvent.setStyle(HomeController.styleAccent(this.getColor()));
-    this.parentController.promptEvent.getStyleClass().remove("hide");
+    this.parentController.show(this.parentController.promptEvent);
   }
 
   @FXML
@@ -131,17 +132,17 @@ public class EventComponent extends Button {
   @FXML
   void EventDragDetected(MouseEvent event) {
       // clean bug card
-      if (HomeController.currentDragButton != null && HomeController.originalParent != null) {
-        HomeController.originalParent.getChildren().add(HomeController.currentDragButton);
-        HomeController.currentDragButton = null;
+      if (this.parentController.currentDragButton != null && this.parentController.originalParent != null) {
+    	  this.parentController.originalParent.getChildren().add(this.parentController.currentDragButton);
+    	  this.parentController.currentDragButton = null;
       }
 
       Button card = (Button) event.getSource();
       card.setLayoutX(event.getSceneX());
       card.setLayoutY(event.getSceneY());
       card.startFullDrag();
-      HomeController.originalParent = (VBox) card.getParent();
-      HomeController.currentDragButton = card;
+      this.parentController.originalParent = (VBox) card.getParent();
+      this.parentController.currentDragButton = card;
       this.parentController.dragPane.getChildren().add(card);
   }
 }

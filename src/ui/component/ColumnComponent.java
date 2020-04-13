@@ -90,40 +90,38 @@ public class ColumnComponent extends VBox {
     this.display();
     this.list();
     if (this.node.getParent().isSpecialized()) {
-      columnEdit.getStyleClass().add("hide");
-      eventCreate.getStyleClass().add("hide");
+      this.parentController.hide(this.columnEdit, this.eventCreate);
     } else {
-      columnEdit.getStyleClass().remove("hide");
-      eventCreate.getStyleClass().remove("hide");
+      this.parentController.show(this.columnEdit, this.eventCreate);
     }
   }
 
   @FXML
   void update(ActionEvent e) {
     this.displayPrompt();
-    this.parentController.columnDelete.getStyleClass().remove("hide");
-    this.parentController.columnCreate.getStyleClass().add("hide");
+    this.parentController.hide(this.parentController.columnCreate);
+    if (this.node.isOnlyPreset()) {
+      this.parentController.hide(this.parentController.columnDelete);
+    } else {
+      this.parentController.show(this.parentController.columnDelete);
+    }
+    this.parentController.promptColumnPromptTitle.setText("Edit column");
   }
 
   @FXML
   void create(ActionEvent e){
     this.displayPrompt();
-    this.parentController.columnDelete.getStyleClass().add("hide");
-    this.parentController.columnCreate.getStyleClass().remove("hide");
+    this.parentController.hide(this.parentController.columnDelete);
+    this.parentController.show(this.parentController.columnCreate);
+    this.parentController.promptColumnPromptTitle.setText("Create column");
   }
 
   private void displayPrompt(){
-    HomeController.currentColumn = this;
+    this.parentController.currentColumn = this;
     this.parentController.promptColumn.setStyle(HomeController.styleAccent(this.getColor()));
-    this.parentController.promptColumn.getStyleClass().remove("hide");
-    this.parentController.promptColumnPromptTitle.setText("Edit column");
+    this.parentController.show(this.parentController.promptColumn);
     this.parentController.promptColumnTitle.setText(this.node.getTitle());
     this.parentController.promptColumnPreset.getSelectionModel().select(this.node.getPreset());
-    if (this.node.isOnlyPreset()) {
-      this.parentController.columnDelete.getStyleClass().add("hide");
-    } else {
-      this.parentController.columnDelete.getStyleClass().remove("hide");
-    }
   }
 
   @FXML
