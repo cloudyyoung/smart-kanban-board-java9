@@ -223,11 +223,10 @@ public class HomeController {
         currentColumn.getNode().setTitleRequest(promptColumnTitle.getText());
     });
 
-    this.sidePane.requestFocus();
-    this.list();
-
-    // set transparent to 100
     dragPane.setMouseTransparent(true);
+
+    this.list();
+    this.tabPane.requestFocus();
   }
 
   @FXML
@@ -302,6 +301,7 @@ public class HomeController {
       this.currentColumn.display();
       this.currentColumn = null;
     }
+    this.tabPane.requestFocus();
   }
 
   @FXML

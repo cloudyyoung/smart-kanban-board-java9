@@ -20,6 +20,10 @@ public class Kanban extends Node {
   private Column todayToDo;
   private Column todayInProgress;
   private Column todayDone;
+  private Board overview;
+  private Column overviewToDo;
+  private Column overviewInProgress;
+  private Column overviewDone;
 
   /**
    * Constructor of {@code Kanban}
@@ -40,6 +44,16 @@ public class Kanban extends Node {
     this.todayToDo.setSpecialized(true);
     this.todayInProgress.setSpecialized(true);
     this.todayDone.setSpecialized(true);
+
+    this.overview = new Board("Overview", "Here is an overview of all your tasks", "#242424", this);
+    this.overviewToDo = new Column("To Do", "", 0, overview);
+    this.overviewInProgress = new Column("In Progress", "", 0, overview);
+    this.overviewDone = new Column("Done", "", 0, overview);
+
+    this.overview.setSpecialized(true);
+    this.overviewToDo.setSpecialized(true);
+    this.overviewInProgress.setSpecialized(true);
+    this.overviewDone.setSpecialized(true);
   }
 
   /**
@@ -85,10 +99,10 @@ public class Kanban extends Node {
     this.todayInProgress.clearNodes();
     this.todayDone.clearNodes();
 
-    Column candicates = new Column("temp", "temp", 0, null); // candidates column, store tasks which may be added into today as new
-    candicates.setSpecialized(true);
+    Column candidates = new Column("Candidates", "", 0, null); // candidates column, store tasks which may be added into today as new
+    candidates.setSpecialized(true);
 
-    // Adding all the generated events
+    // First Loop: Adding all the events
     for (Node board : this.getNodes()) {
       if (board.isSpecialized()) {
         continue;
@@ -106,7 +120,7 @@ public class Kanban extends Node {
               if(event.isOnGeneratedToday() || event.isBeforeGeneratedToday()){
                 event.setParent(this.todayToDo);
               }else{
-                event.setParent(candicates);
+                event.setParent(candidates);
               }
 
             case Column.IN_PROGRESS: // For in Progress list: include the past and present tasks only
@@ -125,19 +139,17 @@ public class Kanban extends Node {
       }
     }
 
-    // second loop to add new available events that has not generated today
-    for (Node node : candicates.getNodes(Node.SORT_BY_PRIORITY, Node.ORDER_BY_ASC)) {
+    // Second loop: Add new available events from candicates
+    for (Node node : candidates.getNodes(Node.SORT_BY_PRIORITY, Node.ORDER_BY_ASC)) {
       Event event = (Event) node;
       if (this.hasEnoughTime((Event) event)) {
-        // is has enough time add it
         event.setParent(this.todayToDo);
-        // update its lastGeneratedDate to current time
         event.setLastGeneratedDateRequest();
       }
     }
   }
 
-  public boolean hasEnoughTime(Event eventNext) {
+  private boolean hasEnoughTime(Event eventNext) {
     Long totalTime = Long.valueOf(User.getCurrent().getTodayAvailability()) * 3600;
     Long timeAccumulator = 0l;
     for (Node node : this.todayToDo.getNodes()) {
@@ -160,11 +172,10 @@ public class Kanban extends Node {
    */
   public void generateOverview() {
 
-    this.todayToDo.clearNodes();
-    this.todayInProgress.clearNodes();
-    this.todayDone.clearNodes();
-    Column tempColumn = new Column("temp", "temp", 0, null);
-    tempColumn.setSpecialized(true);
+    this.overviewToDo.clearNodes();
+    this.overviewInProgress.clearNodes();
+    this.overviewDone.clearNodes();
+
 
     // All todo
     for (Node board : this.getNodes()) {
@@ -172,29 +183,24 @@ public class Kanban extends Node {
         for (Node node : board.getNodes()) {
           Column column = (Column) node;
           for (Node event : column.getNodes()) {
-            System.out.println("---- TODAY ----");
-            if (column.getPreset() == Column.TO_DO) {
-              // this.todayToDo.addNode(event);
-              event.setParent(tempColumn);
-            } else if (column.getPreset() == Column.IN_PROGRESS) {
-              // this.todayInProgress.addNode(event);
-              event.setParent(this.todayInProgress);
-            } else {
-              if (!((Event) event).isOverdue()) {
-                event.setParent(this.todayDone);
-              }
-              // this.todayDone.addNode(event);
+
+            switch(column.getPreset()){
+              case Column.TO_DO:
+                event.setParent(this.overviewToDo);
+                break;
+
+              case Column.IN_PROGRESS:
+                event.setParent(this.todayInProgress);
+                break;
+
+              case Column.DONE:
+                if (!((Event) event).isOverdue()) { // Only include the task when it's not overdue
+                  event.setParent(this.todayDone);
+                }
             }
+
           }
         }
-      }
-    }
-
-    for (Node node : tempColumn.getNodes(Node.SORT_BY_PRIORITY, Node.ORDER_BY_ASC)) {
-      Event event = (Event) node;
-      System.out.println(event.getTitle() + ": " + event.getPriority());
-      if (todayToDo.hasEnoughTime((Event) event)) {
-        event.setParent(this.todayToDo);
       }
     }
   }
