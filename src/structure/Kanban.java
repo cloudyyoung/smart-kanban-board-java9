@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * The instance should contains {@code Board} object as children nodes.
  *
  * @since 1.0
- * @version 2.1
+ * @version 4.1
  */
 public class Kanban extends Node {
 
@@ -99,7 +99,8 @@ public class Kanban extends Node {
     this.todayInProgress.clearNodes();
     this.todayDone.clearNodes();
 
-    Column candidates = new Column("Candidates", "", 0, null); // candidates column, store tasks which may be added into today as new
+    Column candidates = new Column("Candidates", "", 0, null); // candidates column, store tasks which may be added into
+                                                               // today as new
     candidates.setSpecialized(true);
 
     // First Loop: Adding all the events
@@ -114,23 +115,24 @@ public class Kanban extends Node {
           Event event = (Event) event_node;
           Column column = (Column) column_node;
 
-          switch(column.getPreset()){
+          switch (column.getPreset()) {
 
-            case Column.TO_DO: // For To Do list: include the past and present task and store the rest as candicates
-              if(event.isOnGeneratedToday() || event.isBeforeGeneratedToday()){
+            case Column.TO_DO: // For To Do list: include the past and present task and store the rest as
+                               // candicates
+              if (event.isOnGeneratedToday() || event.isBeforeGeneratedToday()) {
                 event.setParent(this.todayToDo);
-              }else{
+              } else {
                 event.setParent(candidates);
               }
 
             case Column.IN_PROGRESS: // For in Progress list: include the past and present tasks only
-              if(event.isOnGeneratedToday() || event.isBeforeGeneratedToday()){
+              if (event.isOnGeneratedToday() || event.isBeforeGeneratedToday()) {
                 event.setParent(this.todayInProgress);
               }
               break;
 
             case Column.DONE: // For Done list: include only the present tasks
-              if(event.isOnGeneratedToday()){
+              if (event.isOnGeneratedToday()) {
                 event.setParent(this.todayDone);
               }
 
@@ -186,7 +188,7 @@ public class Kanban extends Node {
         Column column = (Column) node;
         for (Node event : column.getNodes()) {
 
-          switch(column.getPreset()){
+          switch (column.getPreset()) {
             case Column.TO_DO:
               event.setParent(this.overviewToDo);
               break;
