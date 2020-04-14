@@ -220,9 +220,11 @@ public abstract class Node {
         System.out.println("set parent");
       }
 
-      if(this.isExisting()){
+      if(this.isExisting() && !parent.isSpecialized()){
         this.getParent().addNode(this);
         System.out.println("parent add node");
+      }else if(parent.isSpecialized()){
+        parent.addNode(this);
       }
     } else {
       // Remove parent
