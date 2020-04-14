@@ -223,8 +223,6 @@ public abstract class Node {
       if(this.isExisting() && !parent.isSpecialized()){
         this.getParent().addNode(this);
         System.out.println("parent add node");
-      }else{
-        parent.addNode(this);
       }
     } else {
       // Remove parent
