@@ -45,7 +45,7 @@ public class Kanban extends Node {
     this.todayInProgress.setSpecialized(true);
     this.todayDone.setSpecialized(true);
 
-    this.overview = new Board("Overview", "Here is an overview of all your tasks", "#242424", this);
+    this.overview = new Board("Overview", "Here is an overview of all your tasks", "#58b089", this);
     this.overviewToDo = new Column("To Do", "", 0, overview);
     this.overviewInProgress = new Column("In Progress", "", 0, overview);
     this.overviewDone = new Column("Done", "", 0, overview);
@@ -154,15 +154,11 @@ public class Kanban extends Node {
   private boolean hasEnoughTime(Event eventNext) {
     Long totalTime = Long.valueOf(User.getCurrent().getTodayAvailability()) * 3600;
     Long timeAccumulator = 0l;
-    for (Node node : this.todayToDo.getNodes()) {
-      final Event event = (Event) node;
-      timeAccumulator += event.getDurationValue();
-    }
-    for (Node node : this.todayInProgress.getNodes()) {
-      final Event event = (Event) node;
-      timeAccumulator += event.getDurationValue();
-    }
-    for (Node node : this.todayDone.getNodes()) {
+    ArrayList<Node> admissions = new ArrayList<Node>();
+    admissions.add(this.todayToDo);
+    admissions.add(this.todayInProgress);
+    admissions.add(this.todayDone);
+    for (Node node : admissions) {
       final Event event = (Event) node;
       timeAccumulator += event.getDurationValue();
     }
