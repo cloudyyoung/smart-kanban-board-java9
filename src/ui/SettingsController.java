@@ -107,7 +107,7 @@ public class SettingsController {
   }
 
   @FXML
-  void signout(ActionEvent event) {
+  void signOut(ActionEvent event) {
     User.getCurrent().signOut();
     try {
       Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

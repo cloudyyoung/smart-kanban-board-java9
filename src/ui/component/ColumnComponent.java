@@ -2,33 +2,38 @@ package ui.component;
 
 import java.util.ArrayList;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
-
+import javafx.scene.input.MouseDragEvent;
+import javafx.scene.input.MouseEvent;
 import structure.*;
+import ui.HomeController;
 
 public class ColumnComponent extends VBox {
 
-  @FXML private Label eventCount;
-  @FXML private TextField columnTitle;
-  @FXML private Button eventAdd;
-  @FXML private Button columnEdit;
-  @FXML private VBox eventList;
-
-  public static VBox promptColumn;
-  public static Label promptColumnPromptTitle;
-  public static TextArea promptColumnTitle;
-  public static ComboBox<String> promptColumnPreset;
+  @FXML
+  private Label eventCount;
+  @FXML
+  private TextField columnTitle;
+  @FXML
+  private Button eventCreate;
+  @FXML
+  private Button columnEdit;
+  @FXML
+  private VBox eventList;
 
   private Column node;
   private BoardComponent parent;
+  private HomeController parentController;
 
-  public ColumnComponent(Column node, BoardComponent parent) {
+  public ColumnComponent(Column node, BoardComponent parent, HomeController parentController) {
     super();
     this.node = node;
     this.parent = parent;
-    this.load();
+    this.parentController = parentController;
+    this.loadDisplay();
   }
 
   public Column getNode() {
@@ -43,7 +48,11 @@ public class ColumnComponent extends VBox {
     return this.parent;
   }
 
-  private final void load() {
+  public VBox getEventList() {
+    return this.eventList;
+  }
+
+  private final void loadDisplay() {
     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("column.fxml"));
     fxmlLoader.setRoot(this);
     fxmlLoader.setController(this);
@@ -55,7 +64,7 @@ public class ColumnComponent extends VBox {
     }
   }
 
-  public void listEvent() {
+  public void list() {
     ArrayList<structure.Node> list = null;
     if (this.node.getParent().getId() == 1) {
       list = this.node.getNodes(structure.Node.SORT_BY_PRIORITY, structure.Node.ORDER_BY_ASC);
@@ -65,29 +74,73 @@ public class ColumnComponent extends VBox {
     // System.out.println(list);
 
     eventList.getChildren().clear();
-    for (Node each : list) {
-      EventComponent event = new EventComponent(each, this);
+    for (structure.Node each : list) {
+      EventComponent event = new EventComponent(each, this, this.parentController);
       eventList.getChildren().add(event);
     }
     eventCount.setText(list.size() + "");
   }
 
-  public void update() {
+  public void display() {
     columnTitle.setText(this.node.getTitle());
   }
 
   @FXML
   void initialize() {
-    this.update();
-    this.listEvent();
+    this.display();
+    this.list();
+    if (this.node.getParent().isSpecialized()) {
+      this.parentController.hide(this.columnEdit, this.eventCreate);
+    } else {
+      this.parentController.show(this.columnEdit, this.eventCreate);
+    }
   }
 
   @FXML
-  void editColumn() {
-    promptColumn.getStyleClass().remove("hide");
-    promptColumnPromptTitle.setText("Edit column");
-    promptColumnTitle.setText(this.node.getTitle());
-    promptColumnPreset.getItems().clear();
-    promptColumnPreset.getItems().addAll("To Do", "In Progress", "Done");
+  void update(ActionEvent e) {
+    this.displayPrompt();
+    this.parentController.hide(this.parentController.columnCreate);
+    if (this.node.isOnlyPreset()) {
+      this.parentController.hide(this.parentController.columnDelete);
+    } else {
+      this.parentController.show(this.parentController.columnDelete);
+    }
+    this.parentController.promptColumnPromptTitle.setText("Edit column");
+  }
+
+  @FXML
+  void create(ActionEvent e){
+    this.displayPrompt();
+    this.parentController.hide(this.parentController.columnDelete);
+    this.parentController.show(this.parentController.columnCreate);
+    this.parentController.promptColumnPromptTitle.setText("Create column");
+  }
+
+  private void displayPrompt(){
+    this.parentController.currentColumn = this;
+    this.parentController.promptColumn.setStyle(HomeController.styleAccent(this.getColor()));
+    this.parentController.show(this.parentController.promptColumn);
+    this.parentController.promptColumnTitle.setText(this.node.getTitle());
+    this.parentController.promptColumnPreset.getSelectionModel().select(this.node.getPreset());
+  }
+
+  @FXML
+  void createChild(ActionEvent e) {
+    Event event = new Event("Untitled Event", "", null, null, 0, this.node);
+    EventComponent eventComponent = new EventComponent(event, this, this.parentController);
+    eventComponent.create(e);
+  }
+
+  // drag
+  @FXML
+  void MouseDragReleased(MouseDragEvent event) {
+    ColumnComponent current = (ColumnComponent) event.getSource();
+    EventComponent button = (EventComponent) event.getGestureSource();
+    current.getEventList().getChildren().add(button);
+
+    // System.out.println(current.getNode());
+    // System.out.println(button.getNode());
+    
+    System.out.println(button.getNode().setParentRequest(current.getNode()));
   }
 }

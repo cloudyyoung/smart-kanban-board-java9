@@ -38,6 +38,7 @@ public abstract class Node {
   /**
    * The parent id of the instance. It is exposed to Gson, can be both serialized and deserialized.
    */
+  @SerializedName("parent_id")
   @Expose private Integer parentId;
 
   /**
@@ -52,7 +53,9 @@ public abstract class Node {
   /** The children {@code Node} object of the instance. */
   private LinkedHashMap<Integer, Node> nodes = new LinkedHashMap<Integer, Node>();
 
-  private static int idAutoIncrement = 1;
+  private int idAutoIncrement = 1;
+
+  private boolean specialized = false;
 
   /**
    * The dictionary of the {@code Node} hierarchy. It is used to identify the parent or children
@@ -73,15 +76,15 @@ public abstract class Node {
       };
 
   /**
-   * Constructor of {@code Node}, provide id, title and note.
+   * Constructor of {@code Node}, provide title, note and parent.
    *
    * @param id the id in {@code int}
    * @param title the title in {@code String}
    * @param note the note in {@code String}
    * @param parent the parent node in {@code Node}
    */
-  public Node(String title, String note, Node parent) {
-    this.setId(idAutoIncrement++);
+  protected Node(String title, String note, Node parent) {
+    this.setId(parent.idAutoIncrement++);
     this.setTitle(title);
     this.setNote(note);
     this.setParent(parent);
@@ -99,6 +102,7 @@ public abstract class Node {
     if (this instanceof Kanban == false) {
       this.setTitle(obj.getString("title"));
       this.setNote(obj.getString("note"));
+      this.existing = true;
     }
     if (this.getChildType() != null) {
       this.extractChildrenNodes(obj);
@@ -111,12 +115,12 @@ public abstract class Node {
    * @param obj the object to map in {@code HttpBody}
    */
   private final void extractChildrenNodes(HttpBody obj) {
-    String childType = Node.typeLower(Node.typePlural(this.getChildType()));
+    String childType = NodeTypeUtils.typeUrl(this.getChildType());
     HttpBody value = obj.getList(childType);
     Collection<Object> list = value.values();
     for (Object each2 : list) {
       try {
-        String type = Node.typeClass(childType);
+        String type = NodeTypeUtils.typeClass(childType);
         Class<?> cls = Class.forName(type);
         Constructor<?> constructor = cls.getConstructor(HttpBody.class);
         Object objNew = constructor.newInstance(each2);
@@ -211,7 +215,10 @@ public abstract class Node {
       // Set new parent
       this.parent = parent;
       this.parentId = this.parent.getId();
-      this.getParent().addNode(this);
+
+      if(this.isExisting() || this.isSpecialized()){
+        this.getParent().addNode(this);
+      }
     } else {
       // Remove parent
       this.parent = null;
@@ -229,9 +236,13 @@ public abstract class Node {
    */
   public final Result setParentRequest(Node parent) {
     Result res = new Result();
-    if (this instanceof Event) {
-      String parentType = Node.typeLower(Node.typePlural(this.getParentType()));
-      HttpRequest req = this.set(parentType + "_id", parent.getId() + "");
+    if(!this.isExisting()){
+      this.setParent(parent);
+      StructureRequest req2 = new StructureRequest(true, false, this);
+      res.add(req2);
+    }else if (this instanceof Event) {
+      String parentType = NodeTypeUtils.typeUrl(this.getParentType());
+      HttpRequest req = this.update(parentType + "_id", parent.getId() + "");
       res.add(req);
 
       if (req.isSucceeded()) {
@@ -244,7 +255,7 @@ public abstract class Node {
       req2.setErrorMessage("Instance can only be type of Event");
       res.add(req2);
     }
-    return null;
+    return res;
   }
 
   /**
@@ -275,12 +286,23 @@ public abstract class Node {
    */
   public final Result setTitleRequest(String title) {
     Result res = new Result();
-    HttpRequest req = this.set("title", title);
-    res.add(req);
-
-    if (req.isSucceeded()) {
+    if(!this.isExisting()){
       this.setTitle(title);
+
+      StructureRequest req = new StructureRequest(true, false, this);
+      res.add(req);
+    }else{
+      HttpRequest req = this.update("title", title);
+      res.add(req);
+
+      if (req.isSucceeded()) {
+        this.setTitle(title);
+
+        StructureRequest req2 = new StructureRequest(true, false, this);
+        res.add(req2);
+      }
     }
+    
     return res;
   }
 
@@ -303,11 +325,21 @@ public abstract class Node {
    */
   public final Result setNoteRequest(String note) {
     Result res = new Result();
-    HttpRequest req = this.set("note", note);
-    res.add(req);
-
-    if (req.isSucceeded()) {
+    if(!this.isExisting()){
       this.setNote(note);
+        
+      StructureRequest req = new StructureRequest(true, false, this);
+      res.add(req);
+    }else{
+      HttpRequest req = this.update("note", note);
+      res.add(req);
+
+      if (req.isSucceeded()) {
+        this.setNote(note);
+        
+        StructureRequest req2 = new StructureRequest(true, false, this);
+        res.add(req2);
+      }
     }
     return res;
   }
@@ -328,12 +360,12 @@ public abstract class Node {
    * @param value the value of the property
    * @return the http request of this action, of sending the request to the server
    */
-  protected final HttpRequest set(Object key, Object value) {
+  protected final HttpRequest update(Object key, Object value) {
     HttpBody body = new HttpBody();
     body.put(key, value);
 
     HttpRequest req = new HttpRequest();
-    req.setRequestUrl("/" + Node.typeLower(Node.typePlural(this.getType())) + "/" + this.getId());
+    req.setRequestUrl("/" + NodeTypeUtils.typeUrl(this.getType()) + "/" + this.getId());
     req.setRequestMethod("PUT");
     req.setRequestBody(body);
     req.setRequestCookie(this.getRequestCookie());
@@ -349,7 +381,7 @@ public abstract class Node {
    *
    * @return the parent type of the instance
    */
-  public final String getParentType() {
+  protected final String getParentType() {
     return this.getParentType(this.getType());
   }
 
@@ -361,7 +393,7 @@ public abstract class Node {
    * @param type the specified parent type
    * @return the parent type of the instance. {@code null} if there is any invalidation.
    */
-  public final String getParentType(String type) {
+  protected final String getParentType(String type) {
     return this.getParentType(type, -1);
   }
 
@@ -372,7 +404,7 @@ public abstract class Node {
    * @param level the specified number of levels
    * @return the parent type of the instance. {@code null} if there is any invalidation.
    */
-  public final String getParentType(String type, int level) {
+  protected final String getParentType(String type, int level) {
     return this.getTypeByLevel(type, Math.abs(level) * -1);
   }
 
@@ -384,7 +416,7 @@ public abstract class Node {
    *
    * @return the child type of the instance. {@code null} if there is any invalidation.
    */
-  public final String getChildType() {
+  protected final String getChildType() {
     return this.getChildType(this.getType());
   }
 
@@ -396,7 +428,7 @@ public abstract class Node {
    * @param type the specified type
    * @return the child type of the instance. {@code null} if there is any invalidation.
    */
-  public final String getChildType(String type) {
+  protected final String getChildType(String type) {
     return this.getChildType(type, 1);
   }
 
@@ -407,7 +439,7 @@ public abstract class Node {
    * @param level the specified number of levels
    * @return the child type of the instance. {@code null} if there is any invalidation.
    */
-  public final String getChildType(String type, int level) {
+  protected final String getChildType(String type, int level) {
     return this.getTypeByLevel(type, Math.abs(level));
   }
 
@@ -449,20 +481,34 @@ public abstract class Node {
   public Result createRequest() {
     Result res = new Result();
 
-    HttpRequest req = new HttpRequest();
-    req.setRequestUrl("/" + Node.typeLower(Node.typePlural(this.getType())));
-    req.setRequestMethod("POST");
-    req.setRequestBody(this);
-    req.setRequestCookie(this.getRequestCookie());
-    req.send();
-    res.add(req);
+    if(this.isExisting()){
+      StructureRequest req2 = new StructureRequest(false, true, this);
+      req2.setErrorMessage("Event is already exisiting");
+      res.add(req2);
+    }else{
+      HttpBody body = new HttpBody(this);
+      body.put(NodeTypeUtils.typeId(this.getParentType()) + "_id", body.getInt("parent_id"));
+      body.remove("parent_id");
+      System.out.println(body);
+  
+      HttpRequest req = new HttpRequest();
+      req.setRequestUrl("/" + NodeTypeUtils.typeUrl(this.getType()));
+      req.setRequestMethod("POST");
+      req.setRequestBody(body);
+      req.setRequestCookie(this.getRequestCookie());
+      req.send();
+      res.add(req);
+  
+      if (req.isSucceeded()) {
+        Node parent = this.getParent();
+        this.setId(req.getResponseBody().getInt("id"));
+        parent.addNode(this);
 
-    if (req.isSucceeded()) {
-      Node parent = this.getParent();
-      this.setId(req.getResponseBody().getInt("id"));
-      parent.addNode(this);
+        StructureRequest req2 = new StructureRequest(true, false, this);
+        res.add(req2);
+      }
     }
-
+    System.out.println(res);
     return res;
   }
 
@@ -473,22 +519,32 @@ public abstract class Node {
    *
    * @return the result object of this action
    */
-  public Result removeRequest() {
+  public Result deleteRequest() {
     Result res = new Result();
 
-    HttpRequest req = new HttpRequest();
-    req.setRequestUrl("/" + Node.typeLower(Node.typePlural(this.getType())) + "/" + this.getId());
-    req.setRequestMethod("DELETE");
-    req.setRequestCookie(this.getRequestCookie());
-    req.send();
-    res.add(req);
+    if(!this.isExisting()){
+      StructureRequest req2 = new StructureRequest(false, true, this);
+      req2.setErrorMessage("Event is not exisiting");
+      res.add(req2);
+    }else{
 
-    if (req.isSucceeded()) {
-      Node parent = this.getParent();
-      parent.removeNode(this.getId());
-      this.setParent(null);
+      HttpRequest req = new HttpRequest();
+      req.setRequestUrl("/" + NodeTypeUtils.typeUrl(this.getType()) + "/" + this.getId());
+      req.setRequestMethod("DELETE");
+      req.setRequestCookie(this.getRequestCookie());
+      req.send();
+      res.add(req);
+
+      if (req.isSucceeded()) {
+        Node parent = this.getParent();
+        parent.removeNode(this);
+        this.setParent(null);
+        
+        StructureRequest req2 = new StructureRequest(true, false, this);
+        res.add(req2);
+      }
     }
-
+    System.out.println(res);
     return res;
   }
 
@@ -573,63 +629,13 @@ public abstract class Node {
     return this.getClass().getSimpleName();
   }
 
-  /**
-   * Returns a specified type in a format of Java class. Such as {@code structure.Node}.
-   *
-   * @param type a specified type
-   * @return a string of a specified type in a format of Java class
-   */
-  private static final String typeClass(String type) {
-    return "structure." + Node.typeProper(Node.typeSingular(type));
+  public final boolean isSpecialized(){
+    return this.specialized;
   }
 
-  /**
-   * Returns a specified type in a plural format
-   *
-   * @param type a specified type
-   * @return a string of a specified type in a plural format
-   */
-  private static final String typePlural(String type) {
-    return type.endsWith("s") || type.length() <= 0 ? type : type + "s";
-  }
-
-  /**
-   * Returns a specified type in a singular format.
-   *
-   * @param type a specified type
-   * @return a string of a specified type in a singular format
-   */
-  private static final String typeSingular(String type) {
-    return type.endsWith("s") && type.length() > 0 ? type.substring(0, type.length() - 1) : type;
-  }
-
-  /**
-   * Returns a specified type in a proper-case format.
-   *
-   * @param type a specified type
-   * @return a string of a specified type in a proper-case format
-   */
-  private static final String typeProper(String type) {
-    return type.substring(0, 1).toUpperCase() + type.toLowerCase().substring(1);
-  }
-
-  /**
-   * Returns a specified type in a lower-case format.
-   *
-   * @param type a specified type
-   * @return a string of a specified type in a lower-case format
-   */
-  private static final String typeLower(String type) {
-    return type.toLowerCase();
-  }
-
-  /**
-   * Returns a specified type in a upper-case format.
-   *
-   * @param type a specified type
-   * @return a string of a specified type in a upper-case format
-   */
-  private static final String typeUpper(String type) {
-    return type.toUpperCase();
+  protected final void setSpecialized(boolean is){
+    this.specialized = is;
+    this.existing = is;
+    this.setParent(this.parent);
   }
 }

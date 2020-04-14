@@ -223,7 +223,7 @@ public class User {
     try {
       FileWriter myWriter = new FileWriter("temp.meonc");
       String str = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(body);
-      myWriter.write(Encrytion.encrypt(str, "secret"));
+      myWriter.write(EncrytionUtils.encrypt(str, "secret"));
       myWriter.close();
     } catch (IOException e) {
       // System.out.println("An error occurred.");
@@ -252,7 +252,7 @@ public class User {
       // Fail silently
     }
 
-    String str = Encrytion.decrypt(encryptStr, "secret");
+    String str = EncrytionUtils.decrypt(encryptStr, "secret");
     return new HttpBody(new Gson().fromJson(str, Map.class));
   }
 
@@ -269,7 +269,7 @@ public class User {
    * @since 2.0
    * @version 2.1
    */
-  public Result register(String username, String password, String secQues, String secAns) {
+  public Result signUpRequest(String username, String password, String secQues, String secAns) {
     Result res = new Result();
 
     this.setUsername(username);
@@ -296,7 +296,7 @@ public class User {
     return res;
   }
 
-  public static Result authentication(String username, String password) {
+  public static Result authenticationRequest(String username, String password) {
     User user = new User();
     Result res = user.signInRequest(username, password);
     if (res.isSucceeded()) {
@@ -305,10 +305,10 @@ public class User {
     return res;
   }
 
-  public static Result registration(
+  public static Result registrationRequest(
       String username, String password, String secQues, String secAns) {
     User user = new User();
-    return user.register(username, password, secQues, secAns);
+    return user.signUpRequest(username, password, secQues, secAns);
   }
 
   public static User getCurrent() {

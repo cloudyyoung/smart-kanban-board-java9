@@ -31,17 +31,22 @@ public class Kanban extends Node {
     this.today =
         new Board(
             "Today",
-            TimeUtils.monthName(TimeUtils.currentMonth())
+            TimeUtils.currentMonthName()
                 + " "
                 + TimeUtils.currentDay()
                 + ", "
                 + TimeUtils.currentYear(),
             "#fd79a8",
             this);
+    this.today.setSpecialized(true);
 
-    this.todayToDo = new Column("To Do", "jimjimsjimshtodo", today);
-    this.todayInProgress = new Column("In Progress", "", today);
-    this.todayDone = new Column("Done", "", today);
+    this.todayToDo = new Column("To Do", "jimjimsjimshtodo", 0, today);
+    this.todayInProgress = new Column("In Progress", "", 1, today);
+    this.todayDone = new Column("Done", "", 2, today);
+
+    this.todayToDo.setSpecialized(true);
+    this.todayInProgress.setSpecialized(true);
+    this.todayDone.setSpecialized(true);
   }
 
   /**
@@ -88,7 +93,7 @@ public class Kanban extends Node {
 
     // All todo
     for (Node board : this.getNodes()) {
-      if (board.getId() >= 100) {
+      if (!board.isSpecialized()) {
         for (Node node : board.getNodes()) {
           Column column = (Column) node;
           for (Node event : column.getNodes()) {
@@ -119,7 +124,7 @@ public class Kanban extends Node {
 
     for (Node board : kanban.getNodes()) {
       // excluded Today
-      if (board.getId() >= 100) {
+      if (!board.isSpecialized()) {
         for (Node column : board.getNodes()) {
           for (Node nodeEvent : column.getNodes()) {
             Event event = (Event) nodeEvent;
