@@ -137,9 +137,10 @@ public class ColumnComponent extends VBox {
   // drag
   @FXML
   void MouseDragReleased(MouseDragEvent event) {
-    ColumnComponent nextColumn = (ColumnComponent) event.getSource();
     EventComponent button = (EventComponent) event.getGestureSource();
     ColumnComponent oldColumn = (ColumnComponent) button.getParentComponent();
+    ColumnComponent newColumn = (ColumnComponent) event.getSource();
+
     this.parentController.originalParent = null;
 
     // System.out.println(oldColumn.getNode().getTitle());
@@ -147,6 +148,7 @@ public class ColumnComponent extends VBox {
     // System.out.println(button.getNode());
     
     if (this.getNode().getParent().isSpecialized()) {
+      System.out.println(1122227);
       // Node node = button.getNode().getParent().getParent();
       // Board originBoard = (Board) node;
       // int nextColumnPreset = nextColumn.getNode().getPreset();
@@ -158,14 +160,16 @@ public class ColumnComponent extends VBox {
       //     break;
       //   }
       // }
-      button.getNode().setLastGeneratedDateRequest();
+      // button.getNode().setLastGeneratedDateRequest();
       Kanban.getCurrent().generateToday();
-      nextColumn.getEventList().getChildren().add(button);
-    } else {
-      nextColumn.getEventList().getChildren().add(button);
-      button.getNode().setParentRequest(nextColumn.getNode());
+      newColumn.getEventList().getChildren().add(button);
       oldColumn.list();
-      nextColumn.list();
+      newColumn.list();
+    } else {
+      newColumn.getEventList().getChildren().add(button);
+      button.getNode().setParentRequest(newColumn.getNode());
+      oldColumn.list();
+      newColumn.list();
     }
 
     
