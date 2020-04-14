@@ -1,14 +1,17 @@
 package structure;
 
+import com.google.gson.annotations.Expose;
+
 /**
  * The {@code Column} class, extends from {@code Node}.
  *
- * <p>The instance should contains {@code Event} object as children nodes.
+ * <p>
+ * The instance should contains {@code Event} object as children nodes.
  *
  * @since 1.0
  * @version 2.1
  */
-public class Column extends Node {
+public final class Column extends Node {
 
   public static final int TO_DO = 0;
   public static final int IN_PROGRESS = 1;
@@ -19,7 +22,7 @@ public class Column extends Node {
    *
    * @param obj the {@code HttpBody} for initialization
    */
-  int preset;
+  @Expose private int preset;
 
   public Column(HttpBody obj) {
     super(obj);
@@ -31,14 +34,35 @@ public class Column extends Node {
    *
    * @param title The title in {@code String}
    * @param note The note in {@code String}
-   * @param id THe id in {@code String}
+   * @param columnId THe id in {@code String}
    */
-  public Column(int id, String title, String note, Node parent) {
-    super(id, title, note, parent);
+  public Column(final String title, final String note, final int preset, final Node parent) {
+    super(title, note, parent);
+    this.setPreset(preset);
   }
 
-  public void setPreset(int preset) {
+  protected void setPreset(int preset) {
     this.preset = preset;
+  }
+
+  public Result setPresetRequest(int preset) {
+    Result res = new Result();
+    if(!this.isExisting()){
+      this.setPreset(preset);
+      
+      StructureRequest req = new StructureRequest(true, false, this);
+      res.add(req);
+    }else{
+      HttpRequest req = this.update("preset", preset);
+      if (req.isSucceeded()) {
+        this.setPreset(preset);
+
+        StructureRequest req2 = new StructureRequest(true, false, this);
+        res.add(req2);
+      }
+      res.add(req);
+    }
+    return res;
   }
 
   public int getPreset() {
@@ -46,15 +70,28 @@ public class Column extends Node {
   }
 
   public boolean hasEnoughTime(Event eventNext) {
-    Long totalTime = 25200L;
+    Long totalTime = 25_200L;
     Long timeAccumulator = 0L;
-    for (Node node : this.getChildrenNodes()) {
-      Event event = (Event) node;
+    for (Node node : this.getNodes()) {
+      final Event event = (Event) node;
       timeAccumulator += event.getDuration();
     }
     return (eventNext.getDuration() + timeAccumulator) <= totalTime ? true : false;
   }
 
+  public boolean isOnlyPreset() {
+    int count = 0;
+    Board board = (Board) this.getParent();
+    for (Node node : board.getNodes()) {
+      Column column = (Column) node;
+      if (column.getPreset() == this.preset) {
+        count += 1;
+      }
+    }
+    return count <= 1;
+  }
+
+  @Override
   public String toString() {
     return this.getType()
         + " (id: "
@@ -66,7 +103,7 @@ public class Column extends Node {
         + "\", preset: "
         + this.getPreset()
         + ", nodes: "
-        + this.getChildrenNodes().toString()
+        + this.getNodes().toString()
         + "\")";
   }
 }

@@ -11,11 +11,6 @@ public class UI extends Application {
   private Stage stage;
   private Scene scene;
 
-  // Main Method
-  public static void main(String[] args) {
-    ui(args);
-  }
-
   public static void ui(String[] args) {
     launch(args);
   }

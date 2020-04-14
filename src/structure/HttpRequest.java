@@ -179,7 +179,7 @@ public final class HttpRequest extends Request {
   public void setRequestBody(Object param) {
     this.requestBody =
         new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(param);
-  };
+  }
 
   /**
    * Returns a boolean to represent whether the instance has or should have request body.

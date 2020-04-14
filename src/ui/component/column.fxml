@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-<fx:root fillWidth="false" prefHeight="680.0" prefWidth="1020.0" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root onMouseDragReleased="#MouseDragReleased" fillWidth="false" prefHeight="680.0" prefWidth="1020.0" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <HBox styleClass="title">
       <children>
         <Label fx:id="eventCount" alignment="CENTER" contentDisplay="CENTER" text="4" textOverrun="CLIP" wrapText="true">
@@ -20,12 +20,17 @@
               <String fx:value="h5" />
             </styleClass>
         </Label>
-        <TextField fx:id="columnTitle" editable="false" styleClass="medium" text="Love Me Like That - Carly Rae Jepsen" />
-        <Button fx:id="eventAdd" mnemonicParsing="false">
+        <TextField fx:id="columnTitle" disable="true" editable="false" styleClass="medium" text="Love Me Like That - Carly Rae Jepsen" />
+        <Button fx:id="eventCreate" mnemonicParsing="false" onAction="#createChild">
             <graphic>
               <SVGPath content="M 15 5 L 15 15 L 5 15 L 5 17 L 15 17 L 15 27 L 17 27 L 17 17 L 27 17 L 27 15 L 17 15 L 17 5 Z" />
             </graphic>
         </Button>
+         <Button fx:id="columnEdit" mnemonicParsing="false" onAction="#update">
+            <graphic>
+               <SVGPath content="M 16 6 C 14.894531 6 14 6.894531 14 8 C 14 9.105469 14.894531 10 16 10 C 17.105469 10 18 9.105469 18 8 C 18 6.894531 17.105469 6 16 6 Z M 16 14 C 14.894531 14 14 14.894531 14 16 C 14 17.105469 14.894531 18 16 18 C 17.105469 18 18 17.105469 18 16 C 18 14.894531 17.105469 14 16 14 Z M 16 22 C 14.894531 22 14 22.894531 14 24 C 14 25.105469 14.894531 26 16 26 C 17.105469 26 18 25.105469 18 24 C 18 22.894531 17.105469 22 16 22 Z" />
+            </graphic>
+         </Button>
       </children>
       <VBox.margin>
         <Insets />

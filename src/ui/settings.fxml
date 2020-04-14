@@ -10,8 +10,9 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
 
-<BorderPane prefHeight="680.0" prefWidth="1020.0" styleClass="bg-settings" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="settings" prefHeight="680.0" prefWidth="1020.0" styleClass="bg-settings" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.SettingsController">
    <center>
       <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -32,8 +33,12 @@
                               </Label>
                               <HBox>
                                  <children>
-                                    <Label contentDisplay="RIGHT" styleClass="h5" text="Jerremy Lewis Jerremy Lewis Jerremy Lewis Jerremy Lewis" />
-                                    <Button mnemonicParsing="false" styleClass="primary" text="Sign Out" />
+                                    <Label fx:id="accountUsername" contentDisplay="RIGHT" text="Jerremy Lewis Jerremy Lewis Jerremy Lewis Jerremy Lewis">
+                                       <styleClass>
+                                          <String fx:value="h4" />
+                                          <String fx:value="nexa-bold" />
+                                       </styleClass></Label>
+                                    <Button fx:id="accountSignOut" mnemonicParsing="false" onAction="#signOut" styleClass="primary" text="Sign Out" />
                                  </children>
                               </HBox>
                            </children>
@@ -50,43 +55,43 @@
                               <HBox>
                                  <children>
                                     <Label contentDisplay="RIGHT" styleClass="h5" text="Mondays" />
-                                    <ComboBox prefWidth="150.0" promptText="Hours" />
+                                    <ComboBox fx:id="availabilityMonday" prefWidth="150.0" />
                                  </children>
                               </HBox>
                               <HBox>
                                  <children>
                                     <Label contentDisplay="RIGHT" styleClass="h5" text="Tuesdays" />
-                                    <ComboBox prefWidth="150.0" promptText="Hours" />
+                                    <ComboBox fx:id="availabilityTuesday" prefWidth="150.0" />
                                  </children>
                               </HBox>
                               <HBox>
                                  <children>
                                     <Label contentDisplay="RIGHT" styleClass="h5" text="Wednesdays" />
-                                    <ComboBox prefWidth="150.0" promptText="Hours" />
+                                    <ComboBox fx:id="availabilityWednesday" prefWidth="150.0" />
                                  </children>
                               </HBox>
                               <HBox>
                                  <children>
                                     <Label contentDisplay="RIGHT" styleClass="h5" text="Thursdays" />
-                                    <ComboBox prefWidth="150.0" promptText="Hours" />
+                                    <ComboBox fx:id="availabilityThursday" prefWidth="150.0" />
                                  </children>
                               </HBox>
                               <HBox>
                                  <children>
                                     <Label contentDisplay="RIGHT" styleClass="h5" text="Fridays" />
-                                    <ComboBox prefWidth="150.0" promptText="Hours" />
+                                    <ComboBox fx:id="availabilityFriday" prefWidth="150.0" />
                                  </children>
                               </HBox>
                               <HBox>
                                  <children>
                                     <Label contentDisplay="RIGHT" styleClass="h5" text="Saturdays" />
-                                    <ComboBox prefWidth="150.0" promptText="Hours" />
+                                    <ComboBox fx:id="availabilitySaturday" prefWidth="150.0" />
                                  </children>
                               </HBox>
                               <HBox>
                                  <children>
                                     <Label contentDisplay="RIGHT" styleClass="h5" text="Sundays" />
-                                    <ComboBox prefWidth="150.0" promptText="Hours" />
+                                    <ComboBox fx:id="availabilitySunday" prefWidth="150.0" />
                                  </children>
                               </HBox>
                            </children>
@@ -100,7 +105,7 @@
                                     <String fx:value="medium" />
                                  </styleClass>
                               </Label>
-                              <ComboBox prefWidth="150.0" promptText="Theme name" />
+                              <ComboBox fx:id="themeCombo" prefWidth="150.0" promptText="Theme name" />
                            </children>
                         </VBox>
                         <Separator prefWidth="200.0" />
@@ -113,7 +118,7 @@
                                  </styleClass>
                               </Label>
                               <Label styleClass="h5" text="© 2020 Smart Kanban. All rights reserved" wrapText="true" />
-                              <Label styleClass="h5" text="Theodore Lewis, Benjamin Wood, Caleb Wannamaker, Yunfan Yang" wrapText="true" />
+                              <Label styleClass="h6" text="Yunfan Yang, Theodore Lewis, Benjamin Wood, Caleb Wannamaker, Jimschenchen" wrapText="true" />
                            </children>
                         </VBox>
                      </children>
@@ -126,12 +131,15 @@
    <top>
       <HBox styleClass="title-wrapper">
          <children>
-            <Button mnemonicParsing="false" text="Settings">
+            <Button fx:id="settingTitle" mnemonicParsing="false" onAction="#back" text="Settings">
                <styleClass>
-                  <String fx:value="h2" />
-                  <String fx:value="bold" />
+                  <String fx:value="h3" />
+                  <String fx:value="medium" />
                   <String fx:value="title" />
                </styleClass>
+               <graphic>
+                  <SVGPath content="M 19.03125 4.28125 L 8.03125 15.28125 L 7.34375 16 L 8.03125 16.71875 L 19.03125 27.71875 L 20.46875 26.28125 L 10.1875 16 L 20.46875 5.71875 Z" />
+               </graphic>
             </Button>
          </children>
       </HBox>

@@ -1,21 +1,20 @@
 package structure;
 
 import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
 
 import java.math.BigDecimal;
 import java.util.Collection;
-import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * This is a custom HashMap class for <b>fluently and elegantly</b> writing and reading values in
  * {@code JSON}.
  *
- * <p>Originally, using a HashMap/ArrayList would always bother developers by having TypeCasting
- * warnings/exceptions, and also make the code less readable. This class is to perfectly avoid.
- *
- * <p>Though it extends from HashMap, developers are allowed to make it <b>perform a List</b>.
+ * <p>To avoid bothers of TypeCasting warnings from HashMap and ArrayList class, this class is built
+ * for adapting all types of variables in one object. Object could be both Map and List.
  *
  * @author Cloudy Young
  * @since 2.0
@@ -27,10 +26,18 @@ public final class HttpBody extends HashMap<Object, Object> {
   private static final long serialVersionUID = 795022394347180417L;
 
   /** A {@code boolean} to indicate if this instance should be performing a {@code List}. */
-  private boolean isList = false;
+  private boolean list;
 
   /** Default constructor of {@code HttpBody}. */
-  public HttpBody() {}
+  public HttpBody() {
+    super();
+  }
+
+  public HttpBody(Object obj){
+    Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+    Map<Object, Object> map = gson.fromJson(gson.toJson(obj), new TypeToken<Map<Object, Object>>(){}.getType());
+    this.parseMap(map);
+  }
 
   /**
    * Constructor of {@code HttpBody}, provide {@code Map} object.
@@ -38,7 +45,8 @@ public final class HttpBody extends HashMap<Object, Object> {
    * @param toCopy the {@code Map} to copy
    */
   public HttpBody(Map<?, ?> toCopy) {
-    this.map(toCopy);
+    super();
+    this.parseMap(toCopy);
   }
 
   /**
@@ -47,8 +55,9 @@ public final class HttpBody extends HashMap<Object, Object> {
    * @param toCopy the {@code List} to copy
    */
   public HttpBody(Collection<?> toCopy) {
-    this.list(toCopy);
-    this.isList = true;
+    super();
+    this.parseList(toCopy);
+    this.list = true;
   }
 
   /**
@@ -58,7 +67,8 @@ public final class HttpBody extends HashMap<Object, Object> {
    * @param isList a {@code boolean} to indicate if this instance should perform a {@code List}
    */
   public HttpBody(boolean isList) {
-    this.isList = isList;
+    super();
+    this.list = isList;
   }
 
   /**
@@ -94,7 +104,7 @@ public final class HttpBody extends HashMap<Object, Object> {
    *
    * @param map the {@code Map} to put
    */
-  private void map(Map<?, ?> map) {
+  private void parseMap(Map<?, ?> map) {
     for (Map.Entry<?, ?> each : map.entrySet()) {
       this.put(each.getKey(), this.parse(each.getValue()));
     }
@@ -108,7 +118,7 @@ public final class HttpBody extends HashMap<Object, Object> {
    * @param list the {@code Iterable} object to put, therefore it acceptes {@code List}, {@code
    *     Collections}, etc
    */
-  private void list(Iterable<?> list) {
+  private void parseList(Iterable<?> list) {
     for (Object each : list) {
       this.put(this.size(), this.parse(each));
     }
@@ -119,10 +129,10 @@ public final class HttpBody extends HashMap<Object, Object> {
    * the index has changed in the instance, such as an element is removed.
    */
   private void listReindex() {
-    if (this.isList) {
+    if (this.list) {
       Collection<Object> collect = this.values();
       this.clear();
-      this.list(collect);
+      this.parseList(collect);
     }
   }
 
@@ -141,11 +151,12 @@ public final class HttpBody extends HashMap<Object, Object> {
    * @see #put(Object, Object)
    */
   @Override
-  public HttpBody put(Object key, Object value) {
-    if (this.isList) {
-      key = Integer.parseInt(key.toString() + "");
+  public HttpBody put(Object key, final Object value) {
+    Object newKey = key;
+    if (this.list) {
+      newKey = Integer.parseInt(key.toString());
     }
-    super.put(key, this.parse(value));
+    super.put(newKey, this.parse(value));
     return this;
   }
 
@@ -164,7 +175,7 @@ public final class HttpBody extends HashMap<Object, Object> {
    * @see #get(Object)
    */
   public HttpBody put(Object value) {
-    if (this.isList) {
+    if (this.list) {
       this.put(this.size(), this.parse(value));
     }
     return this;
@@ -192,9 +203,11 @@ public final class HttpBody extends HashMap<Object, Object> {
    */
   @Override
   public HttpBody remove(Object key) {
-    if (this.isList) {
+    if (this.list) {
       Integer index = this.parseInt(key);
-      if (index != null) super.remove(index);
+      if (index != null) {
+        super.remove(index);
+      }
       this.listReindex();
     } else {
       super.remove(key);
@@ -211,15 +224,15 @@ public final class HttpBody extends HashMap<Object, Object> {
    * @see #remove(Object)
    */
   @Override
-  public boolean remove(Object key, Object value) {
-    if (this.isList) {
+  public boolean remove(Object key, final Object value) {
+    if (this.list) {
       Object index = this.parseInt(key);
-      if (index != null) {
+      if (index == null) {
+        return false;
+      } else {
         boolean isSucceeded = super.remove(index, value);
         this.listReindex();
         return isSucceeded;
-      } else {
-        return false;
       }
     } else {
       return super.remove(key, value);
@@ -357,7 +370,7 @@ public final class HttpBody extends HashMap<Object, Object> {
    * @return {@code true} if the instance is performing {@code List}, {@code false} otherwise
    */
   public boolean isList() {
-    return this.isList;
+    return this.list;
   }
 
   /**
@@ -438,49 +451,12 @@ public final class HttpBody extends HashMap<Object, Object> {
    *
    * @return a {@code JSON} in {@code String}
    */
+  @Override
   public String toString() {
     Object parse = this;
-    if (this.isList) {
+    if (this.list) {
       parse = this.values();
     }
     return new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(parse);
-  }
-
-  public static void main(String[] args) {
-    // Map<?, ?> gson = new
-    // GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().fromJson("{'authenticated':
-    // true, 'existing': true, 'id': 1, 'username': 'cloudy', 'sessid':
-    // '97lp374dbvmgthms6uk3mdi9ru'}", Map.class);
-    // System.out.println(gson);
-
-    // HttpBody body = new HttpBody(gson);
-    // System.out.println(body);
-    // System.out.println(body.getInt("id"));
-    HashMap<String, String> param = new HashMap<String, String>();
-    param.put("username", "111");
-    param.put("password", "222");
-    String gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(param);
-    System.out.println((gson));
-    // HttpBody body = new HttpBody(param);
-    // body.put("body", body);
-    // System.out.println(body);
-    // System.out.println(body.getInt("password2"));
-    // System.out.println(body.hasKey("password"));
-
-    // ArrayList<Object> list = new ArrayList<Object>();
-    // list.add("111");
-    // list.add("aaa");
-    // list.add(787);
-    // list.add("333");
-    // list.add(body);
-    // HttpBody bod2 = new HttpBody(list);
-    // System.out.println(bod2);
-
-    // HttpBody bod3 = new HttpBody();
-    // HttpBody bod4 = new HttpBody(true);
-    // bod4.put(111).put(999);
-    // bod3.put("obj", bod4);
-    // System.out.println(bod3);
-    // System.out.println(bod3.get("obj") instanceof HttpBody);
   }
 }

@@ -1,7 +1,6 @@
 // Import Classes
+import java.util.*;
 import structure.*;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 @SuppressWarnings("all")
 public class Terminal {
@@ -96,7 +95,7 @@ public class Terminal {
             System.out.println("");
             // REMOVE FOR AUTH
             // System.out.println("Welcome!");
-            System.out.println("Welcome " + User.current.getUsername() + "!");
+            System.out.println("Welcome " + User.getCurrent().getUsername() + "!");
             System.out.println("");
       */
       showLogin = false;
@@ -159,13 +158,13 @@ public class Terminal {
             "Time: "
                 // + Time.currentHour12(Time.currentHour24())
                 + ":"
-                + Time.currentMinute()
+                + TimeUtils.currentMinute()
                 + " on "
-                + Time.currentDayName()
+                + TimeUtils.currentDayName()
                 + " the "
-                + Time.currentDay()
+                + TimeUtils.currentDay()
                 + " of "
-                + Time.currentYear());
+                + TimeUtils.currentYear());
         System.out.println("");
 
         // 'exit' command exits to program

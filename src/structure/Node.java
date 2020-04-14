@@ -38,6 +38,7 @@ public abstract class Node {
   /**
    * The parent id of the instance. It is exposed to Gson, can be both serialized and deserialized.
    */
+  @SerializedName("parent_id")
   @Expose private Integer parentId;
 
   /**
@@ -52,13 +53,17 @@ public abstract class Node {
   /** The children {@code Node} object of the instance. */
   private LinkedHashMap<Integer, Node> nodes = new LinkedHashMap<Integer, Node>();
 
+  private int idAutoIncrement = 1;
+
+  private boolean specialized = false;
+
   /**
    * The dictionary of the {@code Node} hierarchy. It is used to identify the parent or children
    * type.
    *
    * @see #getTypeByLevel(String, int)
    */
-  private final HashMap<String, Integer> TYPE_DICTIONARY =
+  private static final HashMap<String, Integer> TYPE_DICTIONARY =
       new HashMap<String, Integer>() {
         private static final long serialVersionUID = 3312582702053699017L;
 
@@ -71,33 +76,32 @@ public abstract class Node {
       };
 
   /**
-   * Constructor of {@code Node}, provide id, title and note.
+   * Constructor of {@code Node}, provide title, note and parent.
    *
    * @param id the id in {@code int}
    * @param title the title in {@code String}
    * @param note the note in {@code String}
    * @param parent the parent node in {@code Node}
    */
-  public Node(Integer id, String title, String note, Node parent) {
-    this.setId(id);
-    this.setTitleLocal(title);
-    this.setNoteLocal(note);
-    this.setParentLocal(parent);
+  protected Node(String title, String note, Node parent) {
+    this.setId(parent.idAutoIncrement++);
+    this.setTitle(title);
+    this.setNote(note);
+    this.setParent(parent);
   }
-
-  /** Default constructor of {@code Kanban}. */
-  public Node() {}
 
   /**
    * Constructor of {@code Node}, provide object to map.
    *
    * @param obj the object to map in {@code HttpBody}
    */
-  public Node(HttpBody obj) {
-    if (!this.getType().equals("Kanban")) {
-      this.setId(obj.getInt("id"));
-      this.setTitleLocal(obj.getString("title"));
-      this.setNoteLocal(obj.getString("note"));
+  protected Node(HttpBody obj) {
+    this.setId(obj.getInt("id"));
+    this.existing = true;
+
+    if (this instanceof Kanban == false) {
+      this.setTitle(obj.getString("title"));
+      this.setNote(obj.getString("note"));
       this.existing = true;
     }
     if (this.getChildType() != null) {
@@ -110,19 +114,19 @@ public abstract class Node {
    *
    * @param obj the object to map in {@code HttpBody}
    */
-  private void extractChildrenNodes(HttpBody obj) {
-    String childType = Node.typeLower(Node.typePlural(this.getChildType()));
+  private final void extractChildrenNodes(HttpBody obj) {
+    String childType = NodeTypeUtils.typeUrl(this.getChildType());
     HttpBody value = obj.getList(childType);
     Collection<Object> list = value.values();
     for (Object each2 : list) {
       try {
-        String type = Node.typeClass(childType);
+        String type = NodeTypeUtils.typeClass(childType);
         Class<?> cls = Class.forName(type);
         Constructor<?> constructor = cls.getConstructor(HttpBody.class);
         Object objNew = constructor.newInstance(each2);
         if (objNew instanceof Node) {
           Node nodeNew = (Node) objNew;
-          nodeNew.setParentLocal(this);
+          nodeNew.setParent(this);
         }
       } catch (Exception e) {
         // e.printStackTrace();
@@ -138,7 +142,7 @@ public abstract class Node {
    * @return {@code true} if the instance is existing in the server. {@code false} if the instance
    *     is only existing in the local storage.
    */
-  public boolean isExisting() {
+  public final boolean isExisting() {
     return this.existing;
   }
 
@@ -150,16 +154,16 @@ public abstract class Node {
    * @param level the number of levels to look up
    * @return the looked up type. {@code null} if there is any invalidation.
    */
-  private String getTypeByLevel(String type, int level) {
+  private final String getTypeByLevel(String type, int level) {
     int lvl = TYPE_DICTIONARY.get(type);
     lvl += level;
 
     String ret = null;
-    Iterator<?> keysItr = this.TYPE_DICTIONARY.keySet().iterator();
+    Iterator<?> keysItr = Node.TYPE_DICTIONARY.keySet().iterator();
 
     while (keysItr.hasNext()) {
       String key = (String) keysItr.next();
-      int value = (int) this.TYPE_DICTIONARY.get(key);
+      int value = (int) Node.TYPE_DICTIONARY.get(key);
 
       if (value == lvl) {
         ret = key;
@@ -174,7 +178,7 @@ public abstract class Node {
    *
    * @return the id of the instance
    */
-  public Integer getId() {
+  public final Integer getId() {
     return this.id;
   }
 
@@ -183,7 +187,7 @@ public abstract class Node {
    *
    * @return the parent object of the instance
    */
-  public Node getParent() {
+  public final Node getParent() {
     return this.parent;
   }
 
@@ -192,7 +196,7 @@ public abstract class Node {
    *
    * @param id the id of the instance
    */
-  private void setId(Integer id) {
+  private final void setId(Integer id) {
     this.id = id;
   }
 
@@ -200,10 +204,8 @@ public abstract class Node {
    * Sets the parent {@code Node}, in local storage.
    *
    * @param parent the parent node of the instance
-   * @return the strcuture request of the action
    */
-  protected StructureRequest setParentLocal(Node parent) {
-
+  private final void setParent(Node parent) {
     if (parent != null) {
       // Remove self from old parent
       if (this.getParent() != null && this.getParent() != parent) {
@@ -213,14 +215,15 @@ public abstract class Node {
       // Set new parent
       this.parent = parent;
       this.parentId = this.parent.getId();
-      this.getParent().addNode(this);
+
+      if(this.isExisting() || this.isSpecialized()){
+        this.getParent().addNode(this);
+      }
     } else {
+      // Remove parent
       this.parent = null;
       this.parentId = null;
     }
-
-    StructureRequest req = new StructureRequest(true, false, this);
-    return req;
   }
 
   /**
@@ -231,15 +234,20 @@ public abstract class Node {
    * @param parent the parent {@code Node} of the instance
    * @return the result object of this action
    */
-  public Result setParent(Node parent) {
+  public final Result setParentRequest(Node parent) {
     Result res = new Result();
-    if (this instanceof Event) {
-      String parentType = Node.typeLower(Node.typePlural(this.getParentType()));
-      HttpRequest req = this.set(parentType + "_id", parent.getId() + "");
+    if(!this.isExisting()){
+      this.setParent(parent);
+      StructureRequest req2 = new StructureRequest(true, false, this);
+      res.add(req2);
+    }else if (this instanceof Event) {
+      String parentType = NodeTypeUtils.typeUrl(this.getParentType());
+      HttpRequest req = this.update(parentType + "_id", parent.getId() + "");
       res.add(req);
 
       if (req.isSucceeded()) {
-        StructureRequest req2 = this.setParentLocal(parent);
+        this.setParent(parent);
+        StructureRequest req2 = new StructureRequest(true, false, this);
         res.add(req2);
       }
     } else {
@@ -247,7 +255,7 @@ public abstract class Node {
       req2.setErrorMessage("Instance can only be type of Event");
       res.add(req2);
     }
-    return null;
+    return res;
   }
 
   /**
@@ -255,7 +263,7 @@ public abstract class Node {
    *
    * @return the title of the instance
    */
-  public String getTitle() {
+  public final String getTitle() {
     return this.title == null ? "" : this.title;
   }
 
@@ -263,13 +271,9 @@ public abstract class Node {
    * Sets the title of the instance, in local storage.
    *
    * @param title the title of the instance
-   * @return the strcuture request of the action
    */
-  public StructureRequest setTitleLocal(String title) {
+  protected final void setTitle(String title) {
     this.title = title;
-
-    StructureRequest req = new StructureRequest(true, false, this);
-    return req;
   }
 
   /**
@@ -280,15 +284,25 @@ public abstract class Node {
    * @param title the title of the instance
    * @return the result object of this action
    */
-  public Result setTitle(String title) {
+  public final Result setTitleRequest(String title) {
     Result res = new Result();
-    HttpRequest req = this.set("title", title);
-    res.add(req);
+    if(!this.isExisting()){
+      this.setTitle(title);
 
-    if (req.isSucceeded()) {
-      StructureRequest req2 = this.setTitleLocal(title);
-      res.add(req2);
+      StructureRequest req = new StructureRequest(true, false, this);
+      res.add(req);
+    }else{
+      HttpRequest req = this.update("title", title);
+      res.add(req);
+
+      if (req.isSucceeded()) {
+        this.setTitle(title);
+
+        StructureRequest req2 = new StructureRequest(true, false, this);
+        res.add(req2);
+      }
     }
+    
     return res;
   }
 
@@ -296,13 +310,9 @@ public abstract class Node {
    * Sets the note of the instance, in local storage.
    *
    * @param note the note of the instance
-   * @return the strcuture request of the action
    */
-  public StructureRequest setNoteLocal(String note) {
+  protected final void setNote(String note) {
     this.note = note;
-
-    StructureRequest req = new StructureRequest(true, false, this);
-    return req;
   }
 
   /**
@@ -313,14 +323,23 @@ public abstract class Node {
    * @param note the note of the instance
    * @return the result object of this action
    */
-  public Result setNote(String note) {
+  public final Result setNoteRequest(String note) {
     Result res = new Result();
-    HttpRequest req = this.set("note", note);
-    res.add(req);
+    if(!this.isExisting()){
+      this.setNote(note);
+        
+      StructureRequest req = new StructureRequest(true, false, this);
+      res.add(req);
+    }else{
+      HttpRequest req = this.update("note", note);
+      res.add(req);
 
-    if (req.isSucceeded()) {
-      StructureRequest req2 = this.setNoteLocal(note);
-      res.add(req2);
+      if (req.isSucceeded()) {
+        this.setNote(note);
+        
+        StructureRequest req2 = new StructureRequest(true, false, this);
+        res.add(req2);
+      }
     }
     return res;
   }
@@ -330,7 +349,7 @@ public abstract class Node {
    *
    * @return the note of the instance
    */
-  public String getNote() {
+  public final String getNote() {
     return this.note == null ? "" : this.note;
   }
 
@@ -341,18 +360,16 @@ public abstract class Node {
    * @param value the value of the property
    * @return the http request of this action, of sending the request to the server
    */
-  protected HttpRequest set(Object key, Object value) {
+  protected final HttpRequest update(Object key, Object value) {
     HttpBody body = new HttpBody();
     body.put(key, value);
 
     HttpRequest req = new HttpRequest();
-    req.setRequestUrl("/" + Node.typeLower(Node.typePlural(this.getType())) + "/" + this.getId());
+    req.setRequestUrl("/" + NodeTypeUtils.typeUrl(this.getType()) + "/" + this.getId());
     req.setRequestMethod("PUT");
     req.setRequestBody(body);
-    req.setRequestCookie(Node.getRequestCookie());
+    req.setRequestCookie(this.getRequestCookie());
     req.send();
-    // System.out.println(req.getRequestBodyString());
-    // System.out.println(req.getResponseBodyString());
     return req;
   }
 
@@ -364,7 +381,7 @@ public abstract class Node {
    *
    * @return the parent type of the instance
    */
-  public String getParentType() {
+  protected final String getParentType() {
     return this.getParentType(this.getType());
   }
 
@@ -376,7 +393,7 @@ public abstract class Node {
    * @param type the specified parent type
    * @return the parent type of the instance. {@code null} if there is any invalidation.
    */
-  public String getParentType(String type) {
+  protected final String getParentType(String type) {
     return this.getParentType(type, -1);
   }
 
@@ -387,7 +404,7 @@ public abstract class Node {
    * @param level the specified number of levels
    * @return the parent type of the instance. {@code null} if there is any invalidation.
    */
-  public String getParentType(String type, int level) {
+  protected final String getParentType(String type, int level) {
     return this.getTypeByLevel(type, Math.abs(level) * -1);
   }
 
@@ -399,7 +416,7 @@ public abstract class Node {
    *
    * @return the child type of the instance. {@code null} if there is any invalidation.
    */
-  public String getChildType() {
+  protected final String getChildType() {
     return this.getChildType(this.getType());
   }
 
@@ -411,7 +428,7 @@ public abstract class Node {
    * @param type the specified type
    * @return the child type of the instance. {@code null} if there is any invalidation.
    */
-  public String getChildType(String type) {
+  protected final String getChildType(String type) {
     return this.getChildType(type, 1);
   }
 
@@ -422,7 +439,7 @@ public abstract class Node {
    * @param level the specified number of levels
    * @return the child type of the instance. {@code null} if there is any invalidation.
    */
-  public String getChildType(String type, int level) {
+  protected final String getChildType(String type, int level) {
     return this.getTypeByLevel(type, Math.abs(level));
   }
 
@@ -436,7 +453,7 @@ public abstract class Node {
         + "\", note: \""
         + this.getNote()
         + "\", nodes: "
-        + this.getChildrenNodes().toString()
+        + this.getNodes().toString()
         + "\")";
   }
 
@@ -448,9 +465,9 @@ public abstract class Node {
    *
    * @return the request cookie object
    */
-  private static HttpBody getRequestCookie() {
+  private final HttpBody getRequestCookie() {
     HttpBody cookie = new HttpBody();
-    cookie.put("PHPSESSID", User.current.getSessionId());
+    cookie.put("PHPSESSID", User.getCurrent().getSessionId());
     return cookie;
   }
 
@@ -461,23 +478,37 @@ public abstract class Node {
    *
    * @return the result object of this action
    */
-  public Result add() {
+  public Result createRequest() {
     Result res = new Result();
 
-    HttpRequest req = new HttpRequest();
-    req.setRequestUrl("/" + Node.typeLower(Node.typePlural(this.getType())));
-    req.setRequestMethod("POST");
-    req.setRequestBody(this);
-    req.setRequestCookie(Node.getRequestCookie());
-    req.send();
-    res.add(req);
-
-    if (req.isSucceeded()) {
-      Node parent = this.getParent();
-      StructureRequest req2 = parent.addNode(this);
+    if(this.isExisting()){
+      StructureRequest req2 = new StructureRequest(false, true, this);
+      req2.setErrorMessage("Event is already exisiting");
       res.add(req2);
-    }
+    }else{
+      HttpBody body = new HttpBody(this);
+      body.put(NodeTypeUtils.typeId(this.getParentType()) + "_id", body.getInt("parent_id"));
+      body.remove("parent_id");
+      System.out.println(body);
+  
+      HttpRequest req = new HttpRequest();
+      req.setRequestUrl("/" + NodeTypeUtils.typeUrl(this.getType()));
+      req.setRequestMethod("POST");
+      req.setRequestBody(body);
+      req.setRequestCookie(this.getRequestCookie());
+      req.send();
+      res.add(req);
+  
+      if (req.isSucceeded()) {
+        Node parent = this.getParent();
+        this.setId(req.getResponseBody().getInt("id"));
+        parent.addNode(this);
 
+        StructureRequest req2 = new StructureRequest(true, false, this);
+        res.add(req2);
+      }
+    }
+    System.out.println(res);
     return res;
   }
 
@@ -488,22 +519,32 @@ public abstract class Node {
    *
    * @return the result object of this action
    */
-  public Result remove() {
+  public Result deleteRequest() {
     Result res = new Result();
 
-    HttpRequest req = new HttpRequest();
-    req.setRequestUrl("/" + Node.typeLower(Node.typePlural(this.getType())) + "/" + this.getId());
-    req.setRequestMethod("DELETE");
-    req.setRequestCookie(Node.getRequestCookie());
-    req.send();
-    res.add(req);
-
-    if (req.isSucceeded()) {
-      Node parent = this.getParent();
-      StructureRequest req2 = parent.removeNode(this.getId());
+    if(!this.isExisting()){
+      StructureRequest req2 = new StructureRequest(false, true, this);
+      req2.setErrorMessage("Event is not exisiting");
       res.add(req2);
-    }
+    }else{
 
+      HttpRequest req = new HttpRequest();
+      req.setRequestUrl("/" + NodeTypeUtils.typeUrl(this.getType()) + "/" + this.getId());
+      req.setRequestMethod("DELETE");
+      req.setRequestCookie(this.getRequestCookie());
+      req.send();
+      res.add(req);
+
+      if (req.isSucceeded()) {
+        Node parent = this.getParent();
+        parent.removeNode(this);
+        this.setParent(null);
+        
+        StructureRequest req2 = new StructureRequest(true, false, this);
+        res.add(req2);
+      }
+    }
+    System.out.println(res);
     return res;
   }
 
@@ -513,13 +554,8 @@ public abstract class Node {
    * @param node the {@code Node} object to be added
    * @return the structure request of this action
    */
-  public StructureRequest addNode(Node nodeAdded) {
-    if (nodeAdded != null) {
-      this.nodes.put(nodeAdded.getId(), nodeAdded);
-      return new StructureRequest(true, false, this);
-    } else {
-      return new StructureRequest(false, true, this);
-    }
+  protected final void addNode(Node nodeAdded) {
+    this.nodes.put(nodeAdded.getId(), nodeAdded);
   }
 
   /**
@@ -528,9 +564,8 @@ public abstract class Node {
    * @param id the id of the {@code Node} object to be removed
    * @return the strcuture request of the action
    */
-  public StructureRequest removeNode(int id) {
-    boolean succeeded = this.nodes.remove(id) != null;
-    return new StructureRequest(succeeded, !succeeded, this);
+  protected final void removeNode(int id) {
+    this.nodes.remove(id);
   }
 
   /**
@@ -539,8 +574,8 @@ public abstract class Node {
    * @param node the node instance of the {@code Node} object to be removed
    * @return the strcuture request of the action
    */
-  public StructureRequest removeNode(Node node) {
-    return this.removeNode(node.getId());
+  protected final void removeNode(Node node) {
+    this.removeNode(node.getId());
   }
 
   /**
@@ -549,8 +584,12 @@ public abstract class Node {
    * @param id the specified id
    * @return the node obejct maps to the specified id
    */
-  public Node getNode(int id) {
+  public final Node getNode(int id) {
     return this.nodes.get(id);
+  }
+
+  protected final void clearNodes() {
+    this.nodes.clear();
   }
 
   /**
@@ -558,11 +597,11 @@ public abstract class Node {
    *
    * @return a {@code Collection} of all the children nodes
    */
-  public ArrayList<Node> getChildrenNodes() {
-    return this.getChildrenNodes(Node.SORT_BY_ID, Node.ORDER_BY_ASC);
+  public final ArrayList<Node> getNodes() {
+    return this.getNodes(Node.SORT_BY_ID, Node.ORDER_BY_ASC);
   }
 
-  public ArrayList<Node> getChildrenNodes(int sortBy, int order) {
+  public final ArrayList<Node> getNodes(int sortBy, int order) {
     ArrayList<Node> list = new ArrayList<Node>(this.nodes.values());
     Collections.sort(
         list,
@@ -586,89 +625,17 @@ public abstract class Node {
    *
    * @return the type of the instance
    */
-  public String getType() {
+  public final String getType() {
     return this.getClass().getSimpleName();
   }
 
-  /**
-   * Returns a specified type in a format of Java class. Such as {@code structure.Node}.
-   *
-   * @param type a specified type
-   * @return a string of a specified type in a format of Java class
-   */
-  public static String typeClass(String type) {
-    return "structure." + Node.typeProper(Node.typeSingular(type));
+  public final boolean isSpecialized(){
+    return this.specialized;
   }
 
-  /**
-   * Returns a specified type in a plural format
-   *
-   * @param type a specified type
-   * @return a string of a specified type in a plural format
-   */
-  public static String typePlural(String type) {
-    return type.endsWith("s") || type.length() <= 0 ? type : type + "s";
-  }
-
-  /**
-   * Returns a specified type in a singular format.
-   *
-   * @param type a specified type
-   * @return a string of a specified type in a singular format
-   */
-  public static String typeSingular(String type) {
-    return type.endsWith("s") && type.length() > 0 ? type.substring(0, type.length() - 1) : type;
-  }
-
-  /**
-   * Returns a specified type in a proper-case format.
-   *
-   * @param type a specified type
-   * @return a string of a specified type in a proper-case format
-   */
-  public static String typeProper(String type) {
-    return type.substring(0, 1).toUpperCase() + type.toLowerCase().substring(1);
-  }
-
-  /**
-   * Returns a specified type in a lower-case format.
-   *
-   * @param type a specified type
-   * @return a string of a specified type in a lower-case format
-   */
-  public static String typeLower(String type) {
-    return type.toLowerCase();
-  }
-
-  /**
-   * Returns a specified type in a upper-case format.
-   *
-   * @param type a specified type
-   * @return a string of a specified type in a upper-case format
-   */
-  public static String typeUpper(String type) {
-    return type.toUpperCase();
-  }
-
-  // test
-  public LinkedHashMap<Integer, Node> getNodes() {
-    return this.nodes;
-  }
-
-  public static void main(String[] args) {
-    User user = new User();
-    user.authenticate("cloudy", "cloudy");
-    // System.out.println((user);
-    Kanban.checkout();
-    // System.out.println((Kanban.current);
-
-    Node node = Kanban.current.getNode(50);
-    // System.out.println((node);
-    node.setTitle("new title");
-    // System.out.println((node);
-
-    // Kanban kanban = new Kanban();
-    // Board aNode = new Board("new Node2 cloudyyyyyy", "", "#00b0f0");
-    // kanban.addNode(aNode);
+  protected final void setSpecialized(boolean is){
+    this.specialized = is;
+    this.existing = is;
+    this.setParent(this.parent);
   }
 }

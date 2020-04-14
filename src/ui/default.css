@@ -112,13 +112,13 @@
 /** Buttons and Forms **/
 .button, .combo-box, .date-picker{
   -fx-background-color: inherit;
-  -fx-padding: 4px 6px;
+  -fx-padding: 5px 6px;
   -fx-font-size: 12px;
   -fx-background-radius: 0;
   -fx-border-radius: 0;
   -fx-border-width: 0;
   -fx-border-color: transparent;
-
+  -fx-background-insets: 0;
 }
 
 
@@ -148,8 +148,8 @@
 }
 
 .button.primary *{
-	-fx-text-fill: -fx-light-text-color;
-	-fx-fill: -fx-light-text-color;
+	-fx-text-fill: -fx-light-text-color !important;
+	-fx-fill: -fx-light-text-color !important;
 }
 
 .button.primary:hover, .button.primary:focused{
@@ -264,8 +264,11 @@
 .tab-pane {
     -fx-tab-max-height: 0 ;
 }
-.tab-pane .tab-header-area {
-    visibility: hidden ;
+.tab-pane .tab-header-area, .tab-pane .tab-header-area * {
+	visibility: hidden ;
+	-fx-padding: 0;
+	-fx-max-height: 0;
+	-fx-max-width: 0;
 }
 
 
@@ -429,6 +432,11 @@
 	-fx-font-family: "Nexa Bold";
 }
 
+.nexa-light{
+	-fx-font-family: "Nexa Light";
+}
+
+
 
 /** Base **/
 .base{
@@ -444,7 +452,7 @@
 
 .bg-side *{
   -fx-background-radius: 0;
-  -fx-max-width: 210px; /** Here to change the sidebar width **/
+  -fx-max-width: 230px; /** Here to change the sidebar width **/
   -fx-background-color: transparent;
 }
 
@@ -458,7 +466,7 @@
 
 /* .bg-side .scroll-pane .button, */
 .bg-side .button{
-	-fx-padding: 12px 20px;
+	-fx-padding: 14px 30px;
     -fx-graphic-text-gap: 20px;
 	-fx-border-width: 0 0 0 4px;
 	-fx-border-color: transparent;
@@ -470,12 +478,6 @@
 
 .bg-side .button:hover{
 	-fx-background-color: -fx-accent-5;
-}
-
-.bg-side .scroll-pane .button,
-.bg-side .operation-list .button{
-	-fx-max-height: 48px;
-	-fx-min-height: 47px;
 }
 
 .bg-side .scroll-pane .button HBox,
@@ -502,7 +504,7 @@
 }
 
 .bg-side .username{
-	-fx-padding: 22px 15px !important;
+	-fx-padding: 22px 25px !important;
 }
 
 .bg-side .username #username-label{
@@ -527,7 +529,7 @@
 }
 
 .bg-main .tab-box.title{
-	-fx-padding: 30px 50px 10px;
+	-fx-padding: 20px 50px 10px;
 	-fx-background-color: -fx-base;
 	-fx-spacing: 10px;
 }
@@ -570,6 +572,7 @@
 	-fx-max-width: 46px;
 	-fx-min-height: 46px;
 	-fx-max-height: 46px;
+	-fx-alignment: CENTER;
 }
 
 .bg-main .columns{
@@ -578,8 +581,8 @@
 }
 
 .bg-main .column {
-	-fx-max-width: 266px;
-	-fx-pref-width: 266px;
+	-fx-max-width: 276px;
+	-fx-pref-width: 276px;
 	-fx-background-color: transparent;
 	-fx-padding: 0;
 }
@@ -609,6 +612,11 @@
 	-fx-pref-width: 300px;
 }
 
+.bg-main .column .title .text-field:disabled{
+	-fx-opacity: 1;
+}
+
+
 /** Column Title Total **/
 .bg-main .column .title .total{
 	-fx-min-width: 30px;
@@ -624,6 +632,9 @@
 .bg-main .column .title .button{
 	-fx-padding: 0;
 	-fx-border-width: 0;
+	-fx-min-width: 22px;
+	-fx-pref-height: 22px;
+	-fx-alignment: CENTER;
 }
 
 .bg-main .column .title .button SVGPath{
@@ -635,13 +646,11 @@
 	-fx-padding: 4px 0 0;
 }
 
-.bg-main .column .scroll-pane.event-list .button{
+.bg-main .column .scroll-pane.event-list .button, .card{
 	-fx-alignment: CENTER_LEFT;
-	-fx-max-width: 246px;
-	-fx-pref-width: 246px;
     -fx-border-radius: 4px;
 	-fx-background-radius: 4px;
-    -fx-padding: 14px 20px 14px 12px;
+    -fx-padding: 16px 20px 16px 12px;
     -fx-margin: 10px;
     -fx-border-width: 0;
     -fx-border-color: transparent;
@@ -653,33 +662,52 @@
     -fx-effect: dropshadow(gaussian, -fx-accent-20, 10, 0, 1, 2);
 }
 
-.bg-main .column .scroll-pane.event-list .button:hover{
+.bg-main .column .scroll-pane.event-list .button, .bg-main .column .scroll-pane.event-list .card{
+	-fx-max-width: 256px;
+	-fx-pref-width: 256px;
+}
+
+.bg-main .column .scroll-pane.event-list .button:hover, .card:hover{
 	-fx-background-color: derive(-fx-accent, -6%);
-    -fx-effect: dropshadow(gaussian, derive(-fx-accent, -6%), 10, 0, 1, 2); /** 15% **/
+    -fx-effect: dropshadow(gaussian, derive(-fx-accent, -6%), 10, 0, 1, 2);
 }
 
-.bg-main .column .scroll-pane.event-list .button:focused{
+.bg-main .column .scroll-pane.event-list .button:focused, .card:focused{
 	-fx-background-color: derive(-fx-accent, -16%);
-    -fx-effect: dropshadow(gaussian, derive(-fx-accent, -16%), 10, 0, 1, 2); /** 15% **/
+    -fx-effect: dropshadow(gaussian, derive(-fx-accent, -16%), 10, 0, 1, 2);
 }
 
-.bg-main .column .scroll-pane.event-list .button *{
+.bg-main .column .scroll-pane.event-list .button *, .card *{
 	-fx-text-fill: -fx-light-text-color;
     -fx-fill: -fx-light-text-color;
 }
 
-.bg-main .column .scroll-pane.event-list .button SVGPath{
+.bg-main .column .scroll-pane.event-list .button SVGPath, .card SVGPath{
 	-fx-scale-x: 0.75;
 	-fx-scale-y: 0.75;
 }
 
-
-.bg-main .column .scroll-pane.event-list .button:hover, .bg-main .column .scroll-pane.event-list .button:focused{
-    -fx-effect: dropshadow(gaussian, -fx-accent-30, 10, 0, 1, 2); /** 20% **/
+.bg-main .search{
+	-fx-font-family: "Nexa Bold";
+	-fx-pref-height: 54px;
 }
 
-.bg-main .column .scroll-pane.event-list .button.selected{
-	-fx-effect: dropshadow(gaussian, -fx-accent-50, 10, 0, 1, 2); /** 40% **/
+.bg-main .search-list{
+	-fx-padding: 20px 50px;
+	-fx-spacing: 15px;
+}
+
+.bg-main .search-list .card{
+	-fx-pref-width: 1000px;
+}
+
+
+.bg-main .column .scroll-pane.event-list .button:hover, .bg-main .column .scroll-pane.event-list .button:focused, .card:hover, .card:focused{
+    -fx-effect: dropshadow(gaussian, -fx-accent-30, 10, 0, 1, 2);
+}
+
+.bg-main .column .scroll-pane.event-list .button.selected, .card.selected{
+	-fx-effect: dropshadow(gaussian, -fx-accent-50, 10, 0, 1, 2);
 }
 
 .bg-main:hover .scroll-bar{
@@ -693,13 +721,26 @@
 
 .bg-settings .title{
 	-fx-alignment: CENTER_LEFT;
-	-fx-padding: 8px 40px;
+	-fx-padding: 10px 20px;
+	-fx-border-radius: 0;
+	-fx-background-radius: 0;
+	-fx-border-width: 0;
+	-fx-graphic-text-gap: 15px;
+}
+
+.bg-settings .title:hover, .bg-settings .title:focused{
+	-fx-border-width: 0;
+}
+
+.bg-settings .title SVGPath{
+	-fx-scale-x: 0.8;
+	-fx-scale-y: 0.8;
 }
 
 .bg-settings .title-wrapper{
 	-fx-background-color: -fx-base;
 	-fx-border-width: 0 0 2px;
-	-fx-border-color: -fx-accent-30;
+	-fx-border-color: -fx-side-background;
 }
 
 .bg-settings .scroll-pane .username{
@@ -775,7 +816,6 @@
 	-fx-background-color: transparent;
 }
 
-
 .bg-signin .signin-wrapper VBox{
 	-fx-min-width: 350px;
 	-fx-max-width: 350px;
@@ -793,6 +833,7 @@
 	-fx-border-color: transparent;
 	-fx-padding: 0;
 	-fx-alignment: CENTER_RIGHT;
+	-fx-spacing: 10px;
 }
 
 .bg-signin .operation .button, .bg-signin .operation .combo-box{
@@ -894,8 +935,8 @@
 	-fx-effect: dropshadow(gaussian , rgba(0, 0, 0, 0.2), 10, 0, 1, 2) !important;
 	-fx-padding: 0;
 	-fx-border-width: 0;
-	-fx-max-width: 550px;
-	-fx-alignment: CENTER;
+	-fx-max-width: 540px;
+	-fx-alignment: TOP_CENTER;
 }
 
 .bg-prompt .prompt-content-wrapper{
@@ -910,18 +951,21 @@
 }
 
 .bg-prompt .prompt-title SVGPath{
-	-fx-scale-x: 0.7;
-	-fx-scale-y: 0.7;
+	-fx-scale-x: 0.8;
+	-fx-scale-y: 0.8;
 	-fx-fill: -fx-dark-text-color;
 }
 
 .bg-prompt .prompt-title .label{
 	-fx-text-fill: -fx-dark-text-color;
-	-fx-font-size: 12.5px;
+	-fx-font-size: 14px;
 }
 
 .bg-prompt .prompt-title .button{
 	-fx-padding: 0;
+	-fx-pref-width: 34px;
+	-fx-pref-height: 34px;
+	-fx-alignment: CENTER;
 }
 
 .bg-prompt .prompt-title .button:hover, .bg-prompt .prompt-title .button:focused{
@@ -929,8 +973,8 @@
 }
 
 .bg-prompt .prompt-title .button SVGPath{
-	-fx-scale-x: 0.65;
-	-fx-scale-y: 0.65;
+	-fx-scale-x: 0.7;
+	-fx-scale-y: 0.7;
 	-fx-fill: -fx-dark-text-color;
 }
 
@@ -941,6 +985,7 @@
 
 .bg-prompt .text-area{
 	-fx-pref-row-count: 1;
+	-fx-min-height: 38.5px;
 }
 
 .bg-prompt .text-area .content{

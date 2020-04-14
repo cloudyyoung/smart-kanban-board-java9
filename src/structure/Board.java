@@ -10,7 +10,7 @@ import com.google.gson.annotations.*;
  * @since 1.0
  * @version 2.1
  */
-public class Board extends Node {
+public final class Board extends Node {
 
   /** Color of the board, in HEX. */
   @Expose private String color;
@@ -30,11 +30,24 @@ public class Board extends Node {
    *
    * @param title The title in {@code String}
    * @param note The note in {@code String}
-   * @param id THe id in {@code String}
+   * @param boardId THe id in {@code String}
    */
-  public Board(int id, String title, String note, String color, Node parent) {
-    super(id, title, note, parent);
-    this.setColorLocal(color);
+  public Board(
+      final String title,
+      final String note,
+      final String color,
+      final Node parent) {
+    super(title, note, parent);
+    this.setColor(color);
+  }
+
+  protected void createSubColumns() {
+    Column col1 = new Column("To Do", "Todo", 0, this);
+    Column col2 = new Column("In Progress", "Todo", 1, this);
+    Column col3 = new Column("Done", "Todo", 2, this);
+    col1.createRequest();
+    col2.createRequest();
+    col3.createRequest();
   }
 
   /**
@@ -42,7 +55,7 @@ public class Board extends Node {
    *
    * @param color The color in {@code String}
    */
-  public void setColorLocal(String color) {
+  protected void setColor(String color) {
     this.color = color;
   }
 
@@ -52,12 +65,21 @@ public class Board extends Node {
    * @param color The color in {@code String}
    * @return the http request of this action
    */
-  public HttpRequest setColor(String color) {
-    HttpRequest req = this.set("color", color);
-    if (req.isSucceeded()) {
-      this.setColorLocal(color);
+  public Result setColorRequest(String color) {
+    Result res = new Result();
+    if(!this.isExisting()){
+      this.setColor(color);
+
+      StructureRequest req = new StructureRequest(true, false, this);
+      res.add(req);
+    }else{
+      HttpRequest req = this.update("color", color);
+      if (req.isSucceeded()) {
+        this.setColor(color);
+      }
+      res.add(req);
     }
-    return req;
+    return res;
   }
 
   /**
@@ -85,7 +107,7 @@ public class Board extends Node {
         + "\", color: "
         + this.getColor()
         + ", nodes: "
-        + this.getChildrenNodes().toString()
+        + this.getNodes().toString()
         + "\")";
   }
 }

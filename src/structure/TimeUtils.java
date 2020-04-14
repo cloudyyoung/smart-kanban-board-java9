@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
  * @version 1.0
  * @author Jerremy Lewis
  */
-public class Time {
+public class TimeUtils {
 
   /**
    * Returns the current 24hr hour
@@ -173,7 +173,6 @@ public class Time {
    * @return the current name of the day
    */
   public static String currentDayName() {
-
     /**
      * myDateObj: current date and time taken from device dayOfWeek: name of the current day (from
      * device again) currDayName: converts dayOfWeek to a string
@@ -186,16 +185,14 @@ public class Time {
   }
 
   /**
-   * Returns the name of the month. Such as {@code October}.
+   * Returns the name of current month. Such as {@code October}.
    *
    * @param currentMonthNum the number of month
    * @return the name of the month
    */
-  public static String monthName(int currentMonthNum) {
-
-    /** monthName: name of current month */
+  public static String currentMonthName() {
     String monthName = "";
-    int toCompare = (int) currentMonthNum;
+    int toCompare = currentMonth();
 
     if (toCompare == 1) {
       monthName = "January";
