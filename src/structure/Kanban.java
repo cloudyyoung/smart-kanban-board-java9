@@ -124,6 +124,7 @@ public class Kanban extends Node {
               } else {
                 event.setParent(candidates);
               }
+              break;
 
             case Column.IN_PROGRESS: // For in Progress list: include the past and present tasks only
               if (event.isOnGeneratedToday() || event.isBeforeGeneratedToday()) {
@@ -135,6 +136,7 @@ public class Kanban extends Node {
               if (event.isOnGeneratedToday()) {
                 event.setParent(this.todayDone);
               }
+              break;
 
           }
         }
@@ -197,6 +199,7 @@ public class Kanban extends Node {
               if (!((Event) event).isOverdue()) { // Only include the task when it's not overdue
                 event.setParent(this.overviewDone);
               }
+              break;
           }
 
         }
