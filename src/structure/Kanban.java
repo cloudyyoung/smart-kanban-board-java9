@@ -84,44 +84,49 @@ public class Kanban extends Node {
     this.todayToDo.clearNodes();
     this.todayInProgress.clearNodes();
     this.todayDone.clearNodes();
-    Column tempColumn = new Column("temp", "temp", 0, null);
-    tempColumn.setSpecialized(true);
+
+    Column candicates = new Column("temp", "temp", 0, null); // candidates column, store tasks which may be added into today as new
+    candicates.setSpecialized(true);
 
     // Adding all the generated events
     for (Node board : this.getNodes()) {
-      if (!board.isSpecialized()) {
-        for (Node node : board.getNodes()) {
-          Column column = (Column) node;
-          for (Node event_node : column.getNodes()) {
-            Event event = (Event) event_node;
-            if (column.getPreset() == Column.TO_DO) {
+      if (board.isSpecialized()) {
+        continue;
+      }
+
+      for (Node column_node : board.getNodes()) {
+        for (Node event_node : column_node.getNodes()) {
+
+          Event event = (Event) event_node;
+          Column column = (Column) column_node;
+
+          switch(column.getPreset()){
+
+            case Column.TO_DO: // For To Do list: include the past and present task and store the rest as candicates
               if(event.isOnGeneratedToday() || event.isBeforeGeneratedToday()){
                 event.setParent(this.todayToDo);
-              }else {
-                // if not add to temp column
-                event.setParent(tempColumn);
+              }else{
+                event.setParent(candicates);
               }
-            } else if (column.getPreset() == Column.IN_PROGRESS) {
-              if (event.isBeforeGeneratedToday()) {
-                // add Inprogress event if is has already generated today
+
+            case Column.IN_PROGRESS: // For in Progress list: include the past and present tasks only
+              if(event.isOnGeneratedToday() || event.isBeforeGeneratedToday()){
                 event.setParent(this.todayInProgress);
               }
-            } else {
-              // add Done event if is has already generated today
-              if (event.isBeforeGeneratedToday()) {
-                event.setParent(this.todayDone);
-                event.setLastGeneratedDateRequest();
-              }else if(event.isOnGeneratedToday()){
+              break;
+
+            case Column.DONE: // For Done list: include only the present tasks
+              if(event.isOnGeneratedToday()){
                 event.setParent(this.todayDone);
               }
-            }
+
           }
         }
       }
     }
 
     // second loop to add new available events that has not generated today
-    for (Node node : tempColumn.getNodes(Node.SORT_BY_PRIORITY, Node.ORDER_BY_ASC)) {
+    for (Node node : candicates.getNodes(Node.SORT_BY_PRIORITY, Node.ORDER_BY_ASC)) {
       Event event = (Event) node;
       if (this.hasEnoughTime((Event) event)) {
         // is has enough time add it
@@ -134,7 +139,7 @@ public class Kanban extends Node {
 
   public boolean hasEnoughTime(Event eventNext) {
     Long totalTime = Long.valueOf(User.getCurrent().getTodayAvailability()) * 3600;
-    Long timeAccumulator = 0L;
+    Long timeAccumulator = 0l;
     for (Node node : this.todayToDo.getNodes()) {
       final Event event = (Event) node;
       timeAccumulator += event.getDurationValue();
