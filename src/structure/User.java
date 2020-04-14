@@ -6,7 +6,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Map;
+
+import javax.lang.model.element.Element;
 
 import com.google.gson.*;
 
@@ -117,12 +120,30 @@ public class User {
   }
 
   /**
+   * Sets the current theme of user.
+   *
+   * @param theme current theme of user.
+   */
+  private void setTheme(String theme) {
+    this.theme = theme;
+  }
+
+  /**
    * Returns Available house of users.
    *
    * @return the arraylist contains the available houses from Mon to Sun
    */
-  private ArrayList<Integer> getAvalability() {
+  private ArrayList<Integer> getAvailability() {
     return this.availability;
+  }
+
+  /**
+   * Sets the current theme of user.
+   *
+   * @param theme current theme of user.
+   */
+  private void setAvailability(ArrayList<Integer> availability) {
+    this.availability = availability;
   }
 
   /**
@@ -202,11 +223,22 @@ public class User {
 
       this.setId(response.getInt("id"));
       this.setSessionId(cookie.getString("PHPSESSID"));
+      ArrayList<Integer> availability = new ArrayList<Integer>();
+      Collection<Object> c = response.getList("availability").values();
+      for (Object i : c) {
+        Integer a = ((Double) i).intValue();
+        availability.add(a);
+      }
+      this.setAvailability(availability);
+      this.setTheme(response.getString("theme"));
       this.existing = true;
 
       // Sign in locally
       this.authenticated = true;
       User.current = this;
+
+      System.out.println("Theme" + this.getTheme());
+      System.out.println("availability" + this.getAvailability());
     }
 
     return res;
