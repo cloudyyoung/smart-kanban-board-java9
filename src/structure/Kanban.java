@@ -126,6 +126,50 @@ public class Kanban extends Node {
     }
   }
 
+  /*
+   * Overview
+   */
+  public void generateOverview() {
+
+    this.todayToDo.clearNodes();
+    this.todayInProgress.clearNodes();
+    this.todayDone.clearNodes();
+    Column tempColumn = new Column("temp", "temp", 0, null);
+    tempColumn.setSpecialized(true);
+
+    // All todo
+    for (Node board : this.getNodes()) {
+      if (!board.isSpecialized()) {
+        for (Node node : board.getNodes()) {
+          Column column = (Column) node;
+          for (Node event : column.getNodes()) {
+            System.out.println("---- TODAY ----");
+            if (column.getPreset() == Column.TO_DO) {
+              // this.todayToDo.addNode(event);
+              event.setParent(tempColumn);
+            } else if (column.getPreset() == Column.IN_PROGRESS) {
+              // this.todayInProgress.addNode(event);
+              event.setParent(this.todayInProgress);
+            } else {
+              if (!((Event) event).isOverdue()){
+                event.setParent(this.todayDone);
+              }
+              // this.todayDone.addNode(event);
+            }
+          }
+        }
+      }
+    }
+
+    for (Node node : tempColumn.getNodes(Node.SORT_BY_PRIORITY, Node.ORDER_BY_ASC)) {
+      Event event = (Event) node;
+      System.out.println(event.getTitle() + ": " + event.getPriority());
+      if (todayToDo.hasEnoughTime((Event) event)) {
+        event.setParent(this.todayToDo);
+      }
+    }
+  }
+
   public static Kanban getCurrent() {
     return Kanban.current;
   }
