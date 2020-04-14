@@ -167,7 +167,7 @@ public class Kanban extends Node {
       final Event event = (Event) node;
       timeAccumulator += event.getDurationValue();
     }
-    return (eventNext.getDuration() + timeAccumulator) <= totalTime ? true : false;
+    return (eventNext.getDurationValue() + timeAccumulator) <= totalTime ? true : false;
   }
 
   /*
