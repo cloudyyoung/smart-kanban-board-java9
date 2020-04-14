@@ -134,18 +134,20 @@ public class EventComponent extends Button {
   // activative card drag
   @FXML
   void EventDragDetected(MouseEvent event) {
-      // clean bug card
-      if (this.parentController.currentDragButton != null && this.parentController.originalParent != null) {
-    	  this.parentController.originalParent.getChildren().add(this.parentController.currentDragButton);
-    	  this.parentController.currentDragButton = null;
-      }
+    // clean bug card
+    if (this.parentController.currentDragButton != null && this.parentController.originalParent != null) {
+      this.parentController.originalParent.getChildren().add(this.parentController.currentDragButton);
+      this.parentController.currentDragButton = null;
+    }
 
-      Button card = (Button) event.getSource();
-      card.setLayoutX(event.getSceneX());
-      card.setLayoutY(event.getSceneY());
-      card.startFullDrag();
-      this.parentController.originalParent = (VBox) card.getParent();
-      this.parentController.currentDragButton = card;
-      this.parentController.dragPane.getChildren().add(card);
+    Button card = (Button) event.getSource();
+    card.setLayoutX(event.getSceneX());
+    card.setLayoutY(event.getSceneY());
+    card.startFullDrag();
+    this.parentController.originalParent = (VBox) card.getParent();
+    this.parentController.currentDragButton = card;
+    this.parentController.dragPane.getChildren().add(card);
+
+    System.out.println(card);
   }
 }

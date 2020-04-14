@@ -2,12 +2,17 @@ package structure;
 
 public final class NodeTypeUtils {
 
+  /**
+   * Upper case + Singular
+   * @param str
+   * @return
+   */
   public static final String typeClass(String str) {
     return "structure." + typeProper(typeSingular(str));
   }
 
   /**
-   * Returns a specified type in a format of Java class. Such as {@code structure.Node}.
+   * Lower case + plural
    *
    * @param type a specified type
    * @return a string of a specified type in a format of Java class
@@ -16,6 +21,11 @@ public final class NodeTypeUtils {
     return typeLower(typePlural(str));
   }
 
+  /**
+   * 
+   * @param str
+   * @return
+   */
   public static final String typeId(String str){
     return typeLower(typeSingular(str));
   }

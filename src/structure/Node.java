@@ -241,8 +241,8 @@ public abstract class Node {
       StructureRequest req2 = new StructureRequest(true, false, this);
       res.add(req2);
     }else if (this instanceof Event) {
-      String parentType = NodeTypeUtils.typeUrl(this.getParentType());
-      HttpRequest req = this.update(parentType + "_id", parent.getId() + "");
+      String parentType = NodeTypeUtils.typeId(this.getParentType());
+      HttpRequest req = this.update(parentType + "_id", parent.getId());
       res.add(req);
 
       if (req.isSucceeded()) {
