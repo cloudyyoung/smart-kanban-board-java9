@@ -117,6 +117,7 @@ public class HomeController {
   public ColumnComponent currentColumn;
   public VBox originalParent;
   public Button currentDragButton;
+  public BoardComponent componentToday;
   
 
   @FXML
@@ -231,7 +232,7 @@ public class HomeController {
 
   @FXML
   void list() {
-    BoardComponent componentToday = null;
+    this.componentToday = null;
 
     // Add list items
     operationList.getChildren().clear();

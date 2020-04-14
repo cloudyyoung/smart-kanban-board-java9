@@ -29,6 +29,10 @@ public class BoardComponent extends Button {
 
   @FXML
   void open(ActionEvent e){
+    if(this.equals(this.parentController.componentToday)){
+      Kanban.getCurrent().generateToday();
+    }
+
     this.parentController.currentBoard = this;
     this.parentController.boardEdit.setVisible(!this.node.isSpecialized());
 
