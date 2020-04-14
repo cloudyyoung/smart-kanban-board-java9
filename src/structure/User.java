@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
 
 import com.google.gson.*;
@@ -41,6 +42,13 @@ public class User {
 
   /** A boolean to indicate if the account is existing on the server. */
   private boolean existing = false;
+
+  /** A int to storage the availableHours that user plan to strive per day*/
+  private ArrayList<Integer> availability;
+
+  /** The current */
+  private String theme;
+
 
   /** Default constructor of {@code User}. */
   public User() {}
@@ -97,6 +105,24 @@ public class User {
    */
   private String getPassword() {
     return this.password;
+  }
+
+  /**
+   * Returns the current theme of user.
+   *
+   * @return the theme String
+   */
+  private String getTheme() {
+    return this.theme;
+  }
+
+  /**
+   * Returns Available house of users.
+   *
+   * @return the arraylist contains the available houses from Mon to Sun
+   */
+  private ArrayList<Integer> getAvalability() {
+    return this.availability;
   }
 
   /**
