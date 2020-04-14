@@ -236,21 +236,15 @@ public class Event extends Node {
     return this.getlastGeneratedDateValue()< enderTimeInSecond && this.getlastGeneratedDateValue() > currentDayInSecond;
   }
 
-  public void updateGeneratedDate() {
+  public Result setlastGeneratedDateRequest() {
     Calendar c = Calendar.getInstance();
-    // System.out.println(c.getTimeInMillis() / 1_000);
-    this.setlastGeneratedDate(c.getTimeInMillis() / 1_000);
-    this.setlastGeneratedDateRequest(c.getTimeInMillis() / 1_000);
-    // System.out.println();
-  }
-
-  public Result setlastGeneratedDateRequest(Long lastGeneratedDate) {
+    Long lastGeneratedDate = c.getTimeInMillis() / 1_000;
     Result res = new Result();
     HttpRequest req = this.update("last_generated_date", lastGeneratedDate);
     res.add(req);
 
     if (req.isSucceeded()) {
-      this.setDueDate(dueDate);
+      this.setlastGeneratedDate(lastGeneratedDate);
     }
     return res;
   }

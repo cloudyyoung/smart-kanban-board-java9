@@ -101,27 +101,17 @@ public class Kanban extends Node {
           for (Node event_node : column.getNodes()) {
             Event event = (Event) event_node;
             if (column.getPreset() == Column.TO_DO) {
-              if (event.beforeAndOnGeneratedToday()) event.setParent(this.todayToDo); 
-            } else if (column.getPreset() == Column.IN_PROGRESS) {
-              if (event.beforeAndOnGeneratedToday()) event.setParent(this.todayInProgress);
-            } else {
-              if (event.onGeneratedToday()) event.setParent(this.todayDone);
-            }
-          }
-        }
-      }
-    }
-
-    // Adding new events
-    for (Node board : this.getNodes()) {
-      if (!board.isSpecialized()) {
-        for (Node node : board.getNodes()) {
-          Column column = (Column) node;
-          for (Node event : column.getNodes()) {
-            if (column.getPreset() == Column.TO_DO) {
-              event.setParent(tempColumn);
+              if (event.beforeAndOnGeneratedToday()) {
+                event.setParent(this.todayToDo); 
+                event.setlastGeneratedDateRequest();
+              } else {
+                event.setParent(tempColumn);
+              }
             } else if (column.getPreset() == Column.IN_PROGRESS) {
               event.setParent(this.todayInProgress);
+              event.setlastGeneratedDateRequest();
+            } else {
+              if (event.onGeneratedToday()) event.setParent(this.todayDone); event.setlastGeneratedDateRequest();
             }
           }
         }
@@ -135,21 +125,6 @@ public class Kanban extends Node {
         event.setParent(this.todayToDo);
       }
     }
-
-    // Chaning all today events date
-    for (Node board : this.getNodes()) {
-      if (board.isSpecialized()) {
-        for (Node node : board.getNodes()) {
-          Column column = (Column) node;
-          for (Node event_node : column.getNodes()) {
-            Event event = (Event) event_node;
-            event.updateGeneratedDate();
-          }
-        }
-      }
-    }
-
-    System.out.println(User.getCurrent().getTodayAvailability());
   }
 
   public boolean hasEnoughTime(Event eventNext) {
