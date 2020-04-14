@@ -5,7 +5,8 @@ import java.util.ArrayList;
 /**
  * The {@code Kanban} class, extends from {@code Node}.
  *
- * <p>The instance should contains {@code Board} object as children nodes.
+ * <p>
+ * The instance should contains {@code Board} object as children nodes.
  *
  * @since 1.0
  * @version 2.1
@@ -28,16 +29,8 @@ public class Kanban extends Node {
   protected Kanban(HttpBody obj) {
     super(obj);
 
-    this.today =
-        new Board(
-            "Today",
-            TimeUtils.currentMonthName()
-                + " "
-                + TimeUtils.currentDay()
-                + ", "
-                + TimeUtils.currentYear(),
-            "#fd79a8",
-            this);
+    this.today = new Board("Today",
+        TimeUtils.currentMonthName() + " " + TimeUtils.currentDay() + ", " + TimeUtils.currentYear(), "#fd79a8", this);
 
     this.todayToDo = new Column("To Do", "jimjimsjimshtodo", 0, today);
     this.todayInProgress = new Column("In Progress", "", 1, today);
@@ -52,7 +45,8 @@ public class Kanban extends Node {
   /**
    * Check out the {@code Kanban} data of current {@code User} from the server.
    *
-   * <p>This is an <i>action</i> for controllers.
+   * <p>
+   * This is an <i>action</i> for controllers.
    *
    * @return the result object of this action in {@code Result}
    * @since 2.0
@@ -103,7 +97,7 @@ public class Kanban extends Node {
             if (column.getPreset() == Column.TO_DO) {
               if (event.beforeAndOnGeneratedToday()) {
                 // add Todo event if is has already generated today
-                event.setParent(this.todayToDo); 
+                event.setParent(this.todayToDo);
               } else {
                 // if not add to temp column
                 event.setParent(tempColumn);
@@ -115,7 +109,10 @@ public class Kanban extends Node {
               }
             } else {
               // add Done event if is has already generated today
-              if (event.onGeneratedToday()) event.setParent(this.todayDone); event.setlastGeneratedDateRequest();
+              if (event.onGeneratedToday()) {
+                event.setParent(this.todayDone);
+                event.setlastGeneratedDateRequest();
+              }
             }
           }
         }
@@ -126,7 +123,7 @@ public class Kanban extends Node {
     for (Node node : tempColumn.getNodes(Node.SORT_BY_PRIORITY, Node.ORDER_BY_ASC)) {
       Event event = (Event) node;
       if (this.hasEnoughTime((Event) event)) {
-        // is has enough time add it 
+        // is has enough time add it
         event.setParent(this.todayToDo);
         // update its lastGeneratedDate to current time
         event.setlastGeneratedDateRequest();
@@ -177,7 +174,7 @@ public class Kanban extends Node {
               // this.todayInProgress.addNode(event);
               event.setParent(this.todayInProgress);
             } else {
-              if (!((Event) event).isOverdue()){
+              if (!((Event) event).isOverdue()) {
                 event.setParent(this.todayDone);
               }
               // this.todayDone.addNode(event);
