@@ -149,7 +149,6 @@ public class User {
     
     Calendar c = Calendar.getInstance();
     Integer dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
-    System.out.println("dayOfWeek:" + this.getAvailability().get(dayOfWeek - 1));
     return this.getAvailability().get(dayOfWeek - 1);
   }
 

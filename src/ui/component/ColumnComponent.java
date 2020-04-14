@@ -158,6 +158,7 @@ public class ColumnComponent extends VBox {
           break;
         }
       }
+      button.getNode().updateGeneratedDate();
     } else {
       button.getNode().setParentRequest(nextColumn.getNode());
       nextColumn.getEventList().getChildren().add(button);

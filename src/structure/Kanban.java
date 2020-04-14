@@ -148,6 +148,8 @@ public class Kanban extends Node {
         }
       }
     }
+
+    System.out.println(User.getCurrent().getTodayAvailability());
   }
 
   public boolean hasEnoughTime(Event eventNext) {
