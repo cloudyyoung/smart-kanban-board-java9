@@ -13,31 +13,28 @@ import com.google.gson.annotations.*;
 public class Event extends Node {
 
   @SerializedName("importance_level")
-  @Expose private int importanceLevel;
+  @Expose
+  private int importanceLevel;
   // importanceLevel range from 0 to 3, which 0 is not important
   // and 3 is super important
   @SerializedName("due_date")
-  @Expose private Long dueDate;
+  @Expose
+  private Long dueDate;
   // dueDate is the timeStamp
-  @Expose private Long duration;
+  @Expose
+  private Long duration;
   // Duration store in timeStamp form (second)
   @SerializedName("last_generated_date")
-  @Expose private Long lastGeneratedDate;
+  @Expose
+  private Long lastGeneratedDate;
   // last generated date store in timeStamp form (second)
-
 
   /**
    * Constructor of {@code Event}, provide {@code HttpBody}.
    *
    * @param obj the {@code HttpBody} for initialization
    */
-  public Event(
-      String title,
-      String note,
-      Long dueDate,
-      Long duration,
-      int importanceLevel,
-      Node parent) {
+  public Event(String title, String note, Long dueDate, Long duration, int importanceLevel, Node parent) {
     super(title, note, parent);
     this.setDuration(duration);
     this.setDueDateRequest(dueDate);
@@ -63,12 +60,12 @@ public class Event extends Node {
 
   public Result setDurationRequest(Long duration) {
     Result res = new Result();
-    if(!this.isExisting()){
+    if (!this.isExisting()) {
       this.setDuration(duration);
-      
+
       StructureRequest req = new StructureRequest(true, false, this);
       res.add(req);
-    }else{
+    } else {
       HttpRequest req = this.update("duration", duration);
       res.add(req);
 
@@ -95,7 +92,7 @@ public class Event extends Node {
     return this.lastGeneratedDate;
   }
 
-  public Long getlastGeneratedDateValue() {
+  public Long getLastGeneratedDateValue() {
     return (this.lastGeneratedDate == null) ? Long.MAX_VALUE : this.lastGeneratedDate;
   }
 
@@ -109,12 +106,12 @@ public class Event extends Node {
 
   public Result setImportanceLevelRequest(int importance) {
     Result res = new Result();
-    if(!this.isExisting()){
+    if (!this.isExisting()) {
       this.setImportanceLevel(importance);
-      
+
       StructureRequest req = new StructureRequest(true, false, this);
       res.add(req);
-    }else{
+    } else {
       HttpRequest req = this.update("importance_level", importance);
       res.add(req);
 
@@ -160,24 +157,9 @@ public class Event extends Node {
 
   @Override
   public String toString() {
-    return this.getType()
-        + " (id: "
-        + this.getId()
-        + ", title: \""
-        + this.getTitle()
-        + "\", note: \""
-        + this.getNote()
-        + "\", duration: "
-        + this.getDuration()
-        + ", importanceLevel: "
-        + this.getImportanceLevel()
-        + ", priority: "
-        + this.getPriority()
-        + ", dueDate: "
-        + this.getDueDate()
-        + ", nodes: "
-        + this.getNodes().toString()
-        + "\")";
+    return this.getType() + " (id: " + this.getId() + ", title: \"" + this.getTitle() + "\", note: \"" + this.getNote()
+        + "\", duration: " + this.getDuration() + ", importanceLevel: " + this.getImportanceLevel() + ", priority: "
+        + this.getPriority() + ", dueDate: " + this.getDueDate() + ", nodes: " + this.getNodes().toString() + "\")";
   }
 
   /**
@@ -203,7 +185,7 @@ public class Event extends Node {
    */
   public Integer getPriority() {
     Long dueDateInLong = this.getDueDateValue() / 3_600;
-    int hourWeight = dueDateInLong.intValue();   
+    int hourWeight = dueDateInLong.intValue();
     int importanceWeight = this.getImportanceLevel() * (hourWeight / 24);
     return hourWeight - importanceWeight;
   }
@@ -213,32 +195,33 @@ public class Event extends Node {
    * 
    * @return an boolean of weahter this event is early than the end of today
    */
-  public boolean beforeAndOnGeneratedToday () {
+  public boolean isBeforeGeneratedToday() {
     Calendar c = Calendar.getInstance();
     c.set(Calendar.HOUR_OF_DAY, 0);
     c.set(Calendar.MINUTE, 0);
     c.set(Calendar.SECOND, 0);
-    Long currentDayInSecond = c.getTimeInMillis() / 1_000;
-    Long enderTimeInSecond = currentDayInSecond + 86400;
-    return this.getlastGeneratedDateValue() < enderTimeInSecond;
+    Long currentDayStart = c.getTimeInMillis() / 1_000; // In seconds
+    return this.getLastGeneratedDateValue() < currentDayStart;
   }
 
-  public boolean onGeneratedToday () {
+  public boolean isOnGeneratedToday() {
     Calendar c = Calendar.getInstance();
     c.set(Calendar.HOUR_OF_DAY, 0);
     c.set(Calendar.MINUTE, 0);
     c.set(Calendar.SECOND, 0);
-    Long currentDayInSecond = c.getTimeInMillis() / 1_000;
-    Long enderTimeInSecond = currentDayInSecond + 86400;
-    System.out.println("currentDayInSecond" + currentDayInSecond);
-    System.out.println("getlastGeneratedDateValue" + this.getlastGeneratedDateValue());
-    System.out.println(this.getlastGeneratedDateValue() < enderTimeInSecond && this.getlastGeneratedDateValue() > currentDayInSecond);
-    return this.getlastGeneratedDateValue()< enderTimeInSecond && this.getlastGeneratedDateValue() > currentDayInSecond;
+    Long currentDayStart = c.getTimeInMillis() / 1_000; // In seconds
+    Long currentDayEnd = currentDayStart + 86_400; // In seconds
+    System.out.println("currentDayInSecond" + currentDayStart);
+    System.out.println("getlastGeneratedDateValue" + this.getLastGeneratedDateValue());
+    System.out.println(
+        this.getLastGeneratedDateValue() < currentDayEnd && this.getLastGeneratedDateValue() > currentDayStart);
+    return this.getLastGeneratedDateValue() < currentDayEnd
+        && this.getLastGeneratedDateValue() > currentDayStart;
   }
 
-  public Result setlastGeneratedDateRequest() {
+  public Result setLastGeneratedDateRequest() {
     Calendar c = Calendar.getInstance();
-    Long lastGeneratedDate = c.getTimeInMillis() / 1_000;
+    Long lastGeneratedDate = c.getTimeInMillis() / 1_000; // In seconds
     Result res = new Result();
     HttpRequest req = this.update("last_generated_date", lastGeneratedDate);
     res.add(req);

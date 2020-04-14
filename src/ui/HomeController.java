@@ -389,9 +389,8 @@ public class HomeController {
   @FXML
   void MouseDragReleased(MouseDragEvent event) {
     Button btn = (Button) event.getGestureSource();
-    if (btn instanceof EventComponent) {
+    if (btn instanceof EventComponent && originalParent != null) {
       EventComponent current = (EventComponent) btn;
-      ColumnComponent parent = current.getParentComponent();
       originalParent.getEventList().getChildren().add(current);
     }
     currentDragButton = null;

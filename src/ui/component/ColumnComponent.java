@@ -141,6 +141,7 @@ public class ColumnComponent extends VBox {
     EventComponent button = (EventComponent) event.getGestureSource();
     ColumnComponent oldColumn = (ColumnComponent) button.getParentComponent();
     // nextColumn.getEventList().getChildren().add(button);
+    this.parentController.originalParent = null;
 
     System.out.println(oldColumn.getNode().getTitle());
     System.out.println(nextColumn.getNode().getTitle());
@@ -158,7 +159,7 @@ public class ColumnComponent extends VBox {
           break;
         }
       }
-      button.getNode().setlastGeneratedDateRequest();
+      button.getNode().setLastGeneratedDateRequest();
     } else {
       button.getNode().setParentRequest(nextColumn.getNode());
       nextColumn.getEventList().getChildren().add(button);
