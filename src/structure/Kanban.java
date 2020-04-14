@@ -90,6 +90,8 @@ public class Kanban extends Node {
     this.todayToDo.clearNodes();
     this.todayInProgress.clearNodes();
     this.todayDone.clearNodes();
+    Column tempColumn = new Column("temp", "temp", 0, null);
+    tempColumn.setSpecialized(true);
 
     // All todo
     for (Node board : this.getNodes()) {
@@ -100,7 +102,7 @@ public class Kanban extends Node {
             System.out.println("---- TODAY ----");
             if (column.getPreset() == Column.TO_DO) {
               // this.todayToDo.addNode(event);
-              event.setParent(this.todayToDo);
+              event.setParent(tempColumn);
             } else if (column.getPreset() == Column.IN_PROGRESS) {
               // this.todayInProgress.addNode(event);
               event.setParent(this.todayInProgress);
@@ -112,6 +114,14 @@ public class Kanban extends Node {
             }
           }
         }
+      }
+    }
+
+    for (Node node : tempColumn.getNodes(Node.SORT_BY_PRIORITY, Node.ORDER_BY_ASC)) {
+      Event event = (Event) node;
+      System.out.println(event.getTitle() + ": " + event.getPriority());
+      if (todayToDo.hasEnoughTime((Event) event)) {
+        event.setParent(this.todayToDo);
       }
     }
   }

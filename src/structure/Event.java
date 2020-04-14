@@ -186,7 +186,8 @@ public class Event extends Node {
    */
   public Integer getPriority() {
     int hourWeight = this.getDueDateValue().intValue() / 3600;
-    int importanceWeight = this.getImportanceLevel() * (hourWeight / 24);
+    
+    int importanceWeight = hourWeight <= 2 ? this.getImportanceLevel() : this.getImportanceLevel() * (hourWeight / 24);
     return hourWeight - importanceWeight;
   }
 }

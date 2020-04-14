@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Map;
 
@@ -130,11 +131,26 @@ public class User {
 
   /**
    * Returns Available house of users.
+   * Note: The index of 0 is Sunday
    *
    * @return the arraylist contains the available houses from Mon to Sun
    */
   private ArrayList<Integer> getAvailability() {
     return this.availability;
+  }
+
+  /**
+   * Returns Available house of users on current day.
+   * Note: The index of 1 is Sunday 2 is Monday
+   *
+   * @return Available house of users on current day
+   */
+  public Integer getTodayAvailability() {
+    
+    Calendar c = Calendar.getInstance();
+    Integer dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+    System.out.println("dayOfWeek:" + this.getAvailability().get(dayOfWeek - 1));
+    return this.getAvailability().get(dayOfWeek - 1);
   }
 
   /**
