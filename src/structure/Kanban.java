@@ -157,15 +157,15 @@ public class Kanban extends Node {
     Long timeAccumulator = 0L;
     for (Node node : this.todayToDo.getNodes()) {
       final Event event = (Event) node;
-      timeAccumulator += event.getDuration();
+      timeAccumulator += event.getDurationValue();
     }
     for (Node node : this.todayInProgress.getNodes()) {
       final Event event = (Event) node;
-      timeAccumulator += event.getDuration();
+      timeAccumulator += event.getDurationValue();
     }
     for (Node node : this.todayDone.getNodes()) {
       final Event event = (Event) node;
-      timeAccumulator += event.getDuration();
+      timeAccumulator += event.getDurationValue();
     }
     return (eventNext.getDuration() + timeAccumulator) <= totalTime ? true : false;
   }
