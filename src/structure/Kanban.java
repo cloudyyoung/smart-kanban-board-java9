@@ -38,12 +38,12 @@ public class Kanban extends Node {
                 + TimeUtils.currentYear(),
             "#fd79a8",
             this);
-    this.today.setSpecialized(true);
 
     this.todayToDo = new Column("To Do", "jimjimsjimshtodo", 0, today);
     this.todayInProgress = new Column("In Progress", "", 1, today);
     this.todayDone = new Column("Done", "", 2, today);
 
+    this.today.setSpecialized(true);
     this.todayToDo.setSpecialized(true);
     this.todayInProgress.setSpecialized(true);
     this.todayDone.setSpecialized(true);
@@ -97,12 +97,18 @@ public class Kanban extends Node {
         for (Node node : board.getNodes()) {
           Column column = (Column) node;
           for (Node event : column.getNodes()) {
+            System.out.println("---- TODAY ----");
             if (column.getPreset() == Column.TO_DO) {
-              this.todayToDo.addNode(event);
+              // this.todayToDo.addNode(event);
+              event.setParent(this.todayToDo);
             } else if (column.getPreset() == Column.IN_PROGRESS) {
-              this.todayInProgress.addNode(event);
+              // this.todayInProgress.addNode(event);
+              event.setParent(this.todayInProgress);
             } else {
-              if (!((Event) event).isOverdue()) this.todayDone.addNode(event);
+              if (!((Event) event).isOverdue()){
+                event.setParent(this.todayDone);
+              }
+              // this.todayDone.addNode(event);
             }
           }
         }

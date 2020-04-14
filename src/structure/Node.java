@@ -205,19 +205,25 @@ public abstract class Node {
    *
    * @param parent the parent node of the instance
    */
-  private final void setParent(Node parent) {
+  protected final void setParent(Node parent) {
     if (parent != null) {
-      // Remove self from old parent
-      if (this.getParent() != null && this.getParent() != parent) {
-        this.getParent().removeNode(this);
+      if(!parent.isSpecialized()){
+        // Remove self from old 
+        if (this.getParent() != null && this.getParent() != parent) {
+          this.getParent().removeNode(this);
+          System.out.println("remove from old parent");
+        }
+        // Set new parent
+        this.parent = parent;
+        this.parentId = this.parent.getId();
+        System.out.println("set parent");
       }
 
-      // Set new parent
-      this.parent = parent;
-      this.parentId = this.parent.getId();
-
-      if(this.isExisting() || this.isSpecialized()){
+      if(this.isExisting() && !parent.isSpecialized()){
         this.getParent().addNode(this);
+        System.out.println("parent add node");
+      }else{
+        parent.addNode(this);
       }
     } else {
       // Remove parent
@@ -554,7 +560,7 @@ public abstract class Node {
    * @param node the {@code Node} object to be added
    * @return the structure request of this action
    */
-  protected final void addNode(Node nodeAdded) {
+  private final void addNode(Node nodeAdded) {
     this.nodes.put(nodeAdded.getId(), nodeAdded);
   }
 
@@ -564,7 +570,7 @@ public abstract class Node {
    * @param id the id of the {@code Node} object to be removed
    * @return the strcuture request of the action
    */
-  protected final void removeNode(int id) {
+  private final void removeNode(int id) {
     this.nodes.remove(id);
   }
 
