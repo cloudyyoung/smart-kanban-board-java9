@@ -164,6 +164,6 @@ public class ColumnComponent extends VBox {
       nextColumn.getEventList().getChildren().add(button);
     }
 
-    Kanban.getCurrent().generateToday();
+    // Kanban.getCurrent().generateToday();
   }
 }
