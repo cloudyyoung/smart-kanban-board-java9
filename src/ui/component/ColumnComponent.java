@@ -73,9 +73,13 @@ public class ColumnComponent extends VBox {
     // System.out.println(list);
 
     eventList.getChildren().clear();
+
+    // System.out.println(eventList.getChildren());
+
     for (structure.Node each : list) {
       EventComponent event = new EventComponent(each, this, this.parentController);
       eventList.getChildren().add(event);
+      System.out.println(event);
     }
     eventCount.setText(list.size() + "");
   }
@@ -138,9 +142,10 @@ public class ColumnComponent extends VBox {
     ColumnComponent oldColumn = (ColumnComponent) button.getParentComponent();
     // nextColumn.getEventList().getChildren().add(button);
 
-    // System.out.println(event.getSource());
-    // System.out.println(current.getNode());
+    System.out.println(oldColumn.getNode().getTitle());
+    System.out.println(nextColumn.getNode().getTitle());
     // System.out.println(button.getNode());
+    
 
     if (this.getNode().getParent().isSpecialized()) {
       Node node = button.getNode().getParent().getParent();
@@ -156,7 +161,14 @@ public class ColumnComponent extends VBox {
       }
     } else {
       button.getNode().setParentRequest(nextColumn.getNode());
+
+      System.out.println("getNodes()=======");
+      System.out.println(oldColumn.getNode().getNodes());
+      System.out.println(nextColumn.getNode().getNodes());
+
+      System.out.println("oldColumn:list()=======");
       oldColumn.list();
+      System.out.println("nextColumn:list()=======");
       nextColumn.list();
     }
 
