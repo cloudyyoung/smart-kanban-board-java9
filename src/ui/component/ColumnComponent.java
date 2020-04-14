@@ -138,6 +138,7 @@ public class ColumnComponent extends VBox {
     EventComponent button = (EventComponent) event.getGestureSource();
     current.getEventList().getChildren().add(button);
 
+    System.out.println(event.getSource());
     // System.out.println(current.getNode());
     // System.out.println(button.getNode());
     
