@@ -383,8 +383,7 @@ public class HomeController {
   @FXML
   void MouseDragReleased(MouseDragEvent event) {
     Button btn = (Button) event.getGestureSource();
-    if (btn.getParent().getClass() == VBox.class) {
-    } else {
+    if (btn.getParent().getClass() != VBox.class) {
       originalParent.getChildren().add(btn);
     } 
     currentDragButton = null;
