@@ -140,33 +140,37 @@ public class ColumnComponent extends VBox {
     ColumnComponent nextColumn = (ColumnComponent) event.getSource();
     EventComponent button = (EventComponent) event.getGestureSource();
     ColumnComponent oldColumn = (ColumnComponent) button.getParentComponent();
-    // nextColumn.getEventList().getChildren().add(button);
     this.parentController.originalParent = null;
 
-    System.out.println(oldColumn.getNode().getTitle());
-    System.out.println(nextColumn.getNode().getTitle());
+    // System.out.println(oldColumn.getNode().getTitle());
+    // System.out.println(nextColumn.getNode().getTitle());
     // System.out.println(button.getNode());
     
     if (this.getNode().getParent().isSpecialized()) {
-      Node node = button.getNode().getParent().getParent();
-      Board originBoard = (Board) node;
-      int nextColumnPreset = nextColumn.getNode().getPreset();
-      for (Node node_col : originBoard.getNodes()) {
-        Column column = (Column) node_col;
-        if (column.getPreset() == nextColumnPreset) {
-          button.getNode().setParentRequest(column);
-          nextColumn.getEventList().getChildren().add(button);
-          break;
-        }
-      }
+      // Node node = button.getNode().getParent().getParent();
+      // Board originBoard = (Board) node;
+      // int nextColumnPreset = nextColumn.getNode().getPreset();
+      // for (Node node_col : originBoard.getNodes()) {
+      //   Column column = (Column) node_col;
+      //   if (column.getPreset() == nextColumnPreset) {
+      //     button.getNode().setParentRequest(column);
+      //     nextColumn.getEventList().getChildren().add(button);
+      //     break;
+      //   }
+      // }
       button.getNode().setLastGeneratedDateRequest();
-    } else {
-      button.getNode().setParentRequest(nextColumn.getNode());
+      Kanban.getCurrent().generateToday();
       nextColumn.getEventList().getChildren().add(button);
-      
+    } else {
+      nextColumn.getEventList().getChildren().add(button);
+      button.getNode().setParentRequest(nextColumn.getNode());
+      oldColumn.list();
+      nextColumn.list();
     }
-    oldColumn.list();
-    nextColumn.list();
+
+    
+    
+
     // Kanban.getCurrent().generateToday();
   }
 }
