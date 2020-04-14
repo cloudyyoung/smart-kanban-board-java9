@@ -176,30 +176,31 @@ public class Kanban extends Node {
     this.overviewInProgress.clearNodes();
     this.overviewDone.clearNodes();
 
-
     // All todo
     for (Node board : this.getNodes()) {
-      if (!board.isSpecialized()) {
-        for (Node node : board.getNodes()) {
-          Column column = (Column) node;
-          for (Node event : column.getNodes()) {
+      if (board.isSpecialized()) { // Skip specialized boards
+        continue;
+      }
 
-            switch(column.getPreset()){
-              case Column.TO_DO:
-                event.setParent(this.overviewToDo);
-                break;
+      for (Node node : board.getNodes()) {
+        Column column = (Column) node;
+        for (Node event : column.getNodes()) {
 
-              case Column.IN_PROGRESS:
-                event.setParent(this.todayInProgress);
-                break;
+          switch(column.getPreset()){
+            case Column.TO_DO:
+              event.setParent(this.overviewToDo);
+              break;
 
-              case Column.DONE:
-                if (!((Event) event).isOverdue()) { // Only include the task when it's not overdue
-                  event.setParent(this.todayDone);
-                }
-            }
+            case Column.IN_PROGRESS:
+              event.setParent(this.todayInProgress);
+              break;
 
+            case Column.DONE:
+              if (!((Event) event).isOverdue()) { // Only include the task when it's not overdue
+                event.setParent(this.todayDone);
+              }
           }
+
         }
       }
     }
