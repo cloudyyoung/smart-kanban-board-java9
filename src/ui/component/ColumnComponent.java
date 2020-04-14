@@ -7,7 +7,6 @@ import javafx.fxml.*;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseDragEvent;
-import javafx.scene.input.MouseEvent;
 import structure.*;
 import ui.HomeController;
 
@@ -74,9 +73,13 @@ public class ColumnComponent extends VBox {
     // System.out.println(list);
 
     eventList.getChildren().clear();
+
+    // System.out.println(eventList.getChildren());
+
     for (structure.Node each : list) {
       EventComponent event = new EventComponent(each, this, this.parentController);
       eventList.getChildren().add(event);
+      System.out.println(event);
     }
     eventCount.setText(list.size() + "");
   }
@@ -134,14 +137,41 @@ public class ColumnComponent extends VBox {
   // drag
   @FXML
   void MouseDragReleased(MouseDragEvent event) {
-    ColumnComponent current = (ColumnComponent) event.getSource();
+    ColumnComponent nextColumn = (ColumnComponent) event.getSource();
     EventComponent button = (EventComponent) event.getGestureSource();
-    current.getEventList().getChildren().add(button);
+    ColumnComponent oldColumn = (ColumnComponent) button.getParentComponent();
+    // nextColumn.getEventList().getChildren().add(button);
 
-    System.out.println(event.getSource());
-    // System.out.println(current.getNode());
+    System.out.println(oldColumn.getNode().getTitle());
+    System.out.println(nextColumn.getNode().getTitle());
     // System.out.println(button.getNode());
     
-    System.out.println(button.getNode().setParentRequest(current.getNode()));
+
+    if (this.getNode().getParent().isSpecialized()) {
+      Node node = button.getNode().getParent().getParent();
+      Board originBoard = (Board) node;
+      int nextColumnPreset = nextColumn.getNode().getPreset();
+      for (Node node_col : originBoard.getNodes()) {
+        Column column = (Column) node_col;
+        if (column.getPreset() == nextColumnPreset) {
+          button.getNode().setParentRequest(column);
+          nextColumn.getEventList().getChildren().add(button);
+          break;
+        }
+      }
+    } else {
+      button.getNode().setParentRequest(nextColumn.getNode());
+
+      System.out.println("getNodes()=======");
+      System.out.println(oldColumn.getNode().getNodes());
+      System.out.println(nextColumn.getNode().getNodes());
+
+      System.out.println("oldColumn:list()=======");
+      oldColumn.list();
+      System.out.println("nextColumn:list()=======");
+      nextColumn.list();
+    }
+
+    Kanban.getCurrent().generateToday();
   }
 }
