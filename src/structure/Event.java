@@ -80,7 +80,7 @@ public class Event extends Node {
   }
 
   public Long getDuration() {
-    return this.duration;
+    return this.duration == null ? 0 : this.duration;
   }
 
   public Long getDurationValue() {
