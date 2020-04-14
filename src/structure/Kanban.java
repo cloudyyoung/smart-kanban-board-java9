@@ -123,6 +123,7 @@ public class Kanban extends Node {
       System.out.println(event.getTitle() + ": " + event.getPriority());
       if (this.hasEnoughTime((Event) event)) {
         event.setParent(this.todayToDo);
+        event.setlastGeneratedDateRequest();
       }
     }
   }
