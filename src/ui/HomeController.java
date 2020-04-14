@@ -115,7 +115,7 @@ public class HomeController {
   public EventComponent currentEvent;
   public BoardComponent currentBoard;
   public ColumnComponent currentColumn;
-  public VBox originalParent;
+  public ColumnComponent originalParent;
   public Button currentDragButton;
   public BoardComponent componentToday;
   
@@ -389,9 +389,11 @@ public class HomeController {
   @FXML
   void MouseDragReleased(MouseDragEvent event) {
     Button btn = (Button) event.getGestureSource();
-    if (btn.getParent().getClass() != VBox.class) {
-      originalParent.getChildren().add(btn);
-    } 
+    if (btn instanceof EventComponent) {
+      EventComponent current = (EventComponent) btn;
+      ColumnComponent parent = current.getParentComponent();
+      originalParent.getEventList().getChildren().add(current);
+    }
     currentDragButton = null;
     originalParent = null;
   }

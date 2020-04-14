@@ -140,14 +140,16 @@ public class EventComponent extends Button {
       this.parentController.currentDragButton = null;
     }
 
-    Button card = (Button) event.getSource();
-    card.setLayoutX(event.getSceneX());
-    card.setLayoutY(event.getSceneY());
-    card.startFullDrag();
-    this.parentController.originalParent = (VBox) card.getParent();
-    this.parentController.currentDragButton = card;
-    this.parentController.dragPane.getChildren().add(card);
-
-    System.out.println(card);
+    EventComponent card = (EventComponent) event.getSource();
+    if (card instanceof EventComponent) {
+      card.setLayoutX(event.getSceneX());
+      card.setLayoutY(event.getSceneY());
+      card.startFullDrag();
+      this.parentController.originalParent = (ColumnComponent) card.getParentComponent();
+      this.parentController.currentDragButton = card;
+      this.parentController.dragPane.getChildren().add(card);
+  
+      System.out.println(card);
+    }
   }
 }

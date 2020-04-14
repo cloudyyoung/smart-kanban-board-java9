@@ -162,8 +162,10 @@ public class ColumnComponent extends VBox {
     } else {
       button.getNode().setParentRequest(nextColumn.getNode());
       nextColumn.getEventList().getChildren().add(button);
+      
     }
-
+    oldColumn.list();
+    nextColumn.list();
     // Kanban.getCurrent().generateToday();
   }
 }
