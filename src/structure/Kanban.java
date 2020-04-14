@@ -102,15 +102,19 @@ public class Kanban extends Node {
             Event event = (Event) event_node;
             if (column.getPreset() == Column.TO_DO) {
               if (event.beforeAndOnGeneratedToday()) {
+                // add Todo event if is has already generated today
                 event.setParent(this.todayToDo); 
-                event.setlastGeneratedDateRequest();
               } else {
+                // if not add to temp column
                 event.setParent(tempColumn);
               }
             } else if (column.getPreset() == Column.IN_PROGRESS) {
-              event.setParent(this.todayInProgress);
-              event.setlastGeneratedDateRequest();
+              if (event.beforeAndOnGeneratedToday()) {
+                // add Inprogress event if is has already generated today
+                event.setParent(this.todayInProgress);
+              }
             } else {
+              // add Done event if is has already generated today
               if (event.onGeneratedToday()) event.setParent(this.todayDone); event.setlastGeneratedDateRequest();
             }
           }
@@ -118,11 +122,13 @@ public class Kanban extends Node {
       }
     }
 
+    // second loop to add new available events that has not generated today
     for (Node node : tempColumn.getNodes(Node.SORT_BY_PRIORITY, Node.ORDER_BY_ASC)) {
       Event event = (Event) node;
-      System.out.println(event.getTitle() + ": " + event.getPriority());
       if (this.hasEnoughTime((Event) event)) {
+        // is has enough time add it 
         event.setParent(this.todayToDo);
+        // update its lastGeneratedDate to current time
         event.setlastGeneratedDateRequest();
       }
     }
