@@ -29,7 +29,7 @@
          <left>
             <VBox fx:id="sidePane" onMouseDragReleased="#MouseDragReleased" styleClass="bg-side">
                <children>
-                  <VBox focusTraversable="true">
+                  <VBox>
                      <children>
                         <Button fx:id="sideProfile" mnemonicParsing="false" onAction="#switchTab">
                            <graphic>
@@ -71,6 +71,10 @@
                               <String fx:value="a" />
                            </styleClass>
                         </Button>
+                     </children>
+                  </VBox>
+                  <VBox focusTraversable="true" styleClass="operation-list">
+                     <children>
                         <Button fx:id="sideSearch" onAction="#switchTab" text="Search">
                            <graphic>
                               <HBox>
@@ -93,7 +97,24 @@
                   <VBox fx:id="operationList" styleClass="operation-list" />
                   <ScrollPane hbarPolicy="NEVER" VBox.vgrow="ALWAYS">
                     <content>
-                        <VBox fx:id="boardList" />
+                        <VBox>
+                           <children>
+                              <VBox fx:id="boardList" />
+                              <Button mnemonicParsing="false" style="-fx-font-family: 'Noto Sans Normal';" styleClass="a" text="New Board">
+                                 <graphic>
+                                    <HBox>
+                                       <children>
+                                          <SVGPath id="icon" content="M 15 5 L 15 15 L 5 15 L 5 17 L 15 17 L 15 27 L 17 27 L 17 17 L 27 17 L 27 15 L 17 15 L 17 5 Z" fill="#2f2e2e">
+                                             <cursor>
+                                                <Cursor fx:constant="DEFAULT" />
+                                             </cursor>
+                                          </SVGPath>
+                                       </children>
+                                    </HBox>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </VBox>
                     </content>
                   </ScrollPane>
                </children>
@@ -130,7 +151,7 @@
                                     </VBox>
                                     <VBox styleClass="operation-list">
                                        <children>
-                                          <Button fx:id="boardEdit" mnemonicParsing="false" onAction="#displayBoardPrompt">
+                                          <Button fx:id="boardEdit" mnemonicParsing="false" onAction="#updateBoardPrompt">
                                              <graphic>
                                                 <SVGPath content="M 16 6 C 14.894531 6 14 6.894531 14 8 C 14 9.105469 14.894531 10 16 10 C 17.105469 10 18 9.105469 18 8 C 18 6.894531 17.105469 6 16 6 Z M 16 14 C 14.894531 14 14 14.894531 14 16 C 14 17.105469 14.894531 18 16 18 C 17.105469 18 18 17.105469 18 16 C 18 14.894531 17.105469 14 16 14 Z M 16 22 C 14.894531 22 14 22.894531 14 24 C 14 25.105469 14.894531 26 16 26 C 17.105469 26 18 25.105469 18 24 C 18 22.894531 17.105469 22 16 22 Z" />
                                              </graphic>
@@ -476,8 +497,8 @@
             </TabPane>
          </center>
       </BorderPane>
-      <Pane id="dragPane" fx:id="dragPane" />
-      <VBox fx:id="promptBoard" styleClass="prompt-cover">
+      <Pane id="dragPane" fx:id="dragPane" mouseTransparent="true" />
+      <VBox fx:id="promptBoard">
          <children>
             <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="bg-prompt">
                <content>
@@ -535,6 +556,10 @@
                </content>
             </ScrollPane>
          </children>
+         <styleClass>
+            <String fx:value="prompt-cover" />
+            <String fx:value="hide" />
+         </styleClass>
       </VBox>
       <VBox fx:id="promptEvent">
          <children>

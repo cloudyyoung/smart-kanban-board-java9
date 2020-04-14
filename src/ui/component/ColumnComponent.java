@@ -145,7 +145,6 @@ public class ColumnComponent extends VBox {
     System.out.println(oldColumn.getNode().getTitle());
     System.out.println(nextColumn.getNode().getTitle());
     // System.out.println(button.getNode());
-    
 
     if (this.getNode().getParent().isSpecialized()) {
       Node node = button.getNode().getParent().getParent();

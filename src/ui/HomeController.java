@@ -223,14 +223,14 @@ public class HomeController {
     });
 
     this.sidePane.requestFocus();
-    this.listBoard();
+    this.list();
 
     // set transparent to 100
     dragPane.setMouseTransparent(true);
   }
 
   @FXML
-  void listBoard() {
+  void list() {
     BoardComponent componentToday = null;
 
     // Add list items
@@ -304,14 +304,19 @@ public class HomeController {
   }
 
   @FXML
-  void displayBoardPrompt(ActionEvent e) {
+  void updateBoardPrompt(ActionEvent e) {
     currentBoard.update(e);
+  }
+
+  @FXML
+  void createBoardPrompt(ActionEvent e){
+    
   }
 
   @FXML
   void deleteBoardRequest() {
     currentBoard.getNode().deleteRequest();
-    this.listBoard();
+    this.list();
     currentBoard = null;
     this.closePrompt();
   }
