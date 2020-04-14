@@ -145,7 +145,7 @@ public class ColumnComponent extends VBox {
     System.out.println(oldColumn.getNode().getTitle());
     System.out.println(nextColumn.getNode().getTitle());
     // System.out.println(button.getNode());
-
+    
     if (this.getNode().getParent().isSpecialized()) {
       Node node = button.getNode().getParent().getParent();
       Board originBoard = (Board) node;
@@ -158,17 +158,10 @@ public class ColumnComponent extends VBox {
           break;
         }
       }
+      button.getNode().updateGeneratedDate();
     } else {
       button.getNode().setParentRequest(nextColumn.getNode());
-
-      System.out.println("getNodes()=======");
-      System.out.println(oldColumn.getNode().getNodes());
-      System.out.println(nextColumn.getNode().getNodes());
-
-      System.out.println("oldColumn:list()=======");
-      oldColumn.list();
-      System.out.println("nextColumn:list()=======");
-      nextColumn.list();
+      nextColumn.getEventList().getChildren().add(button);
     }
 
     Kanban.getCurrent().generateToday();

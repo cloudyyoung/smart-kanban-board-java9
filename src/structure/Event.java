@@ -20,7 +20,11 @@ public class Event extends Node {
   @Expose private Long dueDate;
   // dueDate is the timeStamp
   @Expose private Long duration;
-  // Duration store in timeStamp form (millissecond)
+  // Duration store in timeStamp form (second)
+  @SerializedName("last_generated_date")
+  @Expose private Long lastGeneratedDate;
+  // last generated date store in timeStamp form (second)
+
 
   /**
    * Constructor of {@code Event}, provide {@code HttpBody}.
@@ -50,6 +54,7 @@ public class Event extends Node {
     this.setDuration(obj.getLong("duration"));
     this.setDueDate(obj.getLong("due_date"));
     this.setImportanceLevel(obj.getInt("importance_level"));
+    this.setlastGeneratedDate(obj.getLong("last_generated_date"));
   }
 
   protected void setDuration(Long duration) {
@@ -75,7 +80,7 @@ public class Event extends Node {
   }
 
   public Long getDuration() {
-    return this.duration;
+    return this.duration == null ? 0 : this.duration;
   }
 
   public Long getDurationValue() {
@@ -86,8 +91,20 @@ public class Event extends Node {
     return (int) (this.duration / 60_000);
   }
 
+  public Long getlastGeneratedDate() {
+    return this.lastGeneratedDate;
+  }
+
+  public Long getlastGeneratedDateValue() {
+    return (this.lastGeneratedDate == null) ? Long.MAX_VALUE : this.lastGeneratedDate;
+  }
+
   private void setImportanceLevel(int importance) {
     this.importanceLevel = importance;
+  }
+
+  private void setlastGeneratedDate(Long date) {
+    this.lastGeneratedDate = date;
   }
 
   public Result setImportanceLevelRequest(int importance) {
@@ -185,8 +202,56 @@ public class Event extends Node {
    * @return an int of weight to represent the event priority.
    */
   public Integer getPriority() {
-    int hourWeight = this.getDueDateValue().intValue() / 3600;
+    Long dueDateInLong = this.getDueDateValue() / 3_600;
+    int hourWeight = dueDateInLong.intValue();   
     int importanceWeight = this.getImportanceLevel() * (hourWeight / 24);
     return hourWeight - importanceWeight;
+  }
+
+  /**
+   * Return an boolean of weahter this event is early than the end of today
+   * 
+   * @return an boolean of weahter this event is early than the end of today
+   */
+  public boolean beforeAndOnGeneratedToday () {
+    Calendar c = Calendar.getInstance();
+    c.set(Calendar.HOUR_OF_DAY, 0);
+    c.set(Calendar.MINUTE, 0);
+    c.set(Calendar.SECOND, 0);
+    Long currentDayInSecond = c.getTimeInMillis() / 1_000;
+    Long enderTimeInSecond = currentDayInSecond + 86400;
+    return this.getlastGeneratedDateValue() < enderTimeInSecond;
+  }
+
+  public boolean onGeneratedToday () {
+    Calendar c = Calendar.getInstance();
+    c.set(Calendar.HOUR_OF_DAY, 0);
+    c.set(Calendar.MINUTE, 0);
+    c.set(Calendar.SECOND, 0);
+    Long currentDayInSecond = c.getTimeInMillis() / 1_000;
+    Long enderTimeInSecond = currentDayInSecond + 86400;
+    System.out.println("currentDayInSecond" + currentDayInSecond);
+    System.out.println("getlastGeneratedDateValue" + this.getlastGeneratedDateValue());
+    System.out.println(this.getlastGeneratedDateValue() < enderTimeInSecond && this.getlastGeneratedDateValue() > currentDayInSecond);
+    return this.getlastGeneratedDateValue()< enderTimeInSecond && this.getlastGeneratedDateValue() > currentDayInSecond;
+  }
+
+  public void updateGeneratedDate() {
+    Calendar c = Calendar.getInstance();
+    // System.out.println(c.getTimeInMillis() / 1_000);
+    this.setlastGeneratedDate(c.getTimeInMillis() / 1_000);
+    this.setlastGeneratedDateRequest(c.getTimeInMillis() / 1_000);
+    // System.out.println();
+  }
+
+  public Result setlastGeneratedDateRequest(Long lastGeneratedDate) {
+    Result res = new Result();
+    HttpRequest req = this.update("last_generated_date", lastGeneratedDate);
+    res.add(req);
+
+    if (req.isSucceeded()) {
+      this.setDueDate(dueDate);
+    }
+    return res;
   }
 }

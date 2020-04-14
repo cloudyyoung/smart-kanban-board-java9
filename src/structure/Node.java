@@ -84,7 +84,8 @@ public abstract class Node {
    * @param parent the parent node in {@code Node}
    */
   protected Node(String title, String note, Node parent) {
-    this.setId(parent.idAutoIncrement++);
+    int id = parent == null ? -1 : parent.idAutoIncrement++;
+    this.setId(id);
     this.setTitle(title);
     this.setNote(note);
     this.setParent(parent);

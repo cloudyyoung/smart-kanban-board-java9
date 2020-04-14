@@ -70,7 +70,7 @@ public final class Column extends Node {
   }
 
   public boolean hasEnoughTime(Event eventNext) {
-    Long totalTime = 25_200L;
+    Long totalTime = Long.valueOf(User.getCurrent().getTodayAvailability()) * 3600;
     Long timeAccumulator = 0L;
     for (Node node : this.getNodes()) {
       final Event event = (Event) node;

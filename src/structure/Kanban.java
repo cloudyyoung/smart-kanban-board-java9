@@ -90,6 +90,96 @@ public class Kanban extends Node {
     this.todayToDo.clearNodes();
     this.todayInProgress.clearNodes();
     this.todayDone.clearNodes();
+    Column tempColumn = new Column("temp", "temp", 0, null);
+    tempColumn.setSpecialized(true);
+
+    // Adding all the generated events
+    for (Node board : this.getNodes()) {
+      if (!board.isSpecialized()) {
+        for (Node node : board.getNodes()) {
+          Column column = (Column) node;
+          for (Node event_node : column.getNodes()) {
+            Event event = (Event) event_node;
+            if (column.getPreset() == Column.TO_DO) {
+              if (event.beforeAndOnGeneratedToday()) event.setParent(this.todayToDo); 
+            } else if (column.getPreset() == Column.IN_PROGRESS) {
+              if (event.beforeAndOnGeneratedToday()) event.setParent(this.todayInProgress);
+            } else {
+              if (event.onGeneratedToday()) event.setParent(this.todayDone);
+            }
+          }
+        }
+      }
+    }
+
+    // Adding new events
+    for (Node board : this.getNodes()) {
+      if (!board.isSpecialized()) {
+        for (Node node : board.getNodes()) {
+          Column column = (Column) node;
+          for (Node event : column.getNodes()) {
+            if (column.getPreset() == Column.TO_DO) {
+              event.setParent(tempColumn);
+            } else if (column.getPreset() == Column.IN_PROGRESS) {
+              event.setParent(this.todayInProgress);
+            }
+          }
+        }
+      }
+    }
+
+    for (Node node : tempColumn.getNodes(Node.SORT_BY_PRIORITY, Node.ORDER_BY_ASC)) {
+      Event event = (Event) node;
+      System.out.println(event.getTitle() + ": " + event.getPriority());
+      if (this.hasEnoughTime((Event) event)) {
+        event.setParent(this.todayToDo);
+      }
+    }
+
+    // Chaning all today events date
+    for (Node board : this.getNodes()) {
+      if (board.isSpecialized()) {
+        for (Node node : board.getNodes()) {
+          Column column = (Column) node;
+          for (Node event_node : column.getNodes()) {
+            Event event = (Event) event_node;
+            event.updateGeneratedDate();
+          }
+        }
+      }
+    }
+
+    System.out.println(User.getCurrent().getTodayAvailability());
+  }
+
+  public boolean hasEnoughTime(Event eventNext) {
+    Long totalTime = Long.valueOf(User.getCurrent().getTodayAvailability()) * 3600;
+    Long timeAccumulator = 0L;
+    for (Node node : this.todayToDo.getNodes()) {
+      final Event event = (Event) node;
+      timeAccumulator += event.getDuration();
+    }
+    for (Node node : this.todayInProgress.getNodes()) {
+      final Event event = (Event) node;
+      timeAccumulator += event.getDuration();
+    }
+    for (Node node : this.todayDone.getNodes()) {
+      final Event event = (Event) node;
+      timeAccumulator += event.getDuration();
+    }
+    return (eventNext.getDuration() + timeAccumulator) <= totalTime ? true : false;
+  }
+
+  /*
+   * Overview
+   */
+  public void generateOverview() {
+
+    this.todayToDo.clearNodes();
+    this.todayInProgress.clearNodes();
+    this.todayDone.clearNodes();
+    Column tempColumn = new Column("temp", "temp", 0, null);
+    tempColumn.setSpecialized(true);
 
     // All todo
     for (Node board : this.getNodes()) {
@@ -100,7 +190,7 @@ public class Kanban extends Node {
             System.out.println("---- TODAY ----");
             if (column.getPreset() == Column.TO_DO) {
               // this.todayToDo.addNode(event);
-              event.setParent(this.todayToDo);
+              event.setParent(tempColumn);
             } else if (column.getPreset() == Column.IN_PROGRESS) {
               // this.todayInProgress.addNode(event);
               event.setParent(this.todayInProgress);
@@ -112,6 +202,14 @@ public class Kanban extends Node {
             }
           }
         }
+      }
+    }
+
+    for (Node node : tempColumn.getNodes(Node.SORT_BY_PRIORITY, Node.ORDER_BY_ASC)) {
+      Event event = (Event) node;
+      System.out.println(event.getTitle() + ": " + event.getPriority());
+      if (todayToDo.hasEnoughTime((Event) event)) {
+        event.setParent(this.todayToDo);
       }
     }
   }

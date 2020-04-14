@@ -5,7 +5,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collection;
 import java.util.Map;
+
+import javax.lang.model.element.Element;
 
 import com.google.gson.*;
 
@@ -41,6 +46,13 @@ public class User {
 
   /** A boolean to indicate if the account is existing on the server. */
   private boolean existing = false;
+
+  /** A int to storage the availableHours that user plan to strive per day*/
+  private ArrayList<Integer> availability;
+
+  /** The current */
+  private String theme;
+
 
   /** Default constructor of {@code User}. */
   public User() {}
@@ -97,6 +109,56 @@ public class User {
    */
   private String getPassword() {
     return this.password;
+  }
+
+  /**
+   * Returns the current theme of user.
+   *
+   * @return the theme String
+   */
+  private String getTheme() {
+    return this.theme;
+  }
+
+  /**
+   * Sets the current theme of user.
+   *
+   * @param theme current theme of user.
+   */
+  private void setTheme(String theme) {
+    this.theme = theme;
+  }
+
+  /**
+   * Returns Available house of users.
+   * Note: The index of 0 is Sunday
+   *
+   * @return the arraylist contains the available houses from Mon to Sun
+   */
+  private ArrayList<Integer> getAvailability() {
+    return this.availability;
+  }
+
+  /**
+   * Returns Available house of users on current day.
+   * Note: The index of 1 is Sunday 2 is Monday
+   *
+   * @return Available house of users on current day
+   */
+  public Integer getTodayAvailability() {
+    
+    Calendar c = Calendar.getInstance();
+    Integer dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+    return this.getAvailability().get(dayOfWeek - 1);
+  }
+
+  /**
+   * Sets the current theme of user.
+   *
+   * @param theme current theme of user.
+   */
+  private void setAvailability(ArrayList<Integer> availability) {
+    this.availability = availability;
   }
 
   /**
@@ -176,11 +238,22 @@ public class User {
 
       this.setId(response.getInt("id"));
       this.setSessionId(cookie.getString("PHPSESSID"));
+      ArrayList<Integer> availability = new ArrayList<Integer>();
+      Collection<Object> c = response.getList("availability").values();
+      for (Object i : c) {
+        Integer a = ((Double) i).intValue();
+        availability.add(a);
+      }
+      this.setAvailability(availability);
+      this.setTheme(response.getString("theme"));
       this.existing = true;
 
       // Sign in locally
       this.authenticated = true;
       User.current = this;
+
+      System.out.println("Theme" + this.getTheme());
+      System.out.println("availability" + this.getAvailability());
     }
 
     return res;
