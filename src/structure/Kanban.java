@@ -194,12 +194,12 @@ public class Kanban extends Node {
               break;
 
             case Column.IN_PROGRESS:
-              event.setParent(this.todayInProgress);
+              event.setParent(this.overviewInProgress);
               break;
 
             case Column.DONE:
               if (!((Event) event).isOverdue()) { // Only include the task when it's not overdue
-                event.setParent(this.todayDone);
+                event.setParent(this.overviewDone);
               }
           }
 

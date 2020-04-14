@@ -31,6 +31,7 @@ public class BoardComponent extends Button {
   void open(ActionEvent e){
     if(this.equals(this.parentController.componentToday)){
       Kanban.getCurrent().generateToday();
+      Kanban.getCurrent().generateOverview();
     }
 
     this.parentController.currentBoard = this;

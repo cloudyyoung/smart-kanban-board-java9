@@ -133,6 +133,7 @@ public class HomeController {
     // Check out kanban
     Kanban.checkout();
     Kanban.getCurrent().generateToday();
+    Kanban.getCurrent().generateOverview();
 
     // Initialize Event panel
     promptEventImportanceLevel.getItems().addAll("", "Level 1", "Level 2", "Level 3");
@@ -327,6 +328,7 @@ public class HomeController {
     currentEvent.getNode().deleteRequest();
     currentEvent.getParentComponent().list();
     Kanban.getCurrent().generateToday();
+    Kanban.getCurrent().generateOverview();
     currentEvent = null;
     this.closePrompt();
   }
@@ -343,6 +345,7 @@ public class HomeController {
   void createEventRequest(){
     currentEvent.getNode().createRequest();
     Kanban.getCurrent().generateToday();
+    Kanban.getCurrent().generateOverview();
     currentEvent.getParentComponent().list();
     this.closePrompt();
   }
@@ -357,6 +360,7 @@ public class HomeController {
   void createColumnRequest(){
     currentColumn.getNode().createRequest();
     Kanban.getCurrent().generateToday();
+    Kanban.getCurrent().generateOverview();
     currentColumn.getParentComponent().list();
     this.closePrompt();
   }
