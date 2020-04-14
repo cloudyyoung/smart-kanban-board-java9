@@ -20,10 +20,10 @@ public class Event extends Node {
   @Expose private Long dueDate;
   // dueDate is the timeStamp
   @Expose private Long duration;
-  // Duration store in timeStamp form (millissecond)
+  // Duration store in timeStamp form (second)
   @SerializedName("last_generated_date")
   @Expose private Long lastGeneratedDate;
-  // last generated date store in timeStamp form (millissecond)
+  // last generated date store in timeStamp form (second)
 
 
   /**
@@ -104,7 +104,7 @@ public class Event extends Node {
   }
 
   private void setlastGeneratedDate(Long date) {
-    this.lastGeneratedDate = date * 1000;
+    this.lastGeneratedDate = date;
   }
 
   public Result setImportanceLevelRequest(int importance) {
@@ -220,7 +220,7 @@ public class Event extends Node {
     c.set(Calendar.SECOND, 0);
     Long currentDayInSecond = c.getTimeInMillis() / 1_000;
     Long enderTimeInSecond = currentDayInSecond + 86400;
-    return this.getlastGeneratedDateValue() / 1_000 < enderTimeInSecond;
+    return this.getlastGeneratedDateValue() < enderTimeInSecond;
   }
 
   public boolean onGeneratedToday () {
@@ -231,16 +231,17 @@ public class Event extends Node {
     Long currentDayInSecond = c.getTimeInMillis() / 1_000;
     Long enderTimeInSecond = currentDayInSecond + 86400;
     System.out.println("currentDayInSecond" + currentDayInSecond);
-    System.out.println("getlastGeneratedDateValue" + this.getlastGeneratedDateValue() / 1_000);
-    System.out.println(this.getlastGeneratedDateValue() / 1_000 < enderTimeInSecond && this.getlastGeneratedDateValue() / 1_000 > currentDayInSecond);
-    return this.getlastGeneratedDateValue() / 1_000 < enderTimeInSecond && this.getlastGeneratedDateValue() / 1_000 > currentDayInSecond;
+    System.out.println("getlastGeneratedDateValue" + this.getlastGeneratedDateValue());
+    System.out.println(this.getlastGeneratedDateValue() < enderTimeInSecond && this.getlastGeneratedDateValue() > currentDayInSecond);
+    return this.getlastGeneratedDateValue()< enderTimeInSecond && this.getlastGeneratedDateValue() > currentDayInSecond;
   }
 
   public void updateGeneratedDate() {
     Calendar c = Calendar.getInstance();
     // System.out.println(c.getTimeInMillis() / 1_000);
-    this.setlastGeneratedDate(c.getTimeInMillis());
-    // System.out.println(this.setlastGeneratedDateRequest(c.getTimeInMillis() / 1_000));
+    this.setlastGeneratedDate(c.getTimeInMillis() / 1_000);
+    this.setlastGeneratedDateRequest(c.getTimeInMillis() / 1_000);
+    // System.out.println();
   }
 
   public Result setlastGeneratedDateRequest(Long lastGeneratedDate) {
