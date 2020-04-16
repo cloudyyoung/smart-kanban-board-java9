@@ -157,9 +157,9 @@ public class Kanban extends Node {
     Long totalTime = Long.valueOf(User.getCurrent().getTodayAvailability()) * 3600;
     Long timeAccumulator = 0l;
     ArrayList<Node> admissions = new ArrayList<Node>();
-    admissions.add(this.todayToDo);
-    admissions.add(this.todayInProgress);
-    admissions.add(this.todayDone);
+    admissions.addAll(this.todayToDo.getNodes());
+    admissions.addAll(this.todayInProgress.getNodes());
+    admissions.addAll(this.todayDone.getNodes());
     for (Node node : admissions) {
       final Event event = (Event) node;
       timeAccumulator += event.getDurationValue();

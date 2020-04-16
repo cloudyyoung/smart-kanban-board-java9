@@ -238,6 +238,7 @@ public class User {
 
       this.setId(response.getInt("id"));
       this.setSessionId(cookie.getString("PHPSESSID"));
+      
       ArrayList<Integer> availability = new ArrayList<Integer>();
       Collection<Object> c = response.getList("availability").values();
       for (Object i : c) {
