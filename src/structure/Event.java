@@ -355,11 +355,6 @@ public class Event extends Node {
     c.set(Calendar.SECOND, 0);
     Long currentDayStart = c.getTimeInMillis() / 1_000; // In seconds
     Long currentDayEnd = currentDayStart + 86_400; // In seconds
-    System.out.println("currentDayInSecond" + currentDayStart);
-    System.out.println("getlastGeneratedDateValue" + this.getLastGeneratedDateValue());
-    System.out.println(
-        this.getLastGeneratedDateValue() < currentDayEnd
-            && this.getLastGeneratedDateValue() > currentDayStart);
     return this.getLastGeneratedDateValue() < currentDayEnd
         && this.getLastGeneratedDateValue() > currentDayStart;
   }

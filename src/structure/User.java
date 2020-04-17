@@ -247,8 +247,6 @@ public class User {
       this.authenticated = true;
       User.current = this;
 
-      System.out.println("Theme" + this.getTheme());
-      System.out.println("availability" + this.getAvailability());
     }
 
     return res;

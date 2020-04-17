@@ -9,7 +9,6 @@ public class Terminal2 {
     private static String section = "";
     private static Board currentBoard = null;
     private static Column currentColumn = null;
-    private static Event currentEvent = null;
 
     public static void main(String[] args){
         terminal(args);
@@ -34,22 +33,26 @@ public class Terminal2 {
 
                 case "help":
                     System.out.println("List of Commands: ");
-                    System.out.println(" 'today': check your Today board");
-                    System.out.println(" 'overview': check your Overview board");
-                    System.out.println(" 'board': list all your boards");
-                    System.out.println(" 'exit': list all your boards");
+                    System.out.println("   'today': check your Today board");
+                    System.out.println("   'overview': check your Overview board");
+                    System.out.println("   'board': list all your boards");
+                    System.out.println("   'exit': exit the program");
                     System.out.println("Please enter your command: ");
                     section = scan.nextLine();
                     break;
 
                 case "today":
                     Kanban.getCurrent().generateToday();
-                    System.out.println(Kanban.getCurrent().getNode(1));
+                    currentBoard = (Board) Kanban.getCurrent().getNode(1);
+                    printNode(currentBoard);
+                    section = "column";
                     break;
 
                 case "overview":
                     Kanban.getCurrent().generateOverview();
-                    System.out.println(Kanban.getCurrent().getNode(2));
+                    currentBoard = (Board) Kanban.getCurrent().getNode(2);
+                    printNode(currentBoard);
+                    section = "column";
                     break;
 
                 case "board": 
@@ -102,7 +105,6 @@ public class Terminal2 {
 
 
     private static void signIn(){
-        // System.out.println("Please sign in to your account.");
         while(!isSignedIn){
             
             System.out.println("Long time no see, please enter your username: ");
@@ -149,9 +151,7 @@ public class Terminal2 {
 
     private static void column(){
         for(Node each : currentBoard.getNodes()){
-            if(!each.isSpecialized()){
-                printNode(each);
-            }
+            printNode(each);
         }
 
         boolean isEnd = false;
@@ -172,9 +172,7 @@ public class Terminal2 {
 
     private static void event(){
         for(Node each : currentColumn.getNodes()){
-            if(!each.isSpecialized()){
-                printNode(each);
-            }
+            printNode(each);
         }
 
         boolean isEnd = false;

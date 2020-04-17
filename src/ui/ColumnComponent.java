@@ -104,7 +104,6 @@ public class ColumnComponent extends VBox {
     for (structure.Node each : list) {
       EventComponent event = new EventComponent(each, this, this.parentController);
       eventList.getChildren().add(event);
-      System.out.println(event);
     }
     eventCount.setText(list.size() + "");
   }

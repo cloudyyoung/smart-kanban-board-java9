@@ -224,17 +224,14 @@ public abstract class Node {
         // Remove self from old
         if (this.getParent() != null && this.getParent() != parent) {
           this.getParent().removeNode(this);
-          System.out.println("remove from old parent");
         }
         // Set new parent
         this.parent = parent;
         this.parentId = this.parent.getId();
-        System.out.println("set parent");
       }
 
       if (this.isExisting() && !parent.isSpecialized()) {
         this.getParent().addNode(this);
-        System.out.println("parent add node");
       } else if (parent.isSpecialized()) {
         parent.addNode(this);
       }
@@ -500,7 +497,6 @@ public abstract class Node {
       HttpBody body = new HttpBody(this);
       body.put(NodeTypeUtils.typeId(this.getParentType()) + "_id", body.getInt("parent_id"));
       body.remove("parent_id");
-      System.out.println(body);
 
       HttpRequest req = new HttpRequest();
       req.setRequestUrl("/" + NodeTypeUtils.typeUrl(this.getType()));
@@ -512,7 +508,6 @@ public abstract class Node {
 
       if (req.isSucceeded()) {
         this.setId(req.getResponseBody().getInt("id"));
-        System.out.println(req.getResponseBody().getInt("id"));
         this.getParent().addNode(this);
         this.setParent(this.getParent());
         this.setExisting(true);
@@ -521,7 +516,6 @@ public abstract class Node {
         res.add(req2);
       }
     }
-    System.out.println(res);
     return res;
   }
 
@@ -554,7 +548,6 @@ public abstract class Node {
         res.add(req2);
       }
     }
-    System.out.println(res);
     return res;
   }
 
