@@ -15,7 +15,7 @@ public final class NodeTypeUtils {
    * @return the string parsed
    */
   public static final String typeClass(String str) {
-    if(str == null) return "";
+    if (str == null) return "";
     return "structure." + typeProper(typeSingular(str));
   }
 
@@ -26,7 +26,7 @@ public final class NodeTypeUtils {
    * @return the string parsed
    */
   public static final String typeUrl(String str) {
-    if(str == null) return "";
+    if (str == null) return "";
     return typeLower(typePlural(str));
   }
 
@@ -37,7 +37,7 @@ public final class NodeTypeUtils {
    * @return the string parsed
    */
   public static final String typeId(String str) {
-    if(str == null) return "";
+    if (str == null) return "";
     return typeLower(typeSingular(str));
   }
 
