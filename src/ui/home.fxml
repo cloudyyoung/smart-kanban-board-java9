@@ -31,7 +31,7 @@
                <children>
                   <VBox>
                      <children>
-                        <Button fx:id="sideProfile" mnemonicParsing="false" onAction="#switchTab">
+                        <Button fx:id="sideProfile" focusTraversable="false" mnemonicParsing="false" onAction="#switchTab">
                            <graphic>
                               <HBox>
                                  <children>
@@ -498,7 +498,7 @@
          </center>
       </BorderPane>
       <Pane id="dragPane" fx:id="dragPane" mouseTransparent="true" />
-      <VBox fx:id="promptBoard" styleClass="prompt-cover">
+      <VBox fx:id="promptBoard">
          <children>
             <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="bg-prompt">
                <content>
@@ -556,6 +556,10 @@
                </content>
             </ScrollPane>
          </children>
+         <styleClass>
+            <String fx:value="prompt-cover" />
+            <String fx:value="hide" />
+         </styleClass>
       </VBox>
       <VBox fx:id="promptEvent">
          <children>

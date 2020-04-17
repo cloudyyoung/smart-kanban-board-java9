@@ -25,7 +25,9 @@ public class BoardComponent extends Button {
     this.parentController = parentController;
 
     this.loadDisplay();
-    this.display();
+    if(this.node.isExisting()){
+      this.display();
+    }
   }
 
   @FXML

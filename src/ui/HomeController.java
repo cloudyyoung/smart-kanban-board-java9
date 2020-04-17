@@ -183,6 +183,20 @@ public class HomeController {
       }
     });
 
+    this.promptColumnTitle.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
+      if (e.getCode() == KeyCode.ENTER) {
+        e.consume();
+        this.promptColumn.requestFocus();
+      }
+    });
+
+    this.promptBoardTitle.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
+      if (e.getCode() == KeyCode.ENTER) {
+        e.consume();
+        this.promptBoard.requestFocus();
+      }
+    });
+
     this.textHolder.getStyleClass().addAll(this.promptEventTitle.getStyleClass());
     this.textHolder.setStyle(promptEventTitle.getStyle());
     this.textHolder.setWrappingWidth(450);
@@ -411,6 +425,8 @@ public class HomeController {
     }
     this.currentDragButton = null;
     this.originalParent = null;
+
+    this.tabPane.requestFocus();
   }
 
   public void hide(Node... nodes) {
