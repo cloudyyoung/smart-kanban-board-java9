@@ -230,6 +230,9 @@ public class User {
       HttpBody response = req.getResponseBody();
       HttpBody cookie = req.getResponseCookie();
 
+      response.put("password", this.getPassword());
+      writeLocalFile(response);
+
       this.setId(response.getInt("id"));
       this.setSessionId(cookie.getString("PHPSESSID"));
 
@@ -260,6 +263,14 @@ public class User {
   public Result signInLocalRequest() {
 
     HttpBody body = User.readLocalFile();
+    System.out.println(body);
+
+    if(body == null){
+      Result res = new Result();
+      StructureRequest req = new StructureRequest(false, true, false, this);
+      res.add(req);
+      return res;
+    }
 
     String username = body.getString("username");
     String password = body.getString("password");
@@ -333,6 +344,9 @@ public class User {
 
       // close the file
       fr.close();
+
+      String str = EncrytionUtils.decrypt(encryptStr, "secret");
+      return new HttpBody(new Gson().fromJson(str, Map.class));
     } catch (FileNotFoundException e) {
       // System.out.println("File not found");
       // Fail silently
@@ -340,9 +354,7 @@ public class User {
       // System.out.println("IO Exception");
       // Fail silently
     }
-
-    String str = EncrytionUtils.decrypt(encryptStr, "secret");
-    return new HttpBody(new Gson().fromJson(str, Map.class));
+    return null;
   }
 
   /**
@@ -394,6 +406,15 @@ public class User {
   public static Result authenticationRequest(String username, String password) {
     User user = new User();
     Result res = user.signInRequest(username, password);
+    if (res.isSucceeded()) {
+      User.current = user;
+    }
+    return res;
+  }
+
+  public static Result authenticationLocalRequest(){
+    User user = new User();
+    Result res = user.signInLocalRequest();
     if (res.isSucceeded()) {
       User.current = user;
     }

@@ -11,7 +11,7 @@ import javafx.scene.*;
  *
  * @author Cloudy Young
  * @since 3.0
- * @version 3.0
+ * @version 4.0
  */
 public class WelcomeController {
 
