@@ -9,6 +9,14 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import structure.*;
 
+/**
+ * The JavaFX Controller for component.event.fxml.
+ * 
+ * @author Cloudy Young, Jimschenchen
+ * @since 4.0
+ * @version 4.0
+ */
+
 public class EventComponent extends Button {
 
   @FXML private Button event;
@@ -23,11 +31,16 @@ public class EventComponent extends Button {
   private static final String OVERDUE_ICON =
       "M 16 3.910156 C 9.332031 3.910156 3.910156 9.332031 3.910156 16 C 3.910156 22.667969 9.332031 28.089844 16 28.089844 C 22.667969 28.089844 28.089844 22.667969 28.089844 16 C 28.089844 9.332031 22.667969 3.910156 16 3.910156 Z M 16 5.769531 C 21.660156 5.769531 26.230469 10.339844 26.230469 16 C 26.230469 21.660156 21.660156 26.230469 16 26.230469 C 10.339844 26.230469 5.769531 21.660156 5.769531 16 C 5.769531 10.339844 10.339844 5.769531 16 5.769531 Z M 15.070312 10.421875 L 15.070312 12.28125 L 16.929688 12.28125 L 16.929688 10.421875 Z M 15.070312 14.140625 L 15.070312 21.578125 L 16.929688 21.578125 L 16.929688 14.140625 Z M 15.070312 14.140625";
 
+  /** The paired {@code Node} for the component. */
   private Event node;
+
+  /** The parent of the paired {@code Node} for the component. */
   private ColumnComponent parent;
+
+  /** The parent controller instance. */
   private HomeController parentController;
 
-  public EventComponent(Node node, ColumnComponent parent, HomeController parentController) {
+  protected EventComponent(Node node, ColumnComponent parent, HomeController parentController) {
     super();
     this.node = (Event) node;
     this.parent = parent;
@@ -35,21 +48,39 @@ public class EventComponent extends Button {
     this.loadDisplay();
   }
 
-  public Event getNode() {
+  /**
+   * Gets the paired {@code Event}.
+   * 
+   * @return the paired {@code Event}
+   */
+  protected Event getNode() {
     return this.node;
   }
 
-  public ColumnComponent getParentComponent() {
+  /**
+   * Gets the parent of the paired {@code Event}.
+   * 
+   * @return the parent {@code Node}
+   */
+  protected ColumnComponent getParentComponent() {
     return this.parent;
   }
 
-  public String getColor() {
+  /**
+   * Returns the color of the {@code Event}.
+   * 
+   * @return the color of the {@code Event}
+   */
+  protected String getColor() {
     if (this.parent == null) {
       return ((Board) this.node.getParent().getParent()).getColor();
     }
     return this.parent.getColor();
   }
 
+  /**
+   * Loads the fxml of the compoennt.
+   */
   private final void loadDisplay() {
     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view/component.event.fxml"));
     fxmlLoader.setRoot(this);
@@ -62,7 +93,10 @@ public class EventComponent extends Button {
     }
   }
 
-  public void display() {
+  /**
+   * Displays the component according to the paired {@code Node}.
+   */
+  protected void display() {
     if (this.node == null || this.node.getParent() == null) {
       return;
     }
@@ -96,6 +130,9 @@ public class EventComponent extends Button {
     this.parentController.promptEventPromptTitle.setText("Create event");
   }
 
+  /** 
+   * Displays the prompt.
+   */
   private void displayPrompt() {
     this.parentController.currentEvent = this;
     this.parentController
@@ -129,10 +166,10 @@ public class EventComponent extends Button {
     this.display();
   }
 
-  // activative card drag
+
   @FXML
-  void EventDragDetected(MouseEvent event) {
-    // clean bug card
+  void EventDragDetected(MouseEvent event) { // The card dragging detection
+    // Cleans possible bug card
     if (this.parentController.currentDragButton != null
         && this.parentController.originalParent != null) {
       this.parentController
@@ -142,6 +179,7 @@ public class EventComponent extends Button {
       this.parentController.currentDragButton = null;
     }
 
+    // Adds current card to destination column
     EventComponent card = (EventComponent) event.getSource();
     if (card instanceof EventComponent) {
       card.setLayoutX(event.getSceneX());
@@ -150,8 +188,6 @@ public class EventComponent extends Button {
       this.parentController.originalParent = (ColumnComponent) card.getParentComponent();
       this.parentController.currentDragButton = card;
       this.parentController.dragPane.getChildren().add(card);
-
-      System.out.println(card);
     }
   }
 }

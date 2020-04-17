@@ -16,18 +16,21 @@ import structure.*;
  * The JavaFX Controller for component.board.fxml.
  * 
  * @author Cloudy Young
- * @since 3.0
- * @version 3.0
+ * @since 4.0
+ * @version 4.0
  */
 
 public class BoardComponent extends Button {
 
   @FXML private Button button;
 
+  /** The paired {@code Node} for the component. */
   private Board node;
+
+  /** The parent controller instance. */
   private HomeController parentController;
 
-  public BoardComponent(Board node, HomeController parentController) {
+  protected BoardComponent(Board node, HomeController parentController) {
     this.node = node;
     this.parentController = parentController;
 
@@ -60,7 +63,10 @@ public class BoardComponent extends Button {
     this.list();
   }
 
-  public void display() {
+  /**
+   * Displays the component according to the paired {@code Node}.
+   */
+  protected void display() {
     this.setText(this.node.getTitle());
     this.setId("board-" + this.node.getId());
     this.setStyle(HomeController.styleAccent(this.node.getColor()));
@@ -80,7 +86,10 @@ public class BoardComponent extends Button {
         !this.node.getNote().equals("") ? this.node.getNote() : "No description");
   }
 
-  public void list() {
+  /**
+   * Lists the children nodes of the paired {@code Node}
+   */
+  protected void list() {
     this.parentController.columnPane.getChildren().clear();
     for (structure.Node each : this.node.getNodes()) {
       Node col = new ColumnComponent((Column) each, this, this.parentController);
@@ -88,11 +97,21 @@ public class BoardComponent extends Button {
     }
   }
 
-  public Board getNode() {
+  /**
+   * Gets the paired {@code Column}.
+   * 
+   * @return the paired {@code Column}
+   */
+  protected Board getNode() {
     return this.node;
   }
 
-  public String getColor() {
+  /**
+   * Returns the color of the {@code Column}.
+   * 
+   * @return the color of the {@code Column}
+   */
+  protected String getColor() {
     return this.node.getColor();
   }
 
@@ -114,6 +133,9 @@ public class BoardComponent extends Button {
     this.parentController.show(this.parentController.boardCreate);
   }
 
+  /** 
+   * Displays the prompt.
+   */
   private void displayPrompt() {
     this.parentController.currentBoard = this;
     this.parentController
@@ -134,6 +156,9 @@ public class BoardComponent extends Button {
     ColumnComponent.create(e);
   }
 
+  /**
+   * Loads the fxml of the compoennt.
+   */
   private final void loadDisplay() {
     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view/component.board.fxml"));
     fxmlLoader.setRoot(this);
