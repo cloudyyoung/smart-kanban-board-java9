@@ -351,7 +351,6 @@ public class User {
   /**
    * Registers the instance account in the server.
    *
-   *
    * @param username the username of the account
    * @param password the password of the account
    * @param secQues the security question of the account

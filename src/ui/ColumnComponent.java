@@ -70,7 +70,7 @@ public class ColumnComponent extends VBox {
 
   /**
    * Returns the event list component
-   * 
+   *
    * @return the event list component
    */
   protected VBox getEventList() {

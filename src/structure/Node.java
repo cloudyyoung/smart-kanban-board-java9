@@ -248,7 +248,6 @@ public abstract class Node {
   /**
    * Sets the parent {@code Node} of the instance.
    *
-   *
    * @param parent the parent {@code Node} of the instance
    * @return the result object of this action
    */
@@ -297,7 +296,6 @@ public abstract class Node {
   /**
    * Sets the title of the instance.
    *
-   *
    * @param title the title of the instance
    * @return the result object of this action
    */
@@ -334,7 +332,6 @@ public abstract class Node {
 
   /**
    * Sets the note of the instance.
-   *
    *
    * @param note the note of the instance
    * @return the result object of this action

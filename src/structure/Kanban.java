@@ -84,7 +84,6 @@ public class Kanban extends Node {
   /**
    * Check out the {@code Kanban} data of current {@code User} from the server.
    *
-   *
    * @return the result object of this action in {@code Result}
    * @since 2.0
    * @version 2.0
