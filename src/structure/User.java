@@ -246,7 +246,6 @@ public class User {
       // Sign in locally
       this.authenticated = true;
       User.current = this;
-
     }
 
     return res;
