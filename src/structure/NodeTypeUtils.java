@@ -2,7 +2,7 @@ package structure;
 
 /**
  * The Node type utilities class.
- * 
+ *
  * @author Cloudy Young
  * @version 4.0
  */
@@ -10,7 +10,7 @@ public final class NodeTypeUtils {
 
   /**
    * Returns the given string in class form.
-   * 
+   *
    * @param str the string to be parsed
    * @return the string parsed
    */
@@ -30,11 +30,11 @@ public final class NodeTypeUtils {
 
   /**
    * Returns the given string in id form.
-   * 
+   *
    * @param str the string to be parsed
    * @return the string parsed
    */
-  public static final String typeId(String str){
+  public static final String typeId(String str) {
     return typeLower(typeSingular(str));
   }
 

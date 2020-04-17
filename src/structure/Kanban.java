@@ -5,9 +5,8 @@ import java.util.ArrayList;
 /**
  * The {@code Kanban} class, extends from {@code Node}.
  *
- * <p>
- * The instance should contains {@code Board} object as children nodes.
- *  
+ * <p>The instance should contains {@code Board} object as children nodes.
+ *
  * @author Cloudy Young, Jimschenchen
  * @since 1.0
  * @version 4.0
@@ -50,10 +49,17 @@ public class Kanban extends Node {
   protected Kanban(HttpBody obj) {
     super(obj);
 
-
     // Creates Today & Overview boards
-    this.today = new Board("Today",
-        TimeUtils.currentMonthName() + " " + TimeUtils.currentDay() + ", " + TimeUtils.currentYear(), "#fd79a8", this);
+    this.today =
+        new Board(
+            "Today",
+            TimeUtils.currentMonthName()
+                + " "
+                + TimeUtils.currentDay()
+                + ", "
+                + TimeUtils.currentYear(),
+            "#fd79a8",
+            this);
 
     this.todayToDo = new Column("To Do", "jimjimsjimshtodo", 0, today);
     this.todayInProgress = new Column("In Progress", "", 1, today);
@@ -78,8 +84,7 @@ public class Kanban extends Node {
   /**
    * Check out the {@code Kanban} data of current {@code User} from the server.
    *
-   * <p>
-   * This is an <i>action</i> for controllers.
+   * <p>This is an <i>action</i> for controllers.
    *
    * @return the result object of this action in {@code Result}
    * @since 2.0
@@ -109,10 +114,9 @@ public class Kanban extends Node {
     return res;
   }
 
-  
   /**
    * Generates the Today board.
-   * 
+   *
    * @version 4.0
    */
   public void generateToday() {
@@ -141,9 +145,9 @@ public class Kanban extends Node {
           Column column = (Column) column_node;
 
           switch (column.getPreset()) {
-
-            case Column.TO_DO: // For To Do list: includes the past and present task and store the rest as
-                               // candicates
+            case Column
+                .TO_DO: // For To Do list: includes the past and present task and store the rest as
+              // candicates
               if (event.isOnGeneratedToday() || event.isBeforeGeneratedToday()) {
                 event.setParent(this.todayToDo);
               } else {
@@ -151,7 +155,8 @@ public class Kanban extends Node {
               }
               break;
 
-            case Column.IN_PROGRESS: // For in Progress list: includes the past and present tasks only
+            case Column
+                .IN_PROGRESS: // For in Progress list: includes the past and present tasks only
               if (event.isOnGeneratedToday() || event.isBeforeGeneratedToday()) {
                 event.setParent(this.todayInProgress);
               }
@@ -166,7 +171,6 @@ public class Kanban extends Node {
             default:
               // Skips the Node
               break;
-
           }
         }
       }
@@ -183,8 +187,9 @@ public class Kanban extends Node {
   }
 
   /**
-   * Returns if the Today board has enough tiem for the given event to be added, this is a helper function for {@code generateToday}.
-   * 
+   * Returns if the Today board has enough tiem for the given event to be added, this is a helper
+   * function for {@code generateToday}.
+   *
    * @version 4.0
    * @param eventNext the candidate event
    * @return if the Today board has enough tiem for the given event to be added
@@ -205,7 +210,7 @@ public class Kanban extends Node {
 
   /**
    * Generates the Overview board.
-   * 
+   *
    * @version 4.0
    */
   public void generateOverview() {
@@ -244,7 +249,6 @@ public class Kanban extends Node {
               // Skip the Node
               break;
           }
-
         }
       }
     }
@@ -252,7 +256,7 @@ public class Kanban extends Node {
 
   /**
    * Returns the current {@code Kanban} board.
-   * 
+   *
    * @version 4.0
    * @return the current {@code Kanban} board instance.
    */
@@ -262,7 +266,7 @@ public class Kanban extends Node {
 
   /**
    * Returns a list which contains all the events that contains the given key word in their title.
-   * 
+   *
    * @version 4.0
    * @return a list which contains all the events that contains the given key word in their title
    */
