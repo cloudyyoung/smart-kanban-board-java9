@@ -511,6 +511,7 @@ public abstract class Node {
         this.getParent().addNode(this);
         this.setParent(this.getParent());
         this.setExisting(true);
+        this.extractChildrenNodes(req.getResponseBody());
 
         StructureRequest req2 = new StructureRequest(true, false, false, this);
         res.add(req2);
