@@ -5,6 +5,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import structure.User;
+import structure.Result;
 
 /**
  * The entrance class of user interface.
@@ -37,9 +39,17 @@ public class UserInterface extends Application {
    */
   @Override
   public void start(Stage stage) {
+
+    String file = "view/welcome.fxml";
+
+    // Tries to sign in automatically
+    Result res = User.authenticationLocalRequest();
+    if (res.isSucceeded()) {
+      file = "view/home.fxml";
+    }
+
     try {
-      this.scene =
-          new Scene(FXMLLoader.load(getClass().getResource("view/welcome.fxml")), 1020, 680);
+      this.scene = new Scene(FXMLLoader.load(getClass().getResource(file)), 1020, 680);
       this.scene.getStylesheets().add(getClass().getResource("view/default.css").toExternalForm());
 
       this.stage = stage;
