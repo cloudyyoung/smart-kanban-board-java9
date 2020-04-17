@@ -6,7 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 
-public class UI extends Application {
+public class UserInterface extends Application {
 
   private Stage stage;
   private Scene scene;
