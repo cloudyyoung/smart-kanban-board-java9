@@ -39,18 +39,17 @@ public class UserInterface extends Application {
    */
   @Override
   public void start(Stage stage) {
-    
+
     String file = "view/welcome.fxml";
 
     // Tries to sign in automatically
     Result res = User.authenticationLocalRequest();
-    if(res.isSucceeded()){
+    if (res.isSucceeded()) {
       file = "view/home.fxml";
     }
 
     try {
-      this.scene =
-          new Scene(FXMLLoader.load(getClass().getResource(file)), 1020, 680);
+      this.scene = new Scene(FXMLLoader.load(getClass().getResource(file)), 1020, 680);
       this.scene.getStylesheets().add(getClass().getResource("view/default.css").toExternalForm());
 
       this.stage = stage;

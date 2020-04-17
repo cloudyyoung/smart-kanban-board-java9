@@ -265,7 +265,7 @@ public class User {
     HttpBody body = User.readLocalFile();
     System.out.println(body);
 
-    if(body == null){
+    if (body == null) {
       Result res = new Result();
       StructureRequest req = new StructureRequest(false, true, false, this);
       res.add(req);
@@ -418,7 +418,7 @@ public class User {
    * @version 3.0
    * @return the {@code Result} instance of this action
    */
-  public static Result authenticationLocalRequest(){
+  public static Result authenticationLocalRequest() {
     User user = new User();
     Result res = user.signInLocalRequest();
     if (res.isSucceeded()) {
