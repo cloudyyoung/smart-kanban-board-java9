@@ -12,12 +12,11 @@ import structure.Result;
 
 /**
  * The JavaFX Controller for both SignUp.fxml and SignIn.fxml.
- * 
+ *
  * @author Cloudy Young
  * @since 3.0
  * @version 3.0
  */
-
 public class SignUpController {
 
   @FXML private TabPane tabPane;
@@ -153,9 +152,9 @@ public class SignUpController {
     }
   }
 
-  /** 
+  /**
    * Shows the error text message on the ui.
-   * 
+   *
    * @param error the text error to display
    */
   private void showError(String error) {

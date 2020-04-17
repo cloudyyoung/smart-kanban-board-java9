@@ -8,12 +8,11 @@ import javafx.scene.*;
 
 /**
  * The JavaFX Controller for Welcome.fxml.
- * 
+ *
  * @author Cloudy Young
  * @since 3.0
  * @version 3.0
  */
-
 public class WelcomeController {
 
   /** The sign in button */
@@ -24,7 +23,7 @@ public class WelcomeController {
 
   /**
    * Authenticates user account
-   * 
+   *
    * @param event the {@code ActionEvent} instance
    */
   @FXML
@@ -40,9 +39,9 @@ public class WelcomeController {
     }
   }
 
-  /** 
+  /**
    * Switches the scene of the window
-   * 
+   *
    * @param file the fxml file name
    * @param stage the stage instance
    * @param prevScene the previous scene
