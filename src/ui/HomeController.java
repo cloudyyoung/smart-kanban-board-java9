@@ -76,8 +76,8 @@ public class HomeController {
   public EventComponent currentEvent;
   public BoardComponent currentBoard;
   public ColumnComponent currentColumn;
-  public ColumnComponent originalParent;
-  public Button currentDragButton;
+  public ColumnComponent originalColumn;
+  public Button currentDragCard;
   public BoardComponent componentToday;
 
   @FXML
@@ -458,14 +458,23 @@ public class HomeController {
   void MouseDragReleased(MouseDragEvent event) {
 
     Button btn = (Button) event.getGestureSource();
-    if (btn instanceof EventComponent && originalParent != null) {
-      EventComponent current = (EventComponent) btn;
-      originalParent.getEventList().getChildren().add(current);
+    if (btn instanceof EventComponent && originalColumn != null) {
+      this.originalColumn.list();
     }
-    this.currentDragButton = null;
-    this.originalParent = null;
+    this.currentDragCard = null;
+    this.originalColumn = null;
 
     this.tabPane.requestFocus();
+  }
+
+  @FXML
+  void onMouseExited(){
+    // Cleans card
+    if(this.originalColumn != null){
+      this.originalColumn.list();
+    }
+    this.currentDragCard = null;
+    this.dragPane.getChildren().clear();
   }
 
   /**

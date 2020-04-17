@@ -124,7 +124,7 @@
             </VBox>
          </left>
          <center>
-            <TabPane fx:id="tabPane" focusTraversable="false" onMouseDragOver="#PanelMouseDragOver" onMouseDragReleased="#MouseDragReleased" side="BOTTOM" styleClass="bg-main" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+            <TabPane fx:id="tabPane" focusTraversable="false" onMouseDragOver="#PanelMouseDragOver" onMouseDragReleased="#MouseDragReleased" onMouseExited="#onMouseExited" side="BOTTOM" styleClass="bg-main" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
               <tabs>
                 <Tab closable="false" text="Board">
                   <content>

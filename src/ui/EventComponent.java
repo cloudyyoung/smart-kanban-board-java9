@@ -169,16 +169,9 @@ public class EventComponent extends Button {
 
   @FXML
   void EventDragDetected(MouseEvent event) { // The card dragging detection
-    // Cleans possible bug card
-    if (this.parentController.currentDragButton != null
-        && this.parentController.originalParent != null) {
-      this.parentController
-          .originalParent
-          .getChildren()
-          .add(this.parentController.currentDragButton);
-      this.parentController.currentDragButton = null;
-      this.parentController.dragPane.getChildren().clear();
-    }
+    // Cleans card
+    this.parentController.currentDragCard = null;
+    this.parentController.dragPane.getChildren().clear();
 
     // Adds current card to drag pane
     EventComponent card = (EventComponent) event.getSource();
@@ -186,8 +179,8 @@ public class EventComponent extends Button {
       card.setLayoutX(event.getSceneX());
       card.setLayoutY(event.getSceneY());
       card.startFullDrag();
-      this.parentController.originalParent = (ColumnComponent) card.getParentComponent();
-      this.parentController.currentDragButton = card;
+      this.parentController.originalColumn = (ColumnComponent) card.getParentComponent();
+      this.parentController.currentDragCard = card;
       this.parentController.dragPane.getChildren().add(card);
     }
   }

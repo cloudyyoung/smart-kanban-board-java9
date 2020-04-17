@@ -177,7 +177,10 @@ public class ColumnComponent extends VBox {
     ColumnComponent oldColumn = (ColumnComponent) button.getParentComponent();
     ColumnComponent newColumn = (ColumnComponent) event.getSource();
 
-    this.parentController.originalParent = null;
+    // Cleans card
+    this.parentController.originalColumn = null;
+    this.parentController.currentDragCard = null;
+    this.parentController.dragPane.getChildren().clear();
 
     if (this.getNode().getParent().isSpecialized()) {
       // Node node = button.getNode().getParent().getParent();
@@ -192,18 +195,13 @@ public class ColumnComponent extends VBox {
       // }
       // }
 
-      newColumn.getEventList().getChildren().add(button);
       oldColumn.list();
       newColumn.list();
     } else {
-      // newColumn.getEventList().getChildren().add(button);
       button.getNode().setParentRequest(newColumn.getNode());
       oldColumn.list();
       newColumn.list();
     }
 
-    // Cleans possible bug cards
-    this.parentController.currentDragButton = null;
-    this.parentController.dragPane.getChildren().clear();
   }
 }
