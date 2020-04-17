@@ -283,8 +283,10 @@ public class HomeController {
     button.getStyleClass().add("selected");
 
     if (button.equals(sideSearch)) {
+      // If click search
       tabPane.getSelectionModel().select(1);
     } else if (button.equals(sideProfile)) {
+      // If click settings
       try {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene oldScene = ((Node) event.getSource()).getScene();
@@ -297,6 +299,7 @@ public class HomeController {
         e.printStackTrace();
       }
     } else {
+      // If click board button
       this.tabPane.getSelectionModel().select(0);
     }
   }
