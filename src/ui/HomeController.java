@@ -18,12 +18,11 @@ import structure.*;
 
 /**
  * The JavaFX Controller for home.fxml.
- * 
+ *
  * @author Cloudy Young, Jimschenchen
  * @since 3.0
  * @version 4.0
  */
-
 public class HomeController {
 
   @FXML protected Button sideProfile;
@@ -114,8 +113,6 @@ public class HomeController {
             "11 Hours",
             "12 Hours");
 
-
-    
     // Sets listeners
     this.promptEventDueDate
         .valueProperty()
@@ -205,7 +202,6 @@ public class HomeController {
               this.promptBoardTitle.setPrefHeight(
                   this.textHolder.getLayoutBounds().getHeight() + 23);
             });
-
 
     this.promptEventImportanceLevel
         .valueProperty()
@@ -424,7 +420,7 @@ public class HomeController {
 
   /**
    * Returns the inline style for custom accent color.
-   * 
+   *
    * @version 4.0
    * @param hex the color string in HEX, eg #242424
    * @return the inline style string
@@ -469,9 +465,9 @@ public class HomeController {
   }
 
   @FXML
-  void onMouseExited(){
+  void onMouseExited() {
     // Cleans card
-    if(this.originalColumn != null){
+    if (this.originalColumn != null) {
       this.originalColumn.list();
     }
     this.currentDragCard = null;
@@ -480,6 +476,7 @@ public class HomeController {
 
   /**
    * Sets the given component to invisible
+   *
    * @param nodes the nodes to set
    */
   public void hide(Node... nodes) {
@@ -492,6 +489,7 @@ public class HomeController {
 
   /**
    * Sets the given component to visible
+   *
    * @param nodes the nodes to set
    */
   public void show(Node... nodes) {
