@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Terminal2",
+            "request": "launch",
+            "mainClass": "Terminal2",
+            "projectName": "Smart-Kanban-Board"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - User",
             "request": "launch",
             "mainClass": "structure.User",
