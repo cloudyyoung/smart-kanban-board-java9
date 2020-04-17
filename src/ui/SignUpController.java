@@ -12,7 +12,7 @@ import structure.Result;
 
 /**
  * The JavaFX Controller for both signup.fxml and signin.fxml.
- * 
+ *
  * @author Cloudy Young
  * @since 3.0
  * @version 3.0
