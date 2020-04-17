@@ -8,11 +8,11 @@ import com.google.gson.annotations.*;
  * <p>The instance should contains {@code Column} object as children nodes.
  *
  * @since 1.0
- * @version 2.1
+ * @version 4.0
  */
 public final class Board extends Node {
 
-  /** Color of the board, in HEX. */
+  /** Color of the board in HEX, eg: #242424. */
   @Expose private String color;
 
   /**

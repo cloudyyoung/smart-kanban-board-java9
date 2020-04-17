@@ -138,6 +138,10 @@ public class Kanban extends Node {
               }
               break;
 
+            default:
+              // Skip the Node
+              break;
+
           }
         }
       }
@@ -155,7 +159,7 @@ public class Kanban extends Node {
 
   private boolean hasEnoughTime(Event eventNext) {
     Long totalTime = Long.valueOf(User.getCurrent().getTodayAvailability()) * 3600;
-    Long timeAccumulator = 0l;
+    Long timeAccumulator = 0L;
     ArrayList<Node> admissions = new ArrayList<Node>();
     admissions.addAll(this.todayToDo.getNodes());
     admissions.addAll(this.todayInProgress.getNodes());
@@ -199,6 +203,10 @@ public class Kanban extends Node {
               if (!((Event) event).isOverdue()) { // Only include the task when it's not overdue
                 event.setParent(this.overviewDone);
               }
+              break;
+
+            default:
+              // Skip the Node
               break;
           }
 
