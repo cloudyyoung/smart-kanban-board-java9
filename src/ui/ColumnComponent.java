@@ -175,7 +175,8 @@ public class ColumnComponent extends VBox {
     if (this.getNode().getParent().isSpecialized()) {
       // Find the column in the actual board
       int nextColumnPreset = newColumn.getNode().getPreset();
-      Column actualNewColumn = ((Board) button.getNode().getParent().getParent()).getPresetColumn(nextColumnPreset);
+      Column actualNewColumn =
+          ((Board) button.getNode().getParent().getParent()).getPresetColumn(nextColumnPreset);
       button.getNode().setParentRequest(actualNewColumn);
 
       Kanban.getCurrent().generateToday();
