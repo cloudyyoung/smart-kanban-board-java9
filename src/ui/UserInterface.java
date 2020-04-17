@@ -41,7 +41,8 @@ public class UserInterface extends Application {
   public void start(Stage stage) {
     
     String file = "view/welcome.fxml";
-    
+
+    // Tries to sign in automatically
     Result res = User.authenticationLocalRequest();
     if(res.isSucceeded()){
       file = "view/home.fxml";

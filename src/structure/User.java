@@ -412,6 +412,12 @@ public class User {
     return res;
   }
 
+  /**
+   * Authenticates the user account in local file.
+   *
+   * @version 3.0
+   * @return the {@code Result} instance of this action
+   */
   public static Result authenticationLocalRequest(){
     User user = new User();
     Result res = user.signInLocalRequest();
