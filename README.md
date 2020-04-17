@@ -57,10 +57,11 @@ Column Page
  - `#id`: Enter an event id to check an specific event
 
 ## References
-Google Gson
-- [https://github.com/google/gson](https://github.com/google/gson)
 
-JUnit 5
-- [https://github.com/junit-team/junit5](https://github.com/junit-team/junit5)
+### Libraries
+ - Google Gson: [https://github.com/google/gson](https://github.com/google/gson)
 
-Other code snippet references are in the files javadoc `@see`.
+ - JavaFX 11: [https://openjfx.io/](https://openjfx.io/)
+
+### Code snippet
+Code snippet references are **in the specific files** and link is beside javadoc tag `@see`.
