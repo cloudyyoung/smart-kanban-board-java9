@@ -126,8 +126,9 @@ public class ColumnComponent extends VBox {
     this.displayPrompt();
     this.parentController.hide(this.parentController.columnCreate);
     this.parentController.promptColumnPromptTitle.setText("Edit column");
-    
-    // A board should always has at least one column for each kind of preset; if this column is the only one of its kind of preset, cannot be deleted
+
+    // A board should always has at least one column for each kind of preset; if this column is the
+    // only one of its kind of preset, cannot be deleted
     if (this.node.isOnlyPreset()) {
       this.parentController.hide(this.parentController.columnDelete);
     } else {
