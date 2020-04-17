@@ -118,17 +118,18 @@ public class HomeController {
   public ColumnComponent originalParent;
   public Button currentDragButton;
   public BoardComponent componentToday;
+  private boolean isCreating = false;
   
 
   @FXML
   void initialize() {
 
     this.closePrompt();
-    extraPane.setVisible(false);
+    this.extraPane.setVisible(false);
 
     // Intialize label text values
-    profileUsername.setText(User.getCurrent().getUsername());
-    profileUsername.setTooltip(new Tooltip(User.getCurrent().getUsername()));
+    this.profileUsername.setText(User.getCurrent().getUsername());
+    this.profileUsername.setTooltip(new Tooltip(User.getCurrent().getUsername()));
 
     // Check out kanban
     Kanban.checkout();
@@ -136,38 +137,38 @@ public class HomeController {
     Kanban.getCurrent().generateOverview();
 
     // Initialize Event panel
-    promptEventImportanceLevel.getItems().addAll("", "Level 1", "Level 2", "Level 3");
-    promptEventDuration.getItems().addAll("", "1 Hour", "2 Hours", "3 Hours", "4 Hours", "5 Hours", "6 Hours",
+    this.promptEventImportanceLevel.getItems().addAll("", "Level 1", "Level 2", "Level 3");
+    this.promptEventDuration.getItems().addAll("", "1 Hour", "2 Hours", "3 Hours", "4 Hours", "5 Hours", "6 Hours",
         "7 Hours", "8 Hours", "9 Hours", "10 Hours", "11 Hours", "12 Hours");
 
-    promptEventDueDate.valueProperty().addListener((observable, oldDate, newDate) -> {
+        this.promptEventDueDate.valueProperty().addListener((observable, oldDate, newDate) -> {
       Long timestamp = null;
       if (newDate != null) {
         timestamp = Timestamp.valueOf(newDate.atTime(LocalTime.MAX)).getTime() / 1000;
       }
-      currentEvent.getNode().setDueDateRequest(timestamp);
+      this.currentEvent.getNode().setDueDateRequest(timestamp);
     });
 
-    searchList.getChildren().clear();
-    inputSearch.textProperty().addListener((observable, oldText, newText) -> {
-      searchList.getChildren().clear();
+    this.searchList.getChildren().clear();
+    this.inputSearch.textProperty().addListener((observable, oldText, newText) -> {
+      this.searchList.getChildren().clear();
       if (!newText.equals("")) {
         ArrayList<structure.Node> list = Kanban.getCurrent().search(newText);
         for (structure.Node each : list) {
           EventComponent event = new EventComponent(each, null, this);
-          searchList.getChildren().add(event);
+          this.searchList.getChildren().add(event);
         }
       }
     });
 
-    promptEventTitle.focusedProperty().addListener((observable, oldFocus, newFocus) -> {
+    this.promptEventTitle.focusedProperty().addListener((observable, oldFocus, newFocus) -> {
       if (!newFocus) {
-        currentEvent.getNode().setTitleRequest(promptEventTitle.getText());
+        this.currentEvent.getNode().setTitleRequest(this.promptEventTitle.getText());
       }
     });
 
-    promptEventTitle.textProperty().addListener((observable, oldText, newText) -> {
-      currentEvent.setText(promptEventTitle.getText());
+    this.promptEventTitle.textProperty().addListener((observable, oldText, newText) -> {
+      this.currentEvent.setText(this.promptEventTitle.getText());
     });
 
     // The TextArea internally does not use the onKeyPressed property to handle
@@ -177,54 +178,54 @@ public class HomeController {
     // event filter that consumes the event.
     // @link:
     // https://stackoverflow.com/questions/26752924/how-to-stop-cursor-from-moving-to-a-new-line-in-a-textarea-when-enter-is-pressed
-    promptEventTitle.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
+    this.promptEventTitle.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
       if (e.getCode() == KeyCode.ENTER) {
         e.consume();
-        promptEvent.requestFocus();
+        this.promptEvent.requestFocus();
       }
     });
 
-    textHolder.getStyleClass().addAll(promptEventTitle.getStyleClass());
-    textHolder.setStyle(promptEventTitle.getStyle());
-    textHolder.setWrappingWidth(450);
-    textHolder.layoutBoundsProperty().addListener((observable, oldValue, newValue) -> {
-      promptEventTitle.setPrefHeight(textHolder.getLayoutBounds().getHeight() + 23);
-      promptBoardTitle.setPrefHeight(textHolder.getLayoutBounds().getHeight() + 23);
+    this.textHolder.getStyleClass().addAll(this.promptEventTitle.getStyleClass());
+    this.textHolder.setStyle(promptEventTitle.getStyle());
+    this.textHolder.setWrappingWidth(450);
+    this.textHolder.layoutBoundsProperty().addListener((observable, oldValue, newValue) -> {
+      this.promptEventTitle.setPrefHeight(this.textHolder.getLayoutBounds().getHeight() + 23);
+      this.promptBoardTitle.setPrefHeight(this.textHolder.getLayoutBounds().getHeight() + 23);
     });
 
-    extraPane.getChildren().add(textHolder);
+    this.extraPane.getChildren().add(this.textHolder);
 
-    promptEventImportanceLevel.valueProperty().addListener((observable, oldValue, newValue) -> {
-      currentEvent.getNode()
-          .setImportanceLevelRequest(promptEventImportanceLevel.getSelectionModel().getSelectedIndex());
+    this.promptEventImportanceLevel.valueProperty().addListener((observable, oldValue, newValue) -> {
+      this.currentEvent.getNode()
+          .setImportanceLevelRequest(this.promptEventImportanceLevel.getSelectionModel().getSelectedIndex());
     });
 
-    promptEventDuration.valueProperty().addListener((observable, oldValue, newValue) -> {
-      currentEvent.getNode().setDurationRequest(promptEventDuration.getSelectionModel().getSelectedIndex() * 3600L);
+    this.promptEventDuration.valueProperty().addListener((observable, oldValue, newValue) -> {
+      this.currentEvent.getNode().setDurationRequest(this.promptEventDuration.getSelectionModel().getSelectedIndex() * 3600L);
     });
 
-    promptEventNote.focusedProperty().addListener((observable, oldFocus, newFocus) -> {
+    this.promptEventNote.focusedProperty().addListener((observable, oldFocus, newFocus) -> {
       if (!newFocus)
-        currentEvent.getNode().setNoteRequest(promptEventNote.getText());
+      this.currentEvent.getNode().setNoteRequest(this.promptEventNote.getText());
     });
 
-    promptBoardTitle.focusedProperty().addListener((observable, oldFocus, newFocus) -> {
+    this.promptBoardTitle.focusedProperty().addListener((observable, oldFocus, newFocus) -> {
       if (!newFocus)
-        currentColumn.getNode().setTitleRequest(promptColumnTitle.getText());
+      this.currentBoard.getNode().setTitleRequest(this.promptBoardTitle.getText());
     });
 
-    promptColumnPreset.getItems().addAll("To Do", "In Progress", "Done");
+    this.promptColumnPreset.getItems().addAll("To Do", "In Progress", "Done");
 
-    promptColumnPreset.valueProperty().addListener((observable, oldValue, newValue) -> {
-      currentColumn.getNode().setPresetRequest(promptColumnPreset.getSelectionModel().getSelectedIndex());
+    this.promptColumnPreset.valueProperty().addListener((observable, oldValue, newValue) -> {
+      this.currentColumn.getNode().setPresetRequest(this.promptColumnPreset.getSelectionModel().getSelectedIndex());
     });
 
-    promptColumnTitle.focusedProperty().addListener((observable, oldFocus, newFocus) -> {
+    this.promptColumnTitle.focusedProperty().addListener((observable, oldFocus, newFocus) -> {
       if (!newFocus)
-        currentColumn.getNode().setTitleRequest(promptColumnTitle.getText());
+      this.currentColumn.getNode().setTitleRequest(this.promptColumnTitle.getText());
     });
 
-    dragPane.setMouseTransparent(true);
+    this.dragPane.setMouseTransparent(true);
 
     this.list();
     this.tabPane.requestFocus();
@@ -235,22 +236,22 @@ public class HomeController {
     this.componentToday = null;
 
     // Add list items
-    operationList.getChildren().clear();
-    boardList.getChildren().clear();
+    this.operationList.getChildren().clear();
+    this.boardList.getChildren().clear();
     for (structure.Node each : Kanban.getCurrent().getNodes()) {
       // Add to list
       BoardComponent node = new BoardComponent((Board) each, this);
       if (!each.isSpecialized()) {
-        boardList.getChildren().add(node);
+        this.boardList.getChildren().add(node);
       } else {
-        operationList.getChildren().add(node);
+        this.operationList.getChildren().add(node);
         if (each.getId() == 1) {
-          componentToday = node;
+          this.componentToday = node;
         }
       }
     }
     if (componentToday != null) {
-      componentToday.fire();
+      this.componentToday.fire();
     }
   }
 
@@ -283,85 +284,97 @@ public class HomeController {
         e.printStackTrace();
       }
     } else {
-      tabPane.getSelectionModel().select(0);
+      this.tabPane.getSelectionModel().select(0);
     }
   }
 
   @FXML
   void closePrompt() {
     this.hide(this.promptEvent, this.promptBoard, this.promptColumn);
-    if (this.currentEvent != null) {
+    if (this.currentEvent != null && !this.isCreating) {
       this.currentEvent.display();
       this.currentEvent = null;
     }
-    if (this.currentBoard != null) {
+    if (this.currentBoard != null && !this.isCreating) {
       this.currentBoard.display();
       this.currentBoard.fire();
     }
-    if (this.currentColumn != null) {
+    if (this.currentColumn != null && !this.isCreating) {
       this.currentColumn.display();
       this.currentColumn = null;
     }
+    this.setIsCreating(false);
     this.tabPane.requestFocus();
   }
 
   @FXML
-  void updateBoardPrompt(ActionEvent e) {
+  void updateBoard(ActionEvent e) {
     currentBoard.update(e);
   }
 
   @FXML
-  void createBoardPrompt(ActionEvent e){
-    
+  void createBoard(ActionEvent e){
+    Board event = new Board("Untitled Board", "", "", Kanban.getCurrent());
+    BoardComponent boardComponent = new BoardComponent(event, this);
+    boardComponent.create(e);
+  }
+
+  @FXML
+  void createBoardRequest(ActionEvent e){
+    this.currentBoard.getNode().createRequest();
+    Kanban.getCurrent().generateToday();
+    Kanban.getCurrent().generateOverview();
+    this.list();
+    this.closePrompt();
   }
 
   @FXML
   void deleteBoardRequest() {
-    currentBoard.getNode().deleteRequest();
+    this.currentBoard.getNode().deleteRequest();
     this.list();
-    currentBoard = null;
+    this.currentBoard = null;
     this.closePrompt();
   }
 
   @FXML
   void deleteEventRequest() {
-    currentEvent.getNode().deleteRequest();
-    currentEvent.getParentComponent().list();
+    this.currentEvent.getNode().deleteRequest();
+    this.currentEvent.getParentComponent().list();
     Kanban.getCurrent().generateToday();
     Kanban.getCurrent().generateOverview();
-    currentEvent = null;
+    this.currentEvent = null;
     this.closePrompt();
   }
 
   @FXML
   void deleteColumnRequest() {
-    currentColumn.getNode().deleteRequest();
-    currentColumn.getParentComponent().list();
-    currentColumn = null;
+    this.currentColumn.getNode().deleteRequest();
+    this.currentColumn.getParentComponent().list();
+    this.currentColumn = null;
     this.closePrompt();
   }
 
   @FXML
   void createEventRequest(){
-    currentEvent.getNode().createRequest();
+    this.currentEvent.getNode().createRequest();
     Kanban.getCurrent().generateToday();
     Kanban.getCurrent().generateOverview();
-    currentEvent.getParentComponent().list();
+    this.currentEvent.getParentComponent().list();
     this.closePrompt();
   }
 
   @FXML
   void createBoardChild(ActionEvent e){
     this.closePrompt();
-    currentBoard.createChild(e);
+    this.currentBoard.createChild(e);
   }
 
   @FXML
   void createColumnRequest(){
-    currentColumn.getNode().createRequest();
+    this.currentColumn.getNode().createRequest();
     Kanban.getCurrent().generateToday();
     Kanban.getCurrent().generateOverview();
-    currentColumn.getParentComponent().list();
+    this.currentColumn.getParentComponent().list();
     this.closePrompt();
   }
 
@@ -397,8 +410,8 @@ public class HomeController {
       EventComponent current = (EventComponent) btn;
       originalParent.getEventList().getChildren().add(current);
     }
-    currentDragButton = null;
-    originalParent = null;
+    this.currentDragButton = null;
+    this.originalParent = null;
   }
 
   public void hide(Node... nodes){
@@ -415,5 +428,9 @@ public class HomeController {
         each.getStyleClass().remove("hide");
       }
     }
+  }
+
+  public void setIsCreating(boolean is){
+    this.isCreating = is;
   }
 }

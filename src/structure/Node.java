@@ -147,6 +147,10 @@ public abstract class Node {
     return this.existing;
   }
 
+  private final void setExisting(boolean is){
+    this.existing = is;
+  }
+
   /**
    * Returns the type by specified type and level by using the dictionary {@link #TYPE_DICTIONARY}.
    *
@@ -507,9 +511,11 @@ public abstract class Node {
       res.add(req);
   
       if (req.isSucceeded()) {
-        Node parent = this.getParent();
         this.setId(req.getResponseBody().getInt("id"));
-        parent.addNode(this);
+        System.out.println(req.getResponseBody().getInt("id"));
+        this.getParent().addNode(this);
+        this.setParent(this.getParent());
+        this.setExisting(true);
 
         StructureRequest req2 = new StructureRequest(true, false, this);
         res.add(req2);
@@ -531,7 +537,7 @@ public abstract class Node {
 
     if(!this.isExisting()){
       StructureRequest req2 = new StructureRequest(false, true, this);
-      req2.setErrorMessage("Event is not exisiting");
+      req2.setErrorMessage("Node is not exisiting");
       res.add(req2);
     }else{
 
@@ -543,8 +549,7 @@ public abstract class Node {
       res.add(req);
 
       if (req.isSucceeded()) {
-        Node parent = this.getParent();
-        parent.removeNode(this);
+        this.getParent().removeNode(this);
         this.setParent(null);
         
         StructureRequest req2 = new StructureRequest(true, false, this);

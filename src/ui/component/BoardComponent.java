@@ -94,15 +94,16 @@ public class BoardComponent extends Button {
   }
 
   @FXML
-  void create(ActionEvent e){
+  public void create(ActionEvent e){
     this.displayPrompt();
+    this.parentController.setIsCreating(true);
     this.parentController.promptBoardPromptTitle.setText("Create Board");
-    this.parentController.hide(this.parentController.boardDelete);
     this.parentController.hide(this.parentController.boardDelete, this.parentController.boardChildCreate);
     this.parentController.show(this.parentController.boardCreate);
   }
 
   private void displayPrompt(){
+    this.parentController.currentBoard = this;
     this.parentController.textHolder.textProperty().bind(this.parentController.promptBoardTitle.textProperty());
     this.parentController.promptBoardTitle.setText(this.parentController.currentBoard.getNode().getTitle());
     this.parentController.promptBoardNote.setText(this.parentController.currentBoard.getNode().getNote());

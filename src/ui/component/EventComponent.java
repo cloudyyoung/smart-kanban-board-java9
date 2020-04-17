@@ -99,6 +99,7 @@ public class EventComponent extends Button {
   @FXML
   void create(ActionEvent e){
     this.displayPrompt();
+    this.parentController.setIsCreating(true);
     this.parentController.hide(this.parentController.eventDelete);
     this.parentController.show(this.parentController.eventCreate);
     this.parentController.promptEventPromptTitle.setText("Create event");
