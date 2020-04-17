@@ -113,9 +113,7 @@ public abstract class Node {
       this.setNote(obj.getString("note"));
       this.existing = true;
     }
-    if (this.getChildType() != null) {
-      this.extractChildrenNodes(obj);
-    }
+    this.extractChildrenNodes(obj);
   }
 
   /**
@@ -124,6 +122,10 @@ public abstract class Node {
    * @param obj the object to map in {@code HttpBody}
    */
   private final void extractChildrenNodes(HttpBody obj) {
+    if (this.getChildType() == null) {
+      return;
+    }
+
     String childType = NodeTypeUtils.typeUrl(this.getChildType());
     HttpBody value = obj.getList(childType);
     Collection<Object> list = value.values();
