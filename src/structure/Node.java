@@ -10,13 +10,20 @@ import java.lang.reflect.Constructor;
  * The {@code Node} class.
  *
  * @since 1.0
- * @version 2.1
+ * @version 4.0
  */
 public abstract class Node {
 
+  /** Static variable representing a sorting reference id */
   public static final int SORT_BY_ID = 0;
+
+  /** Static variable representing a sorting reference priority */
   public static final int SORT_BY_PRIORITY = 5;
+
+  /** Static variable representing a ordering reference ascending */
   public static final int ORDER_BY_ASC = 0;
+
+  /** Static variable representing a ordering reference descending */
   public static final int ORDER_BY_DESC = 1;
 
   /**

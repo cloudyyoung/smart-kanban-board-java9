@@ -14,24 +14,28 @@ public class Event extends Node {
 
   /**
    * The importance level of the event in {@code int}. It is ranged from 0 to 3,
-   * from the least to the most important.
+   * from the least to the most important. It is exposed to Gson, can be both serialized and
+   * deserialized. It will be serialized as {@code importance_level}.
    */
   @SerializedName("importance_level")
   @Expose
   private int importanceLevel;
 
-  /** The due date of the event timestamp, in seconds, in {@code Long}. */
+  /** The due date of the event timestamp, in seconds, in {@code Long}. It is exposed to Gson, can be both serialized and
+   * deserialized. It will be serialized as {@code due_date}. */
   @SerializedName("due_date")
   @Expose
   private Long dueDate;
 
-  /** The duration of the event in seconds, in {@code Long}. */
+  /** The duration of the event in seconds, in {@code Long}. It is exposed to Gson, can be both serialized and
+   * deserialized. */
   @Expose
   private Long duration;
 
   /**
    * The date of this event appears in Today board last time timestamp, in
-   * seconds, in {@code Long}.
+   * seconds, in {@code Long}. It is exposed to Gson, can be both serialized and
+   * deserialized. It will be serialized as {@code last_geenrated_date}.
    */
   @SerializedName("last_generated_date")
   @Expose

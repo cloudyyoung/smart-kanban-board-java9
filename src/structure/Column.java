@@ -25,7 +25,7 @@ public final class Column extends Node {
 
   /**
    * Preset of the column, could and only be {@code TO_DO}, {@code IN_PROGRESS} or
-   * {@code DONE}
+   * {@code DONE}. It is exposed to Gson, can be both serialized and deserialized.
    */
   @Expose
   private int preset;
