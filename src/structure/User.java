@@ -132,8 +132,8 @@ public class User {
    *
    * @return the arraylist contains the available houses from Mon to Sun
    */
-  private ArrayList<Integer> getAvailability() {
-    return this.availability;
+  public ArrayList<Integer> getAvailability() {
+    return new ArrayList<Integer>(this.availability);
   }
 
   /**
@@ -172,7 +172,7 @@ public class User {
    *
    * @param id the user id to be set
    */
-  public void setId(Integer id) {
+  private void setId(Integer id) {
     this.id = id;
   }
 
@@ -181,7 +181,7 @@ public class User {
    *
    * @param sessionId the session id to be set
    */
-  public void setSessionId(String sessionId) {
+  private void setSessionId(String sessionId) {
     this.sessionId = sessionId;
   }
 
