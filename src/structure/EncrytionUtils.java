@@ -1,11 +1,3 @@
-/*
- *
- * Title: Java AES Encryption Decryption Example
- * Author: Lokesh Gupta
- * Availability:https://howtodoinjava.com/security/java-aes-encryption-example/
- *
- */
-
 package structure;
 
 import java.io.UnsupportedEncodingException;
@@ -17,10 +9,28 @@ import java.util.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
+/**
+ *
+ * The encryption utilities class. Title: Java AES Encryption Decryption Example
+ * 
+ * @author Lokesh Gupta, Jimschenchen
+ * @see https://howtodoinjava.com/security/java-aes-encryption-example/
+ * @since 4.0
+ * @version 4.0
+ */
+
 public class EncrytionUtils {
+  /** The secret key for encryption */
   private static SecretKeySpec secretKey;
+
+  /** The key list in byte */
   private static byte[] key;
 
+  /**
+   * Sets the secret key.
+   * 
+   * @param myKey the secret key to set
+   */
   public static void setKey(String myKey) {
     MessageDigest sha = null;
     try {
@@ -36,6 +46,13 @@ public class EncrytionUtils {
     }
   }
 
+  /**
+   * Encrypts the given string
+   * 
+   * @param strToEncrypt the string to encrpyt
+   * @param secret       the secret key for encryption
+   * @return the encrpyted string
+   */
   public static String encrypt(String strToEncrypt, String secret) {
     try {
       setKey(secret);
@@ -48,6 +65,13 @@ public class EncrytionUtils {
     return null;
   }
 
+  /**
+   * Decrypts the given string
+   * 
+   * @param strToDectypt the string to decrypt
+   * @param the          secret key for decryption
+   * @return the decrypted string
+   */
   public static String decrypt(String strToDecrypt, String secret) {
     try {
       setKey(secret);

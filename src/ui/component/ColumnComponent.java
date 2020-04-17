@@ -7,7 +7,6 @@ import javafx.fxml.*;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseDragEvent;
-import javafx.scene.input.MouseEvent;
 import structure.*;
 import ui.HomeController;
 
@@ -74,9 +73,13 @@ public class ColumnComponent extends VBox {
     // System.out.println(list);
 
     eventList.getChildren().clear();
+
+    // System.out.println(eventList.getChildren());
+
     for (structure.Node each : list) {
       EventComponent event = new EventComponent(each, this, this.parentController);
       eventList.getChildren().add(event);
+      System.out.println(event);
     }
     eventCount.setText(list.size() + "");
   }
@@ -109,14 +112,14 @@ public class ColumnComponent extends VBox {
   }
 
   @FXML
-  void create(ActionEvent e){
+  void create(ActionEvent e) {
     this.displayPrompt();
     this.parentController.hide(this.parentController.columnDelete);
     this.parentController.show(this.parentController.columnCreate);
     this.parentController.promptColumnPromptTitle.setText("Create column");
   }
 
-  private void displayPrompt(){
+  private void displayPrompt() {
     this.parentController.currentColumn = this;
     this.parentController.promptColumn.setStyle(HomeController.styleAccent(this.getColor()));
     this.parentController.show(this.parentController.promptColumn);
@@ -134,13 +137,41 @@ public class ColumnComponent extends VBox {
   // drag
   @FXML
   void MouseDragReleased(MouseDragEvent event) {
-    ColumnComponent current = (ColumnComponent) event.getSource();
     EventComponent button = (EventComponent) event.getGestureSource();
-    current.getEventList().getChildren().add(button);
+    ColumnComponent oldColumn = (ColumnComponent) button.getParentComponent();
+    ColumnComponent newColumn = (ColumnComponent) event.getSource();
 
-    // System.out.println(current.getNode());
+    this.parentController.originalParent = null;
+
+    // System.out.println(oldColumn.getNode().getTitle());
+    // System.out.println(nextColumn.getNode().getTitle());
     // System.out.println(button.getNode());
-    
-    System.out.println(button.getNode().setParentRequest(current.getNode()));
+
+    if (this.getNode().getParent().isSpecialized()) {
+      System.out.println(1122227);
+      // Node node = button.getNode().getParent().getParent();
+      // Board originBoard = (Board) node;
+      // int nextColumnPreset = nextColumn.getNode().getPreset();
+      // for (Node node_col : originBoard.getNodes()) {
+      // Column column = (Column) node_col;
+      // if (column.getPreset() == nextColumnPreset) {
+      // button.getNode().setParentRequest(column);
+      // nextColumn.getEventList().getChildren().add(button);
+      // break;
+      // }
+      // }
+      // button.getNode().setLastGeneratedDateRequest();
+      Kanban.getCurrent().generateToday();
+      newColumn.getEventList().getChildren().add(button);
+      oldColumn.list();
+      newColumn.list();
+    } else {
+      newColumn.getEventList().getChildren().add(button);
+      button.getNode().setParentRequest(newColumn.getNode());
+      oldColumn.list();
+      newColumn.list();
+    }
+
+    // Kanban.getCurrent().generateToday();
   }
 }

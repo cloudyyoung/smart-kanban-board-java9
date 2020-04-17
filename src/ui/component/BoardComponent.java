@@ -14,7 +14,8 @@ import ui.*;
 
 public class BoardComponent extends Button {
 
-  @FXML private Button button;
+  @FXML
+  private Button button;
 
   private Board node;
   private HomeController parentController;
@@ -24,11 +25,18 @@ public class BoardComponent extends Button {
     this.parentController = parentController;
 
     this.loadDisplay();
-    this.display();
+    if(this.node.isExisting()){
+      this.display();
+    }
   }
 
   @FXML
-  void open(ActionEvent e){
+  void open(ActionEvent e) {
+    if (this.equals(this.parentController.componentToday)) {
+      Kanban.getCurrent().generateToday();
+      Kanban.getCurrent().generateOverview();
+    }
+
     this.parentController.currentBoard = this;
     this.parentController.boardEdit.setVisible(!this.node.isSpecialized());
 
@@ -81,7 +89,7 @@ public class BoardComponent extends Button {
   }
 
   @FXML
-  public void update(ActionEvent e){
+  public void update(ActionEvent e) {
     this.displayPrompt();
     this.parentController.promptBoardPromptTitle.setText("Edit Board");
     this.parentController.show(this.parentController.boardDelete, this.parentController.boardChildCreate);
@@ -89,15 +97,15 @@ public class BoardComponent extends Button {
   }
 
   @FXML
-  void create(ActionEvent e){
+  public void create(ActionEvent e) {
     this.displayPrompt();
     this.parentController.promptBoardPromptTitle.setText("Create Board");
-    this.parentController.hide(this.parentController.boardDelete);
     this.parentController.hide(this.parentController.boardDelete, this.parentController.boardChildCreate);
     this.parentController.show(this.parentController.boardCreate);
   }
 
-  private void displayPrompt(){
+  private void displayPrompt() {
+    this.parentController.currentBoard = this;
     this.parentController.textHolder.textProperty().bind(this.parentController.promptBoardTitle.textProperty());
     this.parentController.promptBoardTitle.setText(this.parentController.currentBoard.getNode().getTitle());
     this.parentController.promptBoardNote.setText(this.parentController.currentBoard.getNode().getNote());
@@ -105,7 +113,7 @@ public class BoardComponent extends Button {
   }
 
   @FXML
-  public void createChild(ActionEvent e){
+  public void createChild(ActionEvent e) {
     Column column = new Column("Untitled Column", "", 0, this.node);
     ColumnComponent ColumnComponent = new ColumnComponent(column, this, this.parentController);
     ColumnComponent.create(e);

@@ -662,9 +662,16 @@
     -fx-effect: dropshadow(gaussian, -fx-accent-20, 10, 0, 1, 2);
 }
 
-.bg-main .column .scroll-pane.event-list .button, .bg-main .column .scroll-pane.event-list .card{
+.bg-main .column .scroll-pane.event-list .button,
+.bg-main .column .scroll-pane.event-list .card,
+#dragPane .card{
 	-fx-max-width: 256px;
 	-fx-pref-width: 256px;
+}
+
+#dragPane .card{
+	-fx-effect: dropshadow(gaussian, -fx-accent-30, 10, 0, 1, 2) !important;
+	-fx-background-color: -fx-accent;
 }
 
 .bg-main .column .scroll-pane.event-list .button:hover, .card:hover{
