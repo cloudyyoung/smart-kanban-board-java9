@@ -11,7 +11,6 @@ import java.time.format.DateTimeFormatter;
  * @version 4.0
  * @author Jerremy Lewis, Cloudy Young
  */
-
 public class TimeUtils {
 
   /**
@@ -188,7 +187,6 @@ public class TimeUtils {
    * Returns the name of current month. Such as {@code October}.
    *
    * @version 4.0
-   * @param currentMonthNum the number of month
    * @return the name of the month
    */
   public static String currentMonthName() {

@@ -10,14 +10,12 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.Map;
 
-import javax.lang.model.element.Element;
-
 import com.google.gson.*;
 
 /**
- * The class {@code User} instance represents an Account which stores the users
- * informations and provides needed methods to interact.
- * 
+ * The class {@code User} instance represents an Account which stores the users informations and
+ * provides needed methods to interact.
+ *
  * @author Cloudy Young, Jimschenchen
  * @since 1.0
  * @version 4.0
@@ -33,37 +31,29 @@ public class User {
   /** The user id of the account. */
   private int id;
 
-  /**
-   * The session id of the account. For the server requests to be proceeded
-   * properly.
-   */
+  /** The session id of the account. For the server requests to be proceeded properly. */
   private String sessionId;
 
   /** The password of the account. */
   private String password;
 
   /**
-   * The authentication status of the account. {@code true} represents the
-   * instance user is authenticated with the server successfully. {@code false}
-   * otherwise.
+   * The authentication status of the account. {@code true} represents the instance user is
+   * authenticated with the server successfully. {@code false} otherwise.
    */
   private boolean authenticated;
 
   /** A boolean to indicate if the account is existing on the server. */
   private boolean existing = false;
 
-  /**
-   * A list of int to storage the available hours which user plans to strive per
-   * day
-   */
+  /** A list of int to storage the available hours which user plans to strive per day */
   private ArrayList<Integer> availability;
 
   /** The current theme name */
   private String theme;
 
   /** Default constructor of {@code User}. */
-  public User() {
-  }
+  public User() {}
 
   /**
    * Returns the username of the account.
@@ -147,8 +137,7 @@ public class User {
   }
 
   /**
-   * Returns Available house of users on current day. Note: The index of 1 is
-   * Sunday 2 is Monday
+   * Returns Available house of users on current day. Note: The index of 1 is Sunday 2 is Monday
    *
    * @return Available house of users on current day
    */
@@ -162,7 +151,7 @@ public class User {
   /**
    * Sets the current theme of user.
    *
-   * @param theme current theme of user.
+   * @param availability the current theme of user.
    */
   private void setAvailability(ArrayList<Integer> availability) {
     this.availability = availability;
@@ -171,8 +160,7 @@ public class User {
   /**
    * Return the authentication status of the account.
    *
-   * @return {@code true} if the instance user is authenticated with the server
-   *         successfully. {@code
+   * @return {@code true} if the instance user is authenticated with the server successfully. {@code
    *     false} otherwise.
    */
   public boolean isAuthenticated() {
@@ -199,8 +187,15 @@ public class User {
 
   /** {@inheritDoc} */
   public String toString() {
-    return "User (username: " + this.getUsername() + ", password: " + this.getPassword() + ", id: " + this.getId()
-        + ", sessionId: " + this.getSessionId() + ")";
+    return "User (username: "
+        + this.getUsername()
+        + ", password: "
+        + this.getPassword()
+        + ", id: "
+        + this.getId()
+        + ", sessionId: "
+        + this.getSessionId()
+        + ")";
   }
 
   /**
@@ -251,9 +246,6 @@ public class User {
       // Sign in locally
       this.authenticated = true;
       User.current = this;
-
-      System.out.println("Theme" + this.getTheme());
-      System.out.println("availability" + this.getAvailability());
     }
 
     return res;
@@ -261,7 +253,7 @@ public class User {
 
   /**
    * Authenticates the user account with the local file.
-   * 
+   *
    * @version 4.0
    * @return the {@code Result} instance of this action
    */
@@ -288,7 +280,7 @@ public class User {
 
   /**
    * Signs out the user account.
-   * 
+   *
    * @version 4.0
    * @return the {@code Result} instance of this action
    */
@@ -306,7 +298,7 @@ public class User {
 
   /**
    * Writes the given {@code HttpBody} object into a file.
-   * 
+   *
    * @version 4.0
    * @param body the {@code HttpBody} to write
    */
@@ -325,7 +317,7 @@ public class User {
 
   /**
    * Reads the given {@code HttpBody} object from a file.
-   * 
+   *
    * @version 4.0
    * @return the {@code HttpBody} body read
    */
@@ -337,8 +329,7 @@ public class User {
       fr = new FileReader("temp.meonc");
 
       // read from FileReader till the end of file
-      while ((ch = fr.read()) != -1)
-        encryptStr += (char) ch;
+      while ((ch = fr.read()) != -1) encryptStr += (char) ch;
 
       // close the file
       fr.close();
@@ -357,13 +348,10 @@ public class User {
   /**
    * Registers the instance account in the server.
    *
-   * <p>
-   * This is an <i>action</i> for controllers.
-   *
    * @param username the username of the account
    * @param password the password of the account
-   * @param secQues  the security question of the account
-   * @param secAns   the security answer of the the account
+   * @param secQues the security question of the account
+   * @param secAns the security answer of the the account
    * @return the result object of this action
    * @since 2.0
    * @version 3.0
@@ -397,7 +385,7 @@ public class User {
 
   /**
    * Authenticates the user account with the server.
-   * 
+   *
    * @version 3.0
    * @param username the user username
    * @param password the user password
@@ -414,22 +402,23 @@ public class User {
 
   /**
    * Authenticates the user account with the server.
-   * 
+   *
    * @version 3.0
    * @param username the user username
    * @param password the user password
-   * @param secQues  the user security question
-   * @param secAns   the user security answer
+   * @param secQues the user security question
+   * @param secAns the user security answer
    * @return the {@code Result} instance of this action
    */
-  public static Result registrationRequest(String username, String password, String secQues, String secAns) {
+  public static Result registrationRequest(
+      String username, String password, String secQues, String secAns) {
     User user = new User();
     return user.signUpRequest(username, password, secQues, secAns);
   }
 
   /**
    * Returns the current signed in {@code User} instance.
-   * 
+   *
    * @version 4.0
    * @return the current signed in {@code User} instance.
    */

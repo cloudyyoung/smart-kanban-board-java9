@@ -14,29 +14,32 @@ import com.google.gson.annotations.*;
 public class Event extends Node {
 
   /**
-   * The importance level of the event in {@code int}. It is ranged from 0 to 3,
-   * from the least to the most important. It is exposed to Gson, can be both serialized and
-   * deserialized. It will be serialized as {@code importance_level}.
+   * The importance level of the event in {@code int}. It is ranged from 0 to 3, from the least to
+   * the most important. It is exposed to Gson, can be both serialized and deserialized. It will be
+   * serialized as {@code importance_level}.
    */
   @SerializedName("importance_level")
   @Expose
   private int importanceLevel;
 
-  /** The due date of the event timestamp, in seconds, in {@code Long}. It is exposed to Gson, can be both serialized and
-   * deserialized. It will be serialized as {@code due_date}. */
+  /**
+   * The due date of the event timestamp, in seconds, in {@code Long}. It is exposed to Gson, can be
+   * both serialized and deserialized. It will be serialized as {@code due_date}.
+   */
   @SerializedName("due_date")
   @Expose
   private Long dueDate;
 
-  /** The duration of the event in seconds, in {@code Long}. It is exposed to Gson, can be both serialized and
-   * deserialized. */
-  @Expose
-  private Long duration;
+  /**
+   * The duration of the event in seconds, in {@code Long}. It is exposed to Gson, can be both
+   * serialized and deserialized.
+   */
+  @Expose private Long duration;
 
   /**
-   * The date of this event appears in Today board last time timestamp, in
-   * seconds, in {@code Long}. It is exposed to Gson, can be both serialized and
-   * deserialized. It will be serialized as {@code last_geenrated_date}.
+   * The date of this event appears in Today board last time timestamp, in seconds, in {@code Long}.
+   * It is exposed to Gson, can be both serialized and deserialized. It will be serialized as {@code
+   * last_geenrated_date}.
    */
   @SerializedName("last_generated_date")
   @Expose
@@ -46,13 +49,15 @@ public class Event extends Node {
    * Constructor of {@code Event}, provide {@code HttpBody}.
    *
    * @version 4.0
-   * @param title           the title of the event
-   * @param note            the note of the event
-   * @param duration        the duration of the event
+   * @param title the title of the event
+   * @param note the note of the event
+   * @param dueDate the due date in timestamp of the event
+   * @param duration the duration of the event
    * @param importanceLevel the importance level of the event
-   * @param parent          the parent node of the event
+   * @param parent the parent node of the event
    */
-  public Event(String title, String note, Long dueDate, Long duration, int importanceLevel, Node parent) {
+  public Event(
+      String title, String note, Long dueDate, Long duration, int importanceLevel, Node parent) {
     super(title, note, parent);
     this.setDuration(duration);
     this.setDueDateRequest(dueDate);
@@ -74,7 +79,7 @@ public class Event extends Node {
 
   /**
    * Sets the duration of the event
-   * 
+   *
    * @version 4.0
    * @param duration the duration in {@code Long}
    */
@@ -84,10 +89,10 @@ public class Event extends Node {
 
   /**
    * Sets the duration of the event.
-   * 
+   *
    * @version 4.0
    * @param duration the duration in {@code Long}
-   * @return the {@Result} instance of this action
+   * @return the {@code Result} instance of this action
    */
   public Result setDurationRequest(Long duration) {
     Result res = new Result();
@@ -109,7 +114,7 @@ public class Event extends Node {
 
   /**
    * Returns the duration of the event
-   * 
+   *
    * @version 4.0
    * @return the duration in {@code Long}, could be {@code null}
    */
@@ -119,7 +124,7 @@ public class Event extends Node {
 
   /**
    * Returns the duration of the event
-   * 
+   *
    * @version 4.0
    * @return the duration in {@code Long}, returns {@code 0} if {@code null}
    */
@@ -129,7 +134,7 @@ public class Event extends Node {
 
   /**
    * Returns the duration of the event
-   * 
+   *
    * @version 4.0
    * @return the duration in minutes, in {@code int}
    */
@@ -139,7 +144,7 @@ public class Event extends Node {
 
   /**
    * Returns the last time the event appears in Today.
-   * 
+   *
    * @version 4.0
    * @return the timestamp of the date in {@code Long}, could be {@code null}
    */
@@ -149,10 +154,9 @@ public class Event extends Node {
 
   /**
    * Returns the last time the event appears in Today.
-   * 
+   *
    * @version 4.0
-   * @return the timestamp of the date in {@code Long}, returns {@code 0} if
-   *         {@code null}
+   * @return the timestamp of the date in {@code Long}, returns {@code 0} if {@code null}
    */
   public Long getLastGeneratedDateValue() {
     return (this.lastGeneratedDate == null) ? Long.MAX_VALUE : this.lastGeneratedDate;
@@ -160,7 +164,7 @@ public class Event extends Node {
 
   /**
    * Sets the importance level of the event.
-   * 
+   *
    * @version 4.0
    * @param importance the level in {@code int}
    */
@@ -170,7 +174,7 @@ public class Event extends Node {
 
   /**
    * Sets the last time the event appears in Today.
-   * 
+   *
    * @version 4.0
    * @param date the timestamp in {@code Long}
    */
@@ -180,7 +184,7 @@ public class Event extends Node {
 
   /**
    * Sets the importance level of the event.
-   * 
+   *
    * @version 4.0
    * @param importance the level in {@code int}
    * @return the {@code Result} instance of this action
@@ -205,7 +209,7 @@ public class Event extends Node {
 
   /**
    * Returns the importance level of the event
-   * 
+   *
    * @version 4.0
    * @return the importance level in {@code int}
    */
@@ -215,7 +219,7 @@ public class Event extends Node {
 
   /**
    * Sets the due date of the event.
-   * 
+   *
    * @version 4.0
    * @param dueDate the due date timestamp, in seconds, in {@code Long}
    */
@@ -225,7 +229,7 @@ public class Event extends Node {
 
   /**
    * Sets the due date timestamp
-   * 
+   *
    * @version 4.0
    * @param dueDate the due date timestamp, in seconds, in {@code Long}
    * @return the {@code Result} instance of this action
@@ -243,10 +247,9 @@ public class Event extends Node {
 
   /**
    * Returns the due date of the event.
-   * 
+   *
    * @version 4.0
-   * @return the due date timestamp, in seconds, in {@code Long}, could be
-   *         {@code null}
+   * @return the due date timestamp, in seconds, in {@code Long}, could be {@code null}
    */
   public Long getDueDate() {
     return this.dueDate;
@@ -254,10 +257,9 @@ public class Event extends Node {
 
   /**
    * Returns the due date of the event.
-   * 
+   *
    * @version 4.0
-   * @return the due date timestamp in {@code Long}, returns {@code 0} if
-   *         {@code null}
+   * @return the due date timestamp in {@code Long}, returns {@code 0} if {@code null}
    */
   public Long getDueDateValue() {
     return (this.dueDate == null) ? Long.MAX_VALUE : this.dueDate;
@@ -265,7 +267,7 @@ public class Event extends Node {
 
   /**
    * Returns the due date of the event, in {@code String}
-   * 
+   *
    * @version 4.0
    * @return the due date formatted string in {@code String}
    */
@@ -278,9 +280,24 @@ public class Event extends Node {
   /** {@inheritDoc} */
   @Override
   public String toString() {
-    return this.getType() + " (id: " + this.getId() + ", title: \"" + this.getTitle() + "\", note: \"" + this.getNote()
-        + "\", duration: " + this.getDuration() + ", importanceLevel: " + this.getImportanceLevel() + ", priority: "
-        + this.getPriority() + ", dueDate: " + this.getDueDate() + ", nodes: " + this.getNodes().toString() + "\")";
+    return this.getType()
+        + " (id: "
+        + this.getId()
+        + ", title: \""
+        + this.getTitle()
+        + "\", note: \""
+        + this.getNote()
+        + "\", duration: "
+        + this.getDuration()
+        + ", importanceLevel: "
+        + this.getImportanceLevel()
+        + ", priority: "
+        + this.getPriority()
+        + ", dueDate: "
+        + this.getDueDate()
+        + ", nodes: "
+        + this.getNodes().toString()
+        + "\")";
   }
 
   /**
@@ -313,7 +330,7 @@ public class Event extends Node {
 
   /**
    * Return an boolean of weahter this event is early than the end of today
-   * 
+   *
    * @return an boolean of weahter this event is early than the end of today
    */
   public boolean isBeforeGeneratedToday() {
@@ -327,7 +344,7 @@ public class Event extends Node {
 
   /**
    * Returns if the event appears on Today board
-   * 
+   *
    * @version 4.0
    * @return true if the event appears on Today board, false otherwise
    */
@@ -338,16 +355,13 @@ public class Event extends Node {
     c.set(Calendar.SECOND, 0);
     Long currentDayStart = c.getTimeInMillis() / 1_000; // In seconds
     Long currentDayEnd = currentDayStart + 86_400; // In seconds
-    System.out.println("currentDayInSecond" + currentDayStart);
-    System.out.println("getlastGeneratedDateValue" + this.getLastGeneratedDateValue());
-    System.out.println(
-        this.getLastGeneratedDateValue() < currentDayEnd && this.getLastGeneratedDateValue() > currentDayStart);
-    return this.getLastGeneratedDateValue() < currentDayEnd && this.getLastGeneratedDateValue() > currentDayStart;
+    return this.getLastGeneratedDateValue() < currentDayEnd
+        && this.getLastGeneratedDateValue() > currentDayStart;
   }
 
   /**
    * Sets the the last time the event appears in Today to today.
-   * 
+   *
    * @version 4.0
    * @return the {@code Result} instance of this action
    */

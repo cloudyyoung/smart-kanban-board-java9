@@ -1,4 +1,4 @@
-package ui.component;
+package ui;
 
 import java.util.HashSet;
 
@@ -10,22 +10,30 @@ import javafx.scene.control.*;
 import javafx.scene.shape.*;
 
 import structure.*;
-import ui.*;
 
+/**
+ * The JavaFX Controller for component.board.fxml.
+ *
+ * @author Cloudy Young
+ * @since 4.0
+ * @version 4.0
+ */
 public class BoardComponent extends Button {
 
-  @FXML
-  private Button button;
+  @FXML private Button button;
 
+  /** The paired {@code Node} for the component. */
   private Board node;
+
+  /** The parent controller instance. */
   private HomeController parentController;
 
-  public BoardComponent(Board node, HomeController parentController) {
+  protected BoardComponent(Board node, HomeController parentController) {
     this.node = node;
     this.parentController = parentController;
 
     this.loadDisplay();
-    if(this.node.isExisting()){
+    if (this.node.isExisting()) {
       this.display();
     }
   }
@@ -53,7 +61,8 @@ public class BoardComponent extends Button {
     this.list();
   }
 
-  public void display() {
+  /** Displays the component according to the paired {@code Node}. */
+  protected void display() {
     this.setText(this.node.getTitle());
     this.setId("board-" + this.node.getId());
     this.setStyle(HomeController.styleAccent(this.node.getColor()));
@@ -69,10 +78,12 @@ public class BoardComponent extends Button {
 
     this.parentController.boardPane.setStyle(HomeController.styleAccent(this.node.getColor()));
     this.parentController.boardTitle.setText(this.node.getTitle());
-    this.parentController.boardNote.setText(!this.node.getNote().equals("") ? this.node.getNote() : "No description");
+    this.parentController.boardNote.setText(
+        !this.node.getNote().equals("") ? this.node.getNote() : "No description");
   }
 
-  public void list() {
+  /** Lists the children nodes of the paired {@code Node} */
+  protected void list() {
     this.parentController.columnPane.getChildren().clear();
     for (structure.Node each : this.node.getNodes()) {
       Node col = new ColumnComponent((Column) each, this, this.parentController);
@@ -80,47 +91,66 @@ public class BoardComponent extends Button {
     }
   }
 
-  public Board getNode() {
+  /**
+   * Gets the paired {@code Column}.
+   *
+   * @return the paired {@code Column}
+   */
+  protected Board getNode() {
     return this.node;
   }
 
-  public String getColor() {
+  /**
+   * Returns the color of the {@code Column}.
+   *
+   * @return the color of the {@code Column}
+   */
+  protected String getColor() {
     return this.node.getColor();
   }
 
   @FXML
-  public void update(ActionEvent e) {
+  protected void update(ActionEvent e) {
     this.displayPrompt();
     this.parentController.promptBoardPromptTitle.setText("Edit Board");
-    this.parentController.show(this.parentController.boardDelete, this.parentController.boardChildCreate);
+    this.parentController.show(
+        this.parentController.boardDelete, this.parentController.boardChildCreate);
     this.parentController.hide(this.parentController.boardCreate);
   }
 
   @FXML
-  public void create(ActionEvent e) {
+  protected void create(ActionEvent e) {
     this.displayPrompt();
     this.parentController.promptBoardPromptTitle.setText("Create Board");
-    this.parentController.hide(this.parentController.boardDelete, this.parentController.boardChildCreate);
+    this.parentController.hide(
+        this.parentController.boardDelete, this.parentController.boardChildCreate);
     this.parentController.show(this.parentController.boardCreate);
   }
 
+  /** Displays the prompt. */
   private void displayPrompt() {
     this.parentController.currentBoard = this;
-    this.parentController.textHolder.textProperty().bind(this.parentController.promptBoardTitle.textProperty());
-    this.parentController.promptBoardTitle.setText(this.parentController.currentBoard.getNode().getTitle());
-    this.parentController.promptBoardNote.setText(this.parentController.currentBoard.getNode().getNote());
+    this.parentController
+        .textHolder
+        .textProperty()
+        .bind(this.parentController.promptBoardTitle.textProperty());
+    this.parentController.promptBoardTitle.setText(
+        this.parentController.currentBoard.getNode().getTitle());
+    this.parentController.promptBoardNote.setText(
+        this.parentController.currentBoard.getNode().getNote());
     this.parentController.show(this.parentController.promptBoard);
   }
 
   @FXML
-  public void createChild(ActionEvent e) {
+  protected void createChild(ActionEvent e) {
     Column column = new Column("Untitled Column", "", 0, this.node);
     ColumnComponent ColumnComponent = new ColumnComponent(column, this, this.parentController);
     ColumnComponent.create(e);
   }
 
+  /** Loads the fxml of the compoennt. */
   private final void loadDisplay() {
-    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("board.fxml"));
+    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view/component.board.fxml"));
     fxmlLoader.setRoot(this);
     fxmlLoader.setController(this);
 

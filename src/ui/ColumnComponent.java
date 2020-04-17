@@ -1,4 +1,4 @@
-package ui.component;
+package ui;
 
 import java.util.ArrayList;
 
@@ -8,26 +8,32 @@ import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseDragEvent;
 import structure.*;
-import ui.HomeController;
 
+/**
+ * The JavaFX Controller for component.column.fxml.
+ *
+ * @author Cloudy Young, Jimschenchen
+ * @since 4.0
+ * @version 4.0
+ */
 public class ColumnComponent extends VBox {
 
-  @FXML
-  private Label eventCount;
-  @FXML
-  private TextField columnTitle;
-  @FXML
-  private Button eventCreate;
-  @FXML
-  private Button columnEdit;
-  @FXML
-  private VBox eventList;
+  @FXML private Label eventCount;
+  @FXML private TextField columnTitle;
+  @FXML private Button eventCreate;
+  @FXML private Button columnEdit;
+  @FXML private VBox eventList;
 
+  /** The paired {@code Node} for the component. */
   private Column node;
+
+  /** The parent of the paired {@code Node} for the component. */
   private BoardComponent parent;
+
+  /** The parent controller instance. */
   private HomeController parentController;
 
-  public ColumnComponent(Column node, BoardComponent parent, HomeController parentController) {
+  protected ColumnComponent(Column node, BoardComponent parent, HomeController parentController) {
     super();
     this.node = node;
     this.parent = parent;
@@ -35,24 +41,45 @@ public class ColumnComponent extends VBox {
     this.loadDisplay();
   }
 
-  public Column getNode() {
+  /**
+   * Gets the paired {@code Column}.
+   *
+   * @return the paired {@code Column}
+   */
+  protected Column getNode() {
     return this.node;
   }
 
-  public String getColor() {
+  /**
+   * Returns the color of the {@code Column}.
+   *
+   * @return the color of the {@code Column}
+   */
+  protected String getColor() {
     return this.parent.getColor();
   }
 
-  public BoardComponent getParentComponent() {
+  /**
+   * Gets the parent of the paired {@code Column}.
+   *
+   * @return the parent {@code Column}
+   */
+  protected BoardComponent getParentComponent() {
     return this.parent;
   }
 
-  public VBox getEventList() {
+  /**
+   * Returns the event list component
+   *
+   * @return the event list component
+   */
+  protected VBox getEventList() {
     return this.eventList;
   }
 
+  /** Loads the fxml of the compoennt. */
   private final void loadDisplay() {
-    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("column.fxml"));
+    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view/component.column.fxml"));
     fxmlLoader.setRoot(this);
     fxmlLoader.setController(this);
 
@@ -63,28 +90,26 @@ public class ColumnComponent extends VBox {
     }
   }
 
-  public void list() {
+  /** Lists the children nodes of the paired {@code Node} */
+  protected void list() {
     ArrayList<structure.Node> list = null;
-    if (this.node.getParent().getId() == 1) {
+    if (this.node.getParent().isSpecialized()) {
       list = this.node.getNodes(structure.Node.SORT_BY_PRIORITY, structure.Node.ORDER_BY_ASC);
     } else {
       list = this.node.getNodes();
     }
-    // System.out.println(list);
 
     eventList.getChildren().clear();
-
-    // System.out.println(eventList.getChildren());
 
     for (structure.Node each : list) {
       EventComponent event = new EventComponent(each, this, this.parentController);
       eventList.getChildren().add(event);
-      System.out.println(event);
     }
     eventCount.setText(list.size() + "");
   }
 
-  public void display() {
+  /** Displays the component according to the paired {@code Node}. */
+  protected void display() {
     columnTitle.setText(this.node.getTitle());
   }
 
@@ -103,12 +128,15 @@ public class ColumnComponent extends VBox {
   void update(ActionEvent e) {
     this.displayPrompt();
     this.parentController.hide(this.parentController.columnCreate);
+    this.parentController.promptColumnPromptTitle.setText("Edit column");
+
+    // A board should always has at least one column for each kind of preset; if this column is the
+    // only one of its kind of preset, cannot be deleted
     if (this.node.isOnlyPreset()) {
       this.parentController.hide(this.parentController.columnDelete);
     } else {
       this.parentController.show(this.parentController.columnDelete);
     }
-    this.parentController.promptColumnPromptTitle.setText("Edit column");
   }
 
   @FXML
@@ -119,6 +147,7 @@ public class ColumnComponent extends VBox {
     this.parentController.promptColumnPromptTitle.setText("Create column");
   }
 
+  /** Displays the prompt. */
   private void displayPrompt() {
     this.parentController.currentColumn = this;
     this.parentController.promptColumn.setStyle(HomeController.styleAccent(this.getColor()));
@@ -141,37 +170,27 @@ public class ColumnComponent extends VBox {
     ColumnComponent oldColumn = (ColumnComponent) button.getParentComponent();
     ColumnComponent newColumn = (ColumnComponent) event.getSource();
 
-    this.parentController.originalParent = null;
-
-    // System.out.println(oldColumn.getNode().getTitle());
-    // System.out.println(nextColumn.getNode().getTitle());
-    // System.out.println(button.getNode());
+    // Cleans card
+    this.parentController.originalColumn = null;
+    this.parentController.currentDragCard = null;
+    this.parentController.dragPane.getChildren().clear();
 
     if (this.getNode().getParent().isSpecialized()) {
-      System.out.println(1122227);
-      // Node node = button.getNode().getParent().getParent();
-      // Board originBoard = (Board) node;
-      // int nextColumnPreset = nextColumn.getNode().getPreset();
-      // for (Node node_col : originBoard.getNodes()) {
-      // Column column = (Column) node_col;
-      // if (column.getPreset() == nextColumnPreset) {
-      // button.getNode().setParentRequest(column);
-      // nextColumn.getEventList().getChildren().add(button);
-      // break;
-      // }
-      // }
-      // button.getNode().setLastGeneratedDateRequest();
+      // Find the column in the actual board
+      int nextColumnPreset = newColumn.getNode().getPreset();
+      Column actualNewColumn =
+          ((Board) button.getNode().getParent().getParent()).getPresetColumn(nextColumnPreset);
+      button.getNode().setParentRequest(actualNewColumn);
+
       Kanban.getCurrent().generateToday();
-      newColumn.getEventList().getChildren().add(button);
+      Kanban.getCurrent().generateOverview();
+
       oldColumn.list();
       newColumn.list();
     } else {
-      newColumn.getEventList().getChildren().add(button);
       button.getNode().setParentRequest(newColumn.getNode());
       oldColumn.list();
       newColumn.list();
     }
-
-    // Kanban.getCurrent().generateToday();
   }
 }

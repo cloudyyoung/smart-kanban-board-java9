@@ -86,7 +86,7 @@ public abstract class Request {
 
   /**
    * Returns the response body error of the instance.
-   * 
+   *
    * @return the error body in {@code HttpBody}
    */
   public HttpBody getResponseBodyError() {

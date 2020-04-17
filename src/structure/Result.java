@@ -62,7 +62,7 @@ public final class Result {
    * Copies and adds all requests from a given {@code Result} instance.
    *
    * @version 4.0
-   * @param res the {@code Result} instance 
+   * @param res the {@code Result} instance
    */
   public void addAll(Result res) {
     this.list.addAll(res.list);
@@ -72,7 +72,7 @@ public final class Result {
    * Adds all given requests.
    *
    * @version 4.0
-   * @param res the {@code Result} instance 
+   * @param add the Requests to add
    */
   public void addAll(Request... add) {
     for (Request each : add) {
@@ -84,7 +84,7 @@ public final class Result {
    * Adds all requests from given {@code Collection}.
    *
    * @version 4.0
-   * @param res the {@code Collection<Request>} instance 
+   * @param add the {@code Collection<Request>} instance
    */
   public void addAll(Collection<Request> add) {
     this.addAll(add);
@@ -262,7 +262,7 @@ public final class Result {
 
   /**
    * Returns the failure error of the instance.
-   * 
+   *
    * @version 4.0
    * @return the failure error body in{@code HttpBody}
    */
