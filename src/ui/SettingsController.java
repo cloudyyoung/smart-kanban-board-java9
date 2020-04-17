@@ -12,6 +12,14 @@ import javafx.scene.layout.*;
 import javafx.stage.*;
 import structure.*;
 
+/**
+ * The JavaFX Controller for settings.fxml
+ * 
+ * @author Cloudy Young
+ * @since 3.0
+ * @version 4.0
+ */
+
 public class SettingsController {
 
   @FXML private ResourceBundle resources;

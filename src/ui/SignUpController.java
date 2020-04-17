@@ -10,6 +10,14 @@ import structure.User;
 import structure.HttpBody;
 import structure.Result;
 
+/**
+ * The JavaFX Controller for both SignUp.fxml and SignIn.fxml.
+ * 
+ * @author Cloudy Young
+ * @since 3.0
+ * @version 3.0
+ */
+
 public class SignUpController {
 
   @FXML private TabPane tabPane;
@@ -34,6 +42,7 @@ public class SignUpController {
 
   @FXML private Label profileUsername;
 
+  /** The current tab index displays. */
   private int tab = 0;
 
   @FXML
@@ -144,7 +153,12 @@ public class SignUpController {
     }
   }
 
-  void showError(String error) {
+  /** 
+   * Shows the error text message on the ui.
+   * 
+   * @param error the text error to display
+   */
+  private void showError(String error) {
     if (labelErrorUsername != null) labelErrorUsername.setText(error);
     if (labelErrorPassword != null) labelErrorPassword.setText(error);
     if (labelErrorSecQues != null) labelErrorSecQues.setText(error);
