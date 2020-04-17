@@ -118,7 +118,6 @@ public class HomeController {
   public ColumnComponent originalParent;
   public Button currentDragButton;
   public BoardComponent componentToday;
-  private boolean isCreating = false;
 
   @FXML
   void initialize() {
@@ -291,19 +290,18 @@ public class HomeController {
   @FXML
   void closePrompt() {
     this.hide(this.promptEvent, this.promptBoard, this.promptColumn);
-    if (this.currentEvent != null && !this.isCreating) {
+    if (this.currentEvent != null && this.currentEvent.getNode().isExisting()) {
       this.currentEvent.display();
       this.currentEvent = null;
     }
-    if (this.currentBoard != null && !this.isCreating) {
+    if (this.currentBoard != null && this.currentBoard.getNode().isExisting()) {
       this.currentBoard.display();
       this.currentBoard.fire();
     }
-    if (this.currentColumn != null && !this.isCreating) {
+    if (this.currentColumn != null && this.currentColumn.getNode().isExisting()) {
       this.currentColumn.display();
       this.currentColumn = null;
     }
-    this.setIsCreating(false);
     this.tabPane.requestFocus();
   }
 
@@ -429,9 +427,5 @@ public class HomeController {
         each.getStyleClass().remove("hide");
       }
     }
-  }
-
-  public void setIsCreating(boolean is) {
-    this.isCreating = is;
   }
 }

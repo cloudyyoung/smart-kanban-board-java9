@@ -97,7 +97,6 @@ public class BoardComponent extends Button {
   @FXML
   public void create(ActionEvent e) {
     this.displayPrompt();
-    this.parentController.setIsCreating(true);
     this.parentController.promptBoardPromptTitle.setText("Create Board");
     this.parentController.hide(this.parentController.boardDelete, this.parentController.boardChildCreate);
     this.parentController.show(this.parentController.boardCreate);

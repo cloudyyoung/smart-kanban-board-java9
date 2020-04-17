@@ -114,7 +114,6 @@ public class ColumnComponent extends VBox {
   @FXML
   void create(ActionEvent e) {
     this.displayPrompt();
-    this.parentController.setIsCreating(true);
     this.parentController.hide(this.parentController.columnDelete);
     this.parentController.show(this.parentController.columnCreate);
     this.parentController.promptColumnPromptTitle.setText("Create column");
