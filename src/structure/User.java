@@ -132,8 +132,8 @@ public class User {
    *
    * @return the arraylist contains the available houses from Mon to Sun
    */
-  private ArrayList<Integer> getAvailability() {
-    return this.availability;
+  public ArrayList<Integer> getAvailability() {
+    return new ArrayList<Integer>(this.availability);
   }
 
   /**
@@ -172,7 +172,7 @@ public class User {
    *
    * @param id the user id to be set
    */
-  public void setId(Integer id) {
+  private void setId(Integer id) {
     this.id = id;
   }
 
@@ -181,7 +181,7 @@ public class User {
    *
    * @param sessionId the session id to be set
    */
-  public void setSessionId(String sessionId) {
+  private void setSessionId(String sessionId) {
     this.sessionId = sessionId;
   }
 
@@ -263,7 +263,6 @@ public class User {
   public Result signInLocalRequest() {
 
     HttpBody body = User.readLocalFile();
-    System.out.println(body);
 
     if (body == null) {
       Result res = new Result();
@@ -320,7 +319,6 @@ public class User {
       myWriter.write(EncrytionUtils.encrypt(str, "secret"));
       myWriter.close();
     } catch (IOException e) {
-      // System.out.println("An error occurred.");
       // e.printStackTrace();
       // Fail silently
     }
@@ -348,10 +346,8 @@ public class User {
       String str = EncrytionUtils.decrypt(encryptStr, "secret");
       return new HttpBody(new Gson().fromJson(str, Map.class));
     } catch (FileNotFoundException e) {
-      // System.out.println("File not found");
       // Fail silently
     } catch (IOException e) {
-      // System.out.println("IO Exception");
       // Fail silently
     }
     return null;
