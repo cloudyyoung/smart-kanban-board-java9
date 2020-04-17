@@ -3,7 +3,7 @@ import java.util.*;
 
 /**
  * Text-based version of Smart Kanban
- * 
+ *
  * @author Cloudy Young, Jerremy Lewis, Benjamin Wood
  * @since 1.0
  * @version 4.0
