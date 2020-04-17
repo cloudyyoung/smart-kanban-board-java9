@@ -16,6 +16,14 @@ import javafx.scene.text.*;
 import javafx.stage.*;
 import structure.*;
 
+/**
+ * The JavaFX Controller for home.fxml.
+ * 
+ * @author Cloudy Young, Jimschenchen
+ * @since 3.0
+ * @version 4.0
+ */
+
 public class HomeController {
 
   @FXML protected Button sideProfile;
@@ -78,16 +86,16 @@ public class HomeController {
     this.closePrompt();
     this.extraPane.setVisible(false);
 
-    // Intialize label text values
+    // Intializes label text values
     this.profileUsername.setText(User.getCurrent().getUsername());
     this.profileUsername.setTooltip(new Tooltip(User.getCurrent().getUsername()));
 
-    // Check out kanban
+    // Checks out kanban
     Kanban.checkout();
     Kanban.getCurrent().generateToday();
     Kanban.getCurrent().generateOverview();
 
-    // Initialize Event panel
+    // Initializes Event prompt
     this.promptEventImportanceLevel.getItems().addAll("", "Level 1", "Level 2", "Level 3");
     this.promptEventDuration
         .getItems()
@@ -106,6 +114,9 @@ public class HomeController {
             "11 Hours",
             "12 Hours");
 
+
+    
+    // Sets listeners
     this.promptEventDueDate
         .valueProperty()
         .addListener(
@@ -148,13 +159,13 @@ public class HomeController {
               this.currentEvent.setText(this.promptEventTitle.getText());
             });
 
-    // The TextArea internally does not use the onKeyPressed property to handle
-    // keyboard input.
-    // Therefore, setting onKeyPressed does not remove the original event handler.
-    // To prevent TextArea's internal handler for the Enter key, you need to add an
-    // event filter that consumes the event.
-    // @link:
-    // https://stackoverflow.com/questions/26752924/how-to-stop-cursor-from-moving-to-a-new-line-in-a-textarea-when-enter-is-pressed
+    /* The TextArea internally does not use the onKeyPressed property to handle
+     * keyboard input.
+     * Therefore, setting onKeyPressed does not remove the original event handler.
+     * To prevent TextArea's internal handler for the Enter key, you need to add an
+     * event filter that consumes the event.
+     * @link: https://stackoverflow.com/questions/26752924/how-to-stop-cursor-from-moving-to-a-new-line-in-a-textarea-when-enter-is-pressed
+     */
     this.promptEventTitle.addEventFilter(
         KeyEvent.KEY_PRESSED,
         e -> {
@@ -195,7 +206,6 @@ public class HomeController {
                   this.textHolder.getLayoutBounds().getHeight() + 23);
             });
 
-    this.extraPane.getChildren().add(this.textHolder);
 
     this.promptEventImportanceLevel
         .valueProperty()
@@ -253,6 +263,7 @@ public class HomeController {
             });
 
     this.dragPane.setMouseTransparent(true);
+    this.extraPane.getChildren().add(this.textHolder);
 
     this.list();
     this.tabPane.requestFocus();
@@ -285,22 +296,23 @@ public class HomeController {
   @FXML
   void switchTab(ActionEvent event) {
 
+    // Clears previous selected board
     HashSet<Node> sideButtons = new HashSet<Node>();
     sideButtons.addAll(sidePane.lookupAll(".button"));
     sideButtons.addAll(boardList.lookupAll(".button"));
-
     for (Node each : sideButtons) {
       each.getStyleClass().remove("selected");
     }
 
+    // Selectes current board
     Button button = (Button) event.getSource();
     button.getStyleClass().add("selected");
 
     if (button.equals(sideSearch)) {
-      // If click search
+      // If clicks search
       tabPane.getSelectionModel().select(1);
     } else if (button.equals(sideProfile)) {
-      // If click settings
+      // If clicks settings
       try {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene oldScene = ((Node) event.getSource()).getScene();
@@ -316,7 +328,7 @@ public class HomeController {
         e.printStackTrace();
       }
     } else {
-      // If click board button
+      // If clicks board button
       this.tabPane.getSelectionModel().select(0);
     }
   }
@@ -410,6 +422,13 @@ public class HomeController {
     this.closePrompt();
   }
 
+  /**
+   * Returns the inline style for custom accent color.
+   * 
+   * @version 4.0
+   * @param hex the color string in HEX, eg #242424
+   * @return the inline style string
+   */
   public static String styleAccent(String hex) {
     String style = "";
     if (hex == null || hex.equals("")) hex = "#242424";
@@ -437,6 +456,7 @@ public class HomeController {
 
   @FXML
   void MouseDragReleased(MouseDragEvent event) {
+
     Button btn = (Button) event.getGestureSource();
     if (btn instanceof EventComponent && originalParent != null) {
       EventComponent current = (EventComponent) btn;
@@ -448,6 +468,10 @@ public class HomeController {
     this.tabPane.requestFocus();
   }
 
+  /**
+   * Sets the given component to invisible
+   * @param nodes the nodes to set
+   */
   public void hide(Node... nodes) {
     for (Node each : nodes) {
       if (!each.getStyleClass().contains("hide")) {
@@ -456,6 +480,10 @@ public class HomeController {
     }
   }
 
+  /**
+   * Sets the given component to visible
+   * @param nodes the nodes to set
+   */
   public void show(Node... nodes) {
     for (Node each : nodes) {
       while (each.getStyleClass().contains("hide")) {

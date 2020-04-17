@@ -177,9 +177,10 @@ public class EventComponent extends Button {
           .getChildren()
           .add(this.parentController.currentDragButton);
       this.parentController.currentDragButton = null;
+      this.parentController.dragPane.getChildren().clear();
     }
 
-    // Adds current card to destination column
+    // Adds current card to drag pane
     EventComponent card = (EventComponent) event.getSource();
     if (card instanceof EventComponent) {
       card.setLayoutX(event.getSceneX());

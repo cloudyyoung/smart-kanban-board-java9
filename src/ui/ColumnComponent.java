@@ -134,12 +134,14 @@ public class ColumnComponent extends VBox {
   void update(ActionEvent e) {
     this.displayPrompt();
     this.parentController.hide(this.parentController.columnCreate);
+    this.parentController.promptColumnPromptTitle.setText("Edit column");
+    
+    // A board should always has at least one column for each kind of preset; if this column is the only one of its kind of preset, cannot be deleted
     if (this.node.isOnlyPreset()) {
       this.parentController.hide(this.parentController.columnDelete);
     } else {
       this.parentController.show(this.parentController.columnDelete);
     }
-    this.parentController.promptColumnPromptTitle.setText("Edit column");
   }
 
   @FXML
@@ -194,11 +196,14 @@ public class ColumnComponent extends VBox {
       oldColumn.list();
       newColumn.list();
     } else {
-      newColumn.getEventList().getChildren().add(button);
+      // newColumn.getEventList().getChildren().add(button);
       button.getNode().setParentRequest(newColumn.getNode());
       oldColumn.list();
       newColumn.list();
     }
 
+    // Cleans possible bug cards
+    this.parentController.currentDragButton = null;
+    this.parentController.dragPane.getChildren().clear();
   }
 }
