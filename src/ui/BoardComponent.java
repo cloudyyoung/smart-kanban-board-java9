@@ -61,9 +61,7 @@ public class BoardComponent extends Button {
     this.list();
   }
 
-  /**
-   * Displays the component according to the paired {@code Node}.
-   */
+  /** Displays the component according to the paired {@code Node}. */
   protected void display() {
     this.setText(this.node.getTitle());
     this.setId("board-" + this.node.getId());
@@ -84,9 +82,7 @@ public class BoardComponent extends Button {
         !this.node.getNote().equals("") ? this.node.getNote() : "No description");
   }
 
-  /**
-   * Lists the children nodes of the paired {@code Node}
-   */
+  /** Lists the children nodes of the paired {@code Node} */
   protected void list() {
     this.parentController.columnPane.getChildren().clear();
     for (structure.Node each : this.node.getNodes()) {
@@ -97,7 +93,7 @@ public class BoardComponent extends Button {
 
   /**
    * Gets the paired {@code Column}.
-   * 
+   *
    * @return the paired {@code Column}
    */
   protected Board getNode() {
@@ -106,7 +102,7 @@ public class BoardComponent extends Button {
 
   /**
    * Returns the color of the {@code Column}.
-   * 
+   *
    * @return the color of the {@code Column}
    */
   protected String getColor() {
@@ -131,9 +127,7 @@ public class BoardComponent extends Button {
     this.parentController.show(this.parentController.boardCreate);
   }
 
-  /** 
-   * Displays the prompt.
-   */
+  /** Displays the prompt. */
   private void displayPrompt() {
     this.parentController.currentBoard = this;
     this.parentController
@@ -154,9 +148,7 @@ public class BoardComponent extends Button {
     ColumnComponent.create(e);
   }
 
-  /**
-   * Loads the fxml of the compoennt.
-   */
+  /** Loads the fxml of the compoennt. */
   private final void loadDisplay() {
     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view/component.board.fxml"));
     fxmlLoader.setRoot(this);
