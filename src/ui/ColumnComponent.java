@@ -176,7 +176,6 @@ public class ColumnComponent extends VBox {
       int nextColumnPreset = newColumn.getNode().getPreset();
       Column actualNewColumn = ((Board) button.getNode().getParent().getParent()).getPresetColumn(nextColumnPreset);
       button.getNode().setParentRequest(actualNewColumn);
-      // button.getNode().setLastGeneratedDateRequest();
 
       Kanban.getCurrent().generateToday();
       Kanban.getCurrent().generateOverview();
