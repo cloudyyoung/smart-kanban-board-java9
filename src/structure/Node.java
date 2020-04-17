@@ -87,7 +87,6 @@ public abstract class Node {
   /**
    * Constructor of {@code Node}, provide title, note and parent.
    *
-   * @param id the id in {@code int}
    * @param title the title in {@code String}
    * @param note the note in {@code String}
    * @param parent the parent node in {@code Node}
@@ -249,7 +248,6 @@ public abstract class Node {
   /**
    * Sets the parent {@code Node} of the instance.
    *
-   * <p>This is an <i>action</i> for controllers.
    *
    * @param parent the parent {@code Node} of the instance
    * @return the result object of this action
@@ -299,7 +297,6 @@ public abstract class Node {
   /**
    * Sets the title of the instance.
    *
-   * <p>This is an <i>action</i> for controllers.
    *
    * @param title the title of the instance
    * @return the result object of this action
@@ -338,7 +335,6 @@ public abstract class Node {
   /**
    * Sets the note of the instance.
    *
-   * <p>This is an <i>action</i> for controllers.
    *
    * @param note the note of the instance
    * @return the result object of this action
@@ -494,8 +490,6 @@ public abstract class Node {
   /**
    * Creates the instance on the server.
    *
-   * <p>This is an <i>action</i> for controllers.
-   *
    * @return the result object of this action
    */
   public Result createRequest() {
@@ -537,8 +531,6 @@ public abstract class Node {
   /**
    * Removes the instance on the server.
    *
-   * <p>This is an <i>action</i> for controllers.
-   *
    * @return the result object of this action
    */
   public Result deleteRequest() {
@@ -572,18 +564,16 @@ public abstract class Node {
   /**
    * Adds a child node of the instance, in the local storage.
    *
-   * @param node the {@code Node} object to be added
-   * @return the structure request of this action
+   * @param nodeToAdd the {@code Node} object to be added
    */
-  private final void addNode(Node nodeAdded) {
-    this.nodes.put(nodeAdded.getId(), nodeAdded);
+  private final void addNode(Node nodeToAdd) {
+    this.nodes.put(nodeToAdd.getId(), nodeToAdd);
   }
 
   /**
    * Removes a child node of the instance, in the local storage.
    *
    * @param id the id of the {@code Node} object to be removed
-   * @return the strcuture request of the action
    */
   private final void removeNode(int id) {
     this.nodes.remove(id);
@@ -593,7 +583,6 @@ public abstract class Node {
    * Removes a child node of the instance, in the local storage.
    *
    * @param node the node instance of the {@code Node} object to be removed
-   * @return the strcuture request of the action
    */
   protected final void removeNode(Node node) {
     this.removeNode(node.getId());

@@ -187,7 +187,6 @@ public class TimeUtils {
    * Returns the name of current month. Such as {@code October}.
    *
    * @version 4.0
-   * @param currentMonthNum the number of month
    * @return the name of the month
    */
   public static String currentMonthName() {

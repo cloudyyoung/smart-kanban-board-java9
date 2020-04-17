@@ -51,6 +51,7 @@ public class Event extends Node {
    * @version 4.0
    * @param title the title of the event
    * @param note the note of the event
+   * @param dueDate the due date in timestamp of the event
    * @param duration the duration of the event
    * @param importanceLevel the importance level of the event
    * @param parent the parent node of the event
@@ -91,7 +92,7 @@ public class Event extends Node {
    *
    * @version 4.0
    * @param duration the duration in {@code Long}
-   * @return the {@Result} instance of this action
+   * @return the {@code Result} instance of this action
    */
   public Result setDurationRequest(Long duration) {
     Result res = new Result();

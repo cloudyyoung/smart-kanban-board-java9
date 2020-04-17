@@ -68,7 +68,11 @@ public class ColumnComponent extends VBox {
     return this.parent;
   }
 
-  /** Returns the event list component. */
+  /**
+   * Returns the event list component
+   * 
+   * @return the event list component
+   */
   protected VBox getEventList() {
     return this.eventList;
   }

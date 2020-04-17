@@ -72,7 +72,7 @@ public final class Result {
    * Adds all given requests.
    *
    * @version 4.0
-   * @param res the {@code Result} instance
+   * @param add the Requests to add
    */
   public void addAll(Request... add) {
     for (Request each : add) {
@@ -84,7 +84,7 @@ public final class Result {
    * Adds all requests from given {@code Collection}.
    *
    * @version 4.0
-   * @param res the {@code Collection<Request>} instance
+   * @param add the {@code Collection<Request>} instance
    */
   public void addAll(Collection<Request> add) {
     this.addAll(add);

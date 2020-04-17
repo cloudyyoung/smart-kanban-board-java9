@@ -151,7 +151,7 @@ public class User {
   /**
    * Sets the current theme of user.
    *
-   * @param theme current theme of user.
+   * @param availability the current theme of user.
    */
   private void setAvailability(ArrayList<Integer> availability) {
     this.availability = availability;
@@ -351,7 +351,6 @@ public class User {
   /**
    * Registers the instance account in the server.
    *
-   * <p>This is an <i>action</i> for controllers.
    *
    * @param username the username of the account
    * @param password the password of the account

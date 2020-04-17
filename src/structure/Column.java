@@ -44,6 +44,8 @@ public final class Column extends Node {
    * @version 4.0
    * @param title The title in {@code String}
    * @param note The note in {@code String}
+   * @param preset The preset for the Column in {@code int}
+   * @param parent The parent node of the column
    */
   public Column(final String title, final String note, final int preset, final Node parent) {
     super(title, note, parent);

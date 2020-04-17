@@ -13,7 +13,7 @@ import javax.crypto.spec.SecretKeySpec;
  * The encryption utilities class. Title: Java AES Encryption Decryption Example
  *
  * @author Lokesh Gupta, Jimschenchen
- * @see https://howtodoinjava.com/security/java-aes-encryption-example/
+ * @see <a href="https://howtodoinjava.com/security/java-aes-encryption-example/"></a>
  * @since 4.0
  * @version 4.0
  */
@@ -66,8 +66,8 @@ public class EncrytionUtils {
   /**
    * Decrypts the given string
    *
-   * @param strToDectypt the string to decrypt
-   * @param the secret key for decryption
+   * @param strToDecrypt the string to decrypt
+   * @param secret the secret key for decryption
    * @return the decrypted string
    */
   public static String decrypt(String strToDecrypt, String secret) {

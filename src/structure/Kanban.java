@@ -84,7 +84,6 @@ public class Kanban extends Node {
   /**
    * Check out the {@code Kanban} data of current {@code User} from the server.
    *
-   * <p>This is an <i>action</i> for controllers.
    *
    * @return the result object of this action in {@code Result}
    * @since 2.0
@@ -275,6 +274,7 @@ public class Kanban extends Node {
    * Returns a list which contains all the events that contains the given key word in their title.
    *
    * @version 4.0
+   * @param name The keyword to search
    * @return a list which contains all the events that contains the given key word in their title
    */
   public ArrayList<Node> search(String name) {
