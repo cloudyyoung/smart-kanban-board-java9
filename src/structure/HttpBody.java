@@ -18,7 +18,7 @@ import java.util.Map;
  *
  * @author Cloudy Young
  * @since 2.0
- * @version 2.1
+ * @version 4.0
  */
 public final class HttpBody extends HashMap<Object, Object> {
 
@@ -280,7 +280,7 @@ public final class HttpBody extends HashMap<Object, Object> {
    * Returns the value of specified key in {@code Integer} type.
    *
    * @param key the key in {@code Object} type
-   * @return {@code Integer} value of the specified key {@code null} if no value maps to the
+   * @return {@code Integer} value of the specified key; {@code null} if no value maps to the
    *     specified key, or the mapped value cannot be represented as {@code Integer} type
    */
   public Integer getInt(Object key) {
@@ -291,7 +291,7 @@ public final class HttpBody extends HashMap<Object, Object> {
    * Returns the value of specified key in {@code Double} type.
    *
    * @param key the key in {@code Object} type
-   * @return {@code Double} value of the specified key {@code null} if no value maps to the
+   * @return {@code Double} value of the specified key; {@code null} if no value maps to the
    *     specified key, or the mapped value cannot be represented as {@code Double} type
    */
   public Double getDouble(Object key) {
@@ -302,7 +302,7 @@ public final class HttpBody extends HashMap<Object, Object> {
    * Returns the value of specified key in {@code Boolean} type.
    *
    * @param key the key in {@code Object} type
-   * @return {@code Boolean} value of the specified key {@code null} if no value maps to the
+   * @return {@code Boolean} value of the specified key; {@code null} if no value maps to the
    *     specified key, or the mapped value cannot be represented as {@code Boolean} type
    */
   public Boolean getBoolean(Object key) {
@@ -313,13 +313,21 @@ public final class HttpBody extends HashMap<Object, Object> {
    * Returns the value of specified key in {@code String} type.
    *
    * @param key the key in {@code Object} type
-   * @return {@code String} value of the specified key {@code null} if no value maps to the
+   * @return {@code String} value of the specified key; {@code null} if no value maps to the
    *     specified key, or the mapped value cannot be represented as {@code String} type
    */
   public String getString(Object key) {
     return this.parseString(this.get(key));
   }
 
+  /**
+   * Returns the value of specified key in {@code Long} type.
+   * 
+   * @version 4.0
+   * @param key the key in {@code Object} type
+   * @return {@code Long} value of the specified key; {@code null} if no value maps to the
+   *     specified key, or the mapped value cannot be represented as {@code Long} type
+   */
   public Long getLong(Object key) {
     return this.parseLong(this.get(key));
   }
@@ -328,7 +336,7 @@ public final class HttpBody extends HashMap<Object, Object> {
    * Returns the value of specified key in {@code HttpBody}(performing {@code Map}) type.
    *
    * @param key the key in {@code Object} type
-   * @return {@code HttpBody}(performing {@code Map}) value of the specified key {@code null} if no
+   * @return {@code HttpBody}(performing {@code Map}) value of the specified key; {@code null} if no
    *     value maps to the specified key, or the mapped value cannot be represented as {@code
    *     HttpBody}(performing {@code Map}) type
    */
@@ -340,7 +348,7 @@ public final class HttpBody extends HashMap<Object, Object> {
    * Returns the value of specified key in {@code HttpBody}(performing {@code List}) type.
    *
    * @param key the key in {@code Object} type
-   * @return {@code HttpBody}(performing {@code List}) value of the specified key {@code null} if no
+   * @return {@code HttpBody}(performing {@code List}) value of the specified key; {@code null} if no
    *     value maps to the specified key, or the mapped value cannot be represented as {@code
    *     HttpBody}(performing {@code List}) type
    */
@@ -353,7 +361,7 @@ public final class HttpBody extends HashMap<Object, Object> {
    * Returns the value of specified key in {@code HttpBody} type.
    *
    * @param key the key in {@code Object} type
-   * @return {@code HttpBody} value of the specified key {@code null} if no value maps to the
+   * @return {@code HttpBody} value of the specified key; {@code null} if no value maps to the
    *     specified key, or the mapped value cannot be represented as {@code HttpBody} type
    */
   public HttpBody getHttpBody(Object key) {
@@ -405,6 +413,13 @@ public final class HttpBody extends HashMap<Object, Object> {
     }
   }
 
+  /**
+   * Returns {@code Long} type of the given {@code Object}
+   * 
+   * @version 4.0
+   * @param obj the {@code Object} to be parsed
+   * @return the parsed {@code Long} object
+   */
   private Long parseLong(Object obj) {
     try {
       String str = obj.toString();

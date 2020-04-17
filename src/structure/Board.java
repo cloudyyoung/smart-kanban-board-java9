@@ -28,9 +28,11 @@ public final class Board extends Node {
   /**
    * Constructor of {@code Board}, provide title, note and color.
    *
+   * @version 4.0
    * @param title The title in {@code String}
    * @param note The note in {@code String}
-   * @param boardId THe id in {@code String}
+   * @param color The theme color in {@code String}
+   * @param parent The parent node in {@code Node}
    */
   public Board(
       final String title,
@@ -40,16 +42,7 @@ public final class Board extends Node {
     super(title, note, parent);
     this.setColor(color);
   }
-
-  protected void createSubColumns() {
-    Column col1 = new Column("To Do", "Todo", 0, this);
-    Column col2 = new Column("In Progress", "Todo", 1, this);
-    Column col3 = new Column("Done", "Todo", 2, this);
-    col1.createRequest();
-    col2.createRequest();
-    col3.createRequest();
-  }
-
+  
   /**
    * Sets the color of the board, in local storage.
    *
@@ -62,8 +55,9 @@ public final class Board extends Node {
   /**
    * Sets the color of the board.
    *
+   * @version 4.0
    * @param color The color in {@code String}
-   * @return the http request of this action
+   * @return the {@code Result} instance of this action
    */
   public Result setColorRequest(String color) {
     Result res = new Result();
@@ -91,11 +85,8 @@ public final class Board extends Node {
     return this.color;
   }
 
-  /**
-   * A string that "textually represents" this object.
-   *
-   * @return text
-   */
+  /** {@inheritDoc} */
+  @Override
   public String toString() {
     return this.getType()
         + " (id: "

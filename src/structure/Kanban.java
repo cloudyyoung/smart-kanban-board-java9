@@ -9,30 +9,48 @@ import java.util.ArrayList;
  * The instance should contains {@code Board} object as children nodes.
  *
  * @since 1.0
- * @version 4.1
+ * @version 4.0
  */
 public class Kanban extends Node {
 
   /** The current Kanban object */
   private static Kanban current;
 
+  /** The Today board instance */
   private Board today;
+
+  /** The Column To Do in Today board instance */
   private Column todayToDo;
+
+  /** The Column In Progress in Today board instance */
   private Column todayInProgress;
+
+  /** The Column Done in Today board instance */
   private Column todayDone;
+
+  /** The Overview board instance */
   private Board overview;
+
+  /** The Column To Do in Overview board instance */
   private Column overviewToDo;
+
+  /** The Column In Progress in Overview board instance */
   private Column overviewInProgress;
+
+  /** The Column Done in Overview board instance */
   private Column overviewDone;
 
   /**
    * Constructor of {@code Kanban}
    *
+   * @version 4.0
    * @param obj the {@code HttpBody} object to map
    */
   protected Kanban(HttpBody obj) {
     super(obj);
 
+
+    // Creates Today & Overview boards
     this.today = new Board("Today",
         TimeUtils.currentMonthName() + " " + TimeUtils.currentDay() + ", " + TimeUtils.currentYear(), "#fd79a8", this);
 
@@ -90,22 +108,28 @@ public class Kanban extends Node {
     return res;
   }
 
-  /*
-   * Today
+  
+  /**
+   * Generates the Today board.
+   * 
+   * @version 4.0
    */
   public void generateToday() {
 
+    // Clears all existing events
     this.todayToDo.clearNodes();
     this.todayInProgress.clearNodes();
     this.todayDone.clearNodes();
 
-    Column candidates = new Column("Candidates", "", 0, null); // candidates column, store tasks which may be added into
-                                                               // today as new
+    // Creates a temporary column for candidates
+    // Candidate list stores all events that will be evaluated and added to Today if possible
+    Column candidates = new Column("Candidates", "", 0, null);
     candidates.setSpecialized(true);
 
-    // First Loop: Adding all the events
+    // First Loop: Adds all the events
     for (Node board : this.getNodes()) {
-      if (board.isSpecialized()) {
+
+      if (board.isSpecialized()) { // Skips for all specialized boards, such as Today and Overview
         continue;
       }
 
@@ -117,7 +141,7 @@ public class Kanban extends Node {
 
           switch (column.getPreset()) {
 
-            case Column.TO_DO: // For To Do list: include the past and present task and store the rest as
+            case Column.TO_DO: // For To Do list: includes the past and present task and store the rest as
                                // candicates
               if (event.isOnGeneratedToday() || event.isBeforeGeneratedToday()) {
                 event.setParent(this.todayToDo);
@@ -126,20 +150,20 @@ public class Kanban extends Node {
               }
               break;
 
-            case Column.IN_PROGRESS: // For in Progress list: include the past and present tasks only
+            case Column.IN_PROGRESS: // For in Progress list: includes the past and present tasks only
               if (event.isOnGeneratedToday() || event.isBeforeGeneratedToday()) {
                 event.setParent(this.todayInProgress);
               }
               break;
 
-            case Column.DONE: // For Done list: include only the present tasks
+            case Column.DONE: // For Done list: includes only the present tasks
               if (event.isOnGeneratedToday()) {
                 event.setParent(this.todayDone);
               }
               break;
 
             default:
-              // Skip the Node
+              // Skips the Node
               break;
 
           }
@@ -147,7 +171,7 @@ public class Kanban extends Node {
       }
     }
 
-    // Second loop: Add new available events from candicates
+    // Second loop: Adds new available events from candicates
     for (Node node : candidates.getNodes(Node.SORT_BY_PRIORITY, Node.ORDER_BY_ASC)) {
       Event event = (Event) node;
       if (this.hasEnoughTime((Event) event)) {
@@ -157,6 +181,13 @@ public class Kanban extends Node {
     }
   }
 
+  /**
+   * Returns if the Today board has enough tiem for the given event to be added, this is a helper function for {@code generateToday}.
+   * 
+   * @version 4.0
+   * @param eventNext the candidate event
+   * @return if the Today board has enough tiem for the given event to be added
+   */
   private boolean hasEnoughTime(Event eventNext) {
     Long totalTime = Long.valueOf(User.getCurrent().getTodayAvailability()) * 3600;
     Long timeAccumulator = 0L;
@@ -171,18 +202,21 @@ public class Kanban extends Node {
     return (eventNext.getDurationValue() + timeAccumulator) <= totalTime ? true : false;
   }
 
-  /*
-   * Overview
+  /**
+   * Generates the Overview board.
+   * 
+   * @version 4.0
    */
   public void generateOverview() {
 
+    // Clears all existing events
     this.overviewToDo.clearNodes();
     this.overviewInProgress.clearNodes();
     this.overviewDone.clearNodes();
 
     // All todo
     for (Node board : this.getNodes()) {
-      if (board.isSpecialized()) { // Skip specialized boards
+      if (board.isSpecialized()) { // Skips specialized boards
         continue;
       }
 
@@ -200,7 +234,7 @@ public class Kanban extends Node {
               break;
 
             case Column.DONE:
-              if (!((Event) event).isOverdue()) { // Only include the task when it's not overdue
+              if (!((Event) event).isOverdue()) { // Only includes the present tasks
                 event.setParent(this.overviewDone);
               }
               break;
@@ -215,13 +249,21 @@ public class Kanban extends Node {
     }
   }
 
+  /**
+   * Returns the current {@code Kanban} board.
+   * 
+   * @version 4.0
+   * @return the current {@code Kanban} board instance.
+   */
   public static Kanban getCurrent() {
     return Kanban.current;
   }
 
-  /*
-   * Search
-   *
+  /**
+   * Returns a list which contains all the events that contains the given key word in their title.
+   * 
+   * @version 4.0
+   * @return a list which contains all the events that contains the given key word in their title
    */
   public ArrayList<Node> search(String name) {
     ArrayList<Node> ret = new ArrayList<Node>();
