@@ -11,15 +11,13 @@ import javafx.scene.shape.*;
 
 import structure.*;
 
-
 /**
  * The JavaFX Controller for component.board.fxml.
- * 
+ *
  * @author Cloudy Young
  * @since 4.0
  * @version 4.0
  */
-
 public class BoardComponent extends Button {
 
   @FXML private Button button;

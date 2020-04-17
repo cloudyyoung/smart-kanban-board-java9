@@ -8,7 +8,7 @@ import javafx.scene.*;
 
 /**
  * The JavaFX Controller for welcome.fxml.
- * 
+ *
  * @author Cloudy Young
  * @since 3.0
  * @version 3.0
