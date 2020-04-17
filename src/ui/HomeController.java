@@ -72,12 +72,12 @@ public class HomeController {
   @FXML protected Button boardChildCreate;
   @FXML protected Button boardCreate;
 
-  public EventComponent currentEvent;
-  public BoardComponent currentBoard;
-  public ColumnComponent currentColumn;
-  public ColumnComponent originalColumn;
-  public Button currentDragCard;
-  public BoardComponent componentToday;
+  protected EventComponent currentEvent;
+  protected BoardComponent currentBoard;
+  protected ColumnComponent currentColumn;
+  protected ColumnComponent originalColumn;
+  protected Button currentDragCard;
+  protected BoardComponent componentToday;
 
   @FXML
   void initialize() {
@@ -425,7 +425,7 @@ public class HomeController {
    * @param hex the color string in HEX, eg #242424
    * @return the inline style string
    */
-  public static String styleAccent(String hex) {
+  protected static String styleAccent(String hex) {
     String style = "";
     if (hex == null || hex.equals("")) hex = "#242424";
     style += "-fx-accent: " + hex + ";";
@@ -479,7 +479,7 @@ public class HomeController {
    *
    * @param nodes the nodes to set
    */
-  public void hide(Node... nodes) {
+  protected void hide(Node... nodes) {
     for (Node each : nodes) {
       if (!each.getStyleClass().contains("hide")) {
         each.getStyleClass().add("hide");
@@ -492,7 +492,7 @@ public class HomeController {
    *
    * @param nodes the nodes to set
    */
-  public void show(Node... nodes) {
+  protected void show(Node... nodes) {
     for (Node each : nodes) {
       while (each.getStyleClass().contains("hide")) {
         each.getStyleClass().remove("hide");
