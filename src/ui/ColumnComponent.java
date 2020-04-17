@@ -172,17 +172,13 @@ public class ColumnComponent extends VBox {
     this.parentController.dragPane.getChildren().clear();
 
     if (this.getNode().getParent().isSpecialized()) {
-      // Node node = button.getNode().getParent().getParent();
-      // Board originBoard = (Board) node;
-      // int nextColumnPreset = newColumn.getNode().getPreset();
-      // for (Node node_col : originBoard.getNodes()) {
-      // Column column = (Column) node_col;
-      // if (column.getPreset() == nextColumnPreset) {
-      // button.getNode().setParentRequest(column);
-      // newColumn.getEventList().getChildren().add(button);
-      // break;
-      // }
-      // }
+      int nextColumnPreset = newColumn.getNode().getPreset();
+      Column actualNewColumn = ((Board) button.getNode().getParent().getParent()).getPresetColumn(nextColumnPreset);
+      button.getNode().setParentRequest(actualNewColumn);
+      // button.getNode().setLastGeneratedDateRequest();
+
+      Kanban.getCurrent().generateToday();
+      Kanban.getCurrent().generateOverview();
 
       oldColumn.list();
       newColumn.list();

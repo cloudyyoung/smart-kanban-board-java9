@@ -5,7 +5,8 @@ import java.util.ArrayList;
 /**
  * The {@code Kanban} class, extends from {@code Node}.
  *
- * <p>The instance should contains {@code Board} object as children nodes.
+ * <p>
+ * The instance should contains {@code Board} object as children nodes.
  *
  * @author Cloudy Young, Jimschenchen
  * @since 1.0
@@ -50,20 +51,12 @@ public class Kanban extends Node {
     super(obj);
 
     // Creates Today & Overview boards
-    this.today =
-        new Board(
-            "Today",
-            TimeUtils.currentMonthName()
-                + " "
-                + TimeUtils.currentDay()
-                + ", "
-                + TimeUtils.currentYear(),
-            "#fd79a8",
-            this);
+    this.today = new Board("Today",
+        TimeUtils.currentMonthName() + " " + TimeUtils.currentDay() + ", " + TimeUtils.currentYear(), "#fd79a8", this);
 
-    this.todayToDo = new Column("To Do", "jimjimsjimshtodo", 0, today);
-    this.todayInProgress = new Column("In Progress", "", 1, today);
-    this.todayDone = new Column("Done", "", 2, today);
+    this.todayToDo = new Column("To Do", "jimjimsjimshtodo", Column.TO_DO, today);
+    this.todayInProgress = new Column("In Progress", "", Column.IN_PROGRESS, today);
+    this.todayDone = new Column("Done", "", Column.DONE, today);
 
     this.today.setSpecialized(true);
     this.todayToDo.setSpecialized(true);
@@ -71,9 +64,9 @@ public class Kanban extends Node {
     this.todayDone.setSpecialized(true);
 
     this.overview = new Board("Overview", "Here is an overview of all your tasks", "#58b089", this);
-    this.overviewToDo = new Column("To Do", "", 0, overview);
-    this.overviewInProgress = new Column("In Progress", "", 0, overview);
-    this.overviewDone = new Column("Done", "", 0, overview);
+    this.overviewToDo = new Column("To Do", "", Column.TO_DO, overview);
+    this.overviewInProgress = new Column("In Progress", "", Column.IN_PROGRESS, overview);
+    this.overviewDone = new Column("Done", "", Column.DONE, overview);
 
     this.overview.setSpecialized(true);
     this.overviewToDo.setSpecialized(true);
@@ -84,7 +77,8 @@ public class Kanban extends Node {
   /**
    * Check out the {@code Kanban} data of current {@code User} from the server.
    *
-   * <p>This is an <i>action</i> for controllers.
+   * <p>
+   * This is an <i>action</i> for controllers.
    *
    * @return the result object of this action in {@code Result}
    * @since 2.0
@@ -127,7 +121,8 @@ public class Kanban extends Node {
     this.todayDone.clearNodes();
 
     // Creates a temporary column for candidates
-    // Candidate list stores all events that will be evaluated and added to Today if possible
+    // Candidate list stores all events that will be evaluated and added to Today if
+    // possible
     Column candidates = new Column("Candidates", "", 0, null);
     candidates.setSpecialized(true);
 
@@ -145,20 +140,24 @@ public class Kanban extends Node {
           Column column = (Column) column_node;
 
           switch (column.getPreset()) {
-            case Column
-                .TO_DO: // For To Do list: includes the past and present task and store the rest as
+            case Column.TO_DO: // For To Do list: includes the past and present task and store the rest as
               // candicates
-              if (event.isOnGeneratedToday() || event.isBeforeGeneratedToday()) {
+              if (event.isOnGeneratedToday()) {
                 event.setParent(this.todayToDo);
+              } else if (event.isBeforeGeneratedToday()) {
+                event.setParent(this.todayToDo);
+                event.setLastGeneratedDateRequest();
               } else {
                 event.setParent(candidates);
               }
               break;
 
-            case Column
-                .IN_PROGRESS: // For in Progress list: includes the past and present tasks only
-              if (event.isOnGeneratedToday() || event.isBeforeGeneratedToday()) {
+            case Column.IN_PROGRESS: // For in Progress list: includes the past and present tasks only
+              if (event.isOnGeneratedToday()) {
                 event.setParent(this.todayInProgress);
+              } else if (event.isBeforeGeneratedToday()) {
+                event.setParent(this.todayInProgress);
+                event.setLastGeneratedDateRequest();
               }
               break;
 
@@ -187,8 +186,8 @@ public class Kanban extends Node {
   }
 
   /**
-   * Returns if the Today board has enough tiem for the given event to be added, this is a helper
-   * function for {@code generateToday}.
+   * Returns if the Today board has enough tiem for the given event to be added,
+   * this is a helper function for {@code generateToday}.
    *
    * @version 4.0
    * @param eventNext the candidate event
@@ -265,10 +264,12 @@ public class Kanban extends Node {
   }
 
   /**
-   * Returns a list which contains all the events that contains the given key word in their title.
+   * Returns a list which contains all the events that contains the given key word
+   * in their title.
    *
    * @version 4.0
-   * @return a list which contains all the events that contains the given key word in their title
+   * @return a list which contains all the events that contains the given key word
+   *         in their title
    */
   public ArrayList<Node> search(String name) {
     ArrayList<Node> ret = new ArrayList<Node>();

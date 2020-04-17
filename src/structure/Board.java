@@ -85,6 +85,21 @@ public final class Board extends Node {
     return this.color;
   }
 
+  /**
+   * Returns a column according to given preset
+   * @param preset the designated preset to find
+   * @return the {@code Column} instance of the given preset
+   */
+  public Column getPresetColumn(int preset){
+    for(Node node : this.getNodes()){
+      Column column = (Column) node;
+      if(column.getPreset() == preset){
+        return column;
+      }
+    }
+    return null;
+  }
+
   /** {@inheritDoc} */
   @Override
   public String toString() {
