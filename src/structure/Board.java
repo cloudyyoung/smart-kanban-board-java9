@@ -5,8 +5,7 @@ import com.google.gson.annotations.*;
 /**
  * The {@code Board} class, extends from {@code Node}.
  *
- * <p>
- * The instance should contains {@code Column} object as children nodes.
+ * <p>The instance should contains {@code Column} object as children nodes.
  *
  * @author Cloudy Young, Jimschenchen
  * @since 1.0
@@ -15,11 +14,10 @@ import com.google.gson.annotations.*;
 public final class Board extends Node {
 
   /**
-   * Color of the board in HEX, eg: #242424. It is exposed to Gson, can be both
-   * serialized and deserialized.
+   * Color of the board in HEX, eg: #242424. It is exposed to Gson, can be both serialized and
+   * deserialized.
    */
-  @Expose
-  private String color;
+  @Expose private String color;
 
   /**
    * Constructor of {@code Board}, provide {@code HttpBody}.
@@ -35,9 +33,9 @@ public final class Board extends Node {
    * Constructor of {@code Board}, provide title, note and color.
    *
    * @version 4.0
-   * @param title  The title in {@code String}
-   * @param note   The note in {@code String}
-   * @param color  The theme color in {@code String}
+   * @param title The title in {@code String}
+   * @param note The note in {@code String}
+   * @param color The theme color in {@code String}
    * @param parent The parent node in {@code Node}
    */
   public Board(final String title, final String note, final String color, final Node parent) {
@@ -90,7 +88,17 @@ public final class Board extends Node {
   /** {@inheritDoc} */
   @Override
   public String toString() {
-    return this.getType() + " (id: " + this.getId() + ", title: \"" + this.getTitle() + "\", note: \"" + this.getNote()
-        + "\", color: " + this.getColor() + ", nodes: " + this.getNodes().toString() + "\")";
+    return this.getType()
+        + " (id: "
+        + this.getId()
+        + ", title: \""
+        + this.getTitle()
+        + "\", note: \""
+        + this.getNote()
+        + "\", color: "
+        + this.getColor()
+        + ", nodes: "
+        + this.getNodes().toString()
+        + "\")";
   }
 }

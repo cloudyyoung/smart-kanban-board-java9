@@ -18,98 +18,52 @@ import structure.*;
 
 public class HomeController {
 
-  @FXML
-  protected Button sideProfile;
-  @FXML
-  protected Circle profileAvatar;
-  @FXML
-  protected Label profileUsername;
-  @FXML
-  protected VBox sidePane;
-  @FXML
-  protected VBox operationList;
-  @FXML
-  protected Button sideSearch;
-  @FXML
-  protected VBox boardList;
-  @FXML
-  protected TabPane tabPane;
-  @FXML
-  protected VBox boardPane;
-  @FXML
-  protected TextField boardTitle;
-  @FXML
-  protected TextField boardNote;
-  @FXML
-  protected Button boardEdit;
-  @FXML
-  protected HBox columnPane;
-  @FXML
-  protected TextField inputSearch;
-  @FXML
-  protected VBox searchList;
-  @FXML
-  protected Pane dragPane;
-  @FXML
-  protected VBox promptEvent;
-  @FXML
-  protected SVGPath promptEventIcon;
-  @FXML
-  protected Label promptEventPromptTitle;
-  @FXML
-  protected VBox promptEventTitleWrapper;
-  @FXML
-  protected TextArea promptEventTitle;
-  @FXML
-  protected Label promptEventLocationBoard;
-  @FXML
-  protected Label promptEventLocationColumn;
-  @FXML
-  protected ComboBox<String> promptEventImportanceLevel;
-  @FXML
-  protected DatePicker promptEventDueDate;
-  @FXML
-  protected ComboBox<String> promptEventDuration;
-  @FXML
-  protected TextArea promptEventNote;
-  @FXML
-  protected Pane extraPane;
-  @FXML
-  protected VBox promptBoard;
-  @FXML
-  protected SVGPath promptBoardIcon;
-  @FXML
-  protected Label promptBoardPromptTitle;
-  @FXML
-  protected TextArea promptBoardTitle;
-  @FXML
-  protected TextArea promptBoardNote;
-  @FXML
-  protected VBox promptColumn;
-  @FXML
-  protected SVGPath promptColumnIcon;
-  @FXML
-  protected Button columnDelete;
-  @FXML
-  protected Label promptColumnPromptTitle;
-  @FXML
-  protected TextArea promptColumnTitle;
-  @FXML
-  protected ComboBox<String> promptColumnPreset;
-  @FXML
-  protected Text textHolder = new Text();
-  @FXML
-  protected Button eventDelete;
-  @FXML
-  protected Button eventCreate;
-  @FXML
-  protected Button columnCreate;
-  @FXML
-  protected Button boardDelete;
-  @FXML
-  protected Button boardChildCreate;
-  @FXML
-  protected Button boardCreate;
+  @FXML protected Button sideProfile;
+  @FXML protected Circle profileAvatar;
+  @FXML protected Label profileUsername;
+  @FXML protected VBox sidePane;
+  @FXML protected VBox operationList;
+  @FXML protected Button sideSearch;
+  @FXML protected VBox boardList;
+  @FXML protected TabPane tabPane;
+  @FXML protected VBox boardPane;
+  @FXML protected TextField boardTitle;
+  @FXML protected TextField boardNote;
+  @FXML protected Button boardEdit;
+  @FXML protected HBox columnPane;
+  @FXML protected TextField inputSearch;
+  @FXML protected VBox searchList;
+  @FXML protected Pane dragPane;
+  @FXML protected VBox promptEvent;
+  @FXML protected SVGPath promptEventIcon;
+  @FXML protected Label promptEventPromptTitle;
+  @FXML protected VBox promptEventTitleWrapper;
+  @FXML protected TextArea promptEventTitle;
+  @FXML protected Label promptEventLocationBoard;
+  @FXML protected Label promptEventLocationColumn;
+  @FXML protected ComboBox<String> promptEventImportanceLevel;
+  @FXML protected DatePicker promptEventDueDate;
+  @FXML protected ComboBox<String> promptEventDuration;
+  @FXML protected TextArea promptEventNote;
+  @FXML protected Pane extraPane;
+  @FXML protected VBox promptBoard;
+  @FXML protected SVGPath promptBoardIcon;
+  @FXML protected Label promptBoardPromptTitle;
+  @FXML protected TextArea promptBoardTitle;
+  @FXML protected TextArea promptBoardNote;
+  @FXML protected VBox promptColumn;
+  @FXML protected SVGPath promptColumnIcon;
+  @FXML protected Button columnDelete;
+  @FXML protected Label promptColumnPromptTitle;
+  @FXML protected TextArea promptColumnTitle;
+  @FXML protected ComboBox<String> promptColumnPreset;
+  @FXML protected Text textHolder = new Text();
+  @FXML protected Button eventDelete;
+  @FXML protected Button eventCreate;
+  @FXML protected Button columnCreate;
+  @FXML protected Button boardDelete;
+  @FXML protected Button boardChildCreate;
+  @FXML protected Button boardCreate;
 
   public EventComponent currentEvent;
   public BoardComponent currentBoard;
@@ -135,38 +89,64 @@ public class HomeController {
 
     // Initialize Event panel
     this.promptEventImportanceLevel.getItems().addAll("", "Level 1", "Level 2", "Level 3");
-    this.promptEventDuration.getItems().addAll("", "1 Hour", "2 Hours", "3 Hours", "4 Hours", "5 Hours", "6 Hours",
-        "7 Hours", "8 Hours", "9 Hours", "10 Hours", "11 Hours", "12 Hours");
+    this.promptEventDuration
+        .getItems()
+        .addAll(
+            "",
+            "1 Hour",
+            "2 Hours",
+            "3 Hours",
+            "4 Hours",
+            "5 Hours",
+            "6 Hours",
+            "7 Hours",
+            "8 Hours",
+            "9 Hours",
+            "10 Hours",
+            "11 Hours",
+            "12 Hours");
 
-    this.promptEventDueDate.valueProperty().addListener((observable, oldDate, newDate) -> {
-      Long timestamp = null;
-      if (newDate != null) {
-        timestamp = Timestamp.valueOf(newDate.atTime(LocalTime.MAX)).getTime() / 1000;
-      }
-      this.currentEvent.getNode().setDueDateRequest(timestamp);
-    });
+    this.promptEventDueDate
+        .valueProperty()
+        .addListener(
+            (observable, oldDate, newDate) -> {
+              Long timestamp = null;
+              if (newDate != null) {
+                timestamp = Timestamp.valueOf(newDate.atTime(LocalTime.MAX)).getTime() / 1000;
+              }
+              this.currentEvent.getNode().setDueDateRequest(timestamp);
+            });
 
     this.searchList.getChildren().clear();
-    this.inputSearch.textProperty().addListener((observable, oldText, newText) -> {
-      this.searchList.getChildren().clear();
-      if (!newText.equals("")) {
-        ArrayList<structure.Node> list = Kanban.getCurrent().search(newText);
-        for (structure.Node each : list) {
-          EventComponent event = new EventComponent(each, null, this);
-          this.searchList.getChildren().add(event);
-        }
-      }
-    });
+    this.inputSearch
+        .textProperty()
+        .addListener(
+            (observable, oldText, newText) -> {
+              this.searchList.getChildren().clear();
+              if (!newText.equals("")) {
+                ArrayList<structure.Node> list = Kanban.getCurrent().search(newText);
+                for (structure.Node each : list) {
+                  EventComponent event = new EventComponent(each, null, this);
+                  this.searchList.getChildren().add(event);
+                }
+              }
+            });
 
-    this.promptEventTitle.focusedProperty().addListener((observable, oldFocus, newFocus) -> {
-      if (!newFocus) {
-        this.currentEvent.getNode().setTitleRequest(this.promptEventTitle.getText());
-      }
-    });
+    this.promptEventTitle
+        .focusedProperty()
+        .addListener(
+            (observable, oldFocus, newFocus) -> {
+              if (!newFocus) {
+                this.currentEvent.getNode().setTitleRequest(this.promptEventTitle.getText());
+              }
+            });
 
-    this.promptEventTitle.textProperty().addListener((observable, oldText, newText) -> {
-      this.currentEvent.setText(this.promptEventTitle.getText());
-    });
+    this.promptEventTitle
+        .textProperty()
+        .addListener(
+            (observable, oldText, newText) -> {
+              this.currentEvent.setText(this.promptEventTitle.getText());
+            });
 
     // The TextArea internally does not use the onKeyPressed property to handle
     // keyboard input.
@@ -175,67 +155,102 @@ public class HomeController {
     // event filter that consumes the event.
     // @link:
     // https://stackoverflow.com/questions/26752924/how-to-stop-cursor-from-moving-to-a-new-line-in-a-textarea-when-enter-is-pressed
-    this.promptEventTitle.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
-      if (e.getCode() == KeyCode.ENTER) {
-        e.consume();
-        this.promptEvent.requestFocus();
-      }
-    });
+    this.promptEventTitle.addEventFilter(
+        KeyEvent.KEY_PRESSED,
+        e -> {
+          if (e.getCode() == KeyCode.ENTER) {
+            e.consume();
+            this.promptEvent.requestFocus();
+          }
+        });
 
-    this.promptColumnTitle.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
-      if (e.getCode() == KeyCode.ENTER) {
-        e.consume();
-        this.promptColumn.requestFocus();
-      }
-    });
+    this.promptColumnTitle.addEventFilter(
+        KeyEvent.KEY_PRESSED,
+        e -> {
+          if (e.getCode() == KeyCode.ENTER) {
+            e.consume();
+            this.promptColumn.requestFocus();
+          }
+        });
 
-    this.promptBoardTitle.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
-      if (e.getCode() == KeyCode.ENTER) {
-        e.consume();
-        this.promptBoard.requestFocus();
-      }
-    });
+    this.promptBoardTitle.addEventFilter(
+        KeyEvent.KEY_PRESSED,
+        e -> {
+          if (e.getCode() == KeyCode.ENTER) {
+            e.consume();
+            this.promptBoard.requestFocus();
+          }
+        });
 
     this.textHolder.getStyleClass().addAll(this.promptEventTitle.getStyleClass());
     this.textHolder.setStyle(promptEventTitle.getStyle());
     this.textHolder.setWrappingWidth(450);
-    this.textHolder.layoutBoundsProperty().addListener((observable, oldValue, newValue) -> {
-      this.promptEventTitle.setPrefHeight(this.textHolder.getLayoutBounds().getHeight() + 23);
-      this.promptBoardTitle.setPrefHeight(this.textHolder.getLayoutBounds().getHeight() + 23);
-    });
+    this.textHolder
+        .layoutBoundsProperty()
+        .addListener(
+            (observable, oldValue, newValue) -> {
+              this.promptEventTitle.setPrefHeight(
+                  this.textHolder.getLayoutBounds().getHeight() + 23);
+              this.promptBoardTitle.setPrefHeight(
+                  this.textHolder.getLayoutBounds().getHeight() + 23);
+            });
 
     this.extraPane.getChildren().add(this.textHolder);
 
-    this.promptEventImportanceLevel.valueProperty().addListener((observable, oldValue, newValue) -> {
-      this.currentEvent.getNode()
-          .setImportanceLevelRequest(this.promptEventImportanceLevel.getSelectionModel().getSelectedIndex());
-    });
+    this.promptEventImportanceLevel
+        .valueProperty()
+        .addListener(
+            (observable, oldValue, newValue) -> {
+              this.currentEvent
+                  .getNode()
+                  .setImportanceLevelRequest(
+                      this.promptEventImportanceLevel.getSelectionModel().getSelectedIndex());
+            });
 
-    this.promptEventDuration.valueProperty().addListener((observable, oldValue, newValue) -> {
-      this.currentEvent.getNode()
-          .setDurationRequest(this.promptEventDuration.getSelectionModel().getSelectedIndex() * 3600L);
-    });
+    this.promptEventDuration
+        .valueProperty()
+        .addListener(
+            (observable, oldValue, newValue) -> {
+              this.currentEvent
+                  .getNode()
+                  .setDurationRequest(
+                      this.promptEventDuration.getSelectionModel().getSelectedIndex() * 3600L);
+            });
 
-    this.promptEventNote.focusedProperty().addListener((observable, oldFocus, newFocus) -> {
-      if (!newFocus)
-        this.currentEvent.getNode().setNoteRequest(this.promptEventNote.getText());
-    });
+    this.promptEventNote
+        .focusedProperty()
+        .addListener(
+            (observable, oldFocus, newFocus) -> {
+              if (!newFocus)
+                this.currentEvent.getNode().setNoteRequest(this.promptEventNote.getText());
+            });
 
-    this.promptBoardTitle.focusedProperty().addListener((observable, oldFocus, newFocus) -> {
-      if (!newFocus)
-        this.currentBoard.getNode().setTitleRequest(this.promptBoardTitle.getText());
-    });
+    this.promptBoardTitle
+        .focusedProperty()
+        .addListener(
+            (observable, oldFocus, newFocus) -> {
+              if (!newFocus)
+                this.currentBoard.getNode().setTitleRequest(this.promptBoardTitle.getText());
+            });
 
     this.promptColumnPreset.getItems().addAll("To Do", "In Progress", "Done");
 
-    this.promptColumnPreset.valueProperty().addListener((observable, oldValue, newValue) -> {
-      this.currentColumn.getNode().setPresetRequest(this.promptColumnPreset.getSelectionModel().getSelectedIndex());
-    });
+    this.promptColumnPreset
+        .valueProperty()
+        .addListener(
+            (observable, oldValue, newValue) -> {
+              this.currentColumn
+                  .getNode()
+                  .setPresetRequest(this.promptColumnPreset.getSelectionModel().getSelectedIndex());
+            });
 
-    this.promptColumnTitle.focusedProperty().addListener((observable, oldFocus, newFocus) -> {
-      if (!newFocus)
-        this.currentColumn.getNode().setTitleRequest(this.promptColumnTitle.getText());
-    });
+    this.promptColumnTitle
+        .focusedProperty()
+        .addListener(
+            (observable, oldFocus, newFocus) -> {
+              if (!newFocus)
+                this.currentColumn.getNode().setTitleRequest(this.promptColumnTitle.getText());
+            });
 
     this.dragPane.setMouseTransparent(true);
 
@@ -289,8 +304,11 @@ public class HomeController {
       try {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene oldScene = ((Node) event.getSource()).getScene();
-        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("view/settings.fxml")), oldScene.getWidth(),
-            oldScene.getHeight());
+        Scene scene =
+            new Scene(
+                FXMLLoader.load(getClass().getResource("view/settings.fxml")),
+                oldScene.getWidth(),
+                oldScene.getHeight());
         scene.getStylesheets().add(getClass().getResource("view/default.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
@@ -394,8 +412,7 @@ public class HomeController {
 
   public static String styleAccent(String hex) {
     String style = "";
-    if (hex == null || hex.equals(""))
-      hex = "#242424";
+    if (hex == null || hex.equals("")) hex = "#242424";
     style += "-fx-accent: " + hex + ";";
     style += "-fx-accent-90: " + hex + "e6;";
     style += "-fx-accent-80: " + hex + "cc;";

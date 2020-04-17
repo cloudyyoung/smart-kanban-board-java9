@@ -13,8 +13,7 @@ import structure.*;
 
 public class BoardComponent extends Button {
 
-  @FXML
-  private Button button;
+  @FXML private Button button;
 
   private Board node;
   private HomeController parentController;
@@ -24,7 +23,7 @@ public class BoardComponent extends Button {
     this.parentController = parentController;
 
     this.loadDisplay();
-    if(this.node.isExisting()){
+    if (this.node.isExisting()) {
       this.display();
     }
   }
@@ -68,7 +67,8 @@ public class BoardComponent extends Button {
 
     this.parentController.boardPane.setStyle(HomeController.styleAccent(this.node.getColor()));
     this.parentController.boardTitle.setText(this.node.getTitle());
-    this.parentController.boardNote.setText(!this.node.getNote().equals("") ? this.node.getNote() : "No description");
+    this.parentController.boardNote.setText(
+        !this.node.getNote().equals("") ? this.node.getNote() : "No description");
   }
 
   public void list() {
@@ -91,7 +91,8 @@ public class BoardComponent extends Button {
   protected void update(ActionEvent e) {
     this.displayPrompt();
     this.parentController.promptBoardPromptTitle.setText("Edit Board");
-    this.parentController.show(this.parentController.boardDelete, this.parentController.boardChildCreate);
+    this.parentController.show(
+        this.parentController.boardDelete, this.parentController.boardChildCreate);
     this.parentController.hide(this.parentController.boardCreate);
   }
 
@@ -99,15 +100,21 @@ public class BoardComponent extends Button {
   protected void create(ActionEvent e) {
     this.displayPrompt();
     this.parentController.promptBoardPromptTitle.setText("Create Board");
-    this.parentController.hide(this.parentController.boardDelete, this.parentController.boardChildCreate);
+    this.parentController.hide(
+        this.parentController.boardDelete, this.parentController.boardChildCreate);
     this.parentController.show(this.parentController.boardCreate);
   }
 
   private void displayPrompt() {
     this.parentController.currentBoard = this;
-    this.parentController.textHolder.textProperty().bind(this.parentController.promptBoardTitle.textProperty());
-    this.parentController.promptBoardTitle.setText(this.parentController.currentBoard.getNode().getTitle());
-    this.parentController.promptBoardNote.setText(this.parentController.currentBoard.getNode().getNote());
+    this.parentController
+        .textHolder
+        .textProperty()
+        .bind(this.parentController.promptBoardTitle.textProperty());
+    this.parentController.promptBoardTitle.setText(
+        this.parentController.currentBoard.getNode().getTitle());
+    this.parentController.promptBoardNote.setText(
+        this.parentController.currentBoard.getNode().getNote());
     this.parentController.show(this.parentController.promptBoard);
   }
 

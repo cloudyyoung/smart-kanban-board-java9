@@ -33,9 +33,10 @@ public final class HttpBody extends HashMap<Object, Object> {
     super();
   }
 
-  public HttpBody(Object obj){
+  public HttpBody(Object obj) {
     Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
-    Map<Object, Object> map = gson.fromJson(gson.toJson(obj), new TypeToken<Map<Object, Object>>(){}.getType());
+    Map<Object, Object> map =
+        gson.fromJson(gson.toJson(obj), new TypeToken<Map<Object, Object>>() {}.getType());
     this.parseMap(map);
   }
 
@@ -322,11 +323,11 @@ public final class HttpBody extends HashMap<Object, Object> {
 
   /**
    * Returns the value of specified key in {@code Long} type.
-   * 
+   *
    * @version 4.0
    * @param key the key in {@code Object} type
-   * @return {@code Long} value of the specified key; {@code null} if no value maps to the
-   *     specified key, or the mapped value cannot be represented as {@code Long} type
+   * @return {@code Long} value of the specified key; {@code null} if no value maps to the specified
+   *     key, or the mapped value cannot be represented as {@code Long} type
    */
   public Long getLong(Object key) {
     return this.parseLong(this.get(key));
@@ -348,8 +349,8 @@ public final class HttpBody extends HashMap<Object, Object> {
    * Returns the value of specified key in {@code HttpBody}(performing {@code List}) type.
    *
    * @param key the key in {@code Object} type
-   * @return {@code HttpBody}(performing {@code List}) value of the specified key; {@code null} if no
-   *     value maps to the specified key, or the mapped value cannot be represented as {@code
+   * @return {@code HttpBody}(performing {@code List}) value of the specified key; {@code null} if
+   *     no value maps to the specified key, or the mapped value cannot be represented as {@code
    *     HttpBody}(performing {@code List}) type
    */
   public HttpBody getList(Object key) {
@@ -415,7 +416,7 @@ public final class HttpBody extends HashMap<Object, Object> {
 
   /**
    * Returns {@code Long} type of the given {@code Object}
-   * 
+   *
    * @version 4.0
    * @param obj the {@code Object} to be parsed
    * @return the parsed {@code Long} object

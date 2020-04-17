@@ -11,16 +11,11 @@ import structure.*;
 
 public class ColumnComponent extends VBox {
 
-  @FXML
-  private Label eventCount;
-  @FXML
-  private TextField columnTitle;
-  @FXML
-  private Button eventCreate;
-  @FXML
-  private Button columnEdit;
-  @FXML
-  private VBox eventList;
+  @FXML private Label eventCount;
+  @FXML private TextField columnTitle;
+  @FXML private Button eventCreate;
+  @FXML private Button columnEdit;
+  @FXML private VBox eventList;
 
   private Column node;
   private BoardComponent parent;
