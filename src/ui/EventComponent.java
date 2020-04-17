@@ -96,7 +96,7 @@ public class EventComponent extends Button {
       return;
     }
     if (((Column) this.node.getParent()).getPreset() == Column.DONE) {
-      this.setStyle("-fx-accent: -fx-accent-60 !important;");
+      this.setStyle("-fx-accent: -fx-accent-light-40 !important;");
       icon.setContent(CHECK_ICON);
     } else if (this.node.isOverdue()) {
       icon.setContent(OVERDUE_ICON);

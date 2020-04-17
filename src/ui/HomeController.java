@@ -443,6 +443,7 @@ public class HomeController {
     style += "-fx-accent-20: " + hex + "33;";
     style += "-fx-accent-10: " + hex + "1a;";
     style += "-fx-accent-5: " + hex + "0d;";
+    style += "-fx-accent-light-40: derive(" + hex + ", 40%);";
     return style;
   }
 
