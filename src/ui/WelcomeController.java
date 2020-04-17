@@ -19,9 +19,9 @@ public class WelcomeController {
     Scene scene = ((Node) event.getSource()).getScene();
 
     if (button.equals(buttonSignIn)) {
-      this.switchScene("signin.fxml", stage, scene);
+      this.switchScene("view/signin.fxml", stage, scene);
     } else if (button.equals(buttonSignUp)) {
-      this.switchScene("signup.fxml", stage, scene);
+      this.switchScene("view/signup.fxml", stage, scene);
     }
   }
 
@@ -32,7 +32,7 @@ public class WelcomeController {
               FXMLLoader.load(getClass().getResource(file)),
               oldScene.getWidth(),
               oldScene.getHeight());
-      scene.getStylesheets().add(getClass().getResource("default.css").toExternalForm());
+      scene.getStylesheets().add(getClass().getResource("view/default.css").toExternalForm());
       stage.setScene(scene);
       stage.show();
     } catch (Exception e) {

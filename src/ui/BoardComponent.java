@@ -1,4 +1,4 @@
-package ui.component;
+package ui;
 
 import java.util.HashSet;
 
@@ -10,7 +10,6 @@ import javafx.scene.control.*;
 import javafx.scene.shape.*;
 
 import structure.*;
-import ui.*;
 
 public class BoardComponent extends Button {
 
@@ -89,7 +88,7 @@ public class BoardComponent extends Button {
   }
 
   @FXML
-  public void update(ActionEvent e) {
+  protected void update(ActionEvent e) {
     this.displayPrompt();
     this.parentController.promptBoardPromptTitle.setText("Edit Board");
     this.parentController.show(this.parentController.boardDelete, this.parentController.boardChildCreate);
@@ -97,7 +96,7 @@ public class BoardComponent extends Button {
   }
 
   @FXML
-  public void create(ActionEvent e) {
+  protected void create(ActionEvent e) {
     this.displayPrompt();
     this.parentController.promptBoardPromptTitle.setText("Create Board");
     this.parentController.hide(this.parentController.boardDelete, this.parentController.boardChildCreate);
@@ -113,14 +112,14 @@ public class BoardComponent extends Button {
   }
 
   @FXML
-  public void createChild(ActionEvent e) {
+  protected void createChild(ActionEvent e) {
     Column column = new Column("Untitled Column", "", 0, this.node);
     ColumnComponent ColumnComponent = new ColumnComponent(column, this, this.parentController);
     ColumnComponent.create(e);
   }
 
   private final void loadDisplay() {
-    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("board.fxml"));
+    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view/component.board.fxml"));
     fxmlLoader.setRoot(this);
     fxmlLoader.setController(this);
 

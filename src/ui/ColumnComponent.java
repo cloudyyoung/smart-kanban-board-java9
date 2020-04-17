@@ -1,4 +1,4 @@
-package ui.component;
+package ui;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,6 @@ import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseDragEvent;
 import structure.*;
-import ui.HomeController;
 
 public class ColumnComponent extends VBox {
 
@@ -52,7 +51,7 @@ public class ColumnComponent extends VBox {
   }
 
   private final void loadDisplay() {
-    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("column.fxml"));
+    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view/component.column.fxml"));
     fxmlLoader.setRoot(this);
     fxmlLoader.setController(this);
 

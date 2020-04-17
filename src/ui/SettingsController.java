@@ -85,10 +85,10 @@ public class SettingsController {
       Scene oldScene = ((Node) event.getSource()).getScene();
       Scene scene =
           new Scene(
-              FXMLLoader.load(getClass().getResource("home.fxml")),
+              FXMLLoader.load(getClass().getResource("view/home.fxml")),
               oldScene.getWidth(),
               oldScene.getHeight());
-      scene.getStylesheets().add(getClass().getResource("default.css").toExternalForm());
+      scene.getStylesheets().add(getClass().getResource("view/default.css").toExternalForm());
       stage.setScene(scene);
       stage.show();
     } catch (Exception e) {
@@ -100,7 +100,7 @@ public class SettingsController {
   void switchTheme(ActionEvent event) {
     Scene scene = ((Node) event.getSource()).getScene();
     scene.getStylesheets().clear();
-    scene.getStylesheets().add(getClass().getResource("default.css").toExternalForm());
+    scene.getStylesheets().add(getClass().getResource("view/default.css").toExternalForm());
     if (themeCombo.getSelectionModel().getSelectedItem().toLowerCase().equals("dark")) {
       scene.getStylesheets().add(getClass().getResource("dark.css").toExternalForm());
     }
@@ -114,10 +114,10 @@ public class SettingsController {
       Scene oldScene = ((Node) event.getSource()).getScene();
       Scene scene =
           new Scene(
-              FXMLLoader.load(getClass().getResource("welcome.fxml")),
+              FXMLLoader.load(getClass().getResource("view/welcome.fxml")),
               oldScene.getWidth(),
               oldScene.getHeight());
-      scene.getStylesheets().add(getClass().getResource("default.css").toExternalForm());
+      scene.getStylesheets().add(getClass().getResource("view/default.css").toExternalForm());
       stage.setScene(scene);
       stage.show();
     } catch (Exception e) {

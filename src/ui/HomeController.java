@@ -15,102 +15,101 @@ import javafx.scene.shape.*;
 import javafx.scene.text.*;
 import javafx.stage.*;
 import structure.*;
-import ui.component.*;
 
 public class HomeController {
 
   @FXML
-  public Button sideProfile;
+  protected Button sideProfile;
   @FXML
-  public Circle profileAvatar;
+  protected Circle profileAvatar;
   @FXML
-  public Label profileUsername;
+  protected Label profileUsername;
   @FXML
-  public VBox sidePane;
+  protected VBox sidePane;
   @FXML
-  public VBox operationList;
+  protected VBox operationList;
   @FXML
-  public Button sideSearch;
+  protected Button sideSearch;
   @FXML
-  public VBox boardList;
+  protected VBox boardList;
   @FXML
-  public TabPane tabPane;
+  protected TabPane tabPane;
   @FXML
-  public VBox boardPane;
+  protected VBox boardPane;
   @FXML
-  public TextField boardTitle;
+  protected TextField boardTitle;
   @FXML
-  public TextField boardNote;
+  protected TextField boardNote;
   @FXML
-  public Button boardEdit;
+  protected Button boardEdit;
   @FXML
-  public HBox columnPane;
+  protected HBox columnPane;
   @FXML
-  public TextField inputSearch;
+  protected TextField inputSearch;
   @FXML
-  public VBox searchList;
+  protected VBox searchList;
   @FXML
-  public Pane dragPane;
+  protected Pane dragPane;
   @FXML
-  public VBox promptEvent;
+  protected VBox promptEvent;
   @FXML
-  public SVGPath promptEventIcon;
+  protected SVGPath promptEventIcon;
   @FXML
-  public Label promptEventPromptTitle;
+  protected Label promptEventPromptTitle;
   @FXML
-  public VBox promptEventTitleWrapper;
+  protected VBox promptEventTitleWrapper;
   @FXML
-  public TextArea promptEventTitle;
+  protected TextArea promptEventTitle;
   @FXML
-  public Label promptEventLocationBoard;
+  protected Label promptEventLocationBoard;
   @FXML
-  public Label promptEventLocationColumn;
+  protected Label promptEventLocationColumn;
   @FXML
-  public ComboBox<String> promptEventImportanceLevel;
+  protected ComboBox<String> promptEventImportanceLevel;
   @FXML
-  public DatePicker promptEventDueDate;
+  protected DatePicker promptEventDueDate;
   @FXML
-  public ComboBox<String> promptEventDuration;
+  protected ComboBox<String> promptEventDuration;
   @FXML
-  public TextArea promptEventNote;
+  protected TextArea promptEventNote;
   @FXML
-  public Pane extraPane;
+  protected Pane extraPane;
   @FXML
-  public VBox promptBoard;
+  protected VBox promptBoard;
   @FXML
-  public SVGPath promptBoardIcon;
+  protected SVGPath promptBoardIcon;
   @FXML
-  public Label promptBoardPromptTitle;
+  protected Label promptBoardPromptTitle;
   @FXML
-  public TextArea promptBoardTitle;
+  protected TextArea promptBoardTitle;
   @FXML
-  public TextArea promptBoardNote;
+  protected TextArea promptBoardNote;
   @FXML
-  public VBox promptColumn;
+  protected VBox promptColumn;
   @FXML
-  public SVGPath promptColumnIcon;
+  protected SVGPath promptColumnIcon;
   @FXML
-  public Button columnDelete;
+  protected Button columnDelete;
   @FXML
-  public Label promptColumnPromptTitle;
+  protected Label promptColumnPromptTitle;
   @FXML
-  public TextArea promptColumnTitle;
+  protected TextArea promptColumnTitle;
   @FXML
-  public ComboBox<String> promptColumnPreset;
+  protected ComboBox<String> promptColumnPreset;
   @FXML
-  public Text textHolder = new Text();
+  protected Text textHolder = new Text();
   @FXML
-  public Button eventDelete;
+  protected Button eventDelete;
   @FXML
-  public Button eventCreate;
+  protected Button eventCreate;
   @FXML
-  public Button columnCreate;
+  protected Button columnCreate;
   @FXML
-  public Button boardDelete;
+  protected Button boardDelete;
   @FXML
-  public Button boardChildCreate;
+  protected Button boardChildCreate;
   @FXML
-  public Button boardCreate;
+  protected Button boardCreate;
 
   public EventComponent currentEvent;
   public BoardComponent currentBoard;
@@ -290,9 +289,9 @@ public class HomeController {
       try {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene oldScene = ((Node) event.getSource()).getScene();
-        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("settings.fxml")), oldScene.getWidth(),
+        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("view/settings.fxml")), oldScene.getWidth(),
             oldScene.getHeight());
-        scene.getStylesheets().add(getClass().getResource("default.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("view/default.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
       } catch (Exception e) {

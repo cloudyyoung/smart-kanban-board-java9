@@ -1,21 +1,13 @@
-package ui.component;
+package ui;
 
 import java.time.LocalDate;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.shape.*;
-import javafx.scene.text.Text;
 import javafx.scene.control.*;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TransferMode;
-import javafx.scene.layout.*;
 import structure.*;
-import ui.*;
 
 public class EventComponent extends Button {
 
@@ -57,7 +49,7 @@ public class EventComponent extends Button {
   }
 
   private final void loadDisplay() {
-    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("event.fxml"));
+    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view/component.event.fxml"));
     fxmlLoader.setRoot(this);
     fxmlLoader.setController(this);
 

@@ -82,10 +82,10 @@ public class SignUpController {
         Scene oldScene = ((Node) event.getSource()).getScene();
         Scene scene =
             new Scene(
-                FXMLLoader.load(getClass().getResource("home.fxml")),
+                FXMLLoader.load(getClass().getResource("view/home.fxml")),
                 oldScene.getWidth(),
                 oldScene.getHeight());
-        scene.getStylesheets().add(getClass().getResource("default.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("view/default.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
       } catch (Exception e) {
