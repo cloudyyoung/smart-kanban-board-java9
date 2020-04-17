@@ -7,7 +7,8 @@ import java.util.ArrayList;
  *
  * <p>
  * The instance should contains {@code Board} object as children nodes.
- *
+ *  
+ * @author Cloudy Young, Jimschenchen
  * @since 1.0
  * @version 4.0
  */
@@ -87,7 +88,7 @@ public class Kanban extends Node {
   public static Result checkout() {
     Result res = new Result();
     if (User.getCurrent() == null) {
-      StructureRequest req2 = new StructureRequest(false, true);
+      StructureRequest req2 = new StructureRequest(false, true, false);
       req2.setErrorMessage("User not authenticated");
       res.add(req2);
     } else {

@@ -9,6 +9,7 @@ import java.lang.reflect.Constructor;
 /**
  * The {@code Node} class.
  *
+ * @author Cloudy Young, Jimschenchen, Benjamin Wood
  * @since 1.0
  * @version 4.0
  */
@@ -264,7 +265,7 @@ public abstract class Node {
     Result res = new Result();
     if (!this.isExisting()) {
       this.setParent(parent);
-      StructureRequest req2 = new StructureRequest(true, false, this);
+      StructureRequest req2 = new StructureRequest(true, false, false, this);
       res.add(req2);
     } else if (this instanceof Event) {
       String parentType = NodeTypeUtils.typeId(this.getParentType());
@@ -273,11 +274,11 @@ public abstract class Node {
 
       if (req.isSucceeded()) {
         this.setParent(parent);
-        StructureRequest req2 = new StructureRequest(true, false, this);
+        StructureRequest req2 = new StructureRequest(true, false, false, this);
         res.add(req2);
       }
     } else {
-      StructureRequest req2 = new StructureRequest(false, true, this);
+      StructureRequest req2 = new StructureRequest(false, false, true, this);
       req2.setErrorMessage("Instance can only be type of Event");
       res.add(req2);
     }
@@ -316,7 +317,7 @@ public abstract class Node {
     if (!this.isExisting()) {
       this.setTitle(title);
 
-      StructureRequest req = new StructureRequest(true, false, this);
+      StructureRequest req = new StructureRequest(true, false, false, this);
       res.add(req);
     } else {
       HttpRequest req = this.update("title", title);
@@ -325,7 +326,7 @@ public abstract class Node {
       if (req.isSucceeded()) {
         this.setTitle(title);
 
-        StructureRequest req2 = new StructureRequest(true, false, this);
+        StructureRequest req2 = new StructureRequest(true, false, false, this);
         res.add(req2);
       }
     }
@@ -356,7 +357,7 @@ public abstract class Node {
     if (!this.isExisting()) {
       this.setNote(note);
 
-      StructureRequest req = new StructureRequest(true, false, this);
+      StructureRequest req = new StructureRequest(true, false, false, this);
       res.add(req);
     } else {
       HttpRequest req = this.update("note", note);
@@ -365,7 +366,7 @@ public abstract class Node {
       if (req.isSucceeded()) {
         this.setNote(note);
 
-        StructureRequest req2 = new StructureRequest(true, false, this);
+        StructureRequest req2 = new StructureRequest(true, false, false, this);
         res.add(req2);
       }
     }
@@ -515,7 +516,7 @@ public abstract class Node {
     Result res = new Result();
 
     if (this.isExisting()) {
-      StructureRequest req2 = new StructureRequest(false, true, this);
+      StructureRequest req2 = new StructureRequest(false, false, true, this);
       req2.setErrorMessage("Event is already exisiting");
       res.add(req2);
     } else {
@@ -539,7 +540,7 @@ public abstract class Node {
         this.setParent(this.getParent());
         this.setExisting(true);
 
-        StructureRequest req2 = new StructureRequest(true, false, this);
+        StructureRequest req2 = new StructureRequest(true, false, false, this);
         res.add(req2);
       }
     }
@@ -559,7 +560,7 @@ public abstract class Node {
     Result res = new Result();
 
     if (!this.isExisting()) {
-      StructureRequest req2 = new StructureRequest(false, true, this);
+      StructureRequest req2 = new StructureRequest(false, false, true, this);
       req2.setErrorMessage("Node is not exisiting");
       res.add(req2);
     } else {
@@ -575,7 +576,7 @@ public abstract class Node {
         this.getParent().removeNode(this);
         this.setParent(null);
 
-        StructureRequest req2 = new StructureRequest(true, false, this);
+        StructureRequest req2 = new StructureRequest(true, false, false, this);
         res.add(req2);
       }
     }
@@ -623,6 +624,11 @@ public abstract class Node {
     return this.nodes.get(id);
   }
 
+  /**
+   * Clears all the child node of the instance.
+   * 
+   * @version 4.0
+   */
   protected final void clearNodes() {
     this.nodes.clear();
   }
@@ -630,13 +636,22 @@ public abstract class Node {
   /**
    * Returns all the children nodes of the instance.
    *
+   * @version 4.0
    * @return a {@code Collection} of all the children nodes
    */
   public final ArrayList<Node> getNodes() {
     return this.getNodes(Node.SORT_BY_ID, Node.ORDER_BY_ASC);
   }
 
-  public final ArrayList<Node> getNodes(int sortBy, int order) {
+  /**
+   * Returns all the children nodes of the instance, sorted and ordered by the given parameters.
+   * 
+   * @version 4.0
+   * @param sortBy the attribute to sort
+   * @param orderBy the mode to order
+   * @return a {@code Collection} of all the children nodes
+   */
+  public final ArrayList<Node> getNodes(int sortBy, int orderBy) {
     ArrayList<Node> list = new ArrayList<Node>(this.nodes.values());
     Collections.sort(list, new Comparator<Node>() {
       @Override
@@ -647,7 +662,7 @@ public abstract class Node {
         return entry1.getId() - entry2.getId();
       }
     });
-    if (order == Node.ORDER_BY_DESC)
+    if (orderBy == Node.ORDER_BY_DESC)
       Collections.reverse(list);
     return list;
   }
@@ -661,10 +676,22 @@ public abstract class Node {
     return this.getClass().getSimpleName();
   }
 
+  /**
+   * Returns a boolean to indicate whether this node is a specialized node
+   * 
+   * @version 4.0
+   * @return a boolean to indicate whether this node is a specialized node
+   */
   public final boolean isSpecialized() {
     return this.specialized;
   }
 
+  /**
+   * Sets this node as specialized node.
+   * 
+   * @version 4.0
+   * @param is a boolean to indicate whether this node is a specialized node
+   */
   protected final void setSpecialized(boolean is) {
     this.specialized = is;
     this.existing = is;

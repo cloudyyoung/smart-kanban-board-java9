@@ -7,6 +7,7 @@ import com.google.gson.annotations.*;
 /**
  * The {@code Event} class, extends from {@code Node}.
  *
+ * @author Cloudy Young, Jimschenchen
  * @since 1.0
  * @version 4.0
  */
@@ -93,7 +94,7 @@ public class Event extends Node {
     if (!this.isExisting()) {
       this.setDuration(duration);
 
-      StructureRequest req = new StructureRequest(true, false, this);
+      StructureRequest req = new StructureRequest(true, false, false, this);
       res.add(req);
     } else {
       HttpRequest req = this.update("duration", duration);
@@ -189,7 +190,7 @@ public class Event extends Node {
     if (!this.isExisting()) {
       this.setImportanceLevel(importance);
 
-      StructureRequest req = new StructureRequest(true, false, this);
+      StructureRequest req = new StructureRequest(true, false, false, this);
       res.add(req);
     } else {
       HttpRequest req = this.update("importance_level", importance);

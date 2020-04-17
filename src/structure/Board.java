@@ -8,6 +8,7 @@ import com.google.gson.annotations.*;
  * <p>
  * The instance should contains {@code Column} object as children nodes.
  *
+ * @author Cloudy Young, Jimschenchen
  * @since 1.0
  * @version 4.0
  */
@@ -65,7 +66,7 @@ public final class Board extends Node {
     if (!this.isExisting()) {
       this.setColor(color);
 
-      StructureRequest req = new StructureRequest(true, false, this);
+      StructureRequest req = new StructureRequest(true, false, false, this);
       res.add(req);
     } else {
       HttpRequest req = this.update("color", color);

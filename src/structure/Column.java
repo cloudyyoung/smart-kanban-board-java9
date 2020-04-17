@@ -9,6 +9,7 @@ import com.google.gson.annotations.Expose;
  * The instance should contains {@code Event} object as children nodes.
  * </p>
  *
+ * @author Cloudy Young, Jimschenchen
  * @since 1.0
  * @version 4.0
  */
@@ -74,14 +75,14 @@ public final class Column extends Node {
     if (!this.isExisting()) {
       this.setPreset(preset);
 
-      StructureRequest req = new StructureRequest(true, false, this);
+      StructureRequest req = new StructureRequest(true, false, false, this);
       res.add(req);
     } else {
       HttpRequest req = this.update("preset", preset);
       if (req.isSucceeded()) {
         this.setPreset(preset);
 
-        StructureRequest req2 = new StructureRequest(true, false, this);
+        StructureRequest req2 = new StructureRequest(true, false, false, this);
         res.add(req2);
       }
       res.add(req);

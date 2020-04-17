@@ -13,7 +13,7 @@ import javax.crypto.spec.SecretKeySpec;
  *
  * The encryption utilities class. Title: Java AES Encryption Decryption Example
  * 
- * @author Lokesh Gupta
+ * @author Lokesh Gupta, Jimschenchen
  * @see https://howtodoinjava.com/security/java-aes-encryption-example/
  * @since 4.0
  * @version 4.0
