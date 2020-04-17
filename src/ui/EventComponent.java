@@ -11,12 +11,11 @@ import structure.*;
 
 /**
  * The JavaFX Controller for component.event.fxml.
- * 
+ *
  * @author Cloudy Young, Jimschenchen
  * @since 4.0
  * @version 4.0
  */
-
 public class EventComponent extends Button {
 
   @FXML private Button event;
@@ -50,7 +49,7 @@ public class EventComponent extends Button {
 
   /**
    * Gets the paired {@code Event}.
-   * 
+   *
    * @return the paired {@code Event}
    */
   protected Event getNode() {
@@ -59,7 +58,7 @@ public class EventComponent extends Button {
 
   /**
    * Gets the parent of the paired {@code Event}.
-   * 
+   *
    * @return the parent {@code Node}
    */
   protected ColumnComponent getParentComponent() {
@@ -68,7 +67,7 @@ public class EventComponent extends Button {
 
   /**
    * Returns the color of the {@code Event}.
-   * 
+   *
    * @return the color of the {@code Event}
    */
   protected String getColor() {
@@ -78,9 +77,7 @@ public class EventComponent extends Button {
     return this.parent.getColor();
   }
 
-  /**
-   * Loads the fxml of the compoennt.
-   */
+  /** Loads the fxml of the compoennt. */
   private final void loadDisplay() {
     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view/component.event.fxml"));
     fxmlLoader.setRoot(this);
@@ -93,9 +90,7 @@ public class EventComponent extends Button {
     }
   }
 
-  /**
-   * Displays the component according to the paired {@code Node}.
-   */
+  /** Displays the component according to the paired {@code Node}. */
   protected void display() {
     if (this.node == null || this.node.getParent() == null) {
       return;
@@ -130,9 +125,7 @@ public class EventComponent extends Button {
     this.parentController.promptEventPromptTitle.setText("Create event");
   }
 
-  /** 
-   * Displays the prompt.
-   */
+  /** Displays the prompt. */
   private void displayPrompt() {
     this.parentController.currentEvent = this;
     this.parentController
@@ -165,7 +158,6 @@ public class EventComponent extends Button {
   void initialize() {
     this.display();
   }
-
 
   @FXML
   void EventDragDetected(MouseEvent event) { // The card dragging detection

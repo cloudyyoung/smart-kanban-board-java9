@@ -11,12 +11,11 @@ import structure.*;
 
 /**
  * The JavaFX Controller for component.column.fxml.
- * 
+ *
  * @author Cloudy Young, Jimschenchen
  * @since 4.0
  * @version 4.0
  */
-
 public class ColumnComponent extends VBox {
 
   @FXML private Label eventCount;
@@ -44,7 +43,7 @@ public class ColumnComponent extends VBox {
 
   /**
    * Gets the paired {@code Column}.
-   * 
+   *
    * @return the paired {@code Column}
    */
   protected Column getNode() {
@@ -53,7 +52,7 @@ public class ColumnComponent extends VBox {
 
   /**
    * Returns the color of the {@code Column}.
-   * 
+   *
    * @return the color of the {@code Column}
    */
   protected String getColor() {
@@ -62,23 +61,19 @@ public class ColumnComponent extends VBox {
 
   /**
    * Gets the parent of the paired {@code Column}.
-   * 
+   *
    * @return the parent {@code Column}
    */
   protected BoardComponent getParentComponent() {
     return this.parent;
   }
 
-  /**
-   * Returns the event list component.
-   */
+  /** Returns the event list component. */
   protected VBox getEventList() {
     return this.eventList;
   }
 
-  /**
-   * Loads the fxml of the compoennt.
-   */
+  /** Loads the fxml of the compoennt. */
   private final void loadDisplay() {
     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view/component.column.fxml"));
     fxmlLoader.setRoot(this);
@@ -91,9 +86,7 @@ public class ColumnComponent extends VBox {
     }
   }
 
-  /**
-   * Lists the children nodes of the paired {@code Node}
-   */
+  /** Lists the children nodes of the paired {@code Node} */
   protected void list() {
     ArrayList<structure.Node> list = null;
     if (this.node.getParent().isSpecialized()) {
@@ -112,9 +105,7 @@ public class ColumnComponent extends VBox {
     eventCount.setText(list.size() + "");
   }
 
-  /**
-   * Displays the component according to the paired {@code Node}.
-   */
+  /** Displays the component according to the paired {@code Node}. */
   protected void display() {
     columnTitle.setText(this.node.getTitle());
   }
@@ -150,9 +141,7 @@ public class ColumnComponent extends VBox {
     this.parentController.promptColumnPromptTitle.setText("Create column");
   }
 
-  /** 
-   * Displays the prompt.
-   */
+  /** Displays the prompt. */
   private void displayPrompt() {
     this.parentController.currentColumn = this;
     this.parentController.promptColumn.setStyle(HomeController.styleAccent(this.getColor()));
@@ -199,6 +188,5 @@ public class ColumnComponent extends VBox {
       oldColumn.list();
       newColumn.list();
     }
-
   }
 }
