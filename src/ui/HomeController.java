@@ -119,7 +119,6 @@ public class HomeController {
   public Button currentDragButton;
   public BoardComponent componentToday;
   private boolean isCreating = false;
-  
 
   @FXML
   void initialize() {
@@ -141,7 +140,7 @@ public class HomeController {
     this.promptEventDuration.getItems().addAll("", "1 Hour", "2 Hours", "3 Hours", "4 Hours", "5 Hours", "6 Hours",
         "7 Hours", "8 Hours", "9 Hours", "10 Hours", "11 Hours", "12 Hours");
 
-        this.promptEventDueDate.valueProperty().addListener((observable, oldDate, newDate) -> {
+    this.promptEventDueDate.valueProperty().addListener((observable, oldDate, newDate) -> {
       Long timestamp = null;
       if (newDate != null) {
         timestamp = Timestamp.valueOf(newDate.atTime(LocalTime.MAX)).getTime() / 1000;
@@ -201,17 +200,18 @@ public class HomeController {
     });
 
     this.promptEventDuration.valueProperty().addListener((observable, oldValue, newValue) -> {
-      this.currentEvent.getNode().setDurationRequest(this.promptEventDuration.getSelectionModel().getSelectedIndex() * 3600L);
+      this.currentEvent.getNode()
+          .setDurationRequest(this.promptEventDuration.getSelectionModel().getSelectedIndex() * 3600L);
     });
 
     this.promptEventNote.focusedProperty().addListener((observable, oldFocus, newFocus) -> {
       if (!newFocus)
-      this.currentEvent.getNode().setNoteRequest(this.promptEventNote.getText());
+        this.currentEvent.getNode().setNoteRequest(this.promptEventNote.getText());
     });
 
     this.promptBoardTitle.focusedProperty().addListener((observable, oldFocus, newFocus) -> {
       if (!newFocus)
-      this.currentBoard.getNode().setTitleRequest(this.promptBoardTitle.getText());
+        this.currentBoard.getNode().setTitleRequest(this.promptBoardTitle.getText());
     });
 
     this.promptColumnPreset.getItems().addAll("To Do", "In Progress", "Done");
@@ -222,7 +222,7 @@ public class HomeController {
 
     this.promptColumnTitle.focusedProperty().addListener((observable, oldFocus, newFocus) -> {
       if (!newFocus)
-      this.currentColumn.getNode().setTitleRequest(this.promptColumnTitle.getText());
+        this.currentColumn.getNode().setTitleRequest(this.promptColumnTitle.getText());
     });
 
     this.dragPane.setMouseTransparent(true);
@@ -313,14 +313,14 @@ public class HomeController {
   }
 
   @FXML
-  void createBoard(ActionEvent e){
+  void createBoard(ActionEvent e) {
     Board event = new Board("Untitled Board", "", "", Kanban.getCurrent());
     BoardComponent boardComponent = new BoardComponent(event, this);
     boardComponent.create(e);
   }
 
   @FXML
-  void createBoardRequest(ActionEvent e){
+  void createBoardRequest(ActionEvent e) {
     this.currentBoard.getNode().createRequest();
     Kanban.getCurrent().generateToday();
     Kanban.getCurrent().generateOverview();
@@ -355,7 +355,7 @@ public class HomeController {
   }
 
   @FXML
-  void createEventRequest(){
+  void createEventRequest() {
     this.currentEvent.getNode().createRequest();
     Kanban.getCurrent().generateToday();
     Kanban.getCurrent().generateOverview();
@@ -364,13 +364,13 @@ public class HomeController {
   }
 
   @FXML
-  void createBoardChild(ActionEvent e){
+  void createBoardChild(ActionEvent e) {
     this.closePrompt();
     this.currentBoard.createChild(e);
   }
 
   @FXML
-  void createColumnRequest(){
+  void createColumnRequest() {
     this.currentColumn.getNode().createRequest();
     Kanban.getCurrent().generateToday();
     Kanban.getCurrent().generateOverview();
@@ -380,7 +380,8 @@ public class HomeController {
 
   public static String styleAccent(String hex) {
     String style = "";
-    if(hex == null || hex.equals("")) hex = "#242424";
+    if (hex == null || hex.equals(""))
+      hex = "#242424";
     style += "-fx-accent: " + hex + ";";
     style += "-fx-accent-90: " + hex + "e6;";
     style += "-fx-accent-80: " + hex + "cc;";
@@ -414,23 +415,23 @@ public class HomeController {
     this.originalParent = null;
   }
 
-  public void hide(Node... nodes){
-    for(Node each : nodes){
-      if(!each.getStyleClass().contains("hide")){
+  public void hide(Node... nodes) {
+    for (Node each : nodes) {
+      if (!each.getStyleClass().contains("hide")) {
         each.getStyleClass().add("hide");
       }
     }
   }
 
-  public void show(Node... nodes){
-    for(Node each : nodes){
-      while(each.getStyleClass().contains("hide")){
+  public void show(Node... nodes) {
+    for (Node each : nodes) {
+      while (each.getStyleClass().contains("hide")) {
         each.getStyleClass().remove("hide");
       }
     }
   }
 
-  public void setIsCreating(boolean is){
+  public void setIsCreating(boolean is) {
     this.isCreating = is;
   }
 }

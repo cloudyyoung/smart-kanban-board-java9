@@ -112,7 +112,7 @@ public class ColumnComponent extends VBox {
   }
 
   @FXML
-  void create(ActionEvent e){
+  void create(ActionEvent e) {
     this.displayPrompt();
     this.parentController.setIsCreating(true);
     this.parentController.hide(this.parentController.columnDelete);
@@ -120,7 +120,7 @@ public class ColumnComponent extends VBox {
     this.parentController.promptColumnPromptTitle.setText("Create column");
   }
 
-  private void displayPrompt(){
+  private void displayPrompt() {
     this.parentController.currentColumn = this;
     this.parentController.promptColumn.setStyle(HomeController.styleAccent(this.getColor()));
     this.parentController.show(this.parentController.promptColumn);
@@ -147,19 +147,19 @@ public class ColumnComponent extends VBox {
     // System.out.println(oldColumn.getNode().getTitle());
     // System.out.println(nextColumn.getNode().getTitle());
     // System.out.println(button.getNode());
-    
+
     if (this.getNode().getParent().isSpecialized()) {
       System.out.println(1122227);
       // Node node = button.getNode().getParent().getParent();
       // Board originBoard = (Board) node;
       // int nextColumnPreset = nextColumn.getNode().getPreset();
       // for (Node node_col : originBoard.getNodes()) {
-      //   Column column = (Column) node_col;
-      //   if (column.getPreset() == nextColumnPreset) {
-      //     button.getNode().setParentRequest(column);
-      //     nextColumn.getEventList().getChildren().add(button);
-      //     break;
-      //   }
+      // Column column = (Column) node_col;
+      // if (column.getPreset() == nextColumnPreset) {
+      // button.getNode().setParentRequest(column);
+      // nextColumn.getEventList().getChildren().add(button);
+      // break;
+      // }
       // }
       // button.getNode().setLastGeneratedDateRequest();
       Kanban.getCurrent().generateToday();
@@ -172,9 +172,6 @@ public class ColumnComponent extends VBox {
       oldColumn.list();
       newColumn.list();
     }
-
-    
-    
 
     // Kanban.getCurrent().generateToday();
   }
