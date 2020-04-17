@@ -8,12 +8,11 @@ import javafx.scene.Scene;
 
 /**
  * The entrance class of user interface.
- * 
+ *
  * @author Cloudy Young
  * @since 3.0
  * @version 4.0
  */
-
 public class UserInterface extends Application {
 
   /** The stage object of the instance. */
@@ -24,7 +23,7 @@ public class UserInterface extends Application {
 
   /**
    * Starts the ui.
-   * 
+   *
    * @param args the input arguments from OS
    */
   public static void ui(String[] args) {
@@ -33,7 +32,7 @@ public class UserInterface extends Application {
 
   /**
    * Starts the ui.
-   * 
+   *
    * @param stage the stage object of the instance
    */
   @Override
