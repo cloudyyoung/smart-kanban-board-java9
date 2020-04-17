@@ -1,22 +1,21 @@
-package ui.component;
+package ui;
 
 import java.time.LocalDate;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.shape.*;
-import javafx.scene.text.Text;
 import javafx.scene.control.*;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.DragEvent;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TransferMode;
-import javafx.scene.layout.*;
 import structure.*;
-import ui.*;
 
+/**
+ * The JavaFX Controller for component.event.fxml.
+ *
+ * @author Cloudy Young, Jimschenchen
+ * @since 4.0
+ * @version 4.0
+ */
 public class EventComponent extends Button {
 
   @FXML private Button event;
@@ -31,11 +30,16 @@ public class EventComponent extends Button {
   private static final String OVERDUE_ICON =
       "M 16 3.910156 C 9.332031 3.910156 3.910156 9.332031 3.910156 16 C 3.910156 22.667969 9.332031 28.089844 16 28.089844 C 22.667969 28.089844 28.089844 22.667969 28.089844 16 C 28.089844 9.332031 22.667969 3.910156 16 3.910156 Z M 16 5.769531 C 21.660156 5.769531 26.230469 10.339844 26.230469 16 C 26.230469 21.660156 21.660156 26.230469 16 26.230469 C 10.339844 26.230469 5.769531 21.660156 5.769531 16 C 5.769531 10.339844 10.339844 5.769531 16 5.769531 Z M 15.070312 10.421875 L 15.070312 12.28125 L 16.929688 12.28125 L 16.929688 10.421875 Z M 15.070312 14.140625 L 15.070312 21.578125 L 16.929688 21.578125 L 16.929688 14.140625 Z M 15.070312 14.140625";
 
+  /** The paired {@code Node} for the component. */
   private Event node;
+
+  /** The parent of the paired {@code Node} for the component. */
   private ColumnComponent parent;
+
+  /** The parent controller instance. */
   private HomeController parentController;
 
-  public EventComponent(Node node, ColumnComponent parent, HomeController parentController) {
+  protected EventComponent(Node node, ColumnComponent parent, HomeController parentController) {
     super();
     this.node = (Event) node;
     this.parent = parent;
@@ -43,23 +47,39 @@ public class EventComponent extends Button {
     this.loadDisplay();
   }
 
-  public Event getNode() {
+  /**
+   * Gets the paired {@code Event}.
+   *
+   * @return the paired {@code Event}
+   */
+  protected Event getNode() {
     return this.node;
   }
 
-  public ColumnComponent getParentComponent() {
+  /**
+   * Gets the parent of the paired {@code Event}.
+   *
+   * @return the parent {@code Node}
+   */
+  protected ColumnComponent getParentComponent() {
     return this.parent;
   }
 
-  public String getColor() {
+  /**
+   * Returns the color of the {@code Event}.
+   *
+   * @return the color of the {@code Event}
+   */
+  protected String getColor() {
     if (this.parent == null) {
       return ((Board) this.node.getParent().getParent()).getColor();
     }
     return this.parent.getColor();
   }
 
+  /** Loads the fxml of the compoennt. */
   private final void loadDisplay() {
-    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("event.fxml"));
+    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("view/component.event.fxml"));
     fxmlLoader.setRoot(this);
     fxmlLoader.setController(this);
 
@@ -70,12 +90,13 @@ public class EventComponent extends Button {
     }
   }
 
-  public void display() {
-    if(this.node == null || this.node.getParent() == null){
+  /** Displays the component according to the paired {@code Node}. */
+  protected void display() {
+    if (this.node == null || this.node.getParent() == null) {
       return;
     }
     if (((Column) this.node.getParent()).getPreset() == Column.DONE) {
-      this.setStyle("-fx-accent: -fx-accent-60 !important;");
+      this.setStyle("-fx-accent: -fx-accent-light-40 !important;");
       icon.setContent(CHECK_ICON);
     } else if (this.node.isOverdue()) {
       icon.setContent(OVERDUE_ICON);
@@ -89,7 +110,7 @@ public class EventComponent extends Button {
   }
 
   @FXML
-  void update(ActionEvent e){
+  void update(ActionEvent e) {
     this.displayPrompt();
     this.parentController.show(this.parentController.eventDelete);
     this.parentController.hide(this.parentController.eventCreate);
@@ -97,27 +118,34 @@ public class EventComponent extends Button {
   }
 
   @FXML
-  void create(ActionEvent e){
+  void create(ActionEvent e) {
     this.displayPrompt();
     this.parentController.hide(this.parentController.eventDelete);
     this.parentController.show(this.parentController.eventCreate);
     this.parentController.promptEventPromptTitle.setText("Create event");
   }
 
-  private void displayPrompt(){
+  /** Displays the prompt. */
+  private void displayPrompt() {
     this.parentController.currentEvent = this;
-    this.parentController.textHolder.textProperty().bind(this.parentController.promptEventTitle.textProperty());
+    this.parentController
+        .textHolder
+        .textProperty()
+        .bind(this.parentController.promptEventTitle.textProperty());
 
     this.parentController.promptEventTitle.setText(this.node.getTitle());
-    this.parentController.promptEventLocationBoard.setText(this.node.getParent().getParent().getTitle());
+    this.parentController.promptEventLocationBoard.setText(
+        this.node.getParent().getParent().getTitle());
     this.parentController.promptEventLocationColumn.setText(this.node.getParent().getTitle());
-    this.parentController.promptEventImportanceLevel.getSelectionModel().select(this.node.getImportanceLevel());
+    this.parentController
+        .promptEventImportanceLevel
+        .getSelectionModel()
+        .select(this.node.getImportanceLevel());
     this.parentController.promptEventDueDate.setValue(
-        (this.node.getDueDate() != null)
-            ? LocalDate.parse(this.node.getDueDateString())
-            : null);
+        (this.node.getDueDate() != null) ? LocalDate.parse(this.node.getDueDateString()) : null);
 
-    this.parentController.promptEventDuration
+    this.parentController
+        .promptEventDuration
         .getSelectionModel()
         .select(this.node.getDurationValue().intValue() / 3600);
     this.parentController.promptEventNote.setText(this.node.getNote());
@@ -131,21 +159,21 @@ public class EventComponent extends Button {
     this.display();
   }
 
-  // activative card drag
   @FXML
-  void EventDragDetected(MouseEvent event) {
-      // clean bug card
-      if (this.parentController.currentDragButton != null && this.parentController.originalParent != null) {
-    	  this.parentController.originalParent.getChildren().add(this.parentController.currentDragButton);
-    	  this.parentController.currentDragButton = null;
-      }
+  void EventDragDetected(MouseEvent event) { // The card dragging detection
+    // Cleans card
+    this.parentController.currentDragCard = null;
+    this.parentController.dragPane.getChildren().clear();
 
-      Button card = (Button) event.getSource();
+    // Adds current card to drag pane
+    EventComponent card = (EventComponent) event.getSource();
+    if (card instanceof EventComponent) {
       card.setLayoutX(event.getSceneX());
       card.setLayoutY(event.getSceneY());
       card.startFullDrag();
-      this.parentController.originalParent = (VBox) card.getParent();
-      this.parentController.currentDragButton = card;
+      this.parentController.originalColumn = (ColumnComponent) card.getParentComponent();
+      this.parentController.currentDragCard = card;
       this.parentController.dragPane.getChildren().add(card);
+    }
   }
 }

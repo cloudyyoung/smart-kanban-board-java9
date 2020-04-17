@@ -15,349 +15,419 @@ import javafx.scene.shape.*;
 import javafx.scene.text.*;
 import javafx.stage.*;
 import structure.*;
-import ui.component.*;
 
+/**
+ * The JavaFX Controller for home.fxml.
+ *
+ * @author Cloudy Young, Jimschenchen
+ * @since 3.0
+ * @version 4.0
+ */
 public class HomeController {
 
-  @FXML
-  public Button sideProfile;
-  @FXML
-  public Circle profileAvatar;
-  @FXML
-  public Label profileUsername;
-  @FXML
-  public VBox sidePane;
-  @FXML
-  public VBox operationList;
-  @FXML
-  public Button sideSearch;
-  @FXML
-  public VBox boardList;
-  @FXML
-  public TabPane tabPane;
-  @FXML
-  public VBox boardPane;
-  @FXML
-  public TextField boardTitle;
-  @FXML
-  public TextField boardNote;
-  @FXML
-  public Button boardEdit;
-  @FXML
-  public HBox columnPane;
-  @FXML
-  public TextField inputSearch;
-  @FXML
-  public VBox searchList;
-  @FXML
-  public Pane dragPane;
-  @FXML
-  public VBox promptEvent;
-  @FXML
-  public SVGPath promptEventIcon;
-  @FXML
-  public Label promptEventPromptTitle;
-  @FXML
-  public VBox promptEventTitleWrapper;
-  @FXML
-  public TextArea promptEventTitle;
-  @FXML
-  public Label promptEventLocationBoard;
-  @FXML
-  public Label promptEventLocationColumn;
-  @FXML
-  public ComboBox<String> promptEventImportanceLevel;
-  @FXML
-  public DatePicker promptEventDueDate;
-  @FXML
-  public ComboBox<String> promptEventDuration;
-  @FXML
-  public TextArea promptEventNote;
-  @FXML
-  public Pane extraPane;
-  @FXML
-  public VBox promptBoard;
-  @FXML
-  public SVGPath promptBoardIcon;
-  @FXML
-  public Label promptBoardPromptTitle;
-  @FXML
-  public TextArea promptBoardTitle;
-  @FXML
-  public TextArea promptBoardNote;
-  @FXML
-  public VBox promptColumn;
-  @FXML
-  public SVGPath promptColumnIcon;
-  @FXML
-  public Button columnDelete;
-  @FXML
-  public Label promptColumnPromptTitle;
-  @FXML
-  public TextArea promptColumnTitle;
-  @FXML
-  public ComboBox<String> promptColumnPreset;
-  @FXML
-  public Text textHolder = new Text();
-  @FXML
-  public Button eventDelete;
-  @FXML
-  public Button eventCreate;
-  @FXML
-  public Button columnCreate;
-  @FXML
-  public Button boardDelete;
-  @FXML
-  public Button boardChildCreate;
-  @FXML
-  public Button boardCreate;
+  @FXML protected Button sideProfile;
+  @FXML protected Circle profileAvatar;
+  @FXML protected Label profileUsername;
+  @FXML protected VBox sidePane;
+  @FXML protected VBox operationList;
+  @FXML protected Button sideSearch;
+  @FXML protected VBox boardList;
+  @FXML protected TabPane tabPane;
+  @FXML protected VBox boardPane;
+  @FXML protected TextField boardTitle;
+  @FXML protected TextField boardNote;
+  @FXML protected Button boardEdit;
+  @FXML protected HBox columnPane;
+  @FXML protected TextField inputSearch;
+  @FXML protected VBox searchList;
+  @FXML protected Pane dragPane;
+  @FXML protected VBox promptEvent;
+  @FXML protected SVGPath promptEventIcon;
+  @FXML protected Label promptEventPromptTitle;
+  @FXML protected VBox promptEventTitleWrapper;
+  @FXML protected TextArea promptEventTitle;
+  @FXML protected Label promptEventLocationBoard;
+  @FXML protected Label promptEventLocationColumn;
+  @FXML protected ComboBox<String> promptEventImportanceLevel;
+  @FXML protected DatePicker promptEventDueDate;
+  @FXML protected ComboBox<String> promptEventDuration;
+  @FXML protected TextArea promptEventNote;
+  @FXML protected Pane extraPane;
+  @FXML protected VBox promptBoard;
+  @FXML protected SVGPath promptBoardIcon;
+  @FXML protected Label promptBoardPromptTitle;
+  @FXML protected TextArea promptBoardTitle;
+  @FXML protected TextArea promptBoardNote;
+  @FXML protected VBox promptColumn;
+  @FXML protected SVGPath promptColumnIcon;
+  @FXML protected Button columnDelete;
+  @FXML protected Label promptColumnPromptTitle;
+  @FXML protected TextArea promptColumnTitle;
+  @FXML protected ComboBox<String> promptColumnPreset;
+  @FXML protected Text textHolder = new Text();
+  @FXML protected Button eventDelete;
+  @FXML protected Button eventCreate;
+  @FXML protected Button columnCreate;
+  @FXML protected Button boardDelete;
+  @FXML protected Button boardChildCreate;
+  @FXML protected Button boardCreate;
 
   public EventComponent currentEvent;
   public BoardComponent currentBoard;
   public ColumnComponent currentColumn;
-  public VBox originalParent;
-  public Button currentDragButton;
-  
+  public ColumnComponent originalColumn;
+  public Button currentDragCard;
+  public BoardComponent componentToday;
 
   @FXML
   void initialize() {
 
     this.closePrompt();
-    extraPane.setVisible(false);
+    this.extraPane.setVisible(false);
 
-    // Intialize label text values
-    profileUsername.setText(User.getCurrent().getUsername());
-    profileUsername.setTooltip(new Tooltip(User.getCurrent().getUsername()));
+    // Intializes label text values
+    this.profileUsername.setText(User.getCurrent().getUsername());
+    this.profileUsername.setTooltip(new Tooltip(User.getCurrent().getUsername()));
 
-    // Check out kanban
+    // Checks out kanban
     Kanban.checkout();
     Kanban.getCurrent().generateToday();
+    Kanban.getCurrent().generateOverview();
 
-    // Initialize Event panel
-    promptEventImportanceLevel.getItems().addAll("", "Level 1", "Level 2", "Level 3");
-    promptEventDuration.getItems().addAll("", "1 Hour", "2 Hours", "3 Hours", "4 Hours", "5 Hours", "6 Hours",
-        "7 Hours", "8 Hours", "9 Hours", "10 Hours", "11 Hours", "12 Hours");
+    // Initializes Event prompt
+    this.promptEventImportanceLevel.getItems().addAll("", "Level 1", "Level 2", "Level 3");
+    this.promptEventDuration
+        .getItems()
+        .addAll(
+            "",
+            "1 Hour",
+            "2 Hours",
+            "3 Hours",
+            "4 Hours",
+            "5 Hours",
+            "6 Hours",
+            "7 Hours",
+            "8 Hours",
+            "9 Hours",
+            "10 Hours",
+            "11 Hours",
+            "12 Hours");
 
-    promptEventDueDate.valueProperty().addListener((observable, oldDate, newDate) -> {
-      Long timestamp = null;
-      if (newDate != null) {
-        timestamp = Timestamp.valueOf(newDate.atTime(LocalTime.MAX)).getTime() / 1000;
-      }
-      currentEvent.getNode().setDueDateRequest(timestamp);
-    });
+    // Sets listeners
+    this.promptEventDueDate
+        .valueProperty()
+        .addListener(
+            (observable, oldDate, newDate) -> {
+              Long timestamp = null;
+              if (newDate != null) {
+                timestamp = Timestamp.valueOf(newDate.atTime(LocalTime.MAX)).getTime() / 1000;
+              }
+              this.currentEvent.getNode().setDueDateRequest(timestamp);
+            });
 
-    searchList.getChildren().clear();
-    inputSearch.textProperty().addListener((observable, oldText, newText) -> {
-      searchList.getChildren().clear();
-      if (!newText.equals("")) {
-        ArrayList<structure.Node> list = Kanban.getCurrent().search(newText);
-        for (structure.Node each : list) {
-          EventComponent event = new EventComponent(each, null, this);
-          searchList.getChildren().add(event);
-        }
-      }
-    });
+    this.searchList.getChildren().clear();
+    this.inputSearch
+        .textProperty()
+        .addListener(
+            (observable, oldText, newText) -> {
+              this.searchList.getChildren().clear();
+              if (!newText.equals("")) {
+                ArrayList<structure.Node> list = Kanban.getCurrent().search(newText);
+                for (structure.Node each : list) {
+                  EventComponent event = new EventComponent(each, null, this);
+                  this.searchList.getChildren().add(event);
+                }
+              }
+            });
 
-    promptEventTitle.focusedProperty().addListener((observable, oldFocus, newFocus) -> {
-      if (!newFocus) {
-        currentEvent.getNode().setTitleRequest(promptEventTitle.getText());
-      }
-    });
+    this.promptEventTitle
+        .focusedProperty()
+        .addListener(
+            (observable, oldFocus, newFocus) -> {
+              if (!newFocus) {
+                this.currentEvent.getNode().setTitleRequest(this.promptEventTitle.getText());
+              }
+            });
 
-    promptEventTitle.textProperty().addListener((observable, oldText, newText) -> {
-      currentEvent.setText(promptEventTitle.getText());
-    });
+    this.promptEventTitle
+        .textProperty()
+        .addListener(
+            (observable, oldText, newText) -> {
+              this.currentEvent.setText(this.promptEventTitle.getText());
+            });
 
-    // The TextArea internally does not use the onKeyPressed property to handle
-    // keyboard input.
-    // Therefore, setting onKeyPressed does not remove the original event handler.
-    // To prevent TextArea's internal handler for the Enter key, you need to add an
-    // event filter that consumes the event.
-    // @link:
-    // https://stackoverflow.com/questions/26752924/how-to-stop-cursor-from-moving-to-a-new-line-in-a-textarea-when-enter-is-pressed
-    promptEventTitle.addEventFilter(KeyEvent.KEY_PRESSED, e -> {
-      if (e.getCode() == KeyCode.ENTER) {
-        e.consume();
-        promptEvent.requestFocus();
-      }
-    });
+    /* The TextArea internally does not use the onKeyPressed property to handle
+     * keyboard input.
+     * Therefore, setting onKeyPressed does not remove the original event handler.
+     * To prevent TextArea's internal handler for the Enter key, you need to add an
+     * event filter that consumes the event.
+     * @link: https://stackoverflow.com/questions/26752924/how-to-stop-cursor-from-moving-to-a-new-line-in-a-textarea-when-enter-is-pressed
+     */
+    this.promptEventTitle.addEventFilter(
+        KeyEvent.KEY_PRESSED,
+        e -> {
+          if (e.getCode() == KeyCode.ENTER) {
+            e.consume();
+            this.promptEvent.requestFocus();
+          }
+        });
 
-    textHolder.getStyleClass().addAll(promptEventTitle.getStyleClass());
-    textHolder.setStyle(promptEventTitle.getStyle());
-    textHolder.setWrappingWidth(450);
-    textHolder.layoutBoundsProperty().addListener((observable, oldValue, newValue) -> {
-      promptEventTitle.setPrefHeight(textHolder.getLayoutBounds().getHeight() + 23);
-      promptBoardTitle.setPrefHeight(textHolder.getLayoutBounds().getHeight() + 23);
-    });
+    this.promptColumnTitle.addEventFilter(
+        KeyEvent.KEY_PRESSED,
+        e -> {
+          if (e.getCode() == KeyCode.ENTER) {
+            e.consume();
+            this.promptColumn.requestFocus();
+          }
+        });
 
-    extraPane.getChildren().add(textHolder);
+    this.promptBoardTitle.addEventFilter(
+        KeyEvent.KEY_PRESSED,
+        e -> {
+          if (e.getCode() == KeyCode.ENTER) {
+            e.consume();
+            this.promptBoard.requestFocus();
+          }
+        });
 
-    promptEventImportanceLevel.valueProperty().addListener((observable, oldValue, newValue) -> {
-      currentEvent.getNode()
-          .setImportanceLevelRequest(promptEventImportanceLevel.getSelectionModel().getSelectedIndex());
-    });
+    this.textHolder.getStyleClass().addAll(this.promptEventTitle.getStyleClass());
+    this.textHolder.setStyle(promptEventTitle.getStyle());
+    this.textHolder.setWrappingWidth(450);
+    this.textHolder
+        .layoutBoundsProperty()
+        .addListener(
+            (observable, oldValue, newValue) -> {
+              this.promptEventTitle.setPrefHeight(
+                  this.textHolder.getLayoutBounds().getHeight() + 23);
+              this.promptBoardTitle.setPrefHeight(
+                  this.textHolder.getLayoutBounds().getHeight() + 23);
+            });
 
-    promptEventDuration.valueProperty().addListener((observable, oldValue, newValue) -> {
-      currentEvent.getNode().setDurationRequest(promptEventDuration.getSelectionModel().getSelectedIndex() * 3600L);
-    });
+    this.promptEventImportanceLevel
+        .valueProperty()
+        .addListener(
+            (observable, oldValue, newValue) -> {
+              this.currentEvent
+                  .getNode()
+                  .setImportanceLevelRequest(
+                      this.promptEventImportanceLevel.getSelectionModel().getSelectedIndex());
+            });
 
-    promptEventNote.focusedProperty().addListener((observable, oldFocus, newFocus) -> {
-      if (!newFocus)
-        currentEvent.getNode().setNoteRequest(promptEventNote.getText());
-    });
+    this.promptEventDuration
+        .valueProperty()
+        .addListener(
+            (observable, oldValue, newValue) -> {
+              this.currentEvent
+                  .getNode()
+                  .setDurationRequest(
+                      this.promptEventDuration.getSelectionModel().getSelectedIndex() * 3600L);
+            });
 
-    promptBoardTitle.focusedProperty().addListener((observable, oldFocus, newFocus) -> {
-      if (!newFocus)
-        currentColumn.getNode().setTitleRequest(promptColumnTitle.getText());
-    });
+    this.promptEventNote
+        .focusedProperty()
+        .addListener(
+            (observable, oldFocus, newFocus) -> {
+              if (!newFocus)
+                this.currentEvent.getNode().setNoteRequest(this.promptEventNote.getText());
+            });
 
-    promptColumnPreset.getItems().addAll("To Do", "In Progress", "Done");
+    this.promptBoardTitle
+        .focusedProperty()
+        .addListener(
+            (observable, oldFocus, newFocus) -> {
+              if (!newFocus)
+                this.currentBoard.getNode().setTitleRequest(this.promptBoardTitle.getText());
+            });
 
-    promptColumnPreset.valueProperty().addListener((observable, oldValue, newValue) -> {
-      currentColumn.getNode().setPresetRequest(promptColumnPreset.getSelectionModel().getSelectedIndex());
-    });
+    this.promptColumnPreset.getItems().addAll("To Do", "In Progress", "Done");
 
-    promptColumnTitle.focusedProperty().addListener((observable, oldFocus, newFocus) -> {
-      if (!newFocus)
-        currentColumn.getNode().setTitleRequest(promptColumnTitle.getText());
-    });
+    this.promptColumnPreset
+        .valueProperty()
+        .addListener(
+            (observable, oldValue, newValue) -> {
+              this.currentColumn
+                  .getNode()
+                  .setPresetRequest(this.promptColumnPreset.getSelectionModel().getSelectedIndex());
+            });
 
-    this.sidePane.requestFocus();
-    this.listBoard();
+    this.promptColumnTitle
+        .focusedProperty()
+        .addListener(
+            (observable, oldFocus, newFocus) -> {
+              if (!newFocus)
+                this.currentColumn.getNode().setTitleRequest(this.promptColumnTitle.getText());
+            });
 
-    // set transparent to 100
-    dragPane.setMouseTransparent(true);
+    this.dragPane.setMouseTransparent(true);
+    this.extraPane.getChildren().add(this.textHolder);
+
+    this.list();
+    this.tabPane.requestFocus();
   }
 
   @FXML
-  void listBoard() {
-    BoardComponent componentToday = null;
+  void list() {
+    this.componentToday = null;
 
     // Add list items
-    operationList.getChildren().clear();
-    boardList.getChildren().clear();
+    this.operationList.getChildren().clear();
+    this.boardList.getChildren().clear();
     for (structure.Node each : Kanban.getCurrent().getNodes()) {
       // Add to list
       BoardComponent node = new BoardComponent((Board) each, this);
       if (!each.isSpecialized()) {
-        boardList.getChildren().add(node);
+        this.boardList.getChildren().add(node);
       } else {
-        operationList.getChildren().add(node);
+        this.operationList.getChildren().add(node);
         if (each.getId() == 1) {
-          componentToday = node;
+          this.componentToday = node;
         }
       }
     }
     if (componentToday != null) {
-      componentToday.fire();
+      this.componentToday.fire();
     }
   }
 
   @FXML
   void switchTab(ActionEvent event) {
 
+    // Clears previous selected board
     HashSet<Node> sideButtons = new HashSet<Node>();
     sideButtons.addAll(sidePane.lookupAll(".button"));
     sideButtons.addAll(boardList.lookupAll(".button"));
-
     for (Node each : sideButtons) {
       each.getStyleClass().remove("selected");
     }
 
+    // Selectes current board
     Button button = (Button) event.getSource();
     button.getStyleClass().add("selected");
 
     if (button.equals(sideSearch)) {
+      // If clicks search
       tabPane.getSelectionModel().select(1);
     } else if (button.equals(sideProfile)) {
+      // If clicks settings
       try {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene oldScene = ((Node) event.getSource()).getScene();
-        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("settings.fxml")), oldScene.getWidth(),
-            oldScene.getHeight());
-        scene.getStylesheets().add(getClass().getResource("default.css").toExternalForm());
+        Scene scene =
+            new Scene(
+                FXMLLoader.load(getClass().getResource("view/settings.fxml")),
+                oldScene.getWidth(),
+                oldScene.getHeight());
+        scene.getStylesheets().add(getClass().getResource("view/default.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
       } catch (Exception e) {
         e.printStackTrace();
       }
     } else {
-      tabPane.getSelectionModel().select(0);
+      // If clicks board button
+      this.tabPane.getSelectionModel().select(0);
     }
   }
 
   @FXML
   void closePrompt() {
     this.hide(this.promptEvent, this.promptBoard, this.promptColumn);
-    if (this.currentEvent != null) {
+    if (this.currentEvent != null && this.currentEvent.getNode().isExisting()) {
       this.currentEvent.display();
       this.currentEvent = null;
     }
-    if (this.currentBoard != null) {
+    if (this.currentBoard != null && this.currentBoard.getNode().isExisting()) {
       this.currentBoard.display();
       this.currentBoard.fire();
     }
-    if (this.currentColumn != null) {
+    if (this.currentColumn != null && this.currentColumn.getNode().isExisting()) {
       this.currentColumn.display();
       this.currentColumn = null;
     }
+    this.tabPane.requestFocus();
   }
 
   @FXML
-  void displayBoardPrompt(ActionEvent e) {
+  void updateBoard(ActionEvent e) {
     currentBoard.update(e);
   }
 
   @FXML
+  void createBoard(ActionEvent e) {
+    Board event = new Board("Untitled Board", "", "", Kanban.getCurrent());
+    BoardComponent boardComponent = new BoardComponent(event, this);
+    boardComponent.create(e);
+  }
+
+  @FXML
+  void createBoardRequest(ActionEvent e) {
+    this.currentBoard.getNode().createRequest();
+    Kanban.getCurrent().generateToday();
+    Kanban.getCurrent().generateOverview();
+    this.list();
+    this.closePrompt();
+  }
+
+  @FXML
   void deleteBoardRequest() {
-    currentBoard.getNode().deleteRequest();
-    this.listBoard();
-    currentBoard = null;
+    this.currentBoard.getNode().deleteRequest();
+    this.list();
+    this.currentBoard = null;
     this.closePrompt();
   }
 
   @FXML
   void deleteEventRequest() {
-    currentEvent.getNode().deleteRequest();
-    currentEvent.getParentComponent().list();
+    this.currentEvent.getNode().deleteRequest();
+    this.currentEvent.getParentComponent().list();
     Kanban.getCurrent().generateToday();
-    currentEvent = null;
+    Kanban.getCurrent().generateOverview();
+    this.currentEvent = null;
     this.closePrompt();
   }
 
   @FXML
   void deleteColumnRequest() {
-    currentColumn.getNode().deleteRequest();
-    currentColumn.getParentComponent().list();
-    currentColumn = null;
+    this.currentColumn.getNode().deleteRequest();
+    this.currentColumn.getParentComponent().list();
+    this.currentColumn = null;
     this.closePrompt();
   }
 
   @FXML
-  void createEventRequest(){
-    currentEvent.getNode().createRequest();
+  void createEventRequest() {
+    this.currentEvent.getNode().createRequest();
     Kanban.getCurrent().generateToday();
-    currentEvent.getParentComponent().list();
+    Kanban.getCurrent().generateOverview();
+    this.currentEvent.getParentComponent().list();
     this.closePrompt();
   }
 
   @FXML
-  void createBoardChild(ActionEvent e){
+  void createBoardChild(ActionEvent e) {
     this.closePrompt();
-    currentBoard.createChild(e);
+    this.currentBoard.createChild(e);
   }
 
   @FXML
-  void createColumnRequest(){
-    currentColumn.getNode().createRequest();
+  void createColumnRequest() {
+    this.currentColumn.getNode().createRequest();
     Kanban.getCurrent().generateToday();
-    currentColumn.getParentComponent().list();
+    Kanban.getCurrent().generateOverview();
+    this.currentColumn.getParentComponent().list();
     this.closePrompt();
   }
 
+  /**
+   * Returns the inline style for custom accent color.
+   *
+   * @version 4.0
+   * @param hex the color string in HEX, eg #242424
+   * @return the inline style string
+   */
   public static String styleAccent(String hex) {
     String style = "";
-    if(hex == null || hex.equals("")) hex = "#242424";
+    if (hex == null || hex.equals("")) hex = "#242424";
     style += "-fx-accent: " + hex + ";";
     style += "-fx-accent-90: " + hex + "e6;";
     style += "-fx-accent-80: " + hex + "cc;";
@@ -369,6 +439,7 @@ public class HomeController {
     style += "-fx-accent-20: " + hex + "33;";
     style += "-fx-accent-10: " + hex + "1a;";
     style += "-fx-accent-5: " + hex + "0d;";
+    style += "-fx-accent-light-40: derive(" + hex + ", 40%);";
     return style;
   }
 
@@ -382,25 +453,48 @@ public class HomeController {
 
   @FXML
   void MouseDragReleased(MouseDragEvent event) {
+
     Button btn = (Button) event.getGestureSource();
-    if (btn.getParent().getClass() != VBox.class) {
-      originalParent.getChildren().add(btn);
-    } 
-    currentDragButton = null;
-    originalParent = null;
+    if (btn instanceof EventComponent && originalColumn != null) {
+      this.originalColumn.list();
+    }
+    this.currentDragCard = null;
+    this.originalColumn = null;
+
+    this.tabPane.requestFocus();
   }
 
-  public void hide(Node... nodes){
-    for(Node each : nodes){
-      if(!each.getStyleClass().contains("hide")){
+  @FXML
+  void onMouseExited() {
+    // Cleans card
+    if (this.originalColumn != null) {
+      this.originalColumn.list();
+    }
+    this.currentDragCard = null;
+    this.dragPane.getChildren().clear();
+  }
+
+  /**
+   * Sets the given component to invisible
+   *
+   * @param nodes the nodes to set
+   */
+  public void hide(Node... nodes) {
+    for (Node each : nodes) {
+      if (!each.getStyleClass().contains("hide")) {
         each.getStyleClass().add("hide");
       }
     }
   }
 
-  public void show(Node... nodes){
-    for(Node each : nodes){
-      while(each.getStyleClass().contains("hide")){
+  /**
+   * Sets the given component to visible
+   *
+   * @param nodes the nodes to set
+   */
+  public void show(Node... nodes) {
+    for (Node each : nodes) {
+      while (each.getStyleClass().contains("hide")) {
         each.getStyleClass().remove("hide");
       }
     }

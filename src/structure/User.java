@@ -5,6 +5,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collection;
 import java.util.Map;
 
 import com.google.gson.*;
@@ -13,8 +16,9 @@ import com.google.gson.*;
  * The class {@code User} instance represents an Account which stores the users informations and
  * provides needed methods to interact.
  *
+ * @author Cloudy Young, Jimschenchen
  * @since 1.0
- * @version 2.1
+ * @version 4.0
  */
 public class User {
 
@@ -41,6 +45,12 @@ public class User {
 
   /** A boolean to indicate if the account is existing on the server. */
   private boolean existing = false;
+
+  /** A list of int to storage the available hours which user plans to strive per day */
+  private ArrayList<Integer> availability;
+
+  /** The current theme name */
+  private String theme;
 
   /** Default constructor of {@code User}. */
   public User() {}
@@ -100,6 +110,54 @@ public class User {
   }
 
   /**
+   * Returns the current theme of user.
+   *
+   * @return the theme String
+   */
+  private String getTheme() {
+    return this.theme;
+  }
+
+  /**
+   * Sets the current theme of user.
+   *
+   * @param theme current theme of user.
+   */
+  private void setTheme(String theme) {
+    this.theme = theme;
+  }
+
+  /**
+   * Returns Available house of users. Note: The index of 0 is Sunday
+   *
+   * @return the arraylist contains the available houses from Mon to Sun
+   */
+  private ArrayList<Integer> getAvailability() {
+    return this.availability;
+  }
+
+  /**
+   * Returns Available house of users on current day. Note: The index of 1 is Sunday 2 is Monday
+   *
+   * @return Available house of users on current day
+   */
+  public Integer getTodayAvailability() {
+
+    Calendar c = Calendar.getInstance();
+    Integer dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+    return this.getAvailability().get(dayOfWeek - 1);
+  }
+
+  /**
+   * Sets the current theme of user.
+   *
+   * @param availability the current theme of user.
+   */
+  private void setAvailability(ArrayList<Integer> availability) {
+    this.availability = availability;
+  }
+
+  /**
    * Return the authentication status of the account.
    *
    * @return {@code true} if the instance user is authenticated with the server successfully. {@code
@@ -143,13 +201,11 @@ public class User {
   /**
    * Authenticates the user account with the server.
    *
-   * <p>This is an <i>action</i> for controllers.
-   *
    * @param username the username of the account
    * @param password the pssword of the account
-   * @return the result object of this action
+   * @return the {@code Result} instance of this action
    * @since 1.0
-   * @version 2.1
+   * @version 4.0
    */
   public Result signInRequest(String username, String password) {
     Result res = new Result();
@@ -176,6 +232,15 @@ public class User {
 
       this.setId(response.getInt("id"));
       this.setSessionId(cookie.getString("PHPSESSID"));
+
+      ArrayList<Integer> availability = new ArrayList<Integer>();
+      Collection<Object> c = response.getList("availability").values();
+      for (Object i : c) {
+        Integer a = ((Double) i).intValue();
+        availability.add(a);
+      }
+      this.setAvailability(availability);
+      this.setTheme(response.getString("theme"));
       this.existing = true;
 
       // Sign in locally
@@ -186,6 +251,12 @@ public class User {
     return res;
   }
 
+  /**
+   * Authenticates the user account with the local file.
+   *
+   * @version 4.0
+   * @return the {@code Result} instance of this action
+   */
   public Result signInLocalRequest() {
 
     HttpBody body = User.readLocalFile();
@@ -207,11 +278,17 @@ public class User {
     return this.existing;
   }
 
+  /**
+   * Signs out the user account.
+   *
+   * @version 4.0
+   * @return the {@code Result} instance of this action
+   */
   public Result signOut() {
     this.authenticated = false;
     User.current = null;
 
-    StructureRequest req = new StructureRequest(true, false, this);
+    StructureRequest req = new StructureRequest(true, false, false, this);
     Result res = new Result();
     res.add(req);
     File myObj = new File("temp.meonc");
@@ -219,6 +296,12 @@ public class User {
     return res;
   }
 
+  /**
+   * Writes the given {@code HttpBody} object into a file.
+   *
+   * @version 4.0
+   * @param body the {@code HttpBody} to write
+   */
   private static void writeLocalFile(Map<?, ?> body) {
     try {
       FileWriter myWriter = new FileWriter("temp.meonc");
@@ -232,6 +315,12 @@ public class User {
     }
   }
 
+  /**
+   * Reads the given {@code HttpBody} object from a file.
+   *
+   * @version 4.0
+   * @return the {@code HttpBody} body read
+   */
   private static HttpBody readLocalFile() {
     int ch;
     FileReader fr = null;
@@ -259,15 +348,13 @@ public class User {
   /**
    * Registers the instance account in the server.
    *
-   * <p>This is an <i>action</i> for controllers.
-   *
    * @param username the username of the account
    * @param password the password of the account
    * @param secQues the security question of the account
    * @param secAns the security answer of the the account
    * @return the result object of this action
    * @since 2.0
-   * @version 2.1
+   * @version 3.0
    */
   public Result signUpRequest(String username, String password, String secQues, String secAns) {
     Result res = new Result();
@@ -296,6 +383,14 @@ public class User {
     return res;
   }
 
+  /**
+   * Authenticates the user account with the server.
+   *
+   * @version 3.0
+   * @param username the user username
+   * @param password the user password
+   * @return the {@code Result} instance of this action
+   */
   public static Result authenticationRequest(String username, String password) {
     User user = new User();
     Result res = user.signInRequest(username, password);
@@ -305,21 +400,29 @@ public class User {
     return res;
   }
 
+  /**
+   * Authenticates the user account with the server.
+   *
+   * @version 3.0
+   * @param username the user username
+   * @param password the user password
+   * @param secQues the user security question
+   * @param secAns the user security answer
+   * @return the {@code Result} instance of this action
+   */
   public static Result registrationRequest(
       String username, String password, String secQues, String secAns) {
     User user = new User();
     return user.signUpRequest(username, password, secQues, secAns);
   }
 
+  /**
+   * Returns the current signed in {@code User} instance.
+   *
+   * @version 4.0
+   * @return the current signed in {@code User} instance.
+   */
   public static User getCurrent() {
     return User.current;
-  }
-
-  public static void main(String[] args) throws IOException {
-    writeLocalFile(new HttpBody());
-
-    System.out.println(readLocalFile());
-    User user = new User();
-    user.signOut();
   }
 }

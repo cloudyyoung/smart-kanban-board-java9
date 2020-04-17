@@ -7,12 +7,16 @@ import com.google.gson.annotations.*;
  *
  * <p>The instance should contains {@code Column} object as children nodes.
  *
+ * @author Cloudy Young, Jimschenchen
  * @since 1.0
- * @version 2.1
+ * @version 4.0
  */
 public final class Board extends Node {
 
-  /** Color of the board, in HEX. */
+  /**
+   * Color of the board in HEX, eg: #242424. It is exposed to Gson, can be both serialized and
+   * deserialized.
+   */
   @Expose private String color;
 
   /**
@@ -28,26 +32,15 @@ public final class Board extends Node {
   /**
    * Constructor of {@code Board}, provide title, note and color.
    *
+   * @version 4.0
    * @param title The title in {@code String}
    * @param note The note in {@code String}
-   * @param boardId THe id in {@code String}
+   * @param color The theme color in {@code String}
+   * @param parent The parent node in {@code Node}
    */
-  public Board(
-      final String title,
-      final String note,
-      final String color,
-      final Node parent) {
+  public Board(final String title, final String note, final String color, final Node parent) {
     super(title, note, parent);
     this.setColor(color);
-  }
-
-  protected void createSubColumns() {
-    Column col1 = new Column("To Do", "Todo", 0, this);
-    Column col2 = new Column("In Progress", "Todo", 1, this);
-    Column col3 = new Column("Done", "Todo", 2, this);
-    col1.createRequest();
-    col2.createRequest();
-    col3.createRequest();
   }
 
   /**
@@ -62,17 +55,18 @@ public final class Board extends Node {
   /**
    * Sets the color of the board.
    *
+   * @version 4.0
    * @param color The color in {@code String}
-   * @return the http request of this action
+   * @return the {@code Result} instance of this action
    */
   public Result setColorRequest(String color) {
     Result res = new Result();
-    if(!this.isExisting()){
+    if (!this.isExisting()) {
       this.setColor(color);
 
-      StructureRequest req = new StructureRequest(true, false, this);
+      StructureRequest req = new StructureRequest(true, false, false, this);
       res.add(req);
-    }else{
+    } else {
       HttpRequest req = this.update("color", color);
       if (req.isSucceeded()) {
         this.setColor(color);
@@ -92,10 +86,23 @@ public final class Board extends Node {
   }
 
   /**
-   * A string that "textually represents" this object.
+   * Returns a column according to given preset
    *
-   * @return text
+   * @param preset the designated preset to find
+   * @return the {@code Column} instance of the given preset
    */
+  public Column getPresetColumn(int preset) {
+    for (Node node : this.getNodes()) {
+      Column column = (Column) node;
+      if (column.getPreset() == preset) {
+        return column;
+      }
+    }
+    return null;
+  }
+
+  /** {@inheritDoc} */
+  @Override
   public String toString() {
     return this.getType()
         + " (id: "

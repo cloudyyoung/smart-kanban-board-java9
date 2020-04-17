@@ -8,7 +8,7 @@ import java.util.Collection;
  *
  * @author Cloudy Young
  * @since 2.0
- * @version 2.0
+ * @version 4.0
  */
 public final class Result {
 
@@ -18,6 +18,7 @@ public final class Result {
   /** An {@code ArrayList} which stores all the excepted {@code Request} in {@link #list}. */
   private final ArrayList<Request> exceptionList = new ArrayList<Request>();
 
+  /** An {@code ArrayList} which stores all the failed {@code Request} in {@link #list}. */
   private final ArrayList<Request> failList = new ArrayList<Request>();
 
   /**
@@ -32,6 +33,10 @@ public final class Result {
    */
   private boolean succeeded = false;
 
+  /**
+   * A boolean to indicate whether any of the related {@code Request} in {@link #list} has failure
+   * occured.
+   */
   private boolean failed = false;
 
   /** Default constructor of {@code Result}. */
@@ -40,6 +45,7 @@ public final class Result {
   /**
    * Adds a new related {@code Request} to the {@link list}.
    *
+   * @version 4.0
    * @param add the related request to be added
    * @see #list
    * @see #remove(Request)
@@ -52,16 +58,34 @@ public final class Result {
     this.checkout();
   }
 
+  /**
+   * Copies and adds all requests from a given {@code Result} instance.
+   *
+   * @version 4.0
+   * @param res the {@code Result} instance
+   */
   public void addAll(Result res) {
     this.list.addAll(res.list);
   }
 
+  /**
+   * Adds all given requests.
+   *
+   * @version 4.0
+   * @param add the Requests to add
+   */
   public void addAll(Request... add) {
     for (Request each : add) {
       this.list.add(each);
     }
   }
 
+  /**
+   * Adds all requests from given {@code Collection}.
+   *
+   * @version 4.0
+   * @param add the {@code Collection<Request>} instance
+   */
   public void addAll(Collection<Request> add) {
     this.addAll(add);
   }
@@ -139,6 +163,16 @@ public final class Result {
     return this.succeeded;
   }
 
+  /**
+   * Return a boolean to indicate whether any of the related {@code Request} in {@link #list} has
+   * failure occured.
+   *
+   * @version 4.0
+   * @return {@code true} if there is at least one related request has failure occured. {@code
+   *     false} otherwise.
+   * @see #setFailed(boolean)
+   * @see #isFailed()
+   */
   public boolean isFailed() {
     return this.failed;
   }
@@ -164,6 +198,14 @@ public final class Result {
     this.succeeded = is;
   }
 
+  /**
+   * Sets {@link #excepted} to indicate whether any of the related {@code Request} in {@link #list}
+   * has failure occured.
+   *
+   * @version 4.0
+   * @param is {@code true} if there is at least one related request has failure occured. {@code
+   *     false} otherwise.
+   */
   private void setFailed(boolean is) {
     this.failed = is;
   }
@@ -178,6 +220,12 @@ public final class Result {
     return new ArrayList<Request>(this.exceptionList);
   }
 
+  /**
+   * Returns a list of all related requests which have failures occured.
+   *
+   * @version 4.0
+   * @return a list of all related requests which have failures occured
+   */
   public ArrayList<Request> getFails() {
     this.checkout();
     return new ArrayList<Request>(this.exceptionList);
@@ -197,6 +245,12 @@ public final class Result {
     }
   }
 
+  /**
+   * Returns the first element of all related requests which have failures occured.
+   *
+   * @version 4.0
+   * @return the first element of all related requests which have failures occured.
+   */
   public Request getFail() {
     this.checkout();
     if (this.failList.size() > 0) {
@@ -206,6 +260,12 @@ public final class Result {
     }
   }
 
+  /**
+   * Returns the failure error of the instance.
+   *
+   * @version 4.0
+   * @return the failure error body in{@code HttpBody}
+   */
   public HttpBody getFailError() {
     Request req = this.getFail();
     HttpBody body = null;

@@ -6,11 +6,12 @@
 [![time tracker](https://wakatime.com/badge/github/CloudyYoung/Smart-Kanban-Board.svg)](https://wakatime.com/badge/github/CloudyYoung/Smart-Kanban-Board)
 
 
-## Team Members
+## Contributors
+- [Yunfan Yang (@CloudyYoung)](https://github.com/CloudyYoung)
+- [Chenyue Li (@Jimschenchen)](https://github.com/jimschenchen)
 - [Jerremy Lewis (@lewisjerremy)](https://github.com/lewisjerremy)
 - [Ben Wood (@Braindamaged69)](https://github.com/Braindamaged69)
 - [Caleb Wannamaker (@calebwannamaker)](https://github.com/calebwannamaker)
-- [Yunfan Yang (@CloudyYoung)](https://github.com/CloudyYoung)
 
 
 ## Description
@@ -28,45 +29,40 @@ problem of overwhelming the user with events, we are in the process of developin
 availability for work, then decides the most important events for the day given the workload of events backlogged and their 
 priority relative to other events. The most important events are then added to a daily kanban board for the user to complete.
 
-## Where to Find Demo Two
-There is a seperate branch for v2.0.
-It can be also found under "Release" panel or here:
-[https://github.com/CloudyYoung/Smart-Kanban-Board/tree/v1.0](https://github.com/CloudyYoung/Smart-Kanban-Board/tree/v1.0)
+## Where to Find Latest Release
+It can be found under "Release" panel.
 
 ## How to Compile and Run
 The Github Wiki link is here: [https://github.com/CloudyYoung/Smart-Kanban-Board/wiki/Compile-and-Run-the-Application](https://github.com/CloudyYoung/Smart-Kanban-Board/wiki/Compile-and-Run-the-Application)
 **Notice that the wiki is updated, if you are running the project v2.0 for the first time, you need to follow the new configuration procedure.**
 
 ## Terminal Commands
-Log-in Page
-- `help` : list commands
-- `username` : enter your username for authentication
-- `create` : create a new account
-- `forgot` : recover an account
-- `exit` : terminate the program
+The text-based terminal version supports limited functionalities which are sign in, display the boards, columns and events; the GUI supports full functionalities.
 
-Main Page
-- `help` : list commands
-- `today` : prints your daily board
-- `list` : prints a list of your open boards
-- `new` : create a new board
-- `calendar` : calendar
-- `settings` : navigates to settings page
-- `exit` : terminate the program
+Welcome Page
+ - You will need to enter your account username and password to sign in.
 
-Settings Page
-- `help` : list commands
-- `kanban settings` : change board preferences
-- `time settings` : change availability preferences
-- `account settings` : change account preferences
-- `back` return to main page
-- `exit` : terminate the program
+Home Page
+ - `help`: list all the commands
+ - `todao`: Display the Today board
+ - `overview`: Display the Overview board
+ - `board`: List all the boards
+ - `exit`: Exit the program
+
+Board Page
+ - `back`: Go back to previous page
+ - `#id`: Enter a column id to check a specific column
+
+Column Page
+ - `back`: Go back to previous page
+ - `#id`: Enter an event id to check an specific event
 
 ## References
-Google Gson
-- [https://github.com/google/gson](https://github.com/google/gson)
 
-JUnit 5
-- [https://github.com/junit-team/junit5](https://github.com/junit-team/junit5)
+### Libraries
+ - Google Gson: [https://github.com/google/gson](https://github.com/google/gson)
 
-Other code snippet references are in the files javadoc `@see`.
+ - JavaFX 11: [https://openjfx.io/](https://openjfx.io/)
+
+### Code snippet
+Code snippet references are **in the specific files** and link is beside javadoc tag `@see`.

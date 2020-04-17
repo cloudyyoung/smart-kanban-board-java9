@@ -8,5 +8,6 @@
     },
     "java.project.referencedLibraries": [
         "src/lib/**/*.jar",
-    ]
+    ],
+    "vmssoftware.project-dep.buildName": "DEBUG"
 }

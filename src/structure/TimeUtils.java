@@ -1,16 +1,15 @@
 package structure;
 
-// Import packages
 import java.time.LocalDateTime;
 import java.time.DayOfWeek;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Provides methods for returning current times and dates based off on devices local time
+ * Provides methods for returning current times and dates based off on devices local time.
  *
  * @since 1.0
- * @version 1.0
- * @author Jerremy Lewis
+ * @version 4.0
+ * @author Jerremy Lewis, Cloudy Young
  */
 public class TimeUtils {
 
@@ -187,7 +186,7 @@ public class TimeUtils {
   /**
    * Returns the name of current month. Such as {@code October}.
    *
-   * @param currentMonthNum the number of month
+   * @version 4.0
    * @return the name of the month
    */
   public static String currentMonthName() {

@@ -7,7 +7,7 @@ import java.util.Map;
  *
  * @author Cloudy Young
  * @since 2.0
- * @version 2.0
+ * @version 4.0
  */
 public abstract class Request {
 
@@ -17,6 +17,7 @@ public abstract class Request {
   /** A boolean to indicate whether the instance has exceptions occured. */
   private boolean excepted;
 
+  /** A boolean to indicate whether the instance is failed on request. */
   private boolean failed;
 
   /**
@@ -41,6 +42,14 @@ public abstract class Request {
     return this.succeeded;
   }
 
+  /**
+   * Returns a boolean to indicate whether the instance is failed on request
+   *
+   * @version 4.0
+   * @return a boolean to indicate whether the instance is failed on request
+   * @see #setFailed(boolean)
+   * @see #isFailed()
+   */
   public boolean isFailed() {
     return this.failed;
   }
@@ -65,10 +74,21 @@ public abstract class Request {
     this.excepted = is;
   }
 
+  /**
+   * Sets the failed status to the specified boolean
+   *
+   * @param is the specified boolean
+   * @see #isFailed()
+   */
   protected void setFailed(boolean is) {
     this.failed = is;
   }
 
+  /**
+   * Returns the response body error of the instance.
+   *
+   * @return the error body in {@code HttpBody}
+   */
   public HttpBody getResponseBodyError() {
     return this.getResponseBody().getHttpBody("error");
   }

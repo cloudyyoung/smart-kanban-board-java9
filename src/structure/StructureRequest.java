@@ -11,7 +11,7 @@ import com.google.gson.*;
  *
  * @author Cloudy Young
  * @since 2.0
- * @version 2.0
+ * @version 4.0
  */
 public final class StructureRequest extends Request {
 
@@ -36,23 +36,29 @@ public final class StructureRequest extends Request {
   /**
    * Constructor of {@code StructureRequests}, provide suuceeded and excepted.
    *
+   * @version 4.0
    * @param succeeded the boolean to represent whether the instance is successfully requested
+   * @param failed the boolean to represent whether the instance has failures occured
    * @param excepted the boolean to represent whether the instance has exceptions occured
    */
-  public StructureRequest(boolean succeeded, boolean excepted) {
+  public StructureRequest(boolean succeeded, boolean failed, boolean excepted) {
     this.setSucceeded(succeeded);
+    this.setFailed(failed);
     this.setExcepted(excepted);
   }
 
   /**
    * Constructor of {@code StructureRequests}, provide succeeded, excepted and related object.
    *
+   * @version 4.0
    * @param succeeded the boolean to represent whether the instance is successfully requested
+   * @param failed the boolean to represent whether the instance has failures occured
    * @param excepted the boolean to represent whether the instance has exceptions occured
    * @param instance the related instance of the instance
    */
-  public StructureRequest(boolean succeeded, boolean excepted, Object instance) {
+  public StructureRequest(boolean succeeded, boolean failed, boolean excepted, Object instance) {
     this.setSucceeded(succeeded);
+    this.setFailed(failed);
     this.setExcepted(excepted);
     this.instance = instance;
   }

@@ -9,14 +9,22 @@ import java.lang.reflect.Constructor;
 /**
  * The {@code Node} class.
  *
+ * @author Cloudy Young, Jimschenchen, Benjamin Wood
  * @since 1.0
- * @version 2.1
+ * @version 4.0
  */
 public abstract class Node {
 
+  /** Static variable representing a sorting reference id */
   public static final int SORT_BY_ID = 0;
+
+  /** Static variable representing a sorting reference priority */
   public static final int SORT_BY_PRIORITY = 5;
+
+  /** Static variable representing a ordering reference ascending */
   public static final int ORDER_BY_ASC = 0;
+
+  /** Static variable representing a ordering reference descending */
   public static final int ORDER_BY_DESC = 1;
 
   /**
@@ -39,7 +47,8 @@ public abstract class Node {
    * The parent id of the instance. It is exposed to Gson, can be both serialized and deserialized.
    */
   @SerializedName("parent_id")
-  @Expose private Integer parentId;
+  @Expose
+  private Integer parentId;
 
   /**
    * The boolean to indicate whether this instance is on the server. {@code false} inidicates this
@@ -78,13 +87,13 @@ public abstract class Node {
   /**
    * Constructor of {@code Node}, provide title, note and parent.
    *
-   * @param id the id in {@code int}
    * @param title the title in {@code String}
    * @param note the note in {@code String}
    * @param parent the parent node in {@code Node}
    */
   protected Node(String title, String note, Node parent) {
-    this.setId(parent.idAutoIncrement++);
+    int id = parent == null ? -1 : parent.idAutoIncrement++;
+    this.setId(id);
     this.setTitle(title);
     this.setNote(note);
     this.setParent(parent);
@@ -146,6 +155,10 @@ public abstract class Node {
     return this.existing;
   }
 
+  private final void setExisting(boolean is) {
+    this.existing = is;
+  }
+
   /**
    * Returns the type by specified type and level by using the dictionary {@link #TYPE_DICTIONARY}.
    *
@@ -205,19 +218,22 @@ public abstract class Node {
    *
    * @param parent the parent node of the instance
    */
-  private final void setParent(Node parent) {
+  protected final void setParent(Node parent) {
     if (parent != null) {
-      // Remove self from old parent
-      if (this.getParent() != null && this.getParent() != parent) {
-        this.getParent().removeNode(this);
+      if (!parent.isSpecialized()) {
+        // Remove self from old
+        if (this.getParent() != null && this.getParent() != parent) {
+          this.getParent().removeNode(this);
+        }
+        // Set new parent
+        this.parent = parent;
+        this.parentId = this.parent.getId();
       }
 
-      // Set new parent
-      this.parent = parent;
-      this.parentId = this.parent.getId();
-
-      if(this.isExisting() || this.isSpecialized()){
+      if (this.isExisting() && !parent.isSpecialized()) {
         this.getParent().addNode(this);
+      } else if (parent.isSpecialized()) {
+        parent.addNode(this);
       }
     } else {
       // Remove parent
@@ -229,29 +245,27 @@ public abstract class Node {
   /**
    * Sets the parent {@code Node} of the instance.
    *
-   * <p>This is an <i>action</i> for controllers.
-   *
    * @param parent the parent {@code Node} of the instance
    * @return the result object of this action
    */
   public final Result setParentRequest(Node parent) {
     Result res = new Result();
-    if(!this.isExisting()){
+    if (!this.isExisting()) {
       this.setParent(parent);
-      StructureRequest req2 = new StructureRequest(true, false, this);
+      StructureRequest req2 = new StructureRequest(true, false, false, this);
       res.add(req2);
-    }else if (this instanceof Event) {
-      String parentType = NodeTypeUtils.typeUrl(this.getParentType());
-      HttpRequest req = this.update(parentType + "_id", parent.getId() + "");
+    } else if (this instanceof Event) {
+      String parentType = NodeTypeUtils.typeId(this.getParentType());
+      HttpRequest req = this.update(parentType + "_id", parent.getId());
       res.add(req);
 
       if (req.isSucceeded()) {
         this.setParent(parent);
-        StructureRequest req2 = new StructureRequest(true, false, this);
+        StructureRequest req2 = new StructureRequest(true, false, false, this);
         res.add(req2);
       }
     } else {
-      StructureRequest req2 = new StructureRequest(false, true, this);
+      StructureRequest req2 = new StructureRequest(false, false, true, this);
       req2.setErrorMessage("Instance can only be type of Event");
       res.add(req2);
     }
@@ -279,30 +293,28 @@ public abstract class Node {
   /**
    * Sets the title of the instance.
    *
-   * <p>This is an <i>action</i> for controllers.
-   *
    * @param title the title of the instance
    * @return the result object of this action
    */
   public final Result setTitleRequest(String title) {
     Result res = new Result();
-    if(!this.isExisting()){
+    if (!this.isExisting()) {
       this.setTitle(title);
 
-      StructureRequest req = new StructureRequest(true, false, this);
+      StructureRequest req = new StructureRequest(true, false, false, this);
       res.add(req);
-    }else{
+    } else {
       HttpRequest req = this.update("title", title);
       res.add(req);
 
       if (req.isSucceeded()) {
         this.setTitle(title);
 
-        StructureRequest req2 = new StructureRequest(true, false, this);
+        StructureRequest req2 = new StructureRequest(true, false, false, this);
         res.add(req2);
       }
     }
-    
+
     return res;
   }
 
@@ -318,26 +330,24 @@ public abstract class Node {
   /**
    * Sets the note of the instance.
    *
-   * <p>This is an <i>action</i> for controllers.
-   *
    * @param note the note of the instance
    * @return the result object of this action
    */
   public final Result setNoteRequest(String note) {
     Result res = new Result();
-    if(!this.isExisting()){
+    if (!this.isExisting()) {
       this.setNote(note);
-        
-      StructureRequest req = new StructureRequest(true, false, this);
+
+      StructureRequest req = new StructureRequest(true, false, false, this);
       res.add(req);
-    }else{
+    } else {
       HttpRequest req = this.update("note", note);
       res.add(req);
 
       if (req.isSucceeded()) {
         this.setNote(note);
-        
-        StructureRequest req2 = new StructureRequest(true, false, this);
+
+        StructureRequest req2 = new StructureRequest(true, false, false, this);
         res.add(req2);
       }
     }
@@ -474,23 +484,20 @@ public abstract class Node {
   /**
    * Creates the instance on the server.
    *
-   * <p>This is an <i>action</i> for controllers.
-   *
    * @return the result object of this action
    */
   public Result createRequest() {
     Result res = new Result();
 
-    if(this.isExisting()){
-      StructureRequest req2 = new StructureRequest(false, true, this);
+    if (this.isExisting()) {
+      StructureRequest req2 = new StructureRequest(false, false, true, this);
       req2.setErrorMessage("Event is already exisiting");
       res.add(req2);
-    }else{
+    } else {
       HttpBody body = new HttpBody(this);
       body.put(NodeTypeUtils.typeId(this.getParentType()) + "_id", body.getInt("parent_id"));
       body.remove("parent_id");
-      System.out.println(body);
-  
+
       HttpRequest req = new HttpRequest();
       req.setRequestUrl("/" + NodeTypeUtils.typeUrl(this.getType()));
       req.setRequestMethod("POST");
@@ -498,35 +505,33 @@ public abstract class Node {
       req.setRequestCookie(this.getRequestCookie());
       req.send();
       res.add(req);
-  
-      if (req.isSucceeded()) {
-        Node parent = this.getParent();
-        this.setId(req.getResponseBody().getInt("id"));
-        parent.addNode(this);
 
-        StructureRequest req2 = new StructureRequest(true, false, this);
+      if (req.isSucceeded()) {
+        this.setId(req.getResponseBody().getInt("id"));
+        this.getParent().addNode(this);
+        this.setParent(this.getParent());
+        this.setExisting(true);
+
+        StructureRequest req2 = new StructureRequest(true, false, false, this);
         res.add(req2);
       }
     }
-    System.out.println(res);
     return res;
   }
 
   /**
    * Removes the instance on the server.
    *
-   * <p>This is an <i>action</i> for controllers.
-   *
    * @return the result object of this action
    */
   public Result deleteRequest() {
     Result res = new Result();
 
-    if(!this.isExisting()){
-      StructureRequest req2 = new StructureRequest(false, true, this);
-      req2.setErrorMessage("Event is not exisiting");
+    if (!this.isExisting()) {
+      StructureRequest req2 = new StructureRequest(false, false, true, this);
+      req2.setErrorMessage("Node is not exisiting");
       res.add(req2);
-    }else{
+    } else {
 
       HttpRequest req = new HttpRequest();
       req.setRequestUrl("/" + NodeTypeUtils.typeUrl(this.getType()) + "/" + this.getId());
@@ -536,35 +541,31 @@ public abstract class Node {
       res.add(req);
 
       if (req.isSucceeded()) {
-        Node parent = this.getParent();
-        parent.removeNode(this);
+        this.getParent().removeNode(this);
         this.setParent(null);
-        
-        StructureRequest req2 = new StructureRequest(true, false, this);
+
+        StructureRequest req2 = new StructureRequest(true, false, false, this);
         res.add(req2);
       }
     }
-    System.out.println(res);
     return res;
   }
 
   /**
    * Adds a child node of the instance, in the local storage.
    *
-   * @param node the {@code Node} object to be added
-   * @return the structure request of this action
+   * @param nodeToAdd the {@code Node} object to be added
    */
-  protected final void addNode(Node nodeAdded) {
-    this.nodes.put(nodeAdded.getId(), nodeAdded);
+  private final void addNode(Node nodeToAdd) {
+    this.nodes.put(nodeToAdd.getId(), nodeToAdd);
   }
 
   /**
    * Removes a child node of the instance, in the local storage.
    *
    * @param id the id of the {@code Node} object to be removed
-   * @return the strcuture request of the action
    */
-  protected final void removeNode(int id) {
+  private final void removeNode(int id) {
     this.nodes.remove(id);
   }
 
@@ -572,7 +573,6 @@ public abstract class Node {
    * Removes a child node of the instance, in the local storage.
    *
    * @param node the node instance of the {@code Node} object to be removed
-   * @return the strcuture request of the action
    */
   protected final void removeNode(Node node) {
     this.removeNode(node.getId());
@@ -588,6 +588,11 @@ public abstract class Node {
     return this.nodes.get(id);
   }
 
+  /**
+   * Clears all the child node of the instance.
+   *
+   * @version 4.0
+   */
   protected final void clearNodes() {
     this.nodes.clear();
   }
@@ -595,13 +600,22 @@ public abstract class Node {
   /**
    * Returns all the children nodes of the instance.
    *
+   * @version 4.0
    * @return a {@code Collection} of all the children nodes
    */
   public final ArrayList<Node> getNodes() {
     return this.getNodes(Node.SORT_BY_ID, Node.ORDER_BY_ASC);
   }
 
-  public final ArrayList<Node> getNodes(int sortBy, int order) {
+  /**
+   * Returns all the children nodes of the instance, sorted and ordered by the given parameters.
+   *
+   * @version 4.0
+   * @param sortBy the attribute to sort
+   * @param orderBy the mode to order
+   * @return a {@code Collection} of all the children nodes
+   */
+  public final ArrayList<Node> getNodes(int sortBy, int orderBy) {
     ArrayList<Node> list = new ArrayList<Node>(this.nodes.values());
     Collections.sort(
         list,
@@ -616,7 +630,7 @@ public abstract class Node {
             return entry1.getId() - entry2.getId();
           }
         });
-    if (order == Node.ORDER_BY_DESC) Collections.reverse(list);
+    if (orderBy == Node.ORDER_BY_DESC) Collections.reverse(list);
     return list;
   }
 
@@ -629,11 +643,23 @@ public abstract class Node {
     return this.getClass().getSimpleName();
   }
 
-  public final boolean isSpecialized(){
+  /**
+   * Returns a boolean to indicate whether this node is a specialized node
+   *
+   * @version 4.0
+   * @return a boolean to indicate whether this node is a specialized node
+   */
+  public final boolean isSpecialized() {
     return this.specialized;
   }
 
-  protected final void setSpecialized(boolean is){
+  /**
+   * Sets this node as specialized node.
+   *
+   * @version 4.0
+   * @param is a boolean to indicate whether this node is a specialized node
+   */
+  protected final void setSpecialized(boolean is) {
     this.specialized = is;
     this.existing = is;
     this.setParent(this.parent);

@@ -29,9 +29,9 @@
          <left>
             <VBox fx:id="sidePane" onMouseDragReleased="#MouseDragReleased" styleClass="bg-side">
                <children>
-                  <VBox focusTraversable="true">
+                  <VBox>
                      <children>
-                        <Button fx:id="sideProfile" mnemonicParsing="false" onAction="#switchTab">
+                        <Button fx:id="sideProfile" focusTraversable="false" mnemonicParsing="false" onAction="#switchTab">
                            <graphic>
                               <HBox>
                                  <children>
@@ -71,6 +71,10 @@
                               <String fx:value="a" />
                            </styleClass>
                         </Button>
+                     </children>
+                  </VBox>
+                  <VBox focusTraversable="true" styleClass="operation-list">
+                     <children>
                         <Button fx:id="sideSearch" onAction="#switchTab" text="Search">
                            <graphic>
                               <HBox>
@@ -93,7 +97,24 @@
                   <VBox fx:id="operationList" styleClass="operation-list" />
                   <ScrollPane hbarPolicy="NEVER" VBox.vgrow="ALWAYS">
                     <content>
-                        <VBox fx:id="boardList" />
+                        <VBox>
+                           <children>
+                              <VBox fx:id="boardList" />
+                              <Button mnemonicParsing="false" onAction="#createBoard" style="-fx-font-family: 'Noto Sans Normal';" styleClass="a" text="New Board">
+                                 <graphic>
+                                    <HBox>
+                                       <children>
+                                          <SVGPath id="icon" content="M 15 5 L 15 15 L 5 15 L 5 17 L 15 17 L 15 27 L 17 27 L 17 17 L 27 17 L 27 15 L 17 15 L 17 5 Z" fill="#2f2e2e">
+                                             <cursor>
+                                                <Cursor fx:constant="DEFAULT" />
+                                             </cursor>
+                                          </SVGPath>
+                                       </children>
+                                    </HBox>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </VBox>
                     </content>
                   </ScrollPane>
                </children>
@@ -103,7 +124,7 @@
             </VBox>
          </left>
          <center>
-            <TabPane fx:id="tabPane" focusTraversable="false" onMouseDragOver="#PanelMouseDragOver" onMouseDragReleased="#MouseDragReleased" side="BOTTOM" styleClass="bg-main" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+            <TabPane fx:id="tabPane" focusTraversable="false" onMouseDragOver="#PanelMouseDragOver" onMouseDragReleased="#MouseDragReleased" onMouseExited="#onMouseExited" side="BOTTOM" styleClass="bg-main" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
               <tabs>
                 <Tab closable="false" text="Board">
                   <content>
@@ -130,7 +151,7 @@
                                     </VBox>
                                     <VBox styleClass="operation-list">
                                        <children>
-                                          <Button fx:id="boardEdit" mnemonicParsing="false" onAction="#displayBoardPrompt">
+                                          <Button fx:id="boardEdit" mnemonicParsing="false" onAction="#updateBoard">
                                              <graphic>
                                                 <SVGPath content="M 16 6 C 14.894531 6 14 6.894531 14 8 C 14 9.105469 14.894531 10 16 10 C 17.105469 10 18 9.105469 18 8 C 18 6.894531 17.105469 6 16 6 Z M 16 14 C 14.894531 14 14 14.894531 14 16 C 14 17.105469 14.894531 18 16 18 C 17.105469 18 18 17.105469 18 16 C 18 14.894531 17.105469 14 16 14 Z M 16 22 C 14.894531 22 14 22.894531 14 24 C 14 25.105469 14.894531 26 16 26 C 17.105469 26 18 25.105469 18 24 C 18 22.894531 17.105469 22 16 22 Z" />
                                              </graphic>
@@ -476,8 +497,8 @@
             </TabPane>
          </center>
       </BorderPane>
-      <Pane id="dragPane" fx:id="dragPane" />
-      <VBox fx:id="promptBoard" styleClass="prompt-cover">
+      <Pane id="dragPane" fx:id="dragPane" mouseTransparent="true" />
+      <VBox fx:id="promptBoard">
          <children>
             <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="bg-prompt">
                <content>
@@ -502,7 +523,7 @@
                                     <SVGPath content="M 10 2 L 10 30 L 18.71875 30 C 20.128906 31.238281 21.984375 32 24 32 C 28.40625 32 32 28.40625 32 24 C 32 19.59375 28.40625 16 24 16 C 23.304688 16 22.644531 16.113281 22 16.28125 L 22 2 Z M 12 4 L 20 4 L 20 17.09375 C 17.613281 18.480469 16 21.050781 16 24 C 16 25.457031 16.40625 26.820313 17.09375 28 L 12 28 Z M 24 18 C 27.324219 18 30 20.675781 30 24 C 30 27.324219 27.324219 30 24 30 C 20.675781 30 18 27.324219 18 24 C 18 20.675781 20.675781 18 24 18 Z M 23 20 L 23 23 L 20 23 L 20 25 L 23 25 L 23 28 L 25 28 L 25 25 L 28 25 L 28 23 L 25 23 L 25 20 Z" />
                                  </graphic>
                               </Button>
-                              <Button fx:id="boardCreate" mnemonicParsing="false" styleClass="primary">
+                              <Button fx:id="boardCreate" mnemonicParsing="false" onAction="#createBoardRequest" styleClass="primary">
                                  <graphic>
                                     <SVGPath content="M 28.28125 6.28125 L 11 23.5625 L 3.71875 16.28125 L 2.28125 17.71875 L 10.28125 25.71875 L 11 26.40625 L 11.71875 25.71875 L 29.71875 7.71875 Z" />
                                  </graphic>
@@ -535,6 +556,10 @@
                </content>
             </ScrollPane>
          </children>
+         <styleClass>
+            <String fx:value="prompt-cover" />
+            <String fx:value="hide" />
+         </styleClass>
       </VBox>
       <VBox fx:id="promptEvent">
          <children>
