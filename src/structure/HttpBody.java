@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * This is a custom HashMap class for <b>fluently and elegantly</b> writing and reading values in
+ * This is a customized HashMap class for <b>fluently and elegantly</b> writing and reading values in
  * {@code JSON}.
  *
  * <p>To avoid bothers of TypeCasting warnings from HashMap and ArrayList class, this class is built
