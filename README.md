@@ -6,8 +6,10 @@
 [![time tracker](https://wakatime.com/badge/github/CloudyYoung/Smart-Kanban-Board.svg)](https://wakatime.com/badge/github/CloudyYoung/Smart-Kanban-Board)
 
 
-## Contributors
+## Contributor
 - [Yunfan Yang (@CloudyYoung)](https://github.com/CloudyYoung)
+
+## Special Thanks
 - [Chenyue Li (@Jimschenchen)](https://github.com/jimschenchen)
 - [Jerremy Lewis (@lewisjerremy)](https://github.com/lewisjerremy)
 - [Ben Wood (@Braindamaged69)](https://github.com/Braindamaged69)
