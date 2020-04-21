@@ -5,10 +5,6 @@
 [![Build Status](https://travis-ci.com/CloudyYoung/Smart-Kanban-Board.svg?token=xvFzJVyxhP7YsvANEEBw&branch=master)](https://travis-ci.com/CloudyYoung/Smart-Kanban-Board)
 [![time tracker](https://wakatime.com/badge/github/CloudyYoung/Smart-Kanban-Board.svg)](https://wakatime.com/badge/github/CloudyYoung/Smart-Kanban-Board)
 
-
-## Contributor
-- [Yunfan Yang (@CloudyYoung)](https://github.com/CloudyYoung)
-
 ## Special Thanks
 - [Chenyue Li (@Jimschenchen)](https://github.com/jimschenchen)
 - [Jerremy Lewis (@lewisjerremy)](https://github.com/lewisjerremy)
